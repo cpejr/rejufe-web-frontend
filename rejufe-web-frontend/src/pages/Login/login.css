@@ -1,7 +1,49 @@
-.imgFundo{
-    margin-left: auto;
-    margin-right: auto;
-}
 .Fundo{
-    background-image: url("../../../public/images/martelin.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 70vh;
+    width: 40vw;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 5%;
+    border-radius: 15px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+}
+.Box img{
+    height: 40%;
+    width: 80%;
+}
+.Box input{
+    margin-top: 8px;
+    height: 35px;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    padding: 0 24px;
+    text-align: center;
+    width: 40%;
+}
+.Box button{
+    background-color: #264A6F;
+    width: 20%;
+    height: 35px;
+    border: 1px solid #264A6F;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 20px;
+    transition: filter 0.2s;
+}
+.Box button:hover{
+    filter: brightness(70%);
 }

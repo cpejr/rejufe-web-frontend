@@ -1,15 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
+import backgroundImage from "../../images/martelin.png";
 
 function Login(){
 
 
 
     return (
-        <div className="Fundo">
-            <img src="/images/martelin.png" alt="FundoTela" className="imgFundo"/>
+        <div className="Fundo" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', width: '100vw', height: '100vh'}}>
             <div className="Box">
+                <img src="images/logoSemFundo.png" alt="Logo" />
+                <p>Usuario *</p>
+                <input type="text"></input>
+                <p>Senha *</p>
+                <input type="password"></input>
+                <Link to="refinirSenha">Esqueci Minha Senha</Link>
+                <button>Acessar</button>
             </div>
         </div>
     )
