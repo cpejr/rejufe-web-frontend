@@ -15,7 +15,9 @@ function Login(){
                 <input type="text"></input>
                 <p>Senha *</p>
                 <input type="password"></input>
-                <Link to="refinirSenha">Esqueci Minha Senha</Link>
+                <div className="link">
+                <Link to="redefinirSenha">Esqueci Minha Senha</Link>
+                </div>
                 <button>Acessar</button>
             </div>
         </div>
