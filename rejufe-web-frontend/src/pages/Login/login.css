@@ -1,0 +1,7 @@
+.imgFundo{
+    margin-left: auto;
+    margin-right: auto;
+}
+.Fundo{
+    background-image: url("../../../public/images/martelin.png");
+}
