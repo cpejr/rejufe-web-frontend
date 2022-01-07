@@ -4,12 +4,12 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import EsqueciSenha from "./pages/EsqueciSenha";
 
-function Routes(){
-    return(
+function Routes() {
+    return (
         <BrowserRouter>
             <Switch>
                 <Route path="/login" component={Login} />
-                <Route path="/Dashboard" component={Dashboard} />
+                <Route path="/dashboard" component={Dashboard} />
                 <Route path="/redefinirSenha" component={EsqueciSenha} />
             </Switch>
         </BrowserRouter>
