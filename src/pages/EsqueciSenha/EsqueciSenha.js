@@ -21,7 +21,7 @@ function EsqueciSenha(){
       e.preventDefault();
       await managerService.sendResetEmail(JSONtoSend);
       history.push('/login');
-      addToast('Email enviado com sucesso!', { appearance: 'success' });
+      addToast('Email enviado com sucesso!', { appearance: 'success', autoDismiss: true });
     } catch {
       addToast('Email não cadastrado!', { appearance: 'error' });
     }
