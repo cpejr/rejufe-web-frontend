@@ -27,15 +27,15 @@ function EsqueciSenha(){
     }
   };
     return (
-        <div className="container" style={{backgroundImage:`url(${imagemFundo})`, backgroundSize:'cover', width:'100vw', height:'100vh'}}>
-           <div className="campos">
-             <div className="coluna">
-              <div className="voltar">
+        <div className="container-forgot-password" style={{backgroundImage:`url(${imagemFundo})`, backgroundSize:'cover', width:'100vw', height:'100vh'}}>
+           <div className="campo-forgot-password">
+             <div className="box-forgot-password">
+              <div className="voltar-forgot-password">
                 <a href="/login">
                   <span></span>    
                 </a>
               </div>
-               <div className="text1">
+               <div className="text-forgot-password">
                   <img src="images/logoSemFundo.png" alt="Logo" />
                   <h1> Redefinir Senha</h1>
                   <h2> Informe seu email cadastrado no REJUFE</h2>
