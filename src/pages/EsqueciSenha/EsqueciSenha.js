@@ -32,7 +32,7 @@ function EsqueciSenha(){
              <div className="box-forgot-password">
               <div className="voltar-forgot-password">
                 <a href="/login">
-                  <span></span>    
+                  <span></span>Login    
                 </a>
               </div>
                <div className="text-forgot-password">

@@ -12,7 +12,7 @@
 
   h1 {
     font-family: "Roboto", sans-serif;
-    font: normal 18pt Montserrat;
+    font: normal 18pt Roboto;
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -23,7 +23,7 @@
   }
   h2 {
     font-family: "Roboto", sans-serif;
-    font: normal 10pt Montserrat;
+    font: normal 10pt Roboto;
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -73,6 +73,7 @@
     box-sizing: border-box;
     border-radius: 6px;
     border: 0;
+    padding-left: 10px;
   }
   .container-forgot-password button{
     background-color: #264A6F;
@@ -91,6 +92,8 @@
     justify-content: center;
     width: 35%;
     height: 10%;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
 }
 .outlined-basic {
     align-items: center;
@@ -107,14 +110,15 @@
     justify-content: flex-start;
 }
 .voltar-forgot-password a{
+    color:#264A6F;
     display: flex;
-    flex-direction: row;
-    align-self: start;
-    align-items: start;
-    justify-content: flex-start;
+    font-weight: bold;
+    align-items: center;
+    text-decoration: none;
 }
 
 .voltar-forgot-password a span{
+    margin-right: 8px;
     margin-left: 30px;
     display: flex;
     flex-direction: row;
@@ -122,8 +126,8 @@
     align-items: start;
     justify-content: flex-start;
     background-image: url("../../images/arrow-left.svg");
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
 }
 
 @media(max-width: 840px) {
@@ -134,7 +138,7 @@
         height: 8%;
       }
     h2 {
-        font: normal 9pt Montserrat;
+        font: normal 9pt Roboto;
     }
 
   }
@@ -150,7 +154,7 @@
     height: 10%;
   }
   h1 {
-    font: normal 15pt Montserrat;
+    font: normal 15pt Roboto;
   }
 }
 @media(max-width: 353px) {
@@ -160,7 +164,7 @@
     h2 {
         align-items: center;
         justify-content: center;
-        font: normal 8pt Montserrat;
+        font: normal 8pt Roboto;
     }
     .container-forgot-password button {
         font-size: 80%;
