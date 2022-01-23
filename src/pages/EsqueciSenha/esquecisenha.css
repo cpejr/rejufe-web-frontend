@@ -74,13 +74,13 @@
     border-radius: 6px;
     border: 0;
     padding-left: 10px;
+    padding-right: 10px;
   }
   .container-forgot-password button{
     background-color: #264A6F;
     border: 1px solid #264A6F;
     border-radius: 8px;
     color: white;
-    font-weight: bold;
     display: inline-block;
     text-align: center;
     text-decoration: none;
