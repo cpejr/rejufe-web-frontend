@@ -37,6 +37,10 @@ function Login() {
                     <Link to="redefinirSenha">Esqueci Minha Senha</Link>
                 </div>
                 <button type="button" onClick={handleClick}>Acessar</button>
+                <div className="lembrarDeMim">
+                    <input type="checkbox" id="lembrarDeMim" name="lembrarDeMim" value="lembrarDeMim" />
+                    <label for="lembrarDeMim">Lembrar de mim</label>
+                </div>
             </div>
         </div>
     );
