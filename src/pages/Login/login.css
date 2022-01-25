@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.6);
-  height: 70vh;
+  height: 85vh;
   width: 40vw;
   padding-left: 2%;
   padding-right: 2%;
@@ -17,7 +17,7 @@
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
 }
 .Box-login img {
-  height: 40%;
+  height: 35%;
   width: 80%;
 }
 .Box-login input {
@@ -26,6 +26,7 @@
   border: 1px solid #dcdce6;
   border-radius: 8px;
   padding: 0 24px;
+  display: flex;
   text-align: center;
   width: 40%;
 }
@@ -45,24 +46,68 @@
   transition: filter 0.2s;
   margin-top: 15px;
 }
+.Box-login p {
+  margin-top: 3px;
+}
 .Box-login button:hover {
   filter: brightness(70%);
 }
 .link {
   margin-top: 15px;
+  font-size: 2.4vh;
+}
+
+.Remember-Box {
+  display: flex;
+  align-items: center;
+}
+.Remember-Box input {
+  width: 15px;
+}
+label {
+  font-size: 12px;
+  margin-top: 8px;
 }
 
 @media (max-width: 715px) {
   .Box-login {
-    height: 70vh;
     width: 50vh;
   }
 }
 
 @media (max-width: 570px) {
   .Box-login img {
-    height: 40%;
+    height: 35%;
     width: 80%;
+  }
+  .Box-login {
+    width: 70%;
+    height: 70%;
   }
 }
 
+@media (max-width: 425px) {
+  .Box-login img {
+    height: 25%;
+    width: 90%;
+  }
+  .Box-login {
+    width: 70%;
+    height: 60%;
+  }
+  .link {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .Box-login p {
+    font-size: 2em;
+  }
+  label {
+    font-size: 1.3em;
+  }
+  .Remember-Box input {
+    width: 1.3em;
+  }
+}
