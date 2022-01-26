@@ -9,8 +9,8 @@ function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/login" component={Login} />
-                <Route path="/dashboard/ADMINISTRADOR" component={Dashboard} />
-                <Route path="/dashboard/USUÁRIO" component={Dashboard} />
+                <Route path="/dashboard/administrador" component={Dashboard} />
+                <Route path="/dashboard/usuario" component={Dashboard} />
                 <Route path="/redefinirSenha" component={EsqueciSenha} />
             </Switch>
         </BrowserRouter>
