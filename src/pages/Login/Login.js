@@ -19,7 +19,6 @@ function Login() {
                 password: user.password,
                 rememberMe: user.rememberMe
             }
-            console.log(body);
             await managerService.login(body);
         } catch (error) {
             alert("Credenciais Invalidas!");
@@ -30,10 +29,10 @@ function Login() {
         <div className="Background-login" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', width: '100vw', height: '100vh' }}>
             <div className="Box-login">
                 <img src="images/logoSemFundo.png" alt="Logo" />
-                <p>Usuario *</p>
+                <p>Usuário </p>
                 <input type="user" id="user"
                     onChange={e => setUser({ ...user, user: e.target.value })} ></input>
-                <p>Senha *</p>
+                <p>Senha </p>
                 <input type="password"
                     onChange={e => setUser({ ...user, password: e.target.value })}></input>
 
@@ -45,7 +44,7 @@ function Login() {
                     <label for="rememberMe">Lembrar de mim</label></div>
 
                 <button type="button" onClick={handleClick}>Acessar</button>
-                <div className="link">
+                <div className="Link-ForgottenPassword">
                     <Link to="redefinirSenha">Esqueci Minha Senha</Link>
                 </div>
 

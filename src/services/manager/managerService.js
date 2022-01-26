@@ -3,17 +3,13 @@ import * as requesterService from '../requester/requesterService';
 const isFailureStatus = (result) => !result || result.status >= 400;
 
 export const getUserEmailByUsername = async (user) => {
-  console.log(user);
-  console.log(typeof user);
   const response = await requesterService.getUserEmailByUsername(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
 
 export const login = async (user) => {
-  console.log("🚀 ~ file: managerService.js ~ line 14 ~ login ~ user", user)
   const response = await requesterService.login(user);
-  console.log(response);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('_id'));
