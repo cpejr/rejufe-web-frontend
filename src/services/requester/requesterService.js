@@ -7,3 +7,5 @@ export const getUserEmailByUsername = (user) => httpClient.get('/usuario/getUser
     user,
   },
 });
+
+export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);

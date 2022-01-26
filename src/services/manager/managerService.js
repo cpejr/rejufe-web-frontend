@@ -24,3 +24,13 @@ export const login = async (user) => {
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = `/dashboard/${response.data.user.type}`;
 };
+
+
+
+export const sendResetEmail = async (email) => {
+    const response = await requesterService.sendResetEmail(JSON.parse(email));
+    if (isFailureStatus(response)) {
+        throw new Error('Problem with api response');
+        }
+    return response;
+  };
