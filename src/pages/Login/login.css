@@ -32,7 +32,7 @@
 }
 .Box-login button {
   background-color: #264a6f;
-  width: 12.4vh;
+  width: 15vh;
   height: 5.4vh;
   border: 1px solid #264a6f;
   border-radius: 8px;
@@ -45,9 +45,12 @@
   line-height: 20px;
   transition: filter 0.2s;
   margin-top: 15px;
+  font-family: "Roboto", sans-serif;
 }
 .Box-login p {
   margin-top: 3px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
 }
 .Box-login button:hover {
   filter: brightness(70%);
@@ -55,6 +58,14 @@
 .link {
   margin-top: 15px;
   font-size: 2.4vh;
+}
+
+.link a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9em;
 }
 
 .Remember-Box {
@@ -67,11 +78,13 @@
 label {
   font-size: 12px;
   margin-top: 8px;
+  padding-left: 5px;
+  font-family: "Roboto", sans-serif;
 }
 
-@media (max-width: 715px) {
+@media (max-width: 800px) {
   .Box-login {
-    width: 50vh;
+    width: 60%;
   }
 }
 
@@ -82,7 +95,6 @@ label {
   }
   .Box-login {
     width: 70%;
-    height: 70%;
   }
 }
 
@@ -93,7 +105,7 @@ label {
   }
   .Box-login {
     width: 70%;
-    height: 60%;
+    height: 65%;
   }
   .link {
     font-size: 12px;
