@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import "./login.css";
 import * as managerService from '../../services/manager/managerService';
 import backgroundImage from "../../images/martelin.png";
+import { useToasts } from 'react-toast-notifications';
 
 const initialState = {
     rememberMe: false,
 }
 function Login() {
-
+    const { addToast } = useToasts();
     const [user, setUser] = useState(initialState);
     const handleClick = async (e) => {
         try {
@@ -21,7 +22,7 @@ function Login() {
             }
             await managerService.login(body);
         } catch (error) {
-            alert("Credenciais Invalidas!");
+            addToast('Credenciais Inválidas!!', { appearance: 'error', autoDismiss: true });
         }
     };
 
