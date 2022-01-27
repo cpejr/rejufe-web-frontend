@@ -102,6 +102,12 @@ label {
     width: 70%;
     height: 65%;
   }
+  .Box-login input {
+    width: 18vh;
+  }
+  .Remember-Box input {
+    width: 15px;
+  }
   .Link-ForgottenPassword {
     font-size: 12px;
   }
