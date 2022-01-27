@@ -10,7 +10,7 @@
     justify-content: center;
   }
 
-  h1 {
+  .container-forgot-password h1 {
     font-family: "Roboto", sans-serif;
     font: normal 18pt Roboto;
     align-items: center;
@@ -21,7 +21,7 @@
     text-align: center;
   
   }
-  h2 {
+  .container-forgot-password h2 {
     font-family: "Roboto", sans-serif;
     font: normal 10pt Roboto;
     align-items: center;
@@ -138,7 +138,7 @@
     .container-forgot-password input {
         height: 8%;
       }
-    h2 {
+    .container-forgot-password h2 {
         font: normal 9pt Roboto;
     }
 
@@ -154,7 +154,7 @@
   .container-forgot-password input {
     height: 10%;
   }
-  h1 {
+  .container-forgot-password h1 {
     font: normal 15pt Roboto;
   }
 }
@@ -162,7 +162,7 @@
     .container-forgot-password input {
         height: 23px;
       }
-    h2 {
+    .container-forgot-password h2 {
         align-items: center;
         justify-content: center;
         font: normal 8pt Roboto;
