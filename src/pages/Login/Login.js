@@ -4,10 +4,14 @@ import "./login.css";
 import * as managerService from '../../services/manager/managerService';
 import backgroundImage from "../../images/martelin.png";
 import { useToasts } from 'react-toast-notifications';
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 
 const initialState = {
     rememberMe: false,
 }
+toast.configure()
 function Login() {
     const { addToast } = useToasts();
     const [user, setUser] = useState(initialState);
@@ -22,7 +26,10 @@ function Login() {
             }
             await managerService.login(body);
         } catch (error) {
-            addToast('Credenciais Inválidas!!', { appearance: 'error', autoDismiss: true });
+            toast.error('Credenciais inválidas!!', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000
+            })
         }
     };
 

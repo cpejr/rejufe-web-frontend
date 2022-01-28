@@ -4,7 +4,10 @@ import imagemFundo from "../../images/martelin.png";
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../services/manager/managerService';
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
+toast.configure()
 function EsqueciSenha(){
   const [email, setEmail] = useState('');
   const { addToast } = useToasts();
@@ -21,9 +24,15 @@ function EsqueciSenha(){
       e.preventDefault();
       await managerService.sendResetEmail(JSONtoSend);
       history.push('/login');
-      addToast('Email enviado com sucesso!', { appearance: 'success', autoDismiss: true });
+      toast.success('Email enviado com sucesso!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000
+    })
     } catch {
-      addToast('Email não cadastrado!', { appearance: 'error', autoDismiss: true });
+      toast.error('Email não cadastrado!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000
+    })
     }
   };
     return (
