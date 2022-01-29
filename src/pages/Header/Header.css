@@ -1,10 +1,12 @@
 .appbar{
     justify-content: space-between;
+    width: 100%;
 }
 .toolbar {
     background-color: #264A6F;
     height: 75px;
     justify-content: space-between;
+    width: 100%;
 }
 
 /* Dropdown Button */
@@ -51,3 +53,66 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: none;}
+
+  .iconbutton{
+    display: none;
+  }
+  .sair {
+    display: none;
+  }
+
+  @media(max-width: 1055px){
+    .dropbtn {
+      display: none;
+    }
+    .iconbutton{
+      color: white;
+      position: relative;
+      display: inline-block;
+      justify-content: flex-start;
+    }
+    .menuIcon {
+      color: white !important;
+      padding: 16px;
+      font-size: 16px;
+      height: 75px;
+      border: none;
+      margin-right: 80px;
+      justify-content: flex-start;
+    }
+    .sair{
+      display: flex;
+    }
+    .sairicon{
+      color: white !important;
+    }
+      /* Dropdown Content (Hidden by Default) */
+  .iconbutton-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    align-items: center;
+    /* margin-right: 2px; */
+  }
+  
+  /* Links inside the dropdown */
+  .iconbutton-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .iconbutton-content a:hover {background-color: #ddd;}
+  .menuIcon:hover {background-color: #31577e;}
+  .iconbutton:hover .iconbutton-content {
+    display: block;
+  }
+  .iconbutton:hover .menuIcon {background-color: none;}
+  .toolbar {
+    align-items: center;
+    justify-content: space-between;
+}
+  }

@@ -3,15 +3,24 @@ import "./Header.css"
 import {
     AppBar,
     Toolbar,
+    IconButton,
+    Drawer,
+    List,
+    ListItem,
+    IconContext,
+    ListItemText,
+    Typography,
   } from "@mui/material";
 import {useHistory} from "react-router-dom";
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Header(props){
     const history = useHistory();
     const [avatar, setAvatar] = useState();
     const [open, setOpen] = useState(false);
     const [data, setData] = useState();
-
     function handleTudo(pathName, on){
         setOpen(on)
         history.push(pathName)
@@ -141,6 +150,40 @@ function Header(props){
         },
 
       ];
+    const drawer = [
+        {
+          pathName: "/dashboard",
+          text: "Home",
+        },
+        {
+          pathName: "/consultas",
+          text: "Consultas",
+        },
+        {
+          pathName: "/cadastro",
+          text: "Cadastro",
+        },
+        {
+          pathName: "/validarsocio",
+          text: "Sócios",
+        },
+        {
+          pathName: "/admregistors",
+          text: "Registros",
+        },
+        {
+          pathName: "/associadosexluidos",
+          text: "Associado excluídos",
+        },
+        {
+          pathName: "/atas",
+          text: "Atas",
+        },
+        {
+          pathName: "/editais",
+          text: "Editais",
+        },
+      ];
     
     return(
         <>
@@ -174,6 +217,29 @@ function Header(props){
           >
             Intranet
           </button>
+          <div className="iconbutton">
+          <IconButton
+            edge="start"
+            aria-label="menu"
+            className="menuIcon"
+          >
+            <MenuIcon />
+          </IconButton>
+          <div class="iconbutton-content">
+                 {drawer.map((listItem3) => {
+                 return <a href={listItem3.pathName}>{listItem3.text}<br></br></a>;
+                 })}
+             </div>
+          </div>
+          {/* <div className="sair">
+          <IconButton
+            edge="start"
+            aria-label="menu"
+            className="sairicon"
+          >
+            <LogoutIcon />
+          </IconButton>
+          </div> */}
           </Toolbar>
         </AppBar>
         {props.children}
