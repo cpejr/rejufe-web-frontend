@@ -153,14 +153,18 @@
   .container-forgot-password button {
     align-items: center;
     justify-content: center;
-    width: 35%;
-    height: 15%;
+    width: 38%;
+    height: 16%;
   }
   .container-forgot-password input {
     height: 10%;
   }
   h1 {
     font: normal 15pt Roboto;
+  }
+  h2{
+    margin: 1vh;
+    margin-top: 3vh;
   }
 }
 @media(max-width: 353px) {
@@ -173,8 +177,9 @@
         font: normal 8pt Roboto;
     }
     .container-forgot-password button {
-        font-size: 80%;
-        height: 18%;
+        font-size: 75%;
+        height: 21%;
+        width: 40%;
     }
     .span {
         margin-left: 15px;

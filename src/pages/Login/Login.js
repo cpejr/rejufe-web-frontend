@@ -9,6 +9,7 @@ import { CircularProgress } from '@mui/material';
 
 
 const initialState = {
+    user: '',
     rememberMe: false,
 }
 toast.configure()
@@ -63,7 +64,6 @@ function Login() {
                 <div className="Link-ForgottenPassword">
                     <Link to="redefinirSenha">Esqueci Minha Senha</Link>
                 </div>
-                {/* <div class="loader"></div> */}
                 </div>
                </div>
             </div>

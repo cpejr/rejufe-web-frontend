@@ -150,15 +150,10 @@
     animation: spin 2s linear infinite;
   }
 
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+  .Link-ForgottenPassword a:hover {
+    color: rgb(41, 41, 41);
   }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+
 
 @media(max-width: 1050px) {
     .Box-login{
@@ -186,6 +181,13 @@
   .Box-login h1 {
     font: normal 13pt Roboto;
   }
+  .Link-ForgottenPassword a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.7em;
+  }
 }
 @media(max-width: 353px) {
   .Box-login{
@@ -203,146 +205,3 @@
     }
 }
 
-
-
-
-/* .Background-login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.Box-login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.6);
-  height: 85vh;
-  width: 40vw;
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top: 5%;
-  padding-bottom: 2%;
-  border-radius: 15px;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
-}
-.Box-login button {
-  background-color: #264a6f;
-  width: 15vh;
-  height: 5.4vh;
-  border: 1px solid #264a6f;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 15px;
-  line-height: 20px;
-  transition: filter 0.2s;
-  margin-top: 15px;
-  font-family: "Roboto", sans-serif;
-}
-.Box-login button:hover {
-  filter: brightness(70%);
-}
-.Box-login img {
-  height: 35%;
-  width: 80%;
-}
-.Box-login input {
-  margin-top: 8px;
-  height: 5.4vh;
-  border: 1px solid #dcdce6;
-  border-radius: 8px;
-  padding: 0 24px;
-  display: flex;
-  text-align: center;
-  width: 40%;
-}
-
-.Box-login p {
-  margin-top: 3px;
-  font-family: "Roboto", sans-serif;
-  font-size: 1em;
-}
-label {
-  font-size: 12px;
-  margin-top: 8px;
-  padding-left: 5px;
-  font-family: "Roboto", sans-serif;
-}
-.Link-ForgottenPassword {
-  margin-top: 15px;
-  font-size: 2.4vh;
-}
-
-.Link-ForgottenPassword a {
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-size: 0.9em;
-}
-
-.Remember-Box {
-  display: flex;
-  align-items: center;
-}
-.Remember-Box input {
-  width: 15px;
-}
-.Box-login button {
-  font-weight: normal;
-  cursor: pointer;
-}
-
-@media (max-width: 570px) {
-  .Box-login img {
-    height: 35%;
-    width: 80%;
-  }
-  .Box-login {
-    width: 70%;
-  }
-}
-
-@media (max-width: 425px) {
-  .Box-login img {
-    height: 25%;
-    width: 90%;
-  }
-  .Box-login {
-    width: 70%;
-    height: 65%;
-  }
-  .Box-login input {
-    width: 18vh;
-  }
-  .Remember-Box input {
-    width: 15px;
-  }
-  .Link-ForgottenPassword {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 800px) {
-  .Box-login {
-    width: 60%;
-  }
-}
-
-@media (min-width: 1400px) {
-  .Box-login p {
-    font-size: 1.3em;
-  }
-  .Box-login {
-    height: 80%;
-  }
-  label {
-    font-size: 1.3em;
-  }
-  .Remember-Box input {
-    width: 1.3em;
-  }
-} */
