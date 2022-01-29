@@ -95,6 +95,9 @@
     font-family: "Roboto", sans-serif;
     cursor: pointer;
 }
+.container-forgot-password button:hover{
+    background-color: #1f4061;
+}
 .outlined-basic {
     align-items: center;
     display: flex;
@@ -115,6 +118,7 @@
     font-weight: bold;
     align-items: center;
     text-decoration: none;
+    font-family: "Roboto";
 }
 
 .voltar-forgot-password a span{

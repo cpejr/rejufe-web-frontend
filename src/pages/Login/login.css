@@ -1,4 +1,212 @@
-.Background-login {
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
+.container-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .Box-login h1 {
+    font-family: "Roboto", sans-serif;
+    font: normal 15pt Roboto;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  
+  }
+  .Box-login h2 {
+    font-family: "Roboto", sans-serif;
+    font: normal 10pt Roboto;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin: 5vh;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+  .campo-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+  }
+  .Box-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .text-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  }
+  .container-login img{
+    margin-bottom: -3%;
+    height: 40%;
+    width: 90%;
+}
+  .container-login input {
+    margin-bottom: 3%;
+    margin-top: 1%;
+    width: 55%;
+    height: 7%;
+    background-color: #ffffffab;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .container-login button{
+    background-color: #264A6F;
+    border: 1px solid #264A6F;
+    border-radius: 8px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 90%;
+    line-height: 20px;
+    transition: filter 0.2s;
+    margin-top:0%;
+    margin-bottom: 3%;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 8%;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+}
+.container-login button:hover{
+    background-color: #1f4061;
+}
+.outlined-basic {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .Remember-Box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Remember-Box input {
+    margin-top: 0px;
+    height: 5.4vh;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    display: flex;
+    text-align: center;
+    width: 15px;
+  }
+  label {
+    font-size: 12px;
+    margin-top: 0px;
+    padding-left: 5px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .Link-ForgottenPassword {
+    margin-top: 10px;
+    font-size: 2.4vh;
+  }
+  
+  .Link-ForgottenPassword a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9em;
+  }
+
+  .loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 10px;
+    height: 10px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+@media(max-width: 1050px) {
+    .Box-login{
+      width: 70%;
+    }
+
+  }
+
+@media(max-width: 840px) {
+    .Box-login{
+      width: 70%;
+    }
+
+  }
+
+@media(max-width: 634px) {
+  .container-login button {
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+  }
+  /* .container-login input {
+    height: 10%;
+  } */
+  .Box-login h1 {
+    font: normal 13pt Roboto;
+  }
+}
+@media(max-width: 353px) {
+  .Box-login{
+    width: 90%;
+  }
+    .container-login input {
+        height: 23px;
+      }
+    .container-login button {
+        font-size: 80%;
+        height: 14%;
+    }
+    .Box-login h1 {
+      font: normal 13pt Roboto;
+    }
+}
+
+
+
+
+/* .Background-login {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,6 +293,7 @@ label {
 }
 .Box-login button {
   font-weight: normal;
+  cursor: pointer;
 }
 
 @media (max-width: 570px) {
@@ -136,4 +345,4 @@ label {
   .Remember-Box input {
     width: 1.3em;
   }
-}
+} */

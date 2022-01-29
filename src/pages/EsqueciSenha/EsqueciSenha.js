@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import "./esquecisenha.css";
 import imagemFundo from "../../images/martelin.png";
 import { useHistory } from 'react-router-dom';
-import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../services/manager/managerService';
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -10,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css"
 toast.configure()
 function EsqueciSenha(){
   const [email, setEmail] = useState('');
-  const { addToast } = useToasts();
   const history = useHistory();
   function confirmarEmail(e) {
     setEmail(e.target.value);

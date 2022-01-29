@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "./login.css";
 import * as managerService from '../../services/manager/managerService';
 import backgroundImage from "../../images/martelin.png";
-import { useToasts } from 'react-toast-notifications';
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { CircularProgress } from '@mui/material';
 
 
 const initialState = {
@@ -13,9 +13,10 @@ const initialState = {
 }
 toast.configure()
 function Login() {
-    const { addToast } = useToasts();
+    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(initialState);
     const handleClick = async (e) => {
+        setLoading(true);
         try {
             e.preventDefault();
             const email = await managerService.getUserEmailByUsername(user.user);
@@ -30,19 +31,24 @@ function Login() {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 5000
             })
+            setLoading(false);
         }
+        setLoading(false);
     };
 
     return (
-        <div className="Background-login" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', width: '100vw', height: '100vh' }}>
-            <div className="Box-login">
+        <div className="container-login" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', width: '100vw', height: '100vh' }}>
+            <div className="campo-login">
+              <div className="Box-login">
+                  <div className="text-login">
                 <img src="images/logoSemFundo.png" alt="Logo" />
-                <p>Usuário </p>
+                <h1>Usuário </h1>
                 <input type="user" id="user"
                     onChange={e => setUser({ ...user, user: e.target.value })} ></input>
-                <p>Senha </p>
+                <h1>Senha </h1>
                 <input type="password"
                     onChange={e => setUser({ ...user, password: e.target.value })}></input>
+                
 
                 <div className="Remember-Box">
                     <input type="checkbox"
@@ -51,11 +57,15 @@ function Login() {
                         name="rememberMe" value={user.rememberMe} />
                     <label for="rememberMe">Lembrar de mim</label></div>
 
-                <button type="button" onClick={handleClick}>Acessar</button>
+                <button type="button" onClick={handleClick}>
+                {loading ? <CircularProgress size={24} color="inherit" /> : <p>Acessar</p>}
+                </button>
                 <div className="Link-ForgottenPassword">
                     <Link to="redefinirSenha">Esqueci Minha Senha</Link>
                 </div>
-
+                {/* <div class="loader"></div> */}
+                </div>
+               </div>
             </div>
         </div>
     );
