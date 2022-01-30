@@ -217,6 +217,9 @@ function Header(props){
           >
             Intranet
           </button>
+          <div className="img">
+            <img src='images/simbolo.png' alt="logo"/>
+          </div>
           <div className="iconbutton">
           <IconButton
             edge="start"
@@ -231,15 +234,6 @@ function Header(props){
                  })}
              </div>
           </div>
-          {/* <div className="sair">
-          <IconButton
-            edge="start"
-            aria-label="menu"
-            className="sairicon"
-          >
-            <LogoutIcon />
-          </IconButton>
-          </div> */}
           </Toolbar>
         </AppBar>
         {props.children}
