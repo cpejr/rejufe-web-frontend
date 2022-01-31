@@ -44,7 +44,7 @@ function Login() {
                   <div className="text-login">
                 <img src="images/logoSemFundo.png" alt="Logo" />
                 <h1>Usuário </h1>
-                <input type="user" id="user"
+                <input type="user" id="user" value={user.user}
                     onChange={e => setUser({ ...user, user: e.target.value })} ></input>
                 <h1>Senha </h1>
                 <input type="password"
