@@ -203,7 +203,7 @@ function Header(props){
               >
                   {listItem.text}
               </button>
-              <div class="dropdown-content">
+              <div class="dropdown-content" style={{float: 'left'}} align="left">
                  {listItem.links.map((listItem2) => {
                  return <a href={listItem2.pathName}>{listItem2.text}<br></br></a>;
                  })}

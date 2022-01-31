@@ -67,6 +67,9 @@
   }
 
   @media(max-width: 1055px){
+    .dropdown{
+      display: none;
+    }
     .dropbtn {
       display: none;
     }
