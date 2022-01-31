@@ -1,116 +1,104 @@
-import React, {useState} from "react";
+import React from "react";
 import "./Header.css"
 import {
     AppBar,
     Toolbar,
     IconButton,
-    Drawer,
-    List,
-    ListItem,
-    IconContext,
-    ListItemText,
-    Typography,
   } from "@mui/material";
 import {useHistory} from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import LogoutIcon from '@mui/icons-material/Logout';
 
 function Header(props){
     const history = useHistory();
-    const [avatar, setAvatar] = useState();
-    const [open, setOpen] = useState(false);
-    const [data, setData] = useState();
-    function handleTudo(pathName, on){
-        setOpen(on)
+    function handleClick(pathName){
         history.push(pathName)
     }
     const links1 = [
         {
-          link: () => handleTudo("/consultas", false),
+          link: () => handleClick("/consultas"),
           pathName: "/consultas",
           text: "Consultas",
         },
         {
-          link: () => handleTudo("/validarsocio", false),
+          link: () => handleClick("/validarsocio"),
           pathName: "/validarsocio",
           text: "Validar Sócio",
         },
         {
-          link: () => handleTudo("/admregistros", false),
+          link: () => handleClick("/admregistros"),
           pathName: "/admregistros",
           text: "Administração de registros",
         },
         {
-          link: () => handleTudo("/associadosexcluidos", false),
+          link: () => handleClick("/associadosexcluidos"),
           pathName: "/associadosexcluidos",
           text: "Associados excluídos",
         },
         {
-            link: () => handleTudo("/cadastro", false),
+            link: () => handleClick("/cadastro"),
             pathName: "/cadastro",
             text: "Cadastrar",
           },
     ]
     const links2 = [
         {
-          link: () => handleTudo("/admregistros", false),
+          link: () => handleClick("/admregistros"),
           pathName: "/admregistros",
           text: "Administração de Registros",
         },
         {
-          link: () => handleTudo("/cadastro", false),
+          link: () => handleClick("/cadastro"),
           pathName: "/cadastro",
           text: "Cadastrar",
         },
     ]
     const links3 = [
         {
-            link: () => handleTudo("/consultas", false),
+            link: () => handleClick("/consultas"),
             pathName: "/consultas",
             text: "Consultas",
           },
         {
-            link: () => handleTudo("/admregistros", false),
+            link: () => handleClick("/admregistros"),
             pathName: "/admregistros",
             text: "Administração de Registros",
           },
           {
-            link: () => handleTudo("/cadastro", false),
+            link: () => handleClick("/cadastro"),
             pathName: "/cadastro",
             text: "Cadastrar",
           },
     ]
     const links4 = [
         {
-            link: () => handleTudo("/editais", false),
+            link: () => handleClick("/editais"),
             pathName: "/editais",
             text: "Consulta Editais",
           },
         {
-            link: () => handleTudo("/atas", false),
+            link: () => handleClick("/atas"),
             pathName: "/atas",
             text: "Consulta Atas",
           },
           {
-            link: () => handleTudo("/alteracoeseexclusoes", false),
+            link: () => handleClick("/alteracoeseexclusoes"),
             pathName: "/alteracoeseexclusoes",
             text: "Alterações e exclusões",
           },
           {
-            link: () => handleTudo("/cadastro", false),
+            link: () => handleClick("/cadastro"),
             pathName: "/cadastro",
             text: "Cadastrar",
           },
     ]
     const links5 = [
         {
-          link: () => handleTudo("/usuarios", false),
+          link: () => handleClick("/usuarios"),
           pathName: "/usuarios",
           text: "Módulo de usuários",
         },
         {
-          link: () => handleTudo("/alterarsenha", false),
+          link: () => handleClick("/alterarsenha"),
           pathName: "/alterarsenha",
           text: "Alteração de senha",
         },
@@ -160,6 +148,10 @@ function Header(props){
           text: "Consultas",
         },
         {
+          pathName: "/validarsocio",
+          text: "Validar Sócio",
+        },
+        {
           pathName: "/cadastro",
           text: "Cadastro",
         },
@@ -183,6 +175,18 @@ function Header(props){
           pathName: "/editais",
           text: "Editais",
         },
+        {
+          pathName: "/alteracoeseexclusoes",
+          text: "Alterações e exclusões",
+        },
+        {
+          pathName: "/usuarios",
+          text: "Módulo de usuários",
+        },
+        {
+          pathName: "/alterarsenha",
+          text: "Alteração de senha",
+        },
       ];
     
     return(
@@ -191,7 +195,7 @@ function Header(props){
           <Toolbar className="toolbar">
               <button
                 class="dropbtn"
-                onClick={() => handleTudo("/login", false)}
+                onClick={() => handleClick("/login")}
               >
                   Sair
               </button>
@@ -203,7 +207,7 @@ function Header(props){
               >
                   {listItem.text}
               </button>
-              <div class="dropdown-content" style={{float: 'left'}} align="left">
+              <div class="dropdown-content">
                  {listItem.links.map((listItem2) => {
                  return <a href={listItem2.pathName}>{listItem2.text}<br></br></a>;
                  })}
@@ -213,7 +217,7 @@ function Header(props){
           })}
           <button
             class="dropbtn"
-            onClick={() => handleTudo("/intranet", false)}
+            onClick={() => handleClick("/intranet")}
           >
             Intranet
           </button>
