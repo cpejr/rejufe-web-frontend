@@ -32,7 +32,8 @@ function UserHeader(){
     return(
         <Header>
             <Switch>
-                <Route path="/dashboard" component={Dashboard}/>
+                <Route path="/dashboard/usuario" component={Dashboard}/>
+                <Route path="/dashboard/administrador" component={Dashboard}/>
                 <Route path="/intranet" component={Intranet}/>
                 <Route path="/cadastro" component={Cadastro}/>
                 <Route path="/admregistros" component={AdmRegistros}/>

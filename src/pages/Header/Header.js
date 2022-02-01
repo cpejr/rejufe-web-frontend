@@ -140,7 +140,7 @@ function Header(props){
       ];
     const drawer = [
         {
-          pathName: "/dashboard",
+          pathName: "/dashboard/administrador",
           text: "Home",
         },
         {
