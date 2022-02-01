@@ -72,7 +72,7 @@
       position: relative;
       display: inline-block;
       width: 100%;
-      height: 30px;
+      height: 100%;
     }
     .responsive-dropdown-button{
       background-color:  #264A6F;
@@ -86,11 +86,19 @@
     }
     .responsive-dropdown-menu{
       display: none;
-      position: absolute;
+      position: relative;
       background-color: #2f5c88;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
+    }
+    .responsive-dropdown-menu-onclick{
+        display: block;
+        position: relative;
+        background-color: #2f5c88;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
     }
     .dropdown{
       display: none;
@@ -130,15 +138,16 @@
   .iconbutton-content {
     display: none;
     position: absolute;
-    background-color: #2f5c88;
+    background-color: #264A6F;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     align-items: center;
     justify-content: space-evenly;
-    padding: 0 0 10px 0 ;
     right: -23.5px;
+    
   }
+  
   
   .responsive-dropdown-menu a {
     color: white;
@@ -156,12 +165,14 @@
   .toolbar {
     align-items: center;
 }
-.responsive-dropdown-menu a:hover {background-color: #3e6a96;}
+/* .responsive-dropdown-menu a:hover {background-color: #3e6a96;} */
 
 .responsive-dropdown:hover {background-color: #31577e;}
 
 /* Show the dropdown menu on hover */
-.responsive-dropdown:hover .responsive-dropdown-menu {display: block;}
+.responsive-dropdown:hover .responsive-dropdown-menu {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .responsive-dropdown:hover .responsive-dropdown {background-color: none;}

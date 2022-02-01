@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Header.css"
 import {
     AppBar,
@@ -10,7 +10,13 @@ import {useHistory} from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 
 function Header(props){
+    const [className, setClassName] = useState('responsive-dropdown-menu')
     const history = useHistory();
+
+    function handleClassName(){
+      setClassName('responsive-dropdown-menu-onclick')
+    }
+
     function handleClick(pathName){
         history.push(pathName)
     }
@@ -245,8 +251,8 @@ function Header(props){
                  {pages.map((listItem3) => {
                  return (
                    <div className="responsive-dropdown">
-                  <button className="responsive-dropdown-button" >{listItem3.text}</button>
-                  <div className="responsive-dropdown-menu">
+                  <button className="responsive-dropdown-button">{listItem3.text}</button>
+                  <div className={className} >
                     {listItem3.links.map((listItem4) => {
                       return <a href={listItem4.pathName}>{listItem4.text}<br></br></a>;
                     })}
