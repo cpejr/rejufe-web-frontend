@@ -30,7 +30,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #2f5c88;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -38,14 +38,15 @@
   
   /* Links inside the dropdown */
   .dropdown-content a {
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
+  .dropdown-content a:hover {background-color: #3e6a96;}
 
   .dropbtn:hover {background-color: #31577e;}
   
@@ -117,6 +118,7 @@
     color: black;
     padding: 12px 16px;
     text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
     display: block;
   }
   .iconbutton-content a:hover {background-color: #ddd;}
