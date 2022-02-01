@@ -5,6 +5,7 @@ import {
     Toolbar,
     IconButton,
   } from "@mui/material";
+import simbolo from "../../images/simbolo.png"; 
 import {useHistory} from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -222,7 +223,7 @@ function Header(props){
             Intranet
           </button>
           <div className="img">
-            <img src='images/simbolo.png' alt="logo"/>
+            <img src={simbolo} alt="logo"/>
           </div>
           <div className="iconbutton">
           <IconButton
@@ -233,9 +234,34 @@ function Header(props){
             <MenuIcon />
           </IconButton>
           <div class="iconbutton-content">
-                 {drawer.map((listItem3) => {
-                 return <a href={listItem3.pathName}>{listItem3.text}<br></br></a>;
+          <div className="responsive-dropdown">
+          <button
+                class="responsive-dropdown-button"
+                onClick={() => handleClick("/login")}
+              >
+                  Sair
+              </button>
+              </div>
+                 {pages.map((listItem3) => {
+                 return (
+                   <div className="responsive-dropdown">
+                  <button className="responsive-dropdown-button" >{listItem3.text}</button>
+                  <div className="responsive-dropdown-menu">
+                    {listItem3.links.map((listItem4) => {
+                      return <a href={listItem4.pathName}>{listItem4.text}<br></br></a>;
+                    })}
+                  </div>
+                    </div>
+                 )
                  })}
+                 <div className="responsive-dropdown">
+                 <button
+                  class="responsive-dropdown-button"
+                  onClick={() => handleClick("/intranet")}
+                  >
+                  Intranet
+                </button>
+                </div>
              </div>
           </div>
           </Toolbar>
