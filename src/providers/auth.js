@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     if (user?.acessToken === '' || !user?.acessToken) {
       const getStorage = JSON.parse(localStorage.getItem('user'));
@@ -71,18 +72,18 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-    const localUser = JSON.parse(localStorage.getItem('user'));
+    const localUser = JSON.parse(localStorage.getItem('usuario'));
     if (localUser && (user?.accessToken === '' || !user?.accessToken)) {
       validateSession(localUser).then(() => {
         setLoading(false);
       });
-    } else if (!localStorage.getItem('user')) {
+    } else if (!localStorage.getItem('usuario')) {
       setLoading(false);
     }
   }, []);
 
   const isAuthenticated = () => {
-    const getAccessToken = JSON.parse(localStorage.getItem('user'));
+    const getAccessToken = JSON.parse(localStorage.getItem('usuario'));
     return getAccessToken?.accessToken !== null;
   };
 
