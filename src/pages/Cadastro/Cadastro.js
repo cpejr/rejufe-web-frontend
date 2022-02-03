@@ -1,6 +1,81 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import MenuItem from '@mui/material/MenuItem';
+import "./Cadastro.css"
+
+const EstadoCivil = [
+  {
+    value: '',
+    label: '',
+  },
+   {
+    value: 'Solteiro(a)',
+    label: 'Solteiro(a)',
+  },
+  {
+    value: 'Casado(a)',
+    label: 'Casado(a)',
+  },
+  {
+    value: 'Divorciado(a)',
+    label: 'Divorciado(a)',
+  },
+  {
+    value: 'Desquitado(a)',
+    label: 'Desquitado(a)',
+  },
+  {
+    value: 'Outros',
+    label: 'Outros',
+  },
+];
+
+const sexo = [
+  {
+    value: '',
+    label: '',
+  },
+  {
+    value: 'Feminino',
+    label: 'Feminino',
+  },
+  {
+    value: 'Masculino',
+    label: 'Masculino',
+  },
+];
+
+const Lotacao = [
+  {
+    value: '',
+    label: '',
+  },
+  {
+    value: 'Ceará',
+    label: 'Ceará',
+  },
+  {
+    value: 'Rio Grande do Norte',
+    label: 'Rio Grande do Norte',
+  },
+  {
+    value: 'Paraíba',
+    label: 'Paraíba',
+  },
+  {
+    value: 'Pernambuco',
+    label: 'Pernambuco',
+  },
+  {
+    value: 'Alagoas',
+    label: 'Alagoas',
+  },
+  {
+    value: 'Sergipe',
+    label: 'Sergipe',
+  },
+];
 
 const initialAssociateState = {
   nome: '',
@@ -45,15 +120,18 @@ function Cadastro() {
   const [dados, setDados] = useState(initialAssociateState);
   console.log(dados);
   function handleChange(event, field) {
+    console.log(event.target.value)
     setDados({ ...dados, [field]: event.target.value });
-  }
+  };
+  
 
   return (
-    <div>
+    <div className="container-cadastro">
       <h1>Cadastro dos associados</h1>
       <Box>
         <h2>Dados Pessoais </h2>
 
+        
         <TextField
           id="standard-nome-input"
           value={dados.nome}
@@ -114,7 +192,7 @@ function Cadastro() {
           value={dados.nascimento}
           onChange={(e) => handleChange(e, 'nascimento')}
           label="Nascimento"
-          type="number"
+          type="date"
           variant="standard"
         />
         <TextField
@@ -126,21 +204,45 @@ function Cadastro() {
           variant="standard"
         />
         <TextField
-          id="standard-sexo-input"
+          id="standard-select-currency-sexo"
+          select
+          label="Sexo"
           value={dados.sexo}
           onChange={(e) => handleChange(e, 'sexo')}
-          label="Sexo"
-          type="text"
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your sex"
           variant="standard"
-        />
+       >
+          {sexo.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))} 
+
+        </TextField>
+
         <TextField
-          id="standard-estadocivil-input"
+          id="standard-select-currency-EstadoCivil"
+          select
+          label="Estado Civil"
           value={dados.estadoCivil}
           onChange={(e) => handleChange(e, 'estadoCivil')}
-          label="estado civil"
-          type="text"
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your sex"
           variant="standard"
-        />
+       >
+          {EstadoCivil.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))} 
+
+        </TextField>
+
         <TextField
           id="standard-conjuge-input"
           value={dados.conjuge}
@@ -154,7 +256,7 @@ function Cadastro() {
           value={dados.nascimentoConjuge}
           onChange={(e) => handleChange(e, 'nascimentoConjuge')}
           label="nascimento"
-          type="number"
+          type="date"
           variant="standard"
         />
         <TextField
@@ -225,17 +327,29 @@ function Cadastro() {
       </Box>
 
 
+
       <Box>
         <h2>Dados Funcionais</h2>
 
         <TextField
-          id="standard-lotação-input"
+          id="standard-select-currency-lotacao"
+          select
+          label="Lotação"
           value={dados.lotacao}
           onChange={(e) => handleChange(e, 'lotacao')}
-          label="lotação"
-          type="text"
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your sex"
           variant="standard"
-        />
+       >
+          {Lotacao.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))} 
+
+        </TextField>
 
         <TextField 
           id="standard-atuação-input"
@@ -360,7 +474,7 @@ function Cadastro() {
           value={dados.admissao}
           onChange={(e) => handleChange(e, 'admissao')}
           label="admissão"
-          type="number"
+          type="date"
           variant="standard"
         />
       </Box>
