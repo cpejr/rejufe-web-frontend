@@ -12,10 +12,31 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SearchIcon from "@mui/icons-material/Search";
+import TableFooter from "@mui/material/TableFooter";
+import { useMediaQuery } from "@mui/material/";
 
 function TableComponent({ titles, rows, order, edit, search }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const matches = useMediaQuery("(max-width:930px)");
+
+  const footerProps = {
+    orientation: matches ? "vertical" : "horizontal",
+    style: matches
+      ? {
+          display: "flex",
+          margin: "2%",
+          justifyContent: "flex-end",
+          flexDirection: "column",
+          alignItems: "center",
+        }
+      : {
+          display: "flex",
+          justifyContent: "center",
+          margin: "1%",
+        },
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -103,17 +124,20 @@ function TableComponent({ titles, rows, order, edit, search }) {
             ))}
         </TableBody>
       </Table>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      >
-      </TablePagination>
-      <div><Button style={{ backgroundColor: '#2574A9', color: "white"}}>Pesquisa Avançada</Button></div>
+      <TableFooter {...footerProps}>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        ></TablePagination>
+        <Button style={{ backgroundColor: "#2574A9", color: "white" }}>
+          Pesquisa Avançada
+        </Button>
+      </TableFooter>
     </TableContainer>
   );
 }
