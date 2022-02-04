@@ -98,10 +98,10 @@ function Cadastro() {
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/; // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
-    const lettersSpacesRegex = /^[\p{L}\s]*$/; // Apenas letras e espaços, sem caracteres especiais
-
+    const lettersSpacesRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Apenas letras e espaços, sem caracteres especiais
+    
     let checkError = 0;
-
+    
     if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) { 
       aux.nome = true;
       checkError = 1;
