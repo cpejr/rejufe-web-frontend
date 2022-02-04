@@ -1,7 +1,9 @@
 import React from "react";
 import TableComponent from "../../components/dashboard/dashboardComponent";
 
-function createData(_id, name, calories, fat, carbs, protein) {
+// A função e as 2 constantes abaixo tem único proposito de testar o componente TableComponent
+
+function createData(_id, name, calories, fat, carbs, protein) { 
     return { _id, name, calories, fat, carbs, protein };
   }
   
