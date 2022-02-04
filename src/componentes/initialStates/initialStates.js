@@ -1,8 +1,6 @@
 export const initialAssociateState = {
     nome: '',
     user: '',
-    senha: '',
-    senhaCheck: '',
     cargo: '',
     nacionalidade: '',
     cpf: '',
@@ -42,8 +40,6 @@ export const initialAssociateState = {
 export const initialAssociateErrorState = {
     nome: false,
     user: false, 
-    senha: false,
-    senhaCheck: false,
     cargo: false,
     nacionalidade: false,
     cpf: false,

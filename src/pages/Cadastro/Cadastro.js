@@ -97,12 +97,9 @@ function Cadastro() {
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/; // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
     const lettersSpacesRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Apenas letras e espaços, sem caracteres especiais
     
     let checkError = 0;
-    console.log(passwordRegex.test(dados.senha));
-    console.log(dados.senha)
     
     if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) { 
       aux.nome = true;
@@ -110,19 +107,6 @@ function Cadastro() {
     }
     if (!userRegex.test(dados.user)) { 
       aux.user = true;
-      checkError = 1;
-    }
-    if (!passwordRegex.test(dados.senha)) { 
-      aux.senha = true;
-      checkError = 1;
-    }
-    if (!passwordRegex.test(dados.senhaCheck)) { 
-      aux.senhaCheck = true;
-      checkError = 1;
-    }
-    if (dados.senha !== dados.senhaCheck) { 
-      aux.senha = true;
-      aux.senhaCheck = true;
       checkError = 1;
     }
     if (dados.cargo?.length === 0 || !lettersSpacesRegex.test(dados.cargo)) { 
@@ -269,29 +253,6 @@ function Cadastro() {
           onChange={(e) => handleChange(e.target.value, 'user')}
           label="Usuário"
           type="text"
-          variant="standard"
-        />
-        
-        <TextField
-          required
-          id="standard-password-input"
-          error={error.senha}
-          value={dados.senha}
-          onChange={(e) => handleChange(e.target.value, 'senha')}
-          label="Senha"
-          type="password"
-          autoComplete="current-password"
-          variant="standard"
-        />
-        <TextField
-        required
-          id="standard-password-input"
-          error={error.senhaCheck}
-          value={dados.senhaCheck}
-          onChange={(e) => handleChange(e.target.value, 'senhaCheck')}
-          label="Confirme a Senha"
-          type="password"
-          autoComplete="current-password"
           variant="standard"
         />
           
