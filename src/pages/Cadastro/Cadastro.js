@@ -97,10 +97,12 @@ function Cadastro() {
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/; // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/; // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
     const lettersSpacesRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Apenas letras e espaços, sem caracteres especiais
     
     let checkError = 0;
+    console.log(passwordRegex.test(dados.senha));
+    console.log(dados.senha)
     
     if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) { 
       aux.nome = true;
@@ -147,7 +149,7 @@ function Cadastro() {
       aux.sexo = true;
       checkError = 1;
     }
-    if (dados.estadoCivil?.length === 0 || !lettersSpacesRegex.test(dados.estadoCivil)) { 
+    if (dados.estadoCivil?.length === 0) { 
       aux.estadoCivil = true;
       checkError = 1;
     }
@@ -219,12 +221,11 @@ function Cadastro() {
       aux.telefone = true;
       checkError = 1;
     }
-    if (dados.celular?.length !== 11) { 
+    if (dados.celular?.length !== 15) { 
       aux.celular = true;
       checkError = 1;
     }
     if (!emailRegex.test(dados.email)) { 
-      
       aux.email = true;
       checkError = 1;
     }
