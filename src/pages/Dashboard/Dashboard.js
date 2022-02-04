@@ -1,5 +1,4 @@
 import React from "react";
-import "./Dashboard.css";
 import TableComponent from "../../components/dashboard/dashboardComponent";
 
 function createData(_id, name, calories, fat, carbs, protein) {
