@@ -92,23 +92,29 @@ function Cadastro() {
     event.preventDefault();
     setLoading(true);
     let aux = error;
-
-    const emailRegex = new RegExp('.+@.+..+');
+    
+    const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+    const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
+    const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/; // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+    const lettersSpacesRegex = /^[\p{L}\s]*$/; // Apenas letras e espaços, sem caracteres especiais
+
     let checkError = 0;
-    if (dados.nome?.length === 0) { 
+
+    if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) { 
       aux.nome = true;
       checkError = 1;
     }
-    if (dados.user?.length === 0) { 
+    if (!userRegex.test(dados.user)) { 
       aux.user = true;
       checkError = 1;
     }
-    if (dados.senha?.length <= 8) { 
+    if (!passwordRegex.test(dados.senha)) { 
       aux.senha = true;
       checkError = 1;
     }
-    if (dados.senhaCheck?.length <= 8) { 
+    if (!passwordRegex.test(dados.senhaCheck)) { 
       aux.senhaCheck = true;
       checkError = 1;
     }
@@ -117,11 +123,11 @@ function Cadastro() {
       aux.senhaCheck = true;
       checkError = 1;
     }
-    if (dados.cargo?.length === 0) { 
+    if (dados.cargo?.length === 0 || !lettersSpacesRegex.test(dados.cargo)) { 
       aux.cargo = true;
       checkError = 1;
     }
-    if (dados.nacionalidade?.length === 0) { 
+    if (dados.nacionalidade?.length === 0 || !lettersSpacesRegex.test(dados.nacionalidade)) { 
       aux.nacionalidade = true;
       checkError = 1;
     }
@@ -133,23 +139,23 @@ function Cadastro() {
       aux.nascimento = true;
       checkError = 1;
     }
-    if (dados.naturalidade?.length === 0) { 
+    if (dados.naturalidade?.length === 0 || !lettersSpacesRegex.test(dados.naturalidade) ) { 
       aux.naturalidade = true;
       checkError = 1;
     }
-    if (dados.sexo?.length === 0) { 
+    if (dados.sexo?.length === 0 || !lettersSpacesRegex.test(dados.sexo)) { 
       aux.sexo = true;
       checkError = 1;
     }
-    if (dados.estadoCivil?.length === 0) { 
+    if (dados.estadoCivil?.length === 0 || !lettersSpacesRegex.test(dados.estadoCivil)) { 
       aux.estadoCivil = true;
       checkError = 1;
     }
-    if (dados.cep?.length !== 8) { 
+    if (!cepRegex.test(dados.cep)) { 
       aux.cep = true;
       checkError = 1;
     }
-    if (dados.endereco?.length === 0 ) { 
+    if (dados.endereco?.length === 0 || !lettersSpacesRegex.test(dados.endereco)) { 
       aux.endereco = true;
       checkError = 1;
     }
@@ -157,35 +163,35 @@ function Cadastro() {
       aux.numero = true;
       checkError = 1;
     }
-    if (dados.complemento?.length === 0) { 
+    if (dados.complemento?.length === 0 || !lettersSpacesRegex.test(dados.complemento)) { 
       aux.complemento = true;
       checkError = 1;
     }
-    if (dados.bairro?.length === 0) { 
+    if (dados.bairro?.length === 0 || !lettersSpacesRegex.test(dados.bairro)) { 
       aux.bairro = true;
       checkError = 1;
     }
-    if (dados.cidade?.length === 0) { 
+    if (dados.cidade?.length === 0 || !lettersSpacesRegex.test(dados.cidade)) { 
       aux.cidade = true;
       checkError = 1;
     }
-    if (dados.estado?.length === 0) { 
+    if (dados.estado?.length === 0 || !lettersSpacesRegex.test(dados.estado)) { 
       aux.estado = true;
       checkError = 1;
     }
-    if (dados.lotacao?.length === 0) { 
+    if (dados.lotacao?.length === 0 || !lettersSpacesRegex.test(dados.lotacao)) { 
       aux.lotacao = true;
       checkError = 1;
     }
-    if (dados.atuacao?.length === 0) { 
+    if (dados.atuacao?.length === 0 || !lettersSpacesRegex.test(dados.atuacao)) { 
       aux.atuacao = true;
       checkError = 1;
     }
-    if (dados.cepFuncional?.length !== 8) { 
+    if (!cepRegex.test(dados.cepFuncional)) { 
       aux.cepFuncional = true;
       checkError = 1;
     }
-    if (dados.enderecoFuncional?.length === 0) { 
+    if (dados.enderecoFuncional?.length === 0 || !lettersSpacesRegex.test(dados.enderecoFuncional)) { 
       aux.enderecoFuncional = true;
       checkError = 1;
     }
@@ -193,19 +199,19 @@ function Cadastro() {
       aux.numeroFuncional = true;
       checkError = 1;
     }
-    if (dados.complementoFuncional?.length === 0) { 
+    if (dados.complementoFuncional?.length === 0 || !lettersSpacesRegex.test(dados.enderecoFucomplementoFuncionalncional)) { 
       aux.complementoFuncional = true;
       checkError = 1;
     }
-    if (dados.bairroFuncional?.length === 0) { 
+    if (dados.bairroFuncional?.length === 0 || !lettersSpacesRegex.test(dados.bairroFuncional)) { 
       aux.bairroFuncional = true;
       checkError = 1;
     }
-    if (dados.cidadeFuncional?.length === 0) { 
+    if (dados.cidadeFuncional?.length === 0 || !lettersSpacesRegex.test(dados.cidadeFuncional)) { 
       aux.cidadeFuncional = true;
       checkError = 1;
     }
-    if (dados.estadoFuncional?.length === 0) { 
+    if (dados.estadoFuncional?.length === 0 || !lettersSpacesRegex.test(dados.estadoFuncional)) { 
       aux.estadoFuncional = true;
       checkError = 1;
     }
@@ -217,7 +223,8 @@ function Cadastro() {
       aux.celular = true;
       checkError = 1;
     }
-    if (dados.email?.length === 0) { 
+    if (!emailRegex.test(dados.email)) { 
+      
       aux.email = true;
       checkError = 1;
     }
@@ -419,7 +426,7 @@ function Cadastro() {
           error={error.cep}
           onChange={(e) => handleChange(cepMask(e.target.value), 'cep')}
           label="Cep"
-          type="number"
+          type="text"
           variant="standard"
         />
         <TextField
