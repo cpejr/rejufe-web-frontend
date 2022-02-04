@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Box from '@mui/material/Box';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
+import Box from "@mui/material/Box";
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,14 +13,15 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
+import FindInPageIcon from "@mui/icons-material/FindInPage";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SearchIcon from "@mui/icons-material/Search";
 import TableFooter from "@mui/material/TableFooter";
 import { useMediaQuery } from "@mui/material/";
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -49,28 +50,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -83,7 +92,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function TableComponent({ titles, rows, order, edit, search }) {
+function TableComponent({ titles, rows, order, edit, search, searchFile }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -159,7 +168,7 @@ function TableComponent({ titles, rows, order, edit, search }) {
                     align="center"
                   >
                     <IconButton color="primary" aria-label="Search">
-                      <SearchIcon /> 
+                      <SearchIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa. 
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
@@ -183,6 +192,16 @@ function TableComponent({ titles, rows, order, edit, search }) {
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
                   </TableCell>
+                ) : searchFile ? (
+                  <TableCell
+                    style={{
+                      borderStyle: "solid",
+                      borderWidth: "1px 0px 1px 1px",
+                    }}
+                    align="center"
+                  >
+                    <FindInPageIcon aria-label="findFile" />
+                  </TableCell>
                 ) : (
                   <TableCell> </TableCell>
                 )}
@@ -199,16 +218,16 @@ function TableComponent({ titles, rows, order, edit, search }) {
                 ))}
               </TableRow>
             ))}
-            {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )}
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100 , { label: 'All', value: -1 }]}
+          rowsPerPageOptions={[10, 25, 100, { label: "All", value: -1 }]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -216,7 +235,7 @@ function TableComponent({ titles, rows, order, edit, search }) {
           page={page}
           SelectProps={{
             inputProps: {
-              'aria-label': 'Linhas por pagina',
+              "aria-label": "Linhas por pagina",
             },
             native: true,
           }}
