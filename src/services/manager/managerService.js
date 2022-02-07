@@ -8,6 +8,12 @@ export const getUserEmailByUsername = async (user) => {
   return response.data;
 };
 
+export const register = async (body) => {
+  const response = await requesterService.register(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

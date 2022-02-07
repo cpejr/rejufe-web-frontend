@@ -4,12 +4,16 @@ const genres = [
       label: '',
     },
     {
-      value: 'Feminino',
+      value: 'FEMININO',
       label: 'Feminino',
     },
     {
-      value: 'Masculino',
+      value: 'MASCULINO',
       label: 'Masculino',
+    },
+    {
+      value: 'OUTROS',
+      label: 'Outros',
     },
   ];
 

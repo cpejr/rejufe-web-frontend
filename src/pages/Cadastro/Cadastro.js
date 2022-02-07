@@ -5,6 +5,11 @@ import Box from "@mui/material/Box";
 import { initialAssociateState, initialAssociateErrorState } from '../../componentes/initialStates/initialStates'
 import "./Cadastro.css"
 import LoadingButton from '@mui/lab/LoadingButton';
+import * as managerService from '../../services/manager/managerService';
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
+toast.configure()
 
 function Cadastro() {
   const [initialErrorState, setError] = useState( initialAssociateErrorState )
@@ -128,7 +133,7 @@ function Cadastro() {
       aux.estadoFuncional = true;
       checkError = 1;
     }
-    if ((dados.telefone?.length !== 0) && (dados.telefone?.length !== 10)) { 
+    if ((dados.telefone?.length !== 0) && (dados.telefone?.length !== 14)) { 
       aux.telefone = true;
       checkError = 1;
     }
@@ -149,9 +154,57 @@ function Cadastro() {
       setLoading(false);
       return;
     }
-    setLoading(true);
+
+    try {
+      const body = {
+          type: 'usuario',
+          name: dados.nome,
+          email: dados.email,
+          user: dados.user,
+          office: dados.cargo,
+          nacionality: dados.nacionalidade,
+          cpf: dados.cpf,
+          birth: dados.nascimento,
+          place_of_birth: dados.naturalidade,
+          gender: dados.sexo,
+          civil_state: dados.estadoCivil,
+          spouse: dados.conjuge,
+          birth_spouse: dados.nascimentoConjuge,
+          sons: dados.filhos,
+          cep: dados.cep,
+          profissional_address: dados.endereco,
+          profissional_number: dados.numero,
+          profissional_complement: dados.complemento,
+          profissional_district: dados.bairro,
+          profissional_city: dados.cidade,
+          profissional_state: dados.estado,
+          allocation: dados.lotacao,
+          acting: dados.atuacao,
+          personal_cep: dados.cepFuncional,
+          personal_address: dados.enderecoFuncional,
+          personal_number: dados.numeroFuncional,
+          personal_complement: dados.complementoFuncional,
+          personal_district: dados.bairroFuncional,
+          personal_city: dados.cidadeFuncional,
+          personal_state: dados.estadoFuncional,
+          telephone: dados.telefone,
+          fax: dados.fax,
+          cell_phone_number: dados.celular,
+          email_REJUFE: dados.emailListaRejufe,
+          email_ASCOM: dados.emailListaAscom,
+          admission_date: dados.admissao,
+      }
+      await managerService.register(body);
+  } catch (error) {
+      toast.error('Credenciais inválidas!!', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000
+      })
+      setLoading(false);
+  }
     
   }
+  console.log(dados.estadoCivil)
 
   return (
     <div className="container-cadastro">

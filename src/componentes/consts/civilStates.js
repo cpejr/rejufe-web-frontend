@@ -4,23 +4,23 @@ const civilStates = [
       label: '',
     },
      {
-      value: 'Solteiro(a)',
+      value: 'SOLTEIRO(A)',
       label: 'Solteiro(a)',
     },
     {
-      value: 'Casado(a)',
+      value: 'CASADO(A)',
       label: 'Casado(a)',
     },
     {
-      value: 'Divorciado(a)',
+      value: 'DIVORCIADO(A)',
       label: 'Divorciado(a)',
     },
     {
-      value: 'Desquitado(a)',
+      value: 'DESQUITADO(A)',
       label: 'Desquitado(a)',
     },
     {
-      value: 'Outros',
+      value: 'OUTROS',
       label: 'Outros',
     },
   ];

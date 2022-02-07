@@ -4,27 +4,27 @@ const lotacao = [
       label: '',
     },
     {
-      value: 'Ceará',
+      value: 'CEARÁ',
       label: 'Ceará',
     },
     {
-      value: 'Rio Grande do Norte',
+      value: 'RIO GRANDE DO NORTE',
       label: 'Rio Grande do Norte',
     },
     {
-      value: 'Paraíba',
+      value: 'PARAÍBA',
       label: 'Paraíba',
     },
     {
-      value: 'Pernambuco',
+      value: 'PERNAMBUCO',
       label: 'Pernambuco',
     },
     {
-      value: 'Alagoas',
+      value: 'ALAGOAS',
       label: 'Alagoas',
     },
     {
-      value: 'Sergipe',
+      value: 'SERGIPE',
       label: 'Sergipe',
     },
   ];
