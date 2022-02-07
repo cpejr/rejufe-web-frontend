@@ -9,7 +9,7 @@ export const initialAssociateState = {
     sexo: '',
     estadoCivil: '',
     conjuge: '',
-    nascimentoConjuge: new Date(),
+    nascimentoConjuge: '',
     filhos: '',
     cep: '',
     endereco: '',

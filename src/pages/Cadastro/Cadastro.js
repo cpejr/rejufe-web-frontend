@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import formsData from "../../componentes/formsData/formsCadastro"
 import RegisterInputs from "../../componentes/formsInputs/registerInputs"
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import {cpfMask, cellphoneMask, phoneMask, cepMask } from '../../componentes/masks/masks'
 import { initialAssociateState, initialAssociateErrorState } from '../../componentes/initialStates/initialStates'
 import "./Cadastro.css"
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -161,19 +159,21 @@ function Cadastro() {
       {formsData.map((line) => (
             <Box className="container-box">
               <h2>{line.title}</h2>
+              <p className="TextField">
               {line.items.map((item) => (
-                <p className="TextField">
-                  <registerInputs
+                  <RegisterInputs
                     type={item.type}
                     id={item.id}
                     label={item.label}
                     field={item.field}
                     select={item.select}
                     setDados={handleChange}
+                    mask={item.mask}
                     initialErrorState={initialErrorState}
+                    dados={dados}
                   />
-                </p>
               ))}
+              </p>
             </Box>
           ))}
       <LoadingButton variant="contained" loading = {loading} style={{ backgroundColor: '#264A6F' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
