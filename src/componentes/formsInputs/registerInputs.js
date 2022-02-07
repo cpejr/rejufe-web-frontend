@@ -30,6 +30,8 @@ function RegisterInputs({
           InputLabelProps={{shrink:true}}
           type={type}
           variant="standard"
+          sx={{ m: 1, width: '22ch' }}
+
         />
       )}
       {mask && (
@@ -43,6 +45,8 @@ function RegisterInputs({
           type={type}
           select={select}
           variant="standard"
+          sx={{ m: 1, width: '22ch' }}
+
         />
       )}
       {select && (
@@ -59,6 +63,7 @@ function RegisterInputs({
           type={type}
           select={select}
           variant="standard"
+          sx={{ m: 1, width: '22ch' }}
         >
           {field &&
             field.map((option) => (
@@ -78,6 +83,8 @@ function RegisterInputs({
           label={label}
           type={type}
           variant="standard"
+          multiline
+          sx={{ m: 1, width: '22ch' }} 
         />
       )}
     </div>
