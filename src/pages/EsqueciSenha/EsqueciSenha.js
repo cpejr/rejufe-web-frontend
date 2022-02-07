@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import "./esquecisenha.css";
-import imagemFundo from "../../images/martelin.png";
-import { useHistory } from "react-router-dom";
-import * as managerService from "../../services/manager/managerService";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from 'react';
+import './esquecisenha.css';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import imagemFundo from '../../images/martelin.png';
+import * as managerService from '../../services/manager/managerService';
+import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
+
 function EsqueciSenha() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const history = useHistory();
   function confirmarEmail(e) {
     setEmail(e.target.value);
@@ -21,13 +22,13 @@ function EsqueciSenha() {
     try {
       e.preventDefault();
       await managerService.sendResetEmail(JSONtoSend);
-      history.push("/login");
-      toast.success("Email enviado com sucesso!", {
+      history.push('/login');
+      toast.success('Email enviado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch {
-      toast.error("Email não cadastrado!!", {
+      toast.error('Email não cadastrado!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -37,17 +38,15 @@ function EsqueciSenha() {
     <div
       className="container-forgot-password"
       style={{
-        backgroundImage: `url(${imagemFundo})`,
-        backgroundSize: "cover",
-        width: "100vw",
-        height: "100vh",
+        backgroundImage: `url(${imagemFundo})`, backgroundSize: 'cover', width: '100vw', height: '100vh',
       }}
     >
       <div className="campo-forgot-password">
         <div className="box-forgot-password">
           <div className="voltar-forgot-password">
             <a href="/login">
-              <span></span>Login
+              <span />
+              Login
             </a>
           </div>
           <div className="text-forgot-password">
@@ -58,10 +57,8 @@ function EsqueciSenha() {
               type="text"
               name="email"
               onChange={(e) => confirmarEmail(e)}
-            ></input>
-            <button type="submit" onClick={handleClick}>
-              Redefinir Senha
-            </button>
+            />
+            <button type="submit" onClick={handleClick}>Redefinir Senha</button>
           </div>
         </div>
       </div>

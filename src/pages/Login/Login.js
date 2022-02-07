@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import "./login.css";
-import * as managerService from "../../services/manager/managerService";
-import backgroundImage from "../../images/martelin.png";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { CircularProgress } from "@mui/material";
-import { useAuth } from "../../providers/auth";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import './login.css';
+import { toast } from 'react-toastify';
+import { CircularProgress } from '@mui/material';
+import * as managerService from '../../services/manager/managerService';
+import backgroundImage from '../../images/martelin.png';
+import { useAuth } from '../../providers/auth';
+import 'react-toastify/dist/ReactToastify.css';
+
 const initialState = {
-  user: "",
+  user: '',
   rememberMe: false,
 };
+
 toast.configure();
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -23,7 +26,7 @@ function Login() {
       e.preventDefault();
       const email = await managerService.getUserEmailByUsername(usuario.user);
       const body = {
-        email: email,
+        email,
         password: usuario.password,
         rememberMe: usuario.rememberMe,
       };
@@ -39,7 +42,7 @@ function Login() {
       });
       history.push(`/dashboard/${response.data.user.type}`);
     } catch (error) {
-      toast.error("Credenciais inválidas!!", {
+      toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -52,9 +55,9 @@ function Login() {
       className="container-login"
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        width: "100vw",
-        height: "100vh",
+        backgroundSize: 'cover',
+        width: '100vw',
+        height: '100vh',
       }}
     >
       <div className="campo-login">
@@ -67,26 +70,22 @@ function Login() {
               id="user"
               value={usuario.user}
               onChange={(e) => setUsuario({ ...usuario, user: e.target.value })}
-            ></input>
+            />
             <h1>Senha </h1>
             <input
               type="password"
-              onChange={(e) =>
-                setUsuario({ ...usuario, password: e.target.value })
-              }
-            ></input>
+              onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
+            />
 
             <div className="Remember-Box">
               <input
                 type="checkbox"
-                onChange={(e) =>
-                  setUsuario({ ...usuario, rememberMe: e.target.checked })
-                }
+                onChange={(e) => setUsuario({ ...usuario, rememberMe: e.target.checked })}
                 id="rememberMe"
                 name="rememberMe"
                 value={usuario.rememberMe}
               />
-              <label for="rememberMe">Lembrar de mim</label>
+              <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>
 
             <button type="button" onClick={handleClick}>
