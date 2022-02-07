@@ -2,6 +2,12 @@ import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
 
+export const getById = async (id) => {
+  const response = await requesterService.getById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getUserEmailByUsername = async (user) => {
   const response = await requesterService.getUserEmailByUsername(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -22,7 +28,7 @@ export const login = async (user) => {
     id,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
-  window.location.href = `/dashboard/${response.data.user.type}`;
+  return response;
 };
 
 export const sendResetEmail = async (email) => {

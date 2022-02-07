@@ -30,6 +30,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-await-in-loop': 0,
     'import/prefer-default-export': 'off',
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
     'max-len': [
       'warn',
       {
