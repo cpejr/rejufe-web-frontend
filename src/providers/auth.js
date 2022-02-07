@@ -12,15 +12,16 @@ export const AuthProvider = ({ children }) => {
   useEffect(async () => {
     if (user?.acessToken === "" || !user?.acessToken) {
       const getStorage = JSON.parse(localStorage.getItem("user"));
-      const response = await managerService.getById(getStorage.id);
-
-      setUser({
-        name: response.name,
-        email: response.email,
-        type: getStorage.type,
-        acessToken: getStorage.acessToken,
-        id: response._id,
-      });
+      if (getStorage?.id) {
+        const response = await managerService.getById(getStorage?.id);
+        setUser({
+          name: response?.name,
+          email: response?.email,
+          type: response?.type,
+          acessToken: getStorage.acessToken,
+          id: response?._id,
+        });
+      }
     }
     setLoading(false);
   }, [user]);
