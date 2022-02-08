@@ -8,6 +8,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import * as managerService from '../../services/manager/managerService';
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { CircularProgress } from '@mui/material';
+
 
 toast.configure()
 
@@ -168,9 +170,9 @@ function Cadastro() {
           place_of_birth: dados.naturalidade,
           gender: dados.sexo,
           civil_state: dados.estadoCivil,
-          spouse: dados.conjuge,
-          birth_spouse: dados.nascimentoConjuge,
-          sons: dados.filhos,
+          spouse: dados.conjuge === '' ? undefined : dados.conjuge,
+          birth_spouse: dados.nascimentoConjuge === '' ? undefined : dados.nascimentoConjuge,
+          sons: dados.filhos === '' ? undefined : dados.filhos,
           cep: dados.cep,
           profissional_address: dados.endereco,
           profissional_number: dados.numero,
@@ -187,11 +189,11 @@ function Cadastro() {
           personal_district: dados.bairroFuncional,
           personal_city: dados.cidadeFuncional,
           personal_state: dados.estadoFuncional,
-          telephone: dados.telefone,
-          fax: dados.fax,
+          telephone: dados.telefone === '' ? undefined : dados.telefone,
+          fax: dados.fax === '' ? undefined : dados.fax,
           cell_phone_number: dados.celular,
-          email_REJUFE: dados.emailListaRejufe,
-          email_ASCOM: dados.emailListaAscom,
+          email_REJUFE: dados.emailListaRejufe === '' ? undefined : dados.emailListaRejufe,
+          email_ASCOM: dados.emailListaAscom === '' ? undefined : dados.emailListaAscom,
           admission_date: dados.admissao,
       }
       await managerService.register(body);
@@ -202,7 +204,7 @@ function Cadastro() {
       })
       setLoading(false);
   }
-    
+  setLoading(false);  
   }
   console.log(dados.estadoCivil)
 
@@ -229,7 +231,7 @@ function Cadastro() {
               </p>
             </Box>
           ))}
-      <LoadingButton variant="contained" loading = {loading} style={{ backgroundColor: '#264A6F' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
+               <LoadingButton variant="contained" loading = {loading} style={{ backgroundColor: '#264A6F' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton> 
     </div>
   );
 }
