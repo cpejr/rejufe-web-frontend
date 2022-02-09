@@ -1,1 +1,2 @@
-export { default } from "./Login";
+/* eslint-disable no-restricted-exports */
+export { default } from './Login';
