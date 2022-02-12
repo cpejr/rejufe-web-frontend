@@ -23,11 +23,11 @@ function Cadastro() {
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
-    let aux = initialErrorState;
+    const aux = initialErrorState;
 
     // eslint-disable-next-line no-control-regex
-    const emailRegex = /?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]/;
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+    const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
     const lettersSpacesRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Apenas letras e espaços, sem caracteres especiais
@@ -150,7 +150,7 @@ function Cadastro() {
       aux.admissao = true;
       checkError = 1;
     }
-    if (checkError === 1){
+    if (checkError === 1) {
       setError({ ...aux });
       setLoading(false);
       return;
@@ -200,37 +200,36 @@ function Cadastro() {
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
-      })
+      });
       setLoading(false);
+    }
+    setLoading(false);
   }
-  setLoading(false);  
-  }
-  console.log(dados.estadoCivil)
 
   return (
     <div className="container-cadastro">
       <h1>Cadastro dos associados</h1>
       {formsData.map((line) => (
-            <Box className="container-box">
-              <h2>{line.title}</h2>
-              <p className="TextField">
-              {line.items.map((item) => (
-                  <RegisterInputs
-                    type={item.type}
-                    id={item.id}
-                    label={item.label}
-                    field={item.field}
-                    select={item.select}
-                    setDados={handleChange}
-                    mask={item.mask}
-                    initialErrorState={initialErrorState}
-                    dados={dados}
-                  />
-              ))}
-              </p>
-            </Box>
-          ))}
-               <LoadingButton variant="contained" loading = {loading} style={{ backgroundColor: '#264A6F' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton> 
+        <Box className="container-box">
+          <h2>{line.title}</h2>
+          <p className="TextField">
+            {line.items.map((item) => (
+              <RegisterInputs
+                type={item.type}
+                id={item.id}
+                label={item.label}
+                field={item.field}
+                select={item.select}
+                setDados={() => handleChange()}
+                mask={item.mask}
+                initialErrorState={initialErrorState}
+                dados={dados}
+              />
+            ))}
+          </p>
+        </Box>
+      ))}
+      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#264A6F' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
     </div>
   );
 }
