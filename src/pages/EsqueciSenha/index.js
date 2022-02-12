@@ -1,1 +1,2 @@
-export { default } from "./EsqueciSenha";
+/* eslint-disable no-restricted-exports */
+export { default } from './EsqueciSenha';

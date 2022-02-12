@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import qs from 'querystring';
 import httpClient from '../../hooks/httpClient';
 
@@ -9,3 +10,5 @@ export const getUserEmailByUsername = (user) => httpClient.get('/usuario/getUser
 });
 
 export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);
+
+export const getById = (id) => httpClient.get(`/usuario/${id}`);

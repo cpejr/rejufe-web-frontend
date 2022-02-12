@@ -109,7 +109,7 @@
     display: flex;
     flex-direction: row;
     align-self: start;
-    align-items: start;
+    align-items: flex-start;
     justify-content: flex-start;
 }
 .voltar-forgot-password a{
@@ -127,7 +127,7 @@
     display: flex;
     flex-direction: row;
     align-self: start;
-    align-items: start;
+    align-items: flex-start;
     justify-content: flex-start;
     background-image: url("../../images/arrow-left.svg");
     width: 22px;
