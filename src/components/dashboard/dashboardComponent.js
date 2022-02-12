@@ -22,8 +22,26 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles({
+  caption: {
+    color: "green",
+    padding: 8,
+    border: "1px dashed grey",
+    fontSize: "0.875rem"
+  },
+  toolbar: {
+    "& > p:nth-of-type(2)": {
+      fontSize: "1.25rem",
+      color: "red",
+      fontWeight: 600
+    }
+  }
+});
 
 function TablePaginationActions(props) {
+  const classes = useStyles();
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -97,9 +115,18 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const matches = useMediaQuery("(max-width:930px)");
+  const matchesFont90 = useMediaQuery("(max-width:930px)");
+  console.log(
+    "🚀 ~ file: dashboardComponent.js ~ line 101 ~ TableComponent ~ matchesFont90",
+    matchesFont90
+  );
+  const matchesFont85 = useMediaQuery("(max-width:680px)");
+  console.log(
+    "🚀 ~ file: dashboardComponent.js ~ line 103 ~ TableComponent ~ matchesFont60",
+    matchesFont85
+  );
 
   const footerProps = {
-    orientation: matches ? "vertical" : "horizontal",
     style: matches
       ? {
           display: "flex",
@@ -112,6 +139,69 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
           display: "flex",
           justifyContent: "center",
           margin: "1%",
+        },
+  };
+
+  const cellFontProps = {
+    style: matchesFont85
+      ? {
+          fontSize: "85%",
+          borderStyle: "solid",
+          borderWidth: "1px 0px 1px 1px",
+          padding: '0px',
+        }
+      : matchesFont90
+      ? {
+          fontSize: "90%",
+          borderStyle: "solid",
+          borderWidth: "1px 0px 1px 1px",
+        }
+      : {
+          fontSize: "100%",
+          borderStyle: "solid",
+          borderWidth: "1px 0px 1px 1px",
+        },
+  };
+
+  const titleFontProps = {
+    style: matchesFont85
+      ? {
+          fontSize: "85%",
+          backgroundColor: "#2574A9",
+          color: "white",
+          padding: '0px',
+        }
+      : matchesFont90
+      ? {
+          fontSize: "90%",
+          backgroundColor: "#2574A9",
+          color: "white",
+        }
+      : {
+          fontSize: "100%",
+          backgroundColor: "#2574A9",
+          color: "white",
+        },
+  };
+
+  const buttonFontProps = {
+    style: matchesFont85
+      ? {
+          fontSize: "85%",
+          backgroundColor: "#2574A9",
+          color: "white",
+          padding: '0px',
+        }
+      : matchesFont90
+      ? {
+          fontSize: "90%",
+          backgroundColor: "#2574A9",
+          color: "white",
+        }
+      : {
+          fontSize: "100%",
+          backgroundColor: "#2574A9",
+          color: "white",
         },
   };
 
@@ -135,10 +225,7 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
         <TableHead>
           <TableRow>
             {titles?.map((title) => (
-              <TableCell
-                style={{ backgroundColor: "#2574A9", color: "white" }}
-                align="center"
-              >
+              <TableCell {...titleFontProps} align="center">
                 {title}
               </TableCell>
             ))}
@@ -150,23 +237,11 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
             ?.map((row) => (
               <TableRow>
                 {order ? (
-                  <TableCell
-                    style={{
-                      borderStyle: "solid",
-                      borderWidth: "1px 0px 1px 1px",
-                    }}
-                    align="center"
-                  >
+                  <TableCell {...cellFontProps} align="center">
                     {rows.findIndex((obj) => obj._id === row._id) + 1}
                   </TableCell>
                 ) : search ? (
-                  <TableCell
-                    style={{
-                      borderStyle: "solid",
-                      borderWidth: "1px 0px 1px 1px",
-                    }}
-                    align="center"
-                  >
+                  <TableCell {...cellFontProps} align="center">
                     <IconButton color="primary" aria-label="Search">
                       <SearchIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa. 
@@ -174,13 +249,7 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
                     </IconButton>
                   </TableCell>
                 ) : edit ? (
-                  <TableCell
-                    style={{
-                      borderStyle: "solid",
-                      borderWidth: "1px 0px 1px 1px",
-                    }}
-                    align="center"
-                  >
+                  <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="delete">
                       <DeleteIcon />
                       {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete. 
@@ -193,26 +262,14 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (
-                  <TableCell
-                    style={{
-                      borderStyle: "solid",
-                      borderWidth: "1px 0px 1px 1px",
-                    }}
-                    align="center"
-                  >
+                  <TableCell {...cellFontProps} align="center">
                     <FindInPageIcon aria-label="findFile" />
                   </TableCell>
                 ) : (
                   <TableCell> </TableCell>
                 )}
                 {Object.values(row)?.map((data) => (
-                  <TableCell
-                    style={{
-                      borderStyle: "solid",
-                      borderWidth: "1px 0px 1px 1px",
-                    }}
-                    align="center"
-                  >
+                  <TableCell {...cellFontProps} align="center">
                     {data}
                   </TableCell>
                 ))}
@@ -220,19 +277,28 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
             ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+              <TableCell
+                {...cellFontProps}
+                style={{ background: "green" }}
+                colSpan={6}
+              />
             </TableRow>
           )}
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
         <TablePagination
+          {...cellFontProps}
           rowsPerPageOptions={[10, 25, 100, { label: "All", value: -1 }]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           labelRowsPerPage="Linhas por pagina"
           page={page}
+          classes={{
+            toolbar: classes.toolbar,
+            caption: classes.caption
+          }}
           SelectProps={{
             inputProps: {
               "aria-label": "Linhas por pagina",
@@ -243,7 +309,9 @@ function TableComponent({ titles, rows, order, edit, search, searchFile }) {
           onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         ></TablePagination>
-        <Button style={{ backgroundColor: "#2574A9", color: "white" }}>
+        <Button
+          {...buttonFontProps}
+        >
           Pesquisa Avançada
           {/* TODO Implementar o botão de pesquisa avançada*/}
         </Button>
