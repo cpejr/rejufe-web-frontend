@@ -1,5 +1,5 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
+import React from 'react';
+import TextField from '@mui/material/TextField';
 
 function RegisterInputs({
   setDados,
@@ -19,7 +19,7 @@ function RegisterInputs({
 
   return (
     <div>
-      {type === "date" && (
+      {type === 'date' && (
         <TextField
           required={required}
           id={id}
@@ -27,7 +27,7 @@ function RegisterInputs({
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
-          InputLabelProps={{shrink:true}}
+          InputLabelProps={{ shrink: true }}
           type={type}
           variant="standard"
           sx={{ m: 1, width: '22ch' }}
@@ -65,15 +65,15 @@ function RegisterInputs({
           variant="standard"
           sx={{ m: 1, width: '22ch' }}
         >
-          {field &&
-            field.map((option) => (
+          {field
+            && field.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
         </TextField>
       )}
-      {!mask && !(type === "date") && !select && (
+      {!mask && !(type === 'date') && !select && (
         <TextField
           required={required}
           id={id}
@@ -84,7 +84,7 @@ function RegisterInputs({
           type={type}
           variant="standard"
           multiline
-          sx={{ m: 1, width: '22ch' }} 
+          sx={{ m: 1, width: '22ch' }}
         />
       )}
     </div>
