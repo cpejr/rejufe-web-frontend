@@ -23,7 +23,8 @@ export function AuthProvider({ children }) {
             id: response?._id,
           });
         } catch (error) {
-          console.error(error); // TO DO: Substitute for redirect to not Found
+          // eslint-disable-next-line no-console
+          console.error(error); // TO DO: Substitute for redirect to not Found when done
           setLoading(false);
         }
       }
