@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import EsqueciSenha from './pages/EsqueciSenha';
+import EditarAssociados from './pages/EditarAssociados';
 
 function Routes() {
   return (
@@ -12,6 +13,7 @@ function Routes() {
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
+        <Route path="/editarassociados" component={EditarAssociados} />
       </Switch>
     </BrowserRouter>
   );

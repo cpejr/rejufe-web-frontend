@@ -38,3 +38,8 @@ export const sendResetEmail = async (email) => {
   }
   return response;
 };
+
+export const updateUser = async (user, id) => {
+  const response = await requesterService.updateUser(user, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

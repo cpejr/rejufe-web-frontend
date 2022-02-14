@@ -12,3 +12,5 @@ export const getUserEmailByUsername = (user) => httpClient.get('/usuario/getUser
 export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);
 
 export const getById = (id) => httpClient.get(`/usuario/${id}`);
+
+export const updateUser = (user, userId) => httpClient.put(`/usuario/${userId}`, user);
