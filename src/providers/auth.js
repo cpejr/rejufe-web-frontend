@@ -6,20 +6,26 @@ export const AuthContext = React.createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
+    setLoading(true);
     if (user?.acessToken === '' || !user?.acessToken) {
       const getStorage = JSON.parse(localStorage.getItem('user'));
       if (getStorage?.id) {
-        const response = await managerService.getById(getStorage?.id);
-        setUser({
-          name: response?.name,
-          email: response?.email,
-          type: response?.type,
-          acessToken: getStorage.acessToken,
-          id: response?._id,
-        });
+        try {
+          const response = await managerService.getById(getStorage?.id);
+          setUser({
+            name: response?.name,
+            email: response?.email,
+            type: response?.type,
+            acessToken: getStorage.acessToken,
+            id: response?._id,
+          });
+        } catch (error) {
+          console.error(error); // TO DO: Substitute for redirect to not Found
+          setLoading(false);
+        }
       }
     }
     setLoading(false);
