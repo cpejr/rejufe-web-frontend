@@ -1,5 +1,5 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
+import React from 'react';
+import TextField from '@mui/material/TextField';
 
 function EditUserInputs({
   setDados,
@@ -18,7 +18,7 @@ function EditUserInputs({
 
   return (
     <div>
-      {type === "date" && (
+      {type === 'date' && (
         <TextField
           required={required}
           id={id}
@@ -61,15 +61,15 @@ function EditUserInputs({
           variant="standard"
           sx={{ m: 1, width: '22ch' }}
         >
-          {field &&
-            field.map((option) => (
+          {field
+            && field.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
         </TextField>
       )}
-      {!mask && !(type === "date") && !select && (
+      {!mask && !(type === 'date') && !select && (
         <TextField
           required={required}
           id={id}

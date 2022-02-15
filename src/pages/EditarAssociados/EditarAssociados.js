@@ -3,8 +3,8 @@ import './editarassociados.css';
 import { toast } from 'react-toastify';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import formsData from '../../componentes/formsData/formsEdit';
-import EditUserInputs from '../../componentes/formsInputs/editUserInputs';
+import formsData from '../../components/formsData/formsEdit';
+import EditUserInputs from '../../components/formsInputs/editUserInputs';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 

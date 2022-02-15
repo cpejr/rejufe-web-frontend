@@ -3,7 +3,9 @@ import civilStates from '../consts/civilStates';
 import genres from '../consts/genres';
 import lotacao from '../consts/lotacao';
 import status from '../consts/status';
-import { cpfMask, cellphoneMask, phoneMask, cepMask } from '../masks/masks';
+import {
+  cpfMask, cellphoneMask, phoneMask, cepMask,
+} from '../masks/masks';
 
 const formsEdit = [
   {
@@ -11,8 +13,8 @@ const formsEdit = [
     items: [
       {
         type: "text",
-        id: "sexo",
-        label: "Sexo *",
+        id: "status",
+        label: "Status",
         field: status,
         select: true,
         required: true,
@@ -196,7 +198,7 @@ const formsEdit = [
         field: null,
         select: false,
         required: true,
-        mask: cepMask
+        mask: cepMask,
       },
       {
         type: "text",
