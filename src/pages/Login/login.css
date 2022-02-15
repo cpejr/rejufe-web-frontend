@@ -46,7 +46,7 @@
   height: 100%;
   width: auto;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: var(--backgroung);
   border-radius: 15px;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -74,8 +74,8 @@
   padding-right: 10px;
 }
 .container-login button {
-  background-color: #264a6f;
-  border: 1px solid #264a6f;
+  background-color: var(--buttonBlue);
+  border: 1px solid var(--buttonBlue);
   border-radius: 8px;
   color: white;
   display: inline-block;
