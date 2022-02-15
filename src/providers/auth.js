@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
             justifyContent: 'center',
           }}
         >
-          <CircularProgress size={90} color="var(--primary)" loading />
+          <CircularProgress size={90} color="#264A6F" loading />
         </div>
       </div>
     );
