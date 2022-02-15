@@ -4,6 +4,7 @@ import { AppBar, Toolbar, IconButton } from "@mui/material";
 import simbolo from "../../images/simbolo.png";
 import { useHistory } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import SubMenu from "../../components/SubMenu/SubMenu";
 
 function Header(props) {
   const [className, setClassName] = useState("responsive-dropdown-menu");
@@ -235,27 +236,8 @@ function Header(props) {
                   Sair
                 </button>
               </div>
-              {pages.map((listItem3) => {
-                return (
-                  <div
-                    className="responsive-dropdown"
-                    onClick={handleClassName}
-                  >
-                    <button className="responsive-dropdown-button">
-                      {listItem3.text}
-                    </button>
-                    <div className={className}>
-                      {listItem3.links.map((listItem4) => {
-                        return (
-                          <a href={listItem4.pathName}>
-                            {listItem4.text}
-                            <br></br>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
+              {pages.map((item) => {
+                return <SubMenu item={item}></SubMenu>;
               })}
               <div className="responsive-dropdown">
                 <button
