@@ -3,7 +3,7 @@ import './editarassociados.css';
 import { toast } from 'react-toastify';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import formsData from '../../components/formsData/formsEdit';
+import formsEdit from '../../components/formsData/formsEdit';
 import EditUserInputs from '../../components/formsInputs/editUserInputs';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
@@ -166,7 +166,7 @@ function EditarAssociados() {
   return (
     <div className="container-editar">
       <h1>Editar Usuários</h1>
-      {formsData.map((line) => (
+      {formsEdit.map((line) => (
         <Box className="container-box">
           <h2>{line.title}</h2>
           <p className="TextField">
