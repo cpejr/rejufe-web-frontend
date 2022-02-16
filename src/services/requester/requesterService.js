@@ -18,4 +18,5 @@ export const getAssociates = (times, field, filter) => httpClient.get('/usuario'
     field,
     filter,
   },
+  paramsSerializer: (params) => qs.stringify(params),
 });

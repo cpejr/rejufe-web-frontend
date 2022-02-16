@@ -9,10 +9,12 @@ toast.configure();
 
 function AdministracaoRegistros() {
   const [associate, setAllAssociates] = useState([]);
+
   async function getAllAssociates() {
     const associates = await managerService.getAssociates();
+    console.log(associates.data);
     try {
-      setAllAssociates(associates);
+      setAllAssociates(associates.data);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
