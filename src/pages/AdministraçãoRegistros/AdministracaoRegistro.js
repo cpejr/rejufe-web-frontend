@@ -11,9 +11,9 @@ function AdministracaoRegistros() {
   const [associate, setAllAssociates] = useState([]);
 
   async function getAllAssociates() {
-    const associates = await managerService.getAssociates();
-    console.log(associates.data);
     try {
+      const associates = await managerService.getAssociates();
+      console.log(associates.data);
       setAllAssociates(associates.data);
     } catch (error) {
       // eslint-disable-next-line no-console
