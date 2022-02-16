@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import "./SubMenu.css";
+import { IconButton, Button } from "@mui/material";
 
 function SubMenu({ item }) {
   const [open, setOpen] = useState(false);
-  const [className, setClassName] = useState("responsive-dropdown-menu");
+  const [className, setClassName] = useState("responsive-header-dropdown-menu");
   const handleClassName = () => {
-    setClassName("responsive-dropdown-menu-onclick");
+    setClassName("responsive-header-dropdown-menu-onclick");
   };
   const handleOpen = () => {
     setOpen(!open);
   };
   return (
     <div
-      className="responsive-dropdown"
+      className="responsive-header-dropdown"
       onClick={() => {
         handleClassName();
         handleOpen();
       }}
     >
-      <button className="responsive-dropdown-button">{item.text}</button>
+      <button class="responsive-header-dropdown-button">
+        <span>{item.icon}</span> {item.text}
+      </button>
       <div className={className}>
         {open &&
           item.links.map((listItem4) => {

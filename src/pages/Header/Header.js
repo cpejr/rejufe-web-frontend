@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import { AppBar, Toolbar, IconButton } from "@mui/material";
 import simbolo from "../../images/simbolo.png";
 import { useHistory } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import SubMenu from "../../components/SubMenu/SubMenu";
+import LogoutIcon from "@mui/icons-material/Logout";
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import PendingActionsOutlinedIcon from "@mui/icons-material/PendingActionsOutlined";
+import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import AnnouncementOutlinedIcon from "@mui/icons-material/AnnouncementOutlined";
+import FilePresentOutlinedIcon from "@mui/icons-material/FilePresentOutlined";
+import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 
 function Header(props) {
-  const [className, setClassName] = useState("responsive-dropdown-menu");
-  const [open, setOpen] = useState(false);
   const history = useHistory();
-
-  const handleClassName = () => {
-    setClassName("responsive-dropdown-menu-onclick");
-  };
 
   function handleClick(pathName) {
     history.push(pathName);
@@ -112,99 +116,57 @@ function Header(props) {
     {
       text: "Associados",
       links: links1,
+      icon: <AccountBoxOutlinedIcon />,
     },
     {
       text: "Notícias",
       links: links2,
+      icon: <FeedOutlinedIcon />,
     },
     {
       text: "Modelos",
       links: links2,
+      icon: <ArticleOutlinedIcon />,
     },
     {
       text: "Ações",
       links: links3,
+      icon: <PendingActionsOutlinedIcon />,
     },
     {
       text: "Prestação de Contas",
       links: links3,
+      icon: <MonetizationOnOutlinedIcon />,
     },
     {
-      text: "Comuinc./Informações",
+      text: "Comunic./Informações",
       links: links3,
+      icon: <AnnouncementOutlinedIcon />,
     },
     {
       text: "Atas/Editais",
       links: links4,
+      icon: <FilePresentOutlinedIcon />,
     },
     {
       text: "Utilitários",
       links: links5,
-    },
-  ];
-  const drawer = [
-    {
-      pathName: "/dashboard/administrador",
-      text: "Home",
-    },
-    {
-      pathName: "/consultas",
-      text: "Consultas",
-    },
-    {
-      pathName: "/validarsocio",
-      text: "Validar Sócio",
-    },
-    {
-      pathName: "/cadastro",
-      text: "Cadastro",
-    },
-    {
-      pathName: "/validarsocio",
-      text: "Sócios",
-    },
-    {
-      pathName: "/admregistors",
-      text: "Registros",
-    },
-    {
-      pathName: "/associadosexluidos",
-      text: "Associado excluídos",
-    },
-    {
-      pathName: "/atas",
-      text: "Atas",
-    },
-    {
-      pathName: "/editais",
-      text: "Editais",
-    },
-    {
-      pathName: "/alteracoeseexclusoes",
-      text: "Alterações e exclusões",
-    },
-    {
-      pathName: "/usuarios",
-      text: "Módulo de usuários",
-    },
-    {
-      pathName: "/alterarsenha",
-      text: "Alteração de senha",
+      icon: <Brightness5OutlinedIcon />,
     },
   ];
 
   return (
     <>
-      <AppBar position="static" className="appbar">
-        <Toolbar className="toolbar">
-          <button class="dropbtn" onClick={() => handleClick("/login")}>
+      <AppBar position="static" className="header-appbar">
+        <Toolbar className="header-toolbar">
+          <button class="header-dropbtn" onClick={() => handleClick("/login")}>
             Sair
           </button>
           {pages.map((listItem) => {
             return (
-              <div class="dropdown">
-                <button class="dropbtn">{listItem.text}</button>
-                <div class="dropdown-content">
+              <div class="header-dropdown">
+                <button class="header-dropbtn">{listItem.text}</button>
+                <div class="header-dropdown-content">
                   {listItem.links.map((listItem2) => {
                     return (
                       <a href={listItem2.pathName}>
@@ -217,33 +179,46 @@ function Header(props) {
               </div>
             );
           })}
-          <button class="dropbtn" onClick={() => handleClick("/intranet")}>
+          <button
+            class="header-dropbtn"
+            onClick={() => handleClick("/intranet")}
+          >
             Intranet
           </button>
           <div className="img">
             <img src={simbolo} alt="logo" />
           </div>
-          <div className="iconbutton">
-            <IconButton edge="start" aria-label="menu" className="menuIcon">
+          <div className="header-iconbutton">
+            <IconButton
+              edge="start"
+              aria-label="menu"
+              className="header-menuIcon"
+            >
               <MenuIcon />
             </IconButton>
-            <div class="iconbutton-content">
-              <div className="responsive-dropdown">
+            <div class="header-iconbutton-content">
+              <div className="responsive-header-dropdown">
                 <button
-                  class="responsive-dropdown-button"
+                  class="responsive-header-dropdown-button"
                   onClick={() => handleClick("/login")}
                 >
+                  <span>
+                    <LogoutIcon />
+                  </span>
                   Sair
                 </button>
               </div>
               {pages.map((item) => {
                 return <SubMenu item={item}></SubMenu>;
               })}
-              <div className="responsive-dropdown">
+              <div className="responsive-header-dropdown">
                 <button
-                  class="responsive-dropdown-button"
+                  class="responsive-header-dropdown-button"
                   onClick={() => handleClick("/intranet")}
                 >
+                  <span>
+                    <LanguageOutlinedIcon />
+                  </span>
                   Intranet
                 </button>
               </div>

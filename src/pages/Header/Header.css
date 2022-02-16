@@ -1,9 +1,9 @@
-.appbar {
+.header-appbar {
   justify-content: space-between;
   width: 100%;
 }
-.toolbar {
-  background-color: #264a6f;
+.header-toolbar {
+  background-color: #081120;
   height: 75px;
   display: flex;
   justify-content: space-between;
@@ -11,8 +11,8 @@
 }
 
 /* Dropdown Button */
-.dropbtn {
-  background-color: #264a6f;
+.header-dropbtn {
+  background-color: #081120;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -21,23 +21,23 @@
 }
 
 /* The container <div> - needed to position the dropdown content */
-.dropdown {
+.header-dropdown {
   position: relative;
   display: inline-block;
 }
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.header-dropdown-content {
   display: none;
   position: absolute;
-  background-color: #2f5c88;
+  background-color: #0b162b;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.header-dropdown-content a {
   color: white;
   padding: 12px 16px;
   text-decoration: none;
@@ -46,84 +46,52 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #3e6a96;
+.header-dropdown-content a:hover {
+  background-color: #122438;
 }
 
-.dropbtn:hover {
-  background-color: #31577e;
+.header-dropbtn:hover {
+  background-color: #0b162b;
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.header-dropdown:hover .header-dropdown-content {
   display: block;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
+.header-dropdown:hover .header-dropbtn {
   background-color: none;
 }
 
-.iconbutton {
+.header-iconbutton {
   display: none;
 }
-.toolbar img {
+.header-toolbar img {
   display: none;
 }
 
 @media (max-width: 1055px) {
-  .responsive-dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-  }
-  .responsive-dropdown-button {
-    background-color: #264a6f;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    height: 60px;
-    border: none;
-    width: 100%;
-    text-align: start;
-  }
-  .responsive-dropdown-menu {
-    display: none;
-    position: relative;
-    background-color: #2f5c88;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  .responsive-dropdown .responsive-dropdown-menu-onclick {
-    display: block;
-    position: relative;
-    background-color: #2f5c88;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  .dropdown {
+  .header-dropdown {
     display: none;
   }
-  .dropbtn {
+  .header-dropbtn {
     display: none;
   }
-  .toolbar img {
+  .header-toolbar img {
     display: inline-block;
     justify-content: flex-start;
     /* margin-right: 900px; */
     height: 50px;
     width: 50px;
   }
-  .iconbutton {
+  .header-iconbutton {
     color: white;
     position: relative;
     display: inline-block;
     justify-content: flex-start;
   }
-  .menuIcon {
+  .header-menuIcon {
     color: white !important;
     padding: 16px;
     font-size: 16px;
@@ -133,59 +101,44 @@
     justify-content: flex-start;
   }
   /* Dropdown Content (Hidden by Default) */
-  .iconbutton-content {
+  .header-iconbutton-content {
     display: none;
     position: absolute;
-    background-color: #264a6f;
-    min-width: 160px;
+    background-color: #081120;
+    min-width: 230px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     align-items: center;
     justify-content: space-evenly;
     right: -23.5px;
   }
-
-  .responsive-dropdown .responsive-dropdown-menu-onclick a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
+  .header-iconbutton-content a:hover {
+    background-color: #122438;
+  }
+  .header-menuIcon:hover {
+    background-color: #122438;
+  }
+  .header-iconbutton:hover .header-iconbutton-content {
     display: block;
   }
-  .iconbutton-content a:hover {
-    background-color: #3e6a96;
-  }
-  .menuIcon:hover {
-    background-color: #31577e;
-  }
-  .iconbutton:hover .iconbutton-content {
-    display: block;
-  }
-  .iconbutton:hover .menuIcon {
+  .header-iconbutton:hover .header-menuIcon {
     background-color: none;
   }
-  .toolbar {
+  .header-toolbar {
     align-items: center;
   }
   /* .responsive-dropdown-menu a:hover {background-color: #3e6a96;} */
 
-  .responsive-dropdown:hover {
-    background-color: #31577e;
+  .responsive-header-dropdown:hover {
+    background-color: #122438;
   }
-
-  /* Show the dropdown menu on hover */
-  /* .responsive-dropdown:hover .responsive-dropdown-menu {
-    display: block;
-  } */
-
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .responsive-dropdown:hover .responsive-dropdown {
+  .responsive-header-dropdown:hover .responsive-header-dropdown {
     background-color: none;
   }
 }
 
 @media (max-width: 600px) {
-  .iconbutton-content {
+  .header-iconbutton-content {
     right: -16px;
   }
 }
