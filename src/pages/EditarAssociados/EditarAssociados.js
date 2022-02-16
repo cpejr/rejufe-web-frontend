@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-function EditarAssociados() {
+function EditarAssociados({ user }) {
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState('');
   function handleChange(value, field) {
@@ -152,7 +152,7 @@ function EditarAssociados() {
         email_ASCOM: dados.emailListaAscom === '' ? undefined : dados.emailListaAscom,
         admission_date: dados.admissao,
       };
-      await managerService.updateUser(body);
+      await managerService.updateUser(body, user._id);
     } catch (error) {
       toast.error('Falha ao editar usuário!', {
         position: toast.POSITION.BOTTOM_RIGHT,

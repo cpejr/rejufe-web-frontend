@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 
 function EditUserInputs({
+  user,
   setDados,
   type,
   label,
@@ -22,6 +23,7 @@ function EditUserInputs({
         <TextField
           required={required}
           id={id}
+          // defaultValue={user[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
@@ -36,6 +38,7 @@ function EditUserInputs({
         <TextField
           required={required}
           id={id}
+          // defaultValue={user[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(mask(e.target.value), id)}
           label={label}
@@ -50,6 +53,7 @@ function EditUserInputs({
         <TextField
           required={required}
           id={id}
+          // defaultValue={user[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
@@ -73,6 +77,7 @@ function EditUserInputs({
         <TextField
           required={required}
           id={id}
+          // defaultValue={user[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}

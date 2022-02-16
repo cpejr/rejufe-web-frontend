@@ -17,7 +17,6 @@ const formsEdit = [
         label: "Status",
         field: status,
         select: true,
-        required: true,
       },
       {
         type: "text",
@@ -25,7 +24,6 @@ const formsEdit = [
         label: "Nome *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -33,7 +31,6 @@ const formsEdit = [
         label: "Usuário *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -41,7 +38,6 @@ const formsEdit = [
         label: "Cargo *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -49,7 +45,6 @@ const formsEdit = [
         label: "Nacionalidade *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -57,7 +52,6 @@ const formsEdit = [
         label: "CPF *",
         field: null,
         select: false,
-        required: true,
         mask: cpfMask,
       },
       {
@@ -66,7 +60,6 @@ const formsEdit = [
         label: "Nascimento *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -74,7 +67,6 @@ const formsEdit = [
         label: "Naturalidade *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -82,7 +74,6 @@ const formsEdit = [
         label: "Sexo *",
         field: genres,
         select: true,
-        required: true,
       },
       {
         type: "text",
@@ -90,7 +81,6 @@ const formsEdit = [
         label: "Estado Civil *",
         field: civilStates,
         select: true,
-        required: true,
       },
       {
         type: "text",
@@ -119,7 +109,6 @@ const formsEdit = [
         label: "Cep *",
         field: null,
         select: false,
-        required: true,
         mask: cepMask,
       },
       {
@@ -128,7 +117,6 @@ const formsEdit = [
         label: "Endereço *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "number",
@@ -136,7 +124,6 @@ const formsEdit = [
         label: "Número *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -144,7 +131,6 @@ const formsEdit = [
         label: "Complemento *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -152,7 +138,6 @@ const formsEdit = [
         label: "Bairro *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -160,7 +145,6 @@ const formsEdit = [
         label: "Cidade *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -168,7 +152,6 @@ const formsEdit = [
         label: "Estado *",
         field: null,
         select: false,
-        required: true,
       },
     ],
   },
@@ -181,7 +164,6 @@ const formsEdit = [
         label: "Lotação *",
         field: lotacao,
         select: true,
-        required: true,
       },
       {
         type: "text",
@@ -189,7 +171,6 @@ const formsEdit = [
         label: "Atuação *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -197,7 +178,6 @@ const formsEdit = [
         label: "Cep *",
         field: null,
         select: false,
-        required: true,
         mask: cepMask,
       },
       {
@@ -206,7 +186,6 @@ const formsEdit = [
         label: "Endereço *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "number",
@@ -214,7 +193,6 @@ const formsEdit = [
         label: "Número *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -222,7 +200,6 @@ const formsEdit = [
         label: "Complemento *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -230,7 +207,6 @@ const formsEdit = [
         label: "Bairro *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -238,7 +214,6 @@ const formsEdit = [
         label: "Cidade *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -246,7 +221,6 @@ const formsEdit = [
         label: "Estado *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -269,7 +243,6 @@ const formsEdit = [
         label: "Celular *",
         field: null,
         select: false,
-        required: true,
         mask: cellphoneMask,
       },
       {
@@ -278,7 +251,6 @@ const formsEdit = [
         label: "Email *",
         field: null,
         select: false,
-        required: true,
       },
       {
         type: "text",
@@ -300,7 +272,6 @@ const formsEdit = [
         label: "Admissão *",
         field: null,
         select: false,
-        required: true,
       },
     ],
   },
