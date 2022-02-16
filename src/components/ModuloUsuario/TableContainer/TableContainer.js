@@ -24,6 +24,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import './tableContainer.css';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -50,6 +51,7 @@ function TablePaginationActions(props) {
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
+        className="IconButton"
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
         aria-label="first page"
@@ -60,6 +62,7 @@ function TablePaginationActions(props) {
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
+        className="IconButton"
       >
         {theme.direction === 'rtl' ? (
           <KeyboardArrowRight />
@@ -71,6 +74,7 @@ function TablePaginationActions(props) {
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
+        className="IconButton"
       >
         {theme.direction === 'rtl' ? (
           <KeyboardArrowLeft />
@@ -82,6 +86,7 @@ function TablePaginationActions(props) {
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
+        className="IconButton"
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
@@ -149,27 +154,6 @@ function TableComponent({
         },
   };
 
-  const titleFontProps = {
-    style: matchesFont85
-      ? {
-        fontSize: '85%',
-        backgroundColor: '#2574A9',
-        color: 'white',
-        padding: '0px',
-      }
-      : matchesFont90
-        ? {
-          fontSize: '90%',
-          backgroundColor: '#2574A9',
-          color: 'white',
-        }
-        : {
-          fontSize: '100%',
-          backgroundColor: '#2574A9',
-          color: 'white',
-        },
-  };
-
   const tableProps = {
     sx: matchesFont400px
       ? {
@@ -205,7 +189,7 @@ function TableComponent({
         <TableHead>
           <TableRow>
             {titles?.map((title) => (
-              <TableCell {...titleFontProps}>
+              <TableCell className="TableCell">
                 {title}
               </TableCell>
             ))}
@@ -222,7 +206,7 @@ function TableComponent({
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton color="primary" aria-label="Search">
+                    <IconButton className="IconButton" color="primary" aria-label="Search">
                       <SearchIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
@@ -230,12 +214,12 @@ function TableComponent({
                   </TableCell>
                 ) : edit ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton aria-label="delete">
+                    <IconButton className="IconButton" aria-label="delete">
                       <DeleteIcon />
                       {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
-                    <IconButton color="primary" aria-label="Edit">
+                    <IconButton className="IconButton" color="primary" aria-label="Edit">
                       <EditIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}

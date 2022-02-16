@@ -1,0 +1,23 @@
+.module-buttons button {
+    width: 70px;  
+    height: 40px;  
+    color: white;
+    border: solid var(--secondary);
+    border-radius: 5px;
+    background-color: var(--secondary);
+    margin-left: 1%;
+    font-weight: 700;
+}
+.module-buttons {
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+.container-modulo {
+    margin-top: 2%;
+}
+
+.container-modulo h1 {
+    font-size: 30px;
+    color: var(--secondary);
+    font-weight: 700;
+}
