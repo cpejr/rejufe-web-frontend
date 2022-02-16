@@ -1,1 +1,2 @@
-export { default } from "./Dashboard";
+/* eslint-disable no-restricted-exports */
+export { default } from './Dashboard';
