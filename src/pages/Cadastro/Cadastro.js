@@ -208,10 +208,10 @@ function Cadastro() {
 
   return (
     <div className="container-cadastro">
-      <h1>Cadastro dos associados</h1>
+      <h1 className="title">Cadastro dos associados</h1>
       {formsData.map((line) => (
-        <Box className="container-box">
-          <h2>{line.title}</h2>
+        <Box>
+          <h2 className="title">{line.title}</h2>
           <p className="TextField">
             {line.items.map((item) => (
               <RegisterInputs
@@ -229,7 +229,7 @@ function Cadastro() {
           </p>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#264A6F' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
+      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
     </div>
   );
 }
