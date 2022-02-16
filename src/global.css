@@ -13,12 +13,12 @@ div#root {
 :root {
     --primary: #264A6F;
     --secondary: #2F5C88;
-    --buttonBlue: #1C3854;
-    --greyBlue: #122438;
-    --headerBlue: #0B162B;
-    --black: #081120;
-    --darkGrey: #3A404C;
-    --mediumGrey: #616670;
-    --lightGray: #81848C;
-    --backgroung: rgba(255, 255, 255, 0.6);
+    --button: #1C3854;
+    --color1: #122438;
+    --color2: #0B162B;
+    --header: #081120;
+    --color3: #3A404C;
+    --color4: #616670;
+    --color5: #81848C;
+    --background: rgba(255, 255, 255, 0.6);
 }
