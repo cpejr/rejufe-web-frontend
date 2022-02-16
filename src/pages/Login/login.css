@@ -66,7 +66,7 @@
   margin-top: 1%;
   width: 55%;
   height: 7%;
-  background-color: #ffffffab;
+  background-color: var(--inputColor);
   box-sizing: border-box;
   border-radius: 6px;
   border: 0;
@@ -74,8 +74,8 @@
   padding-right: 10px;
 }
 .container-login button {
-  background-color: var(--buttonBlue);
-  border: 1px solid var(--buttonBlue);
+  background-color: var(--button);
+  border: 1px solid var(--button);
   border-radius: 8px;
   color: white;
   display: inline-block;
@@ -94,7 +94,7 @@
   cursor: pointer;
 }
 .container-login button:hover {
-  background-color: #1f4061;
+  background-color: var(--color1);
 }
 .outlined-basic {
   align-items: center;
@@ -111,7 +111,7 @@
 .Remember-Box input {
   margin-top: 0px;
   height: 5.4vh;
-  border: 1px solid #dcdce6;
+  border: 1px solid var(--inputColor);
   border-radius: 8px;
   display: flex;
   text-align: center;
