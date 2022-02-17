@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-function alteracoesExclusoes(){
-    return (
-        <div>
-            <h1>Alteracoes e Exclusoes</h1>
-        </div>
-    )
+function alteracoesExclusoes() {
+  return (
+    <div>
+      <h1>Alteracoes e Exclusoes</h1>
+    </div>
+  );
 }
 
 export default alteracoesExclusoes;

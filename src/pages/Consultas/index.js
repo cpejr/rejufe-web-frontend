@@ -1,1 +1,2 @@
-export { default } from "./Consultas";
+// eslint-disable-next-line no-restricted-exports
+export { default } from './Consultas';

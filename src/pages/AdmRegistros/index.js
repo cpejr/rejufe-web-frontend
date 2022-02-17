@@ -1,1 +1,2 @@
-export { default } from "./AdmRegistros";
+// eslint-disable-next-line no-restricted-exports
+export { default } from './AdmRegistros';
