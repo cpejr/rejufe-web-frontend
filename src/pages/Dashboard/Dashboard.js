@@ -25,7 +25,7 @@ const titles = [
   'vapo',
 ];
 
-function Dashboard() {
+function dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
@@ -34,4 +34,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default dashboard;

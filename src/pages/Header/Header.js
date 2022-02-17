@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import { AppBar, Toolbar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -18,7 +20,16 @@ import SubMenu from '../../components/SubMenu/SubMenu';
 import simbolo from '../../images/simbolo.png';
 
 function Header(props) {
+  const [className, setClassName] = useState('header-iconbutton-content');
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(!open);
+  };
   const history = useHistory();
+
+  const handleClassName = () => {
+    setClassName('header-iconbutton-content-onclick');
+  };
 
   function handleClick(pathName) {
     history.push(pathName);
@@ -31,17 +42,17 @@ function Header(props) {
     },
     {
       link: () => handleClick('/validarsocio'),
-      pathName: '/validarsocio',
+      pathName: '/validar-socio',
       text: 'Validar Sócio',
     },
     {
       link: () => handleClick('/admregistros'),
-      pathName: '/admregistros',
+      pathName: '/adm-registros',
       text: 'Administração de registros',
     },
     {
       link: () => handleClick('/associadosexcluidos'),
-      pathName: '/associadosexcluidos',
+      pathName: '/associados-excluidos',
       text: 'Associados excluídos',
     },
     {
@@ -53,7 +64,7 @@ function Header(props) {
   const links2 = [
     {
       link: () => handleClick('/admregistros'),
-      pathName: '/admregistros',
+      pathName: '/adm-registros',
       text: 'Administração de Registros',
     },
     {
@@ -70,7 +81,7 @@ function Header(props) {
     },
     {
       link: () => handleClick('/admregistros'),
-      pathName: '/admregistros',
+      pathName: '/adm-registros',
       text: 'Administração de Registros',
     },
     {
@@ -92,7 +103,7 @@ function Header(props) {
     },
     {
       link: () => handleClick('/alteracoeseexclusoes'),
-      pathName: '/alteracoeseexclusoes',
+      pathName: '/alteracoes-e-exclusoes',
       text: 'Alterações e exclusões',
     },
     {
@@ -109,7 +120,7 @@ function Header(props) {
     },
     {
       link: () => handleClick('/alterarsenha'),
-      pathName: '/alterarsenha',
+      pathName: '/alterar-senha',
       text: 'Alteração de senha',
     },
   ];
@@ -190,42 +201,54 @@ function Header(props) {
           <div>
             <img src={simbolo} alt="logo" />
           </div>
-          <div className="header-iconbutton">
+          <div
+            className="header-iconbutton"
+            onClick={handleClassName}
+          >
             <IconButton
               edge="start"
               aria-label="menu"
               className="header-menuIcon"
+              onClick={handleOpen}
             >
               <MenuIcon />
             </IconButton>
-            <div className="header-iconbutton-content">
-              <div className="responsive-header-dropdown">
-                <button
-                  className="responsive-header-dropdown-button"
-                  onClick={() => handleClick('/login')}
-                  type="button"
-                >
-                  <span>
-                    <LogoutIcon />
-                  </span>
-                  Sair
-                </button>
-              </div>
-              {pages?.map((item) => (
+            <div className={className}>
+              {open === true ? (
+                <div className="responsive-header-dropdown">
+                  <button
+                    className="responsive-header-dropdown-button"
+                    onClick={() => handleClick('/login')}
+                    type="button"
+                  >
+                    <span>
+                      <LogoutIcon />
+                    </span>
+                    Sair
+                  </button>
+                </div>
+              ) : (
+                null
+              )}
+              {open && pages?.map((item) => (
                 <SubMenu item={item} />
               ))}
-              <div className="responsive-header-dropdown">
-                <button
-                  className="responsive-header-dropdown-button"
-                  onClick={() => handleClick('/intranet')}
-                  type="button"
-                >
-                  <span>
-                    <LanguageOutlinedIcon />
-                  </span>
-                  Intranet
-                </button>
-              </div>
+              {open === true ? (
+                <div className="responsive-header-dropdown">
+                  <button
+                    className="responsive-header-dropdown-button"
+                    onClick={() => handleClick('/intranet')}
+                    type="button"
+                  >
+                    <span>
+                      <LanguageOutlinedIcon />
+                    </span>
+                    Intranet
+                  </button>
+                </div>
+              ) : (
+                null
+              )}
             </div>
           </div>
         </Toolbar>

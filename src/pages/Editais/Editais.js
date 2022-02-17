@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Editais() {
+function editais() {
   return (
     <div>
       <h1>Editais</h1>
@@ -8,4 +8,4 @@ function Editais() {
   );
 }
 
-export default Editais;
+export default editais;

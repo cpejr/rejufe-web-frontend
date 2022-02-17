@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Cadastro() {
+function cadastro() {
   return (
     <h1>Cadastro</h1>
   );
 }
 
-export default Cadastro;
+export default cadastro;
