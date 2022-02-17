@@ -1,7 +1,7 @@
 import React from 'react';
 import './moduloUsuario.css';
 import TableComponent from '../../components/ModuloUsuario/TableContainer/TableContainer';
-import AutocompleteMemberInput from '../../components/AutoCompleteMemberInput';
+// import AutocompleteMemberInput from '../../components/AutoCompleteMemberInput';
 
 function ModuloUsuario() {
   function createData(ordem, icone, status, usuario, seção, perfil, login, email, cpf) {
@@ -33,7 +33,7 @@ function ModuloUsuario() {
       <div className="module-buttons">
         <button className="button" type="button">Novo</button>
         <button className="button" type="button">Voltar</button>
-        <AutocompleteMemberInput
+        {/* <AutocompleteMemberInput
           onChange={setMemberTextToLogin}
           value={memberTextToLogin}
           onMemberChange={(member) => (memberToLogin.current = member)}
@@ -43,7 +43,7 @@ function ModuloUsuario() {
               handleLogin();
             }
           }}
-        />
+        /> */}
       </div>
       <TableComponent rows={rows} titles={titles} />
     </div>
