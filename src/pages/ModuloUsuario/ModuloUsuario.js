@@ -1,6 +1,7 @@
 import React from 'react';
 import './moduloUsuario.css';
 import TableComponent from '../../components/ModuloUsuario/TableContainer/TableContainer';
+import ModalAdmin from '../../components/ModuloUsuario/ModalUsuario/ModalUsuario';
 // import AutocompleteMemberInput from '../../components/AutoCompleteMemberInput';
 
 function ModuloUsuario() {
@@ -31,7 +32,7 @@ function ModuloUsuario() {
     <div className="container-modulo">
       <h1>Módulo de Usuários</h1>
       <div className="module-buttons">
-        <button className="button" type="button">Novo</button>
+        <ModalAdmin />
         <button className="button" type="button">Voltar</button>
         {/* <AutocompleteMemberInput
           onChange={setMemberTextToLogin}

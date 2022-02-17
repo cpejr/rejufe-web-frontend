@@ -9,6 +9,8 @@
     font-weight: 700;
 }
 .module-buttons {
+    display: flex;
+    flex-direction:row;
     margin-bottom: 1%;
     margin-top: 2%;
 }

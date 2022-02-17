@@ -1,42 +1,44 @@
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { toast } from 'react-toastify';
+import CloseIcon from '@mui/icons-material/Close';
+import { makeStyles } from '@material-ui/core/styles';
 
 function getModalStyle() {
-    const top = 50;
-    const left = 50;
-  
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    };
-  }
-  
-  const useStyles = makeStyles((theme) => ({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles(() => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    position: 'absolute',
+    width: '60vw',
+    height: '52vh',
+    backgroundColor: rgba(255, 255, 255, 0.6),
+    border: '2px solid #609694',
+    // boxShadow: theme.shadows[5],
+    // padding: theme.spacing(2, 1.5),
+    ['@media (max-width:460px)']: { // eslint-disable-line no-useless-computed-key
+      width: '100%',
     },
-    paper: {
-      position: 'absolute',
-      width: '60vw',
-      height: '52vh',
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #609694',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 1.5),
-      ['@media (max-width:460px)']: { // eslint-disable-line no-useless-computed-key
-        width: '100%',
-      },
-    },
-  
-  }));
-  
-  toast.configure();
-  
-export default function ModalAdmin({ store, setStores }) {
+  },
+
+}));
+
+toast.configure();
+
+export default function ModalAdmin() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -48,46 +50,44 @@ export default function ModalAdmin({ store, setStores }) {
   };
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <ContainerModal>
-        <Exit>
-          <ButtonExit onClick={() => {
-            handleClose();
-          }}
+      <div className="ContainerModal">
+        <div className="Exit">
+          <button
+            type="button"
+            onClick={() => {
+              handleClose();
+            }}
           >
-            <IoMdClose size={30} style={{ color: ({ theme }) => theme.colors.mediumGreen }} />
-          </ButtonExit>
-        </Exit>
-        <Row>
-          <TitleModal>Dados da loja</TitleModal>
-        </Row>
-        <Row>
-          <Ajust>
-          </Ajust>
-        </Row>
-        <Row>
-          <ButtonConfirm onClick={() => {
-            updateApprovedStore(store.firebase_id_store);
-            handleClose();
-          }}
+            <CloseIcon size={30} style={{ color: ({ theme }) => theme.colors.mediumGreen }} />
+          </button>
+        </div>
+        <div className="Row">
+          <h1>Dados da loja</h1>
+        </div>
+        <div className="Row">
+          <h1>Busca</h1>
+        </div>
+        <div className="Row">
+          <button
+            type="button"
+            onClick={() => {
+              handleClose();
+            }}
           >
-            Aprovar loja
-          </ButtonConfirm>
-          <ButtonDelete onClick={() => {
-            deleteStore(store.firebase_id_store);
-            handleClose();
-          }}
-          >
-            Recusar loja
-          </ButtonDelete>
-        </Row>
-      </ContainerModal>
+            Confirmar
+          </button>
+        </div>
+      </div>
     </div>
   );
   return (
     <div>
-      <SeeData onClick={handleOpen}>
-        Ver dados
-      </SeeData>
+      <button
+        type="button"
+        onClick={handleOpen}
+      >
+        Novo
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
