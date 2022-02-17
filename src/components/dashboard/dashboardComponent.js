@@ -100,7 +100,7 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titles, rows, order, edit, search, searchFile,
 }) {
-  const theme = useTheme;
+  // const theme = useTheme;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -155,19 +155,19 @@ function TableComponent({
     style: matchesFont85
       ? {
         fontSize: '85%',
-        backgroundColor: theme.palette.secondary,
+        backgroundColor: ({ theme }) => theme.colors.secondary,
         color: 'white',
         padding: '0px',
       }
       : matchesFont90
         ? {
           fontSize: '90%',
-          backgroundColor: theme.palette.secondary,
+          backgroundColor: ({ theme }) => theme.colors.secondary,
           color: 'white',
         }
         : {
           fontSize: '100%',
-          backgroundColor: theme.palette.secondary,
+          backgroundColor: ({ theme }) => theme.colors.secondary,
           color: 'white',
         },
   };
