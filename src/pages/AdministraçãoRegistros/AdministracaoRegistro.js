@@ -12,20 +12,19 @@ function AdministracaoRegistros() {
 
   console.log("🚀 ~ file: AdministracaoRegistro.js ~ line 12 ~ AdministracaoRegistros ~ name", associates)
 
-  function createData(sequential, names, cpfs, state) {
+  function createData(sequentialId, name, cpf, status) {
     return {
-      sequential, names, cpfs, state,
+      sequentialId, name, cpf, status,
     };
   }
 
   async function getAllAssociates() {
-    let auxAssociate = [];
+    const auxAssociate = [];
     try {
       const allAssociates = await managerService.getAssociates();
       allAssociates.forEach((object) => {
         auxAssociate.push(createData(object.sequential_Id, object.name, object.cpf, object.status));
       });
-      const associate = new Set(auxAssociate);
       console.log(auxAssociate);
       setAllAssociates(auxAssociate);
     } catch (error) {
@@ -39,18 +38,15 @@ function AdministracaoRegistros() {
   const titles = [
     '',
     'Código',
-    'Status',
     'Nome',
     'Cpf',
-  ];
-  const rows = [
-    associates,
+    'Status',
   ];
 
   return (
-    <div>
-      <h1>Administração de Registros</h1>
-      <TableComponent rows={rows} titles={titles} order />
+    <div className="container-administration">
+      <h1>Manutenção em Associados</h1>
+      <TableComponent rows={associates} titles={titles} order />
     </div>
   );
 }
