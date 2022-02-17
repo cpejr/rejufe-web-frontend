@@ -4,6 +4,7 @@ const URL_BASE = process.env.REACT_APP_BASE_URL || 'http://localhost:3333';
 
 const httpClient = axios.create({
   baseURL: URL_BASE,
+  withCredentials: true,
 });
 
 const requestHandler = (request) => {
