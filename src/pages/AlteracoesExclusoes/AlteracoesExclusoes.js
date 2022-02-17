@@ -1,6 +1,6 @@
 import React from 'react';
 
-function alteracoesExclusoes() {
+function AlteracoesExclusoes() {
   return (
     <div>
       <h1>Alteracoes e Exclusoes</h1>
@@ -8,4 +8,4 @@ function alteracoesExclusoes() {
   );
 }
 
-export default alteracoesExclusoes;
+export default AlteracoesExclusoes;

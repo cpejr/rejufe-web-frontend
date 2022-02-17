@@ -1,6 +1,6 @@
 import React from 'react';
 
-function validarSocio() {
+function ValidarSocio() {
   return (
     <div>
       <h1>Validar Sócio</h1>
@@ -8,4 +8,4 @@ function validarSocio() {
   );
 }
 
-export default validarSocio;
+export default ValidarSocio;

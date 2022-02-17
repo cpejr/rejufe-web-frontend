@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-function esqueciSenha() {
+function EsqueciSenha() {
   const [email, setEmail] = useState('');
   const history = useHistory();
   function confirmarEmail(e) {
@@ -66,4 +66,4 @@ function esqueciSenha() {
   );
 }
 
-export default esqueciSenha;
+export default EsqueciSenha;

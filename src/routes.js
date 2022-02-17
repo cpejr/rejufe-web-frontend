@@ -1,38 +1,38 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import login from './pages/Login';
-import dashboard from './pages/Dashboard';
-import esqueciSenha from './pages/EsqueciSenha';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
-import intranet from './pages/Intranet';
-import cadastro from './pages/Cadastro';
-import admRegistros from './pages/AdmRegistros';
-import associadosExcluidos from './pages/AssociadosExcluidos';
-import consultas from './pages/Consultas';
-import validarSocio from './pages/ValidarSocio';
-import editais from './pages/Editais';
-import atas from './pages/Atas';
-import alteracoesExclusoes from './pages/AlteracoesExclusoes';
-import moduloUsuarios from './pages/ModuloUsuarios';
-import alterarSenha from './pages/AlterarSenha';
+import Intranet from './pages/Intranet';
+import Cadastro from './pages/Cadastro';
+import AdmRegistros from './pages/AdmRegistros';
+import AssociadosExcluidos from './pages/AssociadosExcluidos';
+import Consultas from './pages/Consultas';
+import ValidarSocio from './pages/ValidarSocio';
+import Editais from './pages/Editais';
+import Atas from './pages/Atas';
+import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
+import ModuloUsuarios from './pages/ModuloUsuarios';
+import AlterarSenha from './pages/AlterarSenha';
 
-function userHeader() {
+function UserHeader() {
   return (
     <Header>
       <Switch>
-        <Route path="/dashboard/usuario" component={dashboard} />
-        <Route path="/dashboard/administrador" component={dashboard} />
-        <Route path="/intranet" component={intranet} />
-        <Route path="/cadastro" component={cadastro} />
-        <Route path="/adm-registros" component={admRegistros} />
-        <Route path="/associados-excluidos" component={associadosExcluidos} />
-        <Route path="/consultas" component={consultas} />
-        <Route path="/validar-socio" component={validarSocio} />
-        <Route path="/editais" component={editais} />
-        <Route path="/atas" component={atas} />
-        <Route path="/alteracoes-e-exclusoes" component={alteracoesExclusoes} />
-        <Route path="/usuarios" component={moduloUsuarios} />
-        <Route path="/alterar-senha" component={alterarSenha} />
+        <Route path="/dashboard/usuario" component={Dashboard} />
+        <Route path="/dashboard/administrador" component={Dashboard} />
+        <Route path="/intranet" component={Intranet} />
+        <Route path="/cadastro" component={Cadastro} />
+        <Route path="/adm-registros" component={AdmRegistros} />
+        <Route path="/associados-excluidos" component={AssociadosExcluidos} />
+        <Route path="/consultas" component={Consultas} />
+        <Route path="/validar-socio" component={ValidarSocio} />
+        <Route path="/editais" component={Editais} />
+        <Route path="/atas" component={Atas} />
+        <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
+        <Route path="/usuarios" component={ModuloUsuarios} />
+        <Route path="/alterar-senha" component={AlterarSenha} />
       </Switch>
     </Header>
   );
@@ -42,9 +42,9 @@ function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login" component={login} />
-        <Route path="/redefinirSenha" component={esqueciSenha} />
-        <Route path="/" component={userHeader} />
+        <Route path="/login" component={Login} />
+        <Route path="/redefinirSenha" component={EsqueciSenha} />
+        <Route path="/" component={UserHeader} />
       </Switch>
     </BrowserRouter>
   );

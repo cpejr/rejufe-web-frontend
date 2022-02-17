@@ -1,6 +1,6 @@
 import React from 'react';
 
-function consultas() {
+function Consultas() {
   return (
     <div>
       <h1>Consultas</h1>
@@ -8,4 +8,4 @@ function consultas() {
   );
 }
 
-export default consultas;
+export default Consultas;

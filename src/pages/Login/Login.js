@@ -15,7 +15,7 @@ const initialState = {
 };
 
 toast.configure();
-function login() {
+function Login() {
   const [loading, setLoading] = useState(false);
   const [usuario, setUsuario] = useState(initialState);
   const history = useHistory();
@@ -105,4 +105,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

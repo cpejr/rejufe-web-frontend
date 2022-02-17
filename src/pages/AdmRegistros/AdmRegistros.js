@@ -1,6 +1,6 @@
 import React from 'react';
 
-function admRegistros() {
+function AdmRegistros() {
   return (
     <div>
       <h1>Administração de Registros</h1>
@@ -8,4 +8,4 @@ function admRegistros() {
   );
 }
 
-export default admRegistros;
+export default AdmRegistros;

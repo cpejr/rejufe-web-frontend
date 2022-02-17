@@ -1,6 +1,6 @@
 import React from 'react';
 
-function alterarSenha() {
+function AlterarSenha() {
   return (
     <div>
       <h1>Alterar Senha</h1>
@@ -8,4 +8,4 @@ function alterarSenha() {
   );
 }
 
-export default alterarSenha;
+export default AlterarSenha;

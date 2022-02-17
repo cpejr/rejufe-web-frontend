@@ -1,6 +1,6 @@
 import React from 'react';
 
-function atas() {
+function Atas() {
   return (
     <div>
       <h1>Atas</h1>
@@ -8,4 +8,4 @@ function atas() {
   );
 }
 
-export default atas;
+export default Atas;

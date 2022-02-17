@@ -1,6 +1,6 @@
 import React from 'react';
 
-function associadosExcluidos() {
+function AssociadosExcluidos() {
   return (
     <div>
       <h1>Associados Excluídos</h1>
@@ -8,4 +8,4 @@ function associadosExcluidos() {
   );
 }
 
-export default associadosExcluidos;
+export default AssociadosExcluidos;

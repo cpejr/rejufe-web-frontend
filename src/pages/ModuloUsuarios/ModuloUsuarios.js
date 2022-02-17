@@ -1,6 +1,6 @@
 import React from 'react';
 
-function moduloUsuarios() {
+function ModuloUsuarios() {
   return (
     <div>
       <h1>Modulo de usuários</h1>
@@ -8,4 +8,4 @@ function moduloUsuarios() {
   );
 }
 
-export default moduloUsuarios;
+export default ModuloUsuarios;

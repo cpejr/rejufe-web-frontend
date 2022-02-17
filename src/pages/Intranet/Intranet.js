@@ -1,9 +1,9 @@
 import React from 'react';
 
-function intranet() {
+function Intranet() {
   return (
     <h1>Cadastro</h1>
   );
 }
 
-export default intranet;
+export default Intranet;
