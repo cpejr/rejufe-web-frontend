@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
+import './modulUsuario.css';
 
 function getModalStyle() {
   const top = 50;
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '60vw',
     height: '52vh',
-    backgroundColor: theme.palette.background,
+    backgroundColor: 'white',
     border: '2px solid #609694',
     boxShadow: theme.palette.color4,
     padding: '2vh 1.5vw',
@@ -53,12 +54,13 @@ export default function ModalAdmin() {
       <div className="ContainerModal">
         <div className="Exit">
           <button
+            className="Close"
             type="button"
             onClick={() => {
               handleClose();
             }}
           >
-            <CloseIcon size={30} style={{ color: ({ theme }) => theme.colors.mediumGreen }} />
+            <CloseIcon size={30} />
           </button>
         </div>
         <div className="Row">
@@ -69,6 +71,7 @@ export default function ModalAdmin() {
         </div>
         <div className="Row">
           <button
+            className="Confirm"
             type="button"
             onClick={() => {
               handleClose();
