@@ -15,7 +15,7 @@ function getModalStyle() {
   };
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -25,10 +25,10 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     width: '60vw',
     height: '52vh',
-    backgroundColor: rgba(255, 255, 255, 0.6),
+    backgroundColor: theme.palette.background,
     border: '2px solid #609694',
-    // boxShadow: theme.shadows[5],
-    // padding: theme.spacing(2, 1.5),
+    boxShadow: theme.palette.color4,
+    padding: '2vh 1.5vw',
     ['@media (max-width:460px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
     },

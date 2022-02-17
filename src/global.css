@@ -14,14 +14,14 @@ div#root {
     --primary: #264A6F;
     --secondary: #2F5C88;
     --button: #1C3854;
-    --color1: #122438;
-    --color2: #0B162B;
+    --hover: #122438;
+    --color1: #0B162B;
     --header: #081120;
-    --fontColor2: #3A404C;
-    --color4: #616670;
-    --color5: #81848C;
+    --color2: #3A404C;
+    --color3: #616670;
+    --color4: #81848C;
+    --inputColor: white;
     --background: rgba(255, 255, 255, 0.6);
-    --inputColor: #ffffffab;
     --fontColor1: white;
-    --iconColor: black;
+    --fontColor2: black;
 }
