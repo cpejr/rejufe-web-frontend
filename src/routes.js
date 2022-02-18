@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import EsqueciSenha from './pages/EsqueciSenha';
-import AdministracaoRegistros from './pages/AdministraçãoRegistros';
 import Header from './pages/Header';
 import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
@@ -45,7 +44,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
-        <Route path="/administracaoregistro" component={AdministracaoRegistros} />
+        <Route path="/administracaoregistro" component={AdmRegistros} />
         <Route path="/" component={UserHeader} />
       </Switch>
     </BrowserRouter>
