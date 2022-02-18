@@ -9,7 +9,7 @@ toast.configure();
 
 function AdmRegistros() {
   const [associates, setAllAssociates] = useState([]);
-  const [code, setCode] = useState([]);
+  const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
 
   function createData(sequentialId, name, cpf, status) {
@@ -31,7 +31,7 @@ function AdmRegistros() {
       auxAssociate.sort();
       setId(associateId);
       setAllAssociates(auxAssociate);
-      setCode(associateCode);
+      setSequentialId(associateCode);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -51,7 +51,7 @@ function AdmRegistros() {
 
   return (
     <div className="container-administration">
-      <TableComponent rowCode={code} rows={associates} titles={titles} order />
+      <TableComponent sequentialId={sequentialId} rows={associates} titles={titles} order />
     </div>
   );
 }

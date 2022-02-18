@@ -99,8 +99,9 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, rowCode, order, edit, search, searchFile,
+  titles, rows, sequentialId, order, edit, search, searchFile,
 }) {
+  console.log("🚀 ~ file: BoxRegisterComponent.js ~ line 104 ~ sequentialId", sequentialId)
   const history = useHistory();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -278,27 +279,24 @@ function TableComponent({
           </TableRow>
           <TableRow>
             {titles?.map((title) => (
-              <TableCell {...titleFontProps}
-              // eslint-disable-next-line react/jsx-no-bind
-              >
+              <TableCell {...titleFontProps}>
                 {title}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rowCode?.map((code) => (
-            <TableCell {...cellFontProps} align="center">
-              {code}
-            </TableCell>
-          ))}
           {rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
-                    {index + 1}
+                    {index + 1 + (page * 10)}
+                  </TableCell>
+                ) : sequentialId ? (
+                  <TableCell {...cellFontProps} align="center">
+                    {sequentialId[index]}
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
