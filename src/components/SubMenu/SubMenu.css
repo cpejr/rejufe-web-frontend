@@ -1,0 +1,55 @@
+@media (max-width: 1055px) {
+  .responsive-header-dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+  .responsive-header-dropdown-button {
+    background-color: #081120;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    height: 60px;
+    border: none;
+    width: 100%;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .responsive-header-dropdown-button span {
+    margin-top: 2px;
+    margin-right: 8px;
+  }
+  .responsive-header-dropdown-menu {
+    display: none;
+    position: relative;
+    background-color: #0b162b;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .responsive-header-dropdown .responsive-header-dropdown-menu-onclick {
+    display: block;
+    position: relative;
+    background-color: #0b162b;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .responsive-header-dropdown .responsive-header-dropdown-menu-onclick a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    cursor: pointer;
+  }
+  .responsive-header-dropdown:hover {
+    background-color: #122438;
+  }
+  .responsive-header-dropdown:hover .responsive-header-dropdown {
+    background-color: none;
+  }
+}
