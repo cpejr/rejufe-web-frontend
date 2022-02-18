@@ -10,9 +10,9 @@ toast.configure();
 function AdmRegistros() {
   const [associates, setAllAssociates] = useState([]);
   const [code, setCode] = useState([]);
+  const [id, setId] = useState([]);
 
   function createData(sequentialId, name, cpf, status) {
-    console.log("🚀 ~ file: AdministracaoRegistro.js ~ line 16 ~ createData ~ name", name)
     return {
       sequentialId, name, cpf, status,
     };
@@ -21,14 +21,15 @@ function AdmRegistros() {
   async function getAllAssociates() {
     const auxAssociate = [];
     const associateCode = [];
+    const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
       allAssociates.forEach((object) => {
         associateCode.push(object.sequential_Id);
         auxAssociate.push(createData(object.sequential_Id, object.name, object.cpf, object.status));
       });
-      console.log(auxAssociate);
       auxAssociate.sort();
+      setId(associateId);
       setAllAssociates(auxAssociate);
       setCode(associateCode);
     } catch (error) {
@@ -36,7 +37,6 @@ function AdmRegistros() {
       console.warn(error);
     }
   }
-  console.log("🚀 ~ file: AdministracaoRegistro.js ~ line 12 ~ AdministracaoRegistros ~ name", associates)
   useEffect(() => {
     getAllAssociates();
   }, []);

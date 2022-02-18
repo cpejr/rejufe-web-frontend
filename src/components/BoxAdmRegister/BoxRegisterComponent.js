@@ -101,7 +101,6 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titles, rows, rowCode, order, edit, search, searchFile,
 }) {
-  console.log("🚀 ~ file: BoxRegisterComponent.js ~ line 103 ~ rowCode", rowCode)
   const history = useHistory();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -248,14 +247,6 @@ function TableComponent({
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  function redirectToEdit() {
-    history.push({
-      pathname: '/login',
-      // eslint-disable-next-line no-underscore-dangle
-      state: rows,
-    });
-  }
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -303,11 +294,11 @@ function TableComponent({
           ))}
           {rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            ?.map((row) => (
+            ?.map((row, index) => (
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
-                    {rows.findIndex((obj) => obj._id === row._id) + 1}
+                    {index + 1}
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
