@@ -28,7 +28,7 @@ const titles = [
 
 function Dashboard() {
   return (
-    <div className="dashboard-container">
+    <div className="main-dashboard-container">
       <h1>Dashboard</h1>
       <TableComponent rows={rows} titles={titles} order />
     </div>
