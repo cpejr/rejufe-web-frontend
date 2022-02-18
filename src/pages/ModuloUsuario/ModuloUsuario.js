@@ -1,8 +1,7 @@
 import React from 'react';
 import './moduloUsuario.css';
-import TableComponent from '../../components/ModuloUsuario/TableContainer/TableContainer';
-import ModalAdmin from '../../components/ModuloUsuario/ModalUsuario/ModalUsuario';
-// import AutocompleteMemberInput from '../../components/AutoCompleteMemberInput';
+import TableComponent from '../../components/moduloUsuario/TableContainer';
+import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
 
 function ModuloUsuario() {
   function createData(ordem, icone, status, usuario, seção, perfil, login, email, cpf) {
@@ -32,19 +31,9 @@ function ModuloUsuario() {
     <div className="container-modulo">
       <h1>Módulo de Usuários</h1>
       <div className="module-buttons">
-        <ModalAdmin />
         <button className="button" type="button">Voltar</button>
-        {/* <AutocompleteMemberInput
-          onChange={setMemberTextToLogin}
-          value={memberTextToLogin}
-          onMemberChange={(member) => (memberToLogin.current = member)}
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
-              e.preventDefault();
-              handleLogin();
-            }
-          }}
-        /> */}
+        <ModalUsuario rows={rows} />
+
       </div>
       <TableComponent rows={rows} titles={titles} />
     </div>

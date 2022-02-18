@@ -3,7 +3,9 @@ import Modal from '@material-ui/core/Modal';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
-import './modulUsuario.css';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import './modalUsuario.css';
 
 function getModalStyle() {
   const top = 50;
@@ -37,6 +39,26 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+const top100Films = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+  { label: 'The Godfather: Part II', year: 1974 },
+  { label: 'The Dark Knight', year: 2008 },
+  { label: '12 Angry Men', year: 1957 },
+  { label: 'Schindlers List', year: 1993 },
+  { label: 'Pulp Fiction', year: 1994 },
+  {
+    label: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
+  },
+  { label: 'The Good, the Bad and the Ugly', year: 1966 },
+  { label: 'Fight Club', year: 1999 },
+  {
+    label: 'The Lord of the Rings: The Fellowship of the Ring',
+    year: 2001,
+  },
+];
+
 toast.configure();
 
 export default function ModalAdmin() {
@@ -67,7 +89,14 @@ export default function ModalAdmin() {
           <h1>Dados da loja</h1>
         </div>
         <div className="Row">
-          <h1>Busca</h1>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            sx={{ width: '40%' }}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            renderInput={(params) => <TextField {...params} label="Users" />}
+          />
         </div>
         <div className="Row">
           <button

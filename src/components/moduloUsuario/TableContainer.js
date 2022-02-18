@@ -13,7 +13,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
@@ -170,24 +169,6 @@ function TableComponent({
         },
   };
 
-  const buttonFontProps = {
-    style: matchesFont85
-      ? {
-        fontSize: '85%',
-        color: 'white',
-        padding: '6px',
-      }
-      : matchesFont90
-        ? {
-          fontSize: '90%',
-          color: 'white',
-        }
-        : {
-          fontSize: '100%',
-          color: 'white',
-        },
-  };
-
   const tableProps = {
     sx: matchesFont400px
       ? {
@@ -308,4 +289,3 @@ function TableComponent({
 }
 
 export default TableComponent;
-
