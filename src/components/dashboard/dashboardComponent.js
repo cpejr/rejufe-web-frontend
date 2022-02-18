@@ -25,6 +25,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import cssColorCodes from '../cssColorCodes/cssColorCodes';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -155,19 +156,16 @@ function TableComponent({
     style: matchesFont85
       ? {
         fontSize: '85%',
-        backgroundColor: ({ theme }) => theme.colors.secondary,
         color: 'white',
         padding: '0px',
       }
       : matchesFont90
         ? {
           fontSize: '90%',
-          backgroundColor: ({ theme }) => theme.colors.secondary,
           color: 'white',
         }
         : {
           fontSize: '100%',
-          backgroundColor: ({ theme }) => theme.colors.secondary,
           color: 'white',
         },
   };
@@ -176,19 +174,16 @@ function TableComponent({
     style: matchesFont85
       ? {
         fontSize: '85%',
-        backgroundColor: '#2574A9',
         color: 'white',
         padding: '6px',
       }
       : matchesFont90
         ? {
           fontSize: '90%',
-          backgroundColor: '#2574A9',
           color: 'white',
         }
         : {
           fontSize: '100%',
-          backgroundColor: '#2574A9',
           color: 'white',
         },
   };
@@ -225,7 +220,7 @@ function TableComponent({
         {...tableProps}
         aria-label="caption table"
       >
-        <TableHead>
+        <TableHead style={{ background: `${cssColorCodes.secondary}` }}>
           <TableRow>
             {titles?.map((title) => (
               <TableCell {...titleFontProps}>
@@ -245,7 +240,7 @@ function TableComponent({
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton color="primary" aria-label="Search">
+                    <IconButton aria-label="Search">
                       <SearchIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
@@ -282,7 +277,7 @@ function TableComponent({
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
                 {...cellFontProps}
-                style={{ background: 'green' }}
+                style={{ background: `${cssColorCodes.secondary}` }}
                 colSpan={6}
               />
             </TableRow>
@@ -309,6 +304,7 @@ function TableComponent({
         />
         <Button
           {...buttonFontProps}
+          style={{ background: `${cssColorCodes.secondary}`, color: `${cssColorCodes.fontColor1}` }}
         >
           Pesquisa Avançada
           {/* TODO Implementar o botão de pesquisa avançada */}
