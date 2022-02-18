@@ -13,6 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
@@ -24,7 +25,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import './tableContainer.css';
+import cssColorCodes from '../cssColorCodes/cssColorCodes';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -51,7 +52,6 @@ function TablePaginationActions(props) {
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
-        className="IconButton"
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
         aria-label="first page"
@@ -62,7 +62,6 @@ function TablePaginationActions(props) {
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
-        className="IconButton"
       >
         {theme.direction === 'rtl' ? (
           <KeyboardArrowRight />
@@ -74,7 +73,6 @@ function TablePaginationActions(props) {
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
-        className="IconButton"
       >
         {theme.direction === 'rtl' ? (
           <KeyboardArrowLeft />
@@ -86,7 +84,6 @@ function TablePaginationActions(props) {
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
-        className="IconButton"
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
@@ -104,6 +101,7 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titles, rows, order, edit, search, searchFile,
 }) {
+  // const theme = useTheme;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -154,6 +152,42 @@ function TableComponent({
         },
   };
 
+  const titleFontProps = {
+    style: matchesFont85
+      ? {
+        fontSize: '85%',
+        color: 'white',
+        padding: '0px',
+      }
+      : matchesFont90
+        ? {
+          fontSize: '90%',
+          color: 'white',
+        }
+        : {
+          fontSize: '100%',
+          color: 'white',
+        },
+  };
+
+  const buttonFontProps = {
+    style: matchesFont85
+      ? {
+        fontSize: '85%',
+        color: 'white',
+        padding: '6px',
+      }
+      : matchesFont90
+        ? {
+          fontSize: '90%',
+          color: 'white',
+        }
+        : {
+          fontSize: '100%',
+          color: 'white',
+        },
+  };
+
   const tableProps = {
     sx: matchesFont400px
       ? {
@@ -186,10 +220,10 @@ function TableComponent({
         {...tableProps}
         aria-label="caption table"
       >
-        <TableHead>
+        <TableHead style={{ background: `${cssColorCodes.secondary}` }}>
           <TableRow>
             {titles?.map((title) => (
-              <TableCell className="TableCell">
+              <TableCell {...titleFontProps}>
                 {title}
               </TableCell>
             ))}
@@ -206,7 +240,7 @@ function TableComponent({
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton className="IconButton" color="primary" aria-label="Search">
+                    <IconButton aria-label="Search">
                       <SearchIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
@@ -214,12 +248,12 @@ function TableComponent({
                   </TableCell>
                 ) : edit ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton className="IconButton" aria-label="delete">
+                    <IconButton aria-label="delete">
                       <DeleteIcon />
                       {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
-                    <IconButton className="IconButton" color="primary" aria-label="Edit">
+                    <IconButton color="primary" aria-label="Edit">
                       <EditIcon />
                       {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
@@ -243,7 +277,7 @@ function TableComponent({
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
                 {...cellFontProps}
-                style={{ background: 'green' }}
+                style={{ background: `${cssColorCodes.secondary}` }}
                 colSpan={6}
               />
             </TableRow>
@@ -274,3 +308,4 @@ function TableComponent({
 }
 
 export default TableComponent;
+
