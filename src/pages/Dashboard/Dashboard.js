@@ -1,5 +1,6 @@
 import React from 'react';
 import TableComponent from '../../components/dashboard/dashboardComponent';
+import './Dashboard.css';
 
 // A função e as 2 constantes abaixo tem único proposito de testar o componente TableComponent
 
@@ -27,7 +28,7 @@ const titles = [
 
 function Dashboard() {
   return (
-    <div>
+    <div className="main-dashboard-container">
       <h1>Dashboard</h1>
       <TableComponent rows={rows} titles={titles} order />
     </div>
