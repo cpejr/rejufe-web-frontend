@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import * as managerService from '../../../services/manager/managerService';
 import './modalUsuario.css';
 
 function getModalStyle() {
@@ -59,6 +60,20 @@ export default function ModalAdmin({ rows }) {
     i += 1;
   });
 
+  const changeUserStatus = async () => {
+    try {
+      const response = await managerService.changeUserStatusById();
+      console.log(response);
+      setUsers(response);
+      console.log(users);
+    } catch (error) {
+      toast.error('Credenciais inválidas!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  };
+
   console.log(users[0]);
 
   const body = (
@@ -76,7 +91,7 @@ export default function ModalAdmin({ rows }) {
           </button>
         </div>
         <div className="Row">
-          <h1>Dados da loja</h1>
+          <h1>Selecione o usuário que deseja tornar administrador</h1>
         </div>
         <div className="Row">
           <Autocomplete

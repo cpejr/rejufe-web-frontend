@@ -19,13 +19,17 @@ export const getAllUsers = async () => {
     users = users.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  console.log('hello');
-  console.log(users);
   return users;
 };
 
 export const getUserEmailByUsername = async (user) => {
   const response = await requesterService.getUserEmailByUsername(user);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const changeUserStatusById = async (id, statusChange) => {
+  const response = await requesterService.changeUserStatusById(id, statusChange);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
