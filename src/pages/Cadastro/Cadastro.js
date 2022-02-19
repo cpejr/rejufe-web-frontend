@@ -220,7 +220,7 @@ function Cadastro() {
                 label={item.label}
                 field={item.field}
                 select={item.select}
-                setDados={() => handleChange()}
+                setDados={(value, entrada) => handleChange(value, entrada)}
                 mask={item.mask}
                 initialErrorState={initialErrorState}
                 dados={dados}
