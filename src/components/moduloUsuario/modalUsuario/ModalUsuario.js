@@ -39,29 +39,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const top100Films = [
-  { label: 'The Shawshank Redemption', year: 1994 },
-  { label: 'The Godfather', year: 1972 },
-  { label: 'The Godfather: Part II', year: 1974 },
-  { label: 'The Dark Knight', year: 2008 },
-  { label: '12 Angry Men', year: 1957 },
-  { label: 'Schindlers List', year: 1993 },
-  { label: 'Pulp Fiction', year: 1994 },
-  {
-    label: 'The Lord of the Rings: The Return of the King',
-    year: 2003,
-  },
-  { label: 'The Good, the Bad and the Ugly', year: 1966 },
-  { label: 'Fight Club', year: 1999 },
-  {
-    label: 'The Lord of the Rings: The Fellowship of the Ring',
-    year: 2001,
-  },
-];
-
 toast.configure();
 
-export default function ModalAdmin() {
+export default function ModalAdmin({ rows }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -71,6 +51,16 @@ export default function ModalAdmin() {
   const handleClose = () => {
     setOpen(false);
   };
+  const users = [];
+  let i = 0;
+
+  rows.forEach((user) => {
+    users[i] = { label: user.name, id: user._id };
+    i += 1;
+  });
+
+  console.log(users[0]);
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div className="ContainerModal">
@@ -92,7 +82,7 @@ export default function ModalAdmin() {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={top100Films}
+            options={users}
             sx={{ width: '40%' }}
             // eslint-disable-next-line react/jsx-props-no-spreading
             renderInput={(params) => <TextField {...params} label="Users" />}

@@ -8,6 +8,22 @@ export const getById = async (id) => {
   return response.data;
 };
 
+export const getAllUsers = async () => {
+  console.log('oi2');
+  let times = 0;
+  let users = [];
+  let response;
+  do {
+    response = await requesterService.getAllUsers(times);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    users = users.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  console.log('hello');
+  console.log(users);
+  return users;
+};
+
 export const getUserEmailByUsername = async (user) => {
   const response = await requesterService.getUserEmailByUsername(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

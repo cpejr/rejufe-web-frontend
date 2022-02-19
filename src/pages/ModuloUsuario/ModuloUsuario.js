@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './moduloUsuario.css';
+import { toast } from 'react-toastify';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
+import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
 
-function ModuloUsuario() {
-  function createData(ordem, icone, status, usuario, seção, perfil, login, email, cpf) {
-    return {
-      ordem, icone, status, usuario, seção, perfil, login, email, cpf,
-    };
-  }
+toast.configure();
 
-  const rows = [
-    createData(1, 'lixo', 'S', 'Adrian Soares Amorim de Freita', 'SJRN', 'S', 'adrian', 'adrian.freitas@@jfpb.jus.br', '70336326491'),
-  ];
+function ModuloUsuario() {
+  const [users, setUsers] = useState([]);
+  const getUsers = async () => {
+    try {
+      const response = await managerService.getAllUsers();
+      console.log(response);
+      setUsers(response);
+      console.log(users);
+    } catch (error) {
+      toast.error('Credenciais inválidas!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const titles = [
     '',
-    '',
-    '',
     'status',
     'Usuário',
-    'Seção',
-    'Perfil',
     'Login',
     'Email',
     'cpf',
@@ -32,10 +41,10 @@ function ModuloUsuario() {
       <h1>Módulo de Usuários</h1>
       <div className="module-buttons">
         <button className="button" type="button">Voltar</button>
-        <ModalUsuario rows={rows} />
+        <ModalUsuario rows={users} />
 
       </div>
-      <TableComponent rows={rows} titles={titles} />
+      <TableComponent users={users} titles={titles} edit order />
     </div>
 
   );
