@@ -30,7 +30,7 @@ function RegisterInputs({
           InputLabelProps={{ shrink: true }}
           type={type}
           variant="standard"
-          sx={{ m: 1, width: '25ch' }}
+          sx={{ m: 1, width: '30ch' }}
 
         />
       )}
@@ -45,7 +45,7 @@ function RegisterInputs({
           type={type}
           select={select}
           variant="standard"
-          sx={{ m: 1, width: '25ch' }}
+          sx={{ m: 1, width: '30ch' }}
 
         />
       )}
@@ -63,7 +63,7 @@ function RegisterInputs({
           type={type}
           select={select}
           variant="standard"
-          sx={{ m: 1, width: '25ch' }}
+          sx={{ m: 1, width: '30ch' }}
         >
           {field
             && field.map((option) => (
