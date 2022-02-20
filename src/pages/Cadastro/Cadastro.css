@@ -39,7 +39,7 @@
 }
 
 @media screen and (max-width: 420px){
-    .TextField{
+    .register-associate-text-field{
         padding: 0px;
         grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
 

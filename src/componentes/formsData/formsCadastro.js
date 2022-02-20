@@ -1,4 +1,5 @@
 import civilStates from '../consts/civilStates';
+import brazilianStates from '../consts/brazilianStates';
 import genres from '../consts/genres';
 import lotacao from '../consts/lotacao';
 import {
@@ -156,8 +157,8 @@ const formsData = [
         type: 'text',
         id: 'estado',
         label: 'Estado *',
-        field: null,
-        select: false,
+        field: brazilianStates,
+        select: true,
         required: true,
       },
     ],
