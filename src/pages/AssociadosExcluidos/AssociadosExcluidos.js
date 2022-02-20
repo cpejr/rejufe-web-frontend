@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import './AssociadosExcluidos.css';
 import { toast } from 'react-toastify';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ExcludedAssociates/ExcludedAssociates';
@@ -10,14 +12,19 @@ import { getExcludedAssociate } from '../../services/requester/requesterService'
 
 toast.configure();
 
-function AdmRegistros() {
+function ExcludedAssociates() {
   const [associates, setAllAssociates] = useState([]);
   const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
 
-  function createData(status, sequentialId, name, cpf) {
+  const icones = [
+    <EditIcon />,
+    <DeleteIcon />,
+  ];
+
+  function createData(icones, status, sequentialId, name, cpf) {
     return {
-      status, sequentialId, name, cpf,
+      icones, status, sequentialId, name, cpf,
     };
   }
 
@@ -30,7 +37,13 @@ function AdmRegistros() {
       console.log('🚀 ~ file: AssociadosExcluidos.js ~ line 29 ~ getAllAssociates ~ allAssociates', allAssociates);
       allAssociates.forEach((object) => {
         associateCode.push(object.sequential_Id);
-        auxAssociate.push(createData(object.status, object.sequential_Id, object.name, object.cpf));
+        auxAssociate.push(createData(
+          icones,
+          object.status,
+          object.sequential_Id,
+          object.name,
+          object.cpf,
+        ));
       });
       auxAssociate.sort();
       setId(associateId);
@@ -42,10 +55,11 @@ function AdmRegistros() {
     }
   }
   useEffect(() => {
-    getExcludedAssociate('A');
+    getAllAssociates();
   }, []);
 
   const titles = [
+    '',
     '',
     'Status',
     'Código',
@@ -60,4 +74,4 @@ function AdmRegistros() {
   );
 }
 
-export default AdmRegistros;
+export default ExcludedAssociates;
