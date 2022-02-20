@@ -53,3 +53,8 @@ export const getAssociates = async (field, filter) => {
   return allAssociates;
 };
 
+
+export const updateUser = async (user, id) => {
+  const response = await requesterService.updateUser(user, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

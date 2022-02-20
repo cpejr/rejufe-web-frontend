@@ -20,3 +20,5 @@ export const getAssociates = (times, field, filter) => httpClient.get('/usuario'
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const updateUser = (user, userId) => httpClient.put(`/usuario/${userId}`, user);
