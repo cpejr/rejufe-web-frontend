@@ -229,7 +229,7 @@ function Cadastro() {
           </p>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
+      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
     </div>
   );
 }
