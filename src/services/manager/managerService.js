@@ -59,3 +59,8 @@ export const getExcludedAssociate = async (status) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const deleteAssociate = async (AssociateId) => {
+  const response = await requesterService.deleteAssociate(AssociateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

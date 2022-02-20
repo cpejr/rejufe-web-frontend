@@ -8,47 +8,46 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ExcludedAssociates/ExcludedAssociates';
-import { getExcludedAssociate } from '../../services/requester/requesterService';
+import RemoveModal from '../../components/RemoveModal/RemoveModal';
 
 toast.configure();
 
 function ExcludedAssociates() {
   const [associates, setAllAssociates] = useState([]);
-  const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
 
-  const icones = [
-    <EditIcon />,
-    <DeleteIcon />,
-  ];
-
-  function createData(icones, status, sequentialId, name, cpf) {
+  function createData(status, name, cpf) {
     return {
-      icones, status, sequentialId, name, cpf,
+      status, name, cpf,
     };
+  }
+  function createId(_id) {
+    return _id;
   }
 
   async function getAllAssociates() {
     const auxAssociate = [];
     const associateCode = [];
     const associateId = [];
+    const AssociatesId = [];
     try {
       const allAssociates = await managerService.getExcludedAssociate('A');
-      console.log('🚀 ~ file: AssociadosExcluidos.js ~ line 29 ~ getAllAssociates ~ allAssociates', allAssociates);
       allAssociates.forEach((object) => {
-        associateCode.push(object.sequential_Id);
         auxAssociate.push(createData(
-          icones,
           object.status,
-          object.sequential_Id,
           object.name,
           object.cpf,
         ));
       });
+      allAssociates.forEach((object) => {
+        AssociatesId.push(createId(
+          object._id,
+        ));
+      });
       auxAssociate.sort();
-      setId(associateId);
+      setId(AssociatesId);
       setAllAssociates(auxAssociate);
-      setSequentialId(associateCode);
+      console.log(AssociatesId);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -60,16 +59,14 @@ function ExcludedAssociates() {
 
   const titles = [
     '',
-    '',
     'Status',
-    'Código',
     'Nome',
     'Cpf',
   ];
 
   return (
     <div className="container-administration">
-      <TableComponent sequentialId={sequentialId} rows={associates} titles={titles} order />
+      <TableComponent associateId={id} rows={associates} titles={titles} edit />
     </div>
   );
 }

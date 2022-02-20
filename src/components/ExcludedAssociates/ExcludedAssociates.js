@@ -18,7 +18,6 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import TableFooter from '@mui/material/TableFooter';
 import { useMediaQuery } from '@mui/material/';
@@ -26,6 +25,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import RemoveModal from '../RemoveModal/RemoveModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -99,9 +99,9 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, sequentialId, order, edit, search, searchFile,
+  titles, rows, order, associateId, edit, search, searchFile,
 }) {
-  console.log('🚀 ~ file: BoxRegisterComponent.js ~ line 104 ~ sequentialId', sequentialId);
+  console.log('🚀 ~ file: ExcludedAssociates.js ~ line 104 ~ associateId', associateId);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -293,10 +293,6 @@ function TableComponent({
                   <TableCell {...cellFontProps} align="center">
                     {index + 1 + (page * 10)}
                   </TableCell>
-                ) : sequentialId ? (
-                  <TableCell {...cellFontProps} align="center">
-                    {sequentialId[index]}
-                  </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
                     <IconButton color="primary" aria-label="Search">
@@ -308,7 +304,7 @@ function TableComponent({
                 ) : edit ? (
                   <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="delete">
-                      <DeleteIcon />
+                      <RemoveModal id={associateId[index + (page * 10)]} />
                       {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
