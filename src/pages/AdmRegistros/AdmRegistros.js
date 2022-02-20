@@ -12,9 +12,9 @@ function AdmRegistros() {
   const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
 
-  function createData(sequentialId, name, cpf, status) {
+  function createData(name, cpf, status) {
     return {
-      sequentialId, name, cpf, status,
+      name, cpf, status,
     };
   }
 
@@ -26,7 +26,8 @@ function AdmRegistros() {
       const allAssociates = await managerService.getAssociates();
       allAssociates.forEach((object) => {
         associateCode.push(object.sequential_Id);
-        auxAssociate.push(createData(object.sequential_Id, object.name, object.cpf, object.status));
+        associateId.push(object._id);
+        auxAssociate.push(createData(object.name, object.cpf, object.status));
       });
       auxAssociate.sort();
       setId(associateId);
@@ -51,7 +52,7 @@ function AdmRegistros() {
 
   return (
     <div className="container-administration">
-      <TableComponent sequentialId={sequentialId} rows={associates} titles={titles} order />
+      <TableComponent id={id} sequentialId={sequentialId} rows={associates} titles={titles} order />
     </div>
   );
 }

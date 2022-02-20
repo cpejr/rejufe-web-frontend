@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -99,12 +100,23 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, sequentialId, order, edit, search, searchFile,
+  titles, rows, id, sequentialId, order, edit, search, searchFile,
 }) {
-  console.log("🚀 ~ file: BoxRegisterComponent.js ~ line 104 ~ sequentialId", sequentialId)
-  const history = useHistory();
   const [page, setPage] = useState(0);
+  const history = useHistory();
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const handleClick = async (e) => {
+    try {
+      console.log('kkkk')
+      e.preventDefault();
+      history.push(`/editarassociados/${id}`);
+    } catch (error) {
+      toast.error('Falha ao redirecionar a página de editar usuário', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  };
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -247,6 +259,7 @@ function TableComponent({
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  console.log(sequentialId)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -295,7 +308,10 @@ function TableComponent({
                     {index + 1 + (page * 10)}
                   </TableCell>
                 ) : sequentialId ? (
-                  <TableCell {...cellFontProps} align="center">
+                  <TableCell
+                    {...cellFontProps}
+                    align="center"
+                  >
                     {sequentialId[index]}
                   </TableCell>
                 ) : search ? (
@@ -326,6 +342,18 @@ function TableComponent({
                 ) : (
                   <TableCell> </TableCell>
                 )}
+                {sequentialId
+                  && (
+                    <TableCell {...cellFontProps}>
+                      <Link to={{
+                        pathname: '/editarassociados',
+                        state: id,
+                      }}
+                      >
+                        {sequentialId[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
                 {Object.values(row)?.map((data) => (
                   <TableCell {...cellFontProps}>
                     {data}
@@ -337,7 +365,6 @@ function TableComponent({
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
                 {...cellFontProps}
-                style={{ background: 'green' }}
                 colSpan={6}
               />
             </TableRow>
