@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ExcludedAssociates/ExcludedAssociates';
+import { getExcludedAssociate } from '../../services/requester/requesterService';
 
 toast.configure();
 
@@ -14,9 +15,9 @@ function AdmRegistros() {
   const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
 
-  function createData(sequentialId, name, cpf, status) {
+  function createData(status, sequentialId, name, cpf) {
     return {
-      sequentialId, name, cpf, status,
+      status, sequentialId, name, cpf,
     };
   }
 
@@ -25,10 +26,11 @@ function AdmRegistros() {
     const associateCode = [];
     const associateId = [];
     try {
-      const allAssociates = await managerService.getAssociates();
+      const allAssociates = await managerService.getExcludedAssociate('A');
+      console.log('🚀 ~ file: AssociadosExcluidos.js ~ line 29 ~ getAllAssociates ~ allAssociates', allAssociates);
       allAssociates.forEach((object) => {
         associateCode.push(object.sequential_Id);
-        auxAssociate.push(createData(object.sequential_Id, object.name, object.cpf, object.status));
+        auxAssociate.push(createData(object.status, object.sequential_Id, object.name, object.cpf));
       });
       auxAssociate.sort();
       setId(associateId);
@@ -40,15 +42,15 @@ function AdmRegistros() {
     }
   }
   useEffect(() => {
-    getAllAssociates();
+    getExcludedAssociate('A');
   }, []);
 
   const titles = [
     '',
+    'Status',
     'Código',
     'Nome',
     'Cpf',
-    'Status',
   ];
 
   return (

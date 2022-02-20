@@ -52,3 +52,10 @@ export const getAssociates = async (field, filter) => {
   } while (response.data.length === 0);
   return allAssociates;
 };
+
+export const getExcludedAssociate = async (status) => {
+  const response = await requesterService.getExcludedAssociate(status);
+  console.log('🚀 ~ file: managerService.js ~ line 58 ~ getExcludedAssociate ~ response', response);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

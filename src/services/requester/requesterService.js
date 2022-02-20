@@ -20,3 +20,9 @@ export const getAssociates = (times, field, filter) => httpClient.get('/usuario'
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcludedAssociate', {
+  params: {
+    status,
+  },
+});
