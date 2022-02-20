@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useTheme } from '@mui/material/styles';
@@ -103,21 +103,7 @@ function TableComponent({
   titles, rows, id, sequentialId, order, edit, search, searchFile,
 }) {
   const [page, setPage] = useState(0);
-  const history = useHistory();
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const handleClick = async (e) => {
-    try {
-      console.log('kkkk')
-      e.preventDefault();
-      history.push(`/editarassociados/${id}`);
-    } catch (error) {
-      toast.error('Falha ao redirecionar a página de editar usuário', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  };
-
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
