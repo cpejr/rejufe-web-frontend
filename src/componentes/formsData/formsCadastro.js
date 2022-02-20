@@ -13,7 +13,7 @@ const formsData = [
       {
         type: 'text',
         id: 'nome',
-        label: 'Nome *',
+        label: 'Nome',
         field: null,
         select: false,
         required: true,
@@ -21,7 +21,7 @@ const formsData = [
       {
         type: 'text',
         id: 'user',
-        label: 'Usuário *',
+        label: 'Usuário',
         field: null,
         select: false,
         required: true,
@@ -29,7 +29,7 @@ const formsData = [
       {
         type: 'text',
         id: 'cargo',
-        label: 'Cargo *',
+        label: 'Cargo',
         field: null,
         select: false,
         required: true,
@@ -37,7 +37,7 @@ const formsData = [
       {
         type: 'text',
         id: 'nacionalidade',
-        label: 'Nacionalidade *',
+        label: 'Nacionalidade',
         field: null,
         select: false,
         required: true,
@@ -45,7 +45,7 @@ const formsData = [
       {
         type: 'text',
         id: 'cpf',
-        label: 'CPF *',
+        label: 'CPF',
         field: null,
         select: false,
         required: true,
@@ -54,7 +54,7 @@ const formsData = [
       {
         type: 'date',
         id: 'nascimento',
-        label: 'Nascimento *',
+        label: 'Nascimento',
         field: null,
         select: false,
         required: true,
@@ -62,7 +62,7 @@ const formsData = [
       {
         type: 'text',
         id: 'naturalidade',
-        label: 'Naturalidade *',
+        label: 'Naturalidade',
         field: null,
         select: false,
         required: true,
@@ -70,7 +70,7 @@ const formsData = [
       {
         type: 'text',
         id: 'sexo',
-        label: 'Sexo *',
+        label: 'Sexo',
         field: genres,
         select: true,
         required: true,
@@ -78,7 +78,7 @@ const formsData = [
       {
         type: 'text',
         id: 'estadoCivil',
-        label: 'Estado Civil *',
+        label: 'Estado Civil',
         field: civilStates,
         select: true,
         required: true,
@@ -107,7 +107,7 @@ const formsData = [
       {
         type: 'text',
         id: 'cep',
-        label: 'Cep *',
+        label: 'Cep',
         field: null,
         select: false,
         required: true,
@@ -116,7 +116,7 @@ const formsData = [
       {
         type: 'text',
         id: 'endereco',
-        label: 'Endereço *',
+        label: 'Endereço',
         field: null,
         select: false,
         required: true,
@@ -124,7 +124,7 @@ const formsData = [
       {
         type: 'number',
         id: 'numero',
-        label: 'Número *',
+        label: 'Número',
         field: null,
         select: false,
         required: true,
@@ -132,7 +132,7 @@ const formsData = [
       {
         type: 'text',
         id: 'complemento',
-        label: 'Complemento *',
+        label: 'Complemento',
         field: null,
         select: false,
         required: true,
@@ -140,7 +140,7 @@ const formsData = [
       {
         type: 'text',
         id: 'bairro',
-        label: 'Bairro *',
+        label: 'Bairro',
         field: null,
         select: false,
         required: true,
@@ -148,7 +148,7 @@ const formsData = [
       {
         type: 'text',
         id: 'cidade',
-        label: 'Cidade *',
+        label: 'Cidade',
         field: null,
         select: false,
         required: true,
@@ -156,7 +156,7 @@ const formsData = [
       {
         type: 'text',
         id: 'estado',
-        label: 'Estado *',
+        label: 'Estado',
         field: brazilianStates,
         select: true,
         required: true,
@@ -169,7 +169,7 @@ const formsData = [
       {
         type: 'text',
         id: 'lotacao',
-        label: 'Lotação *',
+        label: 'Lotação',
         field: lotacao,
         select: true,
         required: true,
@@ -177,7 +177,7 @@ const formsData = [
       {
         type: 'text',
         id: 'atuacao',
-        label: 'Atuação *',
+        label: 'Atuação',
         field: null,
         select: false,
         required: true,
@@ -185,7 +185,7 @@ const formsData = [
       {
         type: 'text',
         id: 'cepFuncional',
-        label: 'Cep *',
+        label: 'Cep',
         field: null,
         select: false,
         required: true,
@@ -194,7 +194,7 @@ const formsData = [
       {
         type: 'text',
         id: 'enderecoFuncional',
-        label: 'Endereço *',
+        label: 'Endereço',
         field: null,
         select: false,
         required: true,
@@ -202,7 +202,7 @@ const formsData = [
       {
         type: 'number',
         id: 'numeroFuncional',
-        label: 'Número *',
+        label: 'Número',
         field: null,
         select: false,
         required: true,
@@ -210,7 +210,7 @@ const formsData = [
       {
         type: 'text',
         id: 'complementoFuncional',
-        label: 'Complemento *',
+        label: 'Complemento',
         field: null,
         select: false,
         required: true,
@@ -218,7 +218,7 @@ const formsData = [
       {
         type: 'text',
         id: 'bairroFuncional',
-        label: 'Bairro *',
+        label: 'Bairro',
         field: null,
         select: false,
         required: true,
@@ -226,7 +226,7 @@ const formsData = [
       {
         type: 'text',
         id: 'cidadeFuncional',
-        label: 'Cidade *',
+        label: 'Cidade',
         field: null,
         select: false,
         required: true,
@@ -234,7 +234,7 @@ const formsData = [
       {
         type: 'text',
         id: 'estadoFuncional',
-        label: 'Estado *',
+        label: 'Estado',
         field: null,
         select: false,
         required: true,
@@ -257,7 +257,7 @@ const formsData = [
       {
         type: 'text',
         id: 'celular',
-        label: 'Celular *',
+        label: 'Celular',
         field: null,
         select: false,
         required: true,
@@ -266,7 +266,7 @@ const formsData = [
       {
         type: 'text',
         id: 'email',
-        label: 'Email *',
+        label: 'Email',
         field: null,
         select: false,
         required: true,
@@ -288,7 +288,7 @@ const formsData = [
       {
         type: 'date',
         id: 'admissao',
-        label: 'Admissão *',
+        label: 'Admissão',
         field: null,
         select: false,
         required: true,

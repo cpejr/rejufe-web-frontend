@@ -208,10 +208,10 @@ function Cadastro() {
 
   return (
     <div className="register-associate-container">
-      <h1 className="register-associate-title">Cadastro dos associados</h1>
+      <h1 className="register-associate-title"><div className="register-associate-text-margin">Cadastro dos associados</div></h1>
       {formsData?.map((line) => (
         <Box>
-          <h2 className="register-associate-title">{line.title}</h2>
+          <h2 className="register-associate-title"><div className="register-associate-text-margin">{line.title}</div></h2>
           <p className="register-associate-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
@@ -220,6 +220,7 @@ function Cadastro() {
                 label={item.label}
                 field={item.field}
                 select={item.select}
+                required={item.required}
                 setDados={(value, entrada) => handleChange(value, entrada)}
                 mask={item.mask}
                 initialErrorState={initialErrorState}

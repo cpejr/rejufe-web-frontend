@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -32,7 +33,7 @@ function RegisterInputs({
           type={type}
           variant="standard"
           sx={{ m: 1, width: '30ch' }}
-
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
       )}
       {mask && (
@@ -47,7 +48,7 @@ function RegisterInputs({
           select={select}
           variant="standard"
           sx={{ m: 1, width: '30ch' }}
-
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
       )}
       {select && (
@@ -83,6 +84,7 @@ function RegisterInputs({
           variant="standard"
           multiline
           sx={{ m: 1, width: '30ch' }}
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
       )}
     </div>
