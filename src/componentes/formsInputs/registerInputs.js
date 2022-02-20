@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 function RegisterInputs({
   setDados,
@@ -57,20 +58,17 @@ function RegisterInputs({
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
-          SelectProps={{
-            native: true,
-          }}
           type={type}
           select={select}
           variant="standard"
+          helperText={`Selecione uma opção de ${label}`}
           sx={{ m: 1, width: '30ch' }}
         >
-          {field
-            && field.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+          {field.map((option) => (
+            <MenuItem key={option.value} value={option.value} style={{ height: '36px' }}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
       )}
       {!mask && !(type === 'date') && !select && (
