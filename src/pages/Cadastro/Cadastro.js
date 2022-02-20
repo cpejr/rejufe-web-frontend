@@ -198,7 +198,7 @@ function Cadastro() {
       };
       await managerService.register(body);
     } catch (error) {
-      toast.error('Credenciais inválidas!!', {
+      toast.error('Preencha todos os campos corretamente!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
