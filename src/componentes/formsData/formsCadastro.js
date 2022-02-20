@@ -265,6 +265,13 @@ const formsData = [
       },
       {
         type: 'text',
+        id: 'judicial_section',
+        label: 'Seção judicial',
+        field: null,
+        select: false,
+      },
+      {
+        type: 'text',
         id: 'email',
         label: 'Email',
         field: null,

@@ -191,6 +191,7 @@ function Cadastro() {
         telephone: dados.telefone === '' ? undefined : dados.telefone,
         fax: dados.fax === '' ? undefined : dados.fax,
         cell_phone_number: dados.celular,
+        judicial_section: dados.judicial_section,
         email_REJUFE: dados.emailListaRejufe === '' ? undefined : dados.emailListaRejufe,
         email_ASCOM: dados.emailListaAscom === '' ? undefined : dados.emailListaAscom,
         admission_date: dados.admissao,

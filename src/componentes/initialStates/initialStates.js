@@ -30,6 +30,7 @@ export const initialAssociateState = {
   telefone: '',
   fax: '',
   celular: '',
+  judicial_section: '',
   email: '',
   emailListaRejufe: '',
   emailListaAscom: '',
