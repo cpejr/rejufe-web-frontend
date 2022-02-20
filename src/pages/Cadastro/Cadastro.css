@@ -1,5 +1,5 @@
 
-.container-cadastro{
+.register-associate-container{
     align-items: center;
     width: 100%;
     height: 100%;
@@ -10,7 +10,7 @@
 
 }
 
-.container-cadastro h1{
+.register-associate-container h1{
     font-family: "Roboto", sans-serif;
     font: normal 18pt Roboto;
     align-items: center;
@@ -20,13 +20,13 @@
     justify-content: center;
     text-align: center;
 }
-.container-cadastro h2 {
+.register-associate-container h2 {
     font-family: "Roboto", sans-serif;
     font: normal 15pt Roboto;
     margin: 5vh;
   }
 
-.TextField{
+.register-associate-text-field{
     padding: 15px;
     margin: 15px;
     display: grid;
@@ -46,7 +46,7 @@
     }
 }
 
-.title{
+.register-associate-title{
     background-color:#1C3854;
     color: #FFFFFF;
 }

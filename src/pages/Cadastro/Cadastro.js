@@ -207,12 +207,12 @@ function Cadastro() {
   }
 
   return (
-    <div className="container-cadastro">
-      <h1 className="title">Cadastro dos associados</h1>
+    <div className="register-associate-container">
+      <h1 className="register-associate-title">Cadastro dos associados</h1>
       {formsData?.map((line) => (
         <Box>
-          <h2 className="title">{line.title}</h2>
-          <p className="TextField">
+          <h2 className="register-associate-title">{line.title}</h2>
+          <p className="register-associate-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
