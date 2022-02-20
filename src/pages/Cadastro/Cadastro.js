@@ -118,7 +118,8 @@ function Cadastro() {
       aux.numeroFuncional = true;
       checkError = 1;
     }
-    if (dados.complementoFuncional?.length === 0 || !lettersSpacesRegex.test(dados.enderecoFucomplementoFuncionalncional)) {
+    if (dados.complementoFuncional?.length === 0
+      || !lettersSpacesRegex.test(dados.enderecoFucomplementoFuncionalncional)) {
       aux.complementoFuncional = true;
       checkError = 1;
     }
