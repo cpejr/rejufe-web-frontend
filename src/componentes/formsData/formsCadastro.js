@@ -135,7 +135,7 @@ const formsData = [
         label: 'Complemento',
         field: null,
         select: false,
-        required: true,
+        required: false,
       },
       {
         type: 'text',
@@ -235,8 +235,8 @@ const formsData = [
         type: 'text',
         id: 'estadoFuncional',
         label: 'Estado',
-        field: null,
-        select: false,
+        field: brazilianStates,
+        select: true,
         required: true,
       },
       {

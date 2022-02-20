@@ -198,6 +198,10 @@ function Cadastro() {
         admission_date: dados.admissao,
       };
       await managerService.register(body);
+      toast.error('Cadastrado com sucesso!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -232,7 +236,7 @@ function Cadastro() {
           </p>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
+      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
     </div>
   );
 }

@@ -19,6 +19,7 @@
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
+    margin-top: 25px;
 }
 .register-associate-container h2 {
     font-family: "Roboto", sans-serif;
@@ -38,14 +39,6 @@
 
 }
 
-@media screen and (max-width: 420px){
-    .register-associate-text-field{
-        padding: 0px;
-        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
-
-    }
-}
-
 .register-associate-title{
     background-color:#1C3854;
     color: #FFFFFF;
@@ -54,5 +47,22 @@
 .register-associate-text-margin{
     margin-top: 5px;
     margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
+@media screen and (max-width: 420px){
+    .register-associate-text-field{
+        padding: 0px;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
+
+    }
+
+    .register-associate-text-margin{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 13px;
+    }
+}
