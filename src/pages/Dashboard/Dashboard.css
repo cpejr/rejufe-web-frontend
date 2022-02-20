@@ -1,0 +1,12 @@
+.dashboard-container h1 {
+    margin-bottom: 2%;
+    color: var(--secondary);
+}
+
+.dashboard-container {
+    display: flex;
+    margin-top: 4%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
