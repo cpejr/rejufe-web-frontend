@@ -44,7 +44,6 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
-        <Route path="/adm-registros" component={AdmRegistros} />
         <Route path="/" component={UserHeader} />
       </Switch>
     </BrowserRouter>
