@@ -45,6 +45,9 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/cadastro" component={Cadastro} />
+        <Route path="/dashboard/administrador" component={Dashboard} />
+        <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>

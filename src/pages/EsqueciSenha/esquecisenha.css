@@ -48,7 +48,7 @@
     height: 100%;
     width: auto;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--backgroung);
     border-radius: 15px;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -77,8 +77,8 @@
     padding-right: 10px;
   }
   .container-forgot-password button{
-    background-color: #264A6F;
-    border: 1px solid #264A6F;
+    background-color: var(--buttonBlue);
+    border: 1px solid var(--buttonBlue);
     border-radius: 8px;
     color: white;
     display: inline-block;
@@ -113,7 +113,7 @@
     justify-content: flex-start;
 }
 .voltar-forgot-password a{
-    color:#264A6F;
+    color:var(--buttonBlue);
     display: flex;
     font-weight: bold;
     align-items: center;
