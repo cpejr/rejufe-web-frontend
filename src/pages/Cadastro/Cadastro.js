@@ -297,7 +297,7 @@ function Cadastro() {
         admission_date: dados.admissao,
       };
       await managerService.register(body);
-      toast.error('Cadastrado com sucesso!!', {
+      toast.success('Cadastrado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
