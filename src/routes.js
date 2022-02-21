@@ -25,7 +25,6 @@ function UserHeader() {
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
-        <Route path="/CadastroExterno" component={CadastroExterno} />
         <Route path="/adm-registros" component={AdmRegistros} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
@@ -46,6 +45,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Cadastro} />
+        <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
