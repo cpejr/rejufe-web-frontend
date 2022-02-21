@@ -6,6 +6,7 @@ import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
 import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
+import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import Consultas from './pages/Consultas';
@@ -44,6 +45,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Cadastro} />
+        <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />

@@ -20,6 +20,12 @@ export const register = async (body) => {
   return response.data;
 };
 
+export const registerExternal = async (body) => {
+  const response = await requesterService.registerExternal(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
