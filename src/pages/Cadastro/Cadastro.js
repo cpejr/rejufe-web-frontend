@@ -37,119 +37,218 @@ function Cadastro() {
     if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) {
       aux.nome = true;
       checkError = 1;
+      toast.error('Nome inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (!userRegex.test(dados.user)) {
       aux.user = true;
       checkError = 1;
+      toast.error('Usuário inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.cargo?.length === 0 || !lettersSpacesRegex.test(dados.cargo)) {
       aux.cargo = true;
       checkError = 1;
+      toast.error('Cargo inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.nacionalidade?.length === 0 || !lettersSpacesRegex.test(dados.nacionalidade)) {
       aux.nacionalidade = true;
       checkError = 1;
+      toast.error('Nacionalidade inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (!cpfRegex.test(dados.cpf)) {
       aux.cpf = true;
       checkError = 1;
+      toast.error('cpf inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.nascimento?.length === 0) {
       aux.nascimento = true;
       checkError = 1;
+      toast.error('Data de nascimento inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.naturalidade?.length === 0 || !lettersSpacesRegex.test(dados.naturalidade)) {
       aux.naturalidade = true;
       checkError = 1;
+      toast.error('Naturalidade inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.sexo?.length === 0 || !lettersSpacesRegex.test(dados.sexo)) {
       aux.sexo = true;
       checkError = 1;
+      toast.error('Sexo inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.estadoCivil?.length === 0) {
       aux.estadoCivil = true;
       checkError = 1;
+      toast.error('Estado Civil inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (!cepRegex.test(dados.cep)) {
       aux.cep = true;
       checkError = 1;
+      toast.error('cep inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.endereco?.length === 0 || !lettersSpacesRegex.test(dados.endereco)) {
       aux.endereco = true;
       checkError = 1;
+      toast.error('Endereço inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.numero?.length === 0) {
       aux.numero = true;
       checkError = 1;
-    }
-    if (dados.complemento?.length === 0 || !lettersSpacesRegex.test(dados.complemento)) {
-      aux.complemento = true;
-      checkError = 1;
+      toast.error('Numero inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.bairro?.length === 0 || !lettersSpacesRegex.test(dados.bairro)) {
       aux.bairro = true;
       checkError = 1;
+      toast.error('Bairro inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.cidade?.length === 0 || !lettersSpacesRegex.test(dados.cidade)) {
       aux.cidade = true;
       checkError = 1;
+      toast.error('Cidade inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.estado?.length === 0 || !lettersSpacesRegex.test(dados.estado)) {
       aux.estado = true;
       checkError = 1;
+      toast.error('Estado inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.lotacao?.length === 0 || !lettersSpacesRegex.test(dados.lotacao)) {
       aux.lotacao = true;
       checkError = 1;
+      toast.error('Lotação inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.atuacao?.length === 0 || !lettersSpacesRegex.test(dados.atuacao)) {
       aux.atuacao = true;
       checkError = 1;
+      toast.error('Atuação inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (!cepRegex.test(dados.cepFuncional)) {
       aux.cepFuncional = true;
       checkError = 1;
+      toast.error('cep funcional inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.enderecoFuncional?.length === 0 || !lettersSpacesRegex.test(dados.enderecoFuncional)) {
       aux.enderecoFuncional = true;
       checkError = 1;
+      toast.error('Endereço funcional inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.numeroFuncional?.length === 0) {
       aux.numeroFuncional = true;
       checkError = 1;
-    }
-    if (dados.complementoFuncional?.length === 0
-      || !lettersSpacesRegex.test(dados.enderecoFucomplementoFuncionalncional)) {
-      aux.complementoFuncional = true;
-      checkError = 1;
+      toast.error('Numero Funcional inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.bairroFuncional?.length === 0 || !lettersSpacesRegex.test(dados.bairroFuncional)) {
       aux.bairroFuncional = true;
       checkError = 1;
+      toast.error('Bairro Funcional inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.cidadeFuncional?.length === 0 || !lettersSpacesRegex.test(dados.cidadeFuncional)) {
       aux.cidadeFuncional = true;
       checkError = 1;
+      toast.error('Cidade funcional inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.estadoFuncional?.length === 0 || !lettersSpacesRegex.test(dados.estadoFuncional)) {
       aux.estadoFuncional = true;
       checkError = 1;
+      toast.error('Estado funcional inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if ((dados.telefone?.length !== 0) && (dados.telefone?.length !== 14)) {
       aux.telefone = true;
       checkError = 1;
+      toast.error('Telefone inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.celular?.length !== 15) {
       aux.celular = true;
       checkError = 1;
+      toast.error('Celular inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (!emailRegex.test(dados.email)) {
       aux.email = true;
       checkError = 1;
+      toast.error('Email inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (dados.admissao?.length === 0) {
       aux.admissao = true;
       checkError = 1;
+      toast.error('Admissão inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     }
     if (checkError === 1) {
       setError({ ...aux });
