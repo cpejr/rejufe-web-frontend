@@ -53,37 +53,37 @@ export default function EditModal(id) {
   };
 
   const body = (
-    <div className="paper">
-      <div className="ContainerModal">
-        <div className="Row">
-          <h1>Editar grupo</h1>
+    <div className="EditModal-paper">
+      <div className="EditModal-ContainerModal">
+        <div className="EditModal-Row">
+          <h1>Editar dados</h1>
         </div>
-        <div className="Row">
-          <div className="Ajust">
-            <div className="Ajust.Col1">
+        <div className="EditModal-Row">
+          <div className="EditModal-Ajust">
+            <div className="EditModal-Ajust.Col1">
               Status:
             </div>
-            <input placeholder="" require value={associateStatus} onChange={handleStatusChange} />
+            <input className="EditModal-Input" placeholder="" require value={associateStatus} onChange={handleStatusChange} />
           </div>
         </div>
-        <div className="Row">
-          <div className="Ajust">
-            <div className="Ajust.Col1">
+        <div className="EditModal-Row">
+          <div className="EditModal-Ajust">
+            <div className="EditModal-Ajust.Col1">
               Nome:
             </div>
-            <input placeholder="" require value={associatesName} onChange={handleNameChange} />
+            <input className="EditModal-Input" placeholder="" require value={associatesName} onChange={handleNameChange} />
           </div>
         </div>
-        <div className="Row">
-          <div className="Ajust">
-            <div className="Ajust.Col1">
+        <div className="EditModal-Row">
+          <div className="EditModal-Ajust">
+            <div className="EditModal-Ajust.Col1">
               CPF:
             </div>
-            <input placeholder="" require value={associateCpf} onChange={handleCpfChange} />
+            <input className="EditModal-Input" placeholder="" require value={associateCpf} onChange={handleCpfChange} />
           </div>
         </div>
         <button
-          className="ButtonConfirm"
+          className="EditModal-ButtonConfirm"
           onClick={(e) => {
             e.preventDefault();
             handleSubmit();
@@ -97,7 +97,7 @@ export default function EditModal(id) {
   );
   return (
     <div>
-      <button className="EditGroup" onClick={handleOpen}>
+      <button className="EditModal-EditGroup" onClick={handleOpen}>
         <EditIcon size={22} style={{ color: '#AAABB0', cursor: 'pointer' }} />
       </button>
       <Modal

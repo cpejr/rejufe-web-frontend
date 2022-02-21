@@ -1,20 +1,22 @@
-.ContainerModal{
+.EditModal-ContainerModal{
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
   width:100%;
   height: 100%;
   flex-direction:column;
 }
 
-.Row{
+.EditModal-Row{
   display:flex;
   align-items:center;
   justify-content:center;
   width: 100%;
+  color: white;
+  margin-bottom: 3%;
 }
 
-.TitleModal{
+.EditModal-TitleModal{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -24,7 +26,7 @@
   font-size:24px;
 }
 
-.Ajust{
+.EditModal-Ajust{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -32,7 +34,7 @@
   flex-direction: column;
 }
 
-.ButtonConfirm{
+.EditModal-ButtonConfirm{
   display:flex;
     height: 55px;
     width: 200px;
@@ -48,9 +50,10 @@
     text-align: center;
     cursor: pointer;
     border: solid;
+    margin-top: 2%;
 }
 
-.ButtonCancel{
+.EditModal-ButtonCancel{
   display:flex;
   height: 55px;
   width: 200px;
@@ -70,7 +73,7 @@
   border: solid;
 }
 
-.RemoveGroup{
+.EditModal-RemoveGroup{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -84,15 +87,28 @@
   margin-bottom: 2%;
 }
 
-.modal{
+.EditModal-modal{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.paper{
-  position: 'absolute';
-  width: '50vw';
-  height: '35vh';
-  border: '2px solid #609694';
+.EditModal-paper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #609694;
+}
+
+.EditModal-Input{
+  margin-bottom: 5%;
+  margin-top: 1%;
+  width: 20%;
+  height: 14%;
+  background-color: #ffffffab;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0;
+  padding-left: 10px;
+  padding-right: 10px;
 }
