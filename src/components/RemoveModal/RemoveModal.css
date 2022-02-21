@@ -1,4 +1,4 @@
-.RemoveGroup{
+.RemoveModal-RemoveGroup{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -11,40 +11,42 @@
   margin-top: 5%;
   margin-bottom: 2%;
 }
-.paper {
+.RemoveModal-paper {
   position: absolute;
-  width: 50vw;
-  height: 35vh;
+  width: 100%;
+  height: 100%;
   border: 2px solid #609694;
 }
 
-.ContainerModal{
+.RemoveModal-ContainerModal{
   display:flex;
+  flex-direction: column;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
   width:100%;
   height: 100%;
-  flex-direction:column;
 }
 
-.Row{
+.RemoveModal-Row{
   display:flex;
   align-items:center;
   justify-content:center;
   width: 100%;
 }
 
-.TitleModal{
+.RemoveModal-TitleModal{
   display:flex;
   align-items:center;
   justify-content:center;
   width:100%;
   font-family:Roboto;
-  font-weight: bold;
+  font-weight: normal;
   font-size:24px;
+  color:white;
+  margin-bottom: 5%;
 }
 
-.Ajust{
+.RemoveModal-Ajust{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -52,7 +54,7 @@
   flex-direction: column;
 }
 
-.ButtonCancel{
+.RemoveModal-ButtonCancel{
   display:flex;
   height: 55px;
   width: 200px;
@@ -67,10 +69,9 @@
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
-.ButtonConfirm{
+.RemoveModal-ButtonConfirm{
   display:flex;
   height: 55px;
   width: 200px;
@@ -84,4 +85,5 @@
   transform: translate(0%,-50%);
   justify-content: center;
   text-align: center;
+  cursor: pointer;
 }

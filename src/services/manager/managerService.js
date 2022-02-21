@@ -55,12 +55,16 @@ export const getAssociates = async (field, filter) => {
 
 export const getExcludedAssociate = async (status) => {
   const response = await requesterService.getExcludedAssociate(status);
-  console.log('🚀 ~ file: managerService.js ~ line 58 ~ getExcludedAssociate ~ response', response);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
 
 export const deleteAssociate = async (AssociateId) => {
   const response = await requesterService.deleteAssociate(AssociateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAssociate = async (AssociateId, body) => {
+  const response = await requesterService.updateAssociate(AssociateId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };

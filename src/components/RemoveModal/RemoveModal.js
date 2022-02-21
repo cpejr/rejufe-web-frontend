@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast } from 'react-toastify';
-// import api from '../../utils/api';
+import './RemoveModal.css';
 import * as managerService from '../../services/manager/managerService';
 
 export default function RemoveModal({ id }) {
@@ -32,7 +32,7 @@ export default function RemoveModal({ id }) {
   };
   return (
     <div>
-      <button className="RemoveGroup" onClick={handleOpen}>
+      <button className="RemoveModal-RemoveGroup" onClick={handleOpen}>
         <DeleteIcon size={22} style={{ color: '#AA4545', cursor: 'pointer' }} />
       </button>
       <Modal
@@ -41,18 +41,18 @@ export default function RemoveModal({ id }) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div className="paper">
-          <div className="ContainerModal">
-            <div className="Row">
-              <div className="TitleModal">Apagar usuário</div>
+        <div className="RemoveModal-paper">
+          <div className="RemoveModal-ContainerModal">
+            <div className="RemoveModal-Row">
+              <div className="RemoveModal-TitleModal">Tem certeza que deseja apagar usuário?</div>
             </div>
-            <div className="Ajust">
-              <div className="Row">
-                <button className="ButtonCancel" onClick={handleClose}>Cancelar</button>
+            <div className="RemoveModal-Ajust">
+              <div className="RemoveModal-Row">
+                <button className="RemoveModal-ButtonCancel" onClick={handleClose}>Cancelar</button>
               </div>
-              <div className="Row">
+              <div className="RemoveModal-Row">
                 <button
-                  className="ButtonConfirm"
+                  className="RemoveModal-ButtonConfirm"
                   onClick={(e) => {
                     e.preventDefault();
                     handleSubmit();

@@ -27,8 +27,6 @@ function ExcludedAssociates() {
 
   async function getAllAssociates() {
     const auxAssociate = [];
-    const associateCode = [];
-    const associateId = [];
     const AssociatesId = [];
     try {
       const allAssociates = await managerService.getExcludedAssociate('A');
@@ -47,7 +45,6 @@ function ExcludedAssociates() {
       auxAssociate.sort();
       setId(AssociatesId);
       setAllAssociates(auxAssociate);
-      console.log(AssociatesId);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
