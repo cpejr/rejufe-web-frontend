@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -245,7 +244,6 @@ function TableComponent({
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-  console.log(sequentialId)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -289,51 +287,56 @@ function TableComponent({
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
-                {order ? (
-                  <TableCell {...cellFontProps} align="center">
-                    {index + 1 + (page * 10)}
-                  </TableCell>
-                ) : sequentialId ? (
-                  <TableCell
-                    {...cellFontProps}
-                    align="center"
-                  >
-                    {sequentialId[index]}
-                  </TableCell>
-                ) : search ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <IconButton color="primary" aria-label="Search">
-                      <SearchIcon />
-                      {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
+                {
+                  order ? (
+                    <TableCell {...cellFontProps} align="center" >
+                      {index + 1 + (page * 10)}
+                    </TableCell>
+                  ) : sequentialId ? (
+                    <TableCell
+                      {...cellFontProps}
+                      align="center"
+                    >
+                      {sequentialId[index]}
+                    </TableCell>
+                  ) : search ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search">
+                        <SearchIcon />
+                        {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
-                    </IconButton>
-                  </TableCell>
-                ) : edit ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <IconButton aria-label="delete">
-                      <DeleteIcon />
-                      {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
+                      </IconButton>
+                    </TableCell>
+                  ) : edit ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <DeleteIcon />
+                        {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
-                    </IconButton>
-                    <IconButton color="primary" aria-label="Edit">
-                      <EditIcon />
-                      {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditIcon />
+                        {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
-                    </IconButton>
-                  </TableCell>
-                ) : searchFile ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <FindInPageIcon aria-label="findFile" />
-                  </TableCell>
-                ) : (
-                  <TableCell> </TableCell>
-                )}
+                      </IconButton>
+                    </TableCell>
+                  ) : searchFile ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <FindInPageIcon aria-label="findFile" />
+                    </TableCell>
+                  ) : (
+                    <TableCell> </TableCell>
+                  )
+                }
                 {sequentialId
                   && (
                     <TableCell {...cellFontProps}>
+                      {console.log("🚀 ~ file: BoxRegisterComponent.js ~ line 339 ~ id[index + (page * 10)]", id[index + (page * 10)])}
                       <Link to={{
                         pathname: '/editarassociados',
-                        state: id,
+                        state: {
+                          id: id[index + (page * 10)],
+                        },
                       }}
                       >
                         {sequentialId[index + (page * 10)]}
@@ -356,7 +359,7 @@ function TableComponent({
             </TableRow>
           )}
         </TableBody>
-      </Table>
+      </Table >
       <TableFooter {...footerProps}>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
@@ -382,7 +385,7 @@ function TableComponent({
           {/* TODO Implementar o botão de pesquisa avançada */}
         </Button>
       </TableFooter>
-    </TableContainer >
+    </TableContainer>
   );
 }
 
