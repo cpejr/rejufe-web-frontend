@@ -6,6 +6,7 @@ import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
 import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
+import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import Consultas from './pages/Consultas';
@@ -24,6 +25,7 @@ function UserHeader() {
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
+        <Route path="/CadastroExterno" component={CadastroExterno} />
         <Route path="/adm-registros" component={AdmRegistros} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
