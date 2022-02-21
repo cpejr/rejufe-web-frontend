@@ -15,6 +15,7 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
+import NotFound from './pages/NotFound';
 
 function UserHeader() {
   return (
@@ -33,6 +34,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Header>
   );

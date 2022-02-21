@@ -1,0 +1,50 @@
+.containerNotFound {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 75px);
+}
+
+.boxNotFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    align-self: center;
+    height: 286px;
+}
+
+.boxNotFound h1, h2, p {
+    color: #0B162B;
+}
+
+.textNotFound {
+    font-family: "Roboto", sans-serif;
+    width: 500px;
+    margin-left: 30px;
+}
+
+.textNotFound h2 {
+    margin-bottom: 2vh;
+    font-size: 1.5rem;
+}
+
+.textNotFound h1{
+    margin-bottom: 2vh;
+    font-size: 2rem;
+}
+
+.textNotFound p {
+    font-size: 1rem;
+}
+
+.textNotFound p + p {
+    margin-top: 0.5vh;    
+}
+
+@media(max-width: 1024px) {
+    .boxNotFound {
+     flex-direction: column;
+    }
+}
+
