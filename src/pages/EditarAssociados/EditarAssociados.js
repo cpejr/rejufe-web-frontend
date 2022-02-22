@@ -7,6 +7,7 @@ import formsEdit from '../../components/formsData/formsEdit';
 import EditUserInputs from '../../components/formsInputs/editUserInputs';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
+import cssColorCodes from '../../components/cssColorCodes/cssColorCodes';
 
 toast.configure();
 
@@ -61,6 +62,10 @@ function EditarAssociados(id) {
         admission_date: dados.admission_date,
       };
       await managerService.updateUser(body, associateId);
+      toast('Usuário editado com sucesso', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     } catch (error) {
       toast.error('Falha ao editar usuário!', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -72,12 +77,12 @@ function EditarAssociados(id) {
   }
 
   return (
-    <div className="container-editar">
-      <h1>Editar Usuários</h1>
+    <div className="edit-associate-container">
+      <h1 className="edit-associate-title"><div className="edit-associate-text-margin">Editar Associado</div></h1>
       {formsEdit.map((line) => (
-        <Box className="container-box">
-          <h2>{line.title}</h2>
-          <p className="TextField">
+        <Box>
+          <h2 className="edit-associate-title"><div className="edit-associate-text-margin">{line.title}</div></h2>
+          <p className="edit-associate-text-field">
             {line.items.map((item) => (
               <EditUserInputs
                 type={item.type}

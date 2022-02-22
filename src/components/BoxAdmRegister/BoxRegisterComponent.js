@@ -289,7 +289,7 @@ function TableComponent({
               <TableRow>
                 {
                   order ? (
-                    <TableCell {...cellFontProps} align="center" >
+                    <TableCell {...cellFontProps} align="center">
                       {index + 1 + (page * 10)}
                     </TableCell>
                   ) : sequentialId ? (
@@ -331,7 +331,6 @@ function TableComponent({
                 {sequentialId
                   && (
                     <TableCell {...cellFontProps}>
-                      {console.log("🚀 ~ file: BoxRegisterComponent.js ~ line 339 ~ id[index + (page * 10)]", id[index + (page * 10)])}
                       <Link to={{
                         pathname: '/editarassociados',
                         state: {
@@ -359,7 +358,7 @@ function TableComponent({
             </TableRow>
           )}
         </TableBody>
-      </Table >
+      </Table>
       <TableFooter {...footerProps}>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}

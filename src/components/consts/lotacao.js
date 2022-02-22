@@ -1,9 +1,5 @@
 const lotacao = [
   {
-    value: '',
-    label: '',
-  },
-  {
     value: 'CEARÁ',
     label: 'Ceará',
   },

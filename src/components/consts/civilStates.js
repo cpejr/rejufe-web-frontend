@@ -1,9 +1,5 @@
 const civilStates = [
   {
-    value: '',
-    label: '',
-  },
-  {
     value: 'SOLTEIRO(A)',
     label: 'Solteiro(a)',
   },

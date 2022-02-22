@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import moment from 'moment';
 import * as managerService from '../../services/manager/managerService';
 
@@ -17,6 +18,7 @@ function EditUserInputs({
 }) {
   console.log("🚀 ~ file: editUserInputs.js ~ line 17 ~ dados", id)
   const [associate, setAssociate] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
@@ -31,12 +33,12 @@ function EditUserInputs({
           office: response.office,
           nacionality: response.nacionality,
           cpf: response.cpf,
-          birth: moment(response.birth).format("DD/MM/YYYY"),
+          birth: moment(response.birth).format('DD/MM/YYYY'),
           place_of_birth: response.place_of_birth,
           gender: response.gender,
           civil_state: response.civil_state,
           spouse: response.spouse,
-          birth_spouse: moment(response.birth_spouse).format("DD/MM/YYYY"),
+          birth_spouse: moment(response.birth_spouse).format('DD/MM/YYYY'),
           sons: response.sons,
           cep: response.cep,
           profissional_address: response.profissional_address,
@@ -59,11 +61,10 @@ function EditUserInputs({
           cell_phone_number: response.cell_phone_number,
           email_REJUFE: response.email_REJUFE,
           email_ASCOM: response.email_ASCOM,
-          admission_date: moment(response.admission_date).format("DD/MM/YYYY"),
+          admission_date: moment(response.admission_date).format('DD/MM/YYYY'),
         },
       ];
       setAssociate(...associateuP);
-      console.log("🚀 ~ file: editUserInputs.js ~ line 18 ~ associate", moment(response.birth).format("DD/MM/YYYY"))
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error); // TO DO: Substitute for redirect to not Found when done
@@ -74,11 +75,16 @@ function EditUserInputs({
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
   };
-  console.log(associate);
-  console.log(associate.status)
-  // console.log(associate.name);
+  console.log("🚀 ~ file: editUserInputs.js ~ line 21 ~ associate", associate);
   return (
-    <div>
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       {type === 'date' && (
         <TextField
           required={required}
@@ -117,11 +123,11 @@ function EditUserInputs({
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
+          type={type}
+          select={select}
           SelectProps={{
             native: true,
           }}
-          type={type}
-          select={select}
           variant="standard"
           sx={{ m: 1, width: '22ch' }}
         >
@@ -140,6 +146,9 @@ function EditUserInputs({
           defaultValue={associate[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
+          InputLabelProps={{
+            shrink: true,
+          }}
           label={label}
           type={type}
           variant="standard"
@@ -147,7 +156,7 @@ function EditUserInputs({
           sx={{ m: 1, width: '22ch' }}
         />
       )}
-    </div>
+    </Box>
   );
 }
 export default EditUserInputs;

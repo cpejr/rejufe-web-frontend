@@ -1,9 +1,5 @@
 const genres = [
   {
-    value: '',
-    label: '',
-  },
-  {
     value: 'FEMININO',
     label: 'Feminino',
   },
