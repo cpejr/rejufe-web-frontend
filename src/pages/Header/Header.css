@@ -3,7 +3,7 @@
   width: 100%;
 }
 .header-toolbar {
-  background-color: #081120;
+  background-color: var(--header);
   height: 75px;
   display: flex;
   justify-content: space-between;
@@ -12,8 +12,8 @@
 
 /* Dropdown Button */
 .header-dropbtn {
-  background-color: #081120;
-  color: white;
+  background-color: var(--header);
+  color: var(--fontColor1);
   padding: 16px;
   font-size: 16px;
   height: 75px;
@@ -39,7 +39,7 @@
 
 /* Links inside the dropdown */
 .header-dropdown-content a {
-  color: white;
+  color: var(--fontColor1);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -48,11 +48,11 @@
 
 /* Change color of dropdown links on hover */
 .header-dropdown-content a:hover {
-  background-color: #122438;
+  background-color: var(--hover);
 }
 
 .header-dropbtn:hover {
-  background-color: #0b162b;
+  background-color: var(--hover);
 }
 
 /* Show the dropdown menu on hover */
@@ -87,13 +87,13 @@
     width: 50px;
   }
   .header-iconbutton {
-    color: white;
+    color: var(--fontColor1);
     position: relative;
     display: inline-block;
     justify-content: flex-start;
   }
   .header-menuIcon {
-    color: white !important;
+    color: var(--fontColor1) !important;
     padding: 16px;
     font-size: 16px;
     height: 75px;
@@ -105,7 +105,7 @@
   .header-iconbutton-content {
     display: none;
     position: absolute;
-    background-color: #081120;
+    background-color: var(--header);
     min-height: 100vh;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -116,7 +116,7 @@
   .header-iconbutton-content-onclick {
     display: block;
     position: absolute;
-    background-color: #081120;
+    background-color: var(--header);
     min-height: 100vh;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -125,17 +125,17 @@
     right: -23.5px;
   }
   .header-iconbutton-content-onclick a:hover {
-    background-color: #122438;
+    background-color: var(--hover);
   }
   .header-menuIcon:hover {
-    background-color: #122438;
+    background-color: var(--hover);
   }
   .header-toolbar {
     align-items: center;
   }
 
   .responsive-header-dropdown:hover {
-    background-color: #122438;
+    background-color: var(--hover);
   }
   .responsive-header-dropdown:hover .responsive-header-dropdown {
     background-color: none;
