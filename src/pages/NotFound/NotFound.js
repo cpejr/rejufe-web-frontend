@@ -4,19 +4,15 @@ import './notFound.css';
 
 export default function NotFound() {
   return (
-    <div className='containerNotFound'>
-      <div className='boxNotFound'>
-        <div className='animationNotFound'>
+    <div className="containerNotFound">
+      <div className="boxNotFound">
+        <div className="animationNotFound">
           <LottieControl
-            width={60}
-            height={34}
-            minWidth={312}
-            minHeight={177}
-            maxWidth={500}
-            maxHeight={286}
+            width={100}
+            height={100}
           />
         </div>
-        <div className='textNotFound'>
+        <div className="textNotFound">
           <h1>Página não encontrada</h1>
           <h2>
             Não foi possível encontrar a página que você está procurando. Isso
