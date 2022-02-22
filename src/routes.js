@@ -16,26 +16,30 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
+import Footer from './components/Footer';
 
 function UserHeader() {
   return (
-    <Header>
-      <Switch>
-        <Route path="/dashboard/usuario" component={Dashboard} />
-        <Route path="/dashboard/administrador" component={Dashboard} />
-        <Route path="/intranet" component={Intranet} />
-        <Route path="/cadastro" component={Cadastro} />
-        <Route path="/adm-registros" component={AdmRegistros} />
-        <Route path="/associados-excluidos" component={AssociadosExcluidos} />
-        <Route path="/consultas" component={Consultas} />
-        <Route path="/validar-socio" component={ValidarSocio} />
-        <Route path="/editais" component={Editais} />
-        <Route path="/atas" component={Atas} />
-        <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
-        <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/alterar-senha" component={AlterarSenha} />
-      </Switch>
-    </Header>
+    <div>
+      <Header>
+        <Switch>
+          <Route path="/dashboard/usuario" component={Dashboard} />
+          <Route path="/dashboard/administrador" component={Dashboard} />
+          <Route path="/intranet" component={Intranet} />
+          <Route path="/cadastro" component={Cadastro} />
+          <Route path="/adm-registros" component={AdmRegistros} />
+          <Route path="/associados-excluidos" component={AssociadosExcluidos} />
+          <Route path="/consultas" component={Consultas} />
+          <Route path="/validar-socio" component={ValidarSocio} />
+          <Route path="/editais" component={Editais} />
+          <Route path="/atas" component={Atas} />
+          <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
+          <Route path="/usuarios" component={ModuloUsuarios} />
+          <Route path="/alterar-senha" component={AlterarSenha} />
+        </Switch>
+      </Header>
+      <Footer />
+    </div>
   );
 }
 
