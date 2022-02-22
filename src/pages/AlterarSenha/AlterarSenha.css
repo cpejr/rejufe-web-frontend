@@ -1,0 +1,131 @@
+.containerAlterarSenha {
+    height: calc(100vh - 75px);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxAlterarSenha {
+    font-family: "Roboto", sans-serif;
+    width: 50%;
+    height: 70%;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+    border-color: #0b162b;
+    border-radius: 20px;
+    background-color: #e8e8e8;
+    padding: 5%;
+    text-align: justify;
+    color: black;
+}
+
+.boxAlterarSenha button {
+    width: 120px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: #0b162b;
+    background-color: #0b162b;
+    color: white;
+    font-size: 14pt;
+}
+
+.boxAlterarSenha h1 { 
+    font-size: 35pt;
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+.boxAlterarSenha h2 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.modalStyleAlterarSenha {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popUpAlterarSenha { 
+    font-family: "Roboto", sans-serif;
+    width: 45%;
+    height: 30%;
+    padding: 2%;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.popUpAlterarSenha h1 { 
+    margin-bottom: 10px;
+    font-weight: 100;
+}
+
+.popUpAlterarSenha button { 
+    width: 120px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    color: blue;
+}
+
+.popUpAlterarSenha button+button{
+    color: red;
+}
+
+.grupoButtonsAlterarSenha {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 715px) {
+    .boxAlterarSenha{
+        width: 70%;
+    }
+
+    .boxAlterarSenha h1{
+        font-size: 30pt;
+    }
+}
+
+@media (max-width:500px){
+    .boxAlterarSenha h1{
+        font-size: 25pt;
+    }
+    .boxAlterarSenha h2{
+        font-size: 14pt;
+    }
+}
+
+@media (max-width:395px){
+    .boxAlterarSenha h1{
+        font-size: 20pt;
+    }
+    .boxAlterarSenha h2{
+        font-size: 11pt;
+    }
+
+    .boxAlterarSenha button {
+        width: 100px;
+        height: 50px;
+        font-size: 11pt;
+    }
+}
