@@ -10,48 +10,60 @@
   outline:none;    
   margin-top: 5%;
   margin-bottom: 2%;
-}
-.RemoveModal-paper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #609694;
+  background-color: white;
 }
 
 .RemoveModal-ContainerModal{
-  display:flex;
+  display: flex;
   flex-direction: column;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 180px;
+  width: 450px;
+  border-radius: 6px;
+  background-color: white;
+  border: 0.5px solid black;
+  box-shadow: 24;
+  padding: 4;
 }
 
-.RemoveModal-Row{
+.RemoveModal-text{
   display:flex;
   align-items:center;
   justify-content:center;
   width: 100%;
 }
 
-.RemoveModal-TitleModal{
+.RemoveModal-Question{
   display:flex;
   align-items:center;
   justify-content:center;
   width:100%;
   font-family:Roboto;
   font-weight: normal;
-  font-size:24px;
-  color:white;
-  margin-bottom: 5%;
+  font-size: 20px;
+  color: black;
+  margin-bottom: 7%;
 }
 
-.RemoveModal-Ajust{
+.RemoveModal-Buttons{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
   width:100%;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.RemoveModal-button1{
+  margin-left: 13px;
+}
+
+.RemoveModal-button2{
+  margin-right: 13px;
 }
 
 .RemoveModal-ButtonCancel{
@@ -61,15 +73,17 @@
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
-  border: solid;
+  border: solid black;
   border-width: 1px;
   border-radius: 5px;
   align-items: center;
-  transform: translate(0%,-50%);
   justify-content: center;
   text-align: center;
   cursor: pointer;
   margin-bottom: 3%;
+  background-color: #264A6F;
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 .RemoveModal-ButtonConfirm{
   display:flex;
@@ -78,12 +92,29 @@
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
-  border: solid;
+  border: solid black;
   border-width: 1px;
   border-radius: 5px;
   align-items: center;
-  transform: translate(0%,-50%);
   justify-content: center;
   text-align: center;
   cursor: pointer;
+  margin-bottom: 3%;
+  background-color: #264A6F;
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.alinhar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.RemoveModal-ButtonCancel:hover{
+  background-color: #1f4061;
+}
+
+.RemoveModal-ButtonConfirm:hover{
+  background-color: #1f4061;
 }

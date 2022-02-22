@@ -4,7 +4,10 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { toast } from 'react-toastify';
 import './RemoveModal.css';
 import * as managerService from '../../services/manager/managerService';
@@ -33,7 +36,7 @@ export default function RemoveModal({ id }) {
   return (
     <div>
       <button className="RemoveModal-RemoveGroup" onClick={handleOpen}>
-        <DeleteIcon size={22} style={{ color: '#AA4545', cursor: 'pointer' }} />
+        <DeleteIcon size={22} style={{ color: 'grey', cursor: 'pointer' }} />
       </button>
       <Modal
         open={open}
@@ -41,30 +44,36 @@ export default function RemoveModal({ id }) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div className="RemoveModal-paper">
-          <div className="RemoveModal-ContainerModal">
-            <div className="RemoveModal-Row">
-              <div className="RemoveModal-TitleModal">Tem certeza que deseja apagar usuário?</div>
+        <Box className="RemoveModal-ContainerModal">
+          <div className="RemoveModal-text">
+            <div className="RemoveModal-Question">Tem certeza que deseja apagar usuário?</div>
+          </div>
+          <div className="RemoveModal-Buttons">
+            <div className="RemoveModal-button1">
+              <button className="RemoveModal-ButtonCancel" onClick={handleClose}>
+                <div className="alinhar">
+                  <p>Cancelar</p>
+                  <span><HighlightOffIcon size={22} style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
+                </div>
+              </button>
             </div>
-            <div className="RemoveModal-Ajust">
-              <div className="RemoveModal-Row">
-                <button className="RemoveModal-ButtonCancel" onClick={handleClose}>Cancelar</button>
-              </div>
-              <div className="RemoveModal-Row">
-                <button
-                  className="RemoveModal-ButtonConfirm"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleSubmit();
-                    handleClose();
-                  }}
-                >
-                  Confirmar
-                </button>
-              </div>
+            <div className="RemoveModal-button2">
+              <button
+                className="RemoveModal-ButtonConfirm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                  handleClose();
+                }}
+              >
+                <div className="alinhar">
+                  <p>Confirmar</p>
+                  <span><CheckCircleOutlineIcon size={22} style={{ color: '10c500', cursor: 'pointer', marginLeft: '5px' }} /></span>
+                </div>
+              </button>
             </div>
           </div>
-        </div>
+        </Box>
       </Modal>
     </div>
   );

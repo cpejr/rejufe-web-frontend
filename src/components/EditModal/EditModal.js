@@ -2,6 +2,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
@@ -53,52 +54,44 @@ export default function EditModal(id) {
   };
 
   const body = (
-    <div className="EditModal-paper">
-      <div className="EditModal-ContainerModal">
-        <div className="EditModal-Row">
-          <h1>Editar dados</h1>
-        </div>
-        <div className="EditModal-Row">
-          <div className="EditModal-Ajust">
-            <div className="EditModal-Ajust.Col1">
-              Status:
-            </div>
-            <input className="EditModal-Input" placeholder="" require value={associateStatus} onChange={handleStatusChange} />
-          </div>
-        </div>
-        <div className="EditModal-Row">
-          <div className="EditModal-Ajust">
-            <div className="EditModal-Ajust.Col1">
-              Nome:
-            </div>
-            <input className="EditModal-Input" placeholder="" require value={associatesName} onChange={handleNameChange} />
-          </div>
-        </div>
-        <div className="EditModal-Row">
-          <div className="EditModal-Ajust">
-            <div className="EditModal-Ajust.Col1">
-              CPF:
-            </div>
-            <input className="EditModal-Input" placeholder="" require value={associateCpf} onChange={handleCpfChange} />
-          </div>
-        </div>
-        <button
-          className="EditModal-ButtonConfirm"
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit();
-            handleClose();
-          }}
-        >
-          Confirmar
-        </button>
+    <Box className="EditModal-ContainerModal">
+      <div className="EditModal-Title">
+        <p>Editar dados</p>
       </div>
-    </div>
+      <div className="EditModal-campos">
+        <div className="EditModal-text">
+          Status:
+        </div>
+        <input className="EditModal-Input" placeholder="" require value={associateStatus} onChange={handleStatusChange} />
+      </div>
+      <div className="EditModal-campos">
+        <div className="EditModal-text">
+          Nome:
+        </div>
+        <input className="EditModal-Input" placeholder="" require value={associatesName} onChange={handleNameChange} />
+      </div>
+      <div className="EditModal-campos">
+        <div className="EditModal-text">
+          CPF:
+        </div>
+        <input className="EditModal-Input" placeholder="" require value={associateCpf} onChange={handleCpfChange} />
+      </div>
+      <button
+        className="EditModal-ButtonConfirm"
+        onClick={(e) => {
+          e.preventDefault();
+          handleSubmit();
+          handleClose();
+        }}
+      >
+        Confirmar
+      </button>
+    </Box>
   );
   return (
     <div>
       <button className="EditModal-EditGroup" onClick={handleOpen}>
-        <EditIcon size={22} style={{ color: '#AAABB0', cursor: 'pointer' }} />
+        <EditIcon size={22} style={{ color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
         open={open}
