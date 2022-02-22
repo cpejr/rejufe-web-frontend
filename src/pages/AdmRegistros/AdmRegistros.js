@@ -1,9 +1,13 @@
 import React from 'react';
+import Footer from '../../components/Footer';
 
 function AdmRegistros() {
   return (
     <div>
-      <h1>Administração de Registros</h1>
+      <div>
+        <h1>Administração de Registros</h1>
+      </div>
+      <Footer />
     </div>
   );
 }

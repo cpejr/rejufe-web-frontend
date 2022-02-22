@@ -1,8 +1,14 @@
 import React from 'react';
+import Footer from '../../components/Footer';
 
 function Intranet() {
   return (
-    <h1>Cadastro</h1>
+    <div>
+      <div>
+        <h1>Cadastro</h1>
+      </div>
+      <Footer />
+    </div>
   );
 }
 
