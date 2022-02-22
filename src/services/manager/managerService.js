@@ -38,3 +38,17 @@ export const sendResetEmail = async (email) => {
   }
   return response;
 };
+
+export const getAssociates = async (field, filter) => {
+  let times = 0;
+  let response;
+
+  let allAssociates = [];
+  do {
+    response = await requesterService.getAssociates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allAssociates = allAssociates.concat(response.data);
+    times += 1;
+  } while (response.data.length === 0);
+  return allAssociates;
+};
