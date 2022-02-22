@@ -11,9 +11,9 @@ function ConsultaAssociados() {
   const [associates, setAllAssociates] = useState([]);
   const [id, setId] = useState([]);
 
-  function createData(name, celular, status, lotacao, atuacao, email) {
+  function createData(name, cellPhoneNumber, status, allocation, acting, email) {
     return {
-      name, celular, status, lotacao, atuacao, email,
+      name, cellPhoneNumber, status, allocation, acting, email,
     };
   }
 
@@ -27,10 +27,10 @@ function ConsultaAssociados() {
         associateId.push(object._id);
         auxAssociate.push(createData(
           object.name,
-          object.celular,
+          object.cell_phone_number,
           object.status,
-          object.lotacao,
-          object.atuacao,
+          object.allocation,
+          object.acting,
           object.email,
         ));
       });
