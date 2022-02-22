@@ -62,7 +62,10 @@ export default function EditModal(id) {
         <div className="EditModal-text">
           Status:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={associateStatus} onChange={handleStatusChange} />
+        <select className="EditModal-Select" placeholder="" require value={associateStatus} onChange={handleStatusChange}>
+          <option className="option" value="A">A</option>
+          <option className="option" value="E">E</option>
+        </select>
       </div>
       <div className="EditModal-campos">
         <div className="EditModal-text">
