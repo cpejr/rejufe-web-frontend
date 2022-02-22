@@ -35,7 +35,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
-        <Route path="*" component={NotFound} />
+        <Route path="*" exact component={NotFound} />
       </Switch>
     </Header>
   );
@@ -48,8 +48,6 @@ function Routes() {
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/dashboard/administrador" component={Dashboard} />
-        <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>
