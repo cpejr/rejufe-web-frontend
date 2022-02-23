@@ -58,7 +58,7 @@ function ExcludedAssociates() {
   ];
 
   return (
-    <div>
+    <div className="main-dashboard-container">
       <TableComponent associateId={id} rows={associates} titles={titles} edit />
     </div>
   );
