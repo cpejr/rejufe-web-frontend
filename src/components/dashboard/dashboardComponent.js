@@ -99,7 +99,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, order, associateId, edit, search, searchFile,
+  titles, rows, order, setUse, associateId, edit, search, searchFile,
 }) {
   // const theme = useTheme;
   const [page, setPage] = useState(0);
@@ -303,7 +303,7 @@ function TableComponent({
                       <RemoveModal id={associateId[index + (page * 10)]} />
                     </IconButton>
                     <IconButton color="primary" aria-label="Edit">
-                      <EditModal id={associateId[index + (page * 10)]} associate={row} />
+                      <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (

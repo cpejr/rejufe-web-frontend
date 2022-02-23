@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import './AssociadosExcluidos.css';
@@ -11,6 +13,7 @@ toast.configure();
 function ExcludedAssociates() {
   const [associates, setAllAssociates] = useState([]);
   const [id, setId] = useState([]);
+  const [use, setUse] = useState(true);
 
   function createData(status, name, cpf) {
     return {
@@ -41,6 +44,7 @@ function ExcludedAssociates() {
       auxAssociate.sort();
       setId(AssociatesId);
       setAllAssociates(auxAssociate);
+      setUse(!use);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -48,7 +52,7 @@ function ExcludedAssociates() {
   }
   useEffect(() => {
     getAllAssociates();
-  }, []);
+  }, [use]);
 
   const titles = [
     '',
@@ -59,7 +63,7 @@ function ExcludedAssociates() {
 
   return (
     <div className="main-dashboard-container">
-      <TableComponent associateId={id} rows={associates} titles={titles} edit />
+      <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} edit />
     </div>
   );
 }

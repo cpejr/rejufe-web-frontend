@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
@@ -10,10 +12,10 @@ import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import './EditModal.css';
 
-export default function EditModal(id) {
-  const [associatesName, setAssociateName] = useState(id.associate.name);
-  const [associateStatus, setAssociatesStatus] = useState(id.associate.status);
-  const [associateCpf, setAssociateCpf] = useState(id.associate.cpf);
+export default function EditModal({ id, associate, setUse }) {
+  const [associatesName, setAssociateName] = useState(associate.name);
+  const [associateStatus, setAssociatesStatus] = useState(associate.status);
+  const [associateCpf, setAssociateCpf] = useState(associate.cpf);
 
   async function handleNameChange(event) {
     setAssociateName(event.target.value);
@@ -30,13 +32,14 @@ export default function EditModal(id) {
   async function handleSubmit() {
     try {
       await managerService.updateAssociate(
-        id.id,
+        id,
         { name: associatesName, status: associateStatus, cpf: associateCpf },
       );
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setUse(true);
     } catch (error) {
       console.error(error);
     }
