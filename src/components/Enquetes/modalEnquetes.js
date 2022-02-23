@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ModalAdmin() {
+export default function ModalEnquete() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -118,7 +118,7 @@ export default function ModalAdmin() {
         type="button"
         onClick={handleOpen}
       >
-        Novo
+        Criar
       </button>
       <Modal
         open={open}

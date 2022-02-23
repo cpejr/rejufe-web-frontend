@@ -1,8 +1,12 @@
 import React from 'react';
+import ModalEnquete from '../../components/Enquetes/modalEnquetes';
 
 function Enquetes() {
   return (
-    <h1>Enquetes</h1>
+    <div>
+      <h1>Enquetes</h1>
+      <ModalEnquete />
+    </div>
   );
 }
 
