@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';

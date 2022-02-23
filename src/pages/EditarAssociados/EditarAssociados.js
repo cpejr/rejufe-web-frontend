@@ -65,7 +65,6 @@ function EditarAssociados(id) {
         },
       ];
       setDados(...associateuP);
-      console.log(response.birth);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error); // TO DO: Substitute for redirect to not Found when done
