@@ -20,14 +20,6 @@ import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 
-/* function notFound() {
-  return (
-    <Switch>
-      <Route path="*" component={NotFound} />
-    </Switch>
-  );
-} */
-
 function UserHeader() {
   return (
     <Header>
