@@ -34,7 +34,7 @@ export default function RemoveModal({ id, setUse }) {
   return (
     <div>
       <button type="button" className="RemoveModal-RemoveGroup" onClick={handleOpen}>
-        <DeleteIcon size={22} style={{ color: 'grey', cursor: 'pointer' }} />
+        <DeleteIcon style={{ color: 'grey', cursor: 'pointer' }} />
       </button>
       <Modal
         open={open}
@@ -51,7 +51,7 @@ export default function RemoveModal({ id, setUse }) {
               <button type="button" className="RemoveModal-ButtonCancel" onClick={handleClose}>
                 <div className="RemoveModal-align">
                   <p>Cancelar</p>
-                  <span><HighlightOffIcon size={22} style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
+                  <span><HighlightOffIcon style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>
               </button>
             </div>

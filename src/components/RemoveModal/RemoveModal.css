@@ -151,7 +151,7 @@
 
 }
 
-@media(max-width: 495){
+@media(max-width: 495px){
   .RemoveModal-RemoveGroup .css-i4bv87-MuiSvgIcon-root {
     width: 0.75em !important;
     height: 0.75em !important;

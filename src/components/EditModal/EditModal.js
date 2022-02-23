@@ -97,7 +97,7 @@ export default function EditModal({ id, associate, setUse }) {
   return (
     <div>
       <button type="button" className="EditModal-EditGroup" onClick={handleOpen}>
-        <EditIcon size={22} style={{ color: '#2F5C88', cursor: 'pointer' }} />
+        <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
         open={open}
