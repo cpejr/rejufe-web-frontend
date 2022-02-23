@@ -11,12 +11,15 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    text-align: center;
+    padding-left: 10%;
 }
 
 .RejufeImageFooter {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+    align-items: center;
     margin-top: 10px;
 }
 
@@ -48,6 +51,10 @@
 
 .containerLogoAndTextCPE {
     padding-top: 80px;
+}
+
+.containerRejufeAndCPEImage {
+   text-align: center;
 }
 
 

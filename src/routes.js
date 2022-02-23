@@ -20,26 +20,23 @@ import Footer from './components/Footer';
 
 function UserHeader() {
   return (
-    <div>
-      <Header>
-        <Switch>
-          <Route path="/dashboard/usuario" component={Dashboard} />
-          <Route path="/dashboard/administrador" component={Dashboard} />
-          <Route path="/intranet" component={Intranet} />
-          <Route path="/cadastro" component={Cadastro} />
-          <Route path="/adm-registros" component={AdmRegistros} />
-          <Route path="/associados-excluidos" component={AssociadosExcluidos} />
-          <Route path="/consultas" component={Consultas} />
-          <Route path="/validar-socio" component={ValidarSocio} />
-          <Route path="/editais" component={Editais} />
-          <Route path="/atas" component={Atas} />
-          <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
-          <Route path="/usuarios" component={ModuloUsuarios} />
-          <Route path="/alterar-senha" component={AlterarSenha} />
-        </Switch>
-      </Header>
-      <Footer />
-    </div>
+    <Header>
+      <Switch>
+        <Route path="/dashboard/usuario" component={Dashboard} />
+        <Route path="/dashboard/administrador" component={Dashboard} />
+        <Route path="/intranet" component={Intranet} />
+        <Route path="/cadastro" component={Cadastro} />
+        <Route path="/adm-registros" component={AdmRegistros} />
+        <Route path="/associados-excluidos" component={AssociadosExcluidos} />
+        <Route path="/consultas" component={Consultas} />
+        <Route path="/validar-socio" component={ValidarSocio} />
+        <Route path="/editais" component={Editais} />
+        <Route path="/atas" component={Atas} />
+        <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
+        <Route path="/usuarios" component={ModuloUsuarios} />
+        <Route path="/alterar-senha" component={AlterarSenha} />
+      </Switch>
+    </Header>
   );
 }
 
@@ -55,6 +52,7 @@ function Routes() {
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
