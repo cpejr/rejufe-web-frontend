@@ -6,6 +6,7 @@
   flex-direction: center;
   flex-wrap: wrap;
   text-align: center;
+  padding-bottom: 25px;
 }
 
 .edit-associate-container h1 {
