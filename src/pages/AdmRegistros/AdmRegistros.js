@@ -3,7 +3,7 @@ import './AdmRegistros.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/BoxAdmRegister/BoxRegisterComponent';
+import TableComponent from '../../components/dashboard/dashboardComponent';
 
 toast.configure();
 
@@ -50,9 +50,20 @@ function AdmRegistros() {
     'Status',
   ];
 
+  const titleTable = [
+    'Manutenção em associados',
+  ];
+
   return (
     <div className="container-administration">
-      <TableComponent id={id} sequentialId={sequentialId} rows={associates} titles={titles} order />
+      <TableComponent
+        titleTable={titleTable}
+        id={id}
+        sequentialId={sequentialId}
+        rows={associates}
+        titles={titles}
+        order
+      />
     </div>
   );
 }
