@@ -16,6 +16,7 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
+import Enquetes from './pages/Enquetes/Enquetes';
 
 function UserHeader() {
   return (
@@ -34,6 +35,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
+        <Route path="/enquetes" component={Enquetes} />
       </Switch>
     </Header>
   );
