@@ -50,7 +50,7 @@ export default function RemoveModal({ id }) {
           <div className="RemoveModal-Buttons">
             <div className="RemoveModal-button1">
               <button type="button" className="RemoveModal-ButtonCancel" onClick={handleClose}>
-                <div className="RemoveModal-alinhar">
+                <div className="RemoveModal-align">
                   <p>Cancelar</p>
                   <span><HighlightOffIcon size={22} style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>
@@ -66,7 +66,7 @@ export default function RemoveModal({ id }) {
                 }}
                 type="button"
               >
-                <div className="RemoveModal-alinhar">
+                <div className="RemoveModal-align">
                   <p>Confirmar</p>
                   <span><CheckCircleOutlineIcon size={22} style={{ color: '10c500', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>

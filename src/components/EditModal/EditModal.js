@@ -60,7 +60,7 @@ export default function EditModal(id) {
       <div className="EditModal-Title">
         <p>Editar dados</p>
       </div>
-      <div className="EditModal-campos">
+      <div className="EditModal-field">
         <div className="EditModal-text">
           Status:
         </div>
@@ -69,13 +69,13 @@ export default function EditModal(id) {
           <option value="E">E</option>
         </select>
       </div>
-      <div className="EditModal-campos">
+      <div className="EditModal-field">
         <div className="EditModal-text">
           Nome:
         </div>
         <input className="EditModal-Input" placeholder="" require value={associatesName} onChange={handleNameChange} />
       </div>
-      <div className="EditModal-campos">
+      <div className="EditModal-field">
         <div className="EditModal-text">
           CPF:
         </div>
