@@ -12,11 +12,9 @@ function ModuloUsuario() {
   const getUsers = async () => {
     try {
       const response = await managerService.getAllUsers();
-      console.log(response);
       setUsers(response);
-      console.log(users);
     } catch (error) {
-      toast.error('Credenciais inválidas!!', {
+      toast.error('Não foi possível obter usuários!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -29,11 +27,13 @@ function ModuloUsuario() {
 
   const titles = [
     '',
-    'status',
+    'Status',
     'Usuário',
+    'Seção',
+    'Perfil',
     'Login',
     'Email',
-    'cpf',
+    'Cpf',
   ];
 
   return (
@@ -41,7 +41,7 @@ function ModuloUsuario() {
       <h1>Módulo de Usuários</h1>
       <div className="module-buttons">
         <button className="button" type="button">Voltar</button>
-        <ModalUsuario rows={users} />
+        <ModalUsuario users={users} />
 
       </div>
       <TableComponent users={users} titles={titles} edit order />

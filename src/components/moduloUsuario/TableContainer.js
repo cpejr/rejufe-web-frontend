@@ -248,10 +248,16 @@ function TableComponent({
                   <TableCell> </TableCell>
                 )}
                 <TableCell {...cellFontProps}>
-                  {user.type}
+                  {user.status}
                 </TableCell>
                 <TableCell {...cellFontProps}>
                   {user.name}
+                </TableCell>
+                <TableCell {...cellFontProps}>
+                  {user.judicial_section}
+                </TableCell>
+                <TableCell {...cellFontProps}>
+                  {user.type}
                 </TableCell>
                 <TableCell {...cellFontProps}>
                   {user.user}
@@ -268,7 +274,7 @@ function TableComponent({
             <TableRow style={{ height: 53 * emptyusers }}>
               <TableCell
                 {...cellFontProps}
-                style={{ background: `${cssColorCodes.secondary}` }}
+                style={{ background: `${cssColorCodes.fontColor1}` }}
                 colSpan={6}
               />
             </TableRow>

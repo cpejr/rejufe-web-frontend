@@ -1,36 +1,80 @@
-.ContainerModal button {  
+.ContainerModalUsuario button {  
   color: white;
   border: solid var(--button);
   border-radius: 5px;
   background-color: var(--button);
-  margin-left: 1%;
   font-weight: 700;
   font-size: 100%;
 }
 
-.ContainerModal button:hover {
+.ContainerModalUsuario {
+  display: flex;
+  justify-content:space-around;
+  flex-direction: column;
+}
+
+.ContainerModalUsuario button:hover {
     background-color: var(--hover);
   }
 
 .Close {
-  width: 2.5vw;  
-  height: 4vh;  
+  width: 5%;  
+  height: 100%;  
+  margin-left: 1%;
 }
 
 .Confirm {
-  width: 10vw;  
-  height: 5vh;
+  width: 20%;  
+  height: 40px;
+  margin-bottom: 6%;
+  margin-left: 1%;
 }
 
 .Row {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:6%;
+  margin:4%;
   color: var(--secondary);
 }
 
 .Row h1 {
   font-size: 2em;
   font-weight: 700;
+}
+
+@media (max-width: 1150px) {
+  .Close {
+    width: 8%;
+  }
+  .Confirm {
+    margin-bottom: 0;
+  }
+  .ContainerModalUsuario {
+    height: 100%;
+  }
+  .exit {
+    margin: 0;
+  }
+}
+
+@media (max-width: 920px) {
+  .Confirm {
+    width: 35%;
+  }
+}
+
+@media (max-width: 400px) {
+  .Close {
+    width: 12%;
+  }
+}
+
+@media (max-width: 260px) {
+  .Close {
+    width: 20%;
+  }
+  .Confirm {
+    width: 45%;
+  }
 }

@@ -19,8 +19,4 @@ export const getAllUsers = (times) => httpClient.get('/usuario/', {
   },
 });
 
-export const changeUserStatusById = (id, statusChange) => httpClient.update(`/usuario/${id}`, {
-  params: {
-    statusChange,
-  },
-});
+export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);

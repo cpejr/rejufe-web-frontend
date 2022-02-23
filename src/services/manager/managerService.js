@@ -9,7 +9,6 @@ export const getById = async (id) => {
 };
 
 export const getAllUsers = async () => {
-  console.log('oi2');
   let times = 0;
   let users = [];
   let response;
@@ -28,8 +27,8 @@ export const getUserEmailByUsername = async (user) => {
   return response.data;
 };
 
-export const changeUserStatusById = async (id, statusChange) => {
-  const response = await requesterService.changeUserStatusById(id, statusChange);
+export const changeUserTypeById = async (typeChange, id) => {
+  const response = await requesterService.changeUserTypeById(typeChange, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

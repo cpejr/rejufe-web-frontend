@@ -28,13 +28,16 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: '60vw',
-    height: '52vh',
+    height: '55vh',
     backgroundColor: 'white',
     border: '2px solid #609694',
     boxShadow: theme.palette.color4,
-    padding: '2vh 1.5vw',
-    ['@media (max-width:460px)']: { // eslint-disable-line no-useless-computed-key
+    padding: '1% 1%',
+    ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
+    },
+    ['@media (max-width:1150px)']: { // eslint-disable-line no-useless-computed-key
+      height: '45vh',
     },
   },
 
@@ -42,43 +45,44 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ModalAdmin({ rows }) {
+export default function ModalAdmin({ users }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState({});
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const users = [];
-  let i = 0;
 
-  rows.forEach((user) => {
-    users[i] = { label: user.name, id: user._id };
-    i += 1;
-  });
+  console.log(users);
 
-  const changeUserStatus = async () => {
+  console.log(value);
+
+  const changeUserType = async () => {
     try {
-      const response = await managerService.changeUserStatusById();
+      const response = await managerService.changeUserTypeById({
+        type: 'administrador',
+      }, value._id);
       console.log(response);
-      setUsers(response);
-      console.log(users);
+      toast('Tipo do usuário atualizado com sucesso!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     } catch (error) {
-      toast.error('Credenciais inválidas!!', {
+      console.log(error);
+      toast.error('Não foi possível alterar o tipo do usuário!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     }
   };
 
-  console.log(users[0]);
-
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="ContainerModal">
+      <div className="ContainerModalUsuario">
         <div className="Exit">
           <button
             className="Close"
@@ -95,10 +99,16 @@ export default function ModalAdmin({ rows }) {
         </div>
         <div className="Row">
           <Autocomplete
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
             disablePortal
-            id="combo-box-demo"
+            id="clear-on-escape"
+            clearOnEscape
             options={users}
-            sx={{ width: '40%' }}
+            getOptionLabel={(option) => option.user}
+            sx={{ width: 300 }}
             // eslint-disable-next-line react/jsx-props-no-spreading
             renderInput={(params) => <TextField {...params} label="Users" />}
           />
@@ -108,6 +118,7 @@ export default function ModalAdmin({ rows }) {
             className="Confirm"
             type="button"
             onClick={() => {
+              changeUserType();
               handleClose();
             }}
           >
