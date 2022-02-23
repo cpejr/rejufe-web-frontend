@@ -30,6 +30,7 @@ function ConsultaAssociados() {
     const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
+      allAssociates.sort(compare);
       allAssociates.forEach((object) => {
         associateId.push(object._id);
         auxAssociate.push(createData(
@@ -42,7 +43,6 @@ function ConsultaAssociados() {
         ));
       });
 
-      auxAssociate.sort(compare);
       setId(associateId);
       setAllAssociates(auxAssociate);
     } catch (error) {

@@ -89,6 +89,9 @@ th,td
        vertical-align: top;
 }
 
-@media screen {
+@media(max-width: 800px) {
+       td{
+              display: block;
+       }
        
 }
