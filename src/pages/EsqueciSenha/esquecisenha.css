@@ -48,7 +48,7 @@
     height: 100%;
     width: auto;
     justify-content: center;
-    background-color: var(--backgroung);
+    background-color: var(--background);
     border-radius: 15px;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -77,8 +77,8 @@
     padding-right: 10px;
   }
   .container-forgot-password button{
-    background-color: var(--buttonBlue);
-    border: 1px solid var(--buttonBlue);
+    background-color: var(--button);
+    border: 1px solid var(--button);
     border-radius: 8px;
     color: white;
     display: inline-block;
