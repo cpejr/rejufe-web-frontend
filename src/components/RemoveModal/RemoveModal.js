@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';

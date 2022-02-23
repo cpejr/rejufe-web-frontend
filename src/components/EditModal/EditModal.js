@@ -1,8 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-cycle */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
@@ -57,7 +53,7 @@ export default function EditModal({ id, associate, setUse }) {
 
   const body = (
     <Box className="EditModal-ContainerModal">
-      <div className="EditModal-cancel" onClick={handleClose}>
+      <div role="button" tabIndex={0} className="EditModal-cancel" onClick={handleClose}>
         <CancelIcon />
       </div>
       <div className="EditModal-Title">

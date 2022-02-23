@@ -1,6 +1,3 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import './AssociadosExcluidos.css';
 import { toast } from 'react-toastify';
