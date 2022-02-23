@@ -24,7 +24,7 @@ function EditarAssociados(id) {
     setLoading(true);
     try {
       const response = await managerService.getById(associateId);
-      const associateuP = [
+      const associateUpdated = [
         {
           status: response.status,
           name: response.name,
@@ -63,7 +63,7 @@ function EditarAssociados(id) {
           admission_date: moment(response.admission_date).format('YYYY-MM-DD'),
         },
       ];
-      setDados(...associateuP);
+      setDados(...associateUpdated);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error); // TO DO: Substitute for redirect to not Found when done

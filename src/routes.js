@@ -16,7 +16,6 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
-import AdmRegistros from './pages/AdmRegistros';
 import EditarAssociados from './pages/EditarAssociados';
 
 function UserHeader() {
