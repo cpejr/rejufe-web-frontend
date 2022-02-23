@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import './EditModal.css';
@@ -26,14 +28,11 @@ export default function EditModal(id) {
   }
 
   async function handleSubmit() {
-    const body = {
-      name: associatesName,
-      status: associateStatus,
-      cpf: associateCpf,
-    };
-
     try {
-      await managerService.updateAssociate(id.id, { name: body.name, status: body.status, cpf: body.cpf });
+      await managerService.updateAssociate(
+        id.id,
+        { name: associatesName, status: associateStatus, cpf: associateCpf },
+      );
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -55,6 +54,9 @@ export default function EditModal(id) {
 
   const body = (
     <Box className="EditModal-ContainerModal">
+      <div className="EditModal-cancel" onClick={handleClose}>
+        <CancelIcon />
+      </div>
       <div className="EditModal-Title">
         <p>Editar dados</p>
       </div>
@@ -63,8 +65,8 @@ export default function EditModal(id) {
           Status:
         </div>
         <select className="EditModal-Select" placeholder="" require value={associateStatus} onChange={handleStatusChange}>
-          <option className="option" value="A">A</option>
-          <option className="option" value="E">E</option>
+          <option value="A">A</option>
+          <option value="E">E</option>
         </select>
       </div>
       <div className="EditModal-campos">
@@ -86,6 +88,7 @@ export default function EditModal(id) {
           handleSubmit();
           handleClose();
         }}
+        type="button"
       >
         Confirmar
       </button>
@@ -93,7 +96,7 @@ export default function EditModal(id) {
   );
   return (
     <div>
-      <button className="EditModal-EditGroup" onClick={handleOpen}>
+      <button type="button" className="EditModal-EditGroup" onClick={handleOpen}>
         <EditIcon size={22} style={{ color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal

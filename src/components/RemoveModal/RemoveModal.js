@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-undef */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
@@ -35,7 +34,7 @@ export default function RemoveModal({ id }) {
   };
   return (
     <div>
-      <button className="RemoveModal-RemoveGroup" onClick={handleOpen}>
+      <button type="button" className="RemoveModal-RemoveGroup" onClick={handleOpen}>
         <DeleteIcon size={22} style={{ color: 'grey', cursor: 'pointer' }} />
       </button>
       <Modal
@@ -50,8 +49,8 @@ export default function RemoveModal({ id }) {
           </div>
           <div className="RemoveModal-Buttons">
             <div className="RemoveModal-button1">
-              <button className="RemoveModal-ButtonCancel" onClick={handleClose}>
-                <div className="alinhar">
+              <button type="button" className="RemoveModal-ButtonCancel" onClick={handleClose}>
+                <div className="RemoveModal-alinhar">
                   <p>Cancelar</p>
                   <span><HighlightOffIcon size={22} style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>
@@ -65,8 +64,9 @@ export default function RemoveModal({ id }) {
                   handleSubmit();
                   handleClose();
                 }}
+                type="button"
               >
-                <div className="alinhar">
+                <div className="RemoveModal-alinhar">
                   <p>Confirmar</p>
                   <span><CheckCircleOutlineIcon size={22} style={{ color: '10c500', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>

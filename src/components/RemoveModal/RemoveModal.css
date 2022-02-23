@@ -81,7 +81,7 @@
   text-align: center;
   cursor: pointer;
   margin-bottom: 3%;
-  background-color: #264A6F;
+  background-color: var(--button);
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
@@ -100,21 +100,93 @@
   text-align: center;
   cursor: pointer;
   margin-bottom: 3%;
-  background-color: #264A6F;
+  background-color: var(--button);
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.alinhar{
+.RemoveModal-alinhar{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .RemoveModal-ButtonCancel:hover{
-  background-color: #1f4061;
+  background-color: var(--primary);
 }
 
 .RemoveModal-ButtonConfirm:hover{
-  background-color: #1f4061;
+  background-color: var(--primary);
+}
+
+@media(max-width: 685px){
+  .RemoveModal-ContainerModal{
+    height: 130px;
+    width: 350px;
+  }
+
+  .RemoveModal-ButtonConfirm{
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+  }
+
+  .RemoveModal-ButtonCancel{
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+  }
+
+  .RemoveModal-button1{
+    margin-left: 40px;
+  }
+  
+  .RemoveModal-button2{
+    margin-right: 40px;
+  }
+  
+.RemoveModal-Question{
+  font-size: 16px;
+}
+
+}
+
+@media(max-width: 370px){
+  .RemoveModal-ContainerModal{
+    height: 130px;
+    width: 270px;
+  }
+
+  .RemoveModal-ButtonConfirm{
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .RemoveModal-ButtonCancel{
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+  }
+  
+.RemoveModal-Question{
+  font-size: 14px;
+}
+
+.RemoveModal-button1{
+  margin-left: 0;
+}
+
+.RemoveModal-button2{
+  margin-right: 0;
+}
+
+.RemoveModal-Buttons{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  flex-direction: column;
+}
+
 }

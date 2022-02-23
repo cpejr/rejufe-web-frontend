@@ -29,7 +29,7 @@ function ExcludedAssociates() {
     const auxAssociate = [];
     const AssociatesId = [];
     try {
-      const allAssociates = await managerService.getExcludedAssociate('A');
+      const allAssociates = await managerService.getExcludedAssociate('E');
       allAssociates.forEach((object) => {
         auxAssociate.push(createData(
           object.status,
@@ -62,7 +62,7 @@ function ExcludedAssociates() {
   ];
 
   return (
-    <div className="container-administration">
+    <div>
       <TableComponent associateId={id} rows={associates} titles={titles} edit />
     </div>
   );
