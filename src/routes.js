@@ -19,7 +19,7 @@ import AlterarSenha from './pages/AlterarSenha';
 import ConsultaAssociados from './pages/ConsultaAssociados';
 import FichaAssociados from './pages/FichaAssociados';
 
-function UserHeader() {
+export function UserHeader() {
   return (
     <Header>
       <Switch>

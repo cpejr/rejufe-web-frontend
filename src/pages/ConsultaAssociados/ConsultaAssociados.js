@@ -3,66 +3,28 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import './ConsultaAssociados.css';
-import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
+import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
+
+const titles = [
+  'Ficha',
+  'Nome',
+  'Celular',
+  'Status',
+  'Lotação',
+  'Atuação',
+  'Email',
+];
 
 function ConsultaAssociados() {
   const [associates, setAllAssociates] = useState([]);
   const [id, setId] = useState([]);
 
-  function createData(name, cellPhoneNumber, status, allocation, acting, email) {
-    return {
-      name, cellPhoneNumber, status, allocation, acting, email,
-    };
-  }
-
-  function compare(a, b) {
-    const x = a.name.toUpperCase();
-    const y = b.name.toUpperCase();
-
-    return x === y ? 0 : x > y ? 1 : -1;
-  }
-
-  async function getAllAssociates() {
-    const auxAssociate = [];
-    const associateId = [];
-    try {
-      const allAssociates = await managerService.getAssociates();
-      allAssociates.sort(compare);
-      allAssociates.forEach((object) => {
-        associateId.push(object._id);
-        auxAssociate.push(createData(
-          object.name,
-          object.cell_phone_number,
-          object.status,
-          object.allocation,
-          object.acting,
-          object.email,
-        ));
-      });
-
-      setId(associateId);
-      setAllAssociates(auxAssociate);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.warn(error);
-    }
-  }
   useEffect(() => {
-    getAllAssociates();
+    getAllAssociatesForConsult(setId, setAllAssociates);
   }, []);
-
-  const titles = [
-    'Ficha',
-    'Nome',
-    'Celular',
-    'Status',
-    'Lotação',
-    'Atuação',
-    'Email',
-  ];
 
   return (
     <div>
