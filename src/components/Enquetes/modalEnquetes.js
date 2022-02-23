@@ -6,6 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@mui/icons-material/Add';
 // import * as managerService from '../../../services/manager/managerService';
 import './modalEnquetes.css';
+import Divider from '@mui/material/Divider';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
 
 function getModalStyle() {
   const top = 50;
@@ -56,10 +59,10 @@ export default function ModalEnquete() {
   };
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="ContainerModalUsuario">
-        <div className="Exit">
+      <div className="container-modal-enquete">
+        <div className="exit-enquete">
           <button
-            className="Close"
+            className="close-enquete"
             type="button"
             onClick={() => {
               handleClose();
@@ -68,46 +71,49 @@ export default function ModalEnquete() {
             <CloseIcon size={30} />
           </button>
         </div>
-        <div className="Row">
-          <h1>Insira as informações da nova enquete</h1>
+        <div className="title-modal-enquete">
+          <InputLabel>Insira as informações da nova enquete</InputLabel>
         </div>
-        <div className="Row">
-          <h1>Título: </h1>
-          <input />
-        </div>
-        <div className="Row">
-          <h1>Data de início: </h1>
-          <input type="date" />
-        </div>
-        <div className="Row">
-          <h1>Data de fim: </h1>
-          <input type="date" />
-        </div>
-        <div className="Row">
-          <h1>Data de fim: </h1>
-          <input type="date" />
-        </div>
-        <div className="Row">
-          <h1>Alternativa 1: </h1>
-          <input />
-        </div>
-        <div className="Row">
-          <h1>Alternativa 2: </h1>
-          <input />
-        </div>
-        <button type="button">
-          <AddIcon />
-        </button>
-        <div className="Row">
-          <button
-            className="Confirm"
-            type="button"
-            onClick={() => {
-              handleClose();
-            }}
-          >
-            Confirmar
-          </button>
+        <div className="fields-enquete">
+          <div className="column-enquete">
+            <div className="row-enquete">
+              <InputLabel>Título</InputLabel>
+              <Input />
+            </div>
+            <div className="row-enquete">
+              <InputLabel>Data de início </InputLabel>
+              <Input type="Date" />
+            </div>
+            <div className="row-enquete">
+              <InputLabel>Data de fim </InputLabel>
+              <Input type="Date" />
+            </div>
+          </div>
+          <Divider orientation="vertical" variant="middle" flexItem />
+          <div className="column-enquete">
+            <div className="row-enquete">
+              <InputLabel>Alternativa 1 </InputLabel>
+              <Input />
+            </div>
+            <div className="row-enquete">
+              <InputLabel>Alternativa 2 </InputLabel>
+              <Input />
+            </div>
+            <button type="button">
+              <AddIcon />
+            </button>
+            <div className="row-enquete">
+              <button
+                className="confirm-enquete"
+                type="button"
+                onClick={() => {
+                  handleClose();
+                }}
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

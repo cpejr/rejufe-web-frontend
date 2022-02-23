@@ -1,0 +1,105 @@
+.container-modal-enquete button {  
+    color: white;
+    border: solid var(--button);
+    border-radius: 5px;
+    background-color: var(--button);
+    font-weight: 700;
+    font-size: 100%;
+  }
+
+.fields-enquete {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+}
+
+.column-enquete {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+  
+  .container-modal-enquete {
+    display: flex;
+    justify-content:space-around;
+    flex-direction: column;
+  }
+  
+  .container-modal-enquete button:hover {
+      background-color: var(--hover);
+    }
+  
+  .close-enquete {
+    width: 5%;  
+    height: 100%;  
+    margin-left: 1%;
+  }
+  
+  .confirm-enquete {
+    width: 20%;  
+    height: 40px;
+    margin-bottom: 6%;
+    margin-left: 1%;
+  }
+  
+  .row-enquete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+  }
+
+  .title-modal-enquete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .fields-enquete h1 {
+    color: var(--color2);
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  @media (max-width: 1150px) {
+    .close-enquete {
+      width: 8%;
+    }
+    .confirm-enquete {
+      margin-bottom: 0;
+    }
+    .container-modal-enquete {
+      height: 100%;
+    }
+    .exit-enquete {
+      margin: 0;
+    }
+  }
+  
+  @media (max-width: 920px) {
+    .confirm-enquete {
+      width: 35%;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .close-enquete {
+      width: 12%;
+    }
+  }
+  
+  @media (max-width: 260px) {
+    .close-enquete {
+      width: 20%;
+    }
+    .confirm-enquete {
+      width: 45%;
+    }
+  }
+  
