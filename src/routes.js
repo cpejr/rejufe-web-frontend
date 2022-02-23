@@ -16,8 +16,12 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
+
 import ConsultaAssociados from './pages/ConsultaAssociados';
 import FichaAssociados from './pages/FichaAssociados';
+
+import Footer from './components/Footer';
+
 
 export function UserHeader() {
   return (
@@ -55,6 +59,7 @@ function Routes() {
         <Route path="/ConsultaAssociados" component={ConsultaAssociados} />
         <Route path="/FichaAssociados" component={FichaAssociados} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
