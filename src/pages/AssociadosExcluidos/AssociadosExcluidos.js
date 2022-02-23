@@ -41,7 +41,7 @@ function ExcludedAssociates() {
       auxAssociate.sort();
       setId(AssociatesId);
       setAllAssociates(auxAssociate);
-      setUse(!use);
+      setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
