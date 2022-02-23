@@ -15,7 +15,6 @@ function EditUserInputs({
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
   };
-  // console.log("🚀 ~ file: editUserInputs.js ~ line 21 ~ associate", associate);
   return (
     <Box
       component="form"

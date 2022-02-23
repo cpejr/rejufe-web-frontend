@@ -340,7 +340,7 @@ function TableComponent({
                         style={{ textDecoration: 'none' }}
                         // activeStyle={{ color: 'white' }}
                         to={{
-                          pathname: '/editarassociados',
+                          pathname: '/editar-associados',
                           state: {
                             id: id[index + (page * 10)],
                           },

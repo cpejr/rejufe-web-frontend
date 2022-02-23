@@ -19,8 +19,7 @@ function EditarAssociados(id) {
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
-
-  useEffect(async () => {
+  async function setAssociatesInfo() {
     setLoading(true);
     try {
       const response = await managerService.getById(associateId);
@@ -70,7 +69,7 @@ function EditarAssociados(id) {
       setLoading(false);
     }
     setLoading(false);
-  }, []);
+  }
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -126,11 +125,14 @@ function EditarAssociados(id) {
     }
     setLoading(false);
   }
+  useEffect(() => {
+    setAssociatesInfo();
+  }, []);
 
   return (
     <div className="edit-associate-container">
       <h1 className="edit-associate-title"><div className="edit-associate-text-margin">Editar Associado</div></h1>
-      {formsEdit.map((line) => (
+      {formsEdit?.map((line) => (
         <Box>
           <h2 className="edit-associate-title"><div className="edit-associate-text-margin">{line.title}</div></h2>
           <p className="edit-associate-text-field">

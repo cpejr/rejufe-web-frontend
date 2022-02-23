@@ -50,14 +50,10 @@ function AdmRegistros() {
     'Status',
   ];
 
-  const titleTable = [
-    'Manutenção em associados',
-  ];
-
   return (
-    <div className="container-administration">
+    <div className="container-administration-register">
       <TableComponent
-        titleTable={titleTable}
+        titleTable="Manutenção em associados"
         id={id}
         sequentialId={sequentialId}
         rows={associates}

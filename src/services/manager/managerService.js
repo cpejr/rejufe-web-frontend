@@ -52,8 +52,7 @@ export const sendResetEmail = async (email) => {
 };
 
 export const getAssociates = async (field, filter) => {
-  // eslint-disable-next-line prefer-const
-  let times = 0;
+  const times = 0;
   let allAssociates = [];
   const response = await requesterService.getAssociates(times, field, filter);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
