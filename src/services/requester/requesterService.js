@@ -13,6 +13,8 @@ export const sendResetEmail = (email) => httpClient.post('/login/forgotten_passw
 
 export const register = (body) => httpClient.post('/usuario', body);
 
+export const registerExternal = (body) => httpClient.post('/usuario/externalAssociateRegister', body);
+
 export const getById = (id) => httpClient.get(`/usuario/${id}`);
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
   params: {
