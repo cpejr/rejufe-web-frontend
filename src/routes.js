@@ -36,6 +36,7 @@ export function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
+        <Route path="/ConsultaAssociados" component={ConsultaAssociados} />
       </Switch>
     </Header>
   );
