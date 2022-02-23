@@ -16,7 +16,6 @@ function EditarAssociados(id) {
   const associateId = id.location.state.id;
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState('');
-  // eslint-disable-next-line no-unused-vars
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
