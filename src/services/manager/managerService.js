@@ -46,16 +46,13 @@ export const sendResetEmail = async (email) => {
 };
 
 export const getAssociates = async (field, filter) => {
+  // eslint-disable-next-line prefer-const
   let times = 0;
-  let response;
-
   let allAssociates = [];
-  do {
-    response = await requesterService.getAssociates(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allAssociates = allAssociates.concat(response.data);
-    times += 1;
-  } while (response.data.length === 0);
+  const response = await requesterService.getAssociates(times, field, filter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  allAssociates = allAssociates.concat(response.data);
+
   return allAssociates;
 };
 
