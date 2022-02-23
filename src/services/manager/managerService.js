@@ -59,12 +59,12 @@ export const getExcludedAssociate = async (status) => {
   return response.data;
 };
 
-export const deleteAssociate = async (AssociateId) => {
-  const response = await requesterService.deleteAssociate(AssociateId);
+export const deleteAssociate = async (associateId) => {
+  const response = await requesterService.deleteAssociate(associateId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const updateAssociate = async (AssociateId, body) => {
-  const response = await requesterService.updateAssociate(AssociateId, body);
+export const updateAssociate = async (associateId, body) => {
+  const response = await requesterService.updateAssociate(associateId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
