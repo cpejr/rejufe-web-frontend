@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './AlterarSenha.css';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import imagemFundo from '../../images/martelin.png';
 import { Modal } from '@material-ui/core';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';

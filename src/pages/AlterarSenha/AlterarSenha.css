@@ -1,131 +1,273 @@
 .containerAlterarSenha {
-    height: calc(100vh - 75px);
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: calc(100vh - 75px);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .boxAlterarSenha {
-    font-family: "Roboto", sans-serif;
-    width: 50%;
-    height: 70%;
-    max-height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid;
-    border-color: #0b162b;
-    border-radius: 20px;
-    background-color: #e8e8e8;
-    padding: 5%;
-    text-align: justify;
-    color: black;
+  font-family: 'Roboto', sans-serif;
+  width: 50%;
+  height: 50%;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+  border-color: #0b162b;
+  border-radius: 20px;
+  background-color: #e8e8e8;
+  padding: 4%;
+  text-align: justify;
+  color: black;
 }
 
 .boxAlterarSenha button {
-    width: 120px;
-    height: 60px;
-    border-radius: 5px;
-    border: 1px solid;
-    border-color: #0b162b;
-    background-color: #0b162b;
-    color: white;
-    font-size: 14pt;
+  width: 120px;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #0b162b;
+  background-color: #0b162b;
+  color: white;
+  font-size: 14pt;
 }
 
-.boxAlterarSenha h1 { 
-    font-size: 35pt;
-    margin-bottom: 20px;
-    font-weight: 100;
+.boxAlterarSenha h1 {
+  font-size: 35pt;
+  margin-bottom: 20px;
+  font-weight: 100;
 }
 
 .boxAlterarSenha h2 {
-    margin: 0;
-    margin-bottom: 20px;
-    font-weight: 100;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 100;
 }
 
-button:hover{
-    cursor: pointer;
+button:hover {
+  cursor: pointer;
 }
 
 .modalStyleAlterarSenha {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.popUpAlterarSenha { 
-    font-family: "Roboto", sans-serif;
-    width: 45%;
-    height: 30%;
-    padding: 2%;
-    background-color: white;
-    color: black;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
+.popUpAlterarSenha {
+  font-family: 'Roboto', sans-serif;
+  width: 45%;
+  height: 30%;
+  padding: 2%;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 
-.popUpAlterarSenha h1 { 
-    margin-bottom: 10px;
-    font-weight: 100;
+.popUpAlterarSenha h1 {
+  margin-bottom: 10px;
+  font-weight: 400;
 }
 
-.popUpAlterarSenha button { 
-    width: 120px;
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    color: blue;
+.popUpAlterarSenha button {
+  width: 120px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  color: blue;
 }
 
-.popUpAlterarSenha button+button{
-    color: red;
+.popUpAlterarSenha button + button {
+  color: red;
 }
 
 .grupoButtonsAlterarSenha {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 3000px) and (min-width: 1500px) {
+  .boxAlterarSenha {
+    height: 40%;
+    padding: 2%;
+  }
+  .modalStyleAlterarSenha {
+    height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    padding: 2%;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 40px;
+    padding-bottom: 20px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 30px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 25px;
+  }
 }
 
-@media (max-width: 715px) {
-    .boxAlterarSenha{
-        width: 70%;
-    }
-
-    .boxAlterarSenha h1{
-        font-size: 30pt;
-    }
+@media (max-width: 1500px) and (min-width: 1050px) {
+  .boxAlterarSenha {
+    height: 60%;
+  }
+  .modalStyleAlterarSenha {
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 32px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 22px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 20px;
+  }
 }
 
-@media (max-width:500px){
-    .boxAlterarSenha h1{
-        font-size: 25pt;
-    }
-    .boxAlterarSenha h2{
-        font-size: 14pt;
-    }
+@media (max-width: 1050px) and (min-width: 715px) {
+  .boxAlterarSenha {
+    height: 50%;
+  }
+  .modalStyleAlterarSenha {
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 35px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 22px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 20px;
+  }
 }
 
-@media (max-width:395px){
-    .boxAlterarSenha h1{
-        font-size: 20pt;
-    }
-    .boxAlterarSenha h2{
-        font-size: 11pt;
-    }
+@media (max-width: 715px) and (min-width: 500px) {
+  .boxAlterarSenha {
+    height: 50%;
+    width: 70%;
+  }
+  .modalStyleAlterarSenha {
+    height: 100%;
+    width: 100%;
+  }
+  .boxAlterarSenha h1 {
+    font-size: 30pt;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 30px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 25px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 15px;
+  }
+}
 
-    .boxAlterarSenha button {
-        width: 100px;
-        height: 50px;
-        font-size: 11pt;
-    }
+@media (max-width: 500px) and (min-width: 395px) {
+  .boxAlterarSenha {
+    height: 40%;
+    text-align: center;
+  }
+  .modalStyleAlterarSenha {
+    height: 100%;
+    width: 100%;
+  }
+  .boxAlterarSenha h1 {
+    font-size: 25pt;
+  }
+  .boxAlterarSenha h2 {
+    font-size: 14pt;
+  }
+  .textoPopUpAlterarSenha {
+    padding: 2%;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 30px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 20px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 395px) and (min-width: 310px) {
+  .boxAlterarSenha {
+    height: 40%;
+    text-align: center;
+  }
+  .modalStyleAlterarSenha {
+    height: 90%;
+    width: 100%;
+  }
+  .boxAlterarSenha h1 {
+    font-size: 20pt;
+  }
+  .boxAlterarSenha h2 {
+    font-size: 11pt;
+  }
+  .boxAlterarSenha button {
+    width: 80px;
+    height: 40px;
+    font-size: 11pt;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 20px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 15px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 310px) {
+  .boxAlterarSenha {
+    height: 50%;
+    text-align: center;
+  }
+  .modalStyleAlterarSenha {
+    height: 100%;
+    width: 100%;
+  }
+  .boxAlterarSenha h1 {
+    font-size: 20pt;
+  }
+  .boxAlterarSenha h2 {
+    font-size: 11pt;
+  }
+  .boxAlterarSenha button {
+    width: 80px;
+    height: 40px;
+    font-size: 11pt;
+  }
+  .textoPopUpAlterarSenha h1 {
+    font-size: 20px;
+  }
+  .textoPopUpAlterarSenha p {
+    font-size: 12px;
+  }
+  .popUpAlterarSenha button {
+    font-size: 8px;
+  }
 }
