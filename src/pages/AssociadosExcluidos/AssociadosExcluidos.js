@@ -1,14 +1,10 @@
 /* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import './AssociadosExcluidos.css';
 import { toast } from 'react-toastify';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ExcludedAssociates/ExcludedAssociates';
-import RemoveModal from '../../components/RemoveModal/RemoveModal';
 
 toast.configure();
 
