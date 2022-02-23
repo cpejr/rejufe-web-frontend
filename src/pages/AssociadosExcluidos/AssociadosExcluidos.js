@@ -4,7 +4,7 @@ import './AssociadosExcluidos.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/ExcludedAssociates/ExcludedAssociates';
+import TableComponent from '../../components/dashboard/dashboardComponent';
 
 toast.configure();
 

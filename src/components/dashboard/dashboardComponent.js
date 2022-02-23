@@ -15,9 +15,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import TableFooter from '@mui/material/TableFooter';
 import { useMediaQuery } from '@mui/material/';
@@ -26,6 +24,8 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import cssColorCodes from '../cssColorCodes/cssColorCodes';
+import RemoveModal from '../RemoveModal/RemoveModal';
+import EditModal from '../EditModal/EditModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -99,7 +99,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, order, edit, search, searchFile,
+  titles, rows, order, associateId, edit, search, searchFile,
 }) {
   // const theme = useTheme;
   const [page, setPage] = useState(0);
@@ -170,6 +170,33 @@ function TableComponent({
         },
   };
 
+  const tableFontProps = {
+    style: matchesFont85
+      ? {
+        textAlign: 'center',
+        fontSize: '1em',
+        fontWeight: '900',
+        backgroundColor: '#E5E4E2',
+        color: '#2574A9',
+        padding: '6px',
+      }
+      : matchesFont90
+        ? {
+          fontSize: '1em',
+          fontWeight: '900',
+          textAlign: 'center',
+          backgroundColor: '#E5E4E2',
+          color: '#2574A9',
+        }
+        : {
+          fontSize: '1.2em',
+          fontWeight: '900',
+          textAlign: 'center',
+          backgroundColor: '#E5E4E2',
+          color: '#2574A9',
+        },
+  };
+
   const buttonFontProps = {
     style: matchesFont85
       ? {
@@ -189,6 +216,19 @@ function TableComponent({
   };
 
   const tableProps = {
+    sx: matchesFont400px
+      ? {
+        minWidth: 400,
+      }
+      : { minWidth: 650 },
+    size: matchesFont85
+      ? 'small'
+      : matchesFont90
+        ? 'medium'
+        : 'big',
+  };
+
+  const tableTitleProps = {
     sx: matchesFont400px
       ? {
         minWidth: 400,
@@ -221,6 +261,17 @@ function TableComponent({
         aria-label="caption table"
       >
         <TableHead style={{ background: `${cssColorCodes.secondary}` }}>
+          <TableRow
+            {...tableTitleProps}
+          >
+            <TableCell
+              align="center"
+              {...tableFontProps}
+              colSpan={5}
+            >
+              Manutenção em Associados
+            </TableCell>
+          </TableRow>
           <TableRow>
             {titles?.map((title) => (
               <TableCell {...titleFontProps}>
@@ -232,7 +283,7 @@ function TableComponent({
         <TableBody>
           {rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            ?.map((row) => (
+            ?.map((row, index) => (
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
@@ -249,14 +300,10 @@ function TableComponent({
                 ) : edit ? (
                   <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="delete">
-                      <DeleteIcon />
-                      {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                      <RemoveModal id={associateId[index + (page * 10)]} />
                     </IconButton>
                     <IconButton color="primary" aria-label="Edit">
-                      <EditIcon />
-                      {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                      <EditModal id={associateId[index + (page * 10)]} associate={row} />
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (
