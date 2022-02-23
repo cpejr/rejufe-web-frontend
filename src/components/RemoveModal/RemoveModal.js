@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import './RemoveModal.css';
 import * as managerService from '../../services/manager/managerService';
 
-export default function RemoveModal({ id }) {
+export default function RemoveModal({ id, setUse }) {
   async function handleSubmit() {
     try {
       await managerService.deleteAssociate(id);
@@ -19,6 +19,7 @@ export default function RemoveModal({ id }) {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setUse(true);
     } catch (error) {
       console.error(error);
     }

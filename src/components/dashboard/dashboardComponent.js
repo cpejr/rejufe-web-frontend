@@ -300,7 +300,7 @@ function TableComponent({
                 ) : edit ? (
                   <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="delete">
-                      <RemoveModal id={associateId[index + (page * 10)]} />
+                      <RemoveModal setUse={setUse} id={associateId[index + (page * 10)]} />
                     </IconButton>
                     <IconButton color="primary" aria-label="Edit">
                       <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
