@@ -1,6 +1,6 @@
 import React from 'react';
 import LottieControl from './Animation';
-import './notFound.css';
+import './NotFound.css';
 
 export default function NotFound() {
   return (

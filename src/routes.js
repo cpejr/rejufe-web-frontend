@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import EsqueciSenha from './pages/EsqueciSenha';
@@ -18,6 +20,14 @@ import ModuloUsuarios from './pages/ModuloUsuarios';
 import AlterarSenha from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 
+/* function notFound() {
+  return (
+    <Switch>
+      <Route path="*" component={NotFound} />
+    </Switch>
+  );
+} */
+
 function UserHeader() {
   return (
     <Header>
@@ -35,7 +45,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
-        <Route path="*" exact component={NotFound} />
+        <Redirect to="/notfound" />
       </Switch>
     </Header>
   );
@@ -49,6 +59,7 @@ function Routes() {
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
+        <Route path="/notfound" component={NotFound} />
         <Route path="/" component={UserHeader} />
       </Switch>
     </BrowserRouter>

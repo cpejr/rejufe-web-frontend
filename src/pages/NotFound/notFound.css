@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - 75px);
+    height: 100vh;
     font-size: 12pt;
 }
 
@@ -59,9 +59,6 @@
     .textNotFound {
         width: 100%;
         margin: 0;
-    }
-    .containerNotFound {
-        height: calc(100vh - 50px);
     }
 }
 
