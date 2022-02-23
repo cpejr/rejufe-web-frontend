@@ -5,13 +5,13 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import formsData from '../../componentes/formsData/formsCadastro';
 import RegisterInputs from '../../componentes/formsInputs/registerInputs';
 import { initialAssociateState, initialAssociateErrorState } from '../../componentes/initialStates/initialStates';
-import './Cadastro.css';
+import './CadastroExterno.css';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-function Cadastro() {
+function CadastroExterno() {
   const [initialErrorState, setError] = useState(initialAssociateErrorState);
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState(initialAssociateState);
@@ -296,7 +296,7 @@ function Cadastro() {
         email_ASCOM: dados.emailListaAscom === '' ? undefined : dados.emailListaAscom,
         admission_date: dados.admissao,
       };
-      await managerService.register(body);
+      await managerService.registerExternal(body);
       toast.success('Cadastrado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -339,4 +339,4 @@ function Cadastro() {
     </div>
   );
 }
-export default Cadastro;
+export default CadastroExterno;
