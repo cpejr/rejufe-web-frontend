@@ -145,6 +145,10 @@
   .EditModal-ButtonConfirm{
     font-size: 14px;
   }
+  .EditModal-EditGroup .css-i4bv87-MuiSvgIcon-root {
+    width: 0.75em !important;
+    height: 0.75em !important;
+  }
 }
 
 @media(max-width: 395px){
