@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -17,12 +18,18 @@ function ConsultaAssociados() {
     };
   }
 
+  function compare(a, b) {
+    const x = a.name.toUpperCase();
+    const y = b.name.toUpperCase();
+
+    return x === y ? 0 : x > y ? 1 : -1;
+  }
+
   async function getAllAssociates() {
     const auxAssociate = [];
     const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
-      console.log('🚀 ~ file: ConsultaAssociados.js ~ line 25 ~ getAllAssociates ~ allAssociates', allAssociates);
       allAssociates.forEach((object) => {
         associateId.push(object._id);
         auxAssociate.push(createData(
@@ -34,7 +41,8 @@ function ConsultaAssociados() {
           object.email,
         ));
       });
-      auxAssociate.sort();
+
+      auxAssociate.sort(compare);
       setId(associateId);
       setAllAssociates(auxAssociate);
     } catch (error) {
@@ -57,8 +65,11 @@ function ConsultaAssociados() {
   ];
 
   return (
-    <div className="container-administration">
-      <TableComponent id={id} rows={associates} titles={titles} search />
+    <div>
+      <h1 className="titleConsultAssociate"> Associados Ativos </h1>
+      <div className="container-administration">
+        <TableComponent id={id} rows={associates} titles={titles} search />
+      </div>
     </div>
   );
 }

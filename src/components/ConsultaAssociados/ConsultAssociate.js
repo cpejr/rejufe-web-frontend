@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -205,17 +204,23 @@ function ConsultaAssociados({
         ? 'medium'
         : 'big',
   };
-
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
+  function redirect(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/FichaAssociados?associateId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   return (
     <TableContainer
       component={Paper}
@@ -245,16 +250,8 @@ function ConsultaAssociados({
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton color="primary" aria-label="Search">
-                      <Link to={{
-                        pathname: '/FichaAssociados',
-                        state: {
-                          id: id[index + (page * 10)],
-                        },
-                      }}
-                      >
-                        <SearchIcon />
-                      </Link>
+                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                      <SearchIcon />
                     </IconButton>
                   </TableCell>
                 ) : edit ? (
@@ -288,7 +285,6 @@ function ConsultaAssociados({
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
                 {...cellFontProps}
-                style={{ background: 'green' }}
                 colSpan={6}
               />
             </TableRow>

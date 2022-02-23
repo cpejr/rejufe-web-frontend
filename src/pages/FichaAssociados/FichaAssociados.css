@@ -1,14 +1,14 @@
 
-table,th,td
+th,td
 {
-border:1px solid #DCDCDC;
+       border:1px solid #DCDCDC;
 }
-.container{
 
-width:300px;
-border-style:solid;
-border-width: 2px;
-background-color: #DCDCDC;
+.container{
+       width:300px;
+       border-style:solid;
+       border-width: 2px;
+       background-color: #DCDCDC;
 
 }
 .row_group {
@@ -37,6 +37,11 @@ background-color: #DCDCDC;
        position: center;
        margin-left: 15%;
        margin-right: 15%;
+       background-color: #f9f9f9;
+       margin-top: 2%;
+       margin-bottom: 5%;
+       border:1px solid #DCDCDC;
+
 }
 
 .tContainer{
@@ -60,6 +65,7 @@ background-color: #DCDCDC;
        padding: 8px 10px;
        text-decoration: none;
        text-align: left;
+       height: "100%"
    }
    .tdTitle {
        background-color: #e7e7e7;
@@ -78,3 +84,11 @@ background-color: #DCDCDC;
        text-align: center;
 }
 
+.subtitle{
+       font-weight: bold;
+       vertical-align: top;
+}
+
+@media screen {
+       
+}
