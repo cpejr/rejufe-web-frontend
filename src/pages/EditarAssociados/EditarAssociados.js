@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './editarassociados.css';
 import { toast } from 'react-toastify';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
+import moment from 'moment';
 import formsEdit from '../../components/formsData/formsEdit';
 import EditUserInputs from '../../components/formsInputs/editUserInputs';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import cssColorCodes from '../../components/cssColorCodes/cssColorCodes';
 
 toast.configure();
 
@@ -16,10 +16,63 @@ function EditarAssociados(id) {
   const associateId = id.location.state.id;
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState('');
+  // eslint-disable-next-line no-unused-vars
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
 
+  useEffect(async () => {
+    setLoading(true);
+    try {
+      const response = await managerService.getById(associateId);
+      const associateuP = [
+        {
+          status: response.status,
+          name: response.name,
+          email: response.email,
+          office: response.office,
+          nacionality: response.nacionality,
+          cpf: response.cpf,
+          birth: moment(response.birth).format('YYYY-MM-DD'),
+          place_of_birth: response.place_of_birth,
+          gender: response.gender,
+          civil_state: response.civil_state,
+          spouse: response.spouse,
+          birth_spouse: moment(response.birth_spouse).format('YYYY-MM-DD'),
+          sons: response.sons,
+          cep: response.cep,
+          profissional_address: response.profissional_address,
+          profissional_number: response.profissional_number,
+          profissional_complement: response.profissional_complement,
+          profissional_district: response.profissional_district,
+          profissional_city: response.profissional_city,
+          profissional_state: response.profissional_state,
+          allocation: response.allocation,
+          acting: response.acting,
+          personal_cep: response.personal_cep,
+          personal_address: response.personal_address,
+          personal_number: response.personal_number,
+          personal_complement: response.personal_complement,
+          personal_district: response.personal_district,
+          personal_city: response.personal_city,
+          personal_state: response.personal_state,
+          telephone: response.telephone,
+          fax: response.fax,
+          cell_phone_number: response.cell_phone_number,
+          email_REJUFE: response.email_REJUFE,
+          email_ASCOM: response.email_ASCOM,
+          admission_date: moment(response.admission_date).format('YYYY-MM-DD'),
+        },
+      ];
+      setDados(...associateuP);
+      console.log(response.birth);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error); // TO DO: Substitute for redirect to not Found when done
+      setLoading(false);
+    }
+    setLoading(false);
+  }, []);
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -29,15 +82,15 @@ function EditarAssociados(id) {
         name: dados.name,
         email: dados.email,
         office: dados.office,
-        nacionality: dados.nacionalidade,
+        nacionality: dados.nacionality,
         cpf: dados.cpf,
         birth: dados.birth,
-        place_of_birth: dados.naturalidade,
-        gender: dados.sexo,
-        civil_state: dados.estadoCivil,
-        spouse: dados.conjuge === '' ? undefined : dados.conjuge,
-        birth_spouse: dados.nascimentoConjuge === '' ? undefined : dados.nascimentoConjuge,
-        sons: dados.filhos === '' ? undefined : dados.filhos,
+        place_of_birth: dados.place_of_birth,
+        gender: dados.gender,
+        civil_state: dados.civil_state,
+        spouse: dados.spouse,
+        birth_spouse: dados.birth_spouse,
+        sons: dados.sons,
         cep: dados.cep,
         profissional_address: dados.profissional_address,
         profissional_number: dados.profissional_number,
@@ -54,11 +107,11 @@ function EditarAssociados(id) {
         personal_district: dados.personal_district,
         personal_city: dados.personal_city,
         personal_state: dados.personal_state,
-        telephone: dados.telephone === '' ? undefined : dados.telephone,
-        fax: dados.fax === '' ? undefined : dados.fax,
+        telephone: dados.telephone,
+        fax: dados.fax,
         cell_phone_number: dados.cell_phone_number,
-        email_REJUFE: dados.email_REJUFE === '' ? undefined : dados.email_REJUFE,
-        email_ASCOM: dados.email_ASCOM === '' ? undefined : dados.email_ASCOM,
+        email_REJUFE: dados.email_REJUFE,
+        email_ASCOM: dados.email_ASCOM,
         admission_date: dados.admission_date,
       };
       await managerService.updateUser(body, associateId);

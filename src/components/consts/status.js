@@ -1,10 +1,10 @@
 const status = [
   {
-    value: 'ATIVO',
+    value: 'A',
     label: 'A',
   },
   {
-    value: 'EXCLUIDO',
+    value: 'E',
     label: 'E',
   },
 ];

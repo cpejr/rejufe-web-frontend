@@ -331,12 +331,15 @@ function TableComponent({
                 {sequentialId
                   && (
                     <TableCell {...cellFontProps}>
-                      <Link to={{
-                        pathname: '/editarassociados',
-                        state: {
-                          id: id[index + (page * 10)],
-                        },
-                      }}
+                      <Link
+                        style={{ textDecoration: 'none' }}
+                        // activeStyle={{ color: 'white' }}
+                        to={{
+                          pathname: '/editarassociados',
+                          state: {
+                            id: id[index + (page * 10)],
+                          },
+                        }}
                       >
                         {sequentialId[index + (page * 10)]}
                       </Link>

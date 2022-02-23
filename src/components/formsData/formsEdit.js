@@ -4,6 +4,9 @@ import genres from '../consts/genres';
 import lotacao from '../consts/lotacao';
 import status from '../consts/status';
 import brazilianStates from '../consts/brazilianStates';
+import {
+  cpfMask, cellphoneMask, phoneMask, cepMask,
+} from '../masks/masks';
 
 const formsEdit = [
   {
@@ -43,9 +46,10 @@ const formsEdit = [
         label: "CPF",
         field: null,
         select: false,
+        mask: cpfMask,
       },
       {
-        type: "text",
+        type: "date",
         id: "birth",
         label: "Nascimento",
         field: null,
@@ -80,7 +84,7 @@ const formsEdit = [
         select: false,
       },
       {
-        type: "text",
+        type: "date",
         id: "birth_spouse",
         label: "Nascimento do cônjuge",
         field: null,
@@ -99,6 +103,7 @@ const formsEdit = [
         label: "Cep",
         field: null,
         select: false,
+        mask: cepMask,
       },
       {
         type: "text",
@@ -168,6 +173,7 @@ const formsEdit = [
         label: "Cep",
         field: null,
         select: false,
+        mask: cepMask,
       },
       {
         type: "text",
@@ -217,6 +223,7 @@ const formsEdit = [
         label: "Telefone",
         field: null,
         select: false,
+        mask: phoneMask,
       },
       {
         type: "text",
@@ -231,6 +238,7 @@ const formsEdit = [
         label: "Celular",
         field: null,
         select: false,
+        mask: cellphoneMask,
       },
       {
         type: "text",
@@ -254,7 +262,7 @@ const formsEdit = [
         select: false,
       },
       {
-        type: "text",
+        type: "date",
         id: "admission_date",
         label: "Admissão",
         field: null,
