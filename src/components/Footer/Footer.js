@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import logoCPEJr from '../../images/logoCPEJr.png';
+import logoRejufe from '../../images/logoSemFundo.png';
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
         <div className="RejufeImageFooter">
           <img
             className="imageRejufeLogo"
-            src="images/logoSemFundo.png"
+            src={logoRejufe}
             alt="logotipo Rejufe"
           />
         </div>
