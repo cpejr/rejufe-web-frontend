@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './AlterarSenha.css';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import imagemFundo from '../../images/martelin.png';
 import { Modal } from '@material-ui/core';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,10 +35,10 @@ function AlterarSenha() {
     <div className="containerAlterarSenha">
       <div className="boxAlterarSenha">
         <h1>Alterar Senha</h1>
-        <h2>
+        <p>
           Clique no botão abaixo para que um link seja enviado para o seu
           email com os dados de alteração de senha.
-        </h2>
+        </p>
         <button type="submit" onClick={handleOpen}>Enviar</button>
       </div>
       <Modal open={open} onClose={handleClose} className="modalStyleAlterarSenha">
