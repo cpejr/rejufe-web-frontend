@@ -34,13 +34,11 @@ function AlterarSenha() {
   return (
     <div className="containerAlterarSenha">
       <div className="boxAlterarSenha">
-        <div className="textosAlterarSenha">
-          <h1>Alterar Senha</h1>
-          <p>
-            Clique no botão abaixo para que um link seja enviado para o seu
-            email com os dados de alteração de senha.
-          </p>
-        </div>
+        <h1>Alterar Senha</h1>
+        <p>
+          Clique no botão abaixo para que um link seja enviado para o seu
+          email com os dados de alteração de senha.
+        </p>
         <button type="submit" onClick={handleOpen}>Enviar</button>
       </div>
       <Modal open={open} onClose={handleClose} className="modalStyleAlterarSenha">
