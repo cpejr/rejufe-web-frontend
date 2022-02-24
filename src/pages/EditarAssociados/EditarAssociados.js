@@ -12,8 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 function EditarAssociados(id) {
-  // eslint-disable-next-line react/destructuring-assignment
-  const associateId = id.location.state.id;
+  const { location } = id;
+  const associateId = location.state.id;
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState('');
   function handleChange(value, field) {
