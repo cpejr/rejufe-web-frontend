@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: '30%',
+    width: '25%',
     height: '70%',
     backgroundColor: 'white',
     borderRadius: '8px',
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     ['@media (max-width:1150px)']: { // eslint-disable-line no-useless-computed-key
-      height: '45vh',
     },
   },
 
@@ -51,9 +50,11 @@ const theme = createTheme({
     MuiFormControl: {
       styleOverrides: {
         root: {
-          marginTop: '20px',
+          marginBottom: '5%',
           height: '50px',
           width: '100%',
+          display: 'flex',
+          alignItems: 'center',
           justifyContent: 'center',
         },
       },
@@ -100,7 +101,19 @@ export default function ModalEnquete() {
                 handleClose();
               }}
             >
-              <CloseIcon size={30} style={{ color: '#264A6F' }} />
+              <CloseIcon
+                size={30}
+                sx={[
+                  {
+                    color: '#264A6F',
+                    '&:hover': {
+                      color: 'white',
+                      backgroundColor: '#264A6F',
+                      borderRadius: '5px',
+                    },
+                  },
+                ]}
+              />
             </button>
           </div>
           <div className="title-modal-enquete">
@@ -119,6 +132,7 @@ export default function ModalEnquete() {
               <InputLabel>Data de fim </InputLabel>
               <Input type="Date" />
             </FormControl>
+            <h1>Alternativas:</h1>
             <FormControl className="row-enquete">
               <InputLabel>Alternativa 1 </InputLabel>
               <Input />
@@ -127,10 +141,22 @@ export default function ModalEnquete() {
               <InputLabel>Alternativa 2 </InputLabel>
               <Input />
             </FormControl>
-            <button type="button">
-              <AddIcon style={{ color: '#264A6F' }} />
+            <button type="button" className="plus-enquete">
+              <AddIcon
+                size={30}
+                sx={[
+                  {
+                    color: '#264A6F',
+                    '&:hover': {
+                      color: 'white',
+                      backgroundColor: '#264A6F',
+                      borderRadius: '5px',
+                    },
+                  },
+                ]}
+              />
             </button>
-            <FormControl className="row-enquete">
+            <div className="end-page-enquete">
               <button
                 className="confirm-enquete"
                 type="button"
@@ -140,7 +166,7 @@ export default function ModalEnquete() {
               >
                 Confirmar
               </button>
-            </FormControl>
+            </div>
           </div>
         </div>
       </div>

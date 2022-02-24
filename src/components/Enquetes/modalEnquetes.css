@@ -1,40 +1,59 @@
 .container-modal-enquete button {  
-  color: white;
-  font-weight: 700;
-  font-size: 100%;
+  height: 100%;
 }
-  
-.container-modal-enquete button:hover {
-  background-color: var(--hover);
+
+.plus-enquete {
+  border: none;
+  background-color: transparent;
+  margin-bottom: 5%;
 }
 
 .form-enquete {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
-  
+
+.form-enquete h1 {
+  margin-bottom: 2%;
+  color: var(--color2);
+  font-size: 20px;
+  font-weight: 300;
+}
+
 .close-enquete {
-  width: 5%;  
-  height: 100%;  
+  width: 30px;  
+  height: 30px;  
   margin-left: 1%;
   background-color: transparent;
   border: none;
 }
   
 .confirm-enquete {
-  width: 20%;  
+  width: 30%;  
   height: 40px;
-  margin-bottom: 6%;
-  margin-left: 1%;
+  background-color: var(--primary);
+  color: var(--fontColor1);
+  border: solid var(--primary);
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  font-size: 100%;
 }
 
 .title-modal-enquete {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2%;
+  margin: 5% 0;
+}
+
+.end-page-enquete {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .title-modal-enquete h1 {
@@ -42,10 +61,6 @@
   font-size: 30px;
   font-weight: 300;
   margin: 0;
-}
-
-.MuiFormControl-root {
-  margin-top: 20px;
 }
   
 @media (max-width: 1150px) {
@@ -62,6 +77,12 @@
     margin: 0;
   }
 }
+
+  @media (max-width: 1400) {
+    .title-modal-enquete h1 {
+      font-size: 20px;
+    }
+  }
   
   @media (max-width: 920px) {
     .confirm-enquete {
