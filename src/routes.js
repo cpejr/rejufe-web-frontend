@@ -37,7 +37,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
-        <Redirect to="/notfound" />
+        <Redirect to="/NotFound" />
       </Switch>
     </Header>
   );
