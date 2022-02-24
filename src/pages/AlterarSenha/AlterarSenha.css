@@ -28,7 +28,7 @@
 .boxAlterarSenha button {
   width: 11vw;
   height: 4vw;
-  margin-top: 20px;
+  margin-top: 4%;
   min-width: 100px;
   min-height: 50px;
   border-radius: 0.5vw;
@@ -41,7 +41,7 @@
 
 .boxAlterarSenha h1 {
   font-size: 2em;
-  margin-bottom: 20px;
+  margin-bottom: 4%;
   font-weight: 100;
 }
 
