@@ -21,7 +21,7 @@
 
 .textNotFound {
     font-family: "Roboto", sans-serif;
-    width: 500px;
+    width: 50%;
     margin-left: 30px;
     text-align: justify;
 }
@@ -46,10 +46,14 @@
 .textNotFound p + p {
     margin-top: 0.5vh;    
 }
+.animationNotFound{
+    width: 50%;
+}
 
-.animationNotFound {
-    min-width: 280px;
-    max-width: 500px;
+@media(min-width: 2000px) {
+    .containerNotFound{
+        font-size: 20pt;
+    }
 }
 
 @media(max-width: 1024px) {
@@ -59,6 +63,11 @@
     .textNotFound {
         width: 100%;
         margin: 0;
+    }
+    .animationNotFound {
+        width: 100%;
+        min-width: 280px;
+        max-width: 500px;
     }
 }
 
