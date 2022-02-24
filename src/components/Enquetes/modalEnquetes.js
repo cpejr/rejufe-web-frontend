@@ -6,9 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@mui/icons-material/Add';
 // import * as managerService from '../../../services/manager/managerService';
 import './modalEnquetes.css';
-import Divider from '@mui/material/Divider';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 function getModalStyle() {
   const top = 50;
@@ -29,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: '60vw',
-    height: '55vh',
+    width: '30%',
+    height: '70%',
     backgroundColor: 'white',
-    border: '2px solid #609694',
+    borderRadius: '8px',
     boxShadow: theme.palette.color4,
     padding: '1% 1%',
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
@@ -44,6 +45,36 @@ const useStyles = makeStyles((theme) => ({
   },
 
 }));
+
+const theme = createTheme({
+  components: {
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          marginTop: '20px',
+          height: '50px',
+          width: '100%',
+          justifyContent: 'center',
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          width: '80%',
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#264A6F',
+          fontWeight: '600',
+        },
+      },
+    },
+  },
+});
 
 toast.configure();
 
@@ -58,51 +89,48 @@ export default function ModalEnquete() {
     setOpen(false);
   };
   const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <div className="container-modal-enquete">
-        <div className="exit-enquete">
-          <button
-            className="close-enquete"
-            type="button"
-            onClick={() => {
-              handleClose();
-            }}
-          >
-            <CloseIcon size={30} />
-          </button>
-        </div>
-        <div className="title-modal-enquete">
-          <InputLabel>Insira as informações da nova enquete</InputLabel>
-        </div>
-        <div className="fields-enquete">
-          <div className="column-enquete">
-            <div className="row-enquete">
+    <ThemeProvider theme={theme}>
+      <div style={modalStyle} className={classes.paper}>
+        <div className="container-modal-enquete">
+          <div className="exit-enquete">
+            <button
+              className="close-enquete"
+              type="button"
+              onClick={() => {
+                handleClose();
+              }}
+            >
+              <CloseIcon size={30} style={{ color: '#264A6F' }} />
+            </button>
+          </div>
+          <div className="title-modal-enquete">
+            <h1>Insira as informações da nova enquete</h1>
+          </div>
+          <div className="form-enquete">
+            <FormControl>
               <InputLabel>Título</InputLabel>
               <Input />
-            </div>
-            <div className="row-enquete">
+            </FormControl>
+            <FormControl>
               <InputLabel>Data de início </InputLabel>
               <Input type="Date" />
-            </div>
-            <div className="row-enquete">
+            </FormControl>
+            <FormControl>
               <InputLabel>Data de fim </InputLabel>
               <Input type="Date" />
-            </div>
-          </div>
-          <Divider orientation="vertical" variant="middle" flexItem />
-          <div className="column-enquete">
-            <div className="row-enquete">
+            </FormControl>
+            <FormControl className="row-enquete">
               <InputLabel>Alternativa 1 </InputLabel>
               <Input />
-            </div>
-            <div className="row-enquete">
+            </FormControl>
+            <FormControl className="row-enquete">
               <InputLabel>Alternativa 2 </InputLabel>
               <Input />
-            </div>
+            </FormControl>
             <button type="button">
-              <AddIcon />
+              <AddIcon style={{ color: '#264A6F' }} />
             </button>
-            <div className="row-enquete">
+            <FormControl className="row-enquete">
               <button
                 className="confirm-enquete"
                 type="button"
@@ -112,12 +140,13 @@ export default function ModalEnquete() {
               >
                 Confirmar
               </button>
-            </div>
+            </FormControl>
           </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
+
   return (
     <div>
       <button
