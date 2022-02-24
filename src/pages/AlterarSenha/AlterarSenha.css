@@ -99,6 +99,10 @@
   color: blue;
 }
 
+.popUpAlterarSenha button:hover{
+  cursor: pointer;
+}
+
 .popUpAlterarSenha button + button {
   color: red;
 }
