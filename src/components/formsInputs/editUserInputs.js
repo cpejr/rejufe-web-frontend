@@ -11,6 +11,7 @@ function EditUserInputs({
   select,
   mask,
   dados,
+  disabled,
 }) {
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
@@ -83,6 +84,7 @@ function EditUserInputs({
           InputLabelProps={{
             shrink: true,
           }}
+          disabled={disabled}
           label={label}
           type={type}
           variant="standard"

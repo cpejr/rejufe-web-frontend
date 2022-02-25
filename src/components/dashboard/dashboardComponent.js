@@ -338,7 +338,6 @@ function TableComponent({
                     <TableCell {...cellFontProps}>
                       <Link
                         style={{ textDecoration: 'none' }}
-                        // activeStyle={{ color: 'white' }}
                         to={{
                           pathname: '/editar-associados',
                           state: {

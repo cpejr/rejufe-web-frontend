@@ -245,6 +245,7 @@ const formsEdit = [
         label: 'Email',
         field: null,
         select: false,
+        disabled: true,
       },
       {
         type: 'text',

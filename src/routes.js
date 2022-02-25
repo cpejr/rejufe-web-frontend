@@ -26,7 +26,7 @@ function UserHeader() {
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
-        <Route path="/adm-registros" component={AdmRegistros} />
+        <Route path="/administracao-registros" component={AdmRegistros} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />

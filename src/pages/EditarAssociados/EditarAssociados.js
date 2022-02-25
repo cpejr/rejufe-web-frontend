@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import moment from 'moment';
-import formsEdit from '../../components/formsData/formsEdit';
+import formsEdit from '../../components/formsData/formsStructure';
 import EditUserInputs from '../../components/formsInputs/editUserInputs';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
@@ -136,13 +136,14 @@ function EditarAssociados(id) {
         <Box>
           <h2 className="edit-associate-title"><div className="edit-associate-text-margin">{line.title}</div></h2>
           <p className="edit-associate-text-field">
-            {line.items.map((item) => (
+            {line.items?.map((item) => (
               <EditUserInputs
                 type={item.type}
                 id={item.id}
                 label={item.label}
                 field={item.field}
                 select={item.select}
+                disabled={item.disabled}
                 // eslint-disable-next-line react/jsx-no-bind
                 setDados={(value, entrada) => handleChange(value, entrada)}
                 mask={item.mask}
