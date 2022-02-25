@@ -337,7 +337,7 @@ function TableComponent({
                   && (
                     <TableCell {...cellFontProps}>
                       <Link
-                        style={{ textDecoration: 'none' }}
+                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
                         to={{
                           pathname: '/editar-associados',
                           state: {

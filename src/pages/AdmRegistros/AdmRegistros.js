@@ -52,8 +52,13 @@ function AdmRegistros() {
 
   return (
     <div className="container-administration-register">
+      <div className="title-adm-registers">
+        <h1>
+          {'Manutenção em associados '}
+        </h1>
+      </div>
+      <div className="line-table-registers" />
       <TableComponent
-        titleTable="Manutenção em associados"
         id={id}
         sequentialId={sequentialId}
         rows={associates}

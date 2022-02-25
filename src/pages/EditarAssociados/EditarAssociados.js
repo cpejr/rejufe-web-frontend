@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './editarassociados.css';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -16,6 +17,7 @@ function EditarAssociados(id) {
   const associateId = location.state.id;
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState('');
+  const history = useHistory();
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
@@ -116,6 +118,7 @@ function EditarAssociados(id) {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
+      history.push('/administracao-registros');
     } catch (error) {
       toast.error('Falha ao editar usuário!', {
         position: toast.POSITION.BOTTOM_RIGHT,
