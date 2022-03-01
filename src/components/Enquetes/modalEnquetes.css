@@ -1,11 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
 .container-modal-enquete button {  
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .plus-enquete {
   border: none;
   background-color: transparent;
   margin-bottom: 5%;
+  color: var(--color2);
+  font-weight: 700;
+  border-radius: 5px;
+  width: 60%;
 }
 
 .form-enquete {
@@ -40,6 +49,12 @@
   color: white;
   font-weight: 700;
   font-size: 100%;
+  margin-bottom: 5%;
+}
+
+.confirm-enquete:hover {
+  background-color: var(--hover);
+  border-color: var(--hover);
 }
 
 .title-modal-enquete {
@@ -61,6 +76,22 @@
   font-size: 30px;
   font-weight: 300;
   margin: 0;
+}
+
+.delete-alternative {
+  border: none;
+  background-color: transparent;
+}
+
+.delete-button {
+  display: flex;
+  align-items: baseline;
+  justify-content: end;
+  width: 10%;
+}
+
+.empty-div {
+  width:10%;
 }
   
 @media (max-width: 1150px) {

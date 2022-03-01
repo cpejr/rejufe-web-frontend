@@ -10,6 +10,10 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
 
 function getModalStyle() {
   const top = 50;
@@ -30,12 +34,16 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: '25%',
-    height: '70%',
+    width: '40%',
     backgroundColor: 'white',
+    maxHeight: '95%',
     borderRadius: '8px',
     boxShadow: theme.palette.color4,
     padding: '1% 1%',
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media (max-width:900px)']: {
+      width: '60%',
+    },
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
     },
@@ -56,6 +64,7 @@ const theme = createTheme({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          flexDirection: 'row',
         },
       },
     },
@@ -77,18 +86,61 @@ const theme = createTheme({
   },
 });
 
+// let alternative = 2;
+
 toast.configure();
 
 export default function ModalEnquete() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
+  const [inputs, setInputs] = useState([]);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  const [voterSession, setVoterSession] = React.useState([]);
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setVoterSession(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
+  const sessions = [
+    'SE',
+    'AL',
+    'PE',
+    'PB',
+    'RN',
+    'CE',
+  ];
+
+  console.log(inputs);
+
+  const handleAddAlternative = () => {
+    const alternativeNumber = inputs.length + 2;
+    setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}` }]));
+  };
+
+  const handleDeleteAlternative = (remove) => {
+    const indexRemoved = inputs.indexOf(remove);
+    setInputs(inputs.filter((input) => input.name !== remove.name));
+    let indexInput;
+    // eslint-disable-next-line array-callback-return
+    inputs.map((input) => {
+      indexInput = inputs.indexOf(input);
+      console.log(indexInput);
+      if (indexInput >= indexRemoved) {
+        input.name = `Alternativa ${indexInput + 1}`;
+      }
+    });
+  };
+
   const body = (
     <ThemeProvider theme={theme}>
       <div style={modalStyle} className={classes.paper}>
@@ -132,21 +184,94 @@ export default function ModalEnquete() {
               <InputLabel>Data de fim </InputLabel>
               <Input type="Date" />
             </FormControl>
-            <h1>Alternativas:</h1>
+            <FormControl>
+              <InputLabel id="select-voter">Selecione quem irá votar</InputLabel>
+              <Select
+                labelId="select-voter"
+                id="multiple-chip"
+                value={voterSession}
+                onChange={handleChange}
+                multiple
+                input={<Input id="select-multiple-chip" label="Chip" />}
+                renderValue={(selected) => (
+                  // selected.filter('Todos os associados') ? (
+                  //   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  //     <Chip key="Todos os associados" label="Todos os associados" />
+                  //   </Box>
+                  // ) : (
+                  //   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  //     {selected.map((value) => (
+                  //       <Chip key={value} label={value} />
+                  //     ))}
+                  //   </Box>
+                  // )
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+              >
+                <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
+                {sessions.map((session) => (
+                  <MenuItem
+                    key={session}
+                    value={session}
+                  >
+                    {session}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <FormControl className="row-enquete">
               <InputLabel>Alternativa 1 </InputLabel>
               <Input />
             </FormControl>
-            <FormControl className="row-enquete">
-              <InputLabel>Alternativa 2 </InputLabel>
-              <Input />
-            </FormControl>
-            <button type="button" className="plus-enquete">
+            {inputs.map((input) => (
+              <FormControl className="row-enquete">
+                <div className="empty-div" />
+                <InputLabel>
+                  {input.name}
+                </InputLabel>
+                <Input />
+                <div className="delete-button">
+                  <button
+                    type="button"
+                    className="delete-alternative"
+                    onClick={() => {
+                      handleDeleteAlternative(input);
+                    }}
+                  >
+                    <CloseIcon
+                      size={20}
+                      sx={[
+                        {
+                          color: '#264A6F',
+                          '&:hover': {
+                            color: 'white',
+                            backgroundColor: '#264A6F',
+                            borderRadius: '5px',
+                          },
+                        },
+                      ]}
+                    />
+                  </button>
+                </div>
+              </FormControl>
+            ))}
+            <button
+              type="button"
+              className="plus-enquete"
+              onClick={() => {
+                handleAddAlternative();
+              }}
+            >
               <AddIcon
                 size={30}
                 sx={[
                   {
                     color: '#264A6F',
+                    marginRight: '5px',
                     '&:hover': {
                       color: 'white',
                       backgroundColor: '#264A6F',
@@ -155,6 +280,7 @@ export default function ModalEnquete() {
                   },
                 ]}
               />
+              Adicionar alternativa
             </button>
             <div className="end-page-enquete">
               <button
