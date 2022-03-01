@@ -27,10 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: '60vw',
-    height: '55vh',
+    width: '50%',
+    height: '70%',
     backgroundColor: 'white',
     border: '2px solid #609694',
+    borderRadius: '8px',
     boxShadow: theme.palette.color4,
     padding: '1% 1%',
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
@@ -112,6 +113,21 @@ export default function ModalAdmin({ users }) {
             // eslint-disable-next-line react/jsx-props-no-spreading
             renderInput={(params) => <TextField {...params} label="Users" />}
           />
+        </div>
+        <div className="Row">
+          <h1>Dados do usuário selecionado:</h1>
+          <h1>
+            Nome:
+            {value.name}
+          </h1>
+          <h1>
+            Status:
+            {value.status}
+          </h1>
+          <h1>
+            Perfil:
+            {value.type}
+          </h1>
         </div>
         <div className="Row">
           <button
