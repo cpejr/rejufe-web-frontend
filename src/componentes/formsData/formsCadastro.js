@@ -2,6 +2,9 @@ import civilStates from '../consts/civilStates';
 import brazilianStates from '../consts/brazilianStates';
 import genres from '../consts/genres';
 import lotacao from '../consts/lotacao';
+import office from '../consts/office';
+import judicialSection from '../consts/judicialSection';
+
 import {
   cpfMask, cellphoneMask, phoneMask, cepMask,
 } from '../masks/masks';
@@ -30,8 +33,8 @@ const formsData = [
         type: 'text',
         id: 'cargo',
         label: 'Cargo',
-        field: null,
-        select: false,
+        field: office,
+        select: true,
         required: true,
       },
       {
@@ -266,9 +269,9 @@ const formsData = [
       {
         type: 'text',
         id: 'judicial_section',
-        label: 'Seção judicial',
-        field: null,
-        select: false,
+        label: 'Seção Judiciária',
+        field: judicialSection,
+        select: true,
       },
       {
         type: 'text',
