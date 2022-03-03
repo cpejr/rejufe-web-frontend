@@ -9,6 +9,7 @@ toast.configure();
 
 function ModuloUsuario() {
   const [users, setUsers] = useState([]);
+  const [typeChanged, setTypeChanged] = useState(false);
   const getUsers = async () => {
     try {
       const response = await managerService.getAllUsers();
@@ -23,7 +24,7 @@ function ModuloUsuario() {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [typeChanged]);
 
   const titles = [
     '',
@@ -41,7 +42,7 @@ function ModuloUsuario() {
       <h1>Módulo de Usuários</h1>
       <div className="module-buttons">
         <button className="button" type="button">Voltar</button>
-        <ModalUsuario users={users} />
+        <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
 
       </div>
       <TableComponent users={users} titles={titles} edit order />

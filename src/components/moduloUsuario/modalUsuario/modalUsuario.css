@@ -1,80 +1,83 @@
-.ContainerModalUsuario button {  
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
+.Confirm-user-module{  
   color: white;
   border: solid var(--button);
   border-radius: 5px;
   background-color: var(--button);
   font-weight: 700;
   font-size: 100%;
+  width: 30%;  
+  height: 45px;
+  margin-top: 6%;
+  margin-bottom: 10%;
 }
 
 .ContainerModalUsuario {
   display: flex;
-  justify-content:space-around;
   flex-direction: column;
+  margin-left: 6%;
 }
 
-.ContainerModalUsuario button:hover {
+.Confirm-user-module:hover {
     background-color: var(--hover);
   }
 
-.Close {
-  width: 5%;  
-  height: 100%;  
+.Close-user-module {
+  width: 30px;  
+  height: 30px;  
   margin-left: 1%;
+  background-color: transparent;
+  border: none;
 }
 
-.Confirm {
-  width: 20%;  
-  height: 40px;
-  margin-bottom: 6%;
-  margin-left: 1%;
-}
-
-.Row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin:4%;
-}
-
-.Title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin:4%;
-}
-
-.Title h1 {
-  font-size: 2em;
-  font-weight: 300;
-  color: var(--primary);
-}
-
-.Users-data {
+.Column {
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  margin-top: 4%;
+}
+
+.Title-user-module {
+  display: flex;
+  justify-content: start;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 2%;
+  width: 95%;
+}
+
+.Title-user-module h1 {
+  font-size: 25px;
+  font-weight: 300;
+  color: var(--fontColor2);
+  font-family: "Roboto", sans-serif;
 }
 
 .Users-data h1 {
-  color: var(--primary);
-  font-size: 10px;
+  color: var(--color2);
+  font-size: 20px;
 }
 
-@media (max-width: 1150px) {
-  .Close {
-    width: 8%;
-  }
-  .Confirm {
-    margin-bottom: 0;
-  }
-  .ContainerModalUsuario {
-    height: 100%;
-  }
-  .exit {
-    margin: 0;
-  }
+.Data-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.Data-row h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  margin-right: 5px;
+  color: var(--color2);
+}
+
+.Exit {
+  display: flex;
+  justify-content: end;
+}
+
+@media (max-width: 1200px) {
+
 }
 
 @media (max-width: 920px) {

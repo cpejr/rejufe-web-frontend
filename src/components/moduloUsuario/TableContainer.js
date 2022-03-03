@@ -192,6 +192,11 @@ function TableComponent({
     setusersPerPage(+event.target.value);
     setPage(0);
   };
+
+  function filterUser(value) {
+    return value.type === 'ADMINISTRADOR';
+  }
+
   return (
     <TableContainer
       component={Paper}
@@ -212,6 +217,7 @@ function TableComponent({
         </TableHead>
         <TableBody>
           {users
+            ?.filter(filterUser)
             ?.slice(page * usersPerPage, page * usersPerPage + usersPerPage)
             ?.map((user) => (
               <TableRow>
@@ -257,7 +263,7 @@ function TableComponent({
                   {user.judicial_section}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {user.type}
+                  A
                 </TableCell>
                 <TableCell {...cellFontProps}>
                   {user.user}

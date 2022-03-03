@@ -27,18 +27,20 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: '50%',
-    height: '70%',
+    width: '30%',
     backgroundColor: 'white',
     border: '2px solid #609694',
     borderRadius: '8px',
     boxShadow: theme.palette.color4,
     padding: '1% 1%',
+    ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
+      width: '45%',
+    },
+    ['@media (max-width:850px)']: { // eslint-disable-line no-useless-computed-key
+      width: '55%',
+    },
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
-    },
-    ['@media (max-width:1150px)']: { // eslint-disable-line no-useless-computed-key
-      height: '45vh',
     },
   },
 
@@ -46,11 +48,11 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ModalAdmin({ users }) {
+export default function ModalAdmin({ users, setTypeChanged }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState();
   const handleOpen = () => {
     setOpen(true);
   };
@@ -68,6 +70,7 @@ export default function ModalAdmin({ users }) {
         type: 'administrador',
       }, value._id);
       console.log(response);
+      setTypeChanged(true);
       toast('Tipo do usuário atualizado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -86,22 +89,35 @@ export default function ModalAdmin({ users }) {
       <div className="ContainerModalUsuario">
         <div className="Exit">
           <button
-            className="Close"
+            className="Close-user-module"
             type="button"
             onClick={() => {
               handleClose();
             }}
           >
-            <CloseIcon size={30} />
+            <CloseIcon
+              size={30}
+              sx={[
+                {
+                  color: '#264A6F',
+                  '&:hover': {
+                    color: 'white',
+                    backgroundColor: '#264A6F',
+                    borderRadius: '5px',
+                  },
+                },
+              ]}
+            />
           </button>
         </div>
-        <div className="Title">
-          <h1>Selecione o usuário que deseja tornar administrador</h1>
-        </div>
-        <div className="Row">
+        <div className="Column">
+          <div className="Title-user-module">
+            <h1>Selecione o usuário que deseja tornar administrador</h1>
+          </div>
           <Autocomplete
             value={value}
             onChange={(event, newValue) => {
+              setTypeChanged(false);
               setValue(newValue);
             }}
             disablePortal
@@ -109,31 +125,61 @@ export default function ModalAdmin({ users }) {
             clearOnEscape
             options={users}
             getOptionLabel={(option) => option.user}
-            sx={{ width: 300 }}
+            sx={{
+              width: {
+                xs: 300,
+                sm: 300,
+                md: 350,
+                lg: 350,
+                xl: 400,
+              },
+              marginBottom: '3%',
+              marginTop: '2%',
+            }}
             // eslint-disable-next-line react/jsx-props-no-spreading
             renderInput={(params) => <TextField {...params} label="Users" />}
           />
         </div>
-        <div className="Row">
-          <div className="Users-data">
-            <h1>Dados do usuário selecionado:</h1>
-            <h1>
-              Nome:
-              {value.name}
-            </h1>
-            <h1>
-              Status:
-              {value.status}
-            </h1>
-            <h1>
-              Perfil:
-              {value.type}
-            </h1>
+        <div className="Column">
+          <div className="Title-user-module">
+            <h1>Dados do usuário</h1>
           </div>
+          {value ? (
+            <div>
+              <div className="Data-row">
+                <h1>
+                  Nome:
+                </h1>
+                <h1>
+                  {value.name}
+                </h1>
+              </div>
+              <div className="Data-row">
+                <h1>
+                  Status:
+                </h1>
+                <h1>
+                  {value.status}
+                </h1>
+              </div>
+              <div className="Data-row">
+                <h1>
+                  Perfil:
+                </h1>
+                <h1>
+                  {value.type}
+                </h1>
+              </div>
+            </div>
+          ) : (
+            <div className="Data-row">
+              <h1>Nenhum usuário selecionado</h1>
+            </div>
+          )}
         </div>
         <div className="Row">
           <button
-            className="Confirm"
+            className="Confirm-user-module"
             type="button"
             onClick={() => {
               changeUserType();
