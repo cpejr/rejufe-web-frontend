@@ -25,6 +25,8 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import cssColorCodes from '../cssColorCodes/cssColorCodes';
+import ModalUsuario from './modalUsuario/ModalUsuario';
+import './tableContainer.css';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -98,7 +100,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, users, order, edit, search, searchFile,
+  titles, users, order, edit, search, searchFile, setTypeChanged,
 }) {
   // const theme = useTheme;
   const [page, setPage] = useState(0);
@@ -188,13 +190,13 @@ function TableComponent({
     setPage(newPage);
   };
 
-  const handleChangeusersPerPage = (event) => {
+  const handleChangeUsersPerPage = (event) => {
     setusersPerPage(+event.target.value);
     setPage(0);
   };
 
   function filterUser(value) {
-    return value.type === 'ADMINISTRADOR';
+    return value.type === 'administrador';
   }
 
   return (
@@ -293,7 +295,7 @@ function TableComponent({
           component="div"
           count={users.length}
           usersPerPage={usersPerPage}
-          labelusersPerPage="Linhas por pagina"
+          labelUsersPerPage="Linhas por pagina"
           page={page}
           SelectProps={{
             inputProps: {
@@ -302,9 +304,10 @@ function TableComponent({
             native: true,
           }}
           onPageChange={handleChangePage}
-          onusersPerPageChange={handleChangeusersPerPage}
+          onUsersPerPageChange={handleChangeUsersPerPage}
           ActionsComponent={TablePaginationActions}
         />
+        <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
       </TableFooter>
     </TableContainer>
   );

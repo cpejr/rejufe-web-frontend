@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
+.module-buttons {
+    display: flex;
+    flex-direction:row;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+.container-module {
+    margin-top: 4%;
+}
+
+.Title-module-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4%;
+}
+
+.container-module h1 {
+    font-size: 30px;
+    color: var(--secondary);
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+
+}

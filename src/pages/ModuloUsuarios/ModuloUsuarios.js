@@ -3,11 +3,10 @@ import './moduloUsuario.css';
 import { toast } from 'react-toastify';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
-import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
 
 toast.configure();
 
-function ModuloUsuario() {
+function ModuloUsuarios() {
   const [users, setUsers] = useState([]);
   const [typeChanged, setTypeChanged] = useState(false);
   const getUsers = async () => {
@@ -38,17 +37,14 @@ function ModuloUsuario() {
   ];
 
   return (
-    <div className="container-modulo">
-      <h1>Módulo de Usuários</h1>
-      <div className="module-buttons">
-        <button className="button" type="button">Voltar</button>
-        <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
-
+    <div className="container-module">
+      <div className="Title-module-page">
+        <h1>Módulo de Usuários</h1>
       </div>
-      <TableComponent users={users} titles={titles} edit order />
+      <TableComponent setTypeChanged={setTypeChanged} users={users} titles={titles} edit order />
     </div>
 
   );
 }
 
-export default ModuloUsuario;
+export default ModuloUsuarios;

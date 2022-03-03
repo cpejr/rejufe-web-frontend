@@ -1,0 +1,11 @@
+.Modal-button-user-module button {
+    width: 100px;  
+    height: 30px;  
+    color: white;
+    border: solid var(--secondary);
+    border-radius: 5px;
+    background-color: var(--secondary);
+    margin-left: 25px;
+    margin-top: 9%;
+    font-weight: 700;
+}
