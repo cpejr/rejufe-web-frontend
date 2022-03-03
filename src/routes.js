@@ -15,6 +15,7 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
+import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 
 function UserHeader() {
@@ -51,6 +52,7 @@ function Routes() {
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

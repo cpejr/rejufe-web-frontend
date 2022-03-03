@@ -1,0 +1,90 @@
+.footerRejufeCPE {
+    background-color: #081120;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.containerRejufeImageFooter {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding-left: 10%;
+}
+
+.RejufeImageFooter {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.imageRejufeLogo {
+    max-width: 300px;  
+}
+
+.textFooterCPE {
+    color: white;
+    font-size: 10pt;
+    font-family: Roboto;
+    font-weight: 100;
+    align-items:flex-end;
+}
+
+.imageCPEJrFooter {
+    color: white;
+    padding-left: 4px;
+    max-width: 70px;
+
+}
+
+.logoAndTextCPE {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.containerLogoAndTextCPE {
+    padding-top: 80px;
+}
+
+.containerRejufeAndCPEImage {
+   text-align: center;
+}
+
+
+@media (max-width: 500px) {
+    .imageRejufeLogo {
+        width: 80%;
+        height: 80%;
+    }
+
+    .textFooterCPE {
+        font-size: 5pt;
+    }
+
+    .imageCPEJrFooter {
+        padding-left: 0px;
+        width: 60%;
+        height: 60%;
+    }
+
+    .logoAndTextCPE {
+        margin-right: 10px;
+    }
+
+    .containerLogoAndTextCPE {
+        padding-top: 50px;
+    }
+}
+
+
+
+
+
+
