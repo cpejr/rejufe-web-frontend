@@ -76,27 +76,8 @@
   justify-content: end;
 }
 
-@media (max-width: 1200px) {
-
-}
-
-@media (max-width: 920px) {
-  .Confirm {
-    width: 35%;
-  }
-}
-
-@media (max-width: 400px) {
-  .Close {
-    width: 12%;
-  }
-}
-
-@media (max-width: 260px) {
-  .Close {
-    width: 20%;
-  }
-  .Confirm {
-    width: 45%;
+@media (max-width: 360px) {
+  .ContainerModalUsuario {
+    margin-left: 2%;
   }
 }

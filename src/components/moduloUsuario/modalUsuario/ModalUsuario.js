@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '8px',
     boxShadow: theme.palette.color4,
     padding: '1% 1%',
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media (max-width:1424px)']: {
+      width: '38%',
+    },
     ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
       width: '45%',
     },
