@@ -64,23 +64,17 @@ export default function ModalAdmin({ users, setTypeChanged }) {
     setOpen(false);
   };
 
-  console.log(users);
-
-  console.log(value);
-
   const changeUserType = async () => {
     try {
-      const response = await managerService.changeUserTypeById({
+      await managerService.changeUserTypeById({
         type: 'administrador',
       }, value._id);
-      console.log(response);
       setTypeChanged(true);
       toast('Tipo do usuário atualizado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível alterar o tipo do usuário!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
