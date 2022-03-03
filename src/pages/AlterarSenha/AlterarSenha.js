@@ -6,7 +6,7 @@ import { Modal } from '@material-ui/core';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 
-function AlterarSenha() {
+function ChangePassword() {
   const [open, setOpen] = useState(false);
   const { email } = JSON.parse(localStorage.getItem('user'));
   const handleOpen = () => setOpen(true);
@@ -32,8 +32,8 @@ function AlterarSenha() {
   };
 
   return (
-    <div className="containerAlterarSenha">
-      <div className="boxAlterarSenha">
+    <div className="containerChangePassword">
+      <div className="boxChangePassword">
         <h1>Alterar Senha</h1>
         <p>
           Clique no botão abaixo para que um link seja enviado para o seu
@@ -41,13 +41,13 @@ function AlterarSenha() {
         </p>
         <button type="submit" onClick={handleOpen}>Enviar</button>
       </div>
-      <Modal open={open} onClose={handleClose} className="modalStyleAlterarSenha">
-        <div className="popUpAlterarSenha">
-          <div className="textoPopUpAlterarSenha">
+      <Modal open={open} onClose={handleClose} className="modalStyleChangePassword">
+        <div className="popUpChangePassword">
+          <div className="textoPopUpChangePassword">
             <h1>Recuperação de senha</h1>
             <p>Você tem certeza que deseja enviar um email para recuperação de senha?</p>
           </div>
-          <div className="grupoButtonsAlterarSenha">
+          <div className="grupoButtonsChangePassword">
             <button type="submit" onClick={handleClick}>Enviar</button>
             <button type="submit" onClick={handleClose}>Cancelar</button>
           </div>
@@ -57,4 +57,4 @@ function AlterarSenha() {
   );
 }
 
-export default AlterarSenha;
+export default ChangePassword;

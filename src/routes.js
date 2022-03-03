@@ -15,7 +15,7 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
-import AlterarSenha from './pages/AlterarSenha';
+import ChangePassword from './pages/AlterarSenha';
 
 function UserHeader() {
   return (
@@ -33,7 +33,7 @@ function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/alterar-senha" component={AlterarSenha} />
+        <Route path="/alterar-senha" component={ChangePassword} />
       </Switch>
     </Header>
   );

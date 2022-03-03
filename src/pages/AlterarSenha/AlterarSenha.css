@@ -1,4 +1,4 @@
-.containerAlterarSenha {
+.containerChangePassword {
   height: calc(100vh - 75px);
   width: 100vw;
   display: flex;
@@ -7,7 +7,7 @@
   font-size: 12pt;
 }
 
-.boxAlterarSenha {
+.boxChangePassword {
   font-family: 'Roboto', sans-serif;
   width: 60%;
   height: 60%;
@@ -25,7 +25,7 @@
   color: black;
 }
 
-.boxAlterarSenha button {
+.boxChangePassword button {
   width: 11vw;
   height: 4vw;
   margin-top: 4%;
@@ -39,23 +39,23 @@
   font-size: 1.2em;
 }
 
-.boxAlterarSenha h1 {
+.boxChangePassword h1 {
   font-size: 2em;
   margin-bottom: 4%;
   font-weight: 100;
 }
 
-.boxAlterarSenha p {
+.boxChangePassword p {
   font-size: 1.2em;
   margin: 0;
   font-weight: 100;
 }
 
-.containerAlterarSenha button:hover {
+.containerChangePassword button:hover {
   cursor: pointer;
 }
 
-.modalStyleAlterarSenha {
+.modalStyleChangePassword {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -63,7 +63,7 @@
   align-items: center;
 }
 
-.popUpAlterarSenha {
+.popUpChangePassword {
   font-family: 'Roboto', sans-serif;
   width: 45%;
   height: 30%;
@@ -78,17 +78,17 @@
   font-size: 12pt;
 }
 
-.popUpAlterarSenha h1 {
+.popUpChangePassword h1 {
   font-size: 1.4em;
   margin-bottom: 10px;
   font-weight: 400;
 }
 
-.popUpAlterarSenha p {
+.popUpChangePassword p {
   font-size: 1em;
 }
 
-.popUpAlterarSenha button {
+.popUpChangePassword button {
   font-size: 1em;
   width: 8vw;
   height: 3vw;
@@ -99,67 +99,67 @@
   color: blue;
 }
 
-.popUpAlterarSenha button:hover{
+.popUpChangePassword button:hover{
   cursor: pointer;
 }
 
-.popUpAlterarSenha button + button {
+.popUpChangePassword button + button {
   color: red;
 }
 
-.grupoButtonsAlterarSenha {
+.grupoButtonsChangePassword {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
 @media (min-width: 1500px) {
-  .containerAlterarSenha{ 
+  .containerChangePassword{ 
     font-size: 24pt;
   }
 
-  .popUpAlterarSenha {
+  .popUpChangePassword {
     font-size: 24pt;
   }
 
-  .popUpAlterarSenha button + button{
+  .popUpChangePassword button + button{
     margin-left: 5%;
   }
 }
 
 @media (max-width: 1050px) {
-  .containerAlterarSenha{ 
+  .containerChangePassword{ 
     font-size: 10pt;
   }
-  .popUpAlterarSenha {
+  .popUpChangePassword {
     font-size: 10pt;
   }
 
 }
 
 @media (max-width: 715px){
-  .boxAlterarSenha{
+  .boxChangePassword{
     width: 80%;
     height: 60%;
   }
-  .modalStyleAlterarSenha {
+  .modalStyleChangePassword {
     height: 100%;
     width: 100%;
   }
-  .boxAlterarSenha button {
+  .boxChangePassword button {
     border-radius: 6px;
   }
 }
 
 @media (max-width: 500px) {
-  .boxAlterarSenha {
+  .boxChangePassword {
     height: 80%;
     padding: 10%;
     padding-top: 20%;
     padding-bottom: 20%;
     justify-content: center;
   }
-  .popUpAlterarSenha {
+  .popUpChangePassword {
     text-align: justify;
     padding: 8%;
     padding-top: 10%;
@@ -167,20 +167,20 @@
     height: 50vh;
     width: 70vw;
   }
-  .boxAlterarSenha button{
+  .boxChangePassword button{
     margin-top: 35px;
   }
-  .boxAlterarSenha h1{
+  .boxChangePassword h1{
     margin-bottom: 35px;
   }
 }
 
 @media (max-width: 395px) {
-  .grupoButtonsAlterarSenha{
+  .grupoButtonsChangePassword{
     justify-content: center;
   }
 
-  .popUpAlterarSenha h1{
+  .popUpChangePassword h1{
     font-size: 1.2em;
   }
 
