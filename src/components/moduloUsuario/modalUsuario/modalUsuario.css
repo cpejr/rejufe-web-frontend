@@ -35,12 +35,31 @@
   justify-content: center;
   align-items: center;
   margin:4%;
-  color: var(--secondary);
 }
 
-.Row h1 {
+.Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:4%;
+}
+
+.Title h1 {
   font-size: 2em;
-  font-weight: 700;
+  font-weight: 300;
+  color: var(--primary);
+}
+
+.Users-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Users-data h1 {
+  color: var(--primary);
+  font-size: 10px;
 }
 
 @media (max-width: 1150px) {

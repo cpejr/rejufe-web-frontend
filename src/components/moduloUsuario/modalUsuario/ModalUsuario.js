@@ -95,7 +95,7 @@ export default function ModalAdmin({ users }) {
             <CloseIcon size={30} />
           </button>
         </div>
-        <div className="Row">
+        <div className="Title">
           <h1>Selecione o usuário que deseja tornar administrador</h1>
         </div>
         <div className="Row">
@@ -115,19 +115,21 @@ export default function ModalAdmin({ users }) {
           />
         </div>
         <div className="Row">
-          <h1>Dados do usuário selecionado:</h1>
-          <h1>
-            Nome:
-            {value.name}
-          </h1>
-          <h1>
-            Status:
-            {value.status}
-          </h1>
-          <h1>
-            Perfil:
-            {value.type}
-          </h1>
+          <div className="Users-data">
+            <h1>Dados do usuário selecionado:</h1>
+            <h1>
+              Nome:
+              {value.name}
+            </h1>
+            <h1>
+              Status:
+              {value.status}
+            </h1>
+            <h1>
+              Perfil:
+              {value.type}
+            </h1>
+          </div>
         </div>
         <div className="Row">
           <button
