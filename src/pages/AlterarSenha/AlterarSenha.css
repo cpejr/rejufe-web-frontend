@@ -115,11 +115,11 @@
 
 @media (min-width: 1500px) {
   .containerChangePassword{ 
-    font-size: 24pt;
+    font-size: 16pt;
   }
 
   .popUpChangePassword {
-    font-size: 24pt;
+    font-size: 16pt;
   }
 
   .popUpChangePassword button + button{
