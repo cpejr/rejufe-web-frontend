@@ -17,7 +17,8 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
-import AlterarSenha from './pages/AlterarSenha';
+import Footer from './components/Footer';
+import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 
 function UserHeader() {
@@ -36,7 +37,7 @@ function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/alterar-senha" component={AlterarSenha} />
+        <Route path="/alterar-senha" component={ChangePassword} />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>
@@ -54,6 +55,7 @@ function Routes() {
         <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
