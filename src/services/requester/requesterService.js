@@ -26,3 +26,13 @@ export const getAssociates = (times, field, filter) => httpClient.get('/usuario'
 });
 
 export const updateUser = (user, userId) => httpClient.put(`/usuario/${userId}`, user);
+
+export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcludedAssociate', {
+  params: {
+    status,
+  },
+});
+
+export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${associateId}`);
+
+export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);

@@ -68,3 +68,19 @@ export const updateUser = async (user, id) => {
   const response = await requesterService.updateUser(user, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const getExcludedAssociate = async (status) => {
+  const response = await requesterService.getExcludedAssociate(status);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const deleteAssociate = async (associateId) => {
+  const response = await requesterService.deleteAssociate(associateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAssociate = async (associateId, body) => {
+  const response = await requesterService.updateAssociate(associateId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
