@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@mui/icons-material/Add';
-// import * as managerService from '../../../services/manager/managerService';
 import './modalEnquetes.css';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,6 +13,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
+import * as managerService from '../../services/manager/managerService';
 
 function getModalStyle() {
   const top = 50;
@@ -91,6 +91,7 @@ const theme = createTheme({
 toast.configure();
 
 export default function ModalEnquete() {
+  const [users, setUsers] = useState([]);
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -101,7 +102,7 @@ export default function ModalEnquete() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [voterSession, setVoterSession] = React.useState([]);
+  const [voterSession, setVoterSession] = useState([]);
   const handleChange = (event) => {
     const {
       target: { value },
@@ -140,6 +141,26 @@ export default function ModalEnquete() {
       }
     });
   };
+
+  const getUsers = async () => {
+    if (voterSession.filter('Todos os associados')) {
+      try {
+        const response = await managerService.getAllUsers();
+        setUsers(response);
+      } catch (error) {
+        toast.error('Não foi possível obter usuários!!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+      }
+    }
+  };
+
+  console.log(users);
+
+  useEffect(() => {
+    getUsers();
+  }, [voterSession]);
 
   const body = (
     <ThemeProvider theme={theme}>

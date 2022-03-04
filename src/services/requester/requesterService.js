@@ -16,3 +16,9 @@ export const register = (body) => httpClient.post('/usuario', body);
 export const registerExternal = (body) => httpClient.post('/usuario/externalAssociateRegister', body);
 
 export const getById = (id) => httpClient.get(`/usuario/${id}`);
+
+export const getAllUsers = (times) => httpClient.get('/usuario/', {
+  params: {
+    times,
+  },
+});

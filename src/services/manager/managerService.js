@@ -20,6 +20,32 @@ export const register = async (body) => {
   return response.data;
 };
 
+export const getAllUsers = async () => {
+  let times = 0;
+  let users = [];
+  let response;
+  do {
+    response = await requesterService.getAllUsers(times);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    users = users.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return users;
+};
+
+export const getUsersByFilter = async () => {
+  let times = 0;
+  let users = [];
+  let response;
+  do {
+    response = await requesterService.getAllUsers(times);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    users = users.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return users;
+};
+
 export const registerExternal = async (body) => {
   const response = await requesterService.registerExternal(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
