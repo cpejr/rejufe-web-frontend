@@ -220,32 +220,6 @@ function TableComponent({
           color: 'white',
         },
   };
-  // const tableFontProps = {
-  //   style: matchesFont85
-  //     ? {
-  //       textAlign: 'center',
-  //       fontSize: '1em',
-  //       fontWeight: '900',
-  //       backgroundColor: '#E5E4E2',
-  //       color: '#2574A9',
-  //       padding: '6px',
-  //     }
-  //     : matchesFont90
-  //       ? {
-  //         fontSize: '1em',
-  //         fontWeight: '900',
-  //         textAlign: 'center',
-  //         backgroundColor: '#E5E4E2',
-  //         color: '#2574A9',
-  //       }
-  //       : {
-  //         fontSize: '1.2em',
-  //         fontWeight: '900',
-  //         textAlign: 'center',
-  //         backgroundColor: '#E5E4E2',
-  //         color: '#2574A9',
-  //       },
-  // };
 
   const tableProps = {
     sx: matchesFont400px
@@ -271,19 +245,6 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
-
-  // const tableTitleProps = {
-  //   sx: matchesFont400px
-  //     ? {
-  //       minWidth: 400,
-  //     }
-  //     : { minWidth: 650 },
-  //   size: matchesFont85
-  //     ? 'small'
-  //     : matchesFont90
-  //       ? 'medium'
-  //       : 'big',
-  // };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
