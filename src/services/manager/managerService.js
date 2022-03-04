@@ -33,12 +33,12 @@ export const getAllUsers = async () => {
   return users;
 };
 
-export const getUsersByFilter = async () => {
+export const getUsersBySection = async (section) => {
   let times = 0;
   let users = [];
   let response;
   do {
-    response = await requesterService.getAllUsers(times);
+    response = await requesterService.getUsersBySection(times, section);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     users = users.concat(response.data);
     times += 1;

@@ -121,8 +121,6 @@ export default function ModalEnquete() {
     'CE',
   ];
 
-  console.log(inputs);
-
   const handleAddAlternative = () => {
     const alternativeNumber = inputs.length + 2;
     setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}` }]));
@@ -135,7 +133,6 @@ export default function ModalEnquete() {
     // eslint-disable-next-line array-callback-return
     inputs.map((input) => {
       indexInput = inputs.indexOf(input);
-      console.log(indexInput);
       if (indexInput >= indexRemoved) {
         input.name = `Alternativa ${indexInput + 1}`;
       }
@@ -146,6 +143,16 @@ export default function ModalEnquete() {
     if (voterSession.filter('Todos os associados')) {
       try {
         const response = await managerService.getAllUsers();
+        setUsers(response);
+      } catch (error) {
+        toast.error('Não foi possível obter usuários!!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+      }
+    } else {
+      try {
+        const response = await managerService.getAllUsers(voterSession);
         setUsers(response);
       } catch (error) {
         toast.error('Não foi possível obter usuários!!', {

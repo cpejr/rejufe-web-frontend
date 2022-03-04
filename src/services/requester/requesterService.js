@@ -22,3 +22,9 @@ export const getAllUsers = (times) => httpClient.get('/usuario/', {
     times,
   },
 });
+
+export const getUsersBySection = (times, section) => httpClient.get(`/usuario/${section}`, {
+  params: {
+    times,
+  },
+});
