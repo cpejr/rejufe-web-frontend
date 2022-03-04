@@ -96,23 +96,24 @@ export default function ModalEnquete() {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState([]);
+
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const [voterSession, setVoterSession] = useState([]);
+  const [voterSection, setVoterSection] = useState([]);
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setVoterSession(
+    setVoterSection(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-  const sessions = [
+  const sections = [
     'SE',
     'AL',
     'PE',
@@ -140,19 +141,21 @@ export default function ModalEnquete() {
   };
 
   const getUsers = async () => {
-    if (voterSession.filter('Todos os associados')) {
+    if (voterSection.some((elem) => elem === 'Todos os associados')) {
       try {
         const response = await managerService.getAllUsers();
+        console.log(response);
         setUsers(response);
       } catch (error) {
+        console.log(error);
         toast.error('Não foi possível obter usuários!!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
         });
       }
-    } else {
+    } else if (voterSection.length !== 0) {
       try {
-        const response = await managerService.getAllUsers(voterSession);
+        const response = await managerService.getUsersBySection(voterSection);
         setUsers(response);
       } catch (error) {
         toast.error('Não foi possível obter usuários!!', {
@@ -163,11 +166,23 @@ export default function ModalEnquete() {
     }
   };
 
+  const createQuizz = async () => {
+    try {
+      
+
+    } catch (error) {
+      toast.error('Não foi possível criar enquete!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   console.log(users);
 
   useEffect(() => {
     getUsers();
-  }, [voterSession]);
+  }, [voterSection]);
 
   const body = (
     <ThemeProvider theme={theme}>
@@ -217,7 +232,7 @@ export default function ModalEnquete() {
               <Select
                 labelId="select-voter"
                 id="multiple-chip"
-                value={voterSession}
+                value={voterSection}
                 onChange={handleChange}
                 multiple
                 input={<Input id="select-multiple-chip" label="Chip" />}
@@ -241,12 +256,12 @@ export default function ModalEnquete() {
                 )}
               >
                 <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
-                {sessions.map((session) => (
+                {sections.map((section) => (
                   <MenuItem
-                    key={session}
-                    value={session}
+                    key={section}
+                    value={section}
                   >
-                    {session}
+                    {section}
                   </MenuItem>
                 ))}
               </Select>
