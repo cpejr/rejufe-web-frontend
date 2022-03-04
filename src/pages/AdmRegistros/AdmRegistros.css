@@ -22,3 +22,9 @@
   margin-bottom: 2%;
   color: var(--secondary);
 }
+
+@media (max-width: 540px) {
+  .title-adm-registers h1 {
+    font-size: 1.3em;
+  }
+}

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import DashboardUsuario from './pages/DashboardUsuario';
 import DashboardAdmin from './pages/DashboardAdmin';
+import EditarAssociados from './pages/EditarAssociados';
 import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
 import Intranet from './pages/Intranet';
@@ -27,7 +28,7 @@ function UserHeader() {
         <Route path="/dashboard/administrador" component={DashboardAdmin} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
-        <Route path="/adm-registros" component={AdmRegistros} />
+        <Route path="/administracao-registros" component={AdmRegistros} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
@@ -36,6 +37,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={ChangePassword} />
+        <Route path="/editar-associados" component={EditarAssociados} />
       </Switch>
     </Header>
   );
@@ -48,8 +50,6 @@ function Routes() {
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/dashboard/administrador" component={DashboardAdmin} />
-        <Route path="/dashboard/usuario" component={DashboardUsuario} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>

@@ -25,7 +25,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import cssColorCodes from '../cssColorCodes/cssColorCodes';
+// import cssColorCodes from '../cssColorCodes/cssColorCodes';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 
@@ -220,32 +220,32 @@ function TableComponent({
           color: 'white',
         },
   };
-  const tableFontProps = {
-    style: matchesFont85
-      ? {
-        textAlign: 'center',
-        fontSize: '1em',
-        fontWeight: '900',
-        backgroundColor: '#E5E4E2',
-        color: '#2574A9',
-        padding: '6px',
-      }
-      : matchesFont90
-        ? {
-          fontSize: '1em',
-          fontWeight: '900',
-          textAlign: 'center',
-          backgroundColor: '#E5E4E2',
-          color: '#2574A9',
-        }
-        : {
-          fontSize: '1.2em',
-          fontWeight: '900',
-          textAlign: 'center',
-          backgroundColor: '#E5E4E2',
-          color: '#2574A9',
-        },
-  };
+  // const tableFontProps = {
+  //   style: matchesFont85
+  //     ? {
+  //       textAlign: 'center',
+  //       fontSize: '1em',
+  //       fontWeight: '900',
+  //       backgroundColor: '#E5E4E2',
+  //       color: '#2574A9',
+  //       padding: '6px',
+  //     }
+  //     : matchesFont90
+  //       ? {
+  //         fontSize: '1em',
+  //         fontWeight: '900',
+  //         textAlign: 'center',
+  //         backgroundColor: '#E5E4E2',
+  //         color: '#2574A9',
+  //       }
+  //       : {
+  //         fontSize: '1.2em',
+  //         fontWeight: '900',
+  //         textAlign: 'center',
+  //         backgroundColor: '#E5E4E2',
+  //         color: '#2574A9',
+  //       },
+  // };
 
   const tableProps = {
     sx: matchesFont400px
@@ -272,18 +272,18 @@ function TableComponent({
         : 'big',
   };
 
-  const tableTitleProps = {
-    sx: matchesFont400px
-      ? {
-        minWidth: 400,
-      }
-      : { minWidth: 650 },
-    size: matchesFont85
-      ? 'small'
-      : matchesFont90
-        ? 'medium'
-        : 'big',
-  };
+  // const tableTitleProps = {
+  //   sx: matchesFont400px
+  //     ? {
+  //       minWidth: 400,
+  //     }
+  //     : { minWidth: 650 },
+  //   size: matchesFont85
+  //     ? 'small'
+  //     : matchesFont90
+  //       ? 'medium'
+  //       : 'big',
+  // };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -351,24 +351,25 @@ function TableComponent({
                         <SearchIcon />
                         {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
-                    </IconButton>
-                  </TableCell>
-                ) : edit ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <IconButton aria-label="delete">
-                      <RemoveModal setUse={setUse} id={associateId[index + (page * 10)]} />
-                    </IconButton>
-                    <IconButton color="primary" aria-label="Edit">
-                      <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
-                    </IconButton>
-                  </TableCell>
-                ) : searchFile ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <FindInPageIcon aria-label="findFile" />
-                  </TableCell>
-                ) : (
-                  <TableCell> </TableCell>
-                )}
+                      </IconButton>
+                    </TableCell>
+                  ) : edit ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveModal setUse={setUse} id={associateId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
+                      </IconButton>
+                    </TableCell>
+                  ) : searchFile ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <FindInPageIcon aria-label="findFile" />
+                    </TableCell>
+                  ) : (
+                    <TableCell> </TableCell>
+                  )
+                }
                 {sequentialId
                   && (
                     <TableCell {...cellFontProps}>
