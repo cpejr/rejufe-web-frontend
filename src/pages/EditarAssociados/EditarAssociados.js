@@ -134,6 +134,12 @@ function EditarAssociados(id) {
 
   return (
     <div className="edit-associate-container">
+      <div className="return-adm-register">
+        <a href="/administracao-registros">
+          <span />
+          Voltar
+        </a>
+      </div>
       <h1 className="edit-associate-title"><div className="edit-associate-text-margin">Editar Associado</div></h1>
       {formsEdit?.map((line) => (
         <Box>
