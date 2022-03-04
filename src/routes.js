@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import DashboardUsuario from './pages/DashboardUsuario';
+import DashboardAdmin from './pages/DashboardAdmin';
 import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
 import Intranet from './pages/Intranet';
@@ -15,18 +16,17 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
-import AlterarSenha from './pages/AlterarSenha';
-import EditarAssociados from './pages/EditarAssociados';
+import ChangePassword from './pages/AlterarSenha';
 
 function UserHeader() {
   return (
     <Header>
       <Switch>
-        <Route path="/dashboard/usuario" component={Dashboard} />
-        <Route path="/dashboard/administrador" component={Dashboard} />
+        <Route path="/dashboard/usuario" component={DashboardUsuario} />
+        <Route path="/dashboard/administrador" component={DashboardAdmin} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
-        <Route path="/administracao-registros" component={AdmRegistros} />
+        <Route path="/adm-registros" component={AdmRegistros} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
@@ -34,9 +34,7 @@ function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/alterar-senha" component={AlterarSenha} />
-        <Route path="/editar-associados" component={EditarAssociados} />
-        <Route path="/cadastro" component={Cadastro} />
+        <Route path="/alterar-senha" component={ChangePassword} />
       </Switch>
     </Header>
   );
@@ -49,8 +47,8 @@ function Routes() {
         <Route path="/login" component={Login} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/dashboard/administrador" component={Dashboard} />
-        <Route path="/dashboard/usuario" component={Dashboard} />
+        <Route path="/dashboard/administrador" component={DashboardAdmin} />
+        <Route path="/dashboard/usuario" component={DashboardUsuario} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>
