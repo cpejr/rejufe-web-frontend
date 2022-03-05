@@ -20,6 +20,13 @@ export const register = async (body) => {
   return response.data;
 };
 
+export const createQuizz = async (body) => {
+  console.log('oi2');
+  const response = await requesterService.createQuizz(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getAllUsers = async () => {
   let times = 0;
   let users = [];

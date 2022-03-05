@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import * as managerService from '../../services/manager/managerService';
+import { initialQuizzState } from '../../componentes/initialStates/initialQuizzStates';
 
 function getModalStyle() {
   const top = 50;
@@ -91,11 +92,27 @@ const theme = createTheme({
 toast.configure();
 
 export default function ModalEnquete() {
-  const [users, setUsers] = useState([]);
+  const users = [];
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
-  const [inputs, setInputs] = useState([]);
+  const [inputs, setInputs] = useState([
+    { name: 'Alternativa 1' },
+  ]);
+  const [dados, setDados] = useState(initialQuizzState);
+  // const [options, setOptions] = useState([]);
+
+  function handleChange(value, field) {
+    setDados({ ...dados, [field]: value });
+  }
+
+  const options = [
+    { alternativa: 'Julia ' },
+    { alternativa: 'Nikole' },
+  ];
+  // function handleOptionsChange(value, field) {
+  //   setOptions({ ...options, [field]: value });
+  // }
 
   const handleOpen = () => {
     setOpen(true);
@@ -104,7 +121,7 @@ export default function ModalEnquete() {
     setOpen(false);
   };
   const [voterSection, setVoterSection] = useState([]);
-  const handleChange = (event) => {
+  const handleSectionChange = (event) => {
     const {
       target: { value },
     } = event;
@@ -113,6 +130,7 @@ export default function ModalEnquete() {
       typeof value === 'string' ? value.split(',') : value,
     );
   };
+
   const sections = [
     'SE',
     'AL',
@@ -123,7 +141,7 @@ export default function ModalEnquete() {
   ];
 
   const handleAddAlternative = () => {
-    const alternativeNumber = inputs.length + 2;
+    const alternativeNumber = inputs.length + 1;
     setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}` }]));
   };
 
@@ -135,7 +153,7 @@ export default function ModalEnquete() {
     inputs.map((input) => {
       indexInput = inputs.indexOf(input);
       if (indexInput >= indexRemoved) {
-        input.name = `Alternativa ${indexInput + 1}`;
+        input.name = `Alternativa ${indexInput}:`;
       }
     });
   };
@@ -144,8 +162,11 @@ export default function ModalEnquete() {
     if (voterSection.some((elem) => elem === 'Todos os associados')) {
       try {
         const response = await managerService.getAllUsers();
-        console.log(response);
-        setUsers(response);
+        let count = 0;
+        response.forEach((user) => {
+          users[count] = user.id;
+          count += 1;
+        });
       } catch (error) {
         console.log(error);
         toast.error('Não foi possível obter usuários!!', {
@@ -156,7 +177,12 @@ export default function ModalEnquete() {
     } else if (voterSection.length !== 0) {
       try {
         const response = await managerService.getUsersBySection(voterSection);
-        setUsers(response);
+        let count = 0;
+        response.forEach((user) => {
+          console.log(user.id);
+          users[count] = user.id;
+          count += 1;
+        });
       } catch (error) {
         toast.error('Não foi possível obter usuários!!', {
           position: toast.POSITION.TOP_RIGHT,
@@ -166,19 +192,32 @@ export default function ModalEnquete() {
     }
   };
 
+  console.log(dados);
+
   const createQuizz = async () => {
     try {
-      
-
+      console.log('oi');
+      const body = {
+        title: dados.title,
+        toVote: users,
+        openingDate: dados.openingDate,
+        closingDate: dados.closingDate,
+        // eslint-disable-next-line object-shorthand
+        options: options,
+      };
+      await managerService.createQuizz(body);
+      toast.success('Enquete criada com sucesso!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
     } catch (error) {
+      console.log(error);
       toast.error('Não foi possível criar enquete!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     }
-  }
-
-  console.log(users);
+  };
 
   useEffect(() => {
     getUsers();
@@ -217,23 +256,38 @@ export default function ModalEnquete() {
           <div className="form-enquete">
             <FormControl>
               <InputLabel>Título</InputLabel>
-              <Input />
+              <Input
+                required
+                value={dados.title}
+                onChange={(e) => handleChange(e.target.value, 'title')}
+              />
             </FormControl>
             <FormControl>
               <InputLabel>Data de início </InputLabel>
-              <Input type="Date" />
+              <Input
+                required
+                type="Date"
+                value={dados.openingDate}
+                onChange={(e) => handleChange(e.target.value, 'openingDate')}
+              />
             </FormControl>
             <FormControl>
               <InputLabel>Data de fim </InputLabel>
-              <Input type="Date" />
+              <Input
+                required
+                type="Date"
+                value={dados.closingDate}
+                onChange={(e) => handleChange(e.target.value, 'closingDate')}
+              />
             </FormControl>
             <FormControl>
               <InputLabel id="select-voter">Selecione quem irá votar</InputLabel>
               <Select
+                required
                 labelId="select-voter"
                 id="multiple-chip"
                 value={voterSection}
-                onChange={handleChange}
+                onChange={handleSectionChange}
                 multiple
                 input={<Input id="select-multiple-chip" label="Chip" />}
                 renderValue={(selected) => (
@@ -266,17 +320,17 @@ export default function ModalEnquete() {
                 ))}
               </Select>
             </FormControl>
-            <FormControl className="row-enquete">
-              <InputLabel>Alternativa 1 </InputLabel>
-              <Input />
-            </FormControl>
-            {inputs.map((input) => (
+            {inputs?.map((input) => (
               <FormControl className="row-enquete">
                 <div className="empty-div" />
                 <InputLabel>
                   {input.name}
                 </InputLabel>
-                <Input />
+                <Input
+                  required
+                  value={dados.options}
+                  onChange={(e) => handleChange(e.target.value, 'options')}
+                />
                 <div className="delete-button">
                   <button
                     type="button"
@@ -328,8 +382,9 @@ export default function ModalEnquete() {
             <div className="end-page-enquete">
               <button
                 className="confirm-enquete"
-                type="button"
+                type="submit"
                 onClick={() => {
+                  createQuizz();
                   handleClose();
                 }}
               >
