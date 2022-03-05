@@ -85,7 +85,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="ContainerModalUsuario">
+      <div className="Container-modal-user">
         <div className="Exit">
           <button
             className="Close-user-module"
@@ -109,7 +109,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
             />
           </button>
         </div>
-        <div className="Column">
+        <div className="Column-user-module">
           <div className="Title-user-module">
             <h1>Selecione o usuário que deseja tornar administrador</h1>
           </div>
@@ -139,13 +139,13 @@ export default function ModalAdmin({ users, setTypeChanged }) {
             renderInput={(params) => <TextField {...params} label="Users" />}
           />
         </div>
-        <div className="Column">
+        <div className="Column-user-module">
           <div className="Title-user-module">
             <h1>Dados do usuário</h1>
           </div>
           {value ? (
             <div>
-              <div className="Data-row">
+              <div className="Data-row-user-module">
                 <h1>
                   Nome:
                 </h1>
@@ -153,7 +153,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
                   {value.name}
                 </h1>
               </div>
-              <div className="Data-row">
+              <div className="Data-row-user-module">
                 <h1>
                   Status:
                 </h1>
@@ -161,7 +161,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
                   {value.status}
                 </h1>
               </div>
-              <div className="Data-row">
+              <div className="Data-row-user-module">
                 <h1>
                   Perfil:
                 </h1>
@@ -171,12 +171,12 @@ export default function ModalAdmin({ users, setTypeChanged }) {
               </div>
             </div>
           ) : (
-            <div className="Data-row">
+            <div className="Data-row-user-module">
               <h1>Nenhum usuário selecionado</h1>
             </div>
           )}
         </div>
-        <div className="Row">
+        <div>
           <button
             className="Confirm-user-module"
             type="button"

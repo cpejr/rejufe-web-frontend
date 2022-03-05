@@ -41,7 +41,7 @@ function ModuloUsuarios() {
       <div className="Title-module-page">
         <h1>Módulo de Usuários</h1>
       </div>
-      <TableComponent setTypeChanged={setTypeChanged} users={users} titles={titles} edit order />
+      <TableComponent setTypeChanged={setTypeChanged} users={users} titles={titles} order />
     </div>
 
   );

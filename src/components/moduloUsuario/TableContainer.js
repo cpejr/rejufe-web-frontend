@@ -104,7 +104,8 @@ function TableComponent({
 }) {
   // const theme = useTheme;
   const [page, setPage] = useState(0);
-  const [usersPerPage, setusersPerPage] = useState(10);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  console.log(usersPerPage);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -191,7 +192,7 @@ function TableComponent({
   };
 
   const handleChangeUsersPerPage = (event) => {
-    setusersPerPage(+event.target.value);
+    setUsersPerPage(+event.target.value);
     setPage(0);
   };
 

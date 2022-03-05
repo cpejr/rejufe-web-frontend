@@ -13,7 +13,7 @@
   margin-bottom: 10%;
 }
 
-.ContainerModalUsuario {
+.Container-modal-user {
   display: flex;
   flex-direction: column;
   margin-left: 6%;
@@ -31,7 +31,7 @@
   border: none;
 }
 
-.Column {
+.Column-user-module {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -53,17 +53,12 @@
   font-family: "Roboto", sans-serif;
 }
 
-.Users-data h1 {
-  color: var(--color2);
-  font-size: 20px;
-}
-
-.Data-row {
+.Data-row-user-module {
   display: flex;
   flex-direction: row;
 }
 
-.Data-row h1 {
+.Data-row-user-module h1 {
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 200;
