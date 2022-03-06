@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
@@ -8,8 +9,6 @@ function Quizzes({ quizz }) {
   const handleOpen = () => {
     setOpen(!open);
   };
-
-  console.log(quizz);
 
   return (
     <div className="body">
