@@ -111,19 +111,19 @@ export default function ModalEnquete() {
 
   const alternatives = [
     {
-      alternativa: 'Julia ',
+      description: 'Julia ',
       votes: 1,
     },
     {
-      alternativa: 'Nikole',
+      description: 'Nikole',
       votes: 2,
     },
     {
-      alternativa: 'Davi',
-      votes: 3,
+      description: 'Davi',
+      votes: 2,
     },
     {
-      alternativa: 'Monique',
+      description: 'Monique',
       votes: 4,
     },
   ];
@@ -197,6 +197,7 @@ export default function ModalEnquete() {
           users[count] = user._id;
           count += 1;
         });
+        console.log(users);
       } catch (error) {
         console.log(error);
         toast.error('Não foi possível obter usuários!!', {
@@ -290,7 +291,9 @@ export default function ModalEnquete() {
         // eslint-disable-next-line object-shorthand
         options: alternatives,
       };
-      await managerService.createQuizz(body);
+      console.log(body);
+      const response = await managerService.createQuizz(body);
+      console.log(response);
       toast.success('Enquete criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
