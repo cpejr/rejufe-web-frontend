@@ -48,7 +48,7 @@ function MenuLateral() {
               color="secondary"
             >
 
-              {buttonss.map((button) => (
+              {buttonss?.map((button) => (
                 <Button key={`${button.buttonName}`} className={defineBackgroundColor(button.buttonName)} onClick={() => setSelectedButton(button.buttonName)}>{button.buttonName}</Button>
               ))}
 
