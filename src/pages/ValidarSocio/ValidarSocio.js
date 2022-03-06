@@ -9,6 +9,7 @@ toast.configure();
 
 function ValidarSocio() {
   const [associates, setAllAssociates] = useState([]);
+  const [data, setAllData] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
 
@@ -19,6 +20,7 @@ function ValidarSocio() {
   }
 
   async function getAllAssociates() {
+    const auxData = [];
     const auxAssociate = [];
     const associateCode = [];
     const associateId = [];
@@ -28,10 +30,12 @@ function ValidarSocio() {
         associateCode.push(object.sequential_Id);
         associateId.push(object._id);
         auxAssociate.push(createData(object.name, object.cpf, object.status));
+        auxData.push(object);
       });
       auxAssociate.sort();
       setId(associateId);
       setAllAssociates(auxAssociate);
+      setAllData(auxData);
       setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -51,7 +55,7 @@ function ValidarSocio() {
 
   return (
     <div className="container-administration">
-      <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} validate />
+      <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
     </div>
   );
 }

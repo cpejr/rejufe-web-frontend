@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
@@ -9,9 +10,19 @@ import { toast } from 'react-toastify';
 import './AcceptModal.css';
 import * as managerService from '../../services/manager/managerService';
 
-export default function AcceptModal({ id, setUse }) {
+export default function AcceptModal({ dados, id, setUse }) {
+  console.log('🚀 ~ file: AcceptModal.js ~ line 14 ~ AcceptModal ~ id', id);
+  console.log('🚀 ~ file: AcceptModal.js ~ line 14 ~ AcceptModal ~ dados', dados);
+  async function handleStatus() {
+    dados[0].status = 'A';
+    delete (dados[0]._id);
+    delete (dados[0].__v);
+  }
   async function handleSubmit() {
     try {
+      handleStatus();
+      console.log('🚀 ~ file: AcceptModal.js ~ line 13 ~ AcceptModal ~ dados', dados);
+      await managerService.register(dados[0]);
       await managerService.deleteAssociate(id);
       toast.success('Sócio aceito!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -31,9 +42,10 @@ export default function AcceptModal({ id, setUse }) {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
-      <button type="button" className="RemoveModal-RemoveGroup" onClick={handleOpen}>
+      <button type="button" className="AcceptModal-RemoveGroup" onClick={handleOpen}>
         <CheckCircleRoundedIcon style={{ color: 'green', cursor: 'pointer' }} />
       </button>
       <Modal
@@ -42,22 +54,22 @@ export default function AcceptModal({ id, setUse }) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Box className="RemoveModal-ContainerModal">
-          <div className="RemoveModal-text">
-            <div className="RemoveModal-Question">Tem certeza que deseja aceitar sócio?</div>
+        <Box className="AcceptModal-ContainerModal">
+          <div className="AcceptModal-text">
+            <div className="AcceptModal-Question">Tem certeza que deseja aceitar sócio?</div>
           </div>
-          <div className="RemoveModal-Buttons">
-            <div className="RemoveModal-button1">
-              <button type="button" className="RemoveModal-ButtonCancel" onClick={handleClose}>
-                <div className="RemoveModal-align">
+          <div className="AcceptModal-Buttons">
+            <div className="AcceptModal-button1">
+              <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+                <div className="AcceptModal-align">
                   <p>Cancelar</p>
                   <span><HighlightOffIcon style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>
               </button>
             </div>
-            <div className="RemoveModal-button2">
+            <div className="AcceptModal-button2">
               <button
-                className="RemoveModal-ButtonConfirm"
+                className="AcceptModal-ButtonConfirm"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSubmit();
@@ -65,7 +77,7 @@ export default function AcceptModal({ id, setUse }) {
                 }}
                 type="button"
               >
-                <div className="RemoveModal-align">
+                <div className="AcceptModal-align">
                   <p>Confirmar</p>
                   <span><CheckCircleOutlineIcon size={22} style={{ color: '10c500', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>

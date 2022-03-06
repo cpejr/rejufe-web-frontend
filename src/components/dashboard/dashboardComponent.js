@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
@@ -101,7 +102,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, order, setUse, associateId, edit, search, searchFile, validate,
+  titles, rows, order, setUse, associateId, edit, search, searchFile, validate, dados,
 }) {
   // const theme = useTheme;
   const [page, setPage] = useState(0);
@@ -314,7 +315,7 @@ function TableComponent({
                       <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                     </IconButton>
                     <IconButton color="primary" aria-label="accept">
-                      <AcceptModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
+                      <AcceptModal setUse={setUse} dados={dados} id={associateId[index + (page * 10)]} associate={row} />
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (
