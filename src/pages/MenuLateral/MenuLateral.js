@@ -1,29 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MenuLateral.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Box from '@mui/material/Box';
+
+const buttonss = [
+  { buttonName: 'Home' },
+  { buttonName: 'Editais' },
+  { buttonName: 'Atas' },
+  { buttonName: 'Associados' },
+  { buttonName: 'Ações Adm' },
+  { buttonName: 'Ações Jurídicas' },
+  { buttonName: 'Prestação de Contas' },
+  { buttonName: 'Aniversariantes' },
+  { buttonName: 'Comunicados' },
+  { buttonName: 'Informativos' },
+  { buttonName: 'Fale Conosco' },
+];
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: '#264A6F',
+    },
+  },
+});
 
 function MenuLateral() {
+  const [selectedButton, setSelectedButton] = useState('');
+
+  const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
+    ? 'butaoo'
+    : 'testee');
+
   return (
-    <div>
-      <body>
+    <Box className="menu-lateral">
+      <div>
         <div className="menu">
-          <ul>
-            <Button variant="outlined">Home</Button>
-            <Button variant="outlined">Editais</Button>
-            <Button variant="outlined">Atas</Button>
-            <Button variant="outlined">Associados</Button>
-            <Button variant="outlined">Ações Jurídicas</Button>
-            <Button variant="outlined">Prestação de Contas</Button>
-            <Button variant="outlined">Aniversariantes</Button>
-            <Button variant="outlined">Comunicados</Button>
-            <Button variant="outlined">Informativos</Button>
-            <Button variant="outlined">Fale Conosco</Button>
+          <ThemeProvider theme={theme}>
+            <ButtonGroup
+              className="teste"
+              size="large"
+              orientation="vertical"
+              aria-label="vertical contained button group"
+              variant="text"
+              color="secondary"
+            >
 
-          </ul>
+              {buttonss.map((button) => (
+                <Button key={`${button.buttonName}`} className={defineBackgroundColor(button.buttonName)} onClick={() => setSelectedButton(button.buttonName)}>{button.buttonName}</Button>
+              ))}
+
+            </ButtonGroup>
+          </ThemeProvider>
         </div>
-
-      </body>
-    </div>
+      </div>
+    </Box>
   );
 }
 
