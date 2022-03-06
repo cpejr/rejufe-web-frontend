@@ -1,134 +1,99 @@
 
-    .containerbox {
+    .menuSideContainer {
         position: center;
-        width: 16.5%;
+        width: 17%;
         padding: 1%;
         margin: 5%;
         margin-bottom: 5%;
-        overflow: hidden;
         font-size: 15;
         border-radius: 4px;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         background-color: #F8F8F8;
         }
 
-    .grupbuttonall{
+    .menuSideAll{
         padding: 10px;
     }
 
-    .grupbutton{
+    .grupButton{
         background-color: #F8F8F8;
     }
 
-    .clickbutton{
+    .clickButton{
         color: var(--fontColor2);
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
         
     }
 
-    .grupbutton:hover {
+    .grupButton:hover {
         color: var(--fontColor2);
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
     @media (max-width: 1120px){
-        .containerbox {
-            width: 17%;
-            padding: 0%;
-            margin: 5%;
+        .menuSideContainer {
+            width: 18%;
             }  
     }
     @media (max-width: 1050px){
-        .containerbox {
-            width: 18%;
-            padding: 0%;
-            margin: 5%;
+        .menuSideContainer {
+            width: 20%;
             }    
     }
     @media (max-width: 1000px){
-        .containerbox {
+        .menuSideContainer {
             width: 21%;
-            padding: 0%;
-            margin: 5%;
-            display: flex;
             }    
     }
     @media (max-width: 900px){
-        .containerbox {
-            width: 23%;
-            padding: 0%;
-            margin: 5%;
+        .menuSideContainer {
+            width: 24%;
             }    
     }
     @media (max-width: 780px){
-        .containerbox {
-            width: 26%;
-            padding: 0%;
-            margin: 5%;
+        .menuSideContainer {
+            width: 28%;
             }    
     }
     @media (max-width: 680px){
-        .containerbox {
-            width: 30%;
+        .menuSideContainer {
+            width: 31%;
             margin-left: 35%;
             }    
     }
     @media (max-width: 590px){
-        .containerbox {
-            width: 35%;
+        .menuSideContainer {
+            width: 36%;
             margin-left: 34%;
             }    
     }
-    @media (max-width: 500px){
-        .containerbox {
+    @media (max-width: 510px){
+        .menuSideContainer {
             width: 45%;
             margin-left: 30%;
             }    
     }
     @media (max-width: 415px){
-        .containerbox {
+        .menuSideContainer {
             width: 52%;
             margin-left: 25%;
             }    
     }
     @media (max-width: 350px){
-        .containerbox {
+        .menuSideContainer {
             width: 57%;
             margin-left: 25%;
             }    
     }
     @media (max-width: 310px){
-        .containerbox {
-            width: 60%;
+        .menuSideContainer {
+            width: 61%;
             margin-left: 23%;
             }    
     }
     @media (max-width: 290px){
-        .containerbox {
-            width: 69%;
-            margin-left: 18%;
-            }    
-    }
-    @media (max-width: 260px){
-        .containerbox {
-            width: 79%;
-            margin-left: 12%;
-            }    
-    }
-    @media (max-width: 220px){
-        .containerbox {
-            width: 85%;
-            margin-left: 10%;
-            }    
-    }
-    @media (max-width: 210px){
-        .containerbox {
-            width: 90%;
-            margin-left: 6%;
-            }    
-    }
-    @media (max-width: 190px){
-        .containerbox {
-            width: 100%;
+        .menuSideContainer {
+            width: 70%;
+            margin-left: 16%;
             }    
     }

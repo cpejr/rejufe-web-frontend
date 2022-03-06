@@ -18,6 +18,8 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import Footer from './components/Footer';
+import MenuLateral from './pages/MenuLateral';
+import ChangePassword from './pages/AlterarSenha';
 
 function UserHeader() {
   return (

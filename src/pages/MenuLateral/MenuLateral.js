@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 
-const buttonss = [
+const buttons = [
   { buttonName: 'Home' },
   { buttonName: 'Editais' },
   { buttonName: 'Atas' },
@@ -16,6 +16,7 @@ const buttonss = [
   { buttonName: 'Aniversariantes' },
   { buttonName: 'Comunicados' },
   { buttonName: 'Informativos' },
+  { buttonName: 'Enquetes' },
   { buttonName: 'Fale Conosco' },
 ];
 
@@ -31,16 +32,16 @@ function MenuLateral() {
   const [selectedButton, setSelectedButton] = useState('');
 
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
-    ? 'clickbutton'
-    : 'grupbutton');
+    ? 'clickButton'
+    : 'grupButton');
 
   return (
     <Box>
       <div>
-        <div className="containerbox">
+        <div className="menuSideContainer">
           <ThemeProvider theme={theme}>
             <ButtonGroup
-              className="grupbuttonall"
+              className="menuSideAll"
               size="large"
               orientation="vertical"
               aria-label="vertical contained button group"
@@ -48,7 +49,7 @@ function MenuLateral() {
               color="secondary"
             >
 
-              {buttonss?.map((button) => (
+              {buttons.map((button) => (
                 <Button key={`${button.buttonName}`} className={defineBackgroundColor(button.buttonName)} onClick={() => setSelectedButton(button.buttonName)}>{button.buttonName}</Button>
               ))}
 
