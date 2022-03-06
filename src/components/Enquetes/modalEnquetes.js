@@ -97,26 +97,36 @@ export default function ModalEnquete() {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState([
-    { name: 'Alternativa 1' },
+    {
+      name: 'Alternativa 1',
+      index: 0,
+    },
   ]);
+  const [options, setOptions] = useState([
+    { alternativa: '' },
+  ]);
+
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
-  // const [options, setOptions] = useState([]);
 
-  function handleChange(value, field) {
-    setError({ ...initialErrorState, [field]: false });
-    setDados({ ...dados, [field]: value });
-  }
-
-  const options = [
-    { alternativa: 'Julia ' },
-    { alternativa: 'Nikole' },
-    { alternativa: 'Davi' },
-    { alternativa: 'Monique' },
+  const alternatives = [
+    {
+      alternativa: 'Julia ',
+      votes: 1,
+    },
+    {
+      alternativa: 'Nikole',
+      votes: 2,
+    },
+    {
+      alternativa: 'Davi',
+      votes: 3,
+    },
+    {
+      alternativa: 'Monique',
+      votes: 4,
+    },
   ];
-  // function handleOptionsChange(value, field) {
-  //   setOptions({ ...options, [field]: value });
-  // }
 
   const handleOpen = () => {
     setOpen(true);
@@ -145,8 +155,9 @@ export default function ModalEnquete() {
   ];
 
   const handleAddAlternative = () => {
+    setOptions(options.concat([{ alternativa: '' }]));
     const alternativeNumber = inputs.length + 1;
-    setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}` }]));
+    setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}`, index: alternativeNumber - 1 }]));
   };
 
   const handleDeleteAlternative = (remove) => {
@@ -161,6 +172,20 @@ export default function ModalEnquete() {
       }
     });
   };
+
+  function handleChange(value, field) {
+    setError({ ...initialErrorState, [field]: false });
+    setDados({ ...dados, [field]: value });
+  }
+
+  function handleOptionChange(value, index) {
+    console.log(index);
+    options[index].alternativa += value;
+    console.log(options[index].alternativa);
+  }
+
+  console.log(options);
+  console.log(inputs);
 
   const getUsers = async () => {
     if (voterSection.some((elem) => elem === 'Todos os associados')) {
@@ -263,7 +288,7 @@ export default function ModalEnquete() {
         openingDate: dados.openingDate,
         closingDate: dados.closingDate,
         // eslint-disable-next-line object-shorthand
-        options: options,
+        options: alternatives,
       };
       await managerService.createQuizz(body);
       toast.success('Enquete criada com sucesso!!', {
@@ -400,8 +425,8 @@ export default function ModalEnquete() {
                 <Input
                   required
                   error={initialErrorState.options}
-                  value={dados.options}
-                  onChange={(e) => handleChange(e.target.value, 'options')}
+                  value={options[input.index].alternativa}
+                  onChange={(e) => handleOptionChange(e.target.value, input.index)}
                   // eslint-disable-next-line no-nested-ternary
                   helperText={initialErrorState.options ? 'Valor de alternativa inválida' : ''}
                 />
