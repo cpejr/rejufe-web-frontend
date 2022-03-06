@@ -16,13 +16,14 @@ export const options = {
   },
 };
 
-function GraphicQuizzes() {
+function GraphicQuizzes({ quizz }) {
+  console.log(quizz.options);
   return (
     <Chart
       chartType="BarChart"
       width="100%"
       height="70%"
-      data={data}
+      data={quizz.options}
       options={options}
     />
   );
