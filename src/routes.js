@@ -24,6 +24,7 @@ function UserHeader() {
       <Switch>
         <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/dashboard/administrador" component={Dashboard} />
+        <Route path="/cadastro" component={Cadastro} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/adm-registros" component={AdmRegistros} />
@@ -45,10 +46,7 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/dashboard/administrador" component={Dashboard} />
-        <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>
