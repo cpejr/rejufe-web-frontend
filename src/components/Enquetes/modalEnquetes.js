@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import * as managerService from '../../services/manager/managerService';
-import { initialQuizzState } from '../../componentes/initialStates/initialQuizzStates';
+import { initialQuizzState, initialQuizzErrorState } from '../../componentes/initialStates/initialQuizzStates';
 
 function getModalStyle() {
   const top = 50;
@@ -100,15 +100,19 @@ export default function ModalEnquete() {
     { name: 'Alternativa 1' },
   ]);
   const [dados, setDados] = useState(initialQuizzState);
+  const [initialErrorState, setError] = useState(initialQuizzErrorState);
   // const [options, setOptions] = useState([]);
 
   function handleChange(value, field) {
+    setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
   }
 
   const options = [
     { alternativa: 'Julia ' },
     { alternativa: 'Nikole' },
+    { alternativa: 'Davi' },
+    { alternativa: 'Monique' },
   ];
   // function handleOptionsChange(value, field) {
   //   setOptions({ ...options, [field]: value });
@@ -164,7 +168,7 @@ export default function ModalEnquete() {
         const response = await managerService.getAllUsers();
         let count = 0;
         response.forEach((user) => {
-          users[count] = user.id;
+          users[count] = user._id;
           count += 1;
         });
       } catch (error) {
@@ -193,8 +197,62 @@ export default function ModalEnquete() {
   };
 
   console.log(dados);
+  console.log(users);
 
   const createQuizz = async () => {
+    const aux = initialErrorState;
+    let checkError = 0;
+
+    if (dados.title?.length === 0) {
+      aux.title = true;
+      checkError = 1;
+      toast.error('Título inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
+    if (dados.openingDate?.length === 0) {
+      aux.openingDate = true;
+      checkError = 1;
+      toast.error('Data inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
+    if (dados.closingDate?.length === 0) {
+      aux.closingDate = true;
+      checkError = 1;
+      toast.error('Data inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
+    if (users?.length === 0) {
+      aux.toVote = true;
+      checkError = 1;
+      toast.error('Sessão inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
+    // if (dados.title?.length === 0) {
+    //   aux.title = true;
+    //   checkError = 1;
+    //   toast.error('Título inválido!!', {
+    //     position: toast.POSITION.BOTTOM_RIGHT,
+    //     autoClose: 5000,
+    //   });
+    // }
+
+    if (checkError === 1) {
+      setError({ ...aux });
+      return;
+    }
+
     try {
       console.log('oi');
       const body = {
@@ -258,32 +316,41 @@ export default function ModalEnquete() {
               <InputLabel>Título</InputLabel>
               <Input
                 required
+                error={initialErrorState.title}
                 value={dados.title}
                 onChange={(e) => handleChange(e.target.value, 'title')}
+                // eslint-disable-next-line no-nested-ternary
               />
             </FormControl>
             <FormControl>
               <InputLabel>Data de início </InputLabel>
               <Input
                 required
+                error={initialErrorState.openingDate}
                 type="Date"
                 value={dados.openingDate}
                 onChange={(e) => handleChange(e.target.value, 'openingDate')}
+                // eslint-disable-next-line no-nested-ternary
+                helperText={initialErrorState.openingDate ? 'Valor de data inválida' : ''}
               />
             </FormControl>
             <FormControl>
               <InputLabel>Data de fim </InputLabel>
               <Input
                 required
+                error={initialErrorState.closingDate}
                 type="Date"
                 value={dados.closingDate}
                 onChange={(e) => handleChange(e.target.value, 'closingDate')}
+                // eslint-disable-next-line no-nested-ternary
+                helperText="Valor inválido"
               />
             </FormControl>
             <FormControl>
               <InputLabel id="select-voter">Selecione quem irá votar</InputLabel>
               <Select
                 required
+                error={initialErrorState.toVote}
                 labelId="select-voter"
                 id="multiple-chip"
                 value={voterSection}
@@ -308,6 +375,8 @@ export default function ModalEnquete() {
                     ))}
                   </Box>
                 )}
+                // eslint-disable-next-line no-nested-ternary
+                helperText={initialErrorState.toVote ? 'Valor de sessão inválida' : ''}
               >
                 <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
                 {sections.map((section) => (
@@ -328,8 +397,11 @@ export default function ModalEnquete() {
                 </InputLabel>
                 <Input
                   required
+                  error={initialErrorState.options}
                   value={dados.options}
                   onChange={(e) => handleChange(e.target.value, 'options')}
+                  // eslint-disable-next-line no-nested-ternary
+                  helperText={initialErrorState.options ? 'Valor de alternativa inválida' : ''}
                 />
                 <div className="delete-button">
                   <button
@@ -385,7 +457,6 @@ export default function ModalEnquete() {
                 type="submit"
                 onClick={() => {
                   createQuizz();
-                  handleClose();
                 }}
               >
                 Confirmar
