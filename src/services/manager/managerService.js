@@ -80,3 +80,17 @@ export const updateAssociate = async (associateId, body) => {
   const response = await requesterService.updateAssociate(associateId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const getExternalAssociates = async (field, filter) => {
+  let times = 0;
+  let response;
+
+  let allAssociates = [];
+  do {
+    response = await requesterService.getExternalAssociates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allAssociates = allAssociates.concat(response.data);
+    times += 1;
+  } while (response.data.length === 0);
+  return allAssociates;
+};
