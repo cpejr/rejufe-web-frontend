@@ -43,3 +43,5 @@ export const getExternalAssociates = (times, field, filter) => httpClient.get('/
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);

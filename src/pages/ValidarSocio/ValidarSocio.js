@@ -9,8 +9,8 @@ toast.configure();
 
 function ValidarSocio() {
   const [associates, setAllAssociates] = useState([]);
-  const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
+  const [use, setUse] = useState(true);
 
   function createData(name, cpf, status) {
     return {
@@ -32,7 +32,7 @@ function ValidarSocio() {
       auxAssociate.sort();
       setId(associateId);
       setAllAssociates(auxAssociate);
-      setSequentialId(associateCode);
+      setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -40,7 +40,7 @@ function ValidarSocio() {
   }
   useEffect(() => {
     getAllAssociates();
-  }, []);
+  }, [use]);
 
   const titles = [
     '',
@@ -51,7 +51,7 @@ function ValidarSocio() {
 
   return (
     <div className="container-administration">
-      <TableComponent id={id} sequentialId={sequentialId} rows={associates} titles={titles} order />
+      <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} validate />
     </div>
   );
 }

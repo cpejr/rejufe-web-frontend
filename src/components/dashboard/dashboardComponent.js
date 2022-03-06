@@ -26,6 +26,8 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import cssColorCodes from '../cssColorCodes/cssColorCodes';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
+import RejectModal from '../RejectModal/RejectModal';
+import AcceptModal from '../AcceptModal/AcceptModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -99,7 +101,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, rows, order, setUse, associateId, edit, search, searchFile,
+  titles, rows, order, setUse, associateId, edit, search, searchFile, validate,
 }) {
   // const theme = useTheme;
   const [page, setPage] = useState(0);
@@ -304,6 +306,15 @@ function TableComponent({
                     </IconButton>
                     <IconButton color="primary" aria-label="Edit">
                       <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
+                    </IconButton>
+                  </TableCell>
+                ) : validate ? (
+                  <TableCell {...cellFontProps} align="center">
+                    <IconButton aria-label="reject">
+                      <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
+                    </IconButton>
+                    <IconButton color="primary" aria-label="accept">
+                      <AcceptModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (

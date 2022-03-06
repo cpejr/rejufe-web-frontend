@@ -92,6 +92,10 @@ export const getExternalAssociates = async (field, filter) => {
     allAssociates = allAssociates.concat(response.data);
     times += 1;
   } while (response.data.length === 0);
-  console.log('🚀 ~ file: managerService.js ~ line 97 ~ getExternalAssociates ~ allAssociates', allAssociates);
   return allAssociates;
+};
+
+export const deleteExternalAssociate = async (associateId) => {
+  const response = await requesterService.deleteExternalAssociate(associateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
