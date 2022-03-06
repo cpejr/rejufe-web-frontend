@@ -16,6 +16,7 @@ export const register = (body) => httpClient.post('/usuario', body);
 export const registerExternal = (body) => httpClient.post('/usuario/externalAssociateRegister', body);
 
 export const getById = (id) => httpClient.get(`/usuario/${id}`);
+
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
   params: {
     times,
@@ -24,6 +25,8 @@ export const getAssociates = (times, field, filter) => httpClient.get('/usuario'
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const updateUser = (user, userId) => httpClient.put(`/usuario/${userId}`, user);
 
 export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcludedAssociate', {
   params: {

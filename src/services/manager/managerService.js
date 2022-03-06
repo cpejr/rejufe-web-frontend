@@ -54,15 +54,19 @@ export const sendResetEmail = async (email) => {
 export const getAssociates = async (field, filter) => {
   let times = 0;
   let response;
-
-  let allAssociates = [];
+  let allCandidates = [];
   do {
     response = await requesterService.getAssociates(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allAssociates = allAssociates.concat(response.data);
+    allCandidates = allCandidates.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
-  return allAssociates;
+  } while (response.data.length > 0);
+  return allCandidates;
+};
+
+export const updateUser = async (user, id) => {
+  const response = await requesterService.updateUser(user, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
 export const getExcludedAssociate = async (status) => {
