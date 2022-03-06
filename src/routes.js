@@ -36,7 +36,7 @@ function UserHeader() {
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
         <Route path="/alterar-senha" component={AlterarSenha} />
-        <Route path="/MenuLateral" component={MenuLateral} />
+        <Route path="/menu-lateral" component={MenuLateral} />
       </Switch>
     </Header>
   );
@@ -53,7 +53,6 @@ function Routes() {
         <Route path="/dashboard/usuario" component={Dashboard} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
-        <Route path="/MenuLateral" component={MenuLateral} />
       </Switch>
       <Footer />
     </BrowserRouter>
