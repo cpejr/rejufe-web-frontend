@@ -31,16 +31,16 @@ function MenuLateral() {
   const [selectedButton, setSelectedButton] = useState('');
 
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
-    ? 'butaoo'
-    : 'testee');
+    ? 'clickbutton'
+    : 'grupbutton');
 
   return (
-    <Box className="menu-lateral">
+    <Box>
       <div>
-        <div className="menu">
+        <div className="containerbox">
           <ThemeProvider theme={theme}>
             <ButtonGroup
-              className="teste"
+              className="grupbuttonall"
               size="large"
               orientation="vertical"
               aria-label="vertical contained button group"

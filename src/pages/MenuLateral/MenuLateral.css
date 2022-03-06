@@ -1,5 +1,5 @@
 
-    .menu {
+    .containerbox {
         position: center;
         width: 16.5%;
         padding: 1%;
@@ -12,121 +12,123 @@
         background-color: #F8F8F8;
         }
 
-    .teste{
+    .grupbuttonall{
         padding: 10px;
+    }
+
+    .grupbutton{
         background-color: #F8F8F8;
     }
 
-    .butaoo{
+    .clickbutton{
         color: var(--fontColor2);
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
         
     }
 
-    .testee:hover {
+    .grupbutton:hover {
         color: var(--fontColor2);
-        background-color: var(--header);
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
     @media (max-width: 1120px){
-        .menu {
-            width: 16.5%;
+        .containerbox {
+            width: 17%;
             padding: 0%;
             margin: 5%;
             }  
     }
     @media (max-width: 1050px){
-        .menu {
+        .containerbox {
             width: 18%;
             padding: 0%;
             margin: 5%;
             }    
     }
     @media (max-width: 1000px){
-        .menu {
-            width: 19%;
+        .containerbox {
+            width: 21%;
             padding: 0%;
             margin: 5%;
             display: flex;
             }    
     }
     @media (max-width: 900px){
-        .menu {
-            width: 22%;
+        .containerbox {
+            width: 23%;
             padding: 0%;
             margin: 5%;
             }    
     }
     @media (max-width: 780px){
-        .menu {
-            width: 25%;
+        .containerbox {
+            width: 26%;
             padding: 0%;
             margin: 5%;
             }    
     }
     @media (max-width: 680px){
-        .menu {
+        .containerbox {
             width: 30%;
             margin-left: 35%;
             }    
     }
     @media (max-width: 590px){
-        .menu {
+        .containerbox {
             width: 35%;
             margin-left: 34%;
             }    
     }
     @media (max-width: 500px){
-        .menu {
+        .containerbox {
             width: 45%;
             margin-left: 30%;
             }    
     }
     @media (max-width: 415px){
-        .menu {
-            width: 50%;
+        .containerbox {
+            width: 52%;
             margin-left: 25%;
             }    
     }
     @media (max-width: 350px){
-        .menu {
+        .containerbox {
             width: 57%;
             margin-left: 25%;
             }    
     }
     @media (max-width: 310px){
-        .menu {
+        .containerbox {
             width: 60%;
             margin-left: 23%;
             }    
     }
     @media (max-width: 290px){
-        .menu {
+        .containerbox {
             width: 69%;
             margin-left: 18%;
             }    
     }
     @media (max-width: 260px){
-        .menu {
+        .containerbox {
             width: 79%;
             margin-left: 12%;
             }    
     }
     @media (max-width: 220px){
-        .menu {
+        .containerbox {
             width: 85%;
             margin-left: 10%;
             }    
     }
     @media (max-width: 210px){
-        .menu {
+        .containerbox {
             width: 90%;
             margin-left: 6%;
             }    
     }
     @media (max-width: 190px){
-        .menu {
+        .containerbox {
             width: 100%;
             }    
     }
