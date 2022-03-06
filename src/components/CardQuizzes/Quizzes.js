@@ -24,7 +24,7 @@ function Quizzes({ quizz }) {
           <h1>
             {quizz.options.alternatives}
           </h1>
-          <GraphicQuizzes quizz={quizz} />
+          <GraphicQuizzes quizz={quizz.options} />
         </div>
       ) : (
         null

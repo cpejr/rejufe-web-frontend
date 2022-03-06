@@ -17,7 +17,16 @@ export const options = {
 };
 
 function GraphicQuizzes({ quizz }) {
-  console.log(quizz.options);
+  // const data = [
+  //   ['Opções', 'Votos'],
+  // ];
+  // let index = 1;
+
+  quizz?.forEach(((option) => {
+    console.log(option);
+    // data[index] = [1];
+  }),
+
   return (
     <Chart
       chartType="BarChart"
