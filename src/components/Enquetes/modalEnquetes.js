@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import * as managerService from '../../services/manager/managerService';
-import { initialQuizzState, initialQuizzErrorState } from '../../componentes/initialStates/initialQuizzStates';
+import { initialQuizzState, initialQuizzErrorState } from './initialQuizzStates';
 
 function getModalStyle() {
   const top = 50;
@@ -167,6 +167,7 @@ export default function ModalEnquete() {
       try {
         const response = await managerService.getAllUsers();
         let count = 0;
+        console.log(response);
         response.forEach((user) => {
           users[count] = user._id;
           count += 1;
@@ -182,12 +183,14 @@ export default function ModalEnquete() {
       try {
         const response = await managerService.getUsersBySection(voterSection);
         let count = 0;
+        console.log(response);
         response.forEach((user) => {
           console.log(user.id);
-          users[count] = user.id;
+          users[count] = user._id;
           count += 1;
         });
       } catch (error) {
+        console.log(error);
         toast.error('Não foi possível obter usuários!!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
@@ -196,7 +199,6 @@ export default function ModalEnquete() {
     }
   };
 
-  console.log(dados);
   console.log(users);
 
   const createQuizz = async () => {
