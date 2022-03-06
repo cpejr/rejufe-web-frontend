@@ -9,39 +9,30 @@ toast.configure();
 
 function ValidarSocio() {
   const [associates, setAllAssociates] = useState([]);
+  const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
-  const [use, setUse] = useState(true);
 
-  function createData(status, name, cpf) {
+  function createData(name, cpf, status) {
     return {
-      status, name, cpf,
+      name, cpf, status,
     };
-  }
-  function createId(_id) {
-    return _id;
   }
 
   async function getAllAssociates() {
     const auxAssociate = [];
-    const AssociatesId = [];
+    const associateCode = [];
+    const associateId = [];
     try {
-      const allAssociates = await managerService.getExcludedAssociate('A');
+      const allAssociates = await managerService.getExternalAssociates();
       allAssociates.forEach((object) => {
-        auxAssociate.push(createData(
-          object.status,
-          object.name,
-          object.cpf,
-        ));
-      });
-      allAssociates.forEach((object) => {
-        AssociatesId.push(createId(
-          object._id,
-        ));
+        associateCode.push(object.sequential_Id);
+        associateId.push(object._id);
+        auxAssociate.push(createData(object.name, object.cpf, object.status));
       });
       auxAssociate.sort();
-      setId(AssociatesId);
+      setId(associateId);
       setAllAssociates(auxAssociate);
-      setUse(false);
+      setSequentialId(associateCode);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -49,18 +40,18 @@ function ValidarSocio() {
   }
   useEffect(() => {
     getAllAssociates();
-  }, [use]);
+  }, []);
 
   const titles = [
     '',
-    'Status',
     'Nome',
     'Cpf',
+    'Status',
   ];
 
   return (
-    <div className="main-dashboard-container">
-      <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} edit />
+    <div className="container-administration">
+      <TableComponent id={id} sequentialId={sequentialId} rows={associates} titles={titles} order />
     </div>
   );
 }

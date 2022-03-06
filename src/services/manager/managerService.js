@@ -92,5 +92,6 @@ export const getExternalAssociates = async (field, filter) => {
     allAssociates = allAssociates.concat(response.data);
     times += 1;
   } while (response.data.length === 0);
+  console.log('🚀 ~ file: managerService.js ~ line 97 ~ getExternalAssociates ~ allAssociates', allAssociates);
   return allAssociates;
 };

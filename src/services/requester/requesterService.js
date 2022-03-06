@@ -35,7 +35,7 @@ export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${ass
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
 
-export const getExternalAssociates = (times, field, filter) => httpClient.get('/externalAssociate', {
+export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
     times,
     field,
