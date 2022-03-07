@@ -102,9 +102,7 @@ export default function ModalEnquete() {
       index: 0,
     },
   ]);
-  const [options, setOptions] = useState([
-    { alternativa: '' },
-  ]);
+  const [options, setOptions] = useState([]);
 
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
@@ -120,7 +118,7 @@ export default function ModalEnquete() {
     },
     {
       description: 'Davi',
-      votes: 2,
+      votes: 3,
     },
     {
       description: 'Monique',
@@ -155,7 +153,6 @@ export default function ModalEnquete() {
   ];
 
   const handleAddAlternative = () => {
-    setOptions(options.concat([{ alternativa: '' }]));
     const alternativeNumber = inputs.length + 1;
     setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}`, index: alternativeNumber - 1 }]));
   };
@@ -178,14 +175,9 @@ export default function ModalEnquete() {
     setDados({ ...dados, [field]: value });
   }
 
-  function handleOptionChange(value, index) {
-    console.log(index);
-    options[index].alternativa += value;
-    console.log(options[index].alternativa);
+  function handleOptionChange(value) {
+    setOptions(options.concat([{ description: value, votes: 0 }]));
   }
-
-  console.log(options);
-  console.log(inputs);
 
   const getUsers = async () => {
     if (voterSection.some((elem) => elem === 'Todos os associados')) {
@@ -224,8 +216,6 @@ export default function ModalEnquete() {
       }
     }
   };
-
-  console.log(users);
 
   const createQuizz = async () => {
     const aux = initialErrorState;
@@ -353,6 +343,16 @@ export default function ModalEnquete() {
               />
             </FormControl>
             <FormControl>
+              <InputLabel>Descrição</InputLabel>
+              <Input
+                required
+                error={initialErrorState.description}
+                value={dados.description}
+                onChange={(e) => handleChange(e.target.value, 'description')}
+                // eslint-disable-next-line no-nested-ternary
+              />
+            </FormControl>
+            <FormControl>
               <InputLabel>Data de início </InputLabel>
               <Input
                 required
@@ -388,22 +388,18 @@ export default function ModalEnquete() {
                 multiple
                 input={<Input id="select-multiple-chip" label="Chip" />}
                 renderValue={(selected) => (
-                  // selected.filter('Todos os associados') ? (
-                  //   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  //     <Chip key="Todos os associados" label="Todos os associados" />
-                  //   </Box>
-                  // ) : (
-                  //   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  //     {selected.map((value) => (
-                  //       <Chip key={value} label={value} />
-                  //     ))}
-                  //   </Box>
-                  // )
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
+                  selected.some((elem) => elem === 'Todos os associados') ? (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      <Chip key="Todos os associados" label="Todos os associados" />
+                    </Box>
+                  ) : (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )
+
                 )}
                 // eslint-disable-next-line no-nested-ternary
                 helperText={initialErrorState.toVote ? 'Valor de sessão inválida' : ''}
@@ -428,10 +424,8 @@ export default function ModalEnquete() {
                 <Input
                   required
                   error={initialErrorState.options}
-                  value={options[input.index].alternativa}
-                  onChange={(e) => handleOptionChange(e.target.value, input.index)}
-                  // eslint-disable-next-line no-nested-ternary
-                  helperText={initialErrorState.options ? 'Valor de alternativa inválida' : ''}
+                  value={options[input.index].description}
+                  onChange={(e) => handleOptionChange(e.target.value)}
                 />
                 <div className="delete-button">
                   <button

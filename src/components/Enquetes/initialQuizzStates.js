@@ -1,5 +1,6 @@
 export const initialQuizzState = {
   title: '',
+  description: '',
   openingDate: '',
   closingDate: '',
   options: [],
@@ -7,8 +8,9 @@ export const initialQuizzState = {
 
 export const initialQuizzErrorState = {
   title: false,
+  description: false,
   openingDate: false,
   closingDate: false,
-  toVote: false,
   options: false,
+  toVote: false,
 };
