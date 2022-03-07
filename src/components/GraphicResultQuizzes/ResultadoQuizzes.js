@@ -9,15 +9,16 @@ export const options = {
   },
 };
 
-function GraphicQuizzes({ quizz }) {
+function GraphicQuizzes({ quizz, alreadyVoted }) {
   const data = [
-    ['Opções', 'Votos'],
+    ['Opções', 'Votos', { role: 'annotation' }],
   ];
   let index = 1;
 
   quizz?.forEach((option) => {
-    console.log(option);
-    data[index] = [option.description, option.votes];
+    console.log(alreadyVoted);
+    const percentual = (option.votes / alreadyVoted);
+    data[index] = [option.description, option.votes, (percentual * 100)];
     index += 1;
   });
 

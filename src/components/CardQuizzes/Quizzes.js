@@ -23,7 +23,7 @@ function Quizzes({ quizz }) {
           <h1>
             {quizz.options.alternatives}
           </h1>
-          <GraphicQuizzes quizz={quizz.options} />
+          <GraphicQuizzes quizz={quizz.options} alreadyVoted={quizz.alreadyVoted} />
         </div>
       ) : (
         null
