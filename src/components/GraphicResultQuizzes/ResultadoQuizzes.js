@@ -1,13 +1,6 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
 
-export const data = [
-  ['Opções', 'Votos'],
-  ['Opção 1', 400],
-  ['Opção 2', 100],
-  ['Faltam Votar', 50],
-];
-
 export const options = {
   title: 'Quizz',
   chartArea: { width: '50%' },
@@ -16,7 +9,18 @@ export const options = {
   },
 };
 
-function GraphicQuizzes() {
+function GraphicQuizzes({ quizz }) {
+  const data = [
+    ['Opções', 'Votos'],
+  ];
+  let index = 1;
+
+  quizz?.forEach((option) => {
+    console.log(option);
+    data[index] = [option.description, option.votes];
+    index += 1;
+  });
+
   return (
     <Chart
       chartType="BarChart"
