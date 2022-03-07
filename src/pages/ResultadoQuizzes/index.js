@@ -1,2 +1,2 @@
-/* eslint-disable no-restricted-exports */
-export { default } from './ResultadoQuizzes';
+// eslint-disable-next-line no-restricted-exports
+export { default } from './ResuladoQuizzes';

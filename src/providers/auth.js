@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
       if (getStorage?.id) {
         try {
           const response = await managerService.getById(getStorage?.id);
+          console.log(response);
           setUser({
             name: response?.name,
             email: response?.email,

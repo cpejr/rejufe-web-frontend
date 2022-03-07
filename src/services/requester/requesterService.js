@@ -17,7 +17,11 @@ export const createQuizz = (body) => httpClient.post('/quizzes', body);
 
 export const registerExternal = (body) => httpClient.post('/usuario/externalAssociateRegister', body);
 
-export const getById = (id) => httpClient.get(`/usuario/${id}`);
+export const getById = (id, times) => httpClient.get(`/usuario/${id}`, {
+  params: {
+    times,
+  },
+});
 
 export const getAllUsers = (times) => httpClient.get('/usuario/', {
   params: {

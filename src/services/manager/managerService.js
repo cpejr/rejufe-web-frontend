@@ -3,7 +3,8 @@ import * as requesterService from '../requester/requesterService';
 const isFailureStatus = (result) => !result || result.status >= 400;
 
 export const getById = async (id) => {
-  const response = await requesterService.getById(id);
+  const times = 1;
+  const response = await requesterService.getById(id, times);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -21,7 +22,6 @@ export const register = async (body) => {
 };
 
 export const createQuizz = async (body) => {
-  console.log('oi2');
   const response = await requesterService.createQuizz(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
