@@ -31,18 +31,18 @@ function ResultadoQuizzes() {
     <div className="container-quizzes">
       <div className="division-page" />
       <div className="division-quizzes">
-        <div className="title-enquete">
+        <div className="title-quizzes">
           <h1>Resultado das Enquetes</h1>
           <ModalEnquete />
         </div>
         <div className="line-table-quizzes" />
-        {quizzes?.map((quizz) => (
-          user?.type === 'administrador' ? (
+        {user?.type === 'administrador' ? (
+          quizzes?.map((quizz) => (
             <Quizzes quizz={quizz} />
-          ) : (
-            <div />
-          )
-        ))}
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
