@@ -6,13 +6,19 @@ import './ResultadoQuizzes.css';
 function ResultadoQuizzes() {
   async function getAllAQuizzes() {
     const quizzes = await managerService.getQuizzes();
-    console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 10 ~ getAllAQuizzes ~ quizzes', quizzes);
   }
   useEffect(() => {
     getAllAQuizzes();
   }, []);
   return (
-    <Quizzes />
+    <div className="container-quizzes">
+      <div className="division-page" />
+      <div className="division-quizzes">
+        <h1> Resultado das Enquetes</h1>
+        <div className="line-table-quizzes" />
+        <Quizzes />
+      </div>
+    </div>
   );
 }
 

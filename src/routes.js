@@ -35,6 +35,7 @@ function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
+        <Route path="/resultado-quizzes" component={ResultadoQuizzes} />
         <Route path="/alterar-senha" component={ChangePassword} />
 
       </Switch>
@@ -51,7 +52,6 @@ function Routes() {
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/dashboard/usuario" component={Dashboard} />
-        <Route path="/resultado-quizzes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>

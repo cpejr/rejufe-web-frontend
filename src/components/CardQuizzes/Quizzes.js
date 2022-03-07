@@ -12,21 +12,12 @@ function Quizzes() {
     <div className="body">
       <div className="card">
         <button type="button" className="title-card" onClick={handleOpen}>
-          <h1>Card Title</h1>
+          <p>Card Title</p>
           <KeyboardArrowDownIcon style={{ color: 'white' }} />
         </button>
       </div>
       {open === true ? (
-        <div className="description-card">
-          <h1>
-            É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível
-            de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum
-            é que ele tem uma distribuição normal de letras, ao contrário de Conteúdo aqui, conteúdo
-            aqui, fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos
-            softwares de publicação e editore
-          </h1>
-          <GraphicQuizzes />
-        </div>
+        <GraphicQuizzes />
       ) : (
         null
       )}
