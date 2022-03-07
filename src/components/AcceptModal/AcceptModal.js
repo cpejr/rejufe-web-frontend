@@ -11,24 +11,27 @@ import './AcceptModal.css';
 import * as managerService from '../../services/manager/managerService';
 
 export default function AcceptModal({ id, setUse, dados }) {
-  console.log('🚀 ~ file: AcceptModal.js ~ line 14 ~ AcceptModal ~ id', id);
-  console.log('🚀 ~ file: AcceptModal.js ~ line 14 ~ AcceptModal ~ dados', dados);
-  async function handleStatus() {
-    dados[0].status = 'A';
-    delete (dados[0]._id);
-    delete (dados[0].__v);
+  function handleStatus() {
+    dados.status = 'A';
+    delete (dados._id);
+    delete (dados.__v);
   }
   async function handleSubmit() {
     try {
+      const deletedId = id;
       handleStatus();
-      await managerService.register(dados[0]);
-      await managerService.deleteAssociate(id);
+      await managerService.register(dados);
+      await managerService.deleteExternalAssociate(deletedId);
       toast.success('Sócio aceito!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
       setUse(true);
     } catch (error) {
+      toast.error('Erro ao tentar aceitar sócio!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
       console.error(error);
     }
   }

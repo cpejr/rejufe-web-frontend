@@ -104,8 +104,6 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titles, rows, order, setUse, associateId, edit, search, searchFile, validate, dados,
 }) {
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 107 ~ dados', dados);
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 107 ~ associateId', associateId);
   // const theme = useTheme;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -317,7 +315,7 @@ function TableComponent({
                       <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                     </IconButton>
                     <IconButton color="primary" aria-label="accept">
-                      <AcceptModal setUse={setUse} dados={dados} id={associateId[index + (page * 10)]} associate={row} />
+                      <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (

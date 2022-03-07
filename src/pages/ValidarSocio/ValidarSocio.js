@@ -22,12 +22,10 @@ function ValidarSocio() {
   async function getAllAssociates() {
     const auxData = [];
     const auxAssociate = [];
-    const associateCode = [];
     const associateId = [];
     try {
       const allAssociates = await managerService.getExternalAssociates();
       allAssociates.forEach((object) => {
-        associateCode.push(object.sequential_Id);
         associateId.push(object._id);
         auxAssociate.push(createData(object.name, object.cpf, object.status));
         auxData.push(object);

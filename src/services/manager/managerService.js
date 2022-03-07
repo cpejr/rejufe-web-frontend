@@ -84,10 +84,12 @@ export const updateAssociate = async (associateId, body) => {
 export const getExternalAssociates = async (field, filter) => {
   let times = 0;
   let response;
-
   let allAssociates = [];
   do {
     response = await requesterService.getExternalAssociates(times, field, filter);
+    if (response.data.length === 0) {
+      break;
+    }
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allAssociates = allAssociates.concat(response.data);
     times += 1;
