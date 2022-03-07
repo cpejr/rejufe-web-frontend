@@ -11,7 +11,6 @@ function ResultadoQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
-      console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 10 ~ getAllAQuizzes ~ quizzes', response);
     } catch (error) {
       console.log(error);
       toast.error('Credenciais inválidas!!', {

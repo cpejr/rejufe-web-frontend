@@ -55,3 +55,16 @@
   justify-content: center;
   margin-bottom: 10px;
 }
+
+.description-card p {
+  margin-top: 10px;
+  font-family: 'Roboto', sans-serif;
+  font: normal 18pt Roboto;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 0.8em;
+  justify-content: center;
+  margin-bottom: 10px;
+}
