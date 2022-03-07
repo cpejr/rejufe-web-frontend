@@ -85,7 +85,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div className="Container-modal-user">
-        <div className="Exit">
+        <div className="Exit-user-module">
           <button
             className="Close-user-module"
             type="button"
