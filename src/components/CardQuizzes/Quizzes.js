@@ -14,7 +14,7 @@ function Quizzes({ quizz }) {
     <div className="body">
       <div className="card">
         <button type="button" className="title-card" onClick={handleOpen}>
-          <h1>{quizz.title}</h1>
+          <p>{quizz.title}</p>
           <KeyboardArrowDownIcon style={{ color: 'white' }} />
         </button>
       </div>

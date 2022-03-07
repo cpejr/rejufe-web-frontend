@@ -11,7 +11,7 @@ function ResultadoQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
-      console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 10 ~ getAllAQuizzes ~ quizzes', quizzes);
+      console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 10 ~ getAllAQuizzes ~ quizzes', response);
     } catch (error) {
       console.log(error);
       toast.error('Credenciais inválidas!!', {
@@ -25,10 +25,15 @@ function ResultadoQuizzes() {
   }, []);
 
   return (
-    <div>
-      {quizzes?.map((quizz) => (
-        <Quizzes quizz={quizz} />
-      ))}
+    <div className="container-quizzes">
+      <div className="division-page" />
+      <div className="division-quizzes">
+        <h1>Resultado das Enquetes</h1>
+        <div className="line-table-quizzes" />
+        {quizzes?.map((quizz) => (
+          <Quizzes quizz={quizz} />
+        ))}
+      </div>
     </div>
   );
 }
