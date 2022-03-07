@@ -19,7 +19,7 @@ function ModuloUsuarios() {
     try {
       const response = await managerService.getAllUsers();
       setUsers(response);
-      setRows(response.filter(filterRows));
+      setRows(response?.filter(filterRows));
     } catch (error) {
       toast.error('Não foi possível obter usuários!!', {
         position: toast.POSITION.TOP_RIGHT,

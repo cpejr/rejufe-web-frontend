@@ -102,10 +102,8 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titles, users, order, edit, search, searchFile, setTypeChanged, rows,
 }) {
-  console.log(rows);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  console.log(rowsPerPage);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');

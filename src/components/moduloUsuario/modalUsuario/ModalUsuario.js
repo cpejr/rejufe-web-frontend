@@ -75,7 +75,6 @@ export default function ModalAdmin({ users, setTypeChanged }) {
         autoClose: 5000,
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível alterar o tipo do usuário!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

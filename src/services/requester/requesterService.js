@@ -24,3 +24,24 @@ export const getAllUsers = (times) => httpClient.get('/usuario/', {
 });
 
 export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);
+
+export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const updateUser = (user, userId) => httpClient.put(`/usuario/${userId}`, user);
+
+export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcludedAssociate', {
+  params: {
+    status,
+  },
+});
+
+export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${associateId}`);
+
+export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
