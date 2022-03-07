@@ -85,3 +85,18 @@ export const sendResetEmail = async (email) => {
   }
   return response;
 };
+
+export const getQuizzes = async (field, filter) => {
+  let times = 0;
+  let response;
+
+  let allQuizzes = [];
+  do {
+    console.log('oi2');
+    response = await requesterService.getQuizzes(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allQuizzes = allQuizzes.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allQuizzes;
+};

@@ -35,3 +35,12 @@ export const getUsersBySection = (times, section) => httpClient.get(`/usuario/se
     times,
   },
 });
+
+export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
