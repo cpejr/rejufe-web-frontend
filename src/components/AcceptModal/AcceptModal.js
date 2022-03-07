@@ -18,10 +18,9 @@ export default function AcceptModal({ id, setUse, dados }) {
   }
   async function handleSubmit() {
     try {
-      const deletedId = id;
       handleStatus();
       await managerService.register(dados);
-      await managerService.deleteExternalAssociate(deletedId);
+      await managerService.deleteExternalAssociate(id);
       toast.success('Sócio aceito!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
