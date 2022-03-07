@@ -29,3 +29,18 @@
   margin-bottom: 2%;
   color: var(--secondary);
 }
+
+.title-quizzes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.title-quizzes h1 {
+  margin-right: 2%;
+}
+
+.title-quizzes button {
+  background: 
+}
