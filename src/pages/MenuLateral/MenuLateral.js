@@ -32,12 +32,12 @@ function MenuLateral() {
   const [selectedButton, setSelectedButton] = useState('');
 
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
-    ? 'clickButton'
-    : 'grupButton');
+    ? 'menuSideClickButton'
+    : 'menuSideGrupButton');
 
   return (
     <Box>
-      <div>
+      <div className="menuSidepage">
         <div className="menuSideContainer">
           <ThemeProvider theme={theme}>
             <ButtonGroup
