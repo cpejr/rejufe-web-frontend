@@ -31,7 +31,7 @@ import './tableContainer.css';
 function TablePaginationActions(props) {
   const theme = useTheme();
   const {
-    count, page, usersPerPage, onPageChange,
+    count, page, rowsPerPage, onPageChange,
   } = props;
 
   const handleFirstPageButtonClick = (event) => {
@@ -47,7 +47,7 @@ function TablePaginationActions(props) {
   };
 
   const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / usersPerPage) - 1));
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
   return (
@@ -72,7 +72,7 @@ function TablePaginationActions(props) {
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / usersPerPage) - 1}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
         {theme.direction === 'rtl' ? (
@@ -83,7 +83,7 @@ function TablePaginationActions(props) {
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / usersPerPage) - 1}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
@@ -96,16 +96,16 @@ TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  usersPerPage: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
 };
 
 function TableComponent({
-  titles, users, order, edit, search, searchFile, setTypeChanged,
+  titles, users, order, edit, search, searchFile, setTypeChanged, rows,
 }) {
-  // const theme = useTheme;
+  console.log(rows);
   const [page, setPage] = useState(0);
-  const [usersPerPage, setUsersPerPage] = useState(10);
-  console.log(usersPerPage);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  console.log(rowsPerPage);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -185,20 +185,16 @@ function TableComponent({
         : 'big',
   };
 
-  const emptyusers = page > 0 ? Math.max(0, (1 + page) * usersPerPage - users.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeUsersPerPage = (event) => {
-    setUsersPerPage(+event.target.value);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  function filterUser(value) {
-    return value.type === 'administrador';
-  }
 
   return (
     <TableContainer
@@ -219,14 +215,13 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {users
-            ?.filter(filterUser)
-            ?.slice(page * usersPerPage, page * usersPerPage + usersPerPage)
-            ?.map((user) => (
+          {rows
+            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ?.map((row) => (
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
-                    {users.findIndex((obj) => obj._id === user._id) + 1}
+                    {rows.findIndex((obj) => obj._id === row._id) + 1}
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
@@ -257,30 +252,30 @@ function TableComponent({
                   <TableCell> </TableCell>
                 )}
                 <TableCell {...cellFontProps}>
-                  {user.status}
+                  {row.status}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {user.name}
+                  {row.name}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {user.judicial_section}
+                  {row.judicial_section}
                 </TableCell>
                 <TableCell {...cellFontProps}>
                   A
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {user.user}
+                  {row.user}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {user.email}
+                  {row.email}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {user.cpf}
+                  {row.cpf}
                 </TableCell>
               </TableRow>
             ))}
-          {emptyusers > 0 && (
-            <TableRow style={{ height: 53 * emptyusers }}>
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
                 {...cellFontProps}
                 style={{ background: `${cssColorCodes.fontColor1}` }}
@@ -292,11 +287,11 @@ function TableComponent({
       </Table>
       <TableFooter {...footerProps}>
         <TablePagination
-          usersPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
           component="div"
-          count={users.length}
-          usersPerPage={usersPerPage}
-          labelUsersPerPage="Linhas por pagina"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          labelRowsPerPage="Linhas por pagina"
           page={page}
           SelectProps={{
             inputProps: {
@@ -305,7 +300,7 @@ function TableComponent({
             native: true,
           }}
           onPageChange={handleChangePage}
-          onUsersPerPageChange={handleChangeUsersPerPage}
+          onrowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
         <ModalUsuario setTypeChanged={setTypeChanged} users={users} />

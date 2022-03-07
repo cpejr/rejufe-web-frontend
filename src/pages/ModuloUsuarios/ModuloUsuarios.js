@@ -8,11 +8,18 @@ toast.configure();
 
 function ModuloUsuarios() {
   const [users, setUsers] = useState([]);
+  const [rows, setRows] = useState([]);
   const [typeChanged, setTypeChanged] = useState(false);
+
+  function filterRows(value) {
+    return value.type === 'administrador';
+  }
+
   const getUsers = async () => {
     try {
       const response = await managerService.getAllUsers();
       setUsers(response);
+      setRows(response.filter(filterRows));
     } catch (error) {
       toast.error('Não foi possível obter usuários!!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -41,7 +48,7 @@ function ModuloUsuarios() {
       <div className="Title-module-page">
         <h1>Módulo de Usuários</h1>
       </div>
-      <TableComponent setTypeChanged={setTypeChanged} users={users} titles={titles} order />
+      <TableComponent setTypeChanged={setTypeChanged} rows={rows} users={users} titles={titles} order />
     </div>
 
   );

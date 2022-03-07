@@ -34,13 +34,13 @@
 .Column-user-module {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   margin-top: 4%;
 }
 
 .Title-user-module {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 2%;
   width: 95%;
@@ -68,7 +68,7 @@
 
 .Exit {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 @media (max-width: 360px) {
