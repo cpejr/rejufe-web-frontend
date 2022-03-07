@@ -20,7 +20,7 @@ function EditUserInputs({
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        '& > :not(style)': { m: 1, width: '30ch' },
       }}
       noValidate
       autoComplete="off"
@@ -34,7 +34,7 @@ function EditUserInputs({
           InputLabelProps={{ shrink: true }}
           type={type}
           variant="standard"
-          sx={{ m: 1, width: '22ch' }}
+          sx={{ m: 1, width: '30ch' }}
 
         />
       )}
@@ -50,7 +50,7 @@ function EditUserInputs({
           }}
           select={select}
           variant="standard"
-          sx={{ m: 1, width: '22ch' }}
+          sx={{ m: 1, width: '30ch' }}
 
         />
       )}
@@ -66,7 +66,8 @@ function EditUserInputs({
             native: true,
           }}
           variant="standard"
-          sx={{ m: 1, width: '22ch' }}
+          sx={{ m: 1, width: '30ch' }}
+          InputLabelProps={{ shrink: true }}
         >
           {field
             && field.map((option) => (
@@ -89,7 +90,7 @@ function EditUserInputs({
           type={type}
           variant="standard"
           multiline
-          sx={{ m: 1, width: '22ch' }}
+          sx={{ m: 1, width: '30ch' }}
         />
       )}
     </Box>
