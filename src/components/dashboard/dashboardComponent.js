@@ -104,6 +104,8 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titles, rows, order, setUse, associateId, edit, search, searchFile, validate, dados,
 }) {
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 107 ~ dados', dados);
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 107 ~ associateId', associateId);
   // const theme = useTheme;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);

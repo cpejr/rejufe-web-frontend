@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import './AcceptModal.css';
 import * as managerService from '../../services/manager/managerService';
 
-export default function AcceptModal({ dados, id, setUse }) {
+export default function AcceptModal({ id, setUse, dados }) {
   console.log('🚀 ~ file: AcceptModal.js ~ line 14 ~ AcceptModal ~ id', id);
   console.log('🚀 ~ file: AcceptModal.js ~ line 14 ~ AcceptModal ~ dados', dados);
   async function handleStatus() {
@@ -21,7 +21,6 @@ export default function AcceptModal({ dados, id, setUse }) {
   async function handleSubmit() {
     try {
       handleStatus();
-      console.log('🚀 ~ file: AcceptModal.js ~ line 13 ~ AcceptModal ~ dados', dados);
       await managerService.register(dados[0]);
       await managerService.deleteAssociate(id);
       toast.success('Sócio aceito!', {
