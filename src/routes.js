@@ -15,8 +15,8 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
-import AlterarSenha from './pages/AlterarSenha';
-import Enquetes from './pages/Enquetes/Enquetes';
+import ChangePassword from './pages/AlterarSenha';
+import ResultadoQuizzes from './pages/ResultadoQuizzes';
 
 function UserHeader() {
   return (
@@ -34,8 +34,8 @@ function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/alterar-senha" component={AlterarSenha} />
-        <Route path="/enquetes" component={Enquetes} />
+        <Route path="/alterar-senha" component={ChangePassword} />
+
       </Switch>
     </Header>
   );
@@ -50,6 +50,7 @@ function Routes() {
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/dashboard/administrador" component={Dashboard} />
         <Route path="/dashboard/usuario" component={Dashboard} />
+        <Route path="/resultado-quizzes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/" component={UserHeader} />
       </Switch>

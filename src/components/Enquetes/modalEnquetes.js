@@ -102,7 +102,7 @@ export default function ModalEnquete() {
       index: 0,
     },
   ]);
-  const [options, setOptions] = useState([]);
+  // const [options, setOptions] = useState([]);
 
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
@@ -175,9 +175,9 @@ export default function ModalEnquete() {
     setDados({ ...dados, [field]: value });
   }
 
-  function handleOptionChange(value) {
-    setOptions(options.concat([{ description: value, votes: 0 }]));
-  }
+  // function handleOptionChange(value) {
+  //   setOptions(options.concat([{ description: value, votes: 0 }]));
+  // }
 
   const getUsers = async () => {
     if (voterSection.some((elem) => elem === 'Todos os associados')) {
@@ -424,8 +424,8 @@ export default function ModalEnquete() {
                 <Input
                   required
                   error={initialErrorState.options}
-                  value={options[input.index].description}
-                  onChange={(e) => handleOptionChange(e.target.value)}
+                  // value={options[input.index].description}
+                  // onChange={(e) => handleOptionChange(e.target.value)}
                 />
                 <div className="delete-button">
                   <button
