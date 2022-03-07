@@ -4,7 +4,9 @@ const isFailureStatus = (result) => !result || result.status >= 400;
 
 export const getById = async (id) => {
   const times = 1;
+  console.log(id);
   const response = await requesterService.getById(id, times);
+  console.log(response);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

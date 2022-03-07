@@ -3,7 +3,7 @@ import ModalEnquete from '../../components/Enquetes/modalEnquetes';
 import { useAuth } from '../../providers/auth';
 
 function Enquete() {
-  const user = useAuth();
+  const { user } = useAuth();
   console.log(user);
   return (
     <div>
