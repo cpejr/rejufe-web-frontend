@@ -1,33 +1,31 @@
-import { React } from 'react';
+/* eslint-disable no-nested-ternary */
+import React from 'react';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
 
-function EditUserInputs({
+function RegisterInputs({
   setDados,
   type,
   label,
   id,
   field,
   select,
+  required,
+  initialErrorState,
   mask,
   dados,
-  disabled,
 }) {
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
   };
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '30ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <div>
       {type === 'date' && (
         <TextField
+          required={required}
           id={id}
+          error={initialErrorState[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
@@ -35,65 +33,61 @@ function EditUserInputs({
           type={type}
           variant="standard"
           sx={{ m: 1, width: '30ch' }}
-
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
       )}
       {mask && (
         <TextField
+          required={required}
           id={id}
+          error={initialErrorState[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(mask(e.target.value), id)}
           label={label}
           type={type}
-          InputLabelProps={{
-            shrink: true,
-          }}
           select={select}
           variant="standard"
           sx={{ m: 1, width: '30ch' }}
-
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
       )}
       {select && (
         <TextField
+          required={required}
           id={id}
+          error={initialErrorState[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
           label={label}
           type={type}
           select={select}
-          SelectProps={{
-            native: true,
-          }}
           variant="standard"
+          helperText={`Selecione uma opção de ${label}`}
           sx={{ m: 1, width: '30ch' }}
-          InputLabelProps={{ shrink: true }}
         >
-          {field
-            && field.map((option) => (
-              <option key={option.value} value={option.value} style={{ height: '36px' }}>
-                {option.label}
-              </option>
-            ))}
+          {field.map((option) => (
+            <MenuItem key={option.value} value={option.value} style={{ height: '36px' }}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
       )}
       {!mask && !(type === 'date') && !select && (
         <TextField
+          required={required}
           id={id}
+          error={initialErrorState[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          disabled={disabled}
           label={label}
           type={type}
           variant="standard"
           multiline
           sx={{ m: 1, width: '30ch' }}
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
       )}
-    </Box>
+    </div>
   );
 }
-export default EditUserInputs;
+export default RegisterInputs;
