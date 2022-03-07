@@ -1,0 +1,40 @@
+
+    .menuSidepage{
+        display: flex;
+    }
+
+    .menuSideContainer {
+        width: max-content;
+        padding: 1%;
+        margin: 5%;
+        margin-bottom: 5%;
+        font-size: 15;
+        border-radius: 4px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        background-color: #F8F8F8;
+        }
+
+    .menuSideAll{
+        padding: 10px;
+    }
+
+    .menuSideGrupButton{
+        background-color: #F8F8F8;
+    }
+
+    .menuSideClickButton{
+        color: var(--fontColor2);
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        
+    }
+
+    .menuSideGrupButton:hover {
+        color: var(--fontColor2);
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    @media (max-width: 850px){
+        .menuSidepage {
+            justify-content: center;
+            }    
+    }
