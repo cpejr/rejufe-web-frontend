@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
+import * as managerService from '../../services/manager/managerService';
 
 export const options = {
   title: 'Quizz',
@@ -8,8 +9,10 @@ export const options = {
     title: 'Opções',
   },
 };
+export const userName = [];
 
-function GraphicQuizzes({ quizz, alreadyVoted }) {
+function GraphicQuizzes({ toVote, quizz, alreadyVoted }) {
+  const [name, setName] = useState([]);
   const data = [
     ['Opções', 'Votos', { role: 'annotation' }],
   ];
@@ -23,14 +26,41 @@ function GraphicQuizzes({ quizz, alreadyVoted }) {
     index += 1;
   });
 
+  let count = 0;
+
+  // toVote.forEach(async (_id) => {
+  //   const allAssociates = await managerService.getById(_id);
+  //   userName[count] = allAssociates.name;
+  //   count += 1;
+  //   console.log(userName);
+  // });
+
+  useEffect(async () => {
+    toVote.forEach(async (_id) => {
+      const allAssociates = await managerService.getById(_id);
+      userName[count] = allAssociates.name;
+      count += 1;
+      console.log(userName);
+    });
+    setName(userName);
+  }, []);
+
   return (
-    <Chart
-      chartType="BarChart"
-      width="100%"
-      height="70%"
-      data={data}
-      options={options}
-    />
+    <div>
+      <Chart
+        chartType="BarChart"
+        width="100%"
+        height="50%"
+        data={data}
+        options={options}
+      />
+      {name?.map((title) => (
+        <p>
+          {title}
+          ,
+        </p>
+      ))}
+    </div>
   );
 }
 

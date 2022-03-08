@@ -6,11 +6,17 @@ import './ResultadoQuizzes.css';
 
 function ResultadoQuizzes() {
   const [quizzes, setQuizzes] = useState([]);
+  const [vote, setVote] = useState([]);
+  const associateId = [];
 
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
+      response.forEach((object) => {
+        associateId.push(object.toVote);
+      });
+      setVote(associateId);
     } catch (error) {
       console.log(error);
       toast.error('Credenciais inválidas!!', {
@@ -19,6 +25,10 @@ function ResultadoQuizzes() {
       });
     }
   }
+  // const userName = [];
+  // let count = 0;
+  console.log(quizzes);
+
   useEffect(() => {
     getAllAQuizzes();
   }, []);
@@ -30,7 +40,7 @@ function ResultadoQuizzes() {
         <h1>Resultado das Enquetes</h1>
         <div className="line-table-quizzes" />
         {quizzes?.map((quizz) => (
-          <Quizzes quizz={quizz} />
+          <Quizzes vote={vote} quizz={quizz} />
         ))}
       </div>
     </div>

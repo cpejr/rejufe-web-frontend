@@ -37,10 +37,10 @@
 
 .description-card {
   width: 100%;
-  height: 250px;
+  height: 500px;
   border-radius: 8px;
   background-color: var(--background);
-  padding: 15px;
+  padding: 5px;
 }
 
 .description-card h1 {
@@ -63,6 +63,7 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+  flex: 1;
   flex-wrap: wrap;
   font-size: 0.8em;
   justify-content: center;
