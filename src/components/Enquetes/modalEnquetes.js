@@ -15,6 +15,7 @@ import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from './initialQuizzStates';
+import Alternatives from './alternatives';
 
 function getModalStyle() {
   const top = 50;
@@ -157,27 +158,10 @@ export default function ModalEnquete() {
     setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}`, index: alternativeNumber - 1 }]));
   };
 
-  const handleDeleteAlternative = (remove) => {
-    const indexRemoved = inputs.indexOf(remove);
-    setInputs(inputs.filter((input) => input.name !== remove.name));
-    let indexInput;
-    // eslint-disable-next-line array-callback-return
-    inputs.map((input) => {
-      indexInput = inputs.indexOf(input);
-      if (indexInput >= indexRemoved) {
-        input.name = `Alternativa ${indexInput}:`;
-      }
-    });
-  };
-
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
   }
-
-  // function handleOptionChange(value) {
-  //   setOptions(options.concat([{ description: value, votes: 0 }]));
-  // }
 
   const getUsers = async () => {
     if (voterSection.some((elem) => elem === 'Todos os associados')) {
@@ -415,43 +399,7 @@ export default function ModalEnquete() {
                 ))}
               </Select>
             </FormControl>
-            {inputs?.map((input) => (
-              <FormControl className="row-enquete">
-                <div className="empty-div" />
-                <InputLabel>
-                  {input.name}
-                </InputLabel>
-                <Input
-                  required
-                  error={initialErrorState.options}
-                  // value={options[input.index].description}
-                  // onChange={(e) => handleOptionChange(e.target.value)}
-                />
-                <div className="delete-button">
-                  <button
-                    type="button"
-                    className="delete-alternative"
-                    onClick={() => {
-                      handleDeleteAlternative(input);
-                    }}
-                  >
-                    <CloseIcon
-                      size={20}
-                      sx={[
-                        {
-                          color: '#264A6F',
-                          '&:hover': {
-                            color: 'white',
-                            backgroundColor: '#264A6F',
-                            borderRadius: '5px',
-                          },
-                        },
-                      ]}
-                    />
-                  </button>
-                </div>
-              </FormControl>
-            ))}
+            <Alternatives inputs={inputs} setInputs={setInputs} initialErrorState={initialErrorState} />
             <button
               type="button"
               className="plus-enquete"
