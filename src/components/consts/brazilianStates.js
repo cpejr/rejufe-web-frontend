@@ -1,9 +1,5 @@
 const brazilianStates = [
   {
-    value: '',
-    label: '',
-  },
-  {
     value: 'AC',
     label: 'AC',
   },
