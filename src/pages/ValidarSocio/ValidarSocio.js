@@ -52,7 +52,7 @@ function ValidarSocio() {
   ];
 
   return (
-    <div className="container-administration">
+    <div className="ValidateAssociate-container">
       <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
     </div>
   );
