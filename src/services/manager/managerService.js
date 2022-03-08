@@ -84,3 +84,15 @@ export const updateAssociate = async (associateId, body) => {
   const response = await requesterService.updateAssociate(associateId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const getFileById = async (id) => {
+  const response = await requesterService.getFileById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const uploadFile = async (body) => {
+  const response = await requesterService.uploadFile(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
