@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
@@ -7,53 +7,51 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function Alternatives({ inputs, setInputs, initialErrorState }) {
   const [options, setOptions] = useState([
-    {
-      value1: '',
-    },
-    {
-      value2: '',
-    },
-    {
-      value3: '',
-    },
-    {
-      value4: '',
-    },
-    {
-      value5: '',
-    },
-    {
-      value6: '',
-    },
-    {
-      value7: '',
-    },
-    {
-      value8: '',
-    },
-    {
-      value9: '',
-    },
-    {
-      value10: '',
-    },
+    { value1: '' },
+    { value2: '' },
+    { value3: '' },
+    { value4: '' },
+    { value5: '' },
+    { value6: '' },
+    { value7: '' },
+    { value8: '' },
+    { value9: '' },
+    { value10: '' },
   ]);
+  let alternatives;
 
-  const handleDeleteAlternative = (remove) => {
-    const indexRemoved = inputs.indexOf(remove);
-    setInputs(inputs.filter((input) => input.name !== remove.name));
-    let indexInput;
+  const setAlternatives = (remove) => {
     // eslint-disable-next-line array-callback-return
-    inputs.map((input) => {
-      indexInput = inputs.indexOf(input);
-      if (indexInput >= indexRemoved) {
-        input.name = `Alternativa ${indexInput}:`;
+    alternatives = Object.values(options).map((option, index) => {
+      if (index >= remove.index && options[index + 1] !== undefined) {
+        console.log(index);
+        console.log(option);
+        console.log(options[index + 1]);
+        setOptions({ ...options, [index]: options[index + 1] });
       }
     });
   };
 
-  function handleOptionChange(value, field) {
-    setOptions({ ...options, [field]: value });
+  const handleDeleteAlternative = (remove) => {
+    setInputs(inputs.filter((input) => input.name !== remove.name));
+    setOptions({ ...options, [remove.index]: '' });
+    let indexInput;
+    // eslint-disable-next-line array-callback-return
+    inputs.map((input) => {
+      indexInput = inputs.indexOf(input);
+      if (indexInput >= remove.index) {
+        input.name = `Alternativa ${indexInput}`;
+      }
+    });
+
+    setAlternatives(remove);
+  };
+
+  console.log(alternatives);
+  console.log(options);
+
+  function handleOptionChange(value, index) {
+    setOptions({ ...options, [index]: value });
   }
 
   return (
@@ -66,8 +64,9 @@ function Alternatives({ inputs, setInputs, initialErrorState }) {
           </InputLabel>
           <Input
             required
+            error={initialErrorState.options}
             value={options[input.index].description}
-            onChange={(e) => handleOptionChange(e.target.value)}
+            onChange={(e) => handleOptionChange(e.target.value, input.index)}
           />
           <div className="delete-button">
             <button

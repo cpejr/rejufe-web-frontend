@@ -22,6 +22,7 @@
   height: 50px;
   border: thin solid var(--secondary);
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .title-card-quizzes p {

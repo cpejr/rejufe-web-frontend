@@ -443,10 +443,11 @@ export default function ModalEnquete() {
   return (
     <div>
       <button
+        className="create-quizz-button"
         type="button"
         onClick={handleOpen}
       >
-        Criar
+        Criar nova enquete
       </button>
       <Modal
         open={open}
