@@ -40,4 +40,6 @@ export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, bo
 
 export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
 
-export const uploadFile = (body) => httpClient.post('/arquivo', body);
+export const uploadFile = (body) => httpClient.post('/arquivos', body);
+
+export const createNews = (body) => httpClient.post('/noticias', body);

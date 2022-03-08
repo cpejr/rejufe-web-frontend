@@ -96,3 +96,13 @@ export const uploadFile = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const createNews = async (body) => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const pair of body.entries()) {
+    console.log(`${pair[0]}, ${pair[1]}`);
+  }
+  const response = await requesterService.createNews(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

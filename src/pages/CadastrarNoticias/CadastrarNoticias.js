@@ -1,124 +1,101 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { Grid, makeStyles, Button } from '@material-ui/core';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
+import Box from '@mui/material/Box';
+import formsNews from '../../components/formsData/formsNews';
+import RegisterInputs from '../../components/formsInputs/registerInputs';
+import { initialNewsState, initialNewsErrorState } from '../../components/initialStates/initialStates';
+import checkNewsData from '../../components/checkNewsData/checkNewsData';
+import * as managerService from '../../services/manager/managerService';
 import './CadastrarNoticias.css';
 
-const useStyles = makeStyles((theme) => ({
-  dropzone: {
-    border: `2px dashed ${theme.palette.primary.main}`,
-    borderRadius: theme.shape.borderRadius,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: theme.palette.background.default,
-    height: theme.spacing(10),
-    outline: 'none',
-  },
-}));
-
-let currentId = 0;
-
-function getNewId() {
-  // we could use a fancier solution instead of a sequential ID :)
-  return ++currentId;
-}
+toast.configure();
 
 function CadastrarNoticias() {
-  const [files, setFiles] = useState([]);
-  const classes = useStyles();
+  const [initialErrorState, setError] = useState(initialNewsErrorState);
+  const [loading, setLoading] = useState(false);
+  const [dados, setDados] = useState(initialNewsState);
 
-  function onDelete(file) {
-    setFiles((curr) => curr.filter((fw) => fw.preview !== file));
+  function handleChange(value, field) {
+    setError({ ...initialErrorState, [field]: false });
+    setDados({ ...dados, [field]: value });
   }
 
-  const onDrop = useCallback((accFiles, rejFiles) => {
-    const mappedAcc = accFiles.map((file) => ({
-      file, preview: URL.createObjectURL(file), errors: [], id: getNewId(),
-    }));
-    const mappedRej = rejFiles.map((r) => ({ ...r, id: getNewId() }));
-    setFiles((curr) => [...curr, ...mappedAcc, ...mappedRej]);
-  }, []);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: ['image/*', 'video/*', '.pdf'],
-    maxSize: 300 * 1024, // 300KB
-  });
-
-  function handleSubmit() {
     const formData = new FormData();
+    const aux = initialErrorState;
+    let checkError = 0;
 
-    if (files.length > 0) {
-      files.forEach((file) => {
-        formData.append(file.file.name, file.file);
-      });
+    Object.entries(dados).forEach((dado) => {
+      if (dado[0] === 'archive_1' || dado[0] === 'archive_2' || dado[0] === 'photos') {
+        formData.append(dado[0], dado[1]?.file);
+      } else {
+        if (checkNewsData(dado[0], dado[1])) {
+          checkError = 1;
+          aux[dado[0]] = true;
+        }
+        formData.append(dado[0], dado[1]);
+      }
+    });
+
+    if (checkError === 1) {
+      setError({ ...aux });
+      setLoading(false);
+      return;
     }
-
-    formData.append('img', 'vapinho do irineu');
 
     // eslint-disable-next-line no-restricted-syntax
-    for (const key of formData.entries()) {
-      console.log(`${key[0]}, ${key[1]}`);
-    }
-
-    console.log('🚀 ~ file: CadastrarNoticias.js ~ line 57 ~ files.forEach ~ formData', formData);
-    // try {
-    //   await api.post('/product', formData);
-    //   setAtt(!att);
-    //   notification.open({
-    //     message: 'Sucesso!',
-    //     description:
-    //       'O registro do produto foi concluído com sucesso.',
-    //     className: 'ant-notification',
-    //     top: '100px',
-    //     style: {
-    //       width: 600,
-    //     },
-    //   });
-    //   closeModal();
-    // } catch (error) {
-    //   console.error(error);
-    //   notification.open({
-    //     message: 'Erro!',
-    //     description:
-    //       'Erro ao cadastrar o produto',
-    //     className: 'ant-notification',
-    //     top: '100px',
-    //     style: {
-    //       width: 600,
-    //     },
-    //   });
+    // for (const pair of formData.entries()) {
+    //   console.log(`${pair[0]}, ${pair[1]}`);
     // }
+
+    try {
+      await managerService.createNews(formData);
+      toast.success('Notícia criada com sucesso!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+      setLoading(false);
+    } catch (error) {
+      toast.error('Preencha todos os campos corretamente!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+      setLoading(false);
+    }
+    setLoading(false);
   }
 
   return (
-    <Grid item>
-      <div className="App">
-        <div {...getRootProps({ className: classes.dropzone })}>
-          <input {...getInputProps()} />
-          <p>Arraste e solte os arquivos aqui</p>
-        </div>
-        {files.map((file) => (
-          <div key={file.name}>
-            <div>
-              <img src={file.preview} style={{ width: '200px' }} alt="preview" />
-              <Button size="small" onClick={() => onDelete(file.preview)}>
-                Delete
-              </Button>
-            </div>
+    <div className="register-news-container">
+      <h1 className="register-news-title"><div className="register-news-text-margin">Cadastro de Notícia</div></h1>
+      {formsNews?.map((line) => (
+        <Box>
+          <div className="register-news-text-field">
+            {line?.items?.map((item) => (
+              <RegisterInputs
+                type={item.type}
+                fileType={item.fileType}
+                id={item.id}
+                label={item.label}
+                field={item.field}
+                select={item.select}
+                required={item.required}
+                setDados={(value, entrada) => handleChange(value, entrada)}
+                mask={item.mask}
+                initialErrorState={initialErrorState}
+                dados={dados}
+              />
+            ))}
           </div>
-        ))}
-      </div>
-      <div>
-        <Button size="small" onClick={() => handleSubmit()}>
-          Teste
-        </Button>
-
-      </div>
-    </Grid>
+        </Box>
+      ))}
+      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Notícia</LoadingButton>
+    </div>
   );
 }
 
