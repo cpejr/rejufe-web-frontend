@@ -15,10 +15,14 @@ function ModuloUsuarios() {
     return value.type === 'administrador';
   }
 
+  function filterUsers(value) {
+    return value.type === 'usuário';
+  }
+
   const getUsers = async () => {
     try {
       const response = await managerService.getAllUsers();
-      setUsers(response);
+      setUsers(response?.filter(filterUsers));
       setRows(response?.filter(filterRows));
     } catch (error) {
       toast.error('Não foi possível obter usuários!!', {
@@ -44,8 +48,8 @@ function ModuloUsuarios() {
   ];
 
   return (
-    <div className="container-module">
-      <div className="Title-module-page">
+    <div className="container-user-module">
+      <div className="Title-user-module-page">
         <h1>Módulo de Usuários</h1>
       </div>
       <TableComponent setTypeChanged={setTypeChanged} rows={rows} users={users} titles={titles} order />

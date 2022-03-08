@@ -84,7 +84,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="Container-modal-user">
+      <div className="Container-modal-user-module">
         <div className="Exit-user-module">
           <button
             className="Close-user-module"
@@ -191,7 +191,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
     </div>
   );
   return (
-    <div className="Modal-button-user-module">
+    <div className="Modal-open-button-user-module">
       <button
         type="button"
         onClick={handleOpen}

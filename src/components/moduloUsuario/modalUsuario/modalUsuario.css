@@ -11,17 +11,19 @@
   height: 45px;
   margin-top: 6%;
   margin-bottom: 10%;
+  cursor: pointer;
 }
 
-.Container-modal-user {
+.Container-modal-user-module {
   display: flex;
   flex-direction: column;
   margin-left: 6%;
 }
 
 .Confirm-user-module:hover {
-    background-color: var(--hover);
-  }
+  background-color: var(--hover);
+  border-color: var(--hover);
+}
 
 .Close-user-module {
   width: 30px;  
@@ -29,6 +31,7 @@
   margin-left: 1%;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .Column-user-module {
@@ -72,7 +75,7 @@
 }
 
 @media (max-width: 360px) {
-  .ContainerModalUsuario {
+  .Container-modal-user-module {
     margin-left: 2%;
   }
 }

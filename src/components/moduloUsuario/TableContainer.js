@@ -298,7 +298,7 @@ function TableComponent({
             native: true,
           }}
           onPageChange={handleChangePage}
-          onrowsPerPageChange={handleChangeRowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
         <ModalUsuario setTypeChanged={setTypeChanged} users={users} />

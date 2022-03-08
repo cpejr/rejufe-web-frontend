@@ -1,4 +1,4 @@
-.Modal-button-user-module button {
+.Modal-open-button-user-module button {
     width: 100px;  
     height: 30px;  
     color: white;
@@ -8,4 +8,10 @@
     margin-left: 25px;
     margin-top: 9%;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.Modal-open-button-user-module button:hover {
+    background-color: var(--hover);
+    border-color: var(--hover);
 }
