@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
 import Login from './pages/Login';
 import DashboardUsuario from './pages/DashboardUsuario';
 import DashboardAdmin from './pages/DashboardAdmin';
@@ -20,6 +22,7 @@ import ModuloUsuarios from './pages/ModuloUsuarios';
 import Footer from './components/Footer';
 import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
+import NotFound from './pages/NotFound';
 
 function UserHeader() {
   return (
@@ -40,6 +43,7 @@ function UserHeader() {
         <Route path="/menu-lateral" component={MenuLateral} />
         <Route path="/alterar-senha" component={ChangePassword} />
         <Route path="/editar-associados" component={EditarAssociados} />
+        <Redirect to="/NotFound" />
       </Switch>
     </Header>
   );
@@ -53,6 +57,7 @@ function Routes() {
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
+        <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

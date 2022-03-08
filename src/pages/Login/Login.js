@@ -87,7 +87,6 @@ function Login() {
               />
               <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>
-
             <button type="button" onClick={handleClick}>
               {loading ? (
                 <CircularProgress size={24} color="inherit" />
