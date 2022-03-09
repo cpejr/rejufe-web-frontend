@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './moduloUsuario.css';
 import { toast } from 'react-toastify';
 import {
-  InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment,
+  InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment, createTheme, ThemeProvider
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
@@ -23,8 +23,7 @@ function ModuloUsuarios() {
   };
   console.log(filter);
 
-  function searchField(value) {
-  }
+  const theme = createTheme
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
@@ -83,25 +82,27 @@ function ModuloUsuarios() {
         <h1>Módulo de Usuários</h1>
       </div>
       <div className="User-module-search-field">
-        <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
-        <FormControl>
-          <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={filter}
-            label="filter"
-            onChange={(e) => handleChange(e.target.value)}
-          >
-            <MenuItem value="Usuários">Usuários</MenuItem>
-            <MenuItem value="Seção">Seção</MenuItem>
-          </Select>
-        </FormControl>
-        <OutlinedInput
-          endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
-          value={search}
-          onChange={(e) => handleSearch(e.target.value)}
-        />
+        <ThemeProvider theme={theme}>
+          <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filter}
+              label="filter"
+              onChange={(e) => handleChange(e.target.value)}
+            >
+              <MenuItem value="Usuários">Usuários</MenuItem>
+              <MenuItem value="Seção">Seção</MenuItem>
+            </Select>
+          </FormControl>
+          <OutlinedInput
+            endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+        </ThemeProvider>
       </div>
       <TableComponent setTypeChanged={setTypeChanged} rows={rows} titles={titles} order />
     </div>
