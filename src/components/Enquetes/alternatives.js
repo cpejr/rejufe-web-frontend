@@ -4,8 +4,19 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
+import CreateQuizz from './createQuizz';
 
-function Alternatives({ inputs, setInputs, initialErrorState }) {
+function Alternatives({
+  initialErrorState, dados, users, setError,
+}) {
+  const [inputs, setInputs] = useState([
+    {
+      name: 'Alternativa 1',
+      index: 0,
+    },
+  ]);
+
   const [options, setOptions] = useState([
     { value1: '' },
     { value2: '' },
@@ -18,46 +29,30 @@ function Alternatives({ inputs, setInputs, initialErrorState }) {
     { value9: '' },
     { value10: '' },
   ]);
-  let alternatives;
-
-  const setAlternatives = (remove) => {
-    // eslint-disable-next-line array-callback-return
-    alternatives = Object.values(options).map((option, index) => {
-      if (index >= remove.index && options[index + 1] !== undefined) {
-        console.log(index);
-        console.log(option);
-        console.log(options[index + 1]);
-        setOptions({ ...options, [index]: options[index + 1] });
-      }
-    });
-  };
 
   const handleDeleteAlternative = (remove) => {
-    setInputs(inputs.filter((input) => input.name !== remove.name));
-    setOptions({ ...options, [remove.index]: '' });
-    let indexInput;
-    // eslint-disable-next-line array-callback-return
-    inputs.map((input) => {
-      indexInput = inputs.indexOf(input);
-      if (indexInput >= remove.index) {
-        input.name = `Alternativa ${indexInput}`;
-      }
-    });
-
-    setAlternatives(remove);
+    if (remove.index !== inputs.length - 1) {
+      return;
+    }
+    setInputs(inputs.filter((input) => input !== inputs[inputs.length - 1]));
+    setOptions({ ...options, [inputs.length - 1]: '' });
   };
 
-  console.log(alternatives);
   console.log(options);
 
   function handleOptionChange(value, index) {
     setOptions({ ...options, [index]: value });
   }
 
+  const handleAddAlternative = () => {
+    const alternativeNumber = inputs.length + 1;
+    setInputs(inputs.concat([{ name: `Alternativa ${alternativeNumber}`, index: alternativeNumber - 1 }]));
+  };
+
   return (
-    <div>
+    <div className="alternative-inputs-enquete">
       {inputs?.map((input) => (
-        <FormControl className="row-enquete">
+        <FormControl>
           <div className="empty-div" />
           <InputLabel>
             {input.name}
@@ -93,6 +88,36 @@ function Alternatives({ inputs, setInputs, initialErrorState }) {
           </div>
         </FormControl>
       ))}
+      <button
+        type="button"
+        className="plus-enquete"
+        onClick={() => {
+          handleAddAlternative();
+        }}
+      >
+        <AddIcon
+          size={30}
+          sx={[
+            {
+              color: '#264A6F',
+              marginRight: '5px',
+              '&:hover': {
+                color: 'white',
+                backgroundColor: '#264A6F',
+                borderRadius: '5px',
+              },
+            },
+          ]}
+        />
+        Adicionar alternativa
+      </button>
+      <CreateQuizz
+        dados={dados}
+        initialErrorState={initialErrorState}
+        users={users}
+        setError={setError}
+        options={options}
+      />
     </div>
   );
 }
