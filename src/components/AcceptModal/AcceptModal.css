@@ -1,4 +1,4 @@
-.RemoveModal-RemoveGroup{
+.AcceptModal-RemoveGroup{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -13,7 +13,7 @@
   background-color: white;
 }
 
-.RemoveModal-ContainerModal{
+.AcceptModal-ContainerModal{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,14 +31,14 @@
   padding: 4;
 }
 
-.RemoveModal-text{
+.AcceptModal-text{
   display:flex;
   align-items:center;
   justify-content:center;
   width: 100%;
 }
 
-.RemoveModal-Question{
+.AcceptModal-Question{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -50,7 +50,7 @@
   margin-bottom: 7%;
 }
 
-.RemoveModal-Buttons{
+.AcceptModal-Buttons{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -58,15 +58,15 @@
   flex-direction: row;
 }
 
-.RemoveModal-button1{
+.AcceptModal-button1{
   margin-left: 13px;
 }
 
-.RemoveModal-button2{
+.AcceptModal-button2{
   margin-right: 13px;
 }
 
-.RemoveModal-ButtonCancel{
+.AcceptModal-ButtonCancel{
   display:flex;
   height: 55px;
   width: 200px;
@@ -85,7 +85,7 @@
   color: white;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
-.RemoveModal-ButtonConfirm{
+.AcceptModal-ButtonConfirm{
   display:flex;
   height: 55px;
   width: 200px;
@@ -105,94 +105,94 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.RemoveModal-align{
+.AcceptModal-align{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.RemoveModal-align p {
+.AcceptModal-align p {
   color: white;
 }
 
-.RemoveModal-ButtonCancel:hover{
+.AcceptModal-ButtonCancel:hover{
   background-color: var(--primary);
 }
 
-.RemoveModal-ButtonConfirm:hover{
+.AcceptModal-ButtonConfirm:hover{
   background-color: var(--primary);
 }
 
 @media(max-width: 685px){
-  .RemoveModal-ContainerModal{
+  .AcceptModal-ContainerModal{
     height: 130px;
     width: 350px;
   }
 
-  .RemoveModal-ButtonConfirm{
+  .AcceptModal-ButtonConfirm{
     height: 40px;
     width: 120px;
     font-size: 15px;
   }
 
-  .RemoveModal-ButtonCancel{
+  .AcceptModal-ButtonCancel{
     height: 40px;
     width: 120px;
     font-size: 15px;
   }
 
-  .RemoveModal-button1{
+  .AcceptModal-button1{
     margin-left: 40px;
   }
   
-  .RemoveModal-button2{
+  .AcceptModal-button2{
     margin-right: 40px;
   }
   
-.RemoveModal-Question{
+.AcceptModal-Question{
   font-size: 16px;
 }
 
 }
 
 @media(max-width: 495px){
-  .RemoveModal-RemoveGroup .css-i4bv87-MuiSvgIcon-root {
+  .AcceptModal-RemoveGroup .css-i4bv87-MuiSvgIcon-root {
     width: 0.75em !important;
     height: 0.75em !important;
   }
 }
 
 @media(max-width: 370px){
-  .RemoveModal-ContainerModal{
+  .AcceptModal-ContainerModal{
     height: 130px;
     width: 270px;
   }
 
-  .RemoveModal-ButtonConfirm{
+  .AcceptModal-ButtonConfirm{
     height: 30px;
     width: 100px;
     font-size: 14px;
   }
 
-  .RemoveModal-ButtonCancel{
+  .AcceptModal-ButtonCancel{
     height: 30px;
     width: 100px;
     font-size: 14px;
   }
   
-.RemoveModal-Question{
+.AcceptModal-Question{
   font-size: 14px;
 }
 
-.RemoveModal-button1{
+.AcceptModal-button1{
   margin-left: 0;
 }
 
-.RemoveModal-button2{
+.AcceptModal-button2{
   margin-right: 0;
 }
 
-.RemoveModal-Buttons{
+.AcceptModal-Buttons{
   display:flex;
   align-items:center;
   justify-content:space-between;
