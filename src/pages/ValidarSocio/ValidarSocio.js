@@ -1,5 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './ValidarSocio.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
@@ -13,6 +14,8 @@ function ValidarSocio() {
   const [data, setAllData] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
+
+  const history = useHistory();
 
   function createData(name, cpf, status) {
     return {
@@ -37,6 +40,7 @@ function ValidarSocio() {
       setAllData(auxData);
       setUse(false);
     } catch (error) {
+      history.push('/NotFound');
       // eslint-disable-next-line no-console
       console.warn(error);
     }

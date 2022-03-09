@@ -111,6 +111,10 @@
   justify-content: center;
 }
 
+.RejectModal-align p {
+  color: white;
+}
+
 .RejectModal-ButtonCancel:hover{
   background-color: var(--primary);
 }
