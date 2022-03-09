@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SingleFileUpload({
-  id, fileType, dados, file, setDados,
+  id, fileType, dados, file, setDados, label,
 }) {
   const classes = useStyles();
 
@@ -59,7 +59,13 @@ function SingleFileUpload({
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
-            <p>Arraste e solte os arquivos aqui</p>
+            <p>
+              Arraste e solte a/o
+              {' '}
+              {`${label}`}
+              {' '}
+              aqui
+            </p>
           </div>
         </div>
       </Grid>

@@ -32,7 +32,8 @@ function CadastrarNoticias() {
 
     Object.entries(dados).forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2' || dado[0] === 'photos') {
-        formData.append(dado[0], dado[1]?.file);
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
       } else {
         if (checkNewsData(dado[0], dado[1])) {
           checkError = 1;
@@ -47,11 +48,6 @@ function CadastrarNoticias() {
       setLoading(false);
       return;
     }
-
-    // eslint-disable-next-line no-restricted-syntax
-    // for (const pair of formData.entries()) {
-    //   console.log(`${pair[0]}, ${pair[1]}`);
-    // }
 
     try {
       await managerService.createNews(formData);

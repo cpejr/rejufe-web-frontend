@@ -8,8 +8,8 @@ const newsTypes = [
     label: 'Artigo',
   },
   {
-    value: 'NOTICIA',
-    label: 'Notícia',
+    value: 'NOTÍCIAS',
+    label: 'Notícias',
   },
 ];
 
