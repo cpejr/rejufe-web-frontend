@@ -4,7 +4,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
 
-function Quizzes({ quizz }) {
+function Quizzes({ quizz, associates }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -24,7 +24,12 @@ function Quizzes({ quizz }) {
           <h1>
             {quizz.options.alternatives}
           </h1>
-          <GraphicQuizzes toVote={quizz.toVote} quizz={quizz.options} alreadyVoted={quizz.alreadyVoted} />
+          <GraphicQuizzes
+            toVote={quizz.toVote}
+            associates={associates}
+            quizz={quizz.options}
+            alreadyVoted={quizz.alreadyVoted}
+          />
         </div>
       ) : (
         null

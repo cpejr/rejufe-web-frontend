@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
-import * as managerService from '../../services/manager/managerService';
+// import * as managerService from '../../services/manager/managerService';
 
 export const options = {
   title: 'Quizz',
@@ -11,7 +11,13 @@ export const options = {
 };
 export const userName = [];
 
-function GraphicQuizzes({ toVote, quizz, alreadyVoted }) {
+function GraphicQuizzes({
+  toVote,
+  quizz,
+  alreadyVoted,
+  associates,
+}) {
+  console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 15 ~ GraphicQuizzes ~ associates', associates);
   const [name, setName] = useState([]);
   const data = [
     ['Opções', 'Votos', { role: 'annotation' }],
@@ -26,7 +32,7 @@ function GraphicQuizzes({ toVote, quizz, alreadyVoted }) {
     index += 1;
   });
 
-  let count = 0;
+  // let count = 0;
 
   // toVote.forEach(async (_id) => {
   //   const allAssociates = await managerService.getById(_id);
@@ -35,16 +41,12 @@ function GraphicQuizzes({ toVote, quizz, alreadyVoted }) {
   //   console.log(userName);
   // });
 
-  useEffect(async () => {
+  useEffect(() => {
     toVote.forEach(async (_id) => {
-      const allAssociates = await managerService.getById(_id);
-      userName[count] = allAssociates.name;
-      count += 1;
-      console.log(userName);
+      setName(associates?.filter((item) => item._id === _id));
     });
-    setName(userName);
-  }, []);
-
+  }, [associates]);
+  console.log(name);
   return (
     <div>
       <Chart
@@ -56,7 +58,7 @@ function GraphicQuizzes({ toVote, quizz, alreadyVoted }) {
       />
       {name?.map((title) => (
         <p>
-          {title}
+          {title.name}
           ,
         </p>
       ))}
