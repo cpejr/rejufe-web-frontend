@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
 import Login from './pages/Login';
 import DashboardUsuario from './pages/DashboardUsuario';
 import DashboardAdmin from './pages/DashboardAdmin';
@@ -18,7 +20,9 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import Footer from './components/Footer';
+import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
+import NotFound from './pages/NotFound';
 
 function UserHeader() {
   return (
@@ -26,6 +30,7 @@ function UserHeader() {
       <Switch>
         <Route path="/dashboard/usuario" component={DashboardUsuario} />
         <Route path="/dashboard/administrador" component={DashboardAdmin} />
+        <Route path="/cadastro" component={Cadastro} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/administracao-registros" component={AdmRegistros} />
@@ -36,8 +41,10 @@ function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
+        <Route path="/menu-lateral" component={MenuLateral} />
         <Route path="/alterar-senha" component={ChangePassword} />
         <Route path="/editar-associados" component={EditarAssociados} />
+        <Redirect to="/NotFound" />
       </Switch>
     </Header>
   );
@@ -48,10 +55,10 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
+        <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />
