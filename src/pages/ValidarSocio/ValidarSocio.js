@@ -58,13 +58,15 @@ function ValidarSocio() {
 
   return (
     <div className="ValidateAssociate-container">
-      <div className="title-validateAssociate">
-        <h1>
-          {'Manutenção em associados '}
-        </h1>
+      <div className="ValidateAssociate-field">
+        <div className="title-validateAssociate">
+          <h1>
+            {'Manutenção em associados '}
+          </h1>
+        </div>
+        <div className="line-table-validateAssociate" />
+        <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
       </div>
-      <div className="line-table-validateAssociate" />
-      <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
     </div>
   );
 }
