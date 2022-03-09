@@ -4,6 +4,15 @@
     margin-top: 4%;
 }
 
+.User-module-search-field{ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  width: 50%;
+  height: 80%;
+}
+
 .Title-user-module-page {
     display: flex;
     justify-content: center;

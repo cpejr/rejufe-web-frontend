@@ -74,6 +74,24 @@
   justify-content: flex-end;
 }
 
+.Modal-open-button-user-module button {
+  width: 100px;  
+  height: 100%;  
+  color: white;
+  border: solid var(--secondary);
+  border-radius: 5px;
+  background-color: var(--secondary);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.Modal-open-button-user-module button:hover {
+  background-color: var(--hover);
+  border-color: var(--hover);
+}
+
 @media (max-width: 360px) {
   .Container-modal-user-module {
     margin-left: 2%;

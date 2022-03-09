@@ -25,8 +25,6 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import cssColorCodes from '../cssColorCodes/cssColorCodes';
-import ModalUsuario from './modalUsuario/ModalUsuario';
-import './tableContainer.css';
 import ModalAdminExclude from './modalUsuarioExclude/modalExcluir';
 
 function TablePaginationActions(props) {
@@ -101,7 +99,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titles, users, order, edit, search, searchFile, setTypeChanged, rows,
+  titles, order, edit, search, searchFile, setTypeChanged, rows,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -299,7 +297,6 @@ function TableComponent({
           onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
-        <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
       </TableFooter>
     </TableContainer>
   );
