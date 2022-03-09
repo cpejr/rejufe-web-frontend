@@ -225,21 +225,15 @@ function TableComponent({
                   <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="Search">
                       <SearchIcon />
-                      {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
                   </TableCell>
                 ) : edit ? (
                   <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="delete">
                       <DeleteIcon />
-                      {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
                     <IconButton color="primary" aria-label="Edit">
                       <EditIcon />
-                      {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (
