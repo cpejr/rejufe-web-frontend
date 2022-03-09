@@ -6,32 +6,11 @@ import * as managerService from '../../services/manager/managerService';
 toast.configure();
 
 function CreateQuizz({
-  dados, initialErrorState, users, setError, options,
+  dados, initialErrorState, users, setError, options, inputs,
 }) {
-  const [alternatives, setAlternatives] = useState([]);
+  const alternatives = Object.values(options).slice(0, inputs.length);
+  console.log(alternatives);
 
-  for (const option in options) {
-    console.log(option);
-  }
-
-  const alternative = [
-    {
-      description: 'Julia ',
-      votes: 1,
-    },
-    {
-      description: 'Nikole',
-      votes: 2,
-    },
-    {
-      description: 'Davi',
-      votes: 3,
-    },
-    {
-      description: 'Monique',
-      votes: 4,
-    },
-  ];
   const create = async () => {
     const aux = initialErrorState;
     let checkError = 0;
@@ -40,6 +19,15 @@ function CreateQuizz({
       aux.title = true;
       checkError = 1;
       toast.error('Título inválido!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
+    if (dados.description?.length === 0) {
+      aux.description = true;
+      checkError = 1;
+      toast.error('Descrição inválido!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
@@ -72,14 +60,17 @@ function CreateQuizz({
       });
     }
 
-    // if (dados.title?.length === 0) {
-    //   aux.title = true;
-    //   checkError = 1;
-    //   toast.error('Título inválido!!', {
-    //     position: toast.POSITION.BOTTOM_RIGHT,
-    //     autoClose: 5000,
-    //   });
-    // }
+    alternatives.forEach((alternative) => {
+      console.log(typeof alternative);
+      if (alternative === '' || typeof alternative === 'object') {
+        aux.title = true;
+        checkError = 1;
+        toast.error('Alternativa inválida!!', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+        });
+      }
+    });
 
     if (checkError === 1) {
       setError({ ...aux });
@@ -93,7 +84,6 @@ function CreateQuizz({
         toVote: users,
         openingDate: dados.openingDate,
         closingDate: dados.closingDate,
-        // eslint-disable-next-line object-shorthand
         options: alternatives,
       };
       console.log(body);

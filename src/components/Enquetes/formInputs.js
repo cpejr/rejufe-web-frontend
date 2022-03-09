@@ -30,7 +30,7 @@ function FormInputs() {
   const allAssociates = 'Todos os associados';
 
   const sections = [
-    'PB',
+    'SE',
     'AL',
     'PE',
     'PB',
@@ -144,18 +144,11 @@ function FormInputs() {
             multiple={voterSection.some((elem) => elem !== allAssociates)}
             input={<Input id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
-              selected.some((elem) => elem === allAssociates) ? (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  <Chip key="Todos os associados" label="Todos os associados" />
-                </Box>
-              ) : (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )
-
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
             )}
           >
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>

@@ -117,6 +117,7 @@ function Alternatives({
         users={users}
         setError={setError}
         options={options}
+        inputs={inputs}
       />
     </div>
   );
