@@ -27,6 +27,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import cssColorCodes from '../cssColorCodes/cssColorCodes';
 import ModalUsuario from './modalUsuario/ModalUsuario';
 import './tableContainer.css';
+import ModalAdminExclude from './modalUsuarioExclude/modalExcluir';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -243,6 +244,9 @@ function TableComponent({
                 ) : (
                   <TableCell> </TableCell>
                 )}
+                <TableCell {...cellFontProps}>
+                  <ModalAdminExclude id={row._id} setTypeChanged={setTypeChanged} />
+                </TableCell>
                 <TableCell {...cellFontProps}>
                   {row.status}
                 </TableCell>

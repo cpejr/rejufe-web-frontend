@@ -38,6 +38,7 @@ function ModuloUsuarios() {
 
   const titles = [
     '',
+    '',
     'Status',
     'Usuário',
     'Seção',
@@ -48,7 +49,7 @@ function ModuloUsuarios() {
   ];
 
   return (
-    <div className="container-user-module">
+    <div className="container-user-module-exclude">
       <div className="Title-user-module-page">
         <h1>Módulo de Usuários</h1>
       </div>
