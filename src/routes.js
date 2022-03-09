@@ -23,6 +23,7 @@ import Footer from './components/Footer';
 import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function UserHeader() {
   return (
@@ -34,7 +35,7 @@ function UserHeader() {
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/administracao-registros" component={AdmRegistros} />
-        <Route path="/associados-excluidos" component={AssociadosExcluidos} />
+        <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
         <Route path="/editais" component={Editais} />

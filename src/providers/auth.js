@@ -6,6 +6,7 @@ export const AuthContext = React.createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
+  console.log('🚀 ~ file: auth.js ~ line 9 ~ AuthProvider ~ user', user);
   const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
@@ -33,6 +34,14 @@ export function AuthProvider({ children }) {
   }, [user]);
 
   const [token, setToken] = useState();
+
+  const isAuthenticated = () => {
+    const getAccessToken = JSON.parse(localStorage.getItem('user'));
+    return getAccessToken?.accessToken !== null;
+  };
+
+  const typeAuthorized = (type, userAlt) => ((type === 'both'
+    && (userAlt?.type === 'administrator' || userAlt?.type === 'usuario')) || userAlt?.type === type);
 
   const logout = () => {
     localStorage.removeItem('user');
@@ -67,6 +76,8 @@ export function AuthProvider({ children }) {
       value={{
         user,
         setUser,
+        isAuthenticated,
+        typeAuthorized,
         token,
         setToken,
         logout,
