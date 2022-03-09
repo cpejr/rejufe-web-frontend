@@ -59,8 +59,16 @@ function ExcludedAssociates() {
   ];
 
   return (
-    <div className="main-dashboard-container">
-      <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} edit />
+    <div className="ExcludedAssociate-container">
+      <div className="ExcludedAssociate-field">
+        <div className="title-ExcludedAssociate">
+          <h1>
+            {'Manutenção em associados '}
+          </h1>
+        </div>
+        <div className="line-table-ExcludedAssociate" />
+        <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} edit />
+      </div>
     </div>
   );
 }

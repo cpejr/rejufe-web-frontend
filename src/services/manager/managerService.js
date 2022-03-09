@@ -85,6 +85,24 @@ export const updateAssociate = async (associateId, body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const getExternalAssociates = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allAssociates = [];
+  do {
+    response = await requesterService.getExternalAssociates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allAssociates = allAssociates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allAssociates;
+};
+
+export const deleteExternalAssociate = async (associateId) => {
+  const response = await requesterService.deleteExternalAssociate(associateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const getFileById = async (id) => {
   const response = await requesterService.getFileById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -98,10 +116,6 @@ export const uploadFile = async (body) => {
 };
 
 export const createNews = async (body) => {
-  // eslint-disable-next-line no-restricted-syntax
-  for (const pair of body.entries()) {
-    console.log(`${pair[0]}, ${pair[1]}`);
-  }
   const response = await requesterService.createNews(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;

@@ -38,6 +38,17 @@ export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${ass
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
 
+export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);
+
 export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
 
 export const uploadFile = (body) => httpClient.post('/arquivos', body);

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
@@ -27,6 +28,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
+import RejectModal from '../RejectModal/RejectModal';
+import AcceptModal from '../AcceptModal/AcceptModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -100,7 +103,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, edit, search, searchFile, associateId, setUse,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -320,6 +323,15 @@ function TableComponent({
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
+                      </IconButton>
+                    </TableCell>
+                  ) : validate ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="reject">
+                        <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="accept">
+                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (
