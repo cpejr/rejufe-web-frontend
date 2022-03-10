@@ -12,12 +12,9 @@ export function AuthProvider({ children }) {
     setLoading(true);
     if (user?.acessToken === '' || !user?.acessToken) {
       const getStorage = JSON.parse(localStorage.getItem('user'));
-      console.log(getStorage);
       if (getStorage?.id) {
         try {
-          console.log('hello');
           const response = await managerService.getById(getStorage?.id);
-          console.log(response);
           setUser({
             name: response?.name,
             email: response?.email,

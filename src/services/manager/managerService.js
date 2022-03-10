@@ -1,30 +1,11 @@
+/* eslint-disable guard-for-in */
 import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
 
 export const getById = async (id) => {
   const times = 1;
-  console.log(id);
   const response = await requesterService.getById(id, times);
-  console.log(response);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
-export const getUserEmailByUsername = async (user) => {
-  const response = await requesterService.getUserEmailByUsername(user);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
-export const register = async (body) => {
-  const response = await requesterService.register(body);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
-export const createQuizz = async (body) => {
-  const response = await requesterService.createQuizz(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -42,16 +23,45 @@ export const getAllUsers = async () => {
   return users;
 };
 
-export const getUsersBySection = async (section) => {
+export const getUserEmailByUsername = async (user) => {
+  const response = await requesterService.getUserEmailByUsername(user);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const changeUserTypeById = async (typeChange, id) => {
+  const response = await requesterService.changeUserTypeById(typeChange, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const register = async (body) => {
+  const response = await requesterService.register(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createQuizz = async (body) => {
+  const response = await requesterService.createQuizz(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getUsersBySection = async (sections) => {
   let times = 0;
   let users = [];
   let response;
-  do {
-    response = await requesterService.getUsersBySection(times, section);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    users = users.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const section of sections) {
+    console.log(section);
+    do {
+      response = await requesterService.getUsersBySection(times, section);
+      // console.log('🚀 ~ file: managerService.js ~ line 63 ~ getUsersBySection ~ users', response.data);
+      if (isFailureStatus(response)) throw new Error('Problem with api response');
+      users = users.concat(response.data);
+      times += 1;
+    } while (response.data.length > 0);
+  }
   return users;
 };
 
@@ -92,11 +102,62 @@ export const getQuizzes = async (field, filter) => {
 
   let allQuizzes = [];
   do {
-    console.log('oi2');
     response = await requesterService.getQuizzes(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allQuizzes = allQuizzes.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
   return allQuizzes;
+};
+
+export const getAssociates = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allCandidates = [];
+  do {
+    response = await requesterService.getAssociates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCandidates = allCandidates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allCandidates;
+};
+
+export const updateUser = async (user, id) => {
+  const response = await requesterService.updateUser(user, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getExcludedAssociate = async (status) => {
+  const response = await requesterService.getExcludedAssociate(status);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const deleteAssociate = async (associateId) => {
+  const response = await requesterService.deleteAssociate(associateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAssociate = async (associateId, body) => {
+  const response = await requesterService.updateAssociate(associateId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getExternalAssociates = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allAssociates = [];
+  do {
+    response = await requesterService.getExternalAssociates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allAssociates = allAssociates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allAssociates;
+};
+
+export const deleteExternalAssociate = async (associateId) => {
+  const response = await requesterService.deleteExternalAssociate(associateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };

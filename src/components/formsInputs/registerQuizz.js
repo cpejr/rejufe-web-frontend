@@ -7,9 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import { toast } from 'react-toastify';
-import Alternatives from './alternatives';
+import Alternatives from '../Enquetes/alternatives';
 import * as managerService from '../../services/manager/managerService';
-import { initialQuizzState, initialQuizzErrorState } from './initialQuizzStates';
+import { initialQuizzState, initialQuizzErrorState } from '../Enquetes/initialQuizzStates';
 
 function FormInputs() {
   const users = [];
@@ -48,12 +48,10 @@ function FormInputs() {
       try {
         const response = await managerService.getAllUsers();
         let count = 0;
-        console.log(response);
         response?.forEach((user) => {
           users[count] = user._id;
           count += 1;
         });
-        console.log(users);
       } catch (error) {
         console.log(error);
         toast.error('Não foi possível obter usuários!!', {

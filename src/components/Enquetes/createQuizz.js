@@ -60,7 +60,6 @@ function CreateQuizz({
     }
 
     alternatives.forEach((alternative) => {
-      console.log(typeof alternative);
       if (alternative === '' || typeof alternative === 'object') {
         aux.options = true;
         checkError = 1;
@@ -77,7 +76,6 @@ function CreateQuizz({
     }
 
     try {
-      console.log('oi');
       const body = {
         title: dados.title,
         toVote: users,
@@ -85,9 +83,7 @@ function CreateQuizz({
         closingDate: dados.closingDate,
         options: alternatives,
       };
-      console.log(body);
-      const response = await managerService.createQuizz(body);
-      console.log(response);
+      await managerService.createQuizz(body);
       toast.success('Enquete criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,

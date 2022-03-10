@@ -13,12 +13,6 @@ function Quizzes({ quizz }) {
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
   const dateQuizz = moment(date).format('YYYY-MM-DD');
 
-  console.log(openingDate);
-  console.log(closingDate);
-  console.log(dateQuizz);
-
-  console.log(openingDate < dateQuizz);
-
   return (
     <div className="body-quizzes-card">
       <div className="card-quizzes">

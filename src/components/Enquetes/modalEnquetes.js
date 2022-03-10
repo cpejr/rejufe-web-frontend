@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import './modalEnquetes.css';
 import { createTheme, ThemeProvider } from '@mui/material';
-import FormInputs from './formInputs';
+import FormInputs from '../formsInputs/registerQuizz';
 
 function getModalStyle() {
   const top = 50;
