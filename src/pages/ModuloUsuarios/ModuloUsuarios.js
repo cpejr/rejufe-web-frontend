@@ -16,7 +16,7 @@ function ModuloUsuarios() {
   }
 
   function filterUsers(value) {
-    return value.type === 'usuário';
+    return value.type === 'usuario';
   }
 
   const getUsers = async () => {
