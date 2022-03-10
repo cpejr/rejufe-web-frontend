@@ -32,7 +32,7 @@ function UserHeader() {
         <PrivateRoute path="/dashboard/usuario" component={DashboardUsuario} type="usuario" />
         <PrivateRoute path="/dashboard/administrador" component={DashboardAdmin} type="administrador" />
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
-        <Route path="/intranet" component={Intranet} />
+        <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/consultas" component={Consultas} type="administrador" />
