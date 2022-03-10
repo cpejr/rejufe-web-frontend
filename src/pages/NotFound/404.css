@@ -1,0 +1,88 @@
+.containerNotFound {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 146px);
+    font-size: 12pt;
+}
+
+.boxNotFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    align-self: center;
+    height: 286px;
+}
+
+.boxNotFound h1, h2, p {
+    color: #0B162B;
+}
+
+.textNotFound {
+    font-family: "Roboto", sans-serif;
+    width: 50%;
+    margin-left: 30px;
+    text-align: justify;
+}
+
+.textNotFound h2 {
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 2vh;
+    font-size: 1.5em;
+}
+
+.textNotFound h1{
+    margin-bottom: 2vh;
+    font-size: 2em;
+}
+
+.textNotFound p {
+    font-size: 1em;
+}
+
+.textNotFound p + p {
+    margin-top: 0.5vh;    
+}
+.animationNotFound{
+    width: 50%;
+}
+
+@media(min-width: 2000px) {
+    .containerNotFound{
+        font-size: 20pt;
+    }
+}
+
+@media(max-width: 1024px) {
+    .boxNotFound {
+     flex-direction: column;
+    }
+    .textNotFound {
+        width: 100%;
+        margin: 0;
+    }
+    .animationNotFound {
+        width: 100%;
+        min-width: 280px;
+        max-width: 430px;
+    }
+}
+
+@media(max-width: 768px){
+    .containerNotFound {
+        font-size: 8pt;
+    }
+    .textNotFound h1, h2{
+        margin-bottom: 3px;
+    }
+}
+
+@media(max-width: 320px) {
+    .containerNotFound {
+        font-size: 7pt;
+    }
+}
+
