@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './moduloUsuario.css';
 import { toast } from 'react-toastify';
 import {
-  InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment, createTheme, ThemeProvider
+  InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment, createTheme, ThemeProvider,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
@@ -23,11 +23,23 @@ function ModuloUsuarios() {
   };
   console.log(filter);
 
-  const theme = createTheme
+  const theme = createTheme({
+    components: {
+      MuiFormControl: {
+        styleOverrides: {
+          root: {
+            width: '300px',
+            marginLeft: '30px',
+            marginRight: '30px',
+          },
+        },
+      },
+    },
+  });
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
-      setRows(rows?.filter(searchField(value)));
+      setRows(rows?.filter());
       console.log(value);
       setSearch(value);
     }

@@ -7,7 +7,7 @@
 .User-module-search-field{ 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 20px;
   width: 50%;
   height: 80%;
@@ -26,4 +26,10 @@
     font-weight: 700;
     font-family: "Roboto", sans-serif;
 
+}
+
+@media (max-width: 850px) {
+  .User-module-search-field {
+    width: 100%;
+  }
 }
