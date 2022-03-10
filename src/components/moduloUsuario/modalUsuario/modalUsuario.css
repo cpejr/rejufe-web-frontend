@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
+.Confirm-user-module{  
+  color: white;
+  border: solid var(--button);
+  border-radius: 5px;
+  background-color: var(--button);
+  font-weight: 700;
+  font-size: 100%;
+  width: 30%;  
+  height: 45px;
+  margin-top: 6%;
+  margin-bottom: 10%;
+  cursor: pointer;
+}
+
+.Container-modal-user-module {
+  display: flex;
+  flex-direction: column;
+  margin-left: 6%;
+}
+
+.Confirm-user-module:hover {
+  background-color: var(--hover);
+  border-color: var(--hover);
+}
+
+.Close-user-module {
+  width: 30px;  
+  height: 30px;  
+  margin-left: 1%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.Column-user-module {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 4%;
+}
+
+.Title-user-module {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2%;
+  width: 95%;
+}
+
+.Title-user-module h1 {
+  font-size: 25px;
+  font-weight: 300;
+  color: var(--fontColor2);
+  font-family: "Roboto", sans-serif;
+}
+
+.Data-row-user-module {
+  display: flex;
+  flex-direction: row;
+}
+
+.Data-row-user-module h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  margin-right: 5px;
+  color: var(--color2);
+}
+
+.Exit-user-module {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 360px) {
+  .Container-modal-user-module {
+    margin-left: 2%;
+  }
+}
