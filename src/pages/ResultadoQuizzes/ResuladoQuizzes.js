@@ -28,14 +28,14 @@ function ResultadoQuizzes() {
   }, []);
 
   return (
-    <div className="container-quizzes">
-      <div className="division-page" />
-      <div className="division-quizzes">
-        <div className="title-quizzes">
+    <div className="container-cards-quizzes">
+      <div className="division-cards-page" />
+      <div className="division-cards-quizzes">
+        <div className="title-cards-quizzes">
           <h1>Resultado das Enquetes</h1>
           <ModalEnquete />
         </div>
-        <div className="line-table-quizzes" />
+        <div className="line-table-cards-quizzes" />
         {user?.type === 'administrador' ? (
           quizzes?.map((quizz) => (
             <Quizzes quizz={quizz} />

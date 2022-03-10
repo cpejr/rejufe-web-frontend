@@ -38,8 +38,6 @@ function Alternatives({
     setOptions({ ...options, [inputs.length - 1]: '' });
   };
 
-  console.log(options);
-
   function handleOptionChange(value, index) {
     setOptions({ ...options, [index]: value });
   }
@@ -50,11 +48,14 @@ function Alternatives({
   };
 
   return (
-    <div className="alternative-inputs-enquete">
+    <div className="alternative-inputs-quizz">
       {inputs?.map((input) => (
         <FormControl>
           <div className="empty-div" />
-          <InputLabel>
+          <InputLabel
+            shrink
+            sx={{ fontSize: 25 }}
+          >
             {input.name}
           </InputLabel>
           <Input
@@ -63,10 +64,10 @@ function Alternatives({
             value={options[input.index].description}
             onChange={(e) => handleOptionChange(e.target.value, input.index)}
           />
-          <div className="delete-button">
+          <div className="delete-button-modal-quizz">
             <button
               type="button"
-              className="delete-alternative"
+              className="delete-alternative-modal-quizz"
               onClick={() => {
                 handleDeleteAlternative(input);
               }}
@@ -90,7 +91,7 @@ function Alternatives({
       ))}
       <button
         type="button"
-        className="plus-enquete"
+        className="plus-button-modal-quizz"
         onClick={() => {
           handleAddAlternative();
         }}

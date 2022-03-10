@@ -72,7 +72,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: '#264A6F',
-          fontWeight: '600',
+          fontWeight: '500',
+          fontSize: '30',
         },
       },
     },
@@ -98,10 +99,10 @@ export default function ModalEnquete() {
   const body = (
     <ThemeProvider theme={theme}>
       <div style={modalStyle} className={classes.paper}>
-        <div className="container-modal-enquete">
-          <div className="exit-enquete">
+        <div className="container-modal-quizz">
+          <div className="exit-modal-quizz">
             <button
-              className="close-enquete"
+              className="close-modal-quizz"
               type="button"
               onClick={() => {
                 handleClose();

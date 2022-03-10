@@ -49,7 +49,7 @@ function FormInputs() {
         const response = await managerService.getAllUsers();
         let count = 0;
         console.log(response);
-        response.forEach((user) => {
+        response?.forEach((user) => {
           users[count] = user._id;
           count += 1;
         });
@@ -66,8 +66,7 @@ function FormInputs() {
         const response = await managerService.getUsersBySection(voterSection);
         let count = 0;
         console.log(response);
-        response.forEach((user) => {
-          console.log(user._id);
+        response?.forEach((user) => {
           users[count] = user._id;
           count += 1;
         });
@@ -90,12 +89,12 @@ function FormInputs() {
 
   return (
     <div>
-      <div className="title-modal-enquete">
+      <div className="title-modal-quizz">
         <h1>Insira as informações da nova enquete</h1>
       </div>
-      <div className="form-enquete">
+      <div className="form-modal-quizz">
         <FormControl>
-          <InputLabel>Título</InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }}>Título</InputLabel>
           <Input
             required
             error={initialErrorState.title}
@@ -104,7 +103,7 @@ function FormInputs() {
           />
         </FormControl>
         <FormControl>
-          <InputLabel>Descrição</InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }}>Descrição</InputLabel>
           <Input
             required
             error={initialErrorState.description}
@@ -113,7 +112,7 @@ function FormInputs() {
           />
         </FormControl>
         <FormControl>
-          <InputLabel>Data de início </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }}>Data de início </InputLabel>
           <Input
             required
             error={initialErrorState.openingDate}
@@ -123,7 +122,7 @@ function FormInputs() {
           />
         </FormControl>
         <FormControl>
-          <InputLabel>Data de fim </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }}>Data de fim </InputLabel>
           <Input
             required
             error={initialErrorState.closingDate}
@@ -133,7 +132,7 @@ function FormInputs() {
           />
         </FormControl>
         <FormControl>
-          <InputLabel id="select-voter">Selecione quem irá votar</InputLabel>
+          <InputLabel id="select-voter" shrink sx={{ fontSize: 25 }}>Selecione quem irá votar</InputLabel>
           <Select
             required
             error={initialErrorState.toVote}

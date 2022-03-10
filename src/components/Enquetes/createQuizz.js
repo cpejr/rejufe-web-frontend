@@ -9,7 +9,6 @@ function CreateQuizz({
   dados, initialErrorState, users, setError, options, inputs,
 }) {
   const alternatives = Object.values(options).slice(0, inputs.length);
-  console.log(alternatives);
 
   const create = async () => {
     const aux = initialErrorState;
@@ -63,7 +62,7 @@ function CreateQuizz({
     alternatives.forEach((alternative) => {
       console.log(typeof alternative);
       if (alternative === '' || typeof alternative === 'object') {
-        aux.title = true;
+        aux.options = true;
         checkError = 1;
         toast.error('Alternativa inválida!!', {
           position: toast.POSITION.BOTTOM_RIGHT,
@@ -103,9 +102,9 @@ function CreateQuizz({
   };
 
   return (
-    <div className="end-page-enquete">
+    <div className="last-button-modal-quizz">
       <button
-        className="confirm-enquete"
+        className="confirm-button-modal-quizz"
         type="submit"
         onClick={() => {
           create();

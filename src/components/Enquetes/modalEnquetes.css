@@ -22,38 +22,39 @@
   background-color: var(--hover);
 }
 
-.container-modal-enquete button {  
+.container-modal-quizz button {  
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.plus-enquete {
+.plus-button-modal-quizz {
   border: none;
   background-color: transparent;
   margin-bottom: 5%;
   color: var(--color2);
   font-weight: 700;
+  font-size: 20px;
   border-radius: 5px;
   width: 60%;
 }
 
-.form-enquete {
+.form-modal-quizz {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.form-enquete h1 {
+.form-modal-quizz h1 {
   margin-bottom: 2%;
   color: var(--color2);
   font-size: 20px;
   font-weight: 300;
 }
 
-.close-enquete {
+.close-modal-quizz {
   width: 30px;  
   height: 30px;  
   margin-left: 1%;
@@ -61,7 +62,7 @@
   border: none;
 }
   
-.confirm-enquete {
+.confirm-button-modal-quizz {
   width: 30%;  
   height: 45px;
   background-color: var(--primary);
@@ -70,42 +71,43 @@
   border-radius: 5px;
   color: white;
   font-weight: 700;
-  font-size: 100%;
+  font-size: 20px;
   margin-bottom: 5%;
 }
 
-.confirm-enquete:hover {
+.confirm-button-modal-quizz:hover {
   background-color: var(--hover);
   border-color: var(--hover);
 }
 
-.title-modal-enquete {
+.title-modal-quizz {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 5% 0;
 }
 
-.end-page-enquete {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-}
-
-.title-modal-enquete h1 {
+.title-modal-quizz h1 {
+  text-align: center;
   color: var(--color2);
   font-size: 30px;
   font-weight: 300;
   margin: 0;
 }
 
-.delete-alternative {
+.last-button-modal-quizz {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.delete-alternative-modal-quizz {
   border: none;
   background-color: transparent;
 }
 
-.delete-button {
+.delete-button-modal-quizz {
   display: flex;
   align-items: baseline;
   justify-content: end;
@@ -116,7 +118,7 @@
   width:10%;
 }
 
-.alternative-inputs-enquete {
+.alternative-inputs-quizz {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,43 +127,43 @@
 }
   
 @media (max-width: 1150px) {
-  .close-enquete {
+  .close-quizz {
     width: 8%;
   }
-  .confirm-enquete {
+  .confirm-quizz {
     margin-bottom: 0;
   }
-  .container-modal-enquete {
+  .container-modal-quizz {
     height: 100%;
   }
-  .exit-enquete {
+  .exit-quizz {
     margin: 0;
   }
 }
 
   @media (max-width: 1400) {
-    .title-modal-enquete h1 {
+    .title-modal-quizz h1 {
       font-size: 20px;
     }
   }
   
   @media (max-width: 920px) {
-    .confirm-enquete {
+    .confirm-quizz {
       width: 35%;
     }
   }
   
   @media (max-width: 400px) {
-    .close-enquete {
+    .close-quizz {
       width: 12%;
     }
   }
   
   @media (max-width: 260px) {
-    .close-enquete {
+    .close-quizz {
       width: 20%;
     }
-    .confirm-enquete {
+    .confirm-quizz {
       width: 45%;
     }
   }
