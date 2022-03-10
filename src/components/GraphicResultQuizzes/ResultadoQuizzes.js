@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Chart } from 'react-google-charts';
 // import * as managerService from '../../services/manager/managerService';
 
@@ -9,7 +9,6 @@ export const options = {
     title: 'Opções',
   },
 };
-export const userName = [];
 
 function GraphicQuizzes({
   toVote,
@@ -18,7 +17,6 @@ function GraphicQuizzes({
   associates,
 }) {
   console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 15 ~ GraphicQuizzes ~ associates', associates);
-  const [name, setName] = useState([]);
   const data = [
     ['Opções', 'Votos', { role: 'annotation' }],
   ];
@@ -32,21 +30,24 @@ function GraphicQuizzes({
     index += 1;
   });
 
-  // let count = 0;
+  const user = [];
+  let count = 0;
+  const name = [];
 
-  // toVote.forEach(async (_id) => {
-  //   const allAssociates = await managerService.getById(_id);
-  //   userName[count] = allAssociates.name;
-  //   count += 1;
-  //   console.log(userName);
-  // });
+  toVote.forEach((_id) => {
+    console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 47 ~ toVote.forEach ~ _id', _id);
+    user[count] = associates?.filter((item) => item._id === _id);
+    user[count].forEach((obj) => {
+      name[count] = obj.name;
+      console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 52 ~ user[count].forEach ~ produto.name', obj.name);
+    });
+    count += 1;
+  });
+  console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 55 ~ toVote.forEach ~ toVote', name);
 
   useEffect(() => {
-    toVote.forEach(async (_id) => {
-      setName(associates?.filter((item) => item._id === _id));
-    });
   }, [associates]);
-  console.log(name);
+
   return (
     <div>
       <Chart
@@ -56,9 +57,10 @@ function GraphicQuizzes({
         data={data}
         options={options}
       />
+      <p>Faltam votar:</p>
       {name?.map((title) => (
         <p>
-          {title.name}
+          {title}
           ,
         </p>
       ))}

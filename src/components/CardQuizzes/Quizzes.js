@@ -1,6 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import moment from 'moment';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
 
@@ -10,11 +11,30 @@ function Quizzes({ quizz, associates }) {
     setOpen(!open);
   };
 
+  const [date] = useState(new Date());
+  const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
+  const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
+  const dateQuizz = moment(date).format('YYYY-MM-DD');
+
   return (
-    <div className="body">
-      <div className="card">
-        <button type="button" className="title-card" onClick={handleOpen}>
-          <p>{quizz.title}</p>
+    <div className="body-quizzes-card">
+      <div className="card-quizzes">
+        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+          <p>
+            {quizz.title}
+            {openingDate < dateQuizz ? (
+              '  -  Não iniciada'
+            ) : (
+              <>
+                <div />
+                {closingDate < dateQuizz ? (
+                  '  -  Finalizada'
+                ) : (
+                  '  -  Em andamento'
+                )}
+              </>
+            )}
+          </p>
           <KeyboardArrowDownIcon style={{ color: 'white' }} />
         </button>
       </div>

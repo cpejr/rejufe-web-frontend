@@ -1,4 +1,4 @@
-.body {
+.body-quizzes-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,13 +6,13 @@
   margin-bottom: 0.8%;
 }
 
-.card {
+.card-quizzes {
   display: flex;
   width: 100%;
 }
 
-.title-card {
-  background-color: var(--button);
+.title-card-quizzes {
+  background-color: transparent;
   text-align: center;
   padding: 15px;
   display: flex;
@@ -20,7 +20,9 @@
   justify-content: space-between;
   width: 100%;
   height: 50px;
+  border: thin solid var(--secondary);
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .title-card p {
@@ -61,7 +63,7 @@
   font-family: 'Roboto', sans-serif;
   font: normal 18pt Roboto;
   align-items: center;
-  display: flex;
+  display: inline-block;
   flex-direction: row;
   flex: 1;
   flex-wrap: wrap;
