@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import formsNews from '../../components/formsData/formsNews';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
@@ -16,6 +17,7 @@ function CadastrarNoticias() {
   const [initialErrorState, setError] = useState(initialNewsErrorState);
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState(initialNewsState);
+  const history = useHistory();
 
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
@@ -55,6 +57,7 @@ function CadastrarNoticias() {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
+      history.push('/administracao-registros-noticias');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {

@@ -13,6 +13,7 @@ import Cadastro from './pages/Cadastro';
 import CadastrarNoticias from './pages/CadastrarNoticias';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
+import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import Consultas from './pages/Consultas';
 import ValidarSocio from './pages/ValidarSocio';
@@ -36,6 +37,7 @@ function UserHeader() {
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastrar-noticias" component={CadastrarNoticias} />
         <Route path="/administracao-registros" component={AdmRegistros} />
+        <Route path="/administracao-registros-noticias" component={AdmRegistrosNoticias} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
