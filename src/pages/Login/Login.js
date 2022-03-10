@@ -19,8 +19,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [usuario, setUsuario] = useState(initialState);
   const history = useHistory();
-  const { user, setUser } = useAuth();
-  console.log('🚀 ~ file: Login.js ~ line 23 ~ Login ~ user', user);
+  const { setUser } = useAuth();
   const handleClick = async (e) => {
     setLoading(true);
     try {

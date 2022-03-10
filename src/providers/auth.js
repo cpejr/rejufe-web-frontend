@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { CircularProgress } from '@material-ui/core';
+// import { CircularProgress } from '@material-ui/core';
 import * as managerService from '../services/manager/managerService';
+import LinearColor from '../components/Loading/Loading';
 
 export const AuthContext = React.createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
-  console.log('🚀 ~ file: auth.js ~ line 9 ~ AuthProvider ~ user', user);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
-    setLoading(true);
     if (user?.acessToken === '' || !user?.acessToken) {
       const getStorage = JSON.parse(localStorage.getItem('user'));
       if (getStorage?.id) {
@@ -40,8 +39,8 @@ export function AuthProvider({ children }) {
     return getAccessToken?.accessToken !== null;
   };
 
-  const typeAuthorized = (type, userAlt) => ((type === 'both'
-    && (userAlt?.type === 'administrator' || userAlt?.type === 'usuario')) || userAlt?.type === type);
+  const typeAuthorized = (type, userAlt) => ((type === 'usuario'
+    && (userAlt?.type === 'administrador' || userAlt?.type === 'usuario')) || userAlt?.type === type);
 
   const logout = () => {
     localStorage.removeItem('user');
@@ -53,20 +52,7 @@ export function AuthProvider({ children }) {
   // eslint-disable-next-line react/no-unstable-nested-components
   function Loading() {
     return (
-      <div className="loadingAuth" style={{ width: '100vw', height: '100vh' }}>
-        <div
-          className="loading-logo"
-          style={{
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <CircularProgress size={90} color="#264A6F" loading />
-        </div>
-      </div>
+      <LinearColor />
     );
   }
 

@@ -29,22 +29,21 @@ function UserHeader() {
   return (
     <Header>
       <Switch>
-        <Route path="/dashboard/usuario" component={DashboardUsuario} />
-        <Route path="/dashboard/administrador" component={DashboardAdmin} />
-        <Route path="/cadastro" component={Cadastro} />
+        <PrivateRoute path="/dashboard/usuario" component={DashboardUsuario} type="usuario" />
+        <PrivateRoute path="/dashboard/administrador" component={DashboardAdmin} type="administrador" />
+        <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <Route path="/intranet" component={Intranet} />
-        <Route path="/cadastro" component={Cadastro} />
-        <Route path="/administracao-registros" component={AdmRegistros} />
+        <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
-        <Route path="/consultas" component={Consultas} />
-        <Route path="/validar-socio" component={ValidarSocio} />
-        <Route path="/editais" component={Editais} />
-        <Route path="/atas" component={Atas} />
-        <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
-        <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/menu-lateral" component={MenuLateral} />
-        <Route path="/alterar-senha" component={ChangePassword} />
-        <Route path="/editar-associados" component={EditarAssociados} />
+        <PrivateRoute path="/consultas" component={Consultas} type="administrador" />
+        <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
+        <PrivateRoute path="/editais" component={Editais} type="administrador" />
+        <PrivateRoute path="/atas" component={Atas} type="administrador" />
+        <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
+        <PrivateRoute path="/usuarios" component={ModuloUsuarios} type="administrador" />
+        <PrivateRoute path="/menu-lateral" component={MenuLateral} type="administrador" />
+        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
+        <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>
@@ -56,7 +55,7 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/cadastro-externo" component={CadastroExterno} />
+        <PrivateRoute path="/cadastro-externo" component={CadastroExterno} type="administrador" />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />

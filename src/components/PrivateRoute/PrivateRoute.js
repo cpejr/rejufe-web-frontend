@@ -6,9 +6,10 @@ import {
 } from 'react-router-dom';
 import { useAuth } from '../../providers/auth';
 
-function PrivateRoute({ component: Component, type, ...rest }) {
+function PrivateRoute({
+  component: Component, type, ...rest
+}) {
   const { user, isAuthenticated, typeAuthorized } = useAuth();
-  console.log('🚀 ~ file: PrivateRoute.js ~ line 11 ~ PrivateRoute ~ user', user);
 
   return (
     <Route
