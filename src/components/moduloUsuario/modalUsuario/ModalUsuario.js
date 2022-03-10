@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
       width: '55%',
     },
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
+      width: '70%',
+    },
+    ['@media (max-width:538px)']: { // eslint-disable-line no-useless-computed-key
+      width: '75%',
+    },
+    ['@media (max-width:450px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
     },
   },
