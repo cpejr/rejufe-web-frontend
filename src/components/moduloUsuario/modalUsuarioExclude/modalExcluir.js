@@ -67,14 +67,12 @@ export default function ModalAdminExclude({ setTypeChanged, id }) {
       await managerService.changeUserTypeById({
         type: 'usuario',
       }, id);
-      console.log(id);
       setTypeChanged(true);
       toast('Tipo do usuário atualizado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível alterar o tipo do usuário!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -112,7 +110,7 @@ export default function ModalAdminExclude({ setTypeChanged, id }) {
           <h1>Confirmação</h1>
         </div>
         <div className="Content-user-module-exclude">
-          <h1>Você tem certeza que deseja atualizar esse usuário para o tipo usuário?</h1>
+          <h1>Você tem certeza que deseja atualizar esse administrador para o tipo usuário?</h1>
         </div>
         <div className="User-module-exclude-buttons">
           <button

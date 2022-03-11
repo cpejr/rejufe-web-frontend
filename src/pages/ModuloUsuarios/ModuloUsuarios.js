@@ -5,6 +5,7 @@ import {
   InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment, createTheme, ThemeProvider,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
@@ -18,6 +19,7 @@ function ModuloUsuarios() {
   const [filter, setFilter] = useState('');
   const [rows, setRows] = useState([]);
   const [search, setSearch] = useState('');
+  const history = useHistory();
 
   const handleChange = (value) => {
     if (value === '' || value === 'Sem filtros') {
@@ -26,7 +28,6 @@ function ModuloUsuarios() {
     }
     setFilter(value);
   };
-  console.log(filter);
 
   const theme = createTheme({
     components: {
@@ -44,32 +45,37 @@ function ModuloUsuarios() {
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
-      setRows(admins.filter((admin) => admin.name?.toLowerCase().includes(value.toLowerCase())));
+      setRows(admins?.filter((admin) => admin.name?.toLowerCase().includes(value?.toLowerCase())));
       setSearch(value);
     }
     if (filter === 'Seção') {
-      setRows(admins.filter((admin) => admin.judicial_section?.toLowerCase().includes(value.toLowerCase())));
+      setRows(admins?.filter((admin) => admin.judicial_section?.toLowerCase().includes(value?.toLowerCase())));
       setSearch(value);
     }
   };
-  console.log(rows);
 
   function filterAdmins(value) {
-    return value.type === 'administrador';
+    if (value.type !== undefined) {
+      return value.type === 'administrador';
+    }
+    return false;
   }
 
   function filterUsers(value) {
-    return value.type === 'usuário';
+    if (value.type !== undefined) {
+      return value.type === 'usuario';
+    }
+    return false;
   }
 
   const getUsers = async () => {
     try {
       const response = await managerService.getAllUsers();
-      console.log(response);
       setUsers(response?.filter(filterUsers));
       setAdmins(response?.filter(filterAdmins));
       setRows(response?.filter(filterAdmins));
     } catch (error) {
+      history.push('/NotFound');
       toast.error('Não foi possível obter usuários!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
