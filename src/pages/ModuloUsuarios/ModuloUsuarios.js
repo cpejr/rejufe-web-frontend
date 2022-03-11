@@ -13,12 +13,17 @@ toast.configure();
 
 function ModuloUsuarios() {
   const [users, setUsers] = useState([]);
-  const [rows, setRows] = useState([]);
+  const [admins, setAdmins] = useState([]);
   const [typeChanged, setTypeChanged] = useState(false);
   const [filter, setFilter] = useState('');
+  const [rows, setRows] = useState([]);
   const [search, setSearch] = useState('');
 
   const handleChange = (value) => {
+    if (value === '' || value === 'Sem filtros') {
+      setSearch('');
+      setRows(admins);
+    }
     setFilter(value);
   };
   console.log(filter);
@@ -39,18 +44,17 @@ function ModuloUsuarios() {
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
-      setRows(rows?.filter());
-      console.log(value);
+      setRows(admins.filter((admin) => admin.name?.toLowerCase().includes(value.toLowerCase())));
       setSearch(value);
     }
     if (filter === 'Seção') {
-      setRows(rows?.filter((row) => row.type === value));
+      setRows(admins.filter((admin) => admin.judicial_section?.toLowerCase().includes(value.toLowerCase())));
       setSearch(value);
     }
   };
-  console.log(search);
+  console.log(rows);
 
-  function filterRows(value) {
+  function filterAdmins(value) {
     return value.type === 'administrador';
   }
 
@@ -63,7 +67,8 @@ function ModuloUsuarios() {
       const response = await managerService.getAllUsers();
       console.log(response);
       setUsers(response?.filter(filterUsers));
-      setRows(response?.filter(filterRows));
+      setAdmins(response?.filter(filterAdmins));
+      setRows(response?.filter(filterAdmins));
     } catch (error) {
       toast.error('Não foi possível obter usuários!!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -105,12 +110,14 @@ function ModuloUsuarios() {
               label="filter"
               onChange={(e) => handleChange(e.target.value)}
             >
+              <MenuItem value="Sem filtros">Sem filtros</MenuItem>
               <MenuItem value="Usuários">Usuários</MenuItem>
               <MenuItem value="Seção">Seção</MenuItem>
             </Select>
           </FormControl>
           <OutlinedInput
             endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
+            placeholder="Busca rápida"
             value={search}
             onChange={(e) => handleSearch(e.target.value)}
           />
