@@ -55,17 +55,11 @@ function ModuloUsuarios() {
   };
 
   function filterAdmins(value) {
-    if (value.type !== undefined) {
-      return value.type === 'administrador';
-    }
-    return false;
+    return value?.type === 'administrador';
   }
 
   function filterUsers(value) {
-    if (value.type !== undefined) {
-      return value.type === 'usuario';
-    }
-    return false;
+    return value?.type === 'usuario';
   }
 
   const getUsers = async () => {
