@@ -12,32 +12,32 @@ import flagSergipe from '../../images/flagSergipe.png';
 
 function BottomMenu() {
   return (
-    <div className='containerBottomMenu'>
-      <div className='boxBottomMenu'>
-        <div className='buttonsBottomMenu'>
-          <button type='button' className='buttonBottomMenu'>
-            <GavelRoundedIcon className='iconBottomMenu' />
+    <div className="containerBottomMenu">
+      <div className="boxBottomMenu">
+        <div className="buttonsBottomMenu">
+          <button type="button" className="buttonBottomMenu">
+            <GavelRoundedIcon className="iconBottomMenu" />
             Requerimentos Administrativos
           </button>
 
-          <button type='button' className='buttonBottomMenu'>
-            <FilePresentRoundedIcon className='iconBottomMenu' />
+          <button type="button" className="buttonBottomMenu">
+            <FilePresentRoundedIcon className="iconBottomMenu" />
             Petições Iniciais
           </button>
 
-          <button type='button' className='buttonBottomMenu'>
-            <FeedRoundedIcon className='iconBottomMenu' />
+          <button type="button" className="buttonBottomMenu">
+            <FeedRoundedIcon className="iconBottomMenu" />
             Jurisprudência
           </button>
         </div>
 
-        <div className='flagsBottomMenu'>
-          <img src={flagAlagoas} alt='Bandeira Alagoas' />
-          <img src={flagPernambuco} alt='Bandeira Pernambuco' />
-          <img src={flagCeara} alt='Bandeira Ceara' />
-          <img src={flagParaiba} alt='Bandeira Paraiba' />
-          <img src={flagRioGrandeDoNorte} alt='Bandeira RioGrandeDoNorte' />
-          <img src={flagSergipe} alt='Bandeira Sergipe' />
+        <div className="flagsBottomMenu">
+          <img src={flagAlagoas} alt="Bandeira Alagoas" />
+          <img src={flagPernambuco} alt="Bandeira Pernambuco" />
+          <img src={flagCeara} alt="Bandeira Ceara" />
+          <img src={flagParaiba} alt="Bandeira Paraiba" />
+          <img src={flagRioGrandeDoNorte} alt="Bandeira RioGrandeDoNorte" />
+          <img src={flagSergipe} alt="Bandeira Sergipe" />
         </div>
       </div>
     </div>
