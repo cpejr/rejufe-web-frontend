@@ -111,6 +111,10 @@
   justify-content: center;
 }
 
+.RemoveModal-align p {
+  color: white;
+}
+
 .RemoveModal-ButtonCancel:hover{
   background-color: var(--primary);
 }
