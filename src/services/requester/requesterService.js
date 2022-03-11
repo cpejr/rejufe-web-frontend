@@ -17,6 +17,14 @@ export const registerExternal = (body) => httpClient.post('/usuario/externalAsso
 
 export const getById = (id) => httpClient.get(`/usuario/${id}`);
 
+export const getAllUsers = (times) => httpClient.get('/usuario/', {
+  params: {
+    times,
+  },
+});
+
+export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);
+
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
   params: {
     times,

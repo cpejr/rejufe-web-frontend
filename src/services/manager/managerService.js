@@ -8,8 +8,27 @@ export const getById = async (id) => {
   return response.data;
 };
 
+export const getAllUsers = async () => {
+  let times = 0;
+  let users = [];
+  let response;
+  do {
+    response = await requesterService.getAllUsers(times);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    users = users.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return users;
+};
+
 export const getUserEmailByUsername = async (user) => {
   const response = await requesterService.getUserEmailByUsername(user);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const changeUserTypeById = async (typeChange, id) => {
+  const response = await requesterService.changeUserTypeById(typeChange, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
