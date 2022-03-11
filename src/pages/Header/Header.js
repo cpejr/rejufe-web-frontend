@@ -68,8 +68,8 @@ function Header(props) {
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-noticias'),
+      pathName: '/cadastrar-noticias',
       text: 'Cadastrar',
     },
   ];
