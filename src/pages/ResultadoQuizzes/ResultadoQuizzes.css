@@ -4,14 +4,6 @@
   padding: 0 15px;
 }
 
-.division-cards-page {
-  flex: 1;
-}
-
-.division-cards-quizzes {
-  flex: 1;
-}
-
 .division-cards-quizzes h1 {
   margin-top: 20px;
   font-family: 'Roboto', sans-serif;

@@ -70,3 +70,21 @@
   justify-content: center;
   margin-bottom: 10px;
 }
+
+@media (max-width: 650px) {
+  .description-card-quizzes {
+    width: 450px;
+  }
+  .title-card-quizzes {
+    width: 450px;
+  }
+}
+
+@media (max-width: 500px) {
+  .description-card-quizzes {
+    width: 250px;
+  }
+  .title-card-quizzes {
+    width: 250px;
+  }
+}
