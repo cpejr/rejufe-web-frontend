@@ -3,8 +3,6 @@ import {
   BrowserRouter, Switch, Route, Redirect,
 } from 'react-router-dom';
 import Login from './pages/Login';
-import DashboardUsuario from './pages/DashboardUsuario';
-import DashboardAdmin from './pages/DashboardAdmin';
 import EditarAssociados from './pages/EditarAssociados';
 import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
@@ -29,8 +27,6 @@ function UserHeader() {
   return (
     <Header>
       <Switch>
-        <PrivateRoute path="/dashboard/usuario" component={DashboardUsuario} type="usuario" />
-        <PrivateRoute path="/dashboard/administrador" component={DashboardAdmin} type="administrador" />
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
