@@ -212,7 +212,7 @@ function ConsultaAssociados({
 
   function redirect(e, redirectId) {
     e.preventDefault();
-    const win = window.open(`/FichaAssociados?associateId=${redirectId}`, '_blank');
+    const win = window.open(`/ficha-associados?associateId=${redirectId}`, '_blank');
     win.focus();
   }
 

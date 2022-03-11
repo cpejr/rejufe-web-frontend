@@ -19,7 +19,7 @@ const fichaAssociate = [
           },
           {
             id: 'user',
-            label: 'usuario',
+            label: 'Usuario',
           },
         ],
       },
