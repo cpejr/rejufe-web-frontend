@@ -41,7 +41,7 @@ const formsNews = [
       {
         type: 'text',
         id: 'send_site',
-        label: 'Enviar para o site ?',
+        label: 'Enviar para o site',
         field: sendToSite,
         select: true,
         required: true,
