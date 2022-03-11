@@ -2,6 +2,7 @@
 
 .container-user-module {
     margin-top: 4%;
+    min-height: calc(100vh - 221px);
 }
 
 .User-module-search-field{ 

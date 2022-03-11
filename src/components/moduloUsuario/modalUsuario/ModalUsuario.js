@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import * as managerService from '../../../services/manager/managerService';
@@ -44,11 +44,29 @@ const useStyles = makeStyles((theme) => ({
       width: '55%',
     },
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
+      width: '70%',
+    },
+    ['@media (max-width:538px)']: { // eslint-disable-line no-useless-computed-key
+      width: '75%',
+    },
+    ['@media (max-width:450px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
     },
   },
 
 }));
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 330,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
 toast.configure();
 
@@ -112,31 +130,33 @@ export default function ModalAdmin({ users, setTypeChanged }) {
           <div className="Title-user-module">
             <h1>Selecione o usuário que deseja tornar administrador</h1>
           </div>
-          <Autocomplete
-            value={value}
-            onChange={(event, newValue) => {
-              setTypeChanged(false);
-              setValue(newValue);
-            }}
-            disablePortal
-            id="clear-on-escape"
-            clearOnEscape
-            options={users}
-            getOptionLabel={(option) => option.user}
-            sx={{
-              width: {
-                xs: 300,
-                sm: 300,
-                md: 350,
-                lg: 350,
-                xl: 400,
-              },
-              marginBottom: '3%',
-              marginTop: '2%',
-            }}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            renderInput={(params) => <TextField {...params} label="Users" />}
-          />
+          <ThemeProvider theme={theme}>
+            <Autocomplete
+              value={value}
+              onChange={(event, newValue) => {
+                setTypeChanged(false);
+                setValue(newValue);
+              }}
+              disablePortal
+              id="clear-on-escape"
+              clearOnEscape
+              options={users}
+              getOptionLabel={(option) => option.user}
+              sx={{
+                width: {
+                  xs: 260,
+                  sm: 300,
+                  md: 350,
+                  lg: 350,
+                  xl: 400,
+                },
+                marginBottom: '3%',
+                marginTop: '2%',
+              }}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              renderInput={(params) => <TextField {...params} label="Users" />}
+            />
+          </ThemeProvider>
         </div>
         <div className="Column-user-module">
           <div className="Title-user-module">
