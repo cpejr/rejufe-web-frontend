@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MenuLateral from '../MenuLateral';
 import ResultadoQuizzes from '../ResultadoQuizzes';
 import './Intranet.css';
 
 function Intranet() {
+  const [selectedButton, setSelectedButton] = useState('');
   return (
     <div className="Intranet-main-container">
       <div className="Intranet-side-menu">
-        <MenuLateral />
+        <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
-      <div className="Intranet-dashboad-quizzes">
-        <ResultadoQuizzes />
-      </div>
+      {selectedButton === 'Enquetes' ? (
+        <div className="Intranet-dashboad-quizzes">
+          <ResultadoQuizzes />
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 }

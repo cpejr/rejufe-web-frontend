@@ -81,7 +81,6 @@ function CreateQuizz({
     }
 
     try {
-      console.log('oi');
       const body = {
         title: dados.title,
         description: dados.description,
@@ -90,7 +89,6 @@ function CreateQuizz({
         closingDate: dados.closingDate,
         options: descriptions,
       };
-      console.log(body);
       await managerService.createQuizz(body);
       setNewQuizz(true);
       toast.success('Enquete criada com sucesso!!', {
@@ -98,7 +96,6 @@ function CreateQuizz({
         autoClose: 5000,
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível criar enquete!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

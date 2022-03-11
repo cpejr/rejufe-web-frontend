@@ -53,7 +53,6 @@ function FormInputs({ setNewQuizz }) {
           count += 1;
         });
       } catch (error) {
-        console.log(error);
         toast.error('Não foi possível obter usuários!!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
@@ -63,13 +62,11 @@ function FormInputs({ setNewQuizz }) {
       try {
         const response = await managerService.getUsersBySection(voterSection);
         let count = 0;
-        console.log(response);
         response?.forEach((user) => {
           users[count] = user._id;
           count += 1;
         });
       } catch (error) {
-        console.log(error);
         toast.error('Não foi possível obter usuários!!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,

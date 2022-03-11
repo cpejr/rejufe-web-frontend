@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import ModalEnquete from '../../components/Enquetes/modalEnquetes';
 import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
@@ -10,15 +11,15 @@ function ResultadoQuizzes() {
   const { user } = useAuth();
   const [quizzes, setQuizzes] = useState([]);
   const [newQuizz, setNewQuizz] = useState(false);
+  const history = useHistory();
 
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
       setNewQuizz(false);
-      console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 10 ~ getAllAQuizzes ~ quizzes', response);
     } catch (error) {
-      console.log(error);
+      history.push('/NotFound');
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
