@@ -28,7 +28,7 @@ function ResultadoQuizzes() {
   }
   useEffect(() => {
     getAllAQuizzes();
-  }, [newQuizz]);
+  }, [newQuizz === true]);
 
   return (
     <div className="container-cards-quizzes">

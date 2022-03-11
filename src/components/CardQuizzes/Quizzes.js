@@ -19,7 +19,7 @@ function Quizzes({ quizz }) {
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
             {quizz.title}
-            {openingDate < dateQuizz ? (
+            {openingDate > dateQuizz ? (
               '  -  Não iniciada'
             ) : (
               <>

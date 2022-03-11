@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import Alternatives from '../Enquetes/alternatives';
 import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from '../Enquetes/initialQuizzStates';
+import judicialSection from '../consts/judicialSection';
 
 function FormInputs({ setNewQuizz }) {
   const users = [];
@@ -29,14 +30,7 @@ function FormInputs({ setNewQuizz }) {
 
   const allAssociates = 'Todos os associados';
 
-  const sections = [
-    'SE',
-    'AL',
-    'PE',
-    'PB',
-    'RN',
-    'CE',
-  ];
+  const sections = judicialSection.filter((section) => section.value !== '');
 
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
@@ -77,7 +71,7 @@ function FormInputs({ setNewQuizz }) {
 
   useEffect(() => {
     getUsers();
-    if (voterSection.includes(allAssociates) && voterSection.length > 1) {
+    if (voterSection?.includes(allAssociates) && voterSection.length > 1) {
       setVoterSection([allAssociates]);
     }
   }, [voterSection]);
@@ -148,10 +142,10 @@ function FormInputs({ setNewQuizz }) {
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
             {sections.map((section) => (
               <MenuItem
-                key={section}
-                value={section}
+                key={section.label}
+                value={section.value}
               >
-                {section}
+                {section.label}
               </MenuItem>
             ))}
           </Select>

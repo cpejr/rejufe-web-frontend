@@ -55,6 +55,16 @@ function CreateQuizz({
       });
     }
 
+    if (dados.closingDate <= dados.openingDate) {
+      aux.closingDate = true;
+      aux.openingDate = true;
+      checkError = 1;
+      toast.error('Datas inválidas!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
     if (users?.length === 0) {
       aux.toVote = true;
       checkError = 1;
