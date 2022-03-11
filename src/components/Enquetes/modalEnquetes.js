@@ -84,7 +84,7 @@ const theme = createTheme({
 
 toast.configure();
 
-export default function ModalEnquete() {
+export default function ModalEnquete({ setNewQuizz }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -122,7 +122,7 @@ export default function ModalEnquete() {
                 ]}
               />
             </button>
-            <FormInputs />
+            <FormInputs setNewQuizz={setNewQuizz} />
           </div>
         </div>
       </div>

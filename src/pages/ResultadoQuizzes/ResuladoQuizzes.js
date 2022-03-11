@@ -9,11 +9,13 @@ import './ResultadoQuizzes.css';
 function ResultadoQuizzes() {
   const { user } = useAuth();
   const [quizzes, setQuizzes] = useState([]);
+  const [newQuizz, setNewQuizz] = useState(false);
 
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
+      setNewQuizz(false);
       console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 10 ~ getAllAQuizzes ~ quizzes', response);
     } catch (error) {
       console.log(error);
@@ -25,15 +27,14 @@ function ResultadoQuizzes() {
   }
   useEffect(() => {
     getAllAQuizzes();
-  }, []);
+  }, [newQuizz]);
 
   return (
     <div className="container-cards-quizzes">
-      <div className="division-cards-page" />
       <div className="division-cards-quizzes">
         <div className="title-cards-quizzes">
           <h1>Resultado das Enquetes</h1>
-          <ModalEnquete />
+          <ModalEnquete setNewQuizz={setNewQuizz} />
         </div>
         <div className="line-table-cards-quizzes" />
         {user?.type === 'administrador' ? (

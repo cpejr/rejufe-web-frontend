@@ -54,6 +54,7 @@ export const getUsersBySection = async (sections) => {
   // eslint-disable-next-line no-restricted-syntax
   for (const section of sections) {
     console.log(section);
+    times = 0;
     do {
       response = await requesterService.getUsersBySection(times, section);
       // console.log('🚀 ~ file: managerService.js ~ line 63 ~ getUsersBySection ~ users', response.data);

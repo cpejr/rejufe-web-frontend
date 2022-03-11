@@ -1,0 +1,17 @@
+.Intranet-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 100px;
+
+}
+
+.Intranet-dashboad-quizzes {
+  width: 100%;
+  margin-left: 100px;
+  padding: 75px 100px;
+}
+
+.Intranet-side-menu {
+  padding: 150px 0;
+}

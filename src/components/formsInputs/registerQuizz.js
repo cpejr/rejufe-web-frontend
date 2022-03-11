@@ -11,7 +11,7 @@ import Alternatives from '../Enquetes/alternatives';
 import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from '../Enquetes/initialQuizzStates';
 
-function FormInputs() {
+function FormInputs({ setNewQuizz }) {
   const users = [];
   const [voterSection, setVoterSection] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
@@ -88,7 +88,7 @@ function FormInputs() {
   return (
     <div>
       <div className="title-modal-quizz">
-        <h1>Insira as informações da nova enquete</h1>
+        <h2>Insira as informações da nova enquete</h2>
       </div>
       <div className="form-modal-quizz">
         <FormControl>
@@ -159,7 +159,13 @@ function FormInputs() {
             ))}
           </Select>
         </FormControl>
-        <Alternatives initialErrorState={initialErrorState} dados={dados} users={users} setError={setError} />
+        <Alternatives
+          initialErrorState={initialErrorState}
+          dados={dados}
+          users={users}
+          setError={setError}
+          setNewQuizz={setNewQuizz}
+        />
       </div>
     </div>
   );

@@ -6,9 +6,14 @@ import * as managerService from '../../services/manager/managerService';
 toast.configure();
 
 function CreateQuizz({
-  dados, initialErrorState, users, setError, options, inputs,
+  dados, initialErrorState, users, setError, options, inputs, setNewQuizz,
 }) {
+  let descriptions = [];
   const alternatives = Object.values(options).slice(0, inputs.length);
+
+  alternatives.forEach((alternative) => {
+    descriptions = descriptions.concat({ description: alternative });
+  });
 
   const create = async () => {
     const aux = initialErrorState;
@@ -76,14 +81,18 @@ function CreateQuizz({
     }
 
     try {
+      console.log('oi');
       const body = {
         title: dados.title,
+        description: dados.description,
         toVote: users,
         openingDate: dados.openingDate,
         closingDate: dados.closingDate,
-        options: alternatives,
+        options: descriptions,
       };
+      console.log(body);
       await managerService.createQuizz(body);
+      setNewQuizz(true);
       toast.success('Enquete criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
