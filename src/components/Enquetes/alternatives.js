@@ -51,7 +51,7 @@ function Alternatives({
     <div className="alternative-inputs-quizz">
       {inputs?.map((input) => (
         <FormControl>
-          <div className="empty-div" />
+          <div className="empty-div-alternatives-modal-quizz" />
           <InputLabel
             shrink
             sx={{ fontSize: 25 }}

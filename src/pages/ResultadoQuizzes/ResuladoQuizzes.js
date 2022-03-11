@@ -17,7 +17,6 @@ function ResultadoQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
-      setNewQuizz(false);
     } catch (error) {
       history.push('/NotFound');
       toast.error('Credenciais inválidas!!', {
@@ -28,7 +27,7 @@ function ResultadoQuizzes() {
   }
   useEffect(() => {
     getAllAQuizzes();
-  }, [newQuizz === true]);
+  }, [newQuizz]);
 
   return (
     <div className="container-cards-quizzes">

@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '8px',
     boxShadow: theme.palette.color4,
     padding: '1% 1%',
-    // overflowY: 'scroll',
     // eslint-disable-next-line no-useless-computed-key
     ['@media (max-width:900px)']: {
       width: '60%',
@@ -79,8 +78,6 @@ const theme = createTheme({
     },
   },
 });
-
-// let alternative = 2;
 
 toast.configure();
 

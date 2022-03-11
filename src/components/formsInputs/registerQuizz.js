@@ -30,7 +30,7 @@ function FormInputs({ setNewQuizz }) {
 
   const allAssociates = 'Todos os associados';
 
-  const sections = judicialSection.filter((section) => section.value !== '');
+  const sections = judicialSection?.filter((section) => section.value !== '');
 
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
@@ -38,7 +38,7 @@ function FormInputs({ setNewQuizz }) {
   }
 
   const getUsers = async () => {
-    if (voterSection.some((elem) => elem === allAssociates)) {
+    if (voterSection?.some((elem) => elem === allAssociates)) {
       try {
         const response = await managerService.getAllUsers();
         let count = 0;
@@ -133,14 +133,14 @@ function FormInputs({ setNewQuizz }) {
             input={<Input id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map((value) => (
+                {selected?.map((value) => (
                   <Chip key={value} label={value} />
                 ))}
               </Box>
             )}
           >
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
-            {sections.map((section) => (
+            {sections?.map((section) => (
               <MenuItem
                 key={section.label}
                 value={section.value}

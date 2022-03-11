@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 
@@ -11,7 +10,7 @@ function CreateQuizz({
   let descriptions = [];
   const alternatives = Object.values(options).slice(0, inputs.length);
 
-  alternatives.forEach((alternative) => {
+  alternatives?.forEach((alternative) => {
     descriptions = descriptions.concat({ description: alternative });
   });
 

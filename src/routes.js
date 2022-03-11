@@ -57,8 +57,6 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/dashboard/administrador" component={DashboardAdmin} />
-        <Route path="/dashboard/usuario" component={DashboardUsuario} />
         <Route path="/enquetes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />

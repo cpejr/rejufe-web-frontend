@@ -1,4 +1,3 @@
-/* eslint-disable guard-for-in */
 import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
