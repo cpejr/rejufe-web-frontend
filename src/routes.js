@@ -55,7 +55,7 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/cadastro-externo" component={CadastroExterno} type="administrador" />
+        <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
