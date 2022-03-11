@@ -1,9 +1,5 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import './ConsultaAssociados.css';
-import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';

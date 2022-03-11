@@ -4,7 +4,7 @@ th,td
        border:1px solid #DCDCDC;
 }
 
-.container{
+.fichaContainer{
        width:300px;
        border-style:solid;
        border-width: 2px;
@@ -15,7 +15,7 @@ th,td
        display: table-row-group;
 }
 
-.gridContainer{
+.fichaGridContainer{
     background-color: #fff;
     background-image: none;
     opacity: 1;
@@ -26,13 +26,13 @@ th,td
     font-size: 13px;
 }
 
-.tdContainer{
+.fichaTdContainer{
        padding: 0px;
        vertical-align: top;
        width: 100%;
 }
 
-.tableContainer{
+.fichaTableContainer{
        width: 70%;
        position: center;
        margin-left: 15%;
@@ -44,14 +44,14 @@ th,td
 
 }
 
-.tContainer{
+.fichaTContainer{
        width: 100%;
        padding: 0px;
        border-spacing: 0px;
        border-width: 0px;
 }
 
-.tdBox {
+.fichaTdBox {
        background-color: #fff;
        background-image: none;
        opacity: 1;
@@ -67,7 +67,7 @@ th,td
        text-align: left;
        height: "100%"
    }
-   .tdTitle {
+   .fichaTdTitle {
        background-color: #e7e7e7;
        background-image: none;
        opacity: 1;
@@ -84,7 +84,7 @@ th,td
        text-align: center;
 }
 
-.subtitle{
+.fichaSubtitle{
        font-weight: bold;
        vertical-align: top;
 }

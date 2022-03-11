@@ -22,7 +22,6 @@ import FichaAssociados from './pages/FichaAssociados';
 
 import Footer from './components/Footer';
 
-
 export function UserHeader() {
   return (
     <Header>

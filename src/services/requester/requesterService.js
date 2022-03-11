@@ -35,4 +35,3 @@ export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcl
 export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${associateId}`);
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
-

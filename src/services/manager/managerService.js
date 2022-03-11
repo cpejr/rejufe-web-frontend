@@ -65,7 +65,6 @@ export const getAssociates = async (field, filter) => {
   return allAssociates;
 };
 
-
 export const getExcludedAssociate = async (status) => {
   const response = await requesterService.getExcludedAssociate(status);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -81,4 +80,3 @@ export const updateAssociate = async (associateId, body) => {
   const response = await requesterService.updateAssociate(associateId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
-
