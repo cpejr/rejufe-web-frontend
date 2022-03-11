@@ -20,6 +20,7 @@ function ResultadoQuizzes() {
       setAssociates(allAssociates);
     } catch (error) {
       history.push('/NotFound');
+      // eslint-disable-next-line no-console
       console.log(error);
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,
