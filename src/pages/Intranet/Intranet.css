@@ -1,0 +1,48 @@
+.Intranet-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10% 0 10%;
+  min-height: calc(100vh - 221px);
+}
+
+.Intranet-dashboad-quizzes {
+  width: 100%;
+  padding: 75px 0;
+  width: 70%;
+}
+
+.Intranet-side-menu {
+  padding: 150px 0;
+}
+
+@media (max-width: 1200px) {
+  .Intranet-dashboad-quizzes {
+    padding: 75px 50px;
+  }
+}
+
+@media (max-width: 970px) {
+  .Intranet-dashboad-quizzes {
+    padding: 75px 0 0 20px;
+  }
+  .Intranet-main-container {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 650px) {
+  .Intranet-main-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .Intranet-side-menu {
+    padding: 100px 0;
+  }
+
+  .Intranet-dashboad-quizzes {
+    padding: 0 10% 5% 10%;
+    width: 100%;
+  }
+}

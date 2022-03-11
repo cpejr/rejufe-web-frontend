@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default */
 import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
@@ -22,7 +21,7 @@ function Quizzes({ quizz, associates }) {
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
             {quizz.title}
-            {openingDate < dateQuizz ? (
+            {openingDate > dateQuizz ? (
               '  -  Não iniciada'
             ) : (
               <>
@@ -35,11 +34,11 @@ function Quizzes({ quizz, associates }) {
               </>
             )}
           </p>
-          <KeyboardArrowDownIcon style={{ color: 'white' }} />
+          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} />
         </button>
       </div>
       {open === true ? (
-        <div className="description-card">
+        <div className="description-card-quizzes">
           <p>{quizz.description}</p>
           <h1>
             {quizz.options.alternatives}

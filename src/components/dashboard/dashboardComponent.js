@@ -377,7 +377,7 @@ function TableComponent({
       </Table>
       <TableFooter {...footerProps}>
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+          rowsPerPageOptions={[5, 10, 25, 100, { label: 'All', value: -1 }]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}

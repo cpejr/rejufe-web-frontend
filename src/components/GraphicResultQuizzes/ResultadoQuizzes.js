@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Chart } from 'react-google-charts';
-// import * as managerService from '../../services/manager/managerService';
+import TableComponent from '../dashboard/dashboardComponent';
+import './ResultadoQuizzes.css';
 
 export const options = {
   title: 'Quizz',
@@ -16,10 +17,17 @@ function GraphicQuizzes({
   alreadyVoted,
   associates,
 }) {
-  console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 15 ~ GraphicQuizzes ~ associates', associates);
   const data = [
     ['Opções', 'Votos', { role: 'annotation' }],
   ];
+  const titles = [
+    '',
+    'Faltam Votar',
+  ];
+  const user = [];
+  const name = [];
+  const votes = [];
+
   let index = 1;
 
   quizz?.forEach((option) => {
@@ -27,43 +35,40 @@ function GraphicQuizzes({
     let changePercentual = (percentual * 100);
     changePercentual += '%';
     data[index] = [option.description, option.votes, changePercentual];
+    votes[index] = option.votes;
     index += 1;
   });
-
-  const user = [];
   let count = 0;
-  const name = [];
 
   toVote.forEach((_id) => {
-    console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 47 ~ toVote.forEach ~ _id', _id);
     user[count] = associates?.filter((item) => item._id === _id);
     user[count].forEach((obj) => {
       name[count] = obj.name;
-      console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 52 ~ user[count].forEach ~ produto.name', obj.name);
     });
     count += 1;
   });
-  console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 55 ~ toVote.forEach ~ toVote', name);
-
-  useEffect(() => {
-  }, [associates]);
+  const names = name?.map((value) => ({
+    name: value,
+  }));
 
   return (
-    <div>
-      <Chart
-        chartType="BarChart"
-        width="100%"
-        height="50%"
-        data={data}
-        options={options}
-      />
-      <p>Faltam votar:</p>
-      {name?.map((title) => (
-        <p>
-          {title}
-          ,
-        </p>
-      ))}
+    <div className="content-card">
+      {votes[1] !== undefined && (
+        <Chart
+          chartType="BarChart"
+          width="100%"
+          height="50%"
+          data={data}
+          options={options}
+        />
+      )}
+      <div className="content-table-quizzes">
+        <TableComponent
+          rows={names}
+          titles={titles}
+          order
+        />
+      </div>
     </div>
   );
 }

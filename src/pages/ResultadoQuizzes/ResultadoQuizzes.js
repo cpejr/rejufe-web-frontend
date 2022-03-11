@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
 import Quizzes from '../../components/CardQuizzes/Quizzes';
 import './ResultadoQuizzes.css';
 
 function ResultadoQuizzes() {
+  const { user } = useAuth();
   const [quizzes, setQuizzes] = useState([]);
   const [associates, setAssociates] = useState([]);
+  const history = useHistory();
 
   async function getAllAQuizzes() {
     try {
@@ -15,6 +19,7 @@ function ResultadoQuizzes() {
       setQuizzes(response);
       setAssociates(allAssociates);
     } catch (error) {
+      history.push('/NotFound');
       console.log(error);
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -22,23 +27,23 @@ function ResultadoQuizzes() {
       });
     }
   }
-  // const userName = [];
-  // let count = 0;
-
   useEffect(() => {
     getAllAQuizzes();
   }, []);
-  console.log(associates);
 
   return (
-    <div className="container-quizzes">
-      <div className="division-page" />
-      <div className="division-quizzes">
+    <div className="container-cards-quizzes">
+      <div className="division-cards-quizzes" />
+      <div className="title-cards-quizzes">
         <h1>Resultado das Enquetes</h1>
-        <div className="line-table-quizzes" />
-        {quizzes?.map((quizz) => (
-          <Quizzes associates={associates} quizz={quizz} />
-        ))}
+        <div className="line-table-cards-quizzes" />
+        {user?.type === 'administrador' ? (
+          quizzes?.map((quizz) => (
+            <Quizzes quizz={quizz} associates={associates} />
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
