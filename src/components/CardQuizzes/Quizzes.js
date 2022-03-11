@@ -20,14 +20,14 @@ function Quizzes({ quizz }) {
           <p>
             {quizz.title}
             {openingDate > dateQuizz ? (
-              '  -  Não iniciada'
+              ':  não iniciada'
             ) : (
               <>
                 <div />
                 {closingDate < dateQuizz ? (
-                  '  -  Finalizada'
+                  ':  finalizada'
                 ) : (
-                  '  -  Em andamento'
+                  ':  em andamento'
                 )}
               </>
             )}

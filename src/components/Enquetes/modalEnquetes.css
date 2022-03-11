@@ -67,10 +67,13 @@
   font-weight: 300;
 }
 
+.exit-modal-quizz {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .close-modal-quizz {
-  width: 30px;  
   height: 30px;  
-  margin-left: 1%;
   background-color: transparent;
   border: none;
 }
@@ -123,7 +126,7 @@
 .delete-button-modal-quizz {
   display: flex;
   align-items: baseline;
-  justify-content: end;
+  justify-content: flex-end;
   width: 10%;
 }
 
@@ -147,17 +150,8 @@
   }
 }
 @media (max-width: 1150px) {
-  .close-quizz {
-    width: 8%;
-  }
-  .confirm-quizz {
-    margin-bottom: 0;
-  }
   .container-modal-quizz {
     height: 100%;
-  }
-  .exit-quizz {
-    margin: 0;
   }
   .create-quizz-button {
     width: 140px;
@@ -171,30 +165,13 @@
   }
 }
 
-  @media (max-width: 1400px) {
-    .title-modal-quizz h2 {
-      font-size: 20px;
-    }
-  }
   
-  @media (max-width: 920px) {
-    .confirm-quizz {
-      width: 35%;
-    }
+@media (max-width: 440px) {
+  .title-modal-quizz h2 {
+    font-size: 25px;
   }
-  
-  @media (max-width: 400px) {
-    .close-quizz {
-      width: 12%;
-    }
+  .confirm-button-modal-quizz {
+    font-size: 15px;
   }
-  
-  @media (max-width: 260px) {
-    .close-quizz {
-      width: 20%;
-    }
-    .confirm-quizz {
-      width: 45%;
-    }
-  }
+}
   

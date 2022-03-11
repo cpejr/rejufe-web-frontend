@@ -122,8 +122,8 @@ export default function ModalEnquete({ setNewQuizz }) {
                 ]}
               />
             </button>
-            <FormInputs setNewQuizz={setNewQuizz} />
           </div>
+          <FormInputs setNewQuizz={setNewQuizz} />
         </div>
       </div>
     </ThemeProvider>
