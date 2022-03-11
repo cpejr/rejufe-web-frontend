@@ -10,8 +10,10 @@ import EsqueciSenha from './pages/EsqueciSenha';
 import Header from './pages/Header';
 import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
+import CadastrarNoticias from './pages/CadastrarNoticias';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
+import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import Consultas from './pages/Consultas';
 import ValidarSocio from './pages/ValidarSocio';
@@ -30,9 +32,12 @@ function UserHeader() {
       <Switch>
         <Route path="/dashboard/usuario" component={DashboardUsuario} />
         <Route path="/dashboard/administrador" component={DashboardAdmin} />
+        <Route path="/cadastro" component={Cadastro} />
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
+        <Route path="/cadastrar-noticias" component={CadastrarNoticias} />
         <Route path="/administracao-registros" component={AdmRegistros} />
+        <Route path="/administracao-registros-noticias" component={AdmRegistrosNoticias} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
@@ -54,9 +59,9 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
+        <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
       </Switch>

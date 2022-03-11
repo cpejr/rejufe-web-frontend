@@ -17,6 +17,14 @@ export const registerExternal = (body) => httpClient.post('/usuario/externalAsso
 
 export const getById = (id) => httpClient.get(`/usuario/${id}`);
 
+export const getAllUsers = (times) => httpClient.get('/usuario/', {
+  params: {
+    times,
+  },
+});
+
+export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);
+
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
   params: {
     times,
@@ -37,3 +45,20 @@ export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcl
 export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${associateId}`);
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
+
+export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);
+
+export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
+
+export const uploadFile = (body) => httpClient.post('/arquivos', body);
+
+export const createNews = (body) => httpClient.post('/noticias', body);

@@ -2,10 +2,12 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
 function RegisterInputs({
   setDados,
   type,
+  fileType,
   label,
   id,
   field,
@@ -72,7 +74,7 @@ function RegisterInputs({
           ))}
         </TextField>
       )}
-      {!mask && !(type === 'date') && !select && (
+      {!mask && !(type === 'date') && !(type === 'file') && !(type === 'empty') && !select && (
         <TextField
           required={required}
           id={id}
@@ -86,6 +88,12 @@ function RegisterInputs({
           sx={{ m: 1, width: '30ch' }}
           helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
         />
+      )}
+      {type === 'empty' && (
+        <div />
+      )}
+      {type === 'file' && (
+        <SingleFileUpload id={id} fileType={fileType} dados={dados} file={dados[`${id}`]} setDados={setDados} label={label} />
       )}
     </div>
   );
