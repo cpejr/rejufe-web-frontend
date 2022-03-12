@@ -19,7 +19,7 @@ const fichaAssociate = [
           },
           {
             id: 'user',
-            label: 'Usuario',
+            label: 'Usuário',
           },
         ],
       },
@@ -58,7 +58,7 @@ const fichaAssociate = [
           },
           {
             id: 'birth_spouse',
-            label: 'Nasc do conjuge',
+            label: 'Nascimento do conjuge',
 
           },
         ],

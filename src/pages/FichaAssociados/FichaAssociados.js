@@ -15,12 +15,12 @@ function FichaAssociados() {
 
   return (
     <body>
-      <table className="fichaTableContainer">
-        <div className="fichaGridContainer">
+      <table className="fichaAssociadosTableContainer">
+        <div className="fichaAssociadosGridContainer">
           <table width="100%">
             <tr>
-              <td className="fichaTdContainer">
-                <table className="fichaTContainer">
+              <td className="fichaAssociadosTdContainer">
+                <table className="fichaAssociadosTContainer">
                   <table width="100%">
                     <tr>
                       <td>
@@ -32,10 +32,10 @@ function FichaAssociados() {
                     </tr>
                   </table>
                   {fichaAssociate.map((ficha) => (
-                    <table className="fichaTContainer">
+                    <table className="fichaAssociadosTContainer">
                       <table width="100%">
                         <tr>
-                          <td className="fichaTdTitle">
+                          <td className="fichaAssociadosTdTitle">
                             {ficha.title}
                           </td>
                         </tr>
@@ -44,8 +44,8 @@ function FichaAssociados() {
                         <table width="100%">
                           <tr>
                             {line.items.map((item) => (
-                              <td className="fichaTdBox">
-                                <span className="fichaSubtitle">
+                              <td className="fichaAssociadosTdBox">
+                                <span className="fichaAssociadosSubtitle">
                                   {' '}
                                   {item.label}
                                   {' '}
@@ -65,7 +65,7 @@ function FichaAssociados() {
                   ))}
                   <table width="100%">
                     <tr>
-                      <td className="fichaTdTitle" height="25px" />
+                      <td className="fichaAssociadosTdTitle" height="25px" />
                     </tr>
                   </table>
                 </table>

@@ -1,10 +1,10 @@
 
-th,td
+td
 {
        border:1px solid #DCDCDC;
 }
 
-.fichaContainer{
+.fichaAssociadosContainer{
        width:300px;
        border-style:solid;
        border-width: 2px;
@@ -15,7 +15,7 @@ th,td
        display: table-row-group;
 }
 
-.fichaGridContainer{
+.fichaAssociadosGridContainer{
     background-color: #fff;
     background-image: none;
     opacity: 1;
@@ -26,13 +26,13 @@ th,td
     font-size: 13px;
 }
 
-.fichaTdContainer{
+.fichaAssociadosTdContainer{
        padding: 0px;
        vertical-align: top;
        width: 100%;
 }
 
-.fichaTableContainer{
+.fichaAssociadosTableContainer{
        width: 70%;
        position: center;
        margin-left: 15%;
@@ -44,14 +44,14 @@ th,td
 
 }
 
-.fichaTContainer{
+.fichaAssociadosTContainer{
        width: 100%;
        padding: 0px;
        border-spacing: 0px;
        border-width: 0px;
 }
 
-.fichaTdBox {
+.fichaAssociadosTdBox {
        background-color: #fff;
        background-image: none;
        opacity: 1;
@@ -67,7 +67,7 @@ th,td
        text-align: left;
        height: "100%"
    }
-   .fichaTdTitle {
+   .fichaAssociadosTdTitle {
        background-color: #e7e7e7;
        background-image: none;
        opacity: 1;
@@ -84,7 +84,7 @@ th,td
        text-align: center;
 }
 
-.fichaSubtitle{
+.fichaAssociadosSubtitle{
        font-weight: bold;
        vertical-align: top;
 }

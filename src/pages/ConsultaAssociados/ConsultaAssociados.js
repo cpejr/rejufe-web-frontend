@@ -25,7 +25,7 @@ function ConsultaAssociados() {
   return (
     <div>
       <h1 className="titleConsultAssociate"> Associados Ativos </h1>
-      <div className="container-administration">
+      <div className="containerConsultAssociate">
         <TableComponent id={id} rows={associates} titles={titles} search />
       </div>
     </div>
