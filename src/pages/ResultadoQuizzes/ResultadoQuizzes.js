@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
 import Quizzes from '../../components/CardQuizzes/Quizzes';
@@ -11,6 +12,9 @@ function ResultadoQuizzes() {
   const [quizzes, setQuizzes] = useState([]);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
+
+  const [date] = useState(new Date());
+  const dateQuizz = moment(date).format('YYYY-MM-DD');
 
   async function getAllAQuizzes() {
     try {
@@ -39,10 +43,24 @@ function ResultadoQuizzes() {
         <div className="line-table-cards-quizzes" />
         {user?.type === 'administrador' ? (
           quizzes?.map((quizz) => (
-            <Quizzes quizz={quizz} associates={associates} />
+            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
           ))
         ) : (
-          <div />
+          quizzes?.map((quizz) => (
+            <>
+              {quizz?.openingDate <= dateQuizz && (
+                <>
+                  {quizz?.toVote?.includes(user._id) ? (
+                    <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
+                  ) : (
+                    <div />
+                  )}
+                  <div />
+                </>
+              )}
+              <div />
+            </>
+          ))
         )}
       </div>
     </div>

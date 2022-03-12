@@ -4,16 +4,14 @@ import moment from 'moment';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
 
-function Quizzes({ quizz, associates }) {
+function Quizzes({ quizz, associates, dateQuizz }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const [date] = useState(new Date());
   const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
 
   return (
     <div className="body-quizzes-card">
