@@ -71,9 +71,9 @@
   margin-bottom: 10px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 824px) {
   .description-card-quizzes {
-    width: 450px;
+    width: 344px;
   }
   .title-card-quizzes {
     width: 450px;
