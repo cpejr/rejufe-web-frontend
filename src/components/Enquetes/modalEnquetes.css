@@ -14,14 +14,17 @@
 }
 
 .create-quizz-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
-  background: var(--secondary);
-  border: thin solid var(--secondary);
-  border-radius: 5px;
-  width: 200px;
+  background: transparent;
+  border: thin solid var(--fontColor2);
+  border-radius: 20px;
+  width: 35px;
   height: 35px;
   margin-top: 20px;
-  color: var(--fontColor1);
+  color: var(--secondary);
   font-weight: 700;
   cursor: pointer; 
 }
@@ -38,11 +41,12 @@
 .container-modal-quizz button {  
   height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 .plus-button-modal-quizz {
+  display: flex;
+  align-items: center;
   border: none;
   background-color: transparent;
   margin-bottom: 5%;
@@ -50,7 +54,7 @@
   font-weight: 700;
   font-size: 20px;
   border-radius: 5px;
-  width: 60%;
+  cursor: pointer;
 }
 
 .form-modal-quizz {
@@ -85,8 +89,8 @@
   color: var(--fontColor1);
   border: solid var(--primary);
   border-radius: 5px;
-  color: white;
-  font-weight: 700;
+  color: var(--fontColor1);
+  font-weight: 400;
   font-size: 20px;
   margin-bottom: 5%;
 }
@@ -137,31 +141,31 @@
 .alternative-inputs-quizz {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
 }
   
 @media (max-width: 1380px) {
   .create-quizz-button {
-    width: 140px;
+    width: 30px;
     height: 30px;
-    font-size: 15px;
+    /* font-size: 15px; */
   }
 }
 @media (max-width: 1150px) {
   .container-modal-quizz {
     height: 100%;
   }
-  .create-quizz-button {
-    width: 140px;
-    font-size: 15px;
+  .confirm-button-modal-quizz {
+    width: 40%;
   }
 }
 
 @media (max-width: 1012px) {
   .create-quizz-button {
     height: 25px;
+    width: 25px;
   }
 }
 
@@ -174,4 +178,5 @@
     font-size: 15px;
   }
 }
+
   

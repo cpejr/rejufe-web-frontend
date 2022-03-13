@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import './modalEnquetes.css';
 import { createTheme, ThemeProvider } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import FormInputs from '../formsInputs/registerQuizz';
 
 function getModalStyle() {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'stretch',
   },
   paper: {
     position: 'absolute',
@@ -38,8 +39,6 @@ const useStyles = makeStyles((theme) => ({
     },
     ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
-    },
-    ['@media (max-width:1150px)']: { // eslint-disable-line no-useless-computed-key
     },
   },
 
@@ -133,7 +132,7 @@ export default function ModalEnquete({ setNewQuizz }) {
         type="button"
         onClick={handleOpen}
       >
-        Criar nova enquete
+        <AddIcon />
       </button>
       <Modal
         open={open}

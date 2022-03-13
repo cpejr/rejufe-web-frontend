@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -97,14 +96,14 @@ function Alternatives({
         }}
       >
         <AddIcon
-          size={30}
+          size={40}
           sx={[
             {
-              color: '#264A6F',
+              color: '#3A404C',
               marginRight: '5px',
               '&:hover': {
                 color: 'white',
-                backgroundColor: '#264A6F',
+                backgroundColor: '#3A404C',
                 borderRadius: '5px',
               },
             },
