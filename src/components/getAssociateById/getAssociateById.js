@@ -1,7 +1,10 @@
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 
 async function getAssociateById(associateId, setAssociate) {
+  const history = useHistory();
+
   try {
     const response = await managerService.getById(associateId);
     const associate = {
@@ -44,8 +47,7 @@ async function getAssociateById(associateId, setAssociate) {
     };
     setAssociate(associate);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error); // TO DO: Substitute for redirect to not Found when done
+    history.push('/NotFound');
   }
 }
 

@@ -15,12 +15,12 @@ function FichaAssociados() {
 
   return (
     <body>
-      <table className="fichaAssociadosTableContainer">
-        <div className="fichaAssociadosGridContainer">
+      <table className="formsAssociateTableContainer">
+        <div className="formsAssociateGridContainer">
           <table width="100%">
             <tr>
-              <td className="fichaAssociadosTdContainer">
-                <table className="fichaAssociadosTContainer">
+              <td className="formsAssociateTdContainer">
+                <table className="formsAssociateTContainer">
                   <table width="100%">
                     <tr>
                       <td>
@@ -32,10 +32,10 @@ function FichaAssociados() {
                     </tr>
                   </table>
                   {fichaAssociate.map((ficha) => (
-                    <table className="fichaAssociadosTContainer">
+                    <table className="formsAssociateTContainer">
                       <table width="100%">
                         <tr>
-                          <td className="fichaAssociadosTdTitle">
+                          <td className="formsAssociateTdTitle">
                             {ficha.title}
                           </td>
                         </tr>
@@ -44,8 +44,8 @@ function FichaAssociados() {
                         <table width="100%">
                           <tr>
                             {line.items.map((item) => (
-                              <td className="fichaAssociadosTdBox">
-                                <span className="fichaAssociadosSubtitle">
+                              <td className="formsAssociateTdBox">
+                                <span className="formsAssociateSubtitle">
                                   {' '}
                                   {item.label}
                                   {' '}
@@ -65,7 +65,7 @@ function FichaAssociados() {
                   ))}
                   <table width="100%">
                     <tr>
-                      <td className="fichaAssociadosTdTitle" height="25px" />
+                      <td className="formsAssociateTdTitle" height="25px" />
                     </tr>
                   </table>
                 </table>

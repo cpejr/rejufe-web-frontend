@@ -4,7 +4,7 @@ td
        border:1px solid #DCDCDC;
 }
 
-.fichaAssociadosContainer{
+.formsAssociatesContainer{
        width:300px;
        border-style:solid;
        border-width: 2px;
@@ -15,7 +15,7 @@ td
        display: table-row-group;
 }
 
-.fichaAssociadosGridContainer{
+.formsAssociateGridContainer{
     background-color: #fff;
     background-image: none;
     opacity: 1;
@@ -26,13 +26,13 @@ td
     font-size: 13px;
 }
 
-.fichaAssociadosTdContainer{
+.formsAssociateTdContainer{
        padding: 0px;
        vertical-align: top;
        width: 100%;
 }
 
-.fichaAssociadosTableContainer{
+.formsAssociateTableContainer{
        width: 70%;
        position: center;
        margin-left: 15%;
@@ -44,14 +44,14 @@ td
 
 }
 
-.fichaAssociadosTContainer{
+.formsAssociateTContainer{
        width: 100%;
        padding: 0px;
        border-spacing: 0px;
        border-width: 0px;
 }
 
-.fichaAssociadosTdBox {
+.formsAssociateTdBox {
        background-color: #fff;
        background-image: none;
        opacity: 1;
@@ -67,7 +67,7 @@ td
        text-align: left;
        height: "100%"
    }
-   .fichaAssociadosTdTitle {
+   .formsAssociateTdTitle {
        background-color: #e7e7e7;
        background-image: none;
        opacity: 1;
@@ -84,14 +84,27 @@ td
        text-align: center;
 }
 
-.fichaAssociadosSubtitle{
+.formsAssociateSubtitle{
        font-weight: bold;
        vertical-align: top;
 }
 
-@media(max-width: 800px) {
-       td{
-              display: block;
+@media(max-width: 1000px) {
+       .formsAssociateTableContainer{
+              width: max-content;  
+              margin-left: 10%;
        }
-       
+}
+
+@media(max-width: 900px) {
+       .formsAssociateTableContainer{
+              margin-left: 5%;
+       }
+}
+
+@media(max-width: 790px) {
+       .formsAssociateTableContainer{
+              margin-left: 0%;
+              margin-right: 0%; 
+       }
 }
