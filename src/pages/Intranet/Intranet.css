@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0 10% 0 10%;
-  min-height: calc(100vh - 221px);
+  min-height: calc(190vh - 221px);
 }
 
 .Intranet-dashboad-quizzes {
@@ -15,10 +15,18 @@
 .Intranet-side-menu {
   padding: 150px 0;
 }
+.Bottom-Menu-Align {
+  position: absolute;
+  bottom: -68vh;
+}
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .Intranet-dashboad-quizzes {
     padding: 75px 50px;
+  }
+
+  .Bottom-Menu-Align {
+    bottom: -60vh;
   }
 }
 
@@ -44,5 +52,25 @@
   .Intranet-dashboad-quizzes {
     padding: 0 25% 5% 25%;
     width: 100%;
+  }
+  .Bottom-Menu-Align {
+    position: relative;
+    bottom: 0;
+    margin-left: -5%;
+  }
+}
+@media (max-width: 500px) {
+  .Bottom-Menu-Align {
+    margin-left: -5%;
+  }
+}
+@media (max-width: 445px) {
+  .Bottom-Menu-Align {
+    margin-left: -10%;
+  }
+}
+@media (max-width: 358px) {
+  .Bottom-Menu-Align {
+    margin-left: -15%;
   }
 }
