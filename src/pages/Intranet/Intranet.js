@@ -7,19 +7,21 @@ import BottomMenu from '../../components/BottomMenu/BottomMenu';
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
   return (
-    <div className="Intranet-main-container">
-      <div className="Intranet-side-menu">
+    <div className="intranet-main-container">
+      <div className="intranet-side-menu">
         <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
-      {selectedButton === 'Enquetes' ? (
-        <div className="Intranet-dashboad-quizzes">
-          <ResultadoQuizzes />
+      <div className="intranet-right-column">
+        {selectedButton === 'Enquetes' ? (
+          <div className="intranet-dashboad-quizzes">
+            <ResultadoQuizzes />
+          </div>
+        ) : (
+          <div />
+        )}
+        <div>
+          <BottomMenu />
         </div>
-      ) : (
-        <div />
-      )}
-      <div>
-        <BottomMenu />
       </div>
     </div>
   );

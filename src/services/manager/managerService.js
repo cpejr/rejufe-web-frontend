@@ -118,6 +118,20 @@ export const getQuizzes = async (field, filter) => {
   return allQuizzes;
 };
 
+export const getToVoteQuizzes = async (id, field, filter) => {
+  let times = 0;
+  let response;
+
+  let allQuizzes = [];
+  do {
+    response = await requesterService.getToVoteQuizzes(id, times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allQuizzes = allQuizzes.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allQuizzes;
+};
+
 export const getExternalAssociates = async (field, filter) => {
   let times = 0;
   let response;

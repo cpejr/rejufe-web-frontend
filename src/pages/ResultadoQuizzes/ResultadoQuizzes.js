@@ -12,9 +12,12 @@ function ResultadoQuizzes() {
   const [quizzes, setQuizzes] = useState([]);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
+  const [toVote, setToVote] = useState([]);
 
   const [date] = useState(new Date());
   const dateQuizz = moment(date).format('YYYY-MM-DD');
+
+  console.log(user);
 
   async function getAllAQuizzes() {
     try {
@@ -31,8 +34,28 @@ function ResultadoQuizzes() {
       });
     }
   }
+
+  async function getToVoteQuizzes() {
+    try {
+      const response = await managerService.getToVoteQuizzes(user?.id);
+      console.log(response);
+      setToVote(response);
+    } catch (error) {
+      history.push('/NotFound');
+      console.log(error);
+      toast.error('Credenciais inválidas!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   useEffect(() => {
-    getAllAQuizzes();
+    if (user?.type === 'administrador') {
+      getAllAQuizzes();
+    } else {
+      getToVoteQuizzes();
+    }
   }, []);
 
   return (
@@ -46,17 +69,10 @@ function ResultadoQuizzes() {
             <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
           ))
         ) : (
-          quizzes?.map((quizz) => (
+          toVote?.map((quizz) => (
             <>
               {quizz?.openingDate <= dateQuizz && (
-                <>
-                  {quizz?.toVote?.includes(user._id) ? (
-                    <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
-                  ) : (
-                    <div />
-                  )}
-                  <div />
-                </>
+                <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
               )}
               <div />
             </>

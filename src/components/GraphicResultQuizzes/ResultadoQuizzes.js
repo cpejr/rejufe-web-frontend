@@ -40,7 +40,7 @@ function GraphicQuizzes({
   });
   let count = 0;
 
-  toVote.forEach((_id) => {
+  toVote?.forEach((_id) => {
     user[count] = associates?.filter((item) => item._id === _id);
     user[count].forEach((obj) => {
       name[count] = obj.name;

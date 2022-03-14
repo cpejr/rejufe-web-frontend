@@ -55,6 +55,15 @@ export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const getToVoteQuizzes = (id, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
     times,
