@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 function Quizzes({ quizz, associates, dateQuizz }) {
   const alreadyVoted = [];
@@ -86,6 +87,7 @@ function Quizzes({ quizz, associates, dateQuizz }) {
                       label={option.description}
                     />
                   ))}
+                  <ConfirmModal />
                 </RadioGroup>
               </FormControl>
               <div />
