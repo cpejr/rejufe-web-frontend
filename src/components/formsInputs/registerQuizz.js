@@ -101,7 +101,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Data de início </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }} className="input-label-forms-create-quizz">Data de início </InputLabel>
           <Input
             required
             error={initialErrorState.openingDate}

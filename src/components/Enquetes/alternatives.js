@@ -33,7 +33,7 @@ function Alternatives({
     if (remove.index !== inputs.length - 1) {
       return;
     }
-    setInputs(inputs.filter((input) => input !== inputs[inputs.length - 1]));
+    setInputs(inputs?.filter((input) => input !== inputs[inputs.length - 1]));
     setOptions({ ...options, [inputs.length - 1]: '' });
   };
 
@@ -54,6 +54,7 @@ function Alternatives({
           <InputLabel
             shrink
             sx={{ fontSize: 25 }}
+            className="input-forms-create-quizz"
           >
             {input.name}
           </InputLabel>

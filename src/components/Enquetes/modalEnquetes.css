@@ -42,6 +42,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .plus-button-modal-quizz {
@@ -130,27 +131,25 @@
 .delete-button-modal-quizz {
   display: flex;
   align-items: baseline;
-  justify-content: flex-end;
+  justify-content: center;
   width: 10%;
-}
-
-.empty-div {
-  width:10%;
 }
 
 .alternative-inputs-quizz {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
   width: 100%;
+}
+
+.empty-div-alternatives-modal-quizz {
+  width: 10%;
 }
   
 @media (max-width: 1380px) {
   .create-quizz-button {
     width: 30px;
     height: 30px;
-    /* font-size: 15px; */
   }
 }
 @media (max-width: 1150px) {
@@ -180,8 +179,8 @@
 }
 
 @media (max-width: 360px) {
-  .input-forms-create-quizz {
-    margin: 3% 0;
+  .input-label-forms-create-quizz {
+    margin: 10px 0 30px;
   }
   .plus-button-modal-quizz {
     margin-top: 3%;
