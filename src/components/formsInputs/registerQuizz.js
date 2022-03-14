@@ -83,7 +83,7 @@ function FormInputs({ setNewQuizz }) {
       </div>
       <div className="form-modal-quizz">
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }}>Título</InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Título</InputLabel>
           <Input
             required
             error={initialErrorState.title}
@@ -92,7 +92,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }}>Descrição</InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Descrição</InputLabel>
           <Input
             required
             error={initialErrorState.description}
@@ -101,7 +101,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }}>Data de início </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Data de início </InputLabel>
           <Input
             required
             error={initialErrorState.openingDate}
@@ -111,7 +111,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }}>Data de fim </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Data de fim </InputLabel>
           <Input
             required
             error={initialErrorState.closingDate}
@@ -121,7 +121,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel id="select-voter" shrink sx={{ fontSize: 25 }}>Selecione quem irá votar</InputLabel>
+          <InputLabel id="select-voter" shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Selecione quem irá votar</InputLabel>
           <Select
             required
             error={initialErrorState.toVote}

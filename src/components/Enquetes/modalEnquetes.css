@@ -179,4 +179,16 @@
   }
 }
 
+@media (max-width: 360px) {
+  .input-forms-create-quizz {
+    margin: 3% 0;
+  }
+  .plus-button-modal-quizz {
+    margin-top: 3%;
+  }
+  .confirm-button-modal-quizz {
+    margin-top: 3%;
+  }
+}
+
   
