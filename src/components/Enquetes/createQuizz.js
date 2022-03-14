@@ -74,7 +74,7 @@ function CreateQuizz({
       });
     }
 
-    alternatives.forEach((alternative) => {
+    alternatives?.forEach((alternative) => {
       if (alternative === '' || typeof alternative === 'object') {
         aux.options = true;
         checkError = 1;

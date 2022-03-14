@@ -16,6 +16,7 @@ function ResultadoQuizzes() {
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
+      console.log(response);
       setQuizzes(response);
     } catch (error) {
       history.push('/NotFound');
