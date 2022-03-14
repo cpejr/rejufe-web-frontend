@@ -7,11 +7,12 @@ toast.configure();
 function CreateQuizz({
   dados, initialErrorState, users, setError, options, inputs, setNewQuizz,
 }) {
+  const voted = [];
   let descriptions = [];
   const alternatives = Object.values(options).slice(0, inputs.length);
 
   alternatives?.forEach((alternative) => {
-    descriptions = descriptions.concat({ description: alternative });
+    descriptions = descriptions.concat({ description: alternative, votes: 0 });
   });
 
   const create = async () => {
@@ -94,6 +95,7 @@ function CreateQuizz({
         title: dados.title,
         description: dados.description,
         toVote: users,
+        alreadyVoted: voted,
         openingDate: dados.openingDate,
         closingDate: dados.closingDate,
         options: descriptions,
