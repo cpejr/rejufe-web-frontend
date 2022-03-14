@@ -55,8 +55,9 @@ export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
-export const getToVoteQuizzes = (id, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
+export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
   params: {
+    date,
     times,
     field,
     filter,

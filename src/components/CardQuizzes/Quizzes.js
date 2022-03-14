@@ -18,6 +18,19 @@ function Quizzes({ quizz, associates, dateQuizz }) {
   console.log(quizz);
   const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleChange = (e) => {
+    setSelectedValue(e.target.value);
+  };
+
+  const controlProps = (item) => ({
+    checked: selectedValue === item,
+    onChange: handleChange,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
 
   return (
     <div className="body-quizzes-card">
@@ -44,7 +57,7 @@ function Quizzes({ quizz, associates, dateQuizz }) {
       {open === true ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
-          {closingDate > dateQuizz ? (
+          {closingDate < dateQuizz ? (
             <GraphicQuizzes
               toVote={toVote}
               associates={associates}
@@ -53,23 +66,28 @@ function Quizzes({ quizz, associates, dateQuizz }) {
             />
           ) : (
             <>
-              <h1>
-                <FormControl>
-                  <FormLabel id="-radio-buttons-group-label">Alternativas</FormLabel>
-                  <RadioGroup
-                    aria-labelledby="radio-buttons-group-label"
-                    name="radio-buttons-group"
-                  >
-                    {quizz?.options?.map((option) => (
-                      <FormControlLabel
-                        value={option.description}
-                        control={<Radio />}
-                        label={option.description}
-                      />
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-              </h1>
+              <FormControl>
+                <FormLabel
+                  id="-radio-buttons-group-label"
+                  sx={{
+                    marginTop: '20px', color: '#2F5C88', fontWeight: '800', fontSize: '18px',
+                  }}
+                >
+                  Alternativas
+                </FormLabel>
+                <RadioGroup
+                  aria-labelledby="radio-buttons-group-label"
+                  name="radio-buttons-group"
+                >
+                  {quizz?.options?.map((option) => (
+                    <FormControlLabel
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      control={<Radio {...controlProps(option.description)} sx={{ '&.Mui-checked': { color: '#2F5C88' } }} />}
+                      label={option.description}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
               <div />
             </>
           )}

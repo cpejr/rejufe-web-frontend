@@ -37,7 +37,7 @@ function ResultadoQuizzes() {
 
   async function getToVoteQuizzes() {
     try {
-      const response = await managerService.getToVoteQuizzes(user?.id);
+      const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
       console.log(response);
       setToVote(response);
     } catch (error) {
@@ -70,12 +70,7 @@ function ResultadoQuizzes() {
           ))
         ) : (
           toVote?.map((quizz) => (
-            <>
-              {quizz?.openingDate <= dateQuizz && (
-                <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
-              )}
-              <div />
-            </>
+            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
           ))
         )}
       </div>
