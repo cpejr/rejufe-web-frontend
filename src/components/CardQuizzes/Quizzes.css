@@ -39,6 +39,9 @@
 }
 
 .description-card-quizzes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   border-radius: 8px;
   background-color: var(--background);
@@ -69,4 +72,20 @@
   font-size: 0.8em;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+.form-vote-quizzes-alternatives {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: center;
+}
+
+.empty-div-vote-quizzes {
+  width: 20%;
+}
+
+.form-vote-quizz-container {
+  display: flex;
+  flex-direction: row;
 }

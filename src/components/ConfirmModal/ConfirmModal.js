@@ -3,8 +3,6 @@ import Modal from '@material-ui/core/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
-import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import * as managerService from '../../services/manager/managerService';
 import './ConfirmModal.css';
 
 function getModalStyle() {
@@ -51,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ConfirmModal({ setTypeChanged, id }) {
+export default function ConfirmModal() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -60,10 +58,6 @@ export default function ConfirmModal({ setTypeChanged, id }) {
   };
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const vote = async () => {
-    set
   };
 
   const body = (
@@ -103,7 +97,6 @@ export default function ConfirmModal({ setTypeChanged, id }) {
             className="Confirm-user-module-exclude"
             type="button"
             onClick={() => {
-              changeUserType();
               handleClose();
             }}
           >
@@ -128,7 +121,7 @@ export default function ConfirmModal({ setTypeChanged, id }) {
         type="button"
         onClick={handleOpen}
       >
-        <DeleteForeverRoundedIcon />
+        votar
       </button>
       <Modal
         open={open}

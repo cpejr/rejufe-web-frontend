@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import {
-  FormControl, FormControlLabel, FormLabel, RadioGroup, Radio,
+  FormControl, Button,
 } from '@mui/material';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
@@ -19,19 +19,11 @@ function Quizzes({ quizz, associates, dateQuizz }) {
   console.log(quizz);
   const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
-  const [selectedValue, setSelectedValue] = useState('');
+  // const [selectedValue, setSelectedValue] = useState('');
 
-  const handleChange = (e) => {
-    setSelectedValue(e.target.value);
-  };
-
-  const controlProps = (item) => ({
-    checked: selectedValue === item,
-    onChange: handleChange,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
+  // const handleChange = (e) => {
+  //   setSelectedValue(e.target.value);
+  // };
 
   return (
     <div className="body-quizzes-card">
@@ -66,32 +58,17 @@ function Quizzes({ quizz, associates, dateQuizz }) {
               alreadyVoted={alreadyVoted}
             />
           ) : (
-            <>
-              <FormControl>
-                <FormLabel
-                  id="-radio-buttons-group-label"
-                  sx={{
-                    marginTop: '20px', color: '#2F5C88', fontWeight: '800', fontSize: '18px',
-                  }}
-                >
-                  Alternativas
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="radio-buttons-group-label"
-                  name="radio-buttons-group"
-                >
-                  {quizz?.options?.map((option) => (
-                    <FormControlLabel
-                      // eslint-disable-next-line react/jsx-props-no-spreading
-                      control={<Radio {...controlProps(option.description)} sx={{ '&.Mui-checked': { color: '#2F5C88' } }} />}
-                      label={option.description}
-                    />
-                  ))}
-                  <ConfirmModal />
-                </RadioGroup>
+            <div className="form-vote-quizz-container">
+              <div className="empty-div-vote-quizzes" />
+              <FormControl className="form-vote-quizzes-alternatives">
+                <h2>alternativas</h2>
+                {quizz?.options?.map((option) => (
+                  <Button>{option.description}</Button>
+                ))}
+                <ConfirmModal />
               </FormControl>
-              <div />
-            </>
+              <div className="empty-div-vote-quizzes" />
+            </div>
           )}
         </div>
       ) : (
