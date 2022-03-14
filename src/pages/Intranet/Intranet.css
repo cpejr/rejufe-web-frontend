@@ -1,9 +1,13 @@
 .Intranet-main-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   padding: 0 10% 0 10%;
-  min-height: calc(190vh - 221px);
+  min-height: calc(121vh - 221px);
+}
+.Intranet-align-column {
+  display: flex;
+  align-items: column;
 }
 
 .Intranet-dashboad-quizzes {
@@ -13,11 +17,10 @@
 }
 
 .Intranet-side-menu {
-  padding: 150px 0;
+  padding: 110px 0;
 }
 .Bottom-Menu-Align {
-  position: absolute;
-  bottom: -68vh;
+  bottom: 0vh;
 }
 
 @media (max-width: 1400px) {
@@ -44,6 +47,10 @@
     flex-direction: column;
     justify-content: center;
   }
+  .Intranet-align-column {
+    display: flex;
+    flex-direction: column;
+  }
 
   .Intranet-side-menu {
     padding: 100px 0;
@@ -56,7 +63,7 @@
   .Bottom-Menu-Align {
     position: relative;
     bottom: 0;
-    margin-left: -5%;
+    margin-left: -2%;
   }
 }
 @media (max-width: 500px) {
@@ -69,7 +76,7 @@
     margin-left: -10%;
   }
 }
-@media (max-width: 338px) {
+@media (max-width: 326px) {
   .Bottom-Menu-Align {
     margin-left: -17%;
   }
