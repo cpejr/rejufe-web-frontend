@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import ContactUs from './ContactUs';
 
 const buttons = [
   { buttonName: 'Home' },
@@ -30,6 +31,11 @@ const theme = createTheme({
 
 function MenuLateral() {
   const [selectedButton, setSelectedButton] = useState('');
+  // useEffect(() => {
+  //   if (selectedButton === 'Fale Conosco') {
+
+  //   }
+  // }, [selectedButton]);
 
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
     ? 'menuSideClickButton'
@@ -52,11 +58,11 @@ function MenuLateral() {
               {buttons.map((button) => (
                 <Button key={`${button.buttonName}`} className={defineBackgroundColor(button.buttonName)} onClick={() => setSelectedButton(button.buttonName)}>{button.buttonName}</Button>
               ))}
-
             </ButtonGroup>
           </ThemeProvider>
         </div>
       </div>
+      <ContactUs />
     </Box>
   );
 }
