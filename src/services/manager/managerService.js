@@ -121,7 +121,6 @@ export const getQuizzes = async (field, filter) => {
 export const getToVoteQuizzes = async (id, date, field, filter) => {
   let times = 0;
   let response;
-
   let allQuizzes = [];
   do {
     response = await requesterService.getToVoteQuizzes(id, date, times, field, filter);

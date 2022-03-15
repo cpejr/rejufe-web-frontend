@@ -17,8 +17,6 @@ function ResultadoQuizzes() {
   const [date] = useState(new Date());
   const dateQuizz = moment(date).format('YYYY-MM-DD');
 
-  console.log(user);
-
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
@@ -37,6 +35,7 @@ function ResultadoQuizzes() {
 
   async function getToVoteQuizzes() {
     try {
+      console.log(dateQuizz);
       const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
       console.log(response);
       setToVote(response);
