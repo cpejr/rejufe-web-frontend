@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import './ConfirmModal.css';
-import { options } from '../GraphicResultQuizzes/ResultadoQuizzes';
 
 function getModalStyle() {
   const top = 50;
@@ -61,17 +60,24 @@ export default function ConfirmModal({ quizz, user }) {
   const handleClose = () => {
     setOpen(false);
   };
-  const [votedOptions, setVotedOptions] = useState(quizz?.options);
+  const votedOptions = quizz?.options;
+
+  const handleVote = (option, index) => {
+    votedOptions[index] = { description: option.description, votes: option.votes + 1, _id: option._id };
+  };
+
+  console.log(votedOptions);
 
   const vote = async () => {
     const newAlreadyVoted = quizz?.alreadyVoted.concat(user.id);
     const newToVote = quizz?.toVote?.filter((userId) => userId === user.id);
-    const newOptions = 
     try {
-      await managerService.updateQuizz(quizz._id, {
+      const response = await managerService.updateQuizz(quizz._id, {
         alreadyVoted: newAlreadyVoted,
         toVote: newToVote,
+        options: votedOptions,
       });
+      console.log(response);
       toast('Voto registrado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -142,11 +148,11 @@ export default function ConfirmModal({ quizz, user }) {
   );
   return (
     <div className="alternatives-vote-quizzes">
-      {quizz?.options?.map((option) => (
+      {quizz?.options?.map((option, index) => (
         <button
           type="button"
           onClick={() => {
-            setVotedOptions(...options, {});
+            handleVote(option, index);
             handleOpen();
           }}
           className="vote-button-confirm-modal"
