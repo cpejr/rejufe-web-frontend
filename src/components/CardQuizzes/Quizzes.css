@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
 .body-quizzes-card {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,10 @@
   margin-bottom: 1.5%;
   box-shadow: 0 8px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
   border-radius: 8px;
+}
+
+.body-quizzes-card button {
+  cursor: pointer;
 }
 
 .card-quizzes {
@@ -27,7 +33,7 @@
 
 .title-card-quizzes p {
   font-family: 'Roboto', sans-serif;
-  font-size: large;
+  font-size: 20px;
   font-weight: 200;
   align-items: center;
   display: flex;
@@ -51,7 +57,7 @@
 .description-card-quizzes h1 {
   margin-top: 10px;
   font-family: 'Roboto', sans-serif;
-  font: normal 18pt Roboto;
+  font: 18pt Roboto;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -64,7 +70,8 @@
 .description-card-quizzes p {
   margin-top: 10px;
   font-family: 'Roboto', sans-serif;
-  font: normal 18pt Roboto;
+  font: 18pt Roboto;
+  font-size: 17px;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -74,11 +81,12 @@
   margin-bottom: 10px;
 }
 
-.form-vote-quizzes-alternatives {
+.form-content-vote-quizzes {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  align-items: center;
   justify-content: center;
+  width: 60%;
 }
 
 .empty-div-vote-quizzes {
@@ -88,4 +96,37 @@
 .form-vote-quizz-container {
   display: flex;
   flex-direction: row;
+  margin: 5% 0;
+}
+
+.form-vote-quizz-container h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--fontColor2);
+}
+
+.alternatives-vote-quizzes {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 2%;
+}
+
+.alternatives-vote-quizzes button {
+  background-color: var(--color4);
+  border: thin solid var(--color4);
+  color: var(--fontColor1);
+  border-radius: 5px;
+  margin: 5px 0;
+  height: 30px;
+  min-width: 200px;
+  font-size: 15px;
+}
+
+.alternatives-vote-quizzes button:hover {
+  background-color: var(--color2);
+  color: var(--fontColor1);
+  border-color: var(--color2);
 }

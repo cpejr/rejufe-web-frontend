@@ -1,16 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
 
-.Modal-open-button-user-module-exclude button {
-  background-color: var(--button);
-  color: var(--fontColor1);
-  border: thin solid var(--button);
-  border-radius: 5px;
-  cursor: pointer;
-  width: 70%;
-  font-size: 15px;
-  margin-top: 7%;
-}
-
 .Container-exclude-user-module {
   padding: 25px 15px 45px;
 }

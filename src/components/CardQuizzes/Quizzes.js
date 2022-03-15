@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
-import {
-  FormControl, Button,
-} from '@mui/material';
+import { FormControl } from '@mui/material';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
-function Quizzes({ quizz, associates, dateQuizz }) {
+function Quizzes({
+  quizz, associates, dateQuizz, user,
+}) {
   const alreadyVoted = [];
   const toVote = [];
   const [open, setOpen] = useState(false);
@@ -60,12 +60,12 @@ function Quizzes({ quizz, associates, dateQuizz }) {
           ) : (
             <div className="form-vote-quizz-container">
               <div className="empty-div-vote-quizzes" />
-              <FormControl className="form-vote-quizzes-alternatives">
-                <h2>alternativas</h2>
-                {quizz?.options?.map((option) => (
-                  <Button>{option.description}</Button>
-                ))}
-                <ConfirmModal />
+              <FormControl className="form-content-vote-quizzes">
+                <h2>Alternativas</h2>
+                <ConfirmModal
+                  quizz={quizz}
+                  user={user}
+                />
               </FormControl>
               <div className="empty-div-vote-quizzes" />
             </div>

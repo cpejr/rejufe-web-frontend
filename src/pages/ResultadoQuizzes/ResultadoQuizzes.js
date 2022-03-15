@@ -69,7 +69,7 @@ function ResultadoQuizzes() {
           ))
         ) : (
           toVote?.map((quizz) => (
-            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
+            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} user={user} />
           ))
         )}
       </div>

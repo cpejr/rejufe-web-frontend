@@ -3,7 +3,9 @@ import Modal from '@material-ui/core/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
+import * as managerService from '../../services/manager/managerService';
 import './ConfirmModal.css';
+import { options } from '../GraphicResultQuizzes/ResultadoQuizzes';
 
 function getModalStyle() {
   const top = 50;
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ConfirmModal() {
+export default function ConfirmModal({ quizz, user }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -58,6 +60,28 @@ export default function ConfirmModal() {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const [votedOptions, setVotedOptions] = useState(quizz?.options);
+
+  const vote = async () => {
+    const newAlreadyVoted = quizz?.alreadyVoted.concat(user.id);
+    const newToVote = quizz?.toVote?.filter((userId) => userId === user.id);
+    const newOptions = 
+    try {
+      await managerService.updateQuizz(quizz._id, {
+        alreadyVoted: newAlreadyVoted,
+        toVote: newToVote,
+      });
+      toast('Voto registrado com sucesso!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    } catch (error) {
+      toast.error('Não foi possível votar na enquete!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
   };
 
   const body = (
@@ -97,6 +121,7 @@ export default function ConfirmModal() {
             className="Confirm-user-module-exclude"
             type="button"
             onClick={() => {
+              vote();
               handleClose();
             }}
           >
@@ -116,13 +141,19 @@ export default function ConfirmModal() {
     </div>
   );
   return (
-    <div className="Modal-open-button-user-module-exclude">
-      <button
-        type="button"
-        onClick={handleOpen}
-      >
-        votar
-      </button>
+    <div className="alternatives-vote-quizzes">
+      {quizz?.options?.map((option) => (
+        <button
+          type="button"
+          onClick={() => {
+            setVotedOptions(...options, {});
+            handleOpen();
+          }}
+          className="vote-button-confirm-modal"
+        >
+          {option.description}
+        </button>
+      ))}
       <Modal
         open={open}
         onClose={handleClose}
