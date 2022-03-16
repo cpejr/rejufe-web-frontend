@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { CircularProgress } from '@material-ui/core';
 import * as managerService from '../services/manager/managerService';
 import LinearColor from '../components/Loading/Loading';
 
@@ -29,7 +28,7 @@ export function AuthProvider({ children }) {
         }
       }
     }
-    setLoading(false);
+    // setLoading(false);
   }, [user]);
 
   const [token, setToken] = useState();
