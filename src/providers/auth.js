@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
         }
       }
     }
-    // setLoading(false);
+    setLoading(false);
   }, [user]);
 
   const [token, setToken] = useState();

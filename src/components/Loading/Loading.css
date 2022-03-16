@@ -1,102 +1,41 @@
 .LinearColor-container{
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: gray;
-  font-size: 1.8em;
+  justify-content: center;
 }
 
-.LinearColor-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.LinearColor-div{
-  background-color: var(--primary);
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  margin-left: 1%;
-  margin: 8px;
-  animation: scaling 2.5s ease-in-out infinite;
-  /* height: 25px;
-  width: 25px;
-  display: inline-block;
-  animation: scaling 2.5s ease-in-out infinite; */
-}
-.LinearColor-container p{
-  font-size: 40px;
+.LinearColor-container p {
   color: var(--primary);
-  font-family: Roboto;
+  font: 3em Roboto;
+  text-align: center;
 }
 
-@keyframes scaling {
-  0%, 100%{
-    transform: scale(0.2);
-    background-color: var(--color3);
-  }
-  50%{
-    transform: scale(1.0);
-    background-color: var(--primary);
-  }
-}
 
-.LinearColor-div:nth-child(0){
-  animation-delay: 0s;
-}
+/* loading dots */
 
-.LinearColor-div:nth-child(1){
-  animation-delay: 0.2s;
-}
+.loading:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;}
 
-.LinearColor-div:nth-child(2){
-  animation-delay: 0.4s;
-}
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: var(--primary);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 var(--primary),
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 var(--primary),
+      .5em 0 0 var(--primary);}}
 
-.LinearColor-div:nth-child(3){
-  animation-delay: 0.6s;
-}
-
-.LinearColor-div:nth-child(4){
-  animation-delay: 0.8s;
-}
-
-.LinearColor-div:nth-child(5){
-  animation-delay: 1s;
-}
-
-.LinearColor-div:nth-child(6){
-  animation-delay: 1.2s;
-}
-
-@media(max-width: 700px){
-  .LinearColor-div{
-    height: 18px;
-    width: 18px;
-  }
-  .LinearColor-body p{
-    font-size: 30px;
-  }
-}
-
-@media(max-width: 425px){
-  .LinearColor-div{
-    height: 14px;
-    width: 14px;
-  }
-  .LinearColor-body p{
-    font-size: 25px;
-  }
-}
-
-@media(max-width: 320px){
-  .LinearColor-div{
-    height: 10px;
-    width: 10px;
-  }
-  .LinearColor-body p{
-    font-size: 19px;
-  }
-}
 
