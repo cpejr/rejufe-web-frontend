@@ -14,6 +14,9 @@ function Quizzes({
     setOpen(!open);
   };
 
+  console.log(user?.id);
+  console.log(quizz);
+
   const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
   // const [selectedValue, setSelectedValue] = useState('');
@@ -61,7 +64,7 @@ function Quizzes({
                 <h2>Alternativas</h2>
                 <ConfirmModal
                   quizz={quizz}
-                  userType={user?.id}
+                  userId={user?.id}
                   setVoted={setVoted}
                 />
               </FormControl>

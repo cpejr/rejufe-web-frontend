@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ConfirmModal({ quizz, user, setVoted }) {
+export default function ConfirmModal({ quizz, userId, setVoted }) {
   let votes = 0;
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
@@ -68,8 +68,8 @@ export default function ConfirmModal({ quizz, user, setVoted }) {
   };
 
   const vote = async () => {
-    const newAlreadyVoted = quizz?.alreadyVoted.concat(user.id);
-    const newToVote = quizz?.toVote?.filter((userId) => userId !== user.id);
+    const newAlreadyVoted = quizz?.alreadyVoted.concat(userId);
+    const newToVote = quizz?.toVote?.filter((id) => id !== userId);
     try {
       await managerService.updateQuizz(quizz._id, {
         alreadyVoted: newAlreadyVoted,

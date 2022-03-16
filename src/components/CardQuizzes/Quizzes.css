@@ -117,3 +117,9 @@
   color: var(--fontColor1);
   border-color: var(--color2);
 }
+
+/* @media (max-width: 462px) {
+  .description-card-quizzes {
+    width: 90%;
+  }
+} */
