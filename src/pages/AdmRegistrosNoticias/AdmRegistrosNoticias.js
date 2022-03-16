@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import './AdmRegistrosNoticias.css';
+import 'react-toastify/dist/ReactToastify.css';
+import TableComponent from '../../components/AdmRegistrosNoticias/AdministrationRecords';
+import getAllAdministrationRecords from '../../components/AdmRegistrosNoticias/getAllAdministrationRecords';
+
+const titles = [
+  'Reg.',
+  'Status',
+  'Título',
+  'Postado',
+  'Seção',
+  'Tipo',
+];
 
 function AdmRegistrosNoticias() {
+  const [associates, setAllAdministrationRecords] = useState([]);
+  const [id, setId] = useState([]);
+
+  useEffect(() => {
+    getAllAdministrationRecords(setId, setAllAdministrationRecords);
+  }, []);
+
   return (
     <div>
-      Adm registros Noticias
+      <h1 className="titleAdministrationRecords"> Administração de Registros </h1>
+      <div className="containerAdministrationRecords">
+        <TableComponent id={id} rows={associates} titles={titles} search />
+      </div>
     </div>
   );
 }

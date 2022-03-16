@@ -63,6 +63,7 @@ function Routes() {
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
+        {/* <Route path="/administracao-registros-noticia-editar" component={ModuloUsuarios} /> */}
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />
