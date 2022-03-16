@@ -26,6 +26,7 @@ import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import ResultadoQuizzes from './pages/ResultadoQuizzes';
+import Imprimir from './pages/Imprimir';
 
 function UserHeader() {
   return (
@@ -65,6 +66,7 @@ function Routes() {
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
+        <Route path="/imprimir" component={Imprimir} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

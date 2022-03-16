@@ -1,0 +1,24 @@
+.header-print-icon {
+  display: flex;
+  align-items: center;
+  background-color: var(--header);
+  height: 50px;
+}
+
+.header-print-icon button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: thin solid transparent;
+  color: var(--fontColor1);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.print-associates-button {
+  margin-left: 30px;
+}
+
+.return-print-associates-button {
+  margin-left: 60px;
+}

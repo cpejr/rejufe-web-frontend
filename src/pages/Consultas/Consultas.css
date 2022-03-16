@@ -1,0 +1,17 @@
+.open-window-button-consults {
+    background-color: var(--button);
+    border: thin solid var(--buton);
+    color: var(--fontColor1);
+    font-size: 20px;
+    border-radius: 5px;
+    height: 30px;
+    width: 7%;
+    cursor: pointer;
+}
+
+.open-window-button-consults:hover {
+    background-color: var(--hover);
+    border: thin solid var(--hover);
+    color: var(--fontColor1);
+}
+
