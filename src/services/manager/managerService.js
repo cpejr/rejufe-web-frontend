@@ -139,3 +139,20 @@ export const createNews = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getAttempts = async (email) => {
+  const response = await requesterService.getAttempts(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createAttempt = async (email) => {
+  const response = await requesterService.createAttempt(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const deleteAttempts = async (email) => {
+  const response = await requesterService.deleteAttempts(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

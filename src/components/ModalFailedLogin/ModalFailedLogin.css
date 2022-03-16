@@ -1,0 +1,62 @@
+.ModalFailedLogin{
+  position: fixed;
+  top: 0;
+  bottom:0;
+  right:0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 999;
+}
+.ModalFailedLoginContainer{
+  position: absolute;
+  height: fit-content;
+  /* //max-width: 600px; */
+  width: 60%;
+  top: 3%;
+  bottom: 3%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 3em 2rem;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.ModalFailedLoginContainerInside{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ModalFailedLoginContainerInside h2{
+  margin-top: 1.2em;
+  margin-bottom: 1.5em;
+  font-size: 1.8em;
+  color: #121212;
+  font-weight: bold;
+  text-decoration: underline;
+  align-self: center;
+}
+
+.ModalFailedLoginContent {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  text-align: justify;
+}
+
+.ModalFailedLoginCloseDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+
+.ModalFailedLoginCloseButton {
+  display: flex;
+  background: black;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+}

@@ -1,9 +1,10 @@
 import React from 'react';
+import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
 
 function Editais() {
   return (
     <div>
-      <h1>Editais</h1>
+      <ModalFailedLogin />
     </div>
   );
 }
