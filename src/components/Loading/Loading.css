@@ -11,9 +11,6 @@
   text-align: center;
 }
 
-
-/* loading dots */
-
 .loading:after {
   content: ' .';
   animation: dots 1s steps(5, end) infinite;}
