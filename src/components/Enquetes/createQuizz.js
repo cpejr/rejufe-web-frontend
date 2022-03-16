@@ -5,7 +5,7 @@ import * as managerService from '../../services/manager/managerService';
 toast.configure();
 
 function CreateQuizz({
-  dados, initialErrorState, users, setError, options, inputs, setNewQuizz,
+  dados, initialErrorState, users, setError, options, inputs, setNewQuizz, voterSection,
 }) {
   const voted = [];
   let descriptions = [];
@@ -59,16 +59,23 @@ function CreateQuizz({
       aux.closingDate = true;
       aux.openingDate = true;
       checkError = 1;
-      toast.error('Datas inválidas!!', {
+      toast.error('Data de início deve ser menor que de encerramento!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
 
-    if (users?.length === 0) {
+    if (voterSection?.length === 0) {
       aux.toVote = true;
       checkError = 1;
       toast.error('Sessão inválida!!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    } else if (users?.length === 0) {
+      aux.toVote = true;
+      checkError = 1;
+      toast.error('Não existem usuários nas sessões selecionadas!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });

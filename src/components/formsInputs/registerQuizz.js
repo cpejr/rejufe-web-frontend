@@ -156,6 +156,7 @@ function FormInputs({ setNewQuizz }) {
           users={users}
           setError={setError}
           setNewQuizz={setNewQuizz}
+          voterSection={voterSection}
         />
       </div>
     </div>
