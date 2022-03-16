@@ -19,7 +19,7 @@ function ResultadoQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
-      setLoading(true);
+      setLoading(false);
     } catch (error) {
       history.push('/NotFound');
       toast.error('Credenciais inválidas!!', {
