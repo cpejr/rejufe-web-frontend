@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 import ModalEnquete from '../../components/Enquetes/modalEnquetes';
 import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
@@ -12,11 +13,13 @@ function ResultadoQuizzes() {
   const [quizzes, setQuizzes] = useState([]);
   const [newQuizz, setNewQuizz] = useState(false);
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       setQuizzes(response);
+      setLoading(true);
     } catch (error) {
       history.push('/NotFound');
       toast.error('Credenciais inválidas!!', {
@@ -37,12 +40,21 @@ function ResultadoQuizzes() {
           <ModalEnquete setNewQuizz={setNewQuizz} />
         </div>
         <div className="line-table-cards-quizzes" />
-        {user?.type === 'administrador' ? (
-          quizzes?.map((quizz) => (
-            <Quizzes quizz={quizz} />
-          ))
+        {loading ? (
+          <div className="loader-cards-quizzes">
+            <CircularProgress size={24} color="inherit" />
+          </div>
         ) : (
-          <div />
+          <>
+            {user?.type === 'administrador' ? (
+              quizzes?.map((quizz) => (
+                <Quizzes quizz={quizz} />
+              ))
+            ) : (
+              <div />
+            )}
+            <div />
+          </>
         )}
       </div>
     </div>

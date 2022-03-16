@@ -38,6 +38,14 @@
   margin-right: 4%;
 }
 
+.loader-cards-quizzes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 1380px) {
   .title-cards-quizzes h1 {
     font-size: 25px;
