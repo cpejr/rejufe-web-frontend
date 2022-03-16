@@ -7,17 +7,13 @@ import './Quizzes.css';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 function Quizzes({
-  quizz, associates, dateQuizz, user,
+  quizz, associates, dateQuizz, user, setVoted,
 }) {
-  const toVote = [];
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  console.log(user);
-
-  console.log(quizz);
   const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
   // const [selectedValue, setSelectedValue] = useState('');
@@ -33,14 +29,14 @@ function Quizzes({
           <p>
             {quizz?.title}
             {openingDate > dateQuizz ? (
-              '  -  Não iniciada'
+              ': Não iniciada'
             ) : (
               <>
                 <div />
                 {closingDate < dateQuizz ? (
-                  '  -  Finalizada'
+                  ': Finalizada'
                 ) : (
-                  '  -  Em andamento'
+                  ': Em andamento'
                 )}
               </>
             )}
@@ -51,25 +47,24 @@ function Quizzes({
       {open === true ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
-          {(closingDate < dateQuizz) || (quizz?.alreadyVoted.includes(user?.id)) ? (
+          {(closingDate < dateQuizz) || (quizz?.alreadyVoted.includes(user?.id) || (user.type === 'administrador')) ? (
             <GraphicQuizzes
-              toVote={toVote}
+              toVote={quizz?.toVote}
               associates={associates}
               quizz={quizz?.options}
               alreadyVoted={quizz?.alreadyVoted}
-              user={user}
+              userType={user?.type}
             />
           ) : (
             <div className="form-vote-quizz-container">
-              <div className="empty-div-vote-quizzes" />
               <FormControl className="form-content-vote-quizzes">
                 <h2>Alternativas</h2>
                 <ConfirmModal
                   quizz={quizz}
                   userType={user?.id}
+                  setVoted={setVoted}
                 />
               </FormControl>
-              <div className="empty-div-vote-quizzes" />
             </div>
           )}
         </div>

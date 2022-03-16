@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ConfirmModal({ quizz, user }) {
+export default function ConfirmModal({ quizz, user, setVoted }) {
+  let votes = 0;
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -66,24 +67,22 @@ export default function ConfirmModal({ quizz, user }) {
     votedOptions[index] = { description: option.description, votes: option.votes + 1, _id: option._id };
   };
 
-  console.log(votedOptions);
-
   const vote = async () => {
     const newAlreadyVoted = quizz?.alreadyVoted.concat(user.id);
     const newToVote = quizz?.toVote?.filter((userId) => userId !== user.id);
     try {
-      const response = await managerService.updateQuizz(quizz._id, {
+      await managerService.updateQuizz(quizz._id, {
         alreadyVoted: newAlreadyVoted,
         toVote: newToVote,
         options: votedOptions,
       });
-      console.log(response);
+      setVoted(votes);
+      votes += 1;
       toast('Voto registrado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível votar na enquete!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

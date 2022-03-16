@@ -12,11 +12,10 @@ function ResultadoQuizzes() {
   const [quizzes, setQuizzes] = useState([]);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
+  const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
   const [date] = useState(new Date());
   const dateQuizz = moment(date).format('YYYY-MM-DD');
-
-  console.log(user);
 
   async function getAllAQuizzes() {
     try {
@@ -26,7 +25,6 @@ function ResultadoQuizzes() {
       setAssociates(allAssociates);
     } catch (error) {
       history.push('/NotFound');
-      console.log(error);
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -36,13 +34,10 @@ function ResultadoQuizzes() {
 
   async function getToVoteQuizzes() {
     try {
-      console.log(dateQuizz);
       const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
-      console.log(response);
       setToVote(response);
     } catch (error) {
       history.push('/NotFound');
-      console.log(error);
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -56,7 +51,7 @@ function ResultadoQuizzes() {
     } else {
       getToVoteQuizzes();
     }
-  }, []);
+  }, [voted]);
 
   return (
     <div className="container-cards-quizzes">
@@ -66,11 +61,11 @@ function ResultadoQuizzes() {
         <div className="line-table-cards-quizzes" />
         {user?.type === 'administrador' ? (
           quizzes?.map((quizz) => (
-            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} />
+            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} user={user} setVoted={setVoted} />
           ))
         ) : (
           toVote?.map((quizz) => (
-            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} user={user} />
+            <Quizzes quizz={quizz} associates={associates} dateQuizz={dateQuizz} user={user} setVoted={setVoted} />
           ))
         )}
       </div>

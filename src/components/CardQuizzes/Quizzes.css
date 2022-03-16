@@ -22,13 +22,14 @@
 .title-card-quizzes {
   background-color: transparent;
   text-align: center;
-  padding: 15px;
+  padding: 15px 0 5px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 10vh;
   border: none;
   cursor: pointer;
+  height: 80%;
 }
 
 .title-card-quizzes p {
@@ -51,32 +52,17 @@
   width: 100%;
   border-radius: 8px;
   background-color: var(--background);
-  padding: 15px;
-}
-
-.description-card-quizzes h1 {
-  margin-top: 10px;
-  font-family: 'Roboto', sans-serif;
-  font: 18pt Roboto;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  font-size: 0.8em;
-  justify-content: center;
-  margin-bottom: 10px;
+  padding: 15px 15px 0;
 }
 
 .description-card-quizzes p {
   margin-top: 10px;
   font-family: 'Roboto', sans-serif;
-  font: 18pt Roboto;
   font-size: 17px;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-size: 0.8em;
   justify-content: center;
   margin-bottom: 10px;
 }
@@ -89,13 +75,11 @@
   width: 60%;
 }
 
-.empty-div-vote-quizzes {
-  width: 20%;
-}
-
 .form-vote-quizz-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin: 5% 0;
 }
 
@@ -109,9 +93,11 @@
 .alternatives-vote-quizzes {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   margin: 2%;
+  min-width: 250px;
+  max-width: 350px;
 }
 
 .alternatives-vote-quizzes button {
@@ -120,9 +106,10 @@
   color: var(--fontColor1);
   border-radius: 5px;
   margin: 5px 0;
-  height: 30px;
-  min-width: 250px;
-  font-size: 15px;
+  padding: 5px;
+  width: 100%;
+  font-size: 17px;
+  font-weight: 400;
 }
 
 .alternatives-vote-quizzes button:hover {

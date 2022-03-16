@@ -68,6 +68,7 @@ function GraphicQuizzes({
           <TableComponent
             rows={names}
             titles={titles}
+            renderButton={false}
             order
           />
         </div>
