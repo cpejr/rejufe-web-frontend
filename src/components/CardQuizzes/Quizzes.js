@@ -9,12 +9,13 @@ import ConfirmModal from '../ConfirmModal/ConfirmModal';
 function Quizzes({
   quizz, associates, dateQuizz, user,
 }) {
-  const alreadyVoted = [];
   const toVote = [];
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  console.log(user);
 
   console.log(quizz);
   const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
@@ -50,12 +51,13 @@ function Quizzes({
       {open === true ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
-          {closingDate < dateQuizz ? (
+          {(closingDate < dateQuizz) || (quizz?.alreadyVoted.includes(user?.id)) ? (
             <GraphicQuizzes
               toVote={toVote}
               associates={associates}
               quizz={quizz?.options}
-              alreadyVoted={alreadyVoted}
+              alreadyVoted={quizz?.alreadyVoted}
+              user={user}
             />
           ) : (
             <div className="form-vote-quizz-container">
@@ -64,7 +66,7 @@ function Quizzes({
                 <h2>Alternativas</h2>
                 <ConfirmModal
                   quizz={quizz}
-                  user={user}
+                  userType={user?.id}
                 />
               </FormControl>
               <div className="empty-div-vote-quizzes" />

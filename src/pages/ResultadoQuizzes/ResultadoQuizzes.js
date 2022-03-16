@@ -13,9 +13,10 @@ function ResultadoQuizzes() {
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
   const [toVote, setToVote] = useState([]);
-
   const [date] = useState(new Date());
   const dateQuizz = moment(date).format('YYYY-MM-DD');
+
+  console.log(user);
 
   async function getAllAQuizzes() {
     try {

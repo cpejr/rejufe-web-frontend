@@ -70,7 +70,7 @@ export default function ConfirmModal({ quizz, user }) {
 
   const vote = async () => {
     const newAlreadyVoted = quizz?.alreadyVoted.concat(user.id);
-    const newToVote = quizz?.toVote?.filter((userId) => userId === user.id);
+    const newToVote = quizz?.toVote?.filter((userId) => userId !== user.id);
     try {
       const response = await managerService.updateQuizz(quizz._id, {
         alreadyVoted: newAlreadyVoted,
@@ -83,6 +83,7 @@ export default function ConfirmModal({ quizz, user }) {
         autoClose: 5000,
       });
     } catch (error) {
+      console.log(error);
       toast.error('Não foi possível votar na enquete!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

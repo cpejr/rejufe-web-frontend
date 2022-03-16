@@ -16,6 +16,7 @@ function GraphicQuizzes({
   quizz,
   alreadyVoted,
   associates,
+  userType,
 }) {
   const data = [
     ['Opções', 'Votos', { role: 'annotation' }],
@@ -62,13 +63,15 @@ function GraphicQuizzes({
           options={options}
         />
       )}
-      <div className="content-table-quizzes">
-        <TableComponent
-          rows={names}
-          titles={titles}
-          order
-        />
-      </div>
+      {userType === 'administrador' && (
+        <div className="content-table-quizzes">
+          <TableComponent
+            rows={names}
+            titles={titles}
+            order
+          />
+        </div>
+      )}
     </div>
   );
 }

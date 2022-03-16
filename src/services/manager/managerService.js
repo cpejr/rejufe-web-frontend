@@ -133,6 +133,7 @@ export const getToVoteQuizzes = async (id, date, field, filter) => {
 
 export const updateQuizz = async (id, quizz) => {
   const response = await requesterService.updateQuizz(id, quizz);
+  console.log(response);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

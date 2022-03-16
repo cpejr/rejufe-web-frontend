@@ -65,7 +65,7 @@ export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.g
   paramsSerializer: (params) => qs.stringify(params),
 });
 
-export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/${id}`, quizz);
+export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/vote/${id}`, quizz);
 
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
