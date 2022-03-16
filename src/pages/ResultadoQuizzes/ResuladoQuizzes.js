@@ -42,7 +42,7 @@ function ResultadoQuizzes() {
         <div className="line-table-cards-quizzes" />
         {loading ? (
           <div className="loader-cards-quizzes">
-            <CircularProgress size={24} color="inherit" />
+            <CircularProgress size={35} color="inherit" />
           </div>
         ) : (
           <>
