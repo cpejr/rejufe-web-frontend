@@ -4,7 +4,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
-import ContactUs from './ContactUs';
 
 const buttons = [
   { buttonName: 'Home' },
@@ -29,13 +28,30 @@ const theme = createTheme({
   },
 });
 
-function MenuLateral() {
-  const [selectedButton, setSelectedButton] = useState('');
-  // useEffect(() => {
-  //   if (selectedButton === 'Fale Conosco') {
+function renderPage(selectedButton) {
+  if (selectedButton === 'Fale Conosco') {
+    return (
+      <div className="boxFormContactUs">
+        <input placeholder="Nome" />
+        <input placeholder="Email" />
+        <input placeholder="Mensagem" />
 
-  //   }
-  // }, [selectedButton]);
+        <div className="buttonGroupContactUs">
+          <button type="button"> Enviar </button>
+          <button type="button"> Limpar </button>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div>
+      outra coisa
+    </div>
+  );
+}
+
+function MenuLateral() {
+  const [selectedButton, setSelectedButton] = useState('Home');
 
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
     ? 'menuSideClickButton'
@@ -61,8 +77,10 @@ function MenuLateral() {
             </ButtonGroup>
           </ThemeProvider>
         </div>
+        <div className="boxRenderPage">
+          {renderPage(selectedButton)}
+        </div>
       </div>
-      <ContactUs />
     </Box>
   );
 }
