@@ -34,11 +34,11 @@ function renderPage(selectedButton) {
       <div className="boxFormContactUs">
         <input placeholder="Nome" />
         <input placeholder="Email" />
-        <input placeholder="Mensagem" />
+        <textarea placeholder="Mensagem" />
 
         <div className="buttonGroupContactUs">
-          <button type="button"> Enviar </button>
-          <button type="button"> Limpar </button>
+          <button type="button" className="clearButton"> Limpar </button>
+          <button type="button" className="sendButton"> Enviar </button>
         </div>
       </div>
     );
