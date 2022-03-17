@@ -8,16 +8,15 @@ function createData(status, title, date, section, type) {
 }
 
 async function getAllAdministrationRecords(setId, setAllAdministrationRecords) {
-  const auxAssociate = [];
-  const associateId = [];
+  const auxNews = [];
+  const newsId = [];
   try {
-    const allAssociates = await managerService.getAssociates();
-    allAssociates.sort();
+    const allNews = await managerService.getNews();
+    allNews.sort();
 
-    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').forEach((object) => {
-      associateId.push(object._id);
-      auxAssociate.push(createData(
-        object.news_sequential_id,
+    allNews.filter((user) => user.type.toLowerCase() !== 'administrador').forEach((object) => {
+      newsId.push(object._id);
+      auxNews.push(createData(
         object.status,
         object.title,
         object.date,
@@ -26,8 +25,8 @@ async function getAllAdministrationRecords(setId, setAllAdministrationRecords) {
       ));
     });
 
-    setId(associateId);
-    setAllAdministrationRecords(auxAssociate);
+    setId(newsId);
+    setAllAdministrationRecords(auxNews);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);

@@ -1,10 +1,10 @@
 import moment from 'moment';
 import * as managerService from '../../services/manager/managerService';
 
-async function getAdministrationRecordsById(associateId, setAssociate) {
+async function getAdministrationRecordsById(newsId, setNews) {
   try {
-    const response = await managerService.getById(associateId);
-    const associate = {
+    const response = await managerService.getNews(newsId);
+    const news = {
       status: response.status,
       title: response.title,
       date: moment(response.date).format('DD/MM/YYYY'),
@@ -16,7 +16,7 @@ async function getAdministrationRecordsById(associateId, setAssociate) {
       photos: response.photos,
       send_site: response.send_site,
     };
-    setAssociate(associate);
+    setNews(news);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error); // TO DO: Substitute for redirect to not Found when done

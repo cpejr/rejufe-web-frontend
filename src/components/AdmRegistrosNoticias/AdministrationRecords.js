@@ -212,7 +212,7 @@ function ConsultaAssociados({
 
   function redirect(e, redirectId) {
     e.preventDefault();
-    const win = window.open(`/administracao-registros-noticia-editar?associateId=${redirectId}`, '_blank');
+    const win = window.open(`/administracao-registros-noticia-editar?newsId=${redirectId}`, '_blank');
     win.focus();
   }
 

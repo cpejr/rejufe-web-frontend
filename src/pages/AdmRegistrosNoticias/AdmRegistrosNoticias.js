@@ -14,7 +14,7 @@ const titles = [
 ];
 
 function AdmRegistrosNoticias() {
-  const [associates, setAllAdministrationRecords] = useState([]);
+  const [news, setAllAdministrationRecords] = useState([]);
   const [id, setId] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function AdmRegistrosNoticias() {
     <div>
       <h1 className="titleAdministrationRecords"> Administração de Registros </h1>
       <div className="containerAdministrationRecords">
-        <TableComponent id={id} rows={associates} titles={titles} search />
+        <TableComponent id={id} rows={news} titles={titles} search />
       </div>
     </div>
   );
