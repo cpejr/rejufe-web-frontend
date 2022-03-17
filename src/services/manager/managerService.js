@@ -121,3 +121,21 @@ export const deleteExternalAssociate = async (associateId) => {
   const response = await requesterService.deleteExternalAssociate(associateId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const getFileById = async (id) => {
+  const response = await requesterService.getFileById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const uploadFile = async (body) => {
+  const response = await requesterService.uploadFile(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createNews = async (body) => {
+  const response = await requesterService.createNews(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
