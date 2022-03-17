@@ -9,10 +9,6 @@ td
        border-style:solid;
        border-width: 2px;
        background-color: #DCDCDC;
-
-}
-.row_group {
-       display: table-row-group;
 }
 
 .formsAssociateGridContainer{

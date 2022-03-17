@@ -31,7 +31,7 @@ function FichaAssociados() {
                       </td>
                     </tr>
                   </table>
-                  {fichaAssociate.map((ficha) => (
+                  {fichaAssociate?.map((ficha) => (
                     <table className="formsAssociateTContainer">
                       <table width="100%">
                         <tr>
@@ -40,10 +40,10 @@ function FichaAssociados() {
                           </td>
                         </tr>
                       </table>
-                      {ficha.lines.map((line) => (
+                      {ficha?.lines.map((line) => (
                         <table width="100%">
                           <tr>
-                            {line.items.map((item) => (
+                            {line?.items.map((item) => (
                               <td className="formsAssociateTdBox">
                                 <span className="formsAssociateSubtitle">
                                   {' '}
