@@ -27,7 +27,7 @@ async function getAssociateById(associateId, setAssociate) {
       gender: response.gender,
       civil_state: response.civil_state,
       spouse: response.spouse,
-      birth_spouse: moment(response.birth_spouse).format('DD/MM/YYYY'),
+      birth_spouse: response.birth_spouse ? moment(response.birth_spouse).format('DD/MM/YYYY') : '',
       sons: response.sons,
       cep: response.cep,
       profissional_address: response.profissional_address,
