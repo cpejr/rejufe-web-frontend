@@ -27,14 +27,14 @@
   color: var(--secondary);
 }
 
-.title-cards-quizzes {
+.title-cards-quizzes-page {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.title-cards-quizzes h1 {
+.title-cards-quizzes-page h1 {
   margin-right: 4%;
 }
 

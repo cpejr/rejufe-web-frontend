@@ -35,7 +35,7 @@ function ResultadoQuizzes() {
   return (
     <div className="container-cards-quizzes">
       <div className="division-cards-quizzes">
-        <div className="title-cards-quizzes">
+        <div className="title-cards-quizzes-page">
           <h1>Resultado das Enquetes</h1>
           <ModalEnquete setNewQuizz={setNewQuizz} />
         </div>
