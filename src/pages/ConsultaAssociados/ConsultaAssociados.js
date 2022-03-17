@@ -22,11 +22,13 @@ function ConsultaAssociados() {
     getAllAssociatesForConsult(setId, setAllAssociates);
   }, []);
 
+  console.log(associates);
+
   return (
     <div>
       <h1 className="titleConsultAssociate"> Associados Ativos </h1>
       <div className="containerConsultAssociate">
-        <TableComponent id={id} rows={associates} titles={titles} search />
+        <TableComponent id={id} rows={associates} titles={titles} print search />
       </div>
     </div>
   );

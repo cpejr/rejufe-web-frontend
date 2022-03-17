@@ -98,15 +98,20 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile,
+  titles, rows, id, order, edit, search, searchFile, print,
 }) {
   const [page, setPage] = useState(0);
+  console.log(rows.length);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
+
+  const handleWindowOpen = () => {
+    window.open('/imprimir');
+  };
 
   const footerProps = {
     sx: matchesFont400px
@@ -309,12 +314,23 @@ function ConsultaAssociados({
           onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
-        <Button
-          {...buttonFontProps}
-        >
-          Pesquisa Avançada
-          {/* TODO Implementar o botão de pesquisa avançada */}
-        </Button>
+        {print && (
+          <>
+            <Button
+              {...buttonFontProps}
+              sx={{ marginRight: '15px', marginLeft: '15px' }}
+            >
+              Pesquisa Avançada
+              {/* TODO Implementar o botão de pesquisa avançada */}
+            </Button>
+            <Button
+              {...buttonFontProps}
+              onClick={handleWindowOpen}
+            >
+              Imprimir
+            </Button>
+          </>
+        )}
       </TableFooter>
     </TableContainer>
   );

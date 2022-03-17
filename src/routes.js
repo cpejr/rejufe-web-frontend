@@ -15,7 +15,6 @@ import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
-import Consultas from './pages/Consultas';
 import ValidarSocio from './pages/ValidarSocio';
 import Editais from './pages/Editais';
 import Atas from './pages/Atas';
@@ -43,7 +42,6 @@ export function UserHeader() {
         <Route path="/administracao-registros" component={AdmRegistros} />
         <Route path="/administracao-registros-noticias" component={AdmRegistrosNoticias} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
-        <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
         <Route path="/editais" component={Editais} />
         <Route path="/atas" component={Atas} />
