@@ -28,7 +28,6 @@ import Footer from './components/Footer';
 import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
-import ResultadoQuizzes from './pages/ResultadoQuizzes';
 
 export function UserHeader() {
   return (

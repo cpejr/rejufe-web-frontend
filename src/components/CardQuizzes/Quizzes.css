@@ -27,7 +27,11 @@
 
 .title-card-quizzes p {
   font-family: 'Roboto', sans-serif;
-  font-size: 1em;
+  font-size: 1.2em;
+  max-height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-weight: 200;
   align-items: center;
   display: flex;
