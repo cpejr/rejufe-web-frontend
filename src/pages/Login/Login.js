@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
@@ -50,10 +51,12 @@ function Login() {
     setLoading(true);
     let userStorage;
     if (await verifySecurity() === true) {
-      const currentSecurityStatus = JSON.parse(localStorage.getItem('userSecurity'));
       const email = await managerService.getUserEmailByUsername(usuario.user);
-      const attempts = managerService.getAttempts(email);
-      console.log('🚀 ~ file: Login.js ~ line 53 ~ handleClick ~ currentSecurityStatus', currentSecurityStatus);
+      const field = {
+        email: email,
+      };
+      const attempts = await managerService.getAttempts(email);
+      // await managerService.createAttempt(field);
       try {
         e.preventDefault();
         const body = {
@@ -72,22 +75,19 @@ function Login() {
           id,
         });
         localStorage.removeItem('userSecurity');
+        await managerService.deleteAttempts(email);
       // history.push('/intranet');
       } catch (error) {
         toast.error('Credenciais inválidas!!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
         });
-        if (!currentSecurityStatus || currentSecurityStatus?.user !== usuario.user) {
-          await managerService.createAttempt(usuario.user);
-          userStorage = {
-            user: usuario.user,
-            attemptsNumber: 1,
-          };
-          console.log('🚀 ~ file: Login.js ~ line 81 ~ handleClick ~ userStorage', userStorage);
+        if (attempts < 3) {
+          await managerService.updateAttempts(email);
         } else {
-          switch (currentSecurityStatus.attemptsNumber) {
+          switch (attempts) {
           case 2: {
+            await managerService.updateAttempts(email);
             userStorage = {
               user: usuario.user,
               attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
@@ -98,6 +98,7 @@ function Login() {
             break;
           }
           case 3: {
+            await managerService.updateAttempts(email);
             userStorage = {
               user: usuario.user,
               attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
@@ -108,6 +109,7 @@ function Login() {
             break;
           }
           case 4: {
+            await managerService.updateAttempts(email);
             userStorage = {
               user: usuario.user,
               attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
@@ -118,6 +120,7 @@ function Login() {
             break;
           }
           default: {
+            await managerService.updateAttempts(email);
             console.log(currentSecurityStatus.attemptsNumber);
             userStorage = {
               user: usuario.user,

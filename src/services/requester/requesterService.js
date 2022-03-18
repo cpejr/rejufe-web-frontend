@@ -63,8 +63,22 @@ export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
 export const createNews = (body) => httpClient.post('/noticias', body);
 
-export const getAttempts = (email) => httpClient.get(`/attempts/${email}`);
+export const getAttempts = (email) => httpClient.get('/attempts/getAttemptsByEmail', {
+  params: {
+    email,
+  },
+});
 
-export const createAttempt = (email) => httpClient.post(`/attempts/${email}`);
+export const createAttempt = (field) => httpClient.post('/attempts', field);
 
-export const deleteAttempts = (email) => httpClient.delete(`/attempts/${email}`);
+export const deleteAttempts = (email) => httpClient.put('/attempts/deleteByEmail', {
+  params: {
+    email,
+  },
+});
+
+export const updateAttempts = (email) => httpClient.put('/attempts/updateAttempts', {
+  params: {
+    email,
+  },
+});
