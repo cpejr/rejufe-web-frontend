@@ -142,39 +142,6 @@ export const updateAssociate = async (associateId, body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const getQuizzes = async (field, filter) => {
-  let times = 0;
-  let response;
-
-  let allQuizzes = [];
-  do {
-    response = await requesterService.getQuizzes(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allQuizzes = allQuizzes.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-  return allQuizzes;
-};
-
-export const getToVoteQuizzes = async (id, date, field, filter) => {
-  let times = 0;
-  let response;
-  let allQuizzes = [];
-  do {
-    response = await requesterService.getToVoteQuizzes(id, date, times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allQuizzes = allQuizzes.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-  return allQuizzes;
-};
-
-export const updateQuizz = async (id, quizz) => {
-  const response = await requesterService.updateQuizz(id, quizz);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
 export const getExternalAssociates = async (field, filter) => {
   let times = 0;
   let response;
