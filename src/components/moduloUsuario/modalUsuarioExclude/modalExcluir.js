@@ -82,9 +82,9 @@ export default function ModalAdminExclude({ setTypeChanged, id }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="Exit-user-module-exclude">
+      <div className="exit-user-module-exclude">
         <button
-          className="Close-user-module-exclude"
+          className="close-user-module-exclude"
           type="button"
           onClick={() => {
             handleClose();
@@ -105,16 +105,16 @@ export default function ModalAdminExclude({ setTypeChanged, id }) {
           />
         </button>
       </div>
-      <div className="Container-exclude-user-module">
-        <div className="Title-user-module-exclude">
+      <div className="container-exclude-user-module">
+        <div className="title-user-module-exclude">
           <h1>Confirmação</h1>
         </div>
-        <div className="Content-user-module-exclude">
+        <div className="content-user-module-exclude">
           <h1>Você tem certeza que deseja atualizar esse administrador para o tipo usuário?</h1>
         </div>
-        <div className="User-module-exclude-buttons">
+        <div className="user-module-exclude-buttons">
           <button
-            className="Confirm-user-module-exclude"
+            className="confirm-user-module-exclude"
             type="button"
             onClick={() => {
               changeUserType();
@@ -124,7 +124,7 @@ export default function ModalAdminExclude({ setTypeChanged, id }) {
             Confirmar
           </button>
           <button
-            className="Cancel-user-module-exclude"
+            className="cancel-user-module-exclude"
             type="button"
             onClick={() => {
               handleClose();
@@ -137,7 +137,7 @@ export default function ModalAdminExclude({ setTypeChanged, id }) {
     </div>
   );
   return (
-    <div className="Modal-open-button-user-module-exclude">
+    <div className="modal-open-button-user-module-exclude">
       <button
         type="button"
         onClick={handleOpen}

@@ -35,8 +35,8 @@ function ModuloUsuarios() {
         styleOverrides: {
           root: {
             width: '300px',
-            marginLeft: '30px',
-            marginRight: '30px',
+            marginLeft: '20px',
+            marginRight: '20px',
           },
         },
       },
@@ -45,11 +45,11 @@ function ModuloUsuarios() {
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
-      setRows(admins?.filter((admin) => admin.name?.toLowerCase().includes(value?.toLowerCase())));
+      setRows(admins?.filter((admin) => admin?.name.toLowerCase().includes(value?.toLowerCase())));
       setSearch(value);
     }
     if (filter === 'Seção') {
-      setRows(admins?.filter((admin) => admin.judicial_section?.toLowerCase().includes(value?.toLowerCase())));
+      setRows(admins?.filter((admin) => admin?.judicial_section.toLowerCase().includes(value?.toLowerCase())));
       setSearch(value);
     }
   };
@@ -95,32 +95,37 @@ function ModuloUsuarios() {
 
   return (
     <div className="container-user-module">
-      <div className="Title-user-module-page">
+      <div className="title-user-module-page">
         <h1>Módulo de Usuários</h1>
       </div>
-      <div className="User-module-search-field">
+      <div className="user-module-search-field">
         <ThemeProvider theme={theme}>
-          <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
-          <FormControl>
-            <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filter}
-              label="filter"
-              onChange={(e) => handleChange(e.target.value)}
-            >
-              <MenuItem value="Sem filtros">Sem filtros</MenuItem>
-              <MenuItem value="Usuários">Usuários</MenuItem>
-              <MenuItem value="Seção">Seção</MenuItem>
-            </Select>
-          </FormControl>
-          <OutlinedInput
-            endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
-            placeholder="Busca rápida"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-          />
+          <div className="">
+            <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
+            <FormControl>
+              <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={filter}
+                label="filter"
+                onChange={(e) => handleChange(e.target.value)}
+              >
+                <MenuItem value="Sem filtros">Sem filtros</MenuItem>
+                <MenuItem value="Usuários">Usuários</MenuItem>
+                <MenuItem value="Seção">Seção</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div>
+            <OutlinedInput
+              id="search-field"
+              endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
+              placeholder="Busca rápida"
+              value={search}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          </div>
         </ThemeProvider>
       </div>
       <TableComponent setTypeChanged={setTypeChanged} rows={rows} titles={titles} order />

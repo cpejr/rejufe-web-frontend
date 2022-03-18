@@ -1,36 +1,59 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
 
 .container-user-module {
-    margin-top: 4%;
-    min-height: calc(100vh - 221px);
+  margin-top: 4%;
+  min-height: calc(100vh - 221px);
 }
 
-.User-module-search-field{ 
+.user-module-search-field{ 
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   padding: 20px;
-  width: 50%;
   height: 80%;
 }
 
-.Title-user-module-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4%;
+.title-user-module-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4%;
 }
 
 .container-user-module h1 {
-    font-size: 30px;
-    color: var(--secondary);
-    font-weight: 700;
-    font-family: "Roboto", sans-serif;
+  font-size: 30px;
+  color: var(--secondary);
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
 
 }
 
+.button-filter-user-module {
+  display: flex;
+}
+
+@media (max-width: 1050px) {
+  .user-module-search-field {
+    width: 75%;
+  }
+}
+
+@media (max-width: 720px) {
+  .button-filter-user-module {
+    min-width: 47%;
+    width: 47%;
+  }
+  .search-input-user-module {
+    max-width: 30%;
+  }
+}
 @media (max-width: 850px) {
-  .User-module-search-field {
+  .user-module-search-field {
     width: 100%;
   }
 }
+/* @media (max-width: 500px) {
+  .user-module-search-field {
+    display: block;
+  }
+} */
