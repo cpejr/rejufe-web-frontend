@@ -100,32 +100,28 @@ function ModuloUsuarios() {
       </div>
       <div className="user-module-search-field">
         <ThemeProvider theme={theme}>
-          <div className="">
-            <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
-            <FormControl>
-              <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={filter}
-                label="filter"
-                onChange={(e) => handleChange(e.target.value)}
-              >
-                <MenuItem value="Sem filtros">Sem filtros</MenuItem>
-                <MenuItem value="Usuários">Usuários</MenuItem>
-                <MenuItem value="Seção">Seção</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div>
-            <OutlinedInput
-              id="search-field"
-              endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
-              placeholder="Busca rápida"
-              value={search}
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-          </div>
+          <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filter}
+              label="filter"
+              onChange={(e) => handleChange(e.target.value)}
+            >
+              <MenuItem value="Sem filtros">Sem filtros</MenuItem>
+              <MenuItem value="Usuários">Usuários</MenuItem>
+              <MenuItem value="Seção">Seção</MenuItem>
+            </Select>
+          </FormControl>
+          <OutlinedInput
+            id="search-field"
+            endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
+            placeholder="Busca rápida"
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
         </ThemeProvider>
       </div>
       <TableComponent setTypeChanged={setTypeChanged} rows={rows} titles={titles} order />
