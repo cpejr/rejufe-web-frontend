@@ -20,6 +20,7 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
+import ResultadoQuizzes from './pages/ResultadoQuizzes';
 import ConsultaAssociados from './pages/ConsultaAssociados';
 import FichaAssociados from './pages/FichaAssociados';
 import Footer from './components/Footer';
@@ -64,6 +65,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
+        <Route path="/enquetes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/ficha-associados" component={FichaAssociados} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
