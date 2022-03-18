@@ -1,83 +1,64 @@
-.Intranet-main-container {
+.intranet-main-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0 10% 0 10%;
-  min-height: calc(121vh - 221px);
-}
-.Intranet-align-column {
-  display: flex;
-  align-items: column;
+  padding: 0 10%;
+  min-height: calc(100vh - 221px);
 }
 
-.Intranet-dashboad-quizzes {
-  width: 100%;
+.intranet-dashboad-quizzes {
   padding: 75px 0;
   width: 70%;
 }
 
-.Intranet-side-menu {
-  padding: 110px 0;
-}
-.Bottom-Menu-Align {
-  bottom: 0vh;
+.intranet-side-menu {
+  padding: 150px 0;
 }
 
-@media (max-width: 1400px) {
-  .Intranet-dashboad-quizzes {
-    padding: 75px 50px;
-  }
-
-  .Bottom-Menu-Align {
-    bottom: -60vh;
+@media (max-width: 1200px) {
+  .intranet-dashboad-quizzes {
+    padding: 75px 0;
   }
 }
 
 @media (max-width: 970px) {
-  .Intranet-dashboad-quizzes {
+  .intranet-dashboad-quizzes {
     padding: 75px 0 0 20px;
   }
-  .Intranet-main-container {
+  .intranet-main-container {
     padding: 0 50px;
   }
 }
 
+@media (max-width: 800px) {
+  .intranet-dashboad-quizzes {
+    width: 65%;
+  }
+}
+
 @media (max-width: 650px) {
-  .Intranet-main-container {
+  .intranet-main-container {
     flex-direction: column;
     justify-content: center;
-  }
-  .Intranet-align-column {
-    display: flex;
-    flex-direction: column;
+    padding: 0;
   }
 
-  .Intranet-side-menu {
-    padding: 100px 0;
+  .intranet-side-menu {
+    padding: 70px 0;
   }
 
-  .Intranet-dashboad-quizzes {
-    padding: 0 25% 5% 25%;
+  .intranet-dashboad-quizzes {
+    padding: 0 10% 5%;
     width: 100%;
   }
-  .Bottom-Menu-Align {
-    position: relative;
-    bottom: 0;
-    margin-left: -2%;
-  }
 }
-@media (max-width: 500px) {
-  .Bottom-Menu-Align {
-    margin-left: -5%;
+
+@media (max-width: 400px) {
+  .intranet-dashboad-quizzes {
+    padding: 0;
   }
-}
-@media (max-width: 445px) {
-  .Bottom-Menu-Align {
-    margin-left: -10%;
-  }
-}
-@media (max-width: 326px) {
-  .Bottom-Menu-Align {
-    margin-left: -17%;
+
+  .intranet-main-container {
+    padding: 0 5%;
   }
 }

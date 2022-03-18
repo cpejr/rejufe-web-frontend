@@ -1,5 +1,5 @@
 .containerBottomMenu {
-  width: 88vw;
+  width: 100vw;
   display: flex;
   justify-content: center;
 }
@@ -61,7 +61,7 @@
   box-shadow: 0 0 0.2em rgb(0, 0, 0, 0.2);
 }
 
-@media (max-width: 650px) {
+@media (max-width: 670px) {
   .boxBottomMenu {
     flex-direction: column;
     align-items: center;
