@@ -43,7 +43,7 @@ function Imprimir() {
   const tableAssociates = useRef(null);
 
   const handlePrint = useReactToPrint({
-    content: () => tableAssociates.current,
+    content: () => tableAssociates?.current,
   });
 
   const titles = [

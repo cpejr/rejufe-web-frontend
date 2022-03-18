@@ -101,7 +101,6 @@ function ConsultaAssociados({
   titles, rows, id, order, edit, search, searchFile, print,
 }) {
   const [page, setPage] = useState(0);
-  console.log(rows.length);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const matches = useMediaQuery('(max-width:930px)');

@@ -24,8 +24,6 @@ function ConsultaAssociados() {
     getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
   }, []);
 
-  console.log(associates);
-
   return (
     <div className="consultAssociatePage">
       <h1 className="titleConsultAssociate"> Associados Ativos </h1>
