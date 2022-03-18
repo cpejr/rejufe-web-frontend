@@ -19,6 +19,15 @@
   cursor: pointer;
 }
 
+.header-print-icon button:hover {
+  justify-content: center;
+  background-color: var(--hover);
+  border: solid var(--hover);
+  height: 100%;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
 .print-associates-button {
   margin-left: 30px;
 }
@@ -31,7 +40,7 @@
   margin: 5%;
 }
 
-.loader-associates-table {
+.loader-consult-associates-table {
   display: flex;
   justify-content: center;
   align-items: center;

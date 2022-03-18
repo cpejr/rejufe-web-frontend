@@ -2,7 +2,6 @@ import React, {
   useRef, useEffect, useState,
 } from 'react';
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
-import { useHistory } from 'react-router-dom';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
 import { CircularProgress } from '@mui/material';
@@ -29,7 +28,6 @@ class ComponentToPrint extends React.Component {
 function Imprimir() {
   const [associates, setAllAssociates] = useState([]);
   const [id, setId] = useState([]);
-  const history = useHistory();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,7 +35,7 @@ function Imprimir() {
   }, []);
 
   const handleWindowClose = () => {
-    history.push('/consulta-associados');
+    window.close('/imprimir');
   };
 
   const tableAssociates = useRef(null);
@@ -73,11 +71,11 @@ function Imprimir() {
           onClick={handleWindowClose}
         >
           <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
-          Voltar
+          Fechar
         </button>
       </div>
       {loading ? (
-        <div className="loader-associates-table">
+        <div className="loader-consult-associates-table">
           <CircularProgress />
         </div>
       ) : (

@@ -101,7 +101,7 @@ function ConsultaAssociados({
   titles, rows, id, order, edit, search, searchFile, print,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(-1);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -226,6 +226,8 @@ function ConsultaAssociados({
     setPage(0);
   };
 
+  console.log(rowsPerPage);
+
   return (
     <TableContainer
       component={Paper}
@@ -297,42 +299,61 @@ function ConsultaAssociados({
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          labelRowsPerPage="Linhas por pagina"
-          page={page}
-          SelectProps={{
-            inputProps: {
-              'aria-label': 'Linhas por pagina',
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-        />
-        {print === false && (
-          <div className="button-component-pagination">
-            <Button
-              {...buttonFontProps}
-              sx={{
-                marginRight: '15px',
-                marginLeft: '15px',
+        {print === false ? (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              labelRowsPerPage="Linhas por pagina"
+              page={page}
+              SelectProps={{
+                inputProps: {
+                  'aria-label': 'Linhas por pagina',
+                },
+                native: true,
               }}
-            >
-              Pesquisa Avançada
-              {/* TODO Implementar o botão de pesquisa avançada */}
-            </Button>
-            <Button
-              {...buttonFontProps}
-              onClick={handleWindowOpen}
-            >
-              Imprimir
-            </Button>
-          </div>
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+            <div className="button-table-component-pagination-consult">
+              <Button
+                {...buttonFontProps}
+                sx={{
+                  marginRight: '15px',
+                  marginLeft: '15px',
+                }}
+              >
+                Pesquisa Avançada
+                {/* TODO Implementar o botão de pesquisa avançada */}
+              </Button>
+              <Button
+                {...buttonFontProps}
+                onClick={handleWindowOpen}
+              >
+                Imprimir
+              </Button>
+            </div>
+          </>
+        ) : (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            component="div"
+            count={rows.length}
+            rowsPerPage="-1"
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
         )}
       </TableFooter>
     </TableContainer>
