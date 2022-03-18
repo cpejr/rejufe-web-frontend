@@ -5,17 +5,35 @@ import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import { useHistory } from 'react-router-dom';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
+import { CircularProgress } from '@mui/material';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 import './Imprimir.css';
+
+// eslint-disable-next-line react/prefer-stateless-function
+class ComponentToPrint extends React.Component {
+  render() {
+    const { id } = this.props;
+    const { rows } = this.props;
+    const { titles } = this.props;
+    const { ref } = this.props;
+
+    return (
+      <div>
+        <TableComponent id={id} rows={rows} titles={titles} ref={ref} print />
+      </div>
+    );
+  }
+}
 
 function Imprimir() {
   const [associates, setAllAssociates] = useState([]);
   const [id, setId] = useState([]);
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates);
+    getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
   }, []);
 
   const handleWindowClose = () => {
@@ -39,14 +57,14 @@ function Imprimir() {
   ];
 
   return (
-    <div>
+    <div className="container-print-associates-page">
       <div className="header-print-icon">
         <button
           type="button"
           className="print-associates-button"
           onClick={handlePrint}
         >
-          <PrintRoundedIcon />
+          <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
           Imprimir
         </button>
         <button
@@ -58,9 +76,15 @@ function Imprimir() {
           Voltar
         </button>
       </div>
-      <div className="print-associates-table">
-        <TableComponent id={id} rows={associates} titles={titles} ref={tableAssociates} print={false} />
-      </div>
+      {loading ? (
+        <div className="loader-associates-table">
+          <CircularProgress />
+        </div>
+      ) : (
+        <div className="print-associates-table">
+          <ComponentToPrint id={id} rows={associates} titles={titles} ref={tableAssociates} />
+        </div>
+      )}
     </div>
   );
 }

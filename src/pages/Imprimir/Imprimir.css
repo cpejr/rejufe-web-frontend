@@ -1,3 +1,7 @@
+.container-print-associates-page {
+  min-height: calc(100vh - 50px);
+}
+
 .header-print-icon {
   display: flex;
   align-items: center;
@@ -25,4 +29,12 @@
 
 .print-associates-table {
   margin: 5%;
+}
+
+.loader-associates-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 50px);
 }

@@ -1,11 +1,17 @@
+.consultAssociatePage {
+    min-height: calc(100vh - 221px);
+}
+
 .titleConsultAssociate {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     color: #2574A9;
     font-family: Arial, sans-serif;
     font-size: 20px;
     font-weight: bold;
     margin-top:3%;
-    margin-left: 40%;
-    margin-right: 30%; 
 }
 
 .containerConsultAssociate {
@@ -15,25 +21,18 @@
     padding: 25px;
 }
 
-@media (max-width: 601px) {
-    .titleConsultAssociate {
-        margin-left: 35%;
-
-    }
-     
+.loaderConsultAssociate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 221px);
+    font-size: 35px;
 }
 
-@media (max-width: 445px) {
-    .titleConsultAssociate {
-        margin-left: 30%;
-        margin-right: 0%;
-    }
-     
-}
-@media (max-width: 509px) {
-    .titleConsultAssociate {
-        margin-left: 20%;
-
-    }
-     
+.button-component-pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
 }

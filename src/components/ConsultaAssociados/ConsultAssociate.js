@@ -123,7 +123,7 @@ function ConsultaAssociados({
       ? {
         display: 'flex',
         margin: '2%',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
       }
@@ -131,6 +131,7 @@ function ConsultaAssociados({
         display: 'flex',
         justifyContent: 'center',
         margin: '1%',
+        alignItems: 'center',
       },
   };
 
@@ -314,11 +315,14 @@ function ConsultaAssociados({
           onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
-        {print && (
-          <>
+        {print === false && (
+          <div className="button-component-pagination">
             <Button
               {...buttonFontProps}
-              sx={{ marginRight: '15px', marginLeft: '15px' }}
+              sx={{
+                marginRight: '15px',
+                marginLeft: '15px',
+              }}
             >
               Pesquisa Avançada
               {/* TODO Implementar o botão de pesquisa avançada */}
@@ -329,7 +333,7 @@ function ConsultaAssociados({
             >
               Imprimir
             </Button>
-          </>
+          </div>
         )}
       </TableFooter>
     </TableContainer>
