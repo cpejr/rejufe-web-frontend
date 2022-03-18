@@ -32,6 +32,7 @@ function UserHeader() {
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/consultas" component={Consultas} type="administrador" />
+        <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
         <PrivateRoute path="/atas" component={Atas} type="administrador" />
@@ -53,7 +54,6 @@ function Routes() {
         <Route path="/login" component={Login} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
-        <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
       </Switch>
