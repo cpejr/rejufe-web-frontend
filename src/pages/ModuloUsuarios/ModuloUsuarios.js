@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './moduloUsuario.css';
 import { toast } from 'react-toastify';
 import {
-  InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment, createTheme, ThemeProvider,
+  InputLabel, FormControl, OutlinedInput, Select, MenuItem, InputAdornment,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useHistory } from 'react-router-dom';
@@ -29,19 +29,19 @@ function ModuloUsuarios() {
     setFilter(value);
   };
 
-  const theme = createTheme({
-    components: {
-      MuiFormControl: {
-        styleOverrides: {
-          root: {
-            width: '300px',
-            marginLeft: '20px',
-            marginRight: '20px',
-          },
-        },
-      },
-    },
-  });
+  // const theme = createTheme({
+  //   components: {
+  //     MuiFormControl: {
+  //       styleOverrides: {
+  //         root: {
+  //           width: '50%',
+  //           marginLeft: '20px',
+  //           marginRight: '20px',
+  //         },
+  //       },
+  //     },
+  //   },
+  // });
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
@@ -99,11 +99,12 @@ function ModuloUsuarios() {
         <h1>Módulo de Usuários</h1>
       </div>
       <div className="user-module-search-field">
-        <ThemeProvider theme={theme}>
+        <div className="button-filter-user-module">
           <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
-          <FormControl>
+          <FormControl className="form-user-module-page">
             <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
             <Select
+              className="select-filter-user-module"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={filter}
@@ -115,14 +116,17 @@ function ModuloUsuarios() {
               <MenuItem value="Seção">Seção</MenuItem>
             </Select>
           </FormControl>
+        </div>
+        <div className="search-container-user-module">
           <OutlinedInput
+            className="search-input-user-module"
             id="search-field"
             endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
             placeholder="Busca rápida"
             value={search}
             onChange={(e) => handleSearch(e.target.value)}
           />
-        </ThemeProvider>
+        </div>
       </div>
       <TableComponent setTypeChanged={setTypeChanged} rows={rows} titles={titles} order />
     </div>
