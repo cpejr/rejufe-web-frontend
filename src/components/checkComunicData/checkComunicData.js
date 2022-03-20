@@ -5,6 +5,12 @@ toast.configure();
 export default function checkComunicData(key, value) {
   if (typeof value !== 'string') return false;
   if (value.length !== 0) return false;
+  if (key === 'number') {
+    toast.error('Número inválido!!', {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+    });
+  }
   if (key === 'type') {
     toast.error('Tipo inválido!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
