@@ -56,7 +56,7 @@ function Imprimir() {
 
   return (
     <div className="container-print-associates-page">
-      <div className="header-print-icon">
+      <div className="header-print-associates-icon">
         <button
           type="button"
           className="print-associates-button"

@@ -226,8 +226,6 @@ function ConsultaAssociados({
     setPage(0);
   };
 
-  console.log(rowsPerPage);
-
   return (
     <TableContainer
       component={Paper}
@@ -342,7 +340,7 @@ function ConsultaAssociados({
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
             count={rows.length}
-            rowsPerPage="-1"
+            rowsPerPage={rows.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}
             SelectProps={{
