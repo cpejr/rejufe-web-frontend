@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -45,6 +46,8 @@ function CadastrarComunic() {
         formData.append(dado[0], dado[1]);
       }
     });
+
+    for (const pair of formData.entries()) { console.log(`${pair[0]}, ${pair[1]}`); }
 
     if (checkError === 1) {
       setError({ ...aux });

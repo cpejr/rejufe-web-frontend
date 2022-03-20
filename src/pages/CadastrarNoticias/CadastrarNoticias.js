@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -51,8 +52,9 @@ function CadastrarNoticias() {
       return;
     }
 
+    for (const pair of formData.entries()) { console.log(`${pair[0]}, ${pair[1]}`); }
+
     try {
-      console.log('🚀 ~ file: CadastrarNoticias.js ~ line 56 ~ handleSubmit ~ formData', formData);
       await managerService.createNews(formData);
       toast.success('Notícia criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
