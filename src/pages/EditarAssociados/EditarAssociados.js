@@ -38,7 +38,7 @@ function EditarAssociados(id) {
           gender: response.gender,
           civil_state: response.civil_state,
           spouse: response.spouse,
-          birth_spouse: moment(response.birth_spouse).format('YYYY-MM-DD'),
+          birth_spouse: response.birth_spouse ? moment(response.birth_spouse).format('YYYY-MM-DD') : '',
           sons: response.sons,
           cep: response.cep,
           profissional_address: response.profissional_address,
