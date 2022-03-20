@@ -40,7 +40,6 @@ function ModuloUsuarios() {
       setRows(admins?.filter((admin) => admin?.judicial_section === value));
     }
   };
-  console.log(search);
 
   function filterAdmins(value) {
     return value?.type === 'administrador';
@@ -49,8 +48,6 @@ function ModuloUsuarios() {
   function filterUsers(value) {
     return value?.type === 'usuario';
   }
-
-  console.log(rows);
 
   const getUsers = async () => {
     try {
@@ -113,7 +110,7 @@ function ModuloUsuarios() {
             <FormControl className="form-user-module-page">
               <InputLabel id="demo-simple-select-label">Selecione uma seção</InputLabel>
               <Select
-                className="select-filter-user-module"
+                className="select-search-user-module"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={search}

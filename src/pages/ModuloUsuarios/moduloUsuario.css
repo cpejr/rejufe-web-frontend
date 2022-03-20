@@ -58,6 +58,12 @@
   }
 }
 
+@media (max-width: 760px) {
+  .select-search-user-module {
+    width: 40%;
+  }
+}
+
 @media (max-width: 720px) {
   .button-filter-user-module {
     width: 50%;
