@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
+import judicialSection from '../../components/consts/judicialSection';
 
 toast.configure();
 
@@ -29,30 +30,17 @@ function ModuloUsuarios() {
     setFilter(value);
   };
 
-  // const theme = createTheme({
-  //   components: {
-  //     MuiFormControl: {
-  //       styleOverrides: {
-  //         root: {
-  //           width: '50%',
-  //           marginLeft: '20px',
-  //           marginRight: '20px',
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
-
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
       setRows(admins?.filter((admin) => admin?.name.toLowerCase().includes(value?.toLowerCase())));
       setSearch(value);
     }
     if (filter === 'Seção') {
-      setRows(admins?.filter((admin) => admin?.judicial_section.toLowerCase().includes(value?.toLowerCase())));
       setSearch(value);
+      setRows(admins?.filter((admin) => admin?.judicial_section === value));
     }
   };
+  console.log(search);
 
   function filterAdmins(value) {
     return value?.type === 'administrador';
@@ -61,6 +49,8 @@ function ModuloUsuarios() {
   function filterUsers(value) {
     return value?.type === 'usuario';
   }
+
+  console.log(rows);
 
   const getUsers = async () => {
     try {
@@ -89,6 +79,7 @@ function ModuloUsuarios() {
     'Seção',
     'Perfil',
     'Login',
+    'Atuação',
     'Email',
     'Cpf',
   ];
@@ -102,13 +93,13 @@ function ModuloUsuarios() {
         <div className="button-filter-user-module">
           <ModalUsuario setTypeChanged={setTypeChanged} users={users} />
           <FormControl className="form-user-module-page">
-            <InputLabel id="demo-simple-select-label">Selecione um filtro</InputLabel>
+            <InputLabel id="select-filter">Selecione um filtro</InputLabel>
             <Select
               className="select-filter-user-module"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={filter}
-              label="filter"
+              label="Selecione um filtro"
               onChange={(e) => handleChange(e.target.value)}
             >
               <MenuItem value="Sem filtros">Sem filtros</MenuItem>
@@ -118,14 +109,34 @@ function ModuloUsuarios() {
           </FormControl>
         </div>
         <div className="search-container-user-module">
-          <OutlinedInput
-            className="search-input-user-module"
-            id="search-field"
-            endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
-            placeholder="Busca rápida"
-            value={search}
-            onChange={(e) => handleSearch(e.target.value)}
-          />
+          {filter === 'Seção' ? (
+            <FormControl className="form-user-module-page">
+              <InputLabel id="demo-simple-select-label">Selecione uma seção</InputLabel>
+              <Select
+                className="select-filter-user-module"
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={search}
+                label="Selecione uma seção"
+                onChange={(e) => handleSearch(e.target.value)}
+              >
+
+                {judicialSection.map((section) => (
+                  <MenuItem value={section.value}>{section.label}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+          ) : (
+            <OutlinedInput
+              className="search-input-user-module"
+              id="search-field"
+              endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
+              placeholder="Busca rápida"
+              value={search}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          )}
         </div>
       </div>
       <TableComponent setTypeChanged={setTypeChanged} rows={rows} titles={titles} order />

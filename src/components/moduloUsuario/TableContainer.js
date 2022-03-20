@@ -261,6 +261,9 @@ function TableComponent({
                   {row.user}
                 </TableCell>
                 <TableCell {...cellFontProps}>
+                  {row.acting}
+                </TableCell>
+                <TableCell {...cellFontProps}>
                   {row.email}
                 </TableCell>
                 <TableCell {...cellFontProps}>
