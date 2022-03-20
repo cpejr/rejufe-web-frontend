@@ -11,6 +11,7 @@ import Header from './pages/Header';
 import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
 import CadastrarNoticias from './pages/CadastrarNoticias';
+import CadastrarComunic from './pages/CadastrarComunic';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
@@ -39,6 +40,7 @@ export function UserHeader() {
         <Route path="/intranet" component={Intranet} />
         <Route path="/cadastro" component={Cadastro} />
         <Route path="/cadastrar-noticias" component={CadastrarNoticias} />
+        <Route path="/cadastrar-comunic" component={CadastrarComunic} />
         <Route path="/administracao-registros" component={AdmRegistros} />
         <Route path="/administracao-registros-noticias" component={AdmRegistrosNoticias} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
