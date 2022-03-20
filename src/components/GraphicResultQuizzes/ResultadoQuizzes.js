@@ -54,9 +54,10 @@ function GraphicQuizzes({
   const names = name?.map((value) => ({
     name: value,
   }));
+  console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 57 ~ names ~ names', names.length);
 
   return (
-    <div className="content-card">
+    <div className="content-card-quizzes">
       {votes[1] !== undefined && ( // só irá renderizar quando houver a inicialização dos votos
         <Chart
           chartType="BarChart"
@@ -66,13 +67,20 @@ function GraphicQuizzes({
           options={options}
         />
       )}
-      <div className="content-table-quizzes">
-        <TableComponent
-          rows={names}
-          titles={titles}
-          order
-        />
-      </div>
+      {names.length > 0 && (
+        <div className="content-table-quizzes">
+          <TableComponent
+            rows={names}
+            titles={titles}
+            order
+          />
+        </div>
+      )}
+      {names.length === 0 && (
+        <div className="quizzes-already-voted">
+          <p>Todas as pessoas já votaram!</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -44,10 +44,10 @@ function Quizzes({ quizz, associates }) {
             {quizz.options.alternatives}
           </h1>
           <GraphicQuizzes
-            toVote={quizz.toVote}
+            toVote={quizz?.toVote}
             associates={associates}
-            quizz={quizz.options}
-            alreadyVoted={quizz.alreadyVoted}
+            quizz={quizz?.options}
+            alreadyVoted={quizz?.alreadyVoted}
           />
         </div>
       ) : (

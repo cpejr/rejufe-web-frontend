@@ -42,3 +42,8 @@
   padding: 10px;
   width: 100%;
 }
+.description-card-quizzes p {
+  word-break: break-all;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

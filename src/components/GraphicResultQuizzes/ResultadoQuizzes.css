@@ -1,8 +1,11 @@
-.content-card {
+.content-card-quizzes {
   display: flex;
   flex-direction: column;
 }
 .content-table-quizzes {
   height: 35%;
   font-size: 0.8em;
+}
+.quizzes-already-voted {
+  text-align: center;
 }
