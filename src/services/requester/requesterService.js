@@ -84,3 +84,5 @@ export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
 export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
 export const createNews = (body) => httpClient.post('/noticias', body);
+
+export const createComunic = (body) => httpClient.post('/informacoes', body);

@@ -177,3 +177,9 @@ export const createNews = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const createComunic = async (body) => {
+  const response = await requesterService.createComunic(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
