@@ -161,3 +161,8 @@ export const updateAttempts = async (email) => {
   const response = await requesterService.updateAttempts(email);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const updateTime = async (email, time) => {
+  const response = await requesterService.updateTime(email, time);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

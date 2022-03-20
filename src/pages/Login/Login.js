@@ -32,31 +32,46 @@ function Login() {
     setShowWarningModal(false);
   };
 
-  const verifySecurity = async () => {
-    const currentSecurityStatus = JSON.parse(localStorage.getItem('userSecurity'));
-    if (currentSecurityStatus && currentSecurityStatus.attemptsNumber === 3) {
-      if (moment() > moment(currentSecurityStatus.blockDate)
-        || currentSecurityStatus.email !== usuario?.email) {
-        localStorage.removeItem('userSecurity');
-        return true;
-      }
-      setShowWarningModal(true);
-      // setContentWarningModal('após alguns minutos.');
-      return false;
-    }
-    return true;
-  };
+  // const verifySecurity = async () => {
+  //   const email = await managerService.getUserEmailByUsername(usuario.user);
+  //   const field = {
+  //     email: email,
+  //     lock_time: moment(),
+  //   };
+  //   // await managerService.createAttempt(field);
+  //   const res = await managerService.getAttempts(email);
+  //   console.log('🚀 ~ file: Login.js ~ line 38 ~ verifySecurity ~ res', res);
+  //   const attempts = res.quantity;
+  //   console.log('🚀 ~ file: Login.js ~ line 40 ~ verifySecurity ~ attempts', attempts);
+  //   if (attempts && attempts >= 3) {
+  //     if (moment() > moment(res.lock_time)
+  //       || res.email !== usuario?.email) {
+  //       return true;
+  //     }
+  //     setShowWarningModal(true);
+  //     // setContentWarningModal('após alguns minutos.');
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   const handleClick = async (e) => {
     setLoading(true);
     let userStorage;
-    if (await verifySecurity() === true) {
-      const email = await managerService.getUserEmailByUsername(usuario.user);
-      const field = {
-        email: email,
-      };
-      const attempts = await managerService.getAttempts(email);
-      // await managerService.createAttempt(field);
+    const email = await managerService.getUserEmailByUsername(usuario.user);
+    const field = {
+      email: email,
+      lock_time: moment(),
+    };
+    // await managerService.createAttempt(field);
+    const res = await managerService.getAttempts(email);
+    const attempts = res.quantity;
+    if (attempts > 2 && moment() < moment(res.lock_time)) {
+      setShowWarningModal(true);
+    } else {
+      console.log(moment());
+      console.log(moment(res.lock_time));
+      setShowWarningModal(false);
       try {
         e.preventDefault();
         const body = {
@@ -86,51 +101,32 @@ function Login() {
           await managerService.updateAttempts(email);
         } else {
           switch (attempts) {
-          case 2: {
-            await managerService.updateAttempts(email);
-            userStorage = {
-              user: usuario.user,
-              attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
-              blockDate: moment().add(3, 'minutes'),
-            };
-            setShowWarningModal(true);
-            setContentWarningModal('após 3 minutos.');
-            break;
-          }
           case 3: {
             await managerService.updateAttempts(email);
-            userStorage = {
-              user: usuario.user,
-              attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
-              blockDate: moment().add(5, 'minutes'),
-            };
-            setShowWarningModal(true);
-            setContentWarningModal('após 5 minutos.');
+            const time = moment().add(3, 'minutes');
+            await managerService.updateTime(email, time);
             break;
           }
           case 4: {
             await managerService.updateAttempts(email);
-            userStorage = {
-              user: usuario.user,
-              attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
-              blockDate: moment().add(15, 'minutes'),
-            };
-            setShowWarningModal(true);
-            setContentWarningModal('após 15 minutos.');
+            const time = moment().add(5, 'minutes');
+            await managerService.updateTime(email, time);
+            break;
+          }
+          case 5: {
+            await managerService.updateAttempts(email);
+            const time = moment().add(15, 'minutes');
+            await managerService.updateTime(email, time);
             break;
           }
           default: {
             await managerService.updateAttempts(email);
-            console.log(currentSecurityStatus.attemptsNumber);
-            userStorage = {
-              user: usuario.user,
-              attemptsNumber: currentSecurityStatus.attemptsNumber + 1,
-            };
+            const time = moment().add(15, 'minutes');
+            await managerService.updateTime(email, time);
+            break;
           }
           }
         }
-        localStorage.setItem('userSecurity', JSON.stringify(userStorage));
-        setLoading(false);
       }
     }
     setLoading(false);

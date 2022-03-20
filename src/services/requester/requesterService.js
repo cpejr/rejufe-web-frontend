@@ -82,3 +82,10 @@ export const updateAttempts = (email) => httpClient.put('/attempts/updateAttempt
     email,
   },
 });
+
+export const updateTime = (email, time) => httpClient.put('/attempts/updateTime', {
+  params: {
+    email,
+    time,
+  },
+});
