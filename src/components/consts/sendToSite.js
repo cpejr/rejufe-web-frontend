@@ -4,7 +4,7 @@ const sendToSite = [
     label: 'Sim',
   },
   {
-    value: false,
+    value: true,
     label: 'Não',
   },
 ];

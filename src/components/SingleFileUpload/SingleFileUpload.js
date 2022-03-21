@@ -75,7 +75,7 @@ function SingleFileUpload({
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
-
+  console.log(file);
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item>

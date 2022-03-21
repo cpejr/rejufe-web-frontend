@@ -196,3 +196,8 @@ export const getNews = async (field, filter) => {
   } while (response.data.length > 0);
   return allNews;
 };
+
+export const updateRecord = async (id, record) => {
+  const response = await requesterService.updateRecord(record, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
