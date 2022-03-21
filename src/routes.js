@@ -15,6 +15,7 @@ import CadastrarComunic from './pages/CadastrarComunic';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
+import AdmRegistrosComunic from './pages/AdmRegistrosComunic';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import Consultas from './pages/Consultas';
 import ValidarSocio from './pages/ValidarSocio';
@@ -43,6 +44,7 @@ export function UserHeader() {
         <Route path="/cadastrar-comunic" component={CadastrarComunic} />
         <Route path="/administracao-registros" component={AdmRegistros} />
         <Route path="/administracao-registros-noticias" component={AdmRegistrosNoticias} />
+        <Route path="/administracao-registros-comunic" component={AdmRegistrosComunic} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
         <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
