@@ -22,7 +22,6 @@ import ResultadoQuizzes from './pages/ResultadoQuizzes';
 import ConsultaAssociados from './pages/ConsultaAssociados';
 import FichaAssociados from './pages/FichaAssociados';
 import Footer from './components/Footer';
-import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
@@ -41,7 +40,6 @@ export function UserHeader() {
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
-        <PrivateRoute path="/consultas" component={Consultas} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
