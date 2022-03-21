@@ -3,14 +3,6 @@ import { Chart } from 'react-google-charts';
 import TableComponent from '../dashboard/dashboardComponent';
 import './ResultadoQuizzes.css';
 
-export const options = {
-  title: 'Quizz',
-  chartArea: { width: '50%' },
-  vAxis: {
-    title: 'Opções',
-  },
-};
-
 function GraphicQuizzes({
   toVote,
   quizz,
@@ -24,6 +16,16 @@ function GraphicQuizzes({
     '',
     'Nome',
   ];
+  const options = {
+    title: 'Quizz',
+    chartArea: { width: '50%' },
+    hAxis: { minValue: 0, maxValue: toVote.length + alreadyVoted.length },
+    vAxis: {
+      title: 'Opções',
+      viewWindow: { min: 0 },
+      viewWindowMode: 'explicit',
+    },
+  };
   const user = [];
   const name = [];
   const votes = [];
