@@ -37,7 +37,7 @@ function Header(props) {
   const links1 = [
     {
       link: () => handleClick('/consultas'),
-      pathName: '/consulta-associados',
+      pathName: '/consultas',
       text: 'Consultas',
     },
     {

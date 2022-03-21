@@ -1,11 +1,15 @@
 .container-cards-quizzes {
   width: 100%;
   height: 100%;
-  display: flex;
-  padding: 15px;
+  padding: 0 15px;
 }
+
+.division-cards-page {
+  flex: 1;
+}
+
 .division-cards-quizzes {
-  width: 100%;
+  flex: 1;
 }
 
 .division-cards-quizzes h1 {
@@ -15,34 +19,30 @@
   margin-bottom: 0.8%;
   color: var(--secondary);
   font-weight: 700;
-  font-size: 30px;
+  font-size: 2em;
 }
 
 .line-table-cards-quizzes {
   width: 100%;
-  background-color: var(--secondary);
   border: 2px solid;
-  margin-bottom: 2%;
+  margin-bottom: 2.5%;
   color: var(--secondary);
 }
 
-.title-cards-quizzes-page {
-  display: flex;
-  flex-direction: row;
+.title-cards-quizzes {
   align-items: center;
   justify-content: space-between;
 }
 
-.title-cards-quizzes-page h1 {
+.title-cards-quizzes h1 {
   margin-right: 4%;
-}
-
-.loader-cards-quizzes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font: normal 18pt Roboto;
+  margin-bottom: 0.8%;
+  color: var(--secondary);
+  font-weight: 700;
+  font-size: 2em;
 }
 
 @media (max-width: 1380px) {
@@ -55,9 +55,14 @@
     font-size: 23px;
   }
 }
+@media (max-width: 780px) {
+  .title-cards-quizzes h1 {
+    font-size: 20px;
+  }
+}
 
 @media (max-width: 650px) {
-  .intranet-main-container {
+  .Intranet-main-container {
     flex-direction: column;
     justify-content: center;
     margin-left: 0;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import { FormControl } from '@mui/material';
-import GraphicQuizzes from '../GraphicResultQuizzes/GraficoQuizzes';
+import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
@@ -14,8 +14,16 @@ function Quizzes({
     setOpen(!open);
   };
 
+  console.log(user?.id);
+  console.log(quizz);
+
   const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
+  // const [selectedValue, setSelectedValue] = useState('');
+
+  // const handleChange = (e) => {
+  //   setSelectedValue(e.target.value);
+  // };
 
   return (
     <div className="body-quizzes-card">
@@ -42,7 +50,7 @@ function Quizzes({
       {open === true ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
-          {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user.type === 'administrador')) ? (
+          {(closingDate < dateQuizz) || (quizz?.alreadyVoted.includes(user?.id) || (user.type === 'administrador')) ? (
             <GraphicQuizzes
               toVote={quizz?.toVote}
               associates={associates}

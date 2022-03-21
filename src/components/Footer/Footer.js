@@ -4,9 +4,6 @@ import logoCPEJr from '../../images/logoCPEJr.png';
 import logoRejufe from '../../images/logoSemFundo.png';
 
 export default function Footer() {
-  if (window.location.pathname === '/ficha-associados') {
-    return null;
-  }
   return (
     <footer className="footerRejufeCPE">
       <div className="containerRejufeImageFooter">

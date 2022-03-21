@@ -21,15 +21,13 @@ import Editais from './pages/Editais';
 import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
-import ResultadoQuizzes from './pages/ResultadoQuizzes';
-import ConsultaAssociados from './pages/ConsultaAssociados';
-import FichaAssociados from './pages/FichaAssociados';
 import Footer from './components/Footer';
 import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
+import ResultadoQuizzes from './pages/ResultadoQuizzes';
 
-export function UserHeader() {
+function UserHeader() {
   return (
     <Header>
       <Switch>
@@ -48,7 +46,6 @@ export function UserHeader() {
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
-        <Route path="/consulta-associados" component={ConsultaAssociados} />
         <Route path="/resultado-quizzes" component={ResultadoQuizzes} />
         <Route path="/menu-lateral" component={MenuLateral} />
         <Route path="/alterar-senha" component={ChangePassword} />
@@ -65,9 +62,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/enquetes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
-        <Route path="/ficha-associados" component={FichaAssociados} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/" component={UserHeader} />
