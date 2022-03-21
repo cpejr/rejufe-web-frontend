@@ -3,7 +3,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import { FormControl } from '@mui/material';
 import ConfirmModal from '../confirmModal/ConfirmModal';
-import GraphicQuizzes from '../GraphicResultQuizzes/GraficoQuizzes';
+import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
 function Quizzes({

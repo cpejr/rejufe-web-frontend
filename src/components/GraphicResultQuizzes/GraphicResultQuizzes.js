@@ -1,7 +1,15 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
 import TableComponent from '../dashboard/dashboardComponent';
-import './GraficoQuizzes.css';
+import './GraphicResultQuizzes.css';
+
+export const options = {
+  title: 'Quizz',
+  chartArea: { width: '50%' },
+  vAxis: {
+    title: 'Opções',
+  },
+};
 
 function GraphicQuizzes({
   toVote,
@@ -15,18 +23,8 @@ function GraphicQuizzes({
   ];
   const titles = [
     '',
-    'Nome',
+    'Faltam Votar',
   ];
-  const options = {
-    title: 'Quizz',
-    chartArea: { width: '50%' },
-    hAxis: { minValue: 0, maxValue: toVote.length + alreadyVoted.length },
-    vAxis: {
-      title: 'Opções',
-      viewWindow: { min: 0 },
-      viewWindowMode: 'explicit',
-    },
-  };
   const user = [];
   const name = [];
   const votes = [];
@@ -36,11 +34,7 @@ function GraphicQuizzes({
   quizz?.forEach((option) => {
     const percentual = (option.votes / alreadyVoted.length);
     let changePercentual = (percentual * 100);
-    if (option.votes === 0) {
-      changePercentual = 0;
-    }
     changePercentual += '%';
-
     data[index] = [option.description, option.votes, changePercentual];
     votes[index] = option.votes;
     index += 1;
@@ -49,7 +43,7 @@ function GraphicQuizzes({
 
   toVote?.forEach((_id) => {
     user[count] = associates?.filter((item) => item._id === _id);
-    user[count]?.forEach((obj) => {
+    user[count].forEach((obj) => {
       name[count] = obj.name;
     });
     count += 1;
@@ -59,8 +53,8 @@ function GraphicQuizzes({
   }));
 
   return (
-    <div className="content-card-quizzes">
-      {votes[1] !== undefined && ( // só irá renderizar quando houver a inicialização dos votos
+    <div className="content-card">
+      {votes[1] !== undefined && (
         <Chart
           chartType="BarChart"
           width="100%"
@@ -69,7 +63,7 @@ function GraphicQuizzes({
           options={options}
         />
       )}
-      {userType === 'administrador' && toVote.length > 0 && (
+      {userType === 'administrador' && names.length > 0 && (
         <div>
           <div className="title-quizzes-already-voted">
             <h2>
@@ -87,7 +81,7 @@ function GraphicQuizzes({
           </div>
         </div>
       )}
-      {toVote.length === 0 && (
+      {names.length === 0 && (
         <div className="quizzes-already-voted">
           <p>Todas as pessoas já votaram!</p>
         </div>
