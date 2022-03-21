@@ -103,7 +103,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, quizzes,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -258,6 +258,7 @@ function TableComponent({
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   return (
     <TableContainer
       component={Paper}
@@ -358,6 +359,22 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
+                {newsSequentialId
+                  && (
+                    <TableCell {...cellFontProps}>
+                      <Link
+                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
+                        to={{
+                          pathname: '/editar-noticias',
+                          state: {
+                            id: id[index + (page * 10)],
+                          },
+                        }}
+                      >
+                        {newsSequentialId[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
                 {Object.values(row)?.map((data) => (
                   <TableCell {...cellFontProps}>
                     {data}
@@ -377,7 +394,7 @@ function TableComponent({
       </Table>
       <TableFooter {...footerProps}>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 100, { label: 'All', value: -1 }]}
+          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -393,7 +410,7 @@ function TableComponent({
           onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
-        {!quizzes && (
+        {renderButton && (
           <Button
             {...buttonFontProps}
           >

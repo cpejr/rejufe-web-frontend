@@ -81,7 +81,7 @@ function GraphicQuizzes({
               rows={names}
               titles={titles}
               order
-              quizzes={quizz}
+              renderButton={false}
             />
           </div>
         </div>

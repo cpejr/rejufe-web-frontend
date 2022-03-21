@@ -9,7 +9,6 @@ function Quizzes({ quizz, associates }) {
   const handleOpen = () => {
     setOpen(!open);
   };
-
   const [date] = useState(new Date());
   const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
@@ -22,14 +21,14 @@ function Quizzes({ quizz, associates }) {
           <p>
             {quizz.title}
             {openingDate > dateQuizz ? (
-              '  -  Não iniciada'
+              ':  não iniciada'
             ) : (
               <>
                 <div />
                 {closingDate < dateQuizz ? (
-                  '  -  Finalizada'
+                  ':  finalizada'
                 ) : (
-                  '  -  Em andamento'
+                  ':  em andamento'
                 )}
               </>
             )}
