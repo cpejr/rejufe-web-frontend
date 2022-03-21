@@ -94,7 +94,7 @@ function CadastrarComunic() {
           </div>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Comunicado/Informação</LoadingButton>
+      <LoadingButton className="register-comunic-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Comunicado/Informação</LoadingButton>
     </div>
   );
 }
