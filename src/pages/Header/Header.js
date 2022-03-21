@@ -39,7 +39,7 @@ function Header(props) {
   const links1 = [
     {
       link: () => handleClick('/consultas'),
-      pathName: '/consultas',
+      pathName: '/consulta-associados',
       text: 'Consultas',
     },
     {
@@ -65,13 +65,13 @@ function Header(props) {
   ];
   const links2 = [
     {
-      link: () => handleClick('/admregistros'),
-      pathName: '/adm-registros',
+      link: () => handleClick('/administracao-registros-noticias'),
+      pathName: '/administracao-registros-noticias',
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-noticias'),
+      pathName: '/cadastrar-noticias',
       text: 'Cadastrar',
     },
   ];

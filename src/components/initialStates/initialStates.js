@@ -74,3 +74,28 @@ export const initialAssociateErrorState = {
   variavel1: false,
   variavel2: false,
 };
+
+export const initialNewsState = {
+  section: '',
+  type: '',
+  title: '',
+  description: '',
+  archive_1: undefined,
+  archive_2: undefined,
+  photos: undefined,
+  status: 'A',
+  send_site: false,
+};
+
+export const initialNewsErrorState = {
+  section: false,
+  type: false,
+  title: false,
+  description: false,
+  archive_1: false,
+  archive_2: false,
+  photos: false,
+  date: false,
+  status: false,
+  send_site: false,
+};
