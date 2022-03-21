@@ -169,7 +169,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
                   Nome:
                 </h1>
                 <h1>
-                  {value.name}
+                  {value?.name}
                 </h1>
               </div>
               <div className="Data-row-user-module">
@@ -177,7 +177,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
                   Status:
                 </h1>
                 <h1>
-                  {value.status}
+                  {value?.status}
                 </h1>
               </div>
               <div className="Data-row-user-module">
@@ -185,7 +185,23 @@ export default function ModalAdmin({ users, setTypeChanged }) {
                   Perfil:
                 </h1>
                 <h1>
-                  {value.type}
+                  {value?.type}
+                </h1>
+              </div>
+              <div className="Data-row-user-module">
+                <h1>
+                  Atuação:
+                </h1>
+                <h1>
+                  {value?.acting}
+                </h1>
+              </div>
+              <div className="Data-row-user-module">
+                <h1>
+                  Seção:
+                </h1>
+                <h1>
+                  {value?.judicial_section}
                 </h1>
               </div>
             </div>
