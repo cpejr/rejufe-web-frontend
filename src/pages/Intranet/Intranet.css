@@ -7,7 +7,6 @@
 }
 
 .intranet-dashboad-quizzes {
-  width: 100%;
   padding: 75px 0;
   width: 70%;
 }
@@ -16,15 +15,9 @@
   padding: 150px 0;
 }
 
-.intranet-right-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 @media (max-width: 1200px) {
   .intranet-dashboad-quizzes {
-    padding: 75px 50px;
+    padding: 75px 0;
   }
 }
 
@@ -44,11 +37,11 @@
   }
 
   .intranet-side-menu {
-    padding: 100px 0;
+    padding: 70px 0;
   }
 
   .intranet-dashboad-quizzes {
-    padding: 0 10% 5% 10%;
+    padding: 0 10% 5%;
     width: 100%;
   }
 }

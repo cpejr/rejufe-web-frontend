@@ -74,8 +74,43 @@
   justify-content: flex-end;
 }
 
+.Modal-open-button-user-module button {
+  width: 100px;  
+  height: 100%;  
+  color: white;
+  border: solid var(--secondary);
+  border-radius: 5px;
+  background-color: var(--secondary);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.Modal-open-button-user-module button:hover {
+  background-color: var(--hover);
+  border-color: var(--hover);
+}
+
 @media (max-width: 360px) {
   .Container-modal-user-module {
     margin-left: 2%;
   }
 }
+<<<<<<< HEAD
+=======
+
+@media (max-width: 1100px) {
+  .Modal-open-button-user-module button {
+    width: 80px;
+  }
+}
+
+@media (max-width: 320px) {
+  .Modal-open-button-user-module button {
+    width: 60px;
+    margin-right: 10px;
+  }
+}
+>>>>>>> DEV

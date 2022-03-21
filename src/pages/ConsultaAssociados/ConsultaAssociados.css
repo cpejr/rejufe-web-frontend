@@ -1,0 +1,38 @@
+.consultAssociatePage {
+    min-height: calc(100vh - 221px);
+}
+
+.titleConsultAssociate {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #2574A9;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:3%;
+}
+
+.containerConsultAssociate {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+}
+
+.loaderConsultAssociate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 221px);
+    font-size: 35px;
+}
+
+.button-table-component-pagination-consult {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}

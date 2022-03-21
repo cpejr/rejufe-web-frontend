@@ -63,14 +63,27 @@ function GraphicQuizzes({
           options={options}
         />
       )}
-      {userType === 'administrador' && (
-        <div className="content-table-quizzes">
-          <TableComponent
-            rows={names}
-            titles={titles}
-            renderButton={false}
-            order
-          />
+      {userType === 'administrador' && names.length > 0 && (
+        <div>
+          <div className="title-quizzes-already-voted">
+            <h2>
+              {'Faltam Votar '}
+            </h2>
+          </div>
+          <div className="line-quizzes-already-voted" />
+          <div className="content-table-quizzes">
+            <TableComponent
+              rows={names}
+              titles={titles}
+              order
+              renderButton={false}
+            />
+          </div>
+        </div>
+      )}
+      {names.length === 0 && (
+        <div className="quizzes-already-voted">
+          <p>Todas as pessoas já votaram!</p>
         </div>
       )}
     </div>

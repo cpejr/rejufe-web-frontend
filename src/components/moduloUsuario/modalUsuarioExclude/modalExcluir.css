@@ -1,70 +1,78 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
 
-.Container-exclude-user-module {
+.modal-open-button-user-module-exclude button {
+  background-color: transparent;
+  color: var(--button);
+  border: none;
+  cursor: pointer;
+}
+
+.container-exclude-user-module {
   padding: 25px 15px 45px;
 }
 
-.Title-user-module-exclude h1 {
+.title-user-module-exclude h1 {
   font-family: "Roboto", sans-serif;
   font-size: 30px;
   font-weight: 300;
 }
 
-.Title-user-module-exclude {
+.title-user-module-exclude {
   margin-bottom: 10px;
 }
 
-.Content-user-module-exclude h1 {
+.content-user-module-exclude h1 {
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 300;
   color: var(--color2);
 }
 
-.Content-user-module-exclude {
+.content-user-module-exclude {
   margin-bottom: 25px;
 }
 
-.Exit-user-module-exclude {
+.exit-user-module-exclude {
   display: flex;
   justify-content: flex-end;
 }
 
-.Close-user-module-exclude {  
+.close-user-module-exclude {  
   margin-left: 1%;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.User-module-exclude-buttons {
+.user-module-exclude-buttons {
   display: flex;
   justify-content: flex-end;
 }
 
-.User-module-exclude-buttons button {
-  width: 27%;
-  height: 40px;
+.user-module-exclude-buttons button {
+  min-width: 27%;
+  min-height: 40px;
   border: thin solid var(--button);
   border-radius: 8px;
   margin-left: 10px;
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
+  padding: 5px 10px;
 }
 
-.Confirm-user-module-exclude {
+.confirm-user-module-exclude {
   background-color: var(--button);
   color: var(--fontColor1);
 }
 
-.User-module-exclude-buttons button:hover {
+.user-module-exclude-buttons button:hover {
   background-color: var(--hover);
   border-color: var(--hover);
   color: var(--fontColor1);
 }
 
-.Cancel-user-module-exclude {
+.cancel-user-module-exclude {
   background-color: transparent;
   border-width: 1px;
   border-color: var(--fontColor2);

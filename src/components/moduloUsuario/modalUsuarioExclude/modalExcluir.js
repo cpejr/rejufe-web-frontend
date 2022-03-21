@@ -3,8 +3,9 @@ import Modal from '@material-ui/core/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
-import * as managerService from '../../services/manager/managerService';
-import './ConfirmModal.css';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import * as managerService from '../../../services/manager/managerService';
+import './modalExcluir.css';
 
 function getModalStyle() {
   const top = 50;
@@ -50,8 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ConfirmModal({ quizz, userId, setVoted }) {
-  let votes = 0;
+export default function ModalAdminExclude({ setTypeChanged, id }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -61,29 +61,19 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
   const handleClose = () => {
     setOpen(false);
   };
-  const votedOptions = quizz?.options;
 
-  const handleVote = (option, index) => {
-    votedOptions[index] = { description: option.description, votes: option.votes + 1, _id: option._id };
-  };
-
-  const vote = async () => {
-    const newAlreadyVoted = quizz?.alreadyVoted.concat(userId);
-    const newToVote = quizz?.toVote?.filter((id) => id !== userId);
+  const changeUserType = async () => {
     try {
-      await managerService.updateQuizz(quizz._id, {
-        alreadyVoted: newAlreadyVoted,
-        toVote: newToVote,
-        options: votedOptions,
-      });
-      setVoted(votes);
-      votes += 1;
-      toast('Voto registrado com sucesso!', {
+      await managerService.changeUserTypeById({
+        type: 'usuario',
+      }, id);
+      setTypeChanged(true);
+      toast('Tipo do usuário atualizado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      toast.error('Não foi possível votar na enquete!', {
+      toast.error('Não foi possível alterar o tipo do usuário!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -92,9 +82,9 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="Exit-user-module-exclude">
+      <div className="exit-user-module-exclude">
         <button
-          className="Close-user-module-exclude"
+          className="close-user-module-exclude"
           type="button"
           onClick={() => {
             handleClose();
@@ -115,26 +105,26 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
           />
         </button>
       </div>
-      <div className="Container-exclude-user-module">
-        <div className="Title-user-module-exclude">
+      <div className="container-exclude-user-module">
+        <div className="title-user-module-exclude">
           <h1>Confirmação</h1>
         </div>
-        <div className="Content-user-module-exclude">
-          <h1>Você tem certeza que deseja votar nessa alternativa?</h1>
+        <div className="content-user-module-exclude">
+          <h1>Você tem certeza que deseja atualizar esse administrador para o tipo usuário?</h1>
         </div>
-        <div className="User-module-exclude-buttons">
+        <div className="user-module-exclude-buttons">
           <button
-            className="Confirm-user-module-exclude"
+            className="confirm-user-module-exclude"
             type="button"
             onClick={() => {
-              vote();
+              changeUserType();
               handleClose();
             }}
           >
             Confirmar
           </button>
           <button
-            className="Cancel-user-module-exclude"
+            className="cancel-user-module-exclude"
             type="button"
             onClick={() => {
               handleClose();
@@ -147,19 +137,13 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
     </div>
   );
   return (
-    <div className="alternatives-vote-quizzes">
-      {quizz?.options?.map((option, index) => (
-        <button
-          type="button"
-          onClick={() => {
-            handleVote(option, index);
-            handleOpen();
-          }}
-          className="vote-button-confirm-modal"
-        >
-          {option.description}
-        </button>
-      ))}
+    <div className="modal-open-button-user-module-exclude">
+      <button
+        type="button"
+        onClick={handleOpen}
+      >
+        <DeleteForeverRoundedIcon />
+      </button>
       <Modal
         open={open}
         onClose={handleClose}

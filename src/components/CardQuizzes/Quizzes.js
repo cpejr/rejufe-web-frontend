@@ -4,42 +4,33 @@ import moment from 'moment';
 import { FormControl } from '@mui/material';
 import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
 import './Quizzes.css';
-import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 function Quizzes({
-  quizz, associates, dateQuizz, user, setVoted,
+  quizz, associates, dateQuizz, user,
+  // setVoted,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
-
-  console.log(user?.id);
-  console.log(quizz);
-
-  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
-  // const [selectedValue, setSelectedValue] = useState('');
-
-  // const handleChange = (e) => {
-  //   setSelectedValue(e.target.value);
-  // };
+  const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
+  const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
 
   return (
     <div className="body-quizzes-card">
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
-            {quizz?.title}
+            {quizz.title}
             {openingDate > dateQuizz ? (
-              ': Não iniciada'
+              ':  não iniciada'
             ) : (
               <>
                 <div />
                 {closingDate < dateQuizz ? (
-                  ': Finalizada'
+                  ':  finalizada'
                 ) : (
-                  ': Em andamento'
+                  ':  em andamento'
                 )}
               </>
             )}
@@ -62,11 +53,11 @@ function Quizzes({
             <div className="form-vote-quizz-container">
               <FormControl className="form-content-vote-quizzes">
                 <h2>Alternativas</h2>
-                <ConfirmModal
+                {/* <ConfirmModal
                   quizz={quizz}
                   userId={user?.id}
                   setVoted={setVoted}
-                />
+                /> */}
               </FormControl>
             </div>
           )}

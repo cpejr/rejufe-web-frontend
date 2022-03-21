@@ -1,3 +1,4 @@
+
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
@@ -13,6 +14,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
@@ -24,8 +26,6 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import cssColorCodes from '../cssColorCodes/cssColorCodes';
-import ModalAdminExclude from './modalUsuarioExclude/modalExcluir';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -98,16 +98,20 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function TableComponent({
-  titles, order, edit, search, searchFile, setTypeChanged, rows,
+function ConsultaAssociados({
+  titles, rows, id, order, edit, search, searchFile, print,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(-1);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
+
+  const handleWindowOpen = () => {
+    window.open('/imprimir');
+  };
 
   const footerProps = {
     sx: matchesFont400px
@@ -119,7 +123,7 @@ function TableComponent({
       ? {
         display: 'flex',
         margin: '2%',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
       }
@@ -127,6 +131,7 @@ function TableComponent({
         display: 'flex',
         justifyContent: 'center',
         margin: '1%',
+        alignItems: 'center',
       },
   };
 
@@ -155,16 +160,40 @@ function TableComponent({
     style: matchesFont85
       ? {
         fontSize: '85%',
+        backgroundColor: '#2574A9',
         color: 'white',
         padding: '0px',
       }
       : matchesFont90
         ? {
           fontSize: '90%',
+          backgroundColor: '#2574A9',
           color: 'white',
         }
         : {
           fontSize: '100%',
+          backgroundColor: '#2574A9',
+          color: 'white',
+        },
+  };
+
+  const buttonFontProps = {
+    style: matchesFont85
+      ? {
+        fontSize: '85%',
+        backgroundColor: '#2574A9',
+        color: 'white',
+        padding: '6px',
+      }
+      : matchesFont90
+        ? {
+          fontSize: '90%',
+          backgroundColor: '#2574A9',
+          color: 'white',
+        }
+        : {
+          fontSize: '100%',
+          backgroundColor: '#2574A9',
           color: 'white',
         },
   };
@@ -181,12 +210,17 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
-
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
+  function redirect(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-associados?associateId=${redirectId}`, '_blank');
+    win.focus();
+  }
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -202,7 +236,7 @@ function TableComponent({
         {...tableProps}
         aria-label="caption table"
       >
-        <TableHead style={{ background: `${cssColorCodes.secondary}` }}>
+        <TableHead>
           <TableRow>
             {titles?.map((title) => (
               <TableCell {...titleFontProps}>
@@ -214,7 +248,7 @@ function TableComponent({
         <TableBody>
           {rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            ?.map((row) => (
+            ?.map((row, index) => (
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
@@ -222,7 +256,7 @@ function TableComponent({
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton aria-label="Search">
+                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
                       <SearchIcon />
                     </IconButton>
                   </TableCell>
@@ -230,9 +264,13 @@ function TableComponent({
                   <TableCell {...cellFontProps} align="center">
                     <IconButton aria-label="delete">
                       <DeleteIcon />
+                      {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
+                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
                     <IconButton color="primary" aria-label="Edit">
                       <EditIcon />
+                      {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
+                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                     </IconButton>
                   </TableCell>
                 ) : searchFile ? (
@@ -242,40 +280,17 @@ function TableComponent({
                 ) : (
                   <TableCell> </TableCell>
                 )}
-                <TableCell {...cellFontProps}>
-                  <ModalAdminExclude id={row._id} setTypeChanged={setTypeChanged} />
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.status}
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.name}
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.judicial_section}
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  A
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.user}
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.acting}
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.email}
-                </TableCell>
-                <TableCell {...cellFontProps}>
-                  {row.cpf}
-                </TableCell>
+                {Object.values(row)?.map((data) => (
+                  <TableCell {...cellFontProps}>
+                    {data}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
                 {...cellFontProps}
-                style={{ background: `${cssColorCodes.fontColor1}` }}
                 colSpan={6}
               />
             </TableRow>
@@ -283,26 +298,65 @@ function TableComponent({
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          labelRowsPerPage="Linhas por pagina"
-          page={page}
-          SelectProps={{
-            inputProps: {
-              'aria-label': 'Linhas por pagina',
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-        />
+        {print === false ? (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              labelRowsPerPage="Linhas por pagina"
+              page={page}
+              SelectProps={{
+                inputProps: {
+                  'aria-label': 'Linhas por pagina',
+                },
+                native: true,
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+            <div className="button-table-component-pagination-consult">
+              <Button
+                {...buttonFontProps}
+                sx={{
+                  marginRight: '15px',
+                  marginLeft: '15px',
+                }}
+              >
+                Pesquisa Avançada
+                {/* TODO Implementar o botão de pesquisa avançada */}
+              </Button>
+              <Button
+                {...buttonFontProps}
+                onClick={handleWindowOpen}
+              >
+                Imprimir
+              </Button>
+            </div>
+          </>
+        ) : (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rows.length}
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
+        )}
       </TableFooter>
     </TableContainer>
   );
 }
 
-export default TableComponent;
+export default ConsultaAssociados;
