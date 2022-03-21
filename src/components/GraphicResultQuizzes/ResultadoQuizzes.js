@@ -22,7 +22,7 @@ function GraphicQuizzes({
   ];
   const titles = [
     '',
-    'Faltam Votar',
+    'Nome',
   ];
   const user = [];
   const name = [];
@@ -68,12 +68,21 @@ function GraphicQuizzes({
         />
       )}
       {names.length > 0 && (
-        <div className="content-table-quizzes">
-          <TableComponent
-            rows={names}
-            titles={titles}
-            order
-          />
+        <div>
+          <div className="title-quizzes-already-voted">
+            <h2>
+              {'Faltam Votar '}
+            </h2>
+          </div>
+          <div className="line-quizzes-already-voted" />
+          <div className="content-table-quizzes">
+            <TableComponent
+              rows={names}
+              titles={titles}
+              order
+              quizzes={quizz}
+            />
+          </div>
         </div>
       )}
       {names.length === 0 && (
