@@ -28,6 +28,7 @@ import Footer from './components/Footer';
 import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
+import EditarRegistrosNoticias from './pages/EditarRegistrosNoticias/EditarRegistrosNoticias';
 
 export function UserHeader() {
   return (
@@ -52,6 +53,7 @@ export function UserHeader() {
         <Route path="/menu-lateral" component={MenuLateral} />
         <Route path="/alterar-senha" component={ChangePassword} />
         <Route path="/editar-associados" component={EditarAssociados} />
+        <Route path="/editar-noticias" component={EditarRegistrosNoticias} />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>
@@ -69,7 +71,6 @@ function Routes() {
         <Route path="/ficha-associados" component={FichaAssociados} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
-        {/* <Route path="/administracao-registros-noticia-editar" component={ModuloUsuarios} /> */}
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

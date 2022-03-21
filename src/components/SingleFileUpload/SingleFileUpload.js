@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@mui/material/Button';
+import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
 
@@ -25,9 +26,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SingleFileUpload({
-  id, fileType, dados, file, setDados, label,
+  id, fileType, dados, file, setDados, label, update,
 }) {
   const classes = useStyles();
+  // const [actualFile, setActualFile] = useState();
+
+  async function getFile() {
+    try {
+      const response = await managerService.getFileById(file);
+      console.log(typeof (response));
+      // setActualFile(response);
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível obter notícia', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  if (update === true) {
+    getFile();
+  }
 
   const onDrop = useCallback((accFiles, rejFiles) => {
     if (rejFiles.length > 0) {
@@ -58,6 +78,7 @@ function SingleFileUpload({
       <Grid item>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
+            {update}
             <input {...getInputProps()} />
             <p>
               Arraste e solte a/o
@@ -80,7 +101,7 @@ function SingleFileUpload({
               )
               : (
                 <div className="register-news-align-test">
-                  {file.file.path}
+                  {file?.file?.path}
                   {' '}
                   <PictureAsPdfIcon />
                 </div>

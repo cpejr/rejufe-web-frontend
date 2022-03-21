@@ -79,7 +79,7 @@ export const getExternalAssociates = (times, field, filter) => httpClient.get('/
 
 export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);
 
-export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
+export const getFileById = (id) => httpClient.get(`/arquivos/${id}`);
 
 export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
