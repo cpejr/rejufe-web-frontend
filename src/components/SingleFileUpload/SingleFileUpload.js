@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
@@ -29,13 +29,12 @@ function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update,
 }) {
   const classes = useStyles();
-  // const [actualFile, setActualFile] = useState();
+  const [actualFile, setActualFile] = useState();
 
   async function getFile() {
     try {
       const response = await managerService.getFileById(file);
-      console.log(typeof (response));
-      // setActualFile(response);
+      setActualFile(response.toString('base64'));
     } catch (error) {
       console.log(error);
       toast.error('Não foi possível obter notícia', {
@@ -45,8 +44,12 @@ function SingleFileUpload({
     }
   }
 
+  console.log(actualFile);
+
   if (update === true) {
-    getFile();
+    useEffect(() => {
+      getFile();
+    }, [file]);
   }
 
   const onDrop = useCallback((accFiles, rejFiles) => {
@@ -78,15 +81,18 @@ function SingleFileUpload({
       <Grid item>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
-            {update}
             <input {...getInputProps()} />
-            <p>
-              Arraste e solte a/o
-              {' '}
-              {`${label}`}
-              {' '}
-              aqui
-            </p>
+            {update === true ? (
+              <img src="data:actualFile/png;base64,{{ actualFile }}" alt="{{ actualFIle }}" />
+            ) : (
+              <p>
+                Arraste e solte a/o
+                {' '}
+                {`${label}`}
+                {' '}
+                aqui
+              </p>
+            )}
           </div>
         </div>
       </Grid>
