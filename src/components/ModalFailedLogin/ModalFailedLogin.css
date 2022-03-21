@@ -8,6 +8,9 @@
   z-index: 999;
 }
 .ModalFailedLoginContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   height: fit-content;
   /* //max-width: 600px; */
@@ -59,4 +62,32 @@
   border: none;
   border-radius: 5px;
   padding: 15px;
+}
+
+@media(max-width: 760px){
+  .ModalFailedLoginContainer{
+    width: 50%;
+    height: 60%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 1.1em;
+  }
+}
+
+@media(max-width: 600px){
+  .ModalFailedLoginContainer{
+    width: 50%;
+    height: 52%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 1.1em;
+  }
+  .ModalFailedLoginCloseButton {
+    display: flex;
+    background: black;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+  }
 }
