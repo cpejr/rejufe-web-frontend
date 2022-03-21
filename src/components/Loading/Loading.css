@@ -1,17 +1,17 @@
-.LinearColor-container{
+.linearColorContainer{
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.LinearColor-container p {
+.linearColorContainer p {
   color: var(--primary);
   font: 3em Roboto;
   text-align: center;
 }
 
-.loading:after {
+.loadingP:after {
   content: ' .';
   animation: dots 1s steps(5, end) infinite;}
 
