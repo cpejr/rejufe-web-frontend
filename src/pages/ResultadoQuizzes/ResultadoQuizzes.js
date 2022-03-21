@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
-// import ModalEnquete from '../../components/Enquetes/modalEnquetes';
+import ModalEnquete from '../../components/Enquetes/modalEnquetes';
 import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
 import Quizzes from '../../components/CardQuizzes/Quizzes';
@@ -12,6 +12,7 @@ import './ResultadoQuizzes.css';
 function ResultadoQuizzes() {
   const { user } = useAuth();
   const [quizzes, setQuizzes] = useState([]);
+  const [newQuizz, setNewQuizz] = useState(false);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
   const [voted, setVoted] = useState();
@@ -25,8 +26,8 @@ function ResultadoQuizzes() {
     try {
       const response = await managerService.getQuizzes();
       const allAssociates = await managerService.getAssociates();
-      setQuizzes(response);
       setAssociates(allAssociates);
+      setQuizzes(response);
       setLoading(false);
     } catch (error) {
       history.push('/NotFound');
@@ -61,12 +62,13 @@ function ResultadoQuizzes() {
 
   return (
     <div className="container-cards-quizzes">
-      <div className="division-cards-quizzes" />
-      <div className="title-cards-quizzes">
-        <h1>Resultado das Enquetes</h1>
-        {/* {user.type === 'administrador' && (
-          // <ModalEnquete setNewQuizz={setNewQuizz} date={dateQuizz} />
-        )} */}
+      <div className="division-cards-quizzes">
+        <div className="title-cards-quizzes-page">
+          <h1>Resultado das Enquetes</h1>
+          {user.type === 'administrador' && (
+            <ModalEnquete setNewQuizz={setNewQuizz} />
+          )}
+        </div>
         <div className="line-table-cards-quizzes" />
         {loading ? (
           <div className="loader-cards-quizzes">

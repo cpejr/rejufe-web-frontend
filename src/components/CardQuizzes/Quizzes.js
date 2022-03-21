@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import { FormControl } from '@mui/material';
-import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
+import GraphicQuizzes from '../GraphicResultQuizzes/GraficoQuizzes';
 import './Quizzes.css';
 
 function Quizzes({
@@ -15,6 +15,9 @@ function Quizzes({
   };
   const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
+
+  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
+  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
 
   return (
     <div className="body-quizzes-card">
@@ -41,7 +44,7 @@ function Quizzes({
       {open === true ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
-          {(closingDate < dateQuizz) || (quizz?.alreadyVoted.includes(user?.id) || (user.type === 'administrador')) ? (
+          {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user.type === 'administrador')) ? (
             <GraphicQuizzes
               toVote={quizz?.toVote}
               associates={associates}

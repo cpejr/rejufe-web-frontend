@@ -25,7 +25,7 @@ import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Imprimir from './pages/Imprimir';
 
-function UserHeader() {
+export function UserHeader() {
   return (
     <Header>
       <Switch>
@@ -55,6 +55,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
+        <Route path="/enquetes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir" component={Imprimir} />

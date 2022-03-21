@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 10% 0 10%;
+  padding: 0 10%;
   min-height: calc(100vh - 221px);
 }
 
@@ -30,10 +30,17 @@
   }
 }
 
+@media (max-width: 800px) {
+  .intranet-dashboad-quizzes {
+    width: 65%;
+  }
+}
+
 @media (max-width: 650px) {
   .intranet-main-container {
     flex-direction: column;
     justify-content: center;
+    padding: 0;
   }
 
   .intranet-side-menu {
@@ -43,5 +50,15 @@
   .intranet-dashboad-quizzes {
     padding: 0 10% 5%;
     width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .intranet-dashboad-quizzes {
+    padding: 0;
+  }
+
+  .intranet-main-container {
+    padding: 0 5%;
   }
 }

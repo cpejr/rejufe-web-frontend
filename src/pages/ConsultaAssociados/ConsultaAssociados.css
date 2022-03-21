@@ -36,3 +36,27 @@
     align-items: center;
     height: 100%;
 }
+
+
+@media (max-width: 601px) {
+    .titleConsultAssociate {
+        margin-left: 35%;
+
+    }
+     
+}
+
+@media (max-width: 445px) {
+    .titleConsultAssociate {
+        margin-left: 30%;
+        margin-right: 0%;
+    }
+     
+}
+@media (max-width: 509px) {
+    .titleConsultAssociate {
+        margin-left: 20%;
+
+    }
+     
+}
