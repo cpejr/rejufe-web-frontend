@@ -1,17 +1,20 @@
-/* eslint-disable object-shorthand */
 /* eslint-disable no-unused-vars */
+/* eslint-disable object-shorthand */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { CircularProgress, Modal } from '@mui/material';
+import { CircularProgress } from '@mui/material';
+import ptLocale from 'moment/locale/pt-br';
 import * as managerService from '../../services/manager/managerService';
 import backgroundImage from '../../images/martelin.png';
 import { useAuth } from '../../providers/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
+
+moment.locale('pt-br', [ptLocale]);
 
 const initialState = {
   user: '',
@@ -22,7 +25,6 @@ toast.configure();
 function Login() {
   const [loading, setLoading] = useState(false);
   const [usuario, setUsuario] = useState(initialState);
-  console.log('🚀 ~ file: Login.js ~ line 24 ~ Login ~ usuario', usuario);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
   const history = useHistory();
@@ -57,20 +59,26 @@ function Login() {
 
   const handleClick = async (e) => {
     setLoading(true);
-    let userStorage;
+    let res;
+    let attempts;
     const email = await managerService.getUserEmailByUsername(usuario.user);
     const field = {
       email: email,
       lock_time: moment(),
     };
-    // await managerService.createAttempt(field);
-    const res = await managerService.getAttempts(email);
-    const attempts = res.quantity;
+    res = await managerService.getAttempts(email);
+    if (res === null) {
+      res = await managerService.createAttempt(field);
+      setShowWarningModal(false);
+      attempts = 0;
+    } else {
+      attempts = res.quantity;
+    }
     if (attempts > 2 && moment() < moment(res.lock_time)) {
+      const restante = moment(res.lock_time).fromNow();
+      setContentWarningModal(restante);
       setShowWarningModal(true);
     } else {
-      console.log(moment());
-      console.log(moment(res.lock_time));
       setShowWarningModal(false);
       try {
         e.preventDefault();
@@ -89,40 +97,54 @@ function Login() {
           acessToken: response.data.accessToken,
           id,
         });
-        localStorage.removeItem('userSecurity');
         await managerService.deleteAttempts(email);
-      // history.push('/intranet');
+        history.push('/intranet');
       } catch (error) {
         toast.error('Credenciais inválidas!!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
         });
-        if (attempts < 3) {
+        if (attempts <= 1) {
           await managerService.updateAttempts(email);
         } else {
           switch (attempts) {
-          case 3: {
+          case 2: {
             await managerService.updateAttempts(email);
             const time = moment().add(3, 'minutes');
+            setContentWarningModal('após 3 minutos');
             await managerService.updateTime(email, time);
+            setShowWarningModal(true);
+            break;
+          }
+          case 3: {
+            await managerService.updateAttempts(email);
+            const time = moment().add(5, 'minutes');
+            setContentWarningModal('após 5 minutos');
+            await managerService.updateTime(email, time);
+            setShowWarningModal(true);
             break;
           }
           case 4: {
             await managerService.updateAttempts(email);
-            const time = moment().add(5, 'minutes');
+            const time = moment().add(15, 'minutes');
+            setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
+            setShowWarningModal(true);
             break;
           }
           case 5: {
             await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
+            setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
+            setShowWarningModal(true);
             break;
           }
           default: {
             await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             await managerService.updateTime(email, time);
+            setShowWarningModal(true);
             break;
           }
           }
