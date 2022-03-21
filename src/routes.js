@@ -19,6 +19,7 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import ConsultaAssociados from './pages/ConsultaAssociados';
+import FichaAssociados from './pages/FichaAssociados';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
@@ -36,6 +37,7 @@ export function UserHeader() {
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/consulta-associados" component={ConsultaAssociados} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
+        <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
@@ -55,7 +57,6 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/cadastro-externo" component={CadastroExterno} />
-        <Route path="/enquetes" component={ResultadoQuizzes} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir" component={Imprimir} />
