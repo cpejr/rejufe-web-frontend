@@ -33,7 +33,7 @@ function CadastrarComunic() {
     const aux = initialErrorState;
     let checkError = 0;
 
-    Object.entries(dados).forEach((dado) => {
+    Object.entries(dados)?.forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
@@ -71,11 +71,11 @@ function CadastrarComunic() {
   }
 
   return (
-    <div className="register-news-container">
-      <h1 className="register-news-title"><div className="register-news-text-margin">Cadastro de Comunicados/Informações</div></h1>
+    <div className="register-comunic-container">
+      <h1 className="register-comunic-title"><div className="register-comunic-text-margin">Cadastro de Comunicados/Informações</div></h1>
       {formsComunic?.map((line) => (
         <Box>
-          <div className="register-news-text-field">
+          <div className="register-comunic-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}

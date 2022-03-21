@@ -1,5 +1,5 @@
 
-.register-news-container{
+.register-comunic-container{
   align-items: center;
   width: 100%;
   height: 100%;
@@ -11,7 +11,7 @@
 
 }
 
-.register-news-container h1{
+.register-comunic-container h1{
   font-family: "Roboto", sans-serif;
   font: normal 18pt Roboto;
   align-items: center;
@@ -22,13 +22,13 @@
   text-align: center;
   margin-top: 25px;
 }
-.register-news-container h2 {
+.register-comunic-container h2 {
   font-family: "Roboto", sans-serif;
   font: normal 15pt Roboto;
   margin: 5vh;
 }
 
-.register-news-text-field{
+.register-comunic-text-field{
   padding: 15px;
   margin: 15px;
   display: grid;
@@ -39,19 +39,19 @@
 
 }
 
-.register-news-title{
+.register-comunic-title{
   background-color:#1C3854;
   color: #FFFFFF;
 }
 
-.register-news-text-margin{
+.register-comunic-text-margin{
   margin-top: 5px;
   margin-bottom: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.register-news-align-test{
+.register-comunic-align-test{
   font-family: "Roboto", sans-serif;
   font: normal 18pt Roboto;
   display:flex;
@@ -60,7 +60,7 @@
 }
 
 @media screen and (max-width: 720px){
-  .register-news-text-field{
+  .register-comunic-text-field{
     padding: 15px;
     margin: 15px;
     display: grid;
@@ -75,13 +75,13 @@
 
 
 @media screen and (max-width: 420px){
-  .register-news-text-field{
+  .register-comunic-text-field{
       padding: 0px;
       grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
 
   }
 
-  .register-news-text-margin{
+  .register-comunic-text-margin{
       margin-top: 5px;
       margin-bottom: 5px;
       padding-top: 5px;
