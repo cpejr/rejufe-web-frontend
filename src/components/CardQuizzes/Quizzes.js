@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import './Quizzes.css';
 import moment from 'moment';
+import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
+import './Quizzes.css';
 
-function Quizzes({ quizz }) {
+function Quizzes({ quizz, associates }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -36,7 +37,18 @@ function Quizzes({ quizz }) {
         </button>
       </div>
       {open === true ? (
-        <div />
+        <div className="description-card-quizzes">
+          <p>{quizz.description}</p>
+          <h1>
+            {quizz.options.alternatives}
+          </h1>
+          <GraphicQuizzes
+            toVote={quizz?.toVote}
+            associates={associates}
+            quizz={quizz?.options}
+            alreadyVoted={quizz?.alreadyVoted}
+          />
+        </div>
       ) : (
         null
       )}

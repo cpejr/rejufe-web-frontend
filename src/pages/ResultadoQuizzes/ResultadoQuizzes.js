@@ -12,12 +12,15 @@ function ResultadoQuizzes() {
   const { user } = useAuth();
   const [quizzes, setQuizzes] = useState([]);
   const [newQuizz, setNewQuizz] = useState(false);
+  const [associates, setAssociates] = useState([]);
   const history = useHistory();
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes();
+      const allAssociates = await managerService.getAssociates();
+      setAssociates(allAssociates);
       setQuizzes(response);
       setLoading(false);
     } catch (error) {
@@ -48,7 +51,7 @@ function ResultadoQuizzes() {
           <>
             {user?.type === 'administrador' ? (
               quizzes?.map((quizz) => (
-                <Quizzes quizz={quizz} />
+                <Quizzes quizz={quizz} associates={associates} />
               ))
             ) : (
               <div />

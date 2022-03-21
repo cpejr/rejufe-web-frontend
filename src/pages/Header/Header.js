@@ -116,8 +116,8 @@ function Header(props) {
   ];
   const links5 = [
     {
-      link: () => handleClick('/usuarios'),
-      pathName: '/usuarios',
+      link: () => handleClick('/modulo-usuario'),
+      pathName: '/modulo-usuario',
       text: 'Módulo de usuários',
     },
     {

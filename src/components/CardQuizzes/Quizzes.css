@@ -4,8 +4,8 @@
   align-items: center;
   width: 100%;
   margin-bottom: 1.5%;
-  box-shadow: 0 8px 3px 0 rgba(0,0,0,0.2), 0 6px 15px 0 rgba(0,0,0,0.19); 
-  border-radius: 8px; 
+  box-shadow: 0 8px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
 }
 
 .card-quizzes {
@@ -37,4 +37,13 @@
   justify-content: center;
   text-align: initial;
   word-break: break-all;
+}
+.description-card-quizzes {
+  padding: 10px;
+  width: 100%;
+}
+.description-card-quizzes p {
+  word-break: break-all;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
