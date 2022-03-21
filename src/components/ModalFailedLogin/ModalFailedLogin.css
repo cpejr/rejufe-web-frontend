@@ -57,11 +57,15 @@
 
 .ModalFailedLoginCloseButton {
   display: flex;
-  background: black;
   color:white;
   border: none;
   border-radius: 5px;
   padding: 15px;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--button);
+  cursor: pointer;
 }
 
 @media(max-width: 760px){
@@ -72,6 +76,9 @@
   .ModalFailedLoginContent {
     font-size: 1.1em;
   }
+  .ModalFailedLoginCloseButton {
+    width: 40%;
+  }
 }
 
 @media(max-width: 600px){
@@ -80,14 +87,41 @@
     height: 52%;
   }
   .ModalFailedLoginContent {
-    font-size: 1.1em;
+    font-size: 1.0em;
   }
   .ModalFailedLoginCloseButton {
-    display: flex;
-    background: black;
-    color:white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px;
+    width: 50%;
+  }
+  .ModalFailedLoginContainerInside h2{
+    font-size: 1.6em;
+  }
+}
+
+@media(max-width: 480px){
+  .ModalFailedLoginContainer{
+    width: 65%;
+    height: 52%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 1.0em;
+  }
+  .ModalFailedLoginCloseButton {
+    width: 50%;
+  }
+  .ModalFailedLoginContainerInside h2{
+    font-size: 1.5em;
+  }
+}
+
+@media(max-width: 353px){
+  .ModalFailedLoginContainer{
+    width: 80%;
+    height: 45%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 0.9em;
+  }
+  .ModalFailedLoginCloseButton {
+    width: 50%;
   }
 }

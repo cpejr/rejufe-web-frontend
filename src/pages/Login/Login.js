@@ -34,29 +34,6 @@ function Login() {
     setShowWarningModal(false);
   };
 
-  // const verifySecurity = async () => {
-  //   const email = await managerService.getUserEmailByUsername(usuario.user);
-  //   const field = {
-  //     email: email,
-  //     lock_time: moment(),
-  //   };
-  //   // await managerService.createAttempt(field);
-  //   const res = await managerService.getAttempts(email);
-  //   console.log('🚀 ~ file: Login.js ~ line 38 ~ verifySecurity ~ res', res);
-  //   const attempts = res.quantity;
-  //   console.log('🚀 ~ file: Login.js ~ line 40 ~ verifySecurity ~ attempts', attempts);
-  //   if (attempts && attempts >= 3) {
-  //     if (moment() > moment(res.lock_time)
-  //       || res.email !== usuario?.email) {
-  //       return true;
-  //     }
-  //     setShowWarningModal(true);
-  //     // setContentWarningModal('após alguns minutos.');
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
   const handleClick = async (e) => {
     setLoading(true);
     let res;
@@ -190,7 +167,7 @@ function Login() {
               />
               <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>
-            <button type="button" onClick={handleClick}>
+            <button className="container-login-button" type="button" onClick={handleClick}>
               {loading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (
