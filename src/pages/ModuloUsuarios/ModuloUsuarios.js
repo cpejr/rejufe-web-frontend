@@ -118,7 +118,7 @@ function ModuloUsuarios() {
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
-                {judicialSection.map((section) => (
+                {judicialSection?.map((section) => (
                   <MenuItem value={section.value}>{section.label}</MenuItem>
                 ))}
               </Select>
