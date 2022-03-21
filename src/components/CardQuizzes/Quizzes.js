@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import { FormControl } from '@mui/material';
+import ConfirmModal from '../confirmModal/ConfirmModal';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraficoQuizzes';
 import './Quizzes.css';
 
 function Quizzes({
-  quizz, associates, dateQuizz, user,
-  // setVoted,
+  quizz, associates, dateQuizz, user, setVoted,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -15,9 +15,6 @@ function Quizzes({
   };
   const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
-
-  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
 
   return (
     <div className="body-quizzes-card">
@@ -56,11 +53,11 @@ function Quizzes({
             <div className="form-vote-quizz-container">
               <FormControl className="form-content-vote-quizzes">
                 <h2>Alternativas</h2>
-                {/* <ConfirmModal
+                <ConfirmModal
                   quizz={quizz}
                   userId={user?.id}
                   setVoted={setVoted}
-                /> */}
+                />
               </FormControl>
             </div>
           )}
