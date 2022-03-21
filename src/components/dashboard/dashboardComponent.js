@@ -103,7 +103,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, renderButton, newsSequentialId,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -355,22 +355,6 @@ function TableComponent({
                         }}
                       >
                         {sequentialId[index + (page * 10)]}
-                      </Link>
-                    </TableCell>
-                  )}
-                {newsSequentialId
-                  && (
-                    <TableCell {...cellFontProps}>
-                      <Link
-                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
-                        to={{
-                          pathname: '/editar-noticias',
-                          state: {
-                            id: id[index + (page * 10)],
-                          },
-                        }}
-                      >
-                        {newsSequentialId[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
