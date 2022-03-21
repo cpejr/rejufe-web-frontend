@@ -1,0 +1,106 @@
+
+td
+{
+       border:1px solid #DCDCDC;
+}
+
+.formsAssociatesContainer{
+       width:300px;
+       border-style:solid;
+       border-width: 2px;
+       background-color: #DCDCDC;
+}
+
+.formsAssociateGridContainer{
+    background-color: #fff;
+    background-image: none;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 20px 0 20px 0;
+    font-size: 13px;
+}
+
+.formsAssociateTdContainer{
+       padding: 0px;
+       vertical-align: top;
+       width: 100%;
+}
+
+.formsAssociateTableContainer{
+       width: 70%;
+       position: center;
+       margin-left: 15%;
+       margin-right: 15%;
+       background-color: #f9f9f9;
+       margin-top: 2%;
+       margin-bottom: 5%;
+       border:1px solid #DCDCDC;
+
+}
+
+.formsAssociateTContainer{
+       width: 100%;
+       padding: 0px;
+       border-spacing: 0px;
+       border-width: 0px;
+}
+
+.formsAssociateTdBox {
+       background-color: #fff;
+       background-image: none;
+       opacity: 1;
+       filter: alpha(opacity=100);
+       border-color: #d0d0d0;
+       border-style: solid;
+       border-width: 1px 1px 1px 1px;
+       color: #000;
+       font-family: Arial, sans-serif;
+       font-size: 13px;
+       padding: 8px 10px;
+       text-decoration: none;
+       text-align: left;
+       height: "100%"
+   }
+   .formsAssociateTdTitle {
+       background-color: #e7e7e7;
+       background-image: none;
+       opacity: 1;
+       filter: alpha(opacity=100);
+       border-color: #d2d2d2;
+       border-width: 1px;
+       border-style: solid;
+       color: #333;
+       font-family: Arial, sans-serif;
+       font-size: 13px;
+       font-weight: bold;
+       padding: 5px 4px;
+       text-decoration: none;
+       text-align: center;
+}
+
+.formsAssociateSubtitle{
+       font-weight: bold;
+       vertical-align: top;
+}
+
+@media(max-width: 1000px) {
+       .formsAssociateTableContainer{
+              width: max-content;  
+              margin-left: 10%;
+       }
+}
+
+@media(max-width: 900px) {
+       .formsAssociateTableContainer{
+              margin-left: 5%;
+       }
+}
+
+@media(max-width: 790px) {
+       .formsAssociateTableContainer{
+              margin-left: 0%;
+              margin-right: 0%; 
+       }
+}

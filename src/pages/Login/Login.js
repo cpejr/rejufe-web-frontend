@@ -81,6 +81,7 @@ function Login() {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
         });
+        setLoading(false);
         if (attempts <= 1) {
           await managerService.updateAttempts(email);
         } else {

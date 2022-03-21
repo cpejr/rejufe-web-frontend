@@ -18,6 +18,7 @@ import Brightness5OutlinedIcon from '@mui/icons-material/Brightness5Outlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import SubMenu from '../../components/SubMenu/SubMenu';
 import simbolo from '../../images/simbolo.png';
+import { useAuth } from '../../providers/auth';
 
 function Header(props) {
   const [className, setClassName] = useState('header-iconbutton-content');
@@ -26,6 +27,7 @@ function Header(props) {
     setOpen(!open);
   };
   const history = useHistory();
+  const { logout } = useAuth();
 
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
@@ -37,7 +39,7 @@ function Header(props) {
   const links1 = [
     {
       link: () => handleClick('/consultas'),
-      pathName: '/consultas',
+      pathName: '/consulta-associados',
       text: 'Consultas',
     },
     {
@@ -63,8 +65,8 @@ function Header(props) {
   ];
   const links2 = [
     {
-      link: () => handleClick('/admregistros'),
-      pathName: '/adm-registros',
+      link: () => handleClick('/administracao-registros-noticias'),
+      pathName: '/administracao-registros-noticias',
       text: 'Administração de Registros',
     },
     {
@@ -114,8 +116,8 @@ function Header(props) {
   ];
   const links5 = [
     {
-      link: () => handleClick('/usuarios'),
-      pathName: '/usuarios',
+      link: () => handleClick('/modulo-usuario'),
+      pathName: '/modulo-usuario',
       text: 'Módulo de usuários',
     },
     {
@@ -218,7 +220,10 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={() => handleClick('/login')}
+                    onClick={() => {
+                      handleClick('/login');
+                      logout();
+                    }}
                     type="button"
                   >
                     <span>
