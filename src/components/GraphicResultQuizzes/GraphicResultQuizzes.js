@@ -63,7 +63,7 @@ function GraphicQuizzes({
           options={options}
         />
       )}
-      {userType === 'administrador' && names.length > 0 && (
+      {userType === 'administrador' && toVote.length > 0 && (
         <div>
           <div className="title-quizzes-already-voted">
             <h2>
@@ -81,7 +81,7 @@ function GraphicQuizzes({
           </div>
         </div>
       )}
-      {names.length === 0 && (
+      {toVote.length === 0 && (
         <div className="quizzes-already-voted">
           <p>Todas as pessoas já votaram!</p>
         </div>

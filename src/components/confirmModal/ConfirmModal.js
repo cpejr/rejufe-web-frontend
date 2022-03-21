@@ -87,9 +87,9 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
   };
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div className="Exit-user-module-exclude">
+      <div className="exit-user-module-exclude">
         <button
-          className="Close-user-module-exclude"
+          className="close-user-module-exclude"
           type="button"
           onClick={() => {
             handleClose();
@@ -110,16 +110,16 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
           />
         </button>
       </div>
-      <div className="Container-exclude-user-module">
-        <div className="Title-user-module-exclude">
+      <div className="container-exclude-user-module">
+        <div className="title-user-module-exclude">
           <h1>Confirmação</h1>
         </div>
-        <div className="Content-user-module-exclude">
+        <div className="content-user-module-exclude">
           <h1>Você tem certeza que deseja votar nessa alternativa?</h1>
         </div>
-        <div className="User-module-exclude-buttons">
+        <div className="user-module-exclude-buttons">
           <button
-            className="Confirm-user-module-exclude"
+            className="confirm-user-module-exclude"
             type="button"
             onClick={() => {
               vote();
@@ -129,7 +129,7 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
             Confirmar
           </button>
           <button
-            className="Cancel-user-module-exclude"
+            className="cancel-user-module-exclude"
             type="button"
             onClick={() => {
               handleClose();

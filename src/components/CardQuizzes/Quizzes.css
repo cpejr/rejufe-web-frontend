@@ -85,6 +85,7 @@
   color: var(--fontColor2);
   padding: 10px;
   width: 100%;
+  text-align: center;
 }
 
 .alternatives-vote-quizzes {
