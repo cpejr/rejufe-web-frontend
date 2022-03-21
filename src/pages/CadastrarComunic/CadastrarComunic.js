@@ -18,7 +18,6 @@ function CadastrarComunic() {
   const [initialErrorState, setError] = useState(initialComunicErrorState);
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState(initialComunicState);
-  console.log('🚀 ~ file: CadastrarComunic.js ~ line 20 ~ CadastrarComunic ~ dados', dados);
   const history = useHistory();
 
   function handleChange(value, field) {
@@ -47,8 +46,6 @@ function CadastrarComunic() {
       }
     });
 
-    for (const pair of formData.entries()) { console.log(`${pair[0]}, ${pair[1]}`); }
-
     if (checkError === 1) {
       setError({ ...aux });
       setLoading(false);
@@ -56,8 +53,6 @@ function CadastrarComunic() {
     }
 
     try {
-      console.log('Entrei');
-      console.log('🚀 ~ file: CadastrarComunic.js ~ line 58 ~ handleSubmit ~ formData', formData);
       await managerService.createComunic(formData);
       toast.success('Comunicado criado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,

@@ -52,8 +52,6 @@ function CadastrarNoticias() {
       return;
     }
 
-    for (const pair of formData.entries()) { console.log(`${pair[0]}, ${pair[1]}`); }
-
     try {
       await managerService.createNews(formData);
       toast.success('Notícia criada com sucesso!!', {
