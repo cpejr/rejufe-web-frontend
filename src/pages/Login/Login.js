@@ -40,7 +40,7 @@ function Login() {
         acessToken: response.data.accessToken,
         id,
       });
-      history.push(`/dashboard/${response.data.user.type}`);
+      history.push('/intranet');
     } catch (error) {
       toast.error('Credenciais inválidas!!', {
         position: toast.POSITION.TOP_RIGHT,

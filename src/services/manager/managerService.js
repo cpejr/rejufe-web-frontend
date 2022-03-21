@@ -183,3 +183,22 @@ export const createComunic = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getNewsById = async (id) => {
+  const response = await requesterService.getNewsById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getNews = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allNews = [];
+  do {
+    response = await requesterService.getNews(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allNews = allNews.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allNews;
+};

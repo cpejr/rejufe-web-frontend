@@ -86,3 +86,14 @@ export const uploadFile = (body) => httpClient.post('/arquivos', body);
 export const createNews = (body) => httpClient.post('/noticias', body);
 
 export const createComunic = (body) => httpClient.post('/informacoes', body);
+
+export const getNewsById = (id) => httpClient.get(`/noticias/${id}`);
+
+export const getNews = (times, field, filter) => httpClient.get('/noticias', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
