@@ -110,6 +110,7 @@ export const updateTime = (email, time) => httpClient.put('/attempts/updateTime'
     email,
     time,
   },
+});
 
 export const getNewsById = (id) => httpClient.get(`/noticias/${id}`);
 

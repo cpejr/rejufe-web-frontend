@@ -121,6 +121,7 @@ function Login() {
           default: {
             await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
+            setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
             setShowWarningModal(true);
             break;
