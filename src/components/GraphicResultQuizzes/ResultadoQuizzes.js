@@ -54,7 +54,6 @@ function GraphicQuizzes({
   const names = name?.map((value) => ({
     name: value,
   }));
-  console.log('🚀 ~ file: ResultadoQuizzes.js ~ line 57 ~ names ~ names', names.length);
 
   return (
     <div className="content-card-quizzes">
