@@ -103,7 +103,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, newsSequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados,
+  titleTable, titles, rows, id, sequentialId, newsSequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -393,7 +393,7 @@ function TableComponent({
       </Table>
       <TableFooter {...footerProps}>
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+          rowsPerPageOptions={[5, 10, 25, 100, { label: 'All', value: -1 }]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -409,12 +409,14 @@ function TableComponent({
           onRowsPerPageChange={handleChangeRowsPerPage}
           ActionsComponent={TablePaginationActions}
         />
-        <Button
-          {...buttonFontProps}
-        >
-          Pesquisa Avançada
-          {/* TODO Implementar o botão de pesquisa avançada */}
-        </Button>
+        {renderButton && (
+          <Button
+            {...buttonFontProps}
+          >
+            Pesquisa Avançada
+            {/* TODO Implementar o botão de pesquisa avançada */}
+          </Button>
+        )}
       </TableFooter>
     </TableContainer>
   );

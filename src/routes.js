@@ -15,7 +15,6 @@ import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
-import Consultas from './pages/Consultas';
 import ValidarSocio from './pages/ValidarSocio';
 import Editais from './pages/Editais';
 import Atas from './pages/Atas';
@@ -28,6 +27,7 @@ import Footer from './components/Footer';
 import MenuLateral from './pages/MenuLateral';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
+import Imprimir from './pages/Imprimir';
 
 export function UserHeader() {
   return (
@@ -42,12 +42,12 @@ export function UserHeader() {
         <Route path="/administracao-registros" component={AdmRegistros} />
         <Route path="/administracao-registros-noticias" component={AdmRegistrosNoticias} />
         <Route path="/associados-excluidos" component={AssociadosExcluidos} />
-        <Route path="/consultas" component={Consultas} />
         <Route path="/validar-socio" component={ValidarSocio} />
         <Route path="/editais" component={Editais} />
         <Route path="/atas" component={Atas} />
         <Route path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} />
         <Route path="/usuarios" component={ModuloUsuarios} />
+        <Route path="/resultado-quizzes" component={ResultadoQuizzes} />
         <Route path="/consulta-associados" component={ConsultaAssociados} />
         <Route path="/menu-lateral" component={MenuLateral} />
         <Route path="/alterar-senha" component={ChangePassword} />
@@ -69,6 +69,7 @@ function Routes() {
         <Route path="/ficha-associados" component={FichaAssociados} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
+        <Route path="/imprimir" component={Imprimir} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />
