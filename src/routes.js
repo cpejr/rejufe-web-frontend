@@ -69,7 +69,6 @@ function Routes() {
         <Route path="/ficha-associados" component={FichaAssociados} />
         <Route path="/modulo-usuario" component={ModuloUsuarios} />
         <Route path="/NotFound" component={NotFound} />
-        {/* <Route path="/administracao-registros-noticia-editar" component={ModuloUsuarios} /> */}
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />
