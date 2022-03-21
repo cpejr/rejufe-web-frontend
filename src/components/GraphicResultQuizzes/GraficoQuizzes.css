@@ -1,0 +1,29 @@
+.content-card-quizzes {
+  display: flex;
+  flex-direction: column;
+}
+.content-table-quizzes {
+  height: 35%;
+  font-size: 0.8em;
+}
+.quizzes-already-voted {
+  text-align: center;
+}
+.line-quizzes-already-voted {
+  width: 100%;
+  border: 2px solid;
+  margin-bottom: 2%;
+  color: var(--secondary);
+}
+.title-quizzes-already-voted {
+  text-align: center;
+}
+.title-quizzes-already-voted h2 {
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font: normal 18pt Roboto;
+  margin-bottom: 0.8%;
+  color: var(--secondary);
+  font-weight: 700;
+  font-size: 1.5em;
+}
