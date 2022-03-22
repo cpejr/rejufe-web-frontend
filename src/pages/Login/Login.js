@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable object-shorthand */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -40,7 +38,7 @@ function Login() {
     let attempts;
     const email = await managerService.getUserEmailByUsername(usuario.user);
     const field = {
-      email: email,
+      email,
       lock_time: moment(),
     };
     res = await managerService.getAttempts(email);
@@ -83,11 +81,12 @@ function Login() {
         });
         setLoading(false);
         if (attempts <= 1) {
-          await managerService.updateAttempts(email);
+          const time = moment();
+          await managerService.updateTime(email, time);
         } else {
           switch (attempts) {
           case 2: {
-            await managerService.updateAttempts(email);
+            // await managerService.updateAttempts(email);
             const time = moment().add(3, 'minutes');
             setContentWarningModal('após 3 minutos');
             await managerService.updateTime(email, time);
@@ -95,7 +94,7 @@ function Login() {
             break;
           }
           case 3: {
-            await managerService.updateAttempts(email);
+            // await managerService.updateAttempts(email);
             const time = moment().add(5, 'minutes');
             setContentWarningModal('após 5 minutos');
             await managerService.updateTime(email, time);
@@ -103,7 +102,7 @@ function Login() {
             break;
           }
           case 4: {
-            await managerService.updateAttempts(email);
+            // await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
@@ -111,7 +110,7 @@ function Login() {
             break;
           }
           case 5: {
-            await managerService.updateAttempts(email);
+            // await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
@@ -119,7 +118,7 @@ function Login() {
             break;
           }
           default: {
-            await managerService.updateAttempts(email);
+            // await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);

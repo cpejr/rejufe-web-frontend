@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback } from 'react';
 import { toast } from 'react-toastify';
