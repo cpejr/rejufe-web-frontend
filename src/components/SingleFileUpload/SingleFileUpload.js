@@ -30,6 +30,7 @@ function SingleFileUpload({
 }) {
   const classes = useStyles();
   const [actualFile, setActualFile] = useState();
+  const [image, setImage] = useState();
 
   async function getFile() {
     try {
@@ -37,7 +38,20 @@ function SingleFileUpload({
       setActualFile(response.toString('base64'));
     } catch (error) {
       console.log(error);
-      toast.error('Não foi possível obter notícia', {
+      toast.error('Não foi possível obter arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  async function getImage() {
+    try {
+      const response = await managerService.getImageById(file);
+      setImage(response);
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
@@ -48,7 +62,12 @@ function SingleFileUpload({
 
   if (update === true) {
     useEffect(() => {
-      getFile();
+      if (dados?.photos) {
+        getImage();
+      }
+      if (dados?.archive_1 || dados?.archive_2) {
+        getFile();
+      }
     }, [file]);
   }
 
@@ -83,7 +102,7 @@ function SingleFileUpload({
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
             {update === true ? (
-              <img src="data:actualFile/png;base64,{{ actualFile }}" alt="{{ actualFIle }}" />
+              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
             ) : (
               <p>
                 Arraste e solte a/o

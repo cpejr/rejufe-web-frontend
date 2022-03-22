@@ -81,6 +81,8 @@ export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuar
 
 export const getFileById = (id) => httpClient.get(`/arquivos/${id}`);
 
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
+
 export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
 export const createNews = (body) => httpClient.post('/noticias', body);
