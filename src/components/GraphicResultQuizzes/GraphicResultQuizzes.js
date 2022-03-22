@@ -43,7 +43,7 @@ function GraphicQuizzes({
 
   toVote?.forEach((_id) => {
     user[count] = associates?.filter((item) => item._id === _id);
-    user[count].forEach((obj) => {
+    user[count]?.forEach((obj) => {
       name[count] = obj.name;
     });
     count += 1;
@@ -53,7 +53,7 @@ function GraphicQuizzes({
   }));
 
   return (
-    <div className="content-card">
+    <div className="content-card-quizzes">
       {votes[1] !== undefined && (
         <Chart
           chartType="BarChart"
