@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 
@@ -31,6 +32,7 @@ function SingleFileUpload({
 }) {
   const classes = useStyles();
   const [actualFile, setActualFile] = useState();
+  console.log('🚀 ~ file: SingleFileUpload.js ~ line 35 ~ actualFile', actualFile);
   const [image, setImage] = useState();
 
   async function getFile() {
@@ -62,7 +64,15 @@ function SingleFileUpload({
   }
 
   const submitDownload = () => {
-    FileSaver.saveAs(actualFile, label);
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3333/arquivos/6228cc14bbb60cde66f9fd03',
+      responseType: 'blob',
+      withCredentials: true,
+    })
+      .then((response) => {
+        FileSaver.saveAs(response.data, 'test.pdf');
+      });
   };
 
   console.log(file);
