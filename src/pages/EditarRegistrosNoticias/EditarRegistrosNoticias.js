@@ -44,7 +44,7 @@ function EditarRegistrosNoticias(news) {
   return (
     <div>
       <div className="register-news-container">
-        <h1 className="register-news-title"><div className="register-news-text-margin">Cadastro de Notícia</div></h1>
+        <h1 className="register-news-title"><div className="register-news-text-margin">Editar Notícia </div></h1>
         {formsNews?.map((line) => (
           <Box>
             <div className="register-news-text-field">
