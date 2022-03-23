@@ -97,3 +97,4 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
