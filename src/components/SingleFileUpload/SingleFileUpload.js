@@ -136,6 +136,7 @@ function SingleFileUpload({
                   {update === true && label === 'Arquivo' && file !== 'undefined' ? (
                     <Button variant="primary" onClick={submitDownload}>
                       Download
+                      <PictureAsPdfIcon />
                     </Button>
                   ) : (
                     <div className="register-news-align-test">
