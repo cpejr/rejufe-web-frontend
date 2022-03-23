@@ -21,7 +21,7 @@ function UpdateNews({
     setDados(value, entrada);
   };
 
-  console.log(id);
+  console.log(dados[`${id}`]);
 
   return (
     <div>

@@ -21,10 +21,7 @@ function EditarRegistrosNoticias(news) {
   }
 
   const { location } = news;
-  const { state } = location;
-  const { id } = state;
-
-  console.log(id);
+  const { id } = location.state;
 
   async function getRecord() {
     try {
@@ -42,7 +39,7 @@ function EditarRegistrosNoticias(news) {
 
   useEffect(() => {
     getRecord();
-  }, []);
+  }, [news]);
 
   return (
     <div>

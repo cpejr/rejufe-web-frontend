@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@mui/material/Button';
+import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
@@ -33,9 +34,10 @@ function SingleFileUpload({
   const [image, setImage] = useState();
 
   async function getFile() {
+    console.log('oi');
     try {
       const response = await managerService.getFileById(file);
-      setActualFile(response.toString('base64'));
+      setActualFile(response);
     } catch (error) {
       console.log(error);
       toast.error('Não foi possível obter arquivo', {
@@ -46,6 +48,7 @@ function SingleFileUpload({
   }
 
   async function getImage() {
+    console.log('oi2');
     try {
       const response = await managerService.getImageById(file);
       setImage(response);
@@ -58,14 +61,18 @@ function SingleFileUpload({
     }
   }
 
-  console.log(actualFile);
+  const submitDownload = () => {
+    FileSaver.saveAs(actualFile, label);
+  };
+
+  console.log(file);
 
   if (update === true) {
     useEffect(() => {
-      if (dados?.photos) {
+      if (id === 'photos' && file !== '') {
         getImage();
       }
-      if (dados?.archive_1 || dados?.archive_2) {
+      if ((id === 'archive_1' || id === 'archive_2') && file !== 'undefined') {
         getFile();
       }
     }, [file]);
@@ -101,7 +108,7 @@ function SingleFileUpload({
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
-            {update === true ? (
+            {update === true && label === 'Imagem' && file !== '' ? (
               <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
             ) : (
               <p>
@@ -118,18 +125,27 @@ function SingleFileUpload({
       {file && (
         <Grid item>
           <div key={file.url}>
-            {file?.file?.type?.substring(0, 5) === 'image'
+            {label === 'Imagem'
               ? (
                 <div>
                   <img src={file.url} style={{ width: '200px' }} alt="preview" />
                 </div>
               )
               : (
-                <div className="register-news-align-test">
-                  {file?.file?.path}
-                  {' '}
-                  <PictureAsPdfIcon />
-                </div>
+                <>
+                  {update === true && label === 'Arquivo' && file !== 'undefined' ? (
+                    <Button variant="primary" onClick={submitDownload}>
+                      Download
+                    </Button>
+                  ) : (
+                    <div className="register-news-align-test">
+                      {file?.file?.path}
+                      {' '}
+                      <PictureAsPdfIcon />
+                    </div>
+                  )}
+                  <div />
+                </>
               )}
             <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados(undefined, id)}>
               Remover Arquivo
