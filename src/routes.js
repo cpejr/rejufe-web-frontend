@@ -9,9 +9,11 @@ import Header from './pages/Header';
 import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
 import CadastrarNoticias from './pages/CadastrarNoticias';
+import CadastrarComunic from './pages/CadastrarComunic';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
+import AdmRegistrosComunic from './pages/AdmRegistrosComunic';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import ValidarSocio from './pages/ValidarSocio';
 import Editais from './pages/Editais';
@@ -32,7 +34,9 @@ export function UserHeader() {
       <Switch>
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <PrivateRoute path="/cadastrar-noticias" component={CadastrarNoticias} type="administrador" />
+        <PrivateRoute path="/cadastrar-comunic" component={CadastrarComunic} type="administrador" />
         <PrivateRoute path="/administracao-registros-noticias" component={AdmRegistrosNoticias} type="administrador" />
+        <PrivateRoute path="/administracao-registros-comunic" component={AdmRegistrosComunic} type="administrador" />
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/consulta-associados" component={ConsultaAssociados} type="administrador" />

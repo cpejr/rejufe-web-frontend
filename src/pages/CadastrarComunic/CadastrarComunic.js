@@ -5,19 +5,19 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import formsNews from '../../components/formsData/formsNews';
+import formsComunic from '../../components/formsData/formsComunic';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
-import { initialNewsState, initialNewsErrorState } from '../../components/initialStates/initialStates';
-import checkNewsData from '../../components/checkNewsData/checkNewsData';
+import { initialComunicState, initialComunicErrorState } from '../../components/initialStates/initialStates';
+import checkComunicData from '../../components/checkComunicData/checkComunicData';
 import * as managerService from '../../services/manager/managerService';
-import './CadastrarNoticias.css';
+import './CadastrarComunic.css';
 
 toast.configure();
 
-function CadastrarNoticias() {
-  const [initialErrorState, setError] = useState(initialNewsErrorState);
+function CadastrarComunic() {
+  const [initialErrorState, setError] = useState(initialComunicErrorState);
   const [loading, setLoading] = useState(false);
-  const [dados, setDados] = useState(initialNewsState);
+  const [dados, setDados] = useState(initialComunicState);
   const history = useHistory();
 
   function handleChange(value, field) {
@@ -33,12 +33,12 @@ function CadastrarNoticias() {
     const aux = initialErrorState;
     let checkError = 0;
 
-    Object.entries(dados).forEach((dado) => {
-      if (dado[0] === 'archive_1' || dado[0] === 'archive_2' || dado[0] === 'photos') {
+    Object.entries(dados)?.forEach((dado) => {
+      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
       } else {
-        if (checkNewsData(dado[0], dado[1])) {
+        if (checkComunicData(dado[0], dado[1])) {
           checkError = 1;
           aux[dado[0]] = true;
         }
@@ -53,12 +53,12 @@ function CadastrarNoticias() {
     }
 
     try {
-      await managerService.createNews(formData);
-      toast.success('Notícia criada com sucesso!!', {
+      await managerService.createComunic(formData);
+      toast.success('Comunicado criado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros-noticias');
+      history.push('/administracao-registros-comunic');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
@@ -71,11 +71,11 @@ function CadastrarNoticias() {
   }
 
   return (
-    <div className="register-news-container">
-      <h1 className="register-news-title"><div className="register-news-text-margin">Cadastro de Notícia</div></h1>
-      {formsNews?.map((line) => (
+    <div className="register-comunic-container">
+      <h1 className="register-comunic-title"><div className="register-comunic-text-margin">Cadastro de Comunicados/Informações</div></h1>
+      {formsComunic?.map((line) => (
         <Box>
-          <div className="register-news-text-field">
+          <div className="register-comunic-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
@@ -94,9 +94,9 @@ function CadastrarNoticias() {
           </div>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Notícia</LoadingButton>
+      <LoadingButton className="register-comunic-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Comunicado/Informação</LoadingButton>
     </div>
   );
 }
 
-export default CadastrarNoticias;
+export default CadastrarComunic;

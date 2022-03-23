@@ -92,6 +92,23 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
+  const linksComunic = [
+    {
+      link: () => handleClick('/consultas'),
+      pathName: '/consultas',
+      text: 'Consultas',
+    },
+    {
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-comunic'),
+      pathName: '/cadastrar-comunic',
+      text: 'Cadastrar',
+    },
+  ];
   const links4 = [
     {
       link: () => handleClick('/editais'),
@@ -154,7 +171,7 @@ function Header(props) {
     },
     {
       text: 'Comunic./Informações',
-      links: links3,
+      links: linksComunic,
       icon: <AnnouncementOutlinedIcon />,
     },
     {

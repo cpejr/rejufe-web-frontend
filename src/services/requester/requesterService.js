@@ -106,6 +106,8 @@ export const updateTime = (email, time) => httpClient.put('/attempts/updateTime'
   },
 });
 
+export const createComunic = (body) => httpClient.post('/informacoes', body);
+
 export const getNewsById = (id) => httpClient.get(`/noticias/${id}`);
 
 export const getNews = (times, field, filter) => httpClient.get('/noticias', {

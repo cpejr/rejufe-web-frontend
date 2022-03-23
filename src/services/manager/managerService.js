@@ -184,6 +184,12 @@ export const getAttempts = async (email) => {
   return response.data;
 };
 
+export const createComunic = async (body) => {
+  const response = await requesterService.createComunic(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getNewsById = async (id) => {
   const response = await requesterService.getNewsById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
