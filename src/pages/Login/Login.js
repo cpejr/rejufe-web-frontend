@@ -86,7 +86,6 @@ function Login() {
         } else {
           switch (attempts) {
           case 2: {
-            // await managerService.updateAttempts(email);
             const time = moment().add(3, 'minutes');
             setContentWarningModal('após 3 minutos');
             await managerService.updateTime(email, time);
@@ -94,7 +93,6 @@ function Login() {
             break;
           }
           case 3: {
-            // await managerService.updateAttempts(email);
             const time = moment().add(5, 'minutes');
             setContentWarningModal('após 5 minutos');
             await managerService.updateTime(email, time);
@@ -102,7 +100,6 @@ function Login() {
             break;
           }
           case 4: {
-            // await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
@@ -110,7 +107,6 @@ function Login() {
             break;
           }
           case 5: {
-            // await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);
@@ -118,7 +114,6 @@ function Login() {
             break;
           }
           default: {
-            // await managerService.updateAttempts(email);
             const time = moment().add(15, 'minutes');
             setContentWarningModal('após 15 minutos');
             await managerService.updateTime(email, time);

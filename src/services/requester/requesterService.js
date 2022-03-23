@@ -99,12 +99,6 @@ export const deleteAttempts = (email) => httpClient.put('/attempts/deleteByEmail
   },
 });
 
-export const updateAttempts = (email) => httpClient.put('/attempts/updateAttempts', {
-  params: {
-    email,
-  },
-});
-
 export const updateTime = (email, time) => httpClient.put('/attempts/updateTime', {
   params: {
     email,
