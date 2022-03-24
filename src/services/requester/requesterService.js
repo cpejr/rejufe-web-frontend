@@ -97,3 +97,16 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getComunic = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const deleteComunic = (comunicId) => httpClient.delete(`/informacoes/${comunicId}`);
+
+export const updateComunic = (comunicId, body) => httpClient.put(`/informacoes/${comunicId}`, body);

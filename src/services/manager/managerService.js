@@ -202,3 +202,26 @@ export const getNews = async (field, filter) => {
   } while (response.data.length > 0);
   return allNews;
 };
+
+export const getComunic = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allComunic = [];
+  do {
+    response = await requesterService.getComunic(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allComunic = allComunic.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allComunic;
+};
+
+export const deleteComunic = async (comunicId) => {
+  const response = await requesterService.deleteComunic(comunicId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateComunic = async (comunicId, body) => {
+  const response = await requesterService.updateComunic(comunicId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
