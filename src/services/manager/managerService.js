@@ -202,8 +202,8 @@ export const createAttempt = async (email) => {
   return response.data;
 };
 
-export const deleteAttempts = async (email) => {
-  const response = await requesterService.deleteAttempts(email);
+export const resetAttempts = async (email) => {
+  const response = await requesterService.resetAttempts(email);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 

@@ -93,7 +93,7 @@ export const getAttempts = (email) => httpClient.get('/attempts/getAttemptsByEma
 
 export const createAttempt = (field) => httpClient.post('/attempts', field);
 
-export const deleteAttempts = (email) => httpClient.put('/attempts/deleteByEmail', {
+export const resetAttempts = (email) => httpClient.put('/attempts/resetByEmail', {
   params: {
     email,
   },

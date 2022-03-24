@@ -72,7 +72,7 @@ function Login() {
           acessToken: response.data.accessToken,
           id,
         });
-        await managerService.deleteAttempts(email);
+        await managerService.resetAttempts(email);
         history.push('/intranet');
       } catch (error) {
         toast.error('Credenciais inválidas!!', {
