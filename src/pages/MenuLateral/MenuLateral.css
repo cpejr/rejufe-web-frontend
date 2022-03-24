@@ -31,6 +31,17 @@
   resize:none;
 }
 
+.boxFormContactUs textarea {
+  height: 10em;
+}
+
+.boxFormContactUs h1{
+  color: #0B162B;
+  font-family: "Roboto", sans-serif;
+  font-size: 2em;
+  margin-bottom: 5%;
+}
+
 .boxFormContactUs button {
   color: white;
   padding: 12px 20px;
