@@ -205,7 +205,6 @@ export const getNews = async (field, filter) => {
 
 export const createAccountability = async (body) => {
   const response = await requesterService.createAccountability(body);
-  console.log('🚀 ~ file: managerService.js ~ line 208 ~ createAccountability ~ body', body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
