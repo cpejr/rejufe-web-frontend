@@ -24,7 +24,7 @@ function CadastrarAcoes() {
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
   }
-  console.log(formsActions);
+
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
@@ -33,7 +33,7 @@ function CadastrarAcoes() {
     const aux = initialErrorState;
     let checkError = 0;
 
-    Object.entries(dados).forEach((dado) => {
+    Object.entries(dados)?.forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
@@ -54,11 +54,11 @@ function CadastrarAcoes() {
 
     try {
       await managerService.createActions(formData);
-      toast.success('Notícia criada com sucesso!!', {
+      toast.success('Ação criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros-noticias');
+      history.push('/administracao-registros');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
@@ -71,11 +71,11 @@ function CadastrarAcoes() {
   }
 
   return (
-    <div className="register-news-container">
-      <h1 className="register-news-title"><div className="register-news-text-margin">Cadastro de Ações</div></h1>
+    <div className="register-action-container">
+      <h1 className="register-action-title"><div className="register-action-text-margin">Cadastro de Ações</div></h1>
       {formsActions?.map((line) => (
         <Box>
-          <div className="register-news-text-field">
+          <div className="register-action-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
@@ -93,7 +93,7 @@ function CadastrarAcoes() {
           </div>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Ações</LoadingButton>
+      <LoadingButton className="register-action-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Ação</LoadingButton>
     </div>
   );
 }

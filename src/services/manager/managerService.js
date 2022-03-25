@@ -225,7 +225,7 @@ export const getNews = async (field, filter) => {
   return allNews;
 };
 export const createActions = async (body) => {
-  const response = await requesterService.createNews(body);
+  const response = await requesterService.createActions(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
