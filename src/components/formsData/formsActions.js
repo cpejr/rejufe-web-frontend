@@ -5,9 +5,9 @@ const formsActions = [
     title: 'Cadastro de ',
     items: [
       {
-        type: 'date',
-        id: 'date',
-        label: 'Data',
+        type: 'text',
+        id: 'number',
+        label: 'Número',
         field: null,
         select: false,
         required: true,

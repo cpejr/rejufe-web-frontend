@@ -5,8 +5,8 @@ toast.configure();
 export default function checkNewsData(key, value) {
   if (typeof value !== 'string') return false;
   if (value.length !== 0) return false;
-  if (key === 'date') {
-    toast.error('Data inválida!!', {
+  if (key === 'number') {
+    toast.error('Número inválido!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
     });
