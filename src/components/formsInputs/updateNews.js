@@ -21,8 +21,6 @@ function UpdateNews({
     setDados(value, entrada);
   };
 
-  console.log(dados[`${id}`]);
-
   return (
     <div>
       {type === 'date' && (

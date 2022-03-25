@@ -28,9 +28,7 @@ function EditarRegistrosNoticias(news) {
     try {
       const response = await managerService.getNewsById(id);
       setDados(response);
-      console.log(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter notícia', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -67,7 +65,7 @@ function EditarRegistrosNoticias(news) {
     }
     setLoading(false);
   }
-  console.log('🚀 ~ file: EditarRegistrosNoticias.js ~ line 59 ~ handleSubmit ~  id', id);
+
   useEffect(() => {
     getRecord();
   }, [news]);

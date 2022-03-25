@@ -31,31 +31,14 @@ function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update,
 }) {
   const classes = useStyles();
-  const [actualFile, setActualFile] = useState();
-  console.log('🚀 ~ file: SingleFileUpload.js ~ line 35 ~ actualFile', actualFile);
   const [image, setImage] = useState();
 
-  async function getFile() {
-    console.log('oi');
-    try {
-      const response = await managerService.getFileById(file);
-      setActualFile(response);
-    } catch (error) {
-      console.log(error);
-      toast.error('Não foi possível obter arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
-
   async function getImage() {
-    console.log('oi2');
     try {
+      console.log('🚀 ~ file: SingleFileUpload.js ~ line 39 ~ getImage ~ file', file);
       const response = await managerService.getImageById(file);
       setImage(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -66,27 +49,20 @@ function SingleFileUpload({
   const submitDownload = () => {
     axios({
       method: 'GET',
-      url: 'http://localhost:3333/arquivos/6228cc14bbb60cde66f9fd03',
+      url: `http://localhost:3333/arquivos/${file}`,
       responseType: 'blob',
       withCredentials: true,
     })
       .then((response) => {
-        FileSaver.saveAs(response.data, 'test.pdf');
+        FileSaver.saveAs(response.data, `${id}`);
       });
   };
 
-  console.log(file);
-
-  if (update === true) {
-    useEffect(() => {
-      if (id === 'photos' && file !== '') {
-        getImage();
-      }
-      if ((id === 'archive_1' || id === 'archive_2') && file !== 'undefined') {
-        getFile();
-      }
-    }, [file]);
-  }
+  useEffect(() => {
+    if (update && id === 'photos' && file) {
+      getImage();
+    }
+  }, [file]);
 
   const onDrop = useCallback((accFiles, rejFiles) => {
     if (rejFiles.length > 0) {
@@ -111,7 +87,7 @@ function SingleFileUpload({
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
-  console.log(file);
+
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item>
