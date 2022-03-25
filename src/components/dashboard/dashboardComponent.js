@@ -31,6 +31,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
+import EditComunicModal from '../EditModal/EditComunicModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -104,7 +105,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -330,10 +331,10 @@ function TableComponent({
                   ) : editComunic ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="delete">
-                        <RemoveComunicModal setUse={setUse} id={associateId[index + (page * 10)]} />
+                        <RemoveComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
+                        <EditComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} comunic={row} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (

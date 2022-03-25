@@ -46,6 +46,7 @@ function AdmRegistrosComunic() {
       auxComunic.sort();
       setId(comunicId);
       setAllComunics(auxComunic);
+      setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -72,7 +73,7 @@ function AdmRegistrosComunic() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} associateId={id} rows={comunics} titles={titles} editComunic />
+      <TableComponent setUse={setUse} comunicId={id} rows={comunics} titles={titles} editComunic />
     </div>
   );
 }

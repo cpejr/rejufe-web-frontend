@@ -9,28 +9,28 @@ import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import './EditComunicModal.css';
 
-export default function EditModal({ id, associate, setUse }) {
-  const [associatesName, setAssociateName] = useState(associate.name);
-  const [associateStatus, setAssociatesStatus] = useState(associate.status);
-  const [associateCpf, setAssociateCpf] = useState(associate.cpf);
+export default function EditComunicModal({ id, comunic, setUse }) {
+  const [comunicNumber, setComunicNumber] = useState(comunic.number);
+  const [comunicType, setComunicType] = useState(comunic.type);
+  const [comunicDescription, setComunicDescription] = useState(comunic.description);
 
-  async function handleNameChange(event) {
-    setAssociateName(event.target.value);
+  async function handleNumberChange(event) {
+    setComunicNumber(event.target.value);
   }
 
-  async function handleStatusChange(event) {
-    setAssociatesStatus(event.target.value);
+  async function handleTypeChange(event) {
+    setComunicType(event.target.value);
   }
 
-  async function handleCpfChange(event) {
-    setAssociateCpf(event.target.value);
+  async function handleDescriptionChange(event) {
+    setComunicDescription(event.target.value);
   }
 
   async function handleSubmit() {
     try {
       await managerService.updateComunic(
         id,
-        { name: associatesName, status: associateStatus, cpf: associateCpf },
+        { number: comunicNumber, type: comunicType, description: comunicDescription },
       );
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -64,22 +64,22 @@ export default function EditModal({ id, associate, setUse }) {
         <div className="EditModal-text">
           Status:
         </div>
-        <select className="EditModal-Select" placeholder="" require value={associateStatus} onChange={handleStatusChange}>
-          <option value="A">A</option>
-          <option value="E">E</option>
+        <select className="EditModal-Select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
+          <option value="COMUNICADO">COMUNICADO</option>
+          <option value="INFORMATIVO">INFORMATIVO</option>
         </select>
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
-          Nome:
+          Número:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={associatesName} onChange={handleNameChange} />
+        <input className="EditModal-Input" placeholder="" require value={comunicNumber} onChange={handleNumberChange} />
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
-          CPF:
+          Descrição:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={associateCpf} onChange={handleCpfChange} />
+        <input className="EditModal-Input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
       </div>
       <button
         className="EditModal-ButtonConfirm"
