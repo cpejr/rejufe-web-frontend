@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
