@@ -109,7 +109,7 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links4 = [
+  const linksAtas = [
     {
       link: () => handleClick('/editais'),
       pathName: '/editais',
@@ -126,8 +126,8 @@ function Header(props) {
       text: 'Alterações e exclusões',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-atas'),
+      pathName: '/cadastrar-atas',
       text: 'Cadastrar',
     },
   ];
@@ -176,7 +176,7 @@ function Header(props) {
     },
     {
       text: 'Atas/Editais',
-      links: links4,
+      links: linksAtas,
       icon: <FilePresentOutlinedIcon />,
     },
     {

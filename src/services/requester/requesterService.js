@@ -119,3 +119,5 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+
+export const createAtas = (body) => httpClient.post('/atas', body);

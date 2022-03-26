@@ -115,3 +115,19 @@ export const initialComunicErrorState = {
   archive_1: false,
   archive_2: false,
 };
+
+export const initialAtasState = {
+  number: '',
+  type: '',
+  description: '',
+  archive_1: undefined,
+  archive_2: undefined,
+};
+
+export const initialAtasErrorState = {
+  number: false,
+  type: false,
+  description: false,
+  archive_1: false,
+  archive_2: false,
+};

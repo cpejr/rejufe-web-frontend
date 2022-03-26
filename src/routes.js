@@ -10,6 +10,7 @@ import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
 import CadastrarNoticias from './pages/CadastrarNoticias';
 import CadastrarComunic from './pages/CadastrarComunic';
+import CadastrarAtas from './pages/CadastrarAtas/CadastrarAtas';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
@@ -21,6 +22,7 @@ import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import ConsultaAssociados from './pages/ConsultaAssociados';
+import ConsultasAtas from './pages/ConsultasAtas';
 import FichaAssociados from './pages/FichaAssociados';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
@@ -35,11 +37,13 @@ export function UserHeader() {
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <PrivateRoute path="/cadastrar-noticias" component={CadastrarNoticias} type="administrador" />
         <PrivateRoute path="/cadastrar-comunic" component={CadastrarComunic} type="administrador" />
+        <PrivateRoute path="/cadastrar-atas" component={CadastrarAtas} type="administrador" />
         <PrivateRoute path="/administracao-registros-noticias" component={AdmRegistrosNoticias} type="administrador" />
         <PrivateRoute path="/administracao-registros-comunic" component={AdmRegistrosComunic} type="administrador" />
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/consulta-associados" component={ConsultaAssociados} type="administrador" />
+        <PrivateRoute path="/consulta-atas" component={ConsultasAtas} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
