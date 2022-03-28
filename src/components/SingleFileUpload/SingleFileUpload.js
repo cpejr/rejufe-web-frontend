@@ -31,19 +31,29 @@ function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update,
 }) {
   const classes = useStyles();
-<<<<<<< HEAD
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
-=======
->>>>>>> 65c7c6b3ac399fbebd3e5dcb817b96d51368c9d8
   const [image, setImage] = useState();
+
+  async function getFile() {
+    try {
+      const response = await managerService.getFileById(file);
+      setActualFile(response);
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível obter arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
 
   async function getImage() {
     try {
-      console.log('🚀 ~ file: SingleFileUpload.js ~ line 39 ~ getImage ~ file', file);
       const response = await managerService.getImageById(file);
       setImage(response);
     } catch (error) {
+      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -54,16 +64,15 @@ function SingleFileUpload({
   const submitDownload = () => {
     axios({
       method: 'GET',
-      url: `http://localhost:3333/arquivos/${file}`,
+      url: 'http://localhost:3333/arquivos/6228cc14bbb60cde66f9fd03',
       responseType: 'blob',
       withCredentials: true,
     })
       .then((response) => {
-        FileSaver.saveAs(response.data, `${id}`);
+        FileSaver.saveAs(response.data, 'test.pdf');
       });
   };
 
-<<<<<<< HEAD
   if (update === true) {
     useEffect(() => {
       if (id === 'photos' && file !== '' && file !== undefined) {
@@ -74,13 +83,6 @@ function SingleFileUpload({
       }
     }, [file]);
   }
-=======
-  useEffect(() => {
-    if (update && id === 'photos' && file) {
-      getImage();
-    }
-  }, [file]);
->>>>>>> 65c7c6b3ac399fbebd3e5dcb817b96d51368c9d8
 
   const onDrop = useCallback((accFiles, rejFiles) => {
     if (rejFiles.length > 0) {
