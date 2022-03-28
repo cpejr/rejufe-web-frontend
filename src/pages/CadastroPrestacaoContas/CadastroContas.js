@@ -56,7 +56,7 @@ function CadastroContas() {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros-comunic');
+      history.push('/administracao-registros-acoes');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
@@ -69,11 +69,11 @@ function CadastroContas() {
   }
 
   return (
-    <div className="register-comunic-container">
-      <h1 className="register-comunic-title"><div className="register-comunic-text-margin">Cadastrar Prestação de Contas</div></h1>
+    <div className="register-accountability-container">
+      <h1 className="register-accountability-title"><div className="register-accountability-text-margin">Cadastrar Prestação de Contas</div></h1>
       {formsContas?.map((line) => (
         <Box>
-          <div className="register-comunic-text-field">
+          <div className="register-accountability-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
@@ -90,7 +90,7 @@ function CadastroContas() {
           </div>
         </Box>
       ))}
-      <LoadingButton className="register-comunic-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Conta</LoadingButton>
+      <LoadingButton className="register-accountability-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Conta</LoadingButton>
     </div>
   );
 }
