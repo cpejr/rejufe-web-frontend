@@ -23,8 +23,6 @@ function AdmRegistrosNoticias() {
     getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId);
   }, []);
 
-  console.log(id);
-
   return (
     <div>
       <h1 className="titleAdministrationRecords"> Administração de Registros </h1>
