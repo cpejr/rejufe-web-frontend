@@ -117,7 +117,7 @@ export const initialComunicErrorState = {
 };
 
 export const initialActionsState = {
-  date: '',
+  numberAction: '',
   type: '',
   description: '',
   archive_1: undefined,
@@ -125,7 +125,7 @@ export const initialActionsState = {
 };
 
 export const initialActionsErrorState = {
-  date: false,
+  numberAction: false,
   type: false,
   description: false,
   archive_1: false,

@@ -3,12 +3,12 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import formsActions from '../../components/formsData/formsActions';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialActionsState, initialActionsErrorState } from '../../components/initialStates/initialStates';
 import checkActionsData from '../../components/checkActionsData/checkActionsData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarAcoes.css';
+import formsActions from '../../components/formsData/formsActions';
 
 toast.configure();
 
@@ -31,7 +31,7 @@ function CadastrarAcoes() {
     const aux = initialErrorState;
     let checkError = 0;
 
-    Object.entries(dados).forEach((dado) => {
+    Object.entries(dados)?.forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
@@ -43,26 +43,25 @@ function CadastrarAcoes() {
         formData.append(dado[0], dado[1]);
       }
     });
-
-    if (checkError === 1) {
-      setError({ ...aux });
-      setLoading(false);
-      return;
-    }
-
     try {
       await managerService.createActions(formData);
-      toast.success('Ação criada com sucesso!!', {
+      toast.success('Comunicado criado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros');
+      history.push('/administracao-registros-acoes');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
+
+      if (checkError === 1) {
+        setError({ ...aux });
+        setLoading(false);
+        return;
+      }
       setLoading(false);
     }
     setLoading(false);

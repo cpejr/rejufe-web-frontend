@@ -5,7 +5,7 @@ toast.configure();
 export default function checkActionsData(key, value) {
   if (typeof value !== 'string') return false;
   if (value.length !== 0) return false;
-  if (key === 'number') {
+  if (key === 'numberAction') {
     toast.error('Número inválido!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,

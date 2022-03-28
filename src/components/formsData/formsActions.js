@@ -1,23 +1,23 @@
-import actionTypes from '../consts/actionsType';
+import actionsType from '../consts/actionsType';
 
 const formsActions = [
   {
-    title: 'Cadastro de ',
+    title: 'Cadastro de Notícia',
     items: [
-      {
-        type: 'text',
-        id: 'number',
-        label: 'Número',
-        field: null,
-        select: false,
-        required: true,
-      },
       {
         type: 'text',
         id: 'type',
         label: 'Tipo',
-        field: actionTypes,
+        field: actionsType,
         select: true,
+        required: true,
+      },
+      {
+        type: 'text',
+        id: 'numberAction',
+        label: 'Número',
+        field: null,
+        select: false,
         required: true,
       },
       {
