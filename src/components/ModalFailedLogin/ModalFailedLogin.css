@@ -1,0 +1,126 @@
+.ModalFailedLogin{
+  position: fixed;
+  top: 0;
+  bottom:0;
+  right:0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 999;
+}
+.ModalFailedLoginContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: fit-content;
+  width: 60%;
+  top: 3%;
+  bottom: 3%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 3em 2rem;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.ModalFailedLoginContainerInside{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ModalFailedLoginContainerInside h2{
+  margin-top: 1.2em;
+  margin-bottom: 1.5em;
+  font-size: 1.8em;
+  color: #121212;
+  font-weight: bold;
+  text-decoration: underline;
+  align-self: center;
+}
+
+.ModalFailedLoginContent {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  text-align: justify;
+}
+
+.ModalFailedLoginCloseDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+
+.ModalFailedLoginCloseButton {
+  display: flex;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--button);
+  cursor: pointer;
+}
+
+@media(max-width: 760px){
+  .ModalFailedLoginContainer{
+    width: 50%;
+    height: 60%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 1.1em;
+  }
+  .ModalFailedLoginCloseButton {
+    width: 40%;
+  }
+}
+
+@media(max-width: 600px){
+  .ModalFailedLoginContainer{
+    width: 50%;
+    height: 52%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 1.0em;
+  }
+  .ModalFailedLoginCloseButton {
+    width: 50%;
+  }
+  .ModalFailedLoginContainerInside h2{
+    font-size: 1.6em;
+  }
+}
+
+@media(max-width: 480px){
+  .ModalFailedLoginContainer{
+    width: 65%;
+    height: 52%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 1.0em;
+  }
+  .ModalFailedLoginCloseButton {
+    width: 50%;
+  }
+  .ModalFailedLoginContainerInside h2{
+    font-size: 1.5em;
+  }
+}
+
+@media(max-width: 353px){
+  .ModalFailedLoginContainer{
+    width: 80%;
+    height: 45%;
+  }
+  .ModalFailedLoginContent {
+    font-size: 0.9em;
+  }
+  .ModalFailedLoginCloseButton {
+    width: 50%;
+  }
+}

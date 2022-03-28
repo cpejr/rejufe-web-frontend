@@ -85,6 +85,27 @@ export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
 export const createNews = (body) => httpClient.post('/noticias', body);
 
+export const getAttempts = (email) => httpClient.get('/attempts/getAttemptsByEmail', {
+  params: {
+    email,
+  },
+});
+
+export const createAttempt = (field) => httpClient.post('/attempts', field);
+
+export const resetAttempts = (email) => httpClient.put('/attempts/resetByEmail', {
+  params: {
+    email,
+  },
+});
+
+export const updateTime = (email, time) => httpClient.put('/attempts/updateTime', {
+  params: {
+    email,
+    time,
+  },
+});
+
 export const createComunic = (body) => httpClient.post('/informacoes', body);
 
 export const getNewsById = (id) => httpClient.get(`/noticias/${id}`);
@@ -96,5 +117,6 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
+
 });
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
