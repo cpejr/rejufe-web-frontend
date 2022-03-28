@@ -31,8 +31,8 @@ function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update,
 }) {
   const classes = useStyles();
+  // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
-  console.log('🚀 ~ file: SingleFileUpload.js ~ line 35 ~ actualFile', actualFile);
   const [image, setImage] = useState();
 
   async function getFile() {
@@ -75,14 +75,12 @@ function SingleFileUpload({
       });
   };
 
-  console.log(file);
-
   if (update === true) {
     useEffect(() => {
-      if (id === 'photos' && file !== '') {
+      if (id === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-      if ((id === 'archive_1' || id === 'archive_2') && file !== 'undefined') {
+      if ((id === 'archive_1' || id === 'archive_2') && file !== undefined) {
         getFile();
       }
     }, [file]);
@@ -116,21 +114,24 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item>
         <div>
-          <div {...getRootProps({ className: classes.dropzone })}>
-            <input {...getInputProps()} />
-            {update === true && label === 'Imagem' && file !== '' ? (
-              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
-            ) : (
-              <p>
-                Arraste e solte a/o
-                {' '}
-                {`${label}`}
-                {' '}
-                aqui
-              </p>
-            )}
-          </div>
+          {!file && (
+            <div {...getRootProps({ className: classes.dropzone })}>
+              <input {...getInputProps()} />
+              {update === true && label === 'Imagem' && file !== '' ? (
+                <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
+              ) : (
+                <p>
+                  Arraste e solte a/o
+                  {' '}
+                  {`${label}`}
+                  {' '}
+                  aqui
+                </p>
+              )}
+            </div>
+          )}
         </div>
+
       </Grid>
       {file && (
         <Grid item>
