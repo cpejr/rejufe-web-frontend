@@ -33,6 +33,7 @@ function GraphicQuizzes({
 
   quizz?.forEach((option) => {
     const percentual = (option.votes / alreadyVoted.length);
+    console.log(alreadyVoted);
     let changePercentual = (percentual * 100);
     changePercentual += '%';
     data[index] = [option.description, option.votes, changePercentual];

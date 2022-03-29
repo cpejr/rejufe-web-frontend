@@ -47,7 +47,9 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ConfirmModal({ quizz, userId, setVoted }) {
+export default function ConfirmModal({
+  quizz, userId, setVoted, alreadyVoted,
+}) {
   let votes = 0;
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
@@ -64,6 +66,13 @@ export default function ConfirmModal({ quizz, userId, setVoted }) {
   };
 
   const vote = async () => {
+    if (alreadyVoted.includes(userId)) {
+      toast('Não é possível votar mais de uma vez na enquete!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+      return;
+    }
     const newAlreadyVoted = quizz?.alreadyVoted.concat(userId);
     const newToVote = quizz?.toVote?.filter((id) => id !== userId);
     try {

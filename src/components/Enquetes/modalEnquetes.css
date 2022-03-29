@@ -111,6 +111,7 @@
 .title-modal-quizz h2 {
   text-align: center;
   color: var(--color2);
+  font-family: "Roboto", sans-serif;
   font-size: 30px;
   font-weight: 300;
   margin: 0;

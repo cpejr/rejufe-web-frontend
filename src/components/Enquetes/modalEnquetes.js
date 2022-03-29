@@ -71,7 +71,6 @@ const theme = createTheme({
         root: {
           color: '#264A6F',
           fontWeight: '500',
-          fontSize: '30',
         },
       },
     },

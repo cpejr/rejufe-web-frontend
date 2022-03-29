@@ -41,7 +41,7 @@ function Quizzes({
       {open === true ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
-          {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user.type === 'administrador')) ? (
+          {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
             <GraphicQuizzes
               toVote={quizz?.toVote}
               associates={associates}
@@ -57,6 +57,7 @@ function Quizzes({
                   quizz={quizz}
                   userId={user?.id}
                   setVoted={setVoted}
+                  alreadyVoted={quizz?.alreadyVoted}
                 />
               </FormControl>
             </div>
