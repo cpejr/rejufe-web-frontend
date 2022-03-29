@@ -97,7 +97,9 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
 export const updateRecord = (id, body) => httpClient.put(`/noticias/${id}`, body);
+
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });

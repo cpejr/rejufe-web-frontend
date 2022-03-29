@@ -61,27 +61,14 @@ function SingleFileUpload({
     }
   }
 
-  // const submitDownload = () => {
-  //   axios({
-  //     method: 'GET',
-  //     url: 'http://localhost:3333/arquivos/6228cc14bbb60cde66f9fd03',
-  //     responseType: 'blob',
-  //     withCredentials: true,
-  //   })
-  //     .then((response) => {
-  //       FileSaver.saveAs(response.data, 'test.pdf');
-  //     });
-  // };
-
   function getDownloads() {
     try {
-      console.log('tititi');
-      managerService.download('6228cc14bbb60cde66f9fd03').then((response) => {
-        FileSaver.saveAs(response.data, 'test.pdf');
+      managerService.download(file).then((response) => {
+        FileSaver.saveAs(response, id);
       });
     } catch (error) {
       console.log(error);
-      toast.error('Não foi possível obter o arquivo', {
+      toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
@@ -158,7 +145,7 @@ function SingleFileUpload({
               : (
                 <>
                   {update === true && label === 'Arquivo' && file !== 'undefined' ? (
-                    <Button variant="primary" onClick={() => getDownloads}>
+                    <Button variant="primary" onClick={() => getDownloads()}>
                       Download
                       <PictureAsPdfIcon />
                     </Button>
