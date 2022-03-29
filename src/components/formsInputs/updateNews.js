@@ -56,10 +56,11 @@ function UpdateNews({
           required={required}
           id={id}
           error={initialErrorState[`${id}`]}
-          value={dados[`${id}`] ? dados[`${id}`] : ' '}
+          value={dados[`${id}`] !== undefined ? dados[`${id}`] : ' '}
           onChange={(e) => handleChange(e.target.value, id)}
           type={type}
           select={select}
+          label={label}
           variant="standard"
           helperText={`Selecione uma opção de ${label}`}
           sx={{ m: 1, width: '30ch' }}

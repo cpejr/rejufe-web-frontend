@@ -207,3 +207,8 @@ export const updateRecord = async (id, record) => {
   const response = await requesterService.updateRecord(record, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+export const download = async (id) => {
+  const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
