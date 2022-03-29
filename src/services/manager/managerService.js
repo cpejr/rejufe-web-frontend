@@ -230,3 +230,23 @@ export const createAtas = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getAtas = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allAtas = [];
+  do {
+    response = await requesterService.getAtas(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allAtas = allAtas.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allAtas;
+};
+
+export const getAtasById = async (id) => {
+  const times = 1;
+  const response = await requesterService.getAtasById(id, times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

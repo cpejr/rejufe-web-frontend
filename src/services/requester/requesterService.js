@@ -121,3 +121,18 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
 });
 
 export const createAtas = (body) => httpClient.post('/atas', body);
+
+export const getAtas = (times, field, filter) => httpClient.get('/atas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getAtasById = (atasId, times) => httpClient.get(`/atas/${atasId}`, {
+  params: {
+    times,
+  },
+});
