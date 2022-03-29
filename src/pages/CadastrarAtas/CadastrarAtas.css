@@ -1,5 +1,5 @@
 
-.register-comunic-container{
+.register-atas-container{
   align-items: center;
   width: 100%;
   height: 100%;
@@ -11,7 +11,7 @@
 
 }
 
-.register-comunic-container h1{
+.register-atas-container h1{
   font-family: "Roboto", sans-serif;
   font: normal 18pt Roboto;
   align-items: center;
@@ -22,13 +22,13 @@
   text-align: center;
   margin-top: 25px;
 }
-.register-comunic-container h2 {
+.register-atas-container h2 {
   font-family: "Roboto", sans-serif;
   font: normal 15pt Roboto;
   margin: 5vh;
 }
 
-.register-comunic-text-field{
+.register-atas-text-field{
   padding: 15px;
   margin: 15px;
   display: grid;
@@ -39,19 +39,19 @@
 
 }
 
-.register-comunic-title{
+.register-atas-title{
   background-color:#1C3854;
   color: #FFFFFF;
 }
 
-.register-comunic-text-margin{
+.register-atas-text-margin{
   margin-top: 5px;
   margin-bottom: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.register-comunic-align-test{
+.register-atas-align-test{
   font-family: "Roboto", sans-serif;
   font: normal 18pt Roboto;
   display:flex;
@@ -60,7 +60,7 @@
 }
 
 @media screen and (max-width: 720px){
-  .register-comunic-text-field{
+  .register-atas-text-field{
     padding: 15px;
     margin: 15px;
     display: grid;
@@ -75,13 +75,13 @@
 
 
 @media screen and (max-width: 420px){
-  .register-comunic-text-field{
+  .register-atas-text-field{
       padding: 0px;
       grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
 
   }
 
-  .register-comunic-text-margin{
+  .register-atas-text-margin{
       margin-top: 5px;
       margin-bottom: 5px;
       padding-top: 5px;
@@ -89,7 +89,7 @@
       font-size: 13px;
   }
 
-  .register-comunic-button{
+  .register-atas-button{
     width: 80%;
   }
 }

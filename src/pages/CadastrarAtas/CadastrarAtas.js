@@ -58,7 +58,7 @@ function CadastrarAtas() {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/consulta-atas');
+      history.push('/consulta-atas-e-editais');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
@@ -71,11 +71,11 @@ function CadastrarAtas() {
   }
 
   return (
-    <div className="register-comunic-container">
-      <h1 className="register-comunic-title"><div className="register-comunic-text-margin">Cadastro de Atas/Editais</div></h1>
+    <div className="register-atas-container">
+      <h1 className="register-atas-title"><div className="register-atas-text-margin">Cadastro de Atas/Editais</div></h1>
       {formsAtas?.map((line) => (
         <Box>
-          <div className="register-comunic-text-field">
+          <div className="register-atas-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
@@ -94,7 +94,7 @@ function CadastrarAtas() {
           </div>
         </Box>
       ))}
-      <LoadingButton className="register-comunic-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Atas/Edital</LoadingButton>
+      <LoadingButton className="register-atas-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Atas/Edital</LoadingButton>
     </div>
   );
 }
