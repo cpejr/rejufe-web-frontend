@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import formsAtas from '../../components/formsData/formsAtas';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialAtasState, initialAtasErrorState } from '../../components/initialStates/initialStates';
-import checkAtasData from '../../components/checkComunicData/checkComunicData';
+import checkAtasData from '../../components/checkData/checkAtasData/checkAtasData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarAtas.css';
 
