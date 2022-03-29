@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import formsContas from '../../components/formsData/formsContas';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialAccountabilityState, initialAccountabilityErrorState } from '../../components/initialStates/initialStates';
-import checkContasData from '../../components/checkContasData/checkContasData';
+import checkContasData from '../../components/checkInfosData/checkContasData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastroContas.css';
 
