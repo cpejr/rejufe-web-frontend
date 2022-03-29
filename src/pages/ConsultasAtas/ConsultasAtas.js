@@ -24,20 +24,20 @@ function ConsultaAtas() {
   }, []);
 
   return (
-    <div className="consultAtasPage">
-      <div className="ConsultAtas-field">
-        <div className="title-ConsultAtas">
+    <div className="consult-atas-page">
+      <div className="consult-atas-field">
+        <div className="title-consult-atas">
           <h1>
             {'Consulta em Atas e Editais '}
           </h1>
         </div>
-        <div className="line-table-ConsultAtas" />
+        <div className="line-table-consult-atas" />
         {loading ? (
-          <div className="loaderConsultAtas">
+          <div className="loader-consult-atas">
             <CircularProgress />
           </div>
         ) : (
-          <div className="containerConsultAtas">
+          <div className="container-consult-atas">
             <TableComponent id={id} rows={atas} titles={titles} print={false} searchAtas />
           </div>
         )}

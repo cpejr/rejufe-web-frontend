@@ -14,19 +14,19 @@ function FichaAtas() {
   }, []);
 
   return (
-    <body className="formsAtas-Body">
-      <div className="formsAtas-Container">
-        <table className="formsAtasTableContainer">
-          <div className="formsAtasGridContainer">
+    <body className="forms-atas-body">
+      <div className="forms-atas-Container">
+        <table className="forms-atas-table-container">
+          <div className="forms-atas-grid-container">
             <table width="100%">
               <tr>
-                <td className="formsAtasTdContainer">
-                  <table className="formsAtasTContainer">
+                <td className="forms-atas-td-container">
+                  <table className="forms-atas-t-container">
                     {fichaAtas?.map((ficha) => (
-                      <table className="formsAtasTContainer">
+                      <table className="forms-atas-t-container">
                         <table width="100%">
-                          <div className="formsAtas-Title">
-                            <td className="formsAtasTdTitle">
+                          <div className="forms-atas-title">
+                            <td className="forms-atas-td-title">
                               {ficha.title}
                             </td>
                           </div>
@@ -35,14 +35,14 @@ function FichaAtas() {
                           <table width="100%">
                             <tr>
                               {line?.items.map((item) => (
-                                <div className="formsAtasTdBox">
-                                  <span className="formsAtasSubtitle">
+                                <div className="forms-atas-td-box">
+                                  <span className="forms-atas-subtitle">
                                     {' '}
                                     {item.label}
                                     {' '}
                                   </span>
                                   <br />
-                                  <span className="formsAtasValue">
+                                  <span className="forms-atas-value">
                                     {' '}
                                     {atas[item.id]}
                                     {' '}
@@ -56,7 +56,7 @@ function FichaAtas() {
                     ))}
                     <table width="100%">
                       <tr>
-                        <td className="formsAtasTdTitle" height="25px" />
+                        <td className="forms-atas-td-title" height="25px" />
                       </tr>
                     </table>
                   </table>

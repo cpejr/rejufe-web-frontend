@@ -4,35 +4,16 @@ td
        border:1px solid #DCDCDC;
 }
 
-.formsAtas-Body{
+.forms-atas-body{
        min-height: calc(100vh);
 }
 
-.formsAtas-Title{
+.forms-atas-title{
        display: flex;
        flex-direction: column;
 }
 
-.formsAtas-button{
-       background-color: var(--button);
-       color: white;
-       width: 9%;
-       height: 35px;
-       border-radius: 6px;
-       margin-left: 5px;
-       margin-top: 8px;
-       margin-bottom: 3px;
-       cursor: pointer;
-}
-
-.formsAtas-Buttons{
-       display: flex;
-       flex-direction: row;
-       align-items: center;
-       justify-content: center;
-}
-
-.formsAtasGridContainer{
+.forms-atas-grid-container{
     background-color: #fff;
     background-image: none;
     opacity: 1;
@@ -43,13 +24,13 @@ td
     font-size: 13px;
 }
 
-.formsAtasTdContainer{
+.forms-atas-td-container{
        padding: 0px;
        vertical-align: top;
        width: 100%;
 }
 
-.formsAtasTableContainer{
+.forms-atas-table-container{
        width: 70%;
        position: center;
        margin-left: 15%;
@@ -62,14 +43,14 @@ td
 
 }
 
-.formsAtasTContainer{
+.forms-atas-t-container{
        width: 100%;
        padding: 0px;
        border-spacing: 0px;
        border-width: 0px;
 }
 
-.formsAtasTdTitle {
+.forms-atas-td-title {
        background-color: #e7e7e7;
        background-image: none;
        opacity: 1;
@@ -86,7 +67,7 @@ td
        text-align: center;
 }
 
-.formsAtasTdBox {
+.forms-atas-td-box {
        display: flex;
        align-items: center;
        background-color: #fff;
@@ -102,7 +83,7 @@ td
        height: 100%;
    }
 
-.formsAtasSubtitle{
+.forms-atas-subtitle{
        display: flex;
        align-items: center;
        justify-content: center;
@@ -116,7 +97,7 @@ td
        margin-right: 4px;
 }
 
-.formsAtasValue{
+.forms-atas-value{
        display: flex;
        justify-content: flex-start;
        align-items: center;
@@ -132,20 +113,20 @@ td
 }
 
 @media(max-width: 1000px) {
-       .formsAtasTableContainer{
+       .forms-atas-table-container{
               width: max-content;  
               margin-left: 10%;
        }
 }
 
 @media(max-width: 900px) {
-       .formsAtasTableContainer{
+       .forms-atas-table-container{
               margin-left: 5%;
        }
 }
 
 @media(max-width: 790px) {
-       .formsAtasTableContainer{
+       .forms-atas-table-container{
               margin-left: 0%;
               margin-right: 0%; 
        }
