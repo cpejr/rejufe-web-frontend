@@ -111,14 +111,9 @@ function Header(props) {
   ];
   const linksAtas = [
     {
-      link: () => handleClick('/editais'),
-      pathName: '/editais',
-      text: 'Consulta Editais',
-    },
-    {
-      link: () => handleClick('/atas'),
-      pathName: '/atas',
-      text: 'Consulta Atas',
+      link: () => handleClick('/consulta-atas'),
+      pathName: '/consulta-atas-e-editais',
+      text: 'Consultas',
     },
     {
       link: () => handleClick('/alteracoeseexclusoes'),

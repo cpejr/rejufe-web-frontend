@@ -24,6 +24,7 @@ import ModuloUsuarios from './pages/ModuloUsuarios';
 import ConsultaAssociados from './pages/ConsultaAssociados';
 import ConsultasAtas from './pages/ConsultasAtas';
 import FichaAssociados from './pages/FichaAssociados';
+import FichaAtas from './pages/FichaAtas';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
@@ -43,9 +44,10 @@ export function UserHeader() {
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/consulta-associados" component={ConsultaAssociados} type="administrador" />
-        <PrivateRoute path="/consulta-atas" component={ConsultasAtas} type="administrador" />
+        <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasAtas} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
+        <PrivateRoute path="/ficha-atas" component={FichaAtas} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />

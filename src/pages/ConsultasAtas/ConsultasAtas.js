@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ConsultaAtas.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from '@mui/material';
-import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
-import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
+import TableComponent from '../../components/dashboard/dashboardComponent';
+import getAllAtasForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
 const titles = [
   '',
@@ -15,26 +15,33 @@ const titles = [
 ];
 
 function ConsultaAtas() {
-  const [associates, setAllAssociates] = useState([]);
+  const [atas, setAllAtas] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
+    getAllAtasForConsult(setId, setAllAtas, setLoading);
   }, []);
 
   return (
-    <div className="consultAssociatePage">
-      <h1 className="titleConsultAssociate"> Associados Ativos </h1>
-      {loading ? (
-        <div className="loaderConsultAssociate">
-          <CircularProgress />
+    <div className="consultAtasPage">
+      <div className="ConsultAtas-field">
+        <div className="title-ConsultAtas">
+          <h1>
+            {'Consulta em Atas e Editais '}
+          </h1>
         </div>
-      ) : (
-        <div className="containerConsultAssociate">
-          <TableComponent id={id} rows={associates} titles={titles} print={false} search />
-        </div>
-      )}
+        <div className="line-table-ConsultAtas" />
+        {loading ? (
+          <div className="loaderConsultAtas">
+            <CircularProgress />
+          </div>
+        ) : (
+          <div className="containerConsultAtas">
+            <TableComponent id={id} rows={atas} titles={titles} print={false} searchAtas />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
