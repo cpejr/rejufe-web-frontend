@@ -33,6 +33,7 @@ function SingleFileUpload({
   const classes = useStyles();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState();
 
   async function getFile() {
@@ -65,6 +66,7 @@ function SingleFileUpload({
     try {
       managerService.download(file).then((response) => {
         FileSaver.saveAs(response, id);
+        setActualFile(response);
       });
     } catch (error) {
       console.log(error);
@@ -116,9 +118,10 @@ function SingleFileUpload({
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
-            {update === true && label === 'Imagem' && file !== '' ? (
+            {update === true && label === 'Imagem' && file !== '' && (
               <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
-            ) : (
+            )}
+            {!file && (
               <p>
                 Arraste e solte a/o
                 {' '}
@@ -130,38 +133,40 @@ function SingleFileUpload({
           </div>
         </div>
       </Grid>
-      {file && (
-        <Grid item>
-          <div key={file.url}>
-            {label === 'Imagem'
-              ? (
-                <div>
-                  <img src={file.url} style={{ width: '200px' }} alt="preview" />
-                </div>
-              )
-              : (
-                <>
-                  {update === true && label === 'Arquivo' && file !== 'undefined' ? (
-                    <Button variant="primary" onClick={() => getDownloads()}>
-                      Download
-                      <PictureAsPdfIcon />
-                    </Button>
-                  ) : (
-                    <div className="register-news-align-test">
-                      {file?.file?.path}
-                      {' '}
-                      <PictureAsPdfIcon />
-                    </div>
-                  )}
-                  <div />
-                </>
-              )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados(undefined, id)}>
-              Remover Arquivo
-            </Button>
-          </div>
-        </Grid>
-      )}
+      {
+        file && (
+          <Grid item>
+            <div key={file.url}>
+              {label === 'Imagem'
+                ? (
+                  <div>
+                    <img src={file.url} style={{ width: '200px' }} alt="preview" />
+                  </div>
+                )
+                : (
+                  <>
+                    {update === true && label === 'Arquivo' && file !== 'undefined' ? (
+                      <Button variant="primary" onClick={() => getDownloads()}>
+                        Download
+                        <PictureAsPdfIcon />
+                      </Button>
+                    ) : (
+                      <div className="register-news-align-test">
+                        {file?.file?.path}
+                        {' '}
+                        <PictureAsPdfIcon />
+                      </div>
+                    )}
+                    <div />
+                  </>
+                )}
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados(undefined, id)}>
+                Remover Arquivo
+              </Button>
+            </div>
+          </Grid>
+        )
+      }
     </Grid>
   );
 }
