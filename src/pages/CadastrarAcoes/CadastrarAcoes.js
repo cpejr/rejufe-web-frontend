@@ -45,7 +45,7 @@ function CadastrarAcoes() {
     });
     try {
       await managerService.createActions(formData);
-      toast.success('Comunicado criado com sucesso!!', {
+      toast.success('Ação criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
