@@ -197,10 +197,38 @@ export const createNews = async (body) => {
   return response.data;
 };
 
+export const getAttempts = async (email) => {
+  const response = await requesterService.getAttempts(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createComunic = async (body) => {
+  const response = await requesterService.createComunic(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getNewsById = async (id) => {
   const response = await requesterService.getNewsById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const createAttempt = async (email) => {
+  const response = await requesterService.createAttempt(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const resetAttempts = async (email) => {
+  const response = await requesterService.resetAttempts(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateTime = async (email, time) => {
+  const response = await requesterService.updateTime(email, time);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
 export const getNews = async (field, filter) => {
