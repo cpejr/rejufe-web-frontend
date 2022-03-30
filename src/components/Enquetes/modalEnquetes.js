@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'stretch',
   },
-  paper: {
+  content: {
     position: 'absolute',
     width: '40%',
     backgroundColor: 'white',
@@ -93,7 +93,7 @@ export default function ModalEnquete({ setNewQuizz }) {
 
   const body = (
     <ThemeProvider theme={theme}>
-      <div style={modalStyle} className={classes.paper}>
+      <div style={modalStyle} className={classes.content}>
         <div className="container-modal-quizz">
           <div className="exit-modal-quizz">
             <button
