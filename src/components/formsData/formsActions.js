@@ -18,7 +18,7 @@ const formsActions = [
         label: 'Número',
         field: null,
         select: false,
-        required: true,
+        required: false,
       },
       {
         type: 'text',

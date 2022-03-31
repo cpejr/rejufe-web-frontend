@@ -55,6 +55,9 @@
   align-items: center;
   justify-content: center;
 }
+.register-action-button:hover {
+  background-color: var(--primary);
+}
 
 @media screen and (max-width: 720px) {
   .register-action-text-field {
