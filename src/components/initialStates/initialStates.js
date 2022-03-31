@@ -99,3 +99,19 @@ export const initialNewsErrorState = {
   status: false,
   send_site: false,
 };
+
+export const initialComunicState = {
+  number: '',
+  type: '',
+  description: '',
+  archive_1: undefined,
+  archive_2: undefined,
+};
+
+export const initialComunicErrorState = {
+  number: false,
+  type: false,
+  description: false,
+  archive_1: false,
+  archive_2: false,
+};

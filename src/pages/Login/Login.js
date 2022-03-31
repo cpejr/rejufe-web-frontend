@@ -2,12 +2,17 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
+import moment from 'moment';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
+import ptLocale from 'moment/locale/pt-br';
 import * as managerService from '../../services/manager/managerService';
 import backgroundImage from '../../images/martelin.png';
 import { useAuth } from '../../providers/auth';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
+
+moment.locale('pt-br', [ptLocale]);
 
 const initialState = {
   user: '',
@@ -18,35 +23,106 @@ toast.configure();
 function Login() {
   const [loading, setLoading] = useState(false);
   const [usuario, setUsuario] = useState(initialState);
+  const [showWarningModal, setShowWarningModal] = useState(false);
+  const [contentWarningModal, setContentWarningModal] = useState('');
   const history = useHistory();
   const { setUser } = useAuth();
+
+  const handleClickClose = () => {
+    setShowWarningModal(false);
+  };
+
   const handleClick = async (e) => {
     setLoading(true);
-    try {
-      e.preventDefault();
-      const email = await managerService.getUserEmailByUsername(usuario.user);
-      const body = {
-        email,
-        password: usuario.password,
-        rememberMe: usuario.rememberMe,
-      };
-      await managerService.login(body);
-      const response = await managerService.login(body);
-      const id = response.data.user._id;
-      setUser({
-        name: response.data.user.name,
-        email: response.data.user.email,
-        type: response.data.user.type,
-        acessToken: response.data.accessToken,
-        id,
-      });
-      history.push(`/dashboard/${response.data.user.type}`);
-    } catch (error) {
-      toast.error('Credenciais inválidas!!', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
-      });
-      setLoading(false);
+    let res;
+    let attempts;
+    const email = await managerService.getUserEmailByUsername(usuario.user);
+    const field = {
+      email,
+      lock_time: moment(),
+    };
+    res = await managerService.getAttempts(email);
+    if (res === null) {
+      res = await managerService.createAttempt(field);
+      setShowWarningModal(false);
+      attempts = 0;
+    } else {
+      attempts = res.quantity;
+    }
+    if (attempts > 2 && moment() < moment(res.lock_time)) {
+      const restante = moment(res.lock_time).fromNow();
+      setContentWarningModal(restante);
+      setShowWarningModal(true);
+    } else {
+      setShowWarningModal(false);
+      try {
+        e.preventDefault();
+        const body = {
+          email,
+          password: usuario.password,
+          rememberMe: usuario.rememberMe,
+        };
+        await managerService.login(body);
+        const response = await managerService.login(body);
+        const id = response.data.user._id;
+        setUser({
+          name: response.data.user.name,
+          email: response.data.user.email,
+          type: response.data.user.type,
+          acessToken: response.data.accessToken,
+          id,
+        });
+        await managerService.resetAttempts(email);
+        history.push('/intranet');
+      } catch (error) {
+        toast.error('Credenciais inválidas!!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+        setLoading(false);
+        if (attempts <= 1) {
+          const time = moment();
+          await managerService.updateTime(email, time);
+        } else {
+          switch (attempts) {
+          case 2: {
+            const time = moment().add(3, 'minutes');
+            setContentWarningModal('após 3 minutos');
+            await managerService.updateTime(email, time);
+            setShowWarningModal(true);
+            break;
+          }
+          case 3: {
+            const time = moment().add(5, 'minutes');
+            setContentWarningModal('após 5 minutos');
+            await managerService.updateTime(email, time);
+            setShowWarningModal(true);
+            break;
+          }
+          case 4: {
+            const time = moment().add(15, 'minutes');
+            setContentWarningModal('após 15 minutos');
+            await managerService.updateTime(email, time);
+            setShowWarningModal(true);
+            break;
+          }
+          case 5: {
+            const time = moment().add(15, 'minutes');
+            setContentWarningModal('após 15 minutos');
+            await managerService.updateTime(email, time);
+            setShowWarningModal(true);
+            break;
+          }
+          default: {
+            const time = moment().add(15, 'minutes');
+            setContentWarningModal('após 15 minutos');
+            await managerService.updateTime(email, time);
+            setShowWarningModal(true);
+            break;
+          }
+          }
+        }
+      }
     }
     setLoading(false);
   };
@@ -87,7 +163,7 @@ function Login() {
               />
               <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>
-            <button type="button" onClick={handleClick}>
+            <button className="container-login-button" type="button" onClick={handleClick}>
               {loading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (
@@ -99,6 +175,13 @@ function Login() {
             </div>
           </div>
         </div>
+        {showWarningModal && (
+          <ModalFailedLogin
+            content={contentWarningModal}
+            close={handleClickClose}
+            className="WarningModalLoginScreen"
+          />
+        )}
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ import Brightness5OutlinedIcon from '@mui/icons-material/Brightness5Outlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import SubMenu from '../../components/SubMenu/SubMenu';
 import simbolo from '../../images/simbolo.png';
+import { useAuth } from '../../providers/auth';
 
 function Header(props) {
   const [className, setClassName] = useState('header-iconbutton-content');
@@ -26,6 +27,7 @@ function Header(props) {
     setOpen(!open);
   };
   const history = useHistory();
+  const { logout } = useAuth();
 
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
@@ -90,6 +92,23 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
+  const linksComunic = [
+    {
+      link: () => handleClick('/consultas'),
+      pathName: '/consultas',
+      text: 'Consultas',
+    },
+    {
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-comunic'),
+      pathName: '/cadastrar-comunic',
+      text: 'Cadastrar',
+    },
+  ];
   const links4 = [
     {
       link: () => handleClick('/editais'),
@@ -114,8 +133,8 @@ function Header(props) {
   ];
   const links5 = [
     {
-      link: () => handleClick('/usuarios'),
-      pathName: '/usuarios',
+      link: () => handleClick('/modulo-usuario'),
+      pathName: '/modulo-usuario',
       text: 'Módulo de usuários',
     },
     {
@@ -152,7 +171,7 @@ function Header(props) {
     },
     {
       text: 'Comunic./Informações',
-      links: links3,
+      links: linksComunic,
       icon: <AnnouncementOutlinedIcon />,
     },
     {
@@ -218,7 +237,10 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={() => handleClick('/login')}
+                    onClick={() => {
+                      handleClick('/login');
+                      logout();
+                    }}
                     type="button"
                   >
                     <span>

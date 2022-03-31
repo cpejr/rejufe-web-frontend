@@ -14,7 +14,7 @@ function compare(a, b) {
   return x === y ? 0 : x > y ? 1 : -1;
 }
 
-async function getAllAssociatesForConsult(setId, setAllAssociates) {
+async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
   const auxAssociate = [];
   const associateId = [];
   try {
@@ -35,6 +35,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates) {
 
     setId(associateId);
     setAllAssociates(auxAssociate);
+    setLoading(false);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);

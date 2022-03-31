@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import MenuLateral from '../MenuLateral';
+import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes';
 import './Intranet.css';
-import BottomMenu from '../../components/BottomMenu/BottomMenu';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');

@@ -1,2 +1,2 @@
 // eslint-disable-next-line no-restricted-exports
-export { default } from './ResultadoQuizzes';
+export { default } from './AdmRegistrosComunic';
