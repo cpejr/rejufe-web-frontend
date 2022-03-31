@@ -131,8 +131,4 @@ export const getAtas = (times, field, filter) => httpClient.get('/atas', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
-export const getAtasById = (atasId, times) => httpClient.get(`/atas/${atasId}`, {
-  params: {
-    times,
-  },
-});
+export const getAtasById = (atasId) => httpClient.get(`/atas/${atasId}`);

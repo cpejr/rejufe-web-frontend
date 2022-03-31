@@ -245,8 +245,7 @@ export const getAtas = async (field, filter) => {
 };
 
 export const getAtasById = async (id) => {
-  const times = 1;
-  const response = await requesterService.getAtasById(id, times);
+  const response = await requesterService.getAtasById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

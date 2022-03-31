@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable no-nested-ternary */
 import * as managerService from '../../services/manager/managerService';
 
 function createData(number, type, description, archive_1, archive_2) {
