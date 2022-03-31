@@ -110,3 +110,7 @@ export const getComunic = (times, field, filter) => httpClient.get('/informacoes
 export const deleteComunic = (comunicId) => httpClient.delete(`/informacoes/${comunicId}`);
 
 export const updateComunic = (comunicId, body) => httpClient.put(`/informacoes/${comunicId}`, body);
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});

@@ -225,3 +225,9 @@ export const updateComunic = async (comunicId, body) => {
   const response = await requesterService.updateComunic(comunicId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
