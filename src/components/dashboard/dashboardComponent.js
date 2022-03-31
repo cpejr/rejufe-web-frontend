@@ -372,20 +372,6 @@ function TableComponent({
                     <TableCell {...cellFontProps} align="center">
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
-                  ) : archive1Id ? (
-                    <TableCell
-                      {...cellFontProps}
-                      align="center"
-                    >
-                      {archive1Id[index]}
-                    </TableCell>
-                  ) : archive2Id ? (
-                    <TableCell
-                      {...cellFontProps}
-                      align="center"
-                    >
-                      {archive2Id[index]}
-                    </TableCell>
                   ) : (
                     <TableCell> </TableCell>
                   )
@@ -403,16 +389,6 @@ function TableComponent({
                         }}
                       >
                         {sequentialId[index + (page * 10)]}
-                      </Link>
-                    </TableCell>
-                  )}
-                {archive1Id
-                  && (
-                    <TableCell>
-                      <Link
-                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
-                      >
-                        {archive1Id[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
@@ -437,6 +413,26 @@ function TableComponent({
                     {data}
                   </TableCell>
                 ))}
+                {archive1Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {archive1Id[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {archive2Id[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
               </TableRow>
             ))}
           {emptyRows > 0 && (
