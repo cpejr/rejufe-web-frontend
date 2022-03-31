@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 import ModalEnquete from '../../components/Enquetes/modalEnquetes';
@@ -14,6 +15,10 @@ function ResultadoQuizzes() {
   const [newQuizz, setNewQuizz] = useState(false);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
+  const [voted, setVoted] = useState();
+  const [toVote, setToVote] = useState([]);
+  const [date] = useState(new Date());
+  const dateQuizz = moment(date).format('YYYY-MM-DD');
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
@@ -31,16 +36,37 @@ function ResultadoQuizzes() {
       });
     }
   }
+
+  async function getToVoteQuizzes() {
+    try {
+      const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
+      setToVote(response);
+      setLoading(false);
+    } catch (error) {
+      history.push('/NotFound');
+      toast.error('Credenciais inválidas!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   useEffect(() => {
-    getAllAQuizzes();
-  }, [newQuizz]);
+    if (user?.type === 'administrador') {
+      getAllAQuizzes();
+    } else {
+      getToVoteQuizzes();
+    }
+  }, [voted, newQuizz]);
 
   return (
     <div className="container-cards-quizzes">
       <div className="division-cards-quizzes">
         <div className="title-cards-quizzes-page">
           <h1>Resultado das Enquetes</h1>
-          <ModalEnquete setNewQuizz={setNewQuizz} />
+          {user.type === 'administrador' && (
+            <ModalEnquete setNewQuizz={setNewQuizz} />
+          )}
         </div>
         <div className="line-table-cards-quizzes" />
         {loading ? (
@@ -51,10 +77,24 @@ function ResultadoQuizzes() {
           <>
             {user?.type === 'administrador' ? (
               quizzes?.map((quizz) => (
-                <Quizzes quizz={quizz} associates={associates} />
+                <Quizzes
+                  quizz={quizz}
+                  associates={associates}
+                  dateQuizz={dateQuizz}
+                  user={user}
+                  setVoted={setVoted}
+                />
               ))
             ) : (
-              <div />
+              toVote?.map((quizz) => (
+                <Quizzes
+                  quizz={quizz}
+                  associates={associates}
+                  dateQuizz={dateQuizz}
+                  user={user}
+                  setVoted={setVoted}
+                />
+              ))
             )}
             <div />
           </>
