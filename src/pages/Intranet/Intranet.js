@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
-import ResultadoQuizzes from '../ResultadoQuizzes';
+import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import './Intranet.css';
 
 function Intranet() {
