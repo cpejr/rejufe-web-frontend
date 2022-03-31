@@ -11,6 +11,12 @@ export default function checkContasData(key, value) {
       autoClose: 5000,
     });
   }
+  if (key === 'pdf') {
+    toast.error('Arquivo inválido!!', {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+    });
+  }
   if (key === 'title') {
     toast.error('Título inválido!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
