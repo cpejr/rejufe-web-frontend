@@ -76,17 +76,17 @@
 
 @media screen and (max-width: 420px){
   .register-atas-text-field{
-      padding: 0px;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
+    padding: 0px;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); 
 
   }
 
   .register-atas-text-margin{
-      margin-top: 5px;
-      margin-bottom: 5px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
   }
 
   .register-atas-button{
