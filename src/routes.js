@@ -50,7 +50,7 @@ export function UserHeader() {
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
         <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
-        <PrivateRoute path="/editar-noticias" component={EditarRegistrosNoticias} />
+        <PrivateRoute path="/editar-noticias" component={EditarRegistrosNoticias} type="administrador" />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>
