@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
@@ -15,25 +17,13 @@ function AdmRegistrosComunic() {
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
   const [actualFile, setActualFile] = useState();
+  const [fileId, setFileId] = useState();
+  const [archive1Id, setArchive1Id] = useState();
+  const [archive2Id, setArchive2Id] = useState();
 
-  function getDownloads() {
-    try {
-      managerService.download(file).then((response) => {
-        FileSaver.saveAs(response, id);
-        setActualFile(response);
-      });
-    } catch (error) {
-      console.log(error);
-      toast.error('Não foi possível baixar o arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
-
-  function createData(type, number, description, archive_1, archive_2) {
+  function createData(type, number, description) {
     return {
-      type, number, description, archive_1, archive_2,
+      type, number, description,
     };
   }
 
@@ -44,6 +34,8 @@ function AdmRegistrosComunic() {
   async function getAllComunic() {
     const auxComunic = [];
     const comunicId = [];
+    const archive1Code = [];
+    const archive2Code = [];
     try {
       const allComunic = await managerService.getComunic();
       allComunic.forEach((object) => {
@@ -51,9 +43,9 @@ function AdmRegistrosComunic() {
           object.type,
           object.number,
           object.description,
-          object.archive_1,
-          object.archive_2,
         ));
+        archive1Code.push(object.archive_1);
+        archive2Code.push(object.archive_2);
       });
       allComunic.forEach((object) => {
         comunicId.push(createId(
@@ -63,6 +55,8 @@ function AdmRegistrosComunic() {
       auxComunic.sort();
       setId(comunicId);
       setAllComunics(auxComunic);
+      setArchive1Id(archive1Code);
+      setArchive2Id(archive2Code);
       setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -90,7 +84,7 @@ function AdmRegistrosComunic() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} comunicId={id} rows={comunics} titles={titles} editComunic />
+      <TableComponent setUse={setUse} comunicId={id} rows={comunics} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} editComunic />
     </div>
   );
 }

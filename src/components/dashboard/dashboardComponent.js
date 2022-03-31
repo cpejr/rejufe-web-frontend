@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
@@ -7,6 +11,8 @@ import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -32,6 +38,7 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
 import EditComunicModal from '../EditModal/EditComunicModal';
+import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -105,8 +112,9 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 117 ~ rows', rows);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
@@ -261,6 +269,20 @@ function TableComponent({
     setPage(0);
   };
 
+  function getDownloads(archiveId) {
+    try {
+      managerService.download(archiveId).then((response) => {
+        FileSaver.saveAs(response, id);
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível baixar o arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   return (
     <TableContainer
       component={Paper}
@@ -350,6 +372,20 @@ function TableComponent({
                     <TableCell {...cellFontProps} align="center">
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
+                  ) : archive1Id ? (
+                    <TableCell
+                      {...cellFontProps}
+                      align="center"
+                    >
+                      {archive1Id[index]}
+                    </TableCell>
+                  ) : archive2Id ? (
+                    <TableCell
+                      {...cellFontProps}
+                      align="center"
+                    >
+                      {archive2Id[index]}
+                    </TableCell>
                   ) : (
                     <TableCell> </TableCell>
                   )
@@ -367,6 +403,16 @@ function TableComponent({
                         }}
                       >
                         {sequentialId[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {archive1Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {archive1Id[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
