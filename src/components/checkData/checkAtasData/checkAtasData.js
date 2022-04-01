@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 toast.configure();
 
-export default function checkAtasData(key, value) {
+export default function checkMinutesData(key, value) {
   if (typeof value !== 'string') return false;
   if (value.length !== 0) return false;
   if (key === 'number') {

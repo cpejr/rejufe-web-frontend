@@ -10,7 +10,7 @@ import Intranet from './pages/Intranet';
 import Cadastro from './pages/Cadastro';
 import CadastrarNoticias from './pages/CadastrarNoticias';
 import CadastrarComunic from './pages/CadastrarComunic';
-import CadastrarAtas from './pages/CadastrarAtas/CadastrarAtas';
+import CadastrarMinutes from './pages/CadastrarAtas/CadastrarAtas';
 import CadastroExterno from './pages/CadastroExterno';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
@@ -38,7 +38,7 @@ export function UserHeader() {
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <PrivateRoute path="/cadastrar-noticias" component={CadastrarNoticias} type="administrador" />
         <PrivateRoute path="/cadastrar-comunic" component={CadastrarComunic} type="administrador" />
-        <PrivateRoute path="/cadastrar-atas" component={CadastrarAtas} type="administrador" />
+        <PrivateRoute path="/cadastrar-atas" component={CadastrarMinutes} type="administrador" />
         <PrivateRoute path="/administracao-registros-noticias" component={AdmRegistrosNoticias} type="administrador" />
         <PrivateRoute path="/administracao-registros-comunic" component={AdmRegistrosComunic} type="administrador" />
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />

@@ -3,7 +3,7 @@ import './ConsultaAtas.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from '@mui/material';
 import TableComponent from '../../components/dashboard/dashboardComponent';
-import getAllAtasForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
+import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
 const titles = [
   '',
@@ -14,13 +14,13 @@ const titles = [
   'Arquivo 2',
 ];
 
-function ConsultaAtas() {
-  const [atas, setAllAtas] = useState([]);
+function ConsultaMinutes() {
+  const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllAtasForConsult(setId, setAllAtas, setLoading);
+    getAllMinutesForConsult(setId, setAllMinutes, setLoading);
   }, []);
 
   return (
@@ -38,7 +38,7 @@ function ConsultaAtas() {
           </div>
         ) : (
           <div className="container-consult-atas">
-            <TableComponent id={id} rows={atas} titles={titles} print={false} searchAtas />
+            <TableComponent id={id} rows={minutes} titles={titles} print={false} searchAtas />
           </div>
         )}
       </div>
@@ -46,4 +46,4 @@ function ConsultaAtas() {
   );
 }
 
-export default ConsultaAtas;
+export default ConsultaMinutes;

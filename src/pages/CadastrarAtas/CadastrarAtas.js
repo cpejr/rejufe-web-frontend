@@ -5,16 +5,16 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import formsAtas from '../../components/formsData/formsAtas';
+import formsMinutes from '../../components/formsData/formsAtas';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialAtasState, initialAtasErrorState } from '../../components/initialStates/initialStates';
-import checkAtasData from '../../components/checkData/checkAtasData/checkAtasData';
+import checkMinutesData from '../../components/checkData/checkAtasData/checkAtasData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarAtas.css';
 
 toast.configure();
 
-function CadastrarAtas() {
+function CadastrarMinutes() {
   const [initialErrorState, setError] = useState(initialAtasErrorState);
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState(initialAtasState);
@@ -38,7 +38,7 @@ function CadastrarAtas() {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
       } else {
-        if (checkAtasData(dado[0], dado[1])) {
+        if (checkMinutesData(dado[0], dado[1])) {
           checkError = 1;
           aux[dado[0]] = true;
         }
@@ -73,7 +73,7 @@ function CadastrarAtas() {
   return (
     <div className="register-atas-container">
       <h1 className="register-atas-title"><div className="register-atas-text-margin">Cadastro de Atas/Editais</div></h1>
-      {formsAtas?.map((line) => (
+      {formsMinutes?.map((line) => (
         <Box>
           <div className="register-atas-text-field">
             {line?.items?.map((item) => (
@@ -99,4 +99,4 @@ function CadastrarAtas() {
   );
 }
 
-export default CadastrarAtas;
+export default CadastrarMinutes;

@@ -1,4 +1,4 @@
-const fichaAtas = [
+const fichaMinutes = [
 
   {
     title: 'DETALHES DO REGISTRO',
@@ -52,4 +52,4 @@ const fichaAtas = [
     ],
   },
 ];
-export default fichaAtas;
+export default fichaMinutes;

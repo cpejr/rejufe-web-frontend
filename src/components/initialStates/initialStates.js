@@ -116,7 +116,7 @@ export const initialComunicErrorState = {
   archive_2: false,
 };
 
-export const initialAtasState = {
+export const initialMinutesState = {
   number: '',
   type: '',
   description: '',
@@ -124,7 +124,7 @@ export const initialAtasState = {
   archive_2: undefined,
 };
 
-export const initialAtasErrorState = {
+export const initialMinutesErrorState = {
   number: false,
   type: false,
   description: false,

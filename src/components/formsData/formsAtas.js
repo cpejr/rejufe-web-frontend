@@ -1,6 +1,6 @@
-import AtasTypes from '../consts/atasTypes';
+import MinutesTypes from '../consts/atasTypes';
 
-const formsAtas = [
+const formsMinutes = [
   {
     title: 'Cadastro de Atas/Editais',
     items: [
@@ -16,7 +16,7 @@ const formsAtas = [
         type: 'text',
         id: 'type',
         label: 'Tipo',
-        field: AtasTypes,
+        field: MinutesTypes,
         select: true,
         required: true,
       },
@@ -53,4 +53,4 @@ const formsAtas = [
   },
 ];
 
-export default formsAtas;
+export default formsMinutes;

@@ -1,4 +1,4 @@
-const AtasTypes = [
+const MinutesTypes = [
   {
     value: '',
     label: '',
@@ -13,4 +13,4 @@ const AtasTypes = [
   },
 ];
 
-export default AtasTypes;
+export default MinutesTypes;

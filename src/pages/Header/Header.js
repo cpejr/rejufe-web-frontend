@@ -109,7 +109,7 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const linksAtas = [
+  const linksMinutes = [
     {
       link: () => handleClick('/consulta-atas'),
       pathName: '/consulta-atas-e-editais',
@@ -171,7 +171,7 @@ function Header(props) {
     },
     {
       text: 'Atas/Editais',
-      links: linksAtas,
+      links: linksMinutes,
       icon: <FilePresentOutlinedIcon />,
     },
     {

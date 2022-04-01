@@ -1,16 +1,16 @@
 import { React, useEffect, useState } from 'react';
 import './FichaAtas.css';
 import { useLocation } from 'react-router-dom';
-import fichaAtas from '../../components/ConsultaAtas/FichaAtas';
-import getAtasById from '../../components/getAtasById/getAtasById';
+import fichaMinutes from '../../components/ConsultaAtas/FichaAtas';
+import getMinutesById from '../../components/getAtasById/getAtasById';
 
-function FichaAtas() {
+function FichaMinutes() {
   const { search } = useLocation();
-  const atasId = new URLSearchParams(search).get('atasId');
-  const [atas, setAtas] = useState([]);
+  const minutesId = new URLSearchParams(search).get('minutesId');
+  const [minutes, setMinutes] = useState([]);
 
   useEffect(() => {
-    getAtasById(atasId, setAtas);
+    getMinutesById(minutesId, setMinutes);
   }, []);
 
   return (
@@ -22,7 +22,7 @@ function FichaAtas() {
               <tr>
                 <td className="forms-atas-td-container">
                   <table className="forms-atas-t-container">
-                    {fichaAtas?.map((ficha) => (
+                    {fichaMinutes?.map((ficha) => (
                       <table className="forms-atas-t-container">
                         <table width="100%">
                           <div className="forms-atas-title">
@@ -44,7 +44,7 @@ function FichaAtas() {
                                   <br />
                                   <span className="forms-atas-value">
                                     {' '}
-                                    {atas[item.id]}
+                                    {minutes[item.id]}
                                     {' '}
                                   </span>
                                 </div>
@@ -72,4 +72,4 @@ function FichaAtas() {
   );
 }
 
-export default FichaAtas;
+export default FichaMinutes;

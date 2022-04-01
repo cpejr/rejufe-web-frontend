@@ -10,20 +10,20 @@ const routingFunction = (param) => {
   });
 };
 
-async function getAtasById(atasId, setAtas) {
+async function getMinutesById(minutesId, setMinutes) {
   try {
-    const response = await managerService.getAtasById(atasId);
-    const atas = {
+    const response = await managerService.getAtasById(minutesId);
+    const minutes = {
       number: response.number,
       type: response.type,
       description: response.description,
       archive_1: response.archive_1,
       archive_2: response.archive_2,
     };
-    setAtas(atas);
+    setMinutes(minutes);
   } catch (error) {
     routingFunction();
   }
 }
 
-export default getAtasById;
+export default getMinutesById;

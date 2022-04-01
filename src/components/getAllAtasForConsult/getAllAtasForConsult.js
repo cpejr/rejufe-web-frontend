@@ -7,15 +7,15 @@ function createData(number, type, description, archive_1, archive_2) {
   };
 }
 
-async function getAllAtasForConsult(setId, setAllAssociates, setLoading) {
-  const auxAtas = [];
-  const atasId = [];
+async function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
+  const auxMinutes = [];
+  const minutesId = [];
   try {
-    const allAtas = await managerService.getAtas();
+    const allMinutes = await managerService.getAtas();
 
-    allAtas.forEach((object) => {
-      atasId.push(object._id);
-      auxAtas.push(createData(
+    allMinutes.forEach((object) => {
+      minutesId.push(object._id);
+      auxMinutes.push(createData(
         object.number,
         object.type,
         object.description,
@@ -24,8 +24,8 @@ async function getAllAtasForConsult(setId, setAllAssociates, setLoading) {
       ));
     });
 
-    setId(atasId);
-    setAllAssociates(auxAtas);
+    setId(minutesId);
+    setAllMinutes(auxMinutes);
     setLoading(false);
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -33,4 +33,4 @@ async function getAllAtasForConsult(setId, setAllAssociates, setLoading) {
   }
 }
 
-export default getAllAtasForConsult;
+export default getAllMinutesForConsult;
