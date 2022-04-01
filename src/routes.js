@@ -27,6 +27,7 @@ import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Imprimir from './pages/Imprimir';
+import AdmRegistrosAcoes from './pages/AdmRegistrosAcoes';
 
 export function UserHeader() {
   return (
@@ -49,6 +50,7 @@ export function UserHeader() {
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
         <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
+        <PrivateRoute path="/administracao-registros-acoes" component={AdmRegistrosAcoes} type="administrador" />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>

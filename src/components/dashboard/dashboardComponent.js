@@ -30,6 +30,8 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import RemoveComunicModal from '../RemoveModal/RemoveActionModal';
+import EditComunicModal from '../EditModal/EditActionModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -103,8 +105,9 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton, editActions, actionId,
 }) {
+  console.log(rows);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
@@ -324,6 +327,15 @@ function TableComponent({
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
+                      </IconButton>
+                    </TableCell>
+                  ) : editActions ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveComunicModal setUse={setUse} id={actionId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditComunicModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (

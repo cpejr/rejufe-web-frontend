@@ -243,3 +243,34 @@ export const getNews = async (field, filter) => {
   } while (response.data.length > 0);
   return allNews;
 };
+
+export const getActions = async (field, filter) => {
+  console.log('an');
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getActions(times, field, filter);
+    console.log('🚀 ~ file: managerService.js ~ line 254 ~ getActions ~ response', response);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length === 0);
+  return allActions;
+};
+
+export const deleteAction = async (actionId) => {
+  const response = await requesterService.deleteAction(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAction = async (actionId, body) => {
+  const response = await requesterService.updateAction(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

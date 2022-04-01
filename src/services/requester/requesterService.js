@@ -131,3 +131,18 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+export const getActions = (times, field, filter) => httpClient.get('/acoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
+
+export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
