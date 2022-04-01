@@ -146,3 +146,5 @@ export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionI
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });
+
+export const createActions = (body) => httpClient.post('/acoes', body);
