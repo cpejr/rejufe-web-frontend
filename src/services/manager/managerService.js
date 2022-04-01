@@ -3,7 +3,8 @@ import * as requesterService from '../requester/requesterService';
 const isFailureStatus = (result) => !result || result.status >= 400;
 
 export const getById = async (id) => {
-  const response = await requesterService.getById(id);
+  const times = 1;
+  const response = await requesterService.getById(id, times);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -37,6 +38,29 @@ export const register = async (body) => {
   const response = await requesterService.register(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const createQuizz = async (body) => {
+  const response = await requesterService.createQuizz(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getUsersBySection = async (sections) => {
+  let times = 0;
+  let users = [];
+  let response;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const section of sections) {
+    times = 0;
+    do {
+      response = await requesterService.getUsersBySection(times, section);
+      if (isFailureStatus(response)) throw new Error('Problem with api response');
+      users = users.concat(response.data);
+      times += 1;
+    } while (response.data.length > 0);
+  }
+  return users;
 };
 
 export const registerExternal = async (body) => {
@@ -104,6 +128,39 @@ export const updateAssociate = async (associateId, body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const getQuizzes = async (field, filter) => {
+  let times = 0;
+  let response;
+
+  let allQuizzes = [];
+  do {
+    response = await requesterService.getQuizzes(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allQuizzes = allQuizzes.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allQuizzes;
+};
+
+export const getToVoteQuizzes = async (id, date, field, filter) => {
+  let times = 0;
+  let response;
+  let allQuizzes = [];
+  do {
+    response = await requesterService.getToVoteQuizzes(id, date, times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allQuizzes = allQuizzes.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allQuizzes;
+};
+
+export const updateQuizz = async (id, quizz) => {
+  const response = await requesterService.updateQuizz(id, quizz);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getExternalAssociates = async (field, filter) => {
   let times = 0;
   let response;
@@ -136,6 +193,58 @@ export const uploadFile = async (body) => {
 
 export const createNews = async (body) => {
   const response = await requesterService.createNews(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getAttempts = async (email) => {
+  const response = await requesterService.getAttempts(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createComunic = async (body) => {
+  const response = await requesterService.createComunic(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getNewsById = async (id) => {
+  const response = await requesterService.getNewsById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createAttempt = async (email) => {
+  const response = await requesterService.createAttempt(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const resetAttempts = async (email) => {
+  const response = await requesterService.resetAttempts(email);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateTime = async (email, time) => {
+  const response = await requesterService.updateTime(email, time);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getNews = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allNews = [];
+  do {
+    response = await requesterService.getNews(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allNews = allNews.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allNews;
+};
+export const createActions = async (body) => {
+  const response = await requesterService.createActions(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

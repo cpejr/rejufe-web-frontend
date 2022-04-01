@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MenuLateral.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -29,9 +29,7 @@ const theme = createTheme({
   },
 });
 
-function MenuLateral() {
-  const [selectedButton, setSelectedButton] = useState('Home');
-
+function MenuLateral({ setSelectedButton, selectedButton }) {
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
     ? 'menuSideClickButton'
     : 'menuSideGrupButton');

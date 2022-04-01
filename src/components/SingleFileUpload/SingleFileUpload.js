@@ -85,7 +85,7 @@ function SingleFileUpload({
                   <PictureAsPdfIcon />
                 </div>
               )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados(undefined, id)}>
+            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
               Remover Arquivo
             </Button>
           </div>
