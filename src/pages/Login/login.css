@@ -76,7 +76,7 @@
   padding-left: 10px;
   padding-right: 10px;
 }
-.container-login button {
+.container-login-button {
   background-color: var(--button);
   border: 1px solid var(--button);
   border-radius: 8px;
@@ -96,7 +96,7 @@
   font-family: "Roboto", sans-serif;
   cursor: pointer;
 }
-.container-login button:hover {
+.container-login-button:hover {
   background-color: var(--color1);
 }
 .outlined-basic {
@@ -167,7 +167,7 @@ label {
 }
 
 @media (max-width: 634px) {
-  .container-login button {
+  .container-login-button {
     align-items: center;
     justify-content: center;
     width: 35%;
@@ -190,7 +190,7 @@ label {
   .container-login input {
     height: 23px;
   }
-  .container-login button {
+  .container-login-button {
     font-size: 80%;
     height: 14%;
   }

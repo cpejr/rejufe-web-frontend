@@ -87,8 +87,25 @@ function Header(props) {
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-acoes'),
+      pathName: '/cadastrar-acoes',
+      text: 'Cadastrar',
+    },
+  ];
+  const linksAcoes = [
+    {
+      link: () => handleClick('/consultas'),
+      pathName: '/consultas',
+      text: 'Consultas',
+    },
+    {
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-acoes'),
+      pathName: '/cadastrar-acoes',
       text: 'Cadastrar',
     },
   ];
@@ -161,7 +178,7 @@ function Header(props) {
     },
     {
       text: 'Ações',
-      links: links3,
+      links: linksAcoes,
       icon: <PendingActionsOutlinedIcon />,
     },
     {
