@@ -283,6 +283,14 @@ function TableComponent({
     }
   }
 
+  async function getFileNameById(archiveId) {
+    const response = await managerService.getFileNameById(archiveId);
+    console.log('🚀 ~ file: dashboardComponent.js ~ line 289 ~ getFileNameById ~ response', response);
+    return (
+      <div>{response}</div>
+    );
+  }
+
   return (
     <TableContainer
       component={Paper}
@@ -419,7 +427,7 @@ function TableComponent({
                       <Link
                         onClick={() => getDownloads(archive1Id[index + (page * 10)])}
                       >
-                        {archive1Id[index + (page * 10)]}
+                        {getFileNameById(archive1Id[index + (page * 10)])}
                       </Link>
                     </TableCell>
                   )}

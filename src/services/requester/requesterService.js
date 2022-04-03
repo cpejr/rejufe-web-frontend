@@ -114,3 +114,9 @@ export const updateComunic = (comunicId, body) => httpClient.put(`/informacoes/$
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
+  params: {
+    archiveId,
+  },
+});
