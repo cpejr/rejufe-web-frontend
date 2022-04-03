@@ -16,6 +16,7 @@ const titles = [
 
 function ConsultaMinutes() {
   const [minutes, setAllMinutes] = useState([]);
+  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ minutes', minutes);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +39,13 @@ function ConsultaMinutes() {
           </div>
         ) : (
           <div className="container-consult-minutes">
-            <TableComponent id={id} rows={minutes} titles={titles} print={false} searchMinutes />
+            <TableComponent
+              id={id}
+              rows={minutes}
+              titles={titles}
+              print={false}
+              searchMinutes
+            />
           </div>
         )}
       </div>

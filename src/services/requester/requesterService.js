@@ -132,3 +132,9 @@ export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
 });
 
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
+  params: {
+    archiveId,
+  },
+});
