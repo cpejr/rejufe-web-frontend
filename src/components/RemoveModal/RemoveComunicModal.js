@@ -19,7 +19,7 @@ export default function RejectModal({ id, setUse }) {
       });
       setUse(true);
     } catch (error) {
-      toast.error('Erro ao tentar rejeitar sócio!', {
+      toast.error('Erro ao tentar excluir comunicado/informativo!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
