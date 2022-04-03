@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
@@ -12,6 +13,8 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import { toast } from 'react-toastify';
+import FileSaver from 'file-saver';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
@@ -30,6 +33,9 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import EditMinutesModal from '../EditModal/EditAtasModal';
+import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
+import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -103,7 +109,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, minuteId, edit, editMinute, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -259,6 +265,20 @@ function TableComponent({
     setPage(0);
   };
 
+  function getDownloads(archiveId) {
+    try {
+      managerService.download(archiveId).then((response) => {
+        FileSaver.saveAs(response, id);
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível baixar o arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   return (
     <TableContainer
       component={Paper}
@@ -326,6 +346,15 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : editMinute ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} minutes={row} />
+                      </IconButton>
+                    </TableCell>
                   ) : validate ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="reject">
@@ -380,6 +409,26 @@ function TableComponent({
                     {data}
                   </TableCell>
                 ))}
+                {archive1Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {archive1Id[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {archive2Id[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
               </TableRow>
             ))}
           {emptyRows > 0 && (
