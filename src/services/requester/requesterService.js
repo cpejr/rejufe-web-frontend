@@ -133,3 +133,26 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
 });
 
 export const createActions = (body) => httpClient.post('/acoes', body);
+
+export const getMinute = (times, field, filter) => httpClient.get('/atas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const deleteMinute = (minuteId) => httpClient.delete(`/atas/${minuteId}`);
+
+export const updateMinute = (minuteId, body) => httpClient.put(`/atas/${minuteId}`, body);
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
+  params: {
+    archiveId,
+  },
+});
