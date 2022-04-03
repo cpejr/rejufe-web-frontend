@@ -92,6 +92,18 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
+  const linksModels = [
+    {
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros-modelos',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-modelos'),
+      pathName: '/cadastrar-modelos',
+      text: 'Cadastrar',
+    },
+  ];
   const linksAcoes = [
     {
       link: () => handleClick('/consultas'),
@@ -173,7 +185,7 @@ function Header(props) {
     },
     {
       text: 'Modelos',
-      links: links2,
+      links: linksModels,
       icon: <ArticleOutlinedIcon />,
     },
     {
