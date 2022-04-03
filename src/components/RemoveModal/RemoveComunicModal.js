@@ -37,7 +37,7 @@ export default function RejectModal({ id, setUse }) {
   };
   return (
     <div>
-      <button type="button" className="RemoveModal-RemoveGroup" onClick={handleOpen}>
+      <button type="button" className="RemoveComunicModal-RemoveGroup" onClick={handleOpen}>
         <DeleteIcon style={{ color: 'grey', cursor: 'pointer' }} />
       </button>
       <Modal
@@ -46,22 +46,22 @@ export default function RejectModal({ id, setUse }) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Box className="RemoveModal-ContainerModal">
-          <div className="RemoveModal-text">
-            <div className="RemoveModal-Question">Tem certeza que deseja apagar comunicado?</div>
+        <Box className="RemoveComunicModal-ContainerModal">
+          <div className="RemoveComunicModal-text">
+            <div className="RemoveComunicModal-Question">Tem certeza que deseja apagar comunicado?</div>
           </div>
-          <div className="RemoveModal-Buttons">
-            <div className="RemoveModal-button1">
-              <button type="button" className="RemoveModal-ButtonCancel" onClick={handleClose}>
-                <div className="RemoveModal-align">
+          <div className="RemoveComunicModal-Buttons">
+            <div className="RemoveComunicModal-button1">
+              <button type="button" className="RemoveComunicModal-ButtonCancel" onClick={handleClose}>
+                <div className="RemoveComunicModal-align">
                   <p>Cancelar</p>
                   <span><HighlightOffIcon style={{ color: 'red', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>
               </button>
             </div>
-            <div className="RemoveModal-button2">
+            <div className="RemoveComunicModal-button2">
               <button
-                className="RemoveModal-ButtonConfirm"
+                className="RemoveComunicModal-ButtonConfirm"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSubmit();
@@ -69,7 +69,7 @@ export default function RejectModal({ id, setUse }) {
                 }}
                 type="button"
               >
-                <div className="RemoveModal-align">
+                <div className="RemoveComunicModal-align">
                   <p>Confirmar</p>
                   <span><CheckCircleOutlineIcon size={22} style={{ color: '10c500', cursor: 'pointer', marginLeft: '5px' }} /></span>
                 </div>

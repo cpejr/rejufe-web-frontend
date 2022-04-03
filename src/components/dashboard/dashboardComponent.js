@@ -5,7 +5,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
@@ -114,13 +114,15 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 117 ~ rows', rows);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [fileName, setFileName] = useState();
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
+  const fileNames = [];
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 125 ~ fileNames', fileNames);
 
   const footerProps = {
     sx: matchesFont400px
@@ -283,13 +285,32 @@ function TableComponent({
     }
   }
 
-  async function getFileNameById(archiveId) {
-    const response = await managerService.getFileNameById(archiveId);
-    console.log('🚀 ~ file: dashboardComponent.js ~ line 289 ~ getFileNameById ~ response', response);
-    return (
-      <div>{response}</div>
-    );
+  // async function getFileNameById(archiveId) {
+  //   const response = await managerService.getFileNameById(archiveId);
+  //   return response;
+  // }
+
+  function setFileNameById() {
+    try {
+      archive1Id.forEach((object) => {
+        managerService.getFileNameById(object).then((response) => {
+          console.log('🚀 ~ file: dashboardComponent.js ~ line 296 ~ managerService.getFileNameById ~ response', response);
+          fileNames.push(response);
+          console.log('🚀 ~ file: dashboardComponent.js ~ line 300 ~ managerService.getFileNameById ~ fileNames', fileNames);
+        });
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível pegar o arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
   }
+
+  useEffect(() => {
+    setFileNameById();
+  }, [fileNames]);
 
   return (
     <TableContainer
@@ -427,7 +448,7 @@ function TableComponent({
                       <Link
                         onClick={() => getDownloads(archive1Id[index + (page * 10)])}
                       >
-                        {getFileNameById(archive1Id[index + (page * 10)])}
+                        {fileNames[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
