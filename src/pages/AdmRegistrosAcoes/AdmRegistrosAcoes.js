@@ -44,8 +44,10 @@ function AdmRegistrosAcoes() {
       allComunic.forEach((object) => {
         auxComunic.push(createData(
           object.type,
-          object.date,
+          object.numberAction,
           object.description,
+          object.archive_1,
+          object.archive_2,
         ));
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
@@ -73,12 +75,12 @@ function AdmRegistrosAcoes() {
   const titles = [
     '',
     'Tipo',
-    'Data',
+    'Número',
     'Descrição',
     'Arquivo 1',
     'Arquivo 2',
   ];
-  console.log(archive1Id, archive2Id);
+
   return (
     <div className="container-administration-register">
       <div className="title-adm-registers">

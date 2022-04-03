@@ -21,7 +21,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 450px;
+  height: auto;
   width: 550px;
   border-radius: 6px;
   background-color: white;
@@ -62,7 +62,7 @@
 
 .EditModal-ButtonConfirm {
   display: flex;
-  height: 10%;
+  height: 45px;
   width: 30%;
   font-family: Roboto;
   font-size: 18px;
@@ -81,10 +81,10 @@
 }
 
 .EditModal-Input {
-  margin-bottom: 5%;
+  margin-bottom: 5px;
   margin-top: 1%;
   width: 40%;
-  height: 100%;
+  height: 30px;
   background-color: #f0f0f5;
   box-sizing: border-box;
   border-radius: 6px;
@@ -94,10 +94,10 @@
 }
 
 .EditModal-Select {
-  margin-bottom: 5%;
+  margin-bottom: 5px;
   margin-top: 1%;
   width: 40%;
-  height: 100%;
+  height: 30px;
   background-color: #f0f0f5;
   box-sizing: border-box;
   border-radius: 6px;
@@ -111,16 +111,35 @@
   display: flex;
   align-self: flex-start;
   margin-left: 5%;
+  margin-top: 8px;
   cursor: pointer;
 }
 
 .EditModal-ButtonConfirm:hover {
   background-color: var(--primary);
 }
-
+.EditModal-archive {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-top: 1%;
+  width: 40%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.EditModal-archive-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
 @media (max-width: 695px) {
   .EditModal-ContainerModal {
-    height: 370px;
+    height: auto;
     width: 450px;
   }
 }

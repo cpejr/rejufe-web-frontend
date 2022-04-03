@@ -8,11 +8,26 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import './EditActionModal.css';
+import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
-export default function EditComunicModal({ id, comunic, setUse }) {
+export default function EditActionModal({
+  id,
+  comunic,
+  setUse,
+  archive1,
+  archive2,
+}) {
+  console.log(comunic);
+  const [dados, setDados] = useState({});
   const [comunicNumber, setComunicNumber] = useState(comunic.number);
   const [comunicType, setComunicType] = useState(comunic.type);
+  // eslint-disable-next-line no-unused-vars
   const [comunicDescription, setComunicDescription] = useState(comunic.description);
+  console.log(comunic);
+
+  function handleChange(value, field) {
+    setDados({ ...dados, [field]: value });
+  }
 
   async function handleNumberChange(event) {
     setComunicNumber(event.target.value);
@@ -30,7 +45,7 @@ export default function EditComunicModal({ id, comunic, setUse }) {
     try {
       await managerService.updateAction(
         id,
-        { date: comunicNumber, type: comunicType, description: comunicDescription },
+        { numberAction: comunicNumber, type: comunicType, description: comunicDescription },
       );
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -62,11 +77,11 @@ export default function EditComunicModal({ id, comunic, setUse }) {
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
-          Status:
+          Tipo:
         </div>
         <select className="EditModal-Select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
-          <option value="COMUNICADO">COMUNICADO</option>
-          <option value="INFORMATIVO">INFORMATIVO</option>
+          <option value="ADMINISTRATIVAS">ADMINISTATIVAS</option>
+          <option value="JUDICIAIS">JUDICIAIS</option>
         </select>
       </div>
       <div className="EditModal-field">
@@ -80,6 +95,25 @@ export default function EditComunicModal({ id, comunic, setUse }) {
           Descrição:
         </div>
         <input className="EditModal-Input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
+        <div className="EditModal-archive-container">
+          <div className="EditModal-archive-text">
+            <div className="EditModal-text">
+              Arquivo 1:
+            </div>
+            { }
+            <div className="EditModal-archive">
+              <SingleFileUpload id={archive1} fileType=".pdf" dados={dados} file={archive1} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+            </div>
+          </div>
+          <div className="EditModal-archive-text">
+            <div className="EditModal-text">
+              Arquivo 2:
+            </div>
+            <div className="EditModal-archive">
+              <SingleFileUpload id={archive2} action={comunic} fileType=".pdf" dados={dados} file={archive2} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+            </div>
+          </div>
+        </div>
       </div>
       <button
         className="EditModal-ButtonConfirm"

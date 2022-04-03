@@ -143,6 +143,8 @@ export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`
 
 export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
 
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
+
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });

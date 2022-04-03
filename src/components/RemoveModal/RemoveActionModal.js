@@ -13,13 +13,13 @@ export default function RejectModal({ id, setUse }) {
   async function handleSubmit() {
     try {
       await managerService.deleteAction(id);
-      toast.success('Comunicado Excluído!', {
+      toast.success('Ação Excluída!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
       setUse(true);
     } catch (error) {
-      toast.error('Erro ao tentar rejeitar sócio!', {
+      toast.error('Erro ao tentar deletar ação!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -48,7 +48,7 @@ export default function RejectModal({ id, setUse }) {
       >
         <Box className="RemoveModal-ContainerModal">
           <div className="RemoveModal-text">
-            <div className="RemoveModal-Question">Tem certeza que deseja apagar comunicado?</div>
+            <div className="RemoveModal-Question">Tem certeza que deseja apagar a ação?</div>
           </div>
           <div className="RemoveModal-Buttons">
             <div className="RemoveModal-button1">
