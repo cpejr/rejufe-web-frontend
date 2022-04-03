@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';

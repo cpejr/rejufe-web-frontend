@@ -284,7 +284,6 @@ function TableComponent({
   function setFileNameById() {
     try {
       const aux1 = fileNames1;
-      const aux2 = fileNames2;
       if (fileNames1.length === 0 && archive1Id) {
         archive1Id?.forEach((_id, index) => {
           managerService.getFileNameById(_id).then((response) => {
@@ -293,6 +292,18 @@ function TableComponent({
           });
         });
       }
+    } catch (error) {
+      console.error(error);
+      toast.error('Não foi possível obter o nome do arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  function setFileNameById2() {
+    try {
+      const aux2 = fileNames2;
       if (fileNames2.length === 0 && archive2Id) {
         archive2Id?.forEach((_id, index) => {
           managerService.getFileNameById(_id).then((response) => {
@@ -311,10 +322,16 @@ function TableComponent({
   }
 
   useEffect(() => {
-    if (archive1Id || archive2Id) {
+    if (archive1Id) {
       setFileNameById();
     }
-  }, [archive1Id, archive2Id]);
+  }, [archive1Id]);
+
+  useEffect(() => {
+    if (archive2Id) {
+      setFileNameById2();
+    }
+  }, [archive2Id]);
 
   return (
     <TableContainer
