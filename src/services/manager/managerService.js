@@ -277,3 +277,9 @@ export const download = async (id) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getFileNameById = async (id) => {
+  const response = await requesterService.getFileNameById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

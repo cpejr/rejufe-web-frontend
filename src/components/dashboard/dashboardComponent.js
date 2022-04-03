@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
@@ -112,6 +112,8 @@ function TableComponent({
   titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, minuteId, edit, editMinute, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
+  const [fileNames1, setFileNames1] = useState([]);
+  const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -278,6 +280,57 @@ function TableComponent({
       });
     }
   }
+  function setFileNameById() {
+    try {
+      const aux1 = fileNames1;
+      if (fileNames1.length === 0 && archive1Id) {
+        archive1Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            aux1.splice(index, 0, response);
+            setFileNames1(aux1);
+          });
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Não foi possível obter o nome do arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  function setFileNameById2() {
+    try {
+      const aux2 = fileNames2;
+      if (fileNames2.length === 0 && archive2Id) {
+        archive2Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            aux2.splice(index, 0, response);
+            setFileNames2(aux2);
+          });
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Não foi possível obter o nome do arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (archive1Id) {
+      setFileNameById();
+    }
+  }, [archive1Id]);
+
+  useEffect(() => {
+    if (archive2Id) {
+      setFileNameById2();
+    }
+  }, [archive2Id]);
 
   return (
     <TableContainer
@@ -415,7 +468,7 @@ function TableComponent({
                       <Link
                         onClick={() => getDownloads(archive1Id[index + (page * 10)])}
                       >
-                        {archive1Id[index + (page * 10)]}
+                        {fileNames1[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
@@ -425,7 +478,7 @@ function TableComponent({
                       <Link
                         onClick={() => getDownloads(archive2Id[index + (page * 10)])}
                       >
-                        {archive2Id[index + (page * 10)]}
+                        {fileNames2[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
