@@ -115,14 +115,12 @@ function TableComponent({
   titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
+  const [fileNames, setFileNames] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  // const [fileName, setFileName] = useState();
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
-  const fileNames = [];
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 125 ~ fileNames', fileNames);
 
   const footerProps = {
     sx: matchesFont400px
@@ -277,13 +275,15 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
   }
+
+  // console.log('🚀 ~ file: dashboardComponent.js ~ line 300 ~ managerService.getFileNameById ~ fileNames', fileNames);
 
   // async function getFileNameById(archiveId) {
   //   const response = await managerService.getFileNameById(archiveId);
@@ -292,16 +292,16 @@ function TableComponent({
 
   function setFileNameById() {
     try {
-      archive1Id.forEach((object) => {
+      const aux = fileNames;
+      archive1Id?.forEach((object, i) => {
         managerService.getFileNameById(object).then((response) => {
-          console.log('🚀 ~ file: dashboardComponent.js ~ line 296 ~ managerService.getFileNameById ~ response', response);
-          fileNames.push(response);
-          console.log('🚀 ~ file: dashboardComponent.js ~ line 300 ~ managerService.getFileNameById ~ fileNames', fileNames);
+          aux.splice(i, 0, response);
+          setFileNames(aux);
         });
       });
     } catch (error) {
-      console.log(error);
-      toast.error('Não foi possível pegar o arquivo', {
+      console.error(error);
+      toast.error('Não foi possível obter o nome do arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
@@ -309,8 +309,10 @@ function TableComponent({
   }
 
   useEffect(() => {
-    setFileNameById();
-  }, [fileNames]);
+    if (fileNames.length === 0 && archive1Id) {
+      setFileNameById();
+    }
+  }, [archive1Id]);
 
   return (
     <TableContainer
