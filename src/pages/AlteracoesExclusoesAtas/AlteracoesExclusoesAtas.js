@@ -39,7 +39,6 @@ function AlteracoesExclusoesMinutes() {
     try {
       const allMinutes = await managerService.getMinute();
       allMinutes.forEach((object) => {
-        console.log('🚀 ~ file: AlteracoesExclusoesAtas.js ~ line 42 ~ allMinutes.forEach ~ object', object);
         auxMinute.push(createData(
           object.type,
           object.number,
