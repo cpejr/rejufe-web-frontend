@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
@@ -109,7 +108,25 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable,
+  titles,
+  rows,
+  id,
+  sequentialId,
+  order,
+  setUse,
+  archive1Id,
+  archive2Id,
+  associateId,
+  comunicId,
+  edit,
+  editComunic,
+  search,
+  searchFile,
+  validate,
+  dados,
+  newsSequentialId,
+  renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -415,7 +432,12 @@ function TableComponent({
                         <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="accept">
-                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
+                        <AcceptModal
+                          setUse={setUse}
+                          dados={dados[index + (page * 10)]}
+                          id={associateId[index + (page * 10)]}
+                          associate={row}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (
