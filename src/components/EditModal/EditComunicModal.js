@@ -53,36 +53,36 @@ export default function EditComunicModal({ id, comunic, setUse }) {
   };
 
   const body = (
-    <Box className="EditModal-ContainerModal">
-      <div role="button" tabIndex={0} className="EditModal-cancel" onClick={handleClose}>
+    <Box className="EditComunicModal-ContainerModal">
+      <div role="button" tabIndex={0} className="EditComunicModal-cancel" onClick={handleClose}>
         <CancelIcon />
       </div>
-      <div className="EditModal-Title">
+      <div className="EditComunicModal-Title">
         <p>Editar dados</p>
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
+      <div className="EditComunicModal-field">
+        <div className="EditComunicModal-text">
           Status:
         </div>
-        <select className="EditModal-Select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
+        <select className="EditComunicModal-Select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
           <option value="COMUNICADO">COMUNICADO</option>
           <option value="INFORMATIVO">INFORMATIVO</option>
         </select>
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
+      <div className="EditComunicModal-field">
+        <div className="EditComunicModal-text">
           Número:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={comunicNumber} onChange={handleNumberChange} />
+        <input className="EditComunicModal-Input" placeholder="" require value={comunicNumber} onChange={handleNumberChange} />
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
+      <div className="EditComunicModal-field">
+        <div className="EditComunicModal-text">
           Descrição:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
+        <input className="EditComunicModal-Input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
       </div>
       <button
-        className="EditModal-ButtonConfirm"
+        className="EditComunicModal-ButtonConfirm"
         onClick={(e) => {
           e.preventDefault();
           handleSubmit();
@@ -96,7 +96,7 @@ export default function EditComunicModal({ id, comunic, setUse }) {
   );
   return (
     <div>
-      <button type="button" className="EditModal-EditGroup" onClick={handleOpen}>
+      <button type="button" className="EditComunicModal-EditGroup" onClick={handleOpen}>
         <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
