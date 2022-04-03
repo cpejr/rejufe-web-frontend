@@ -5,7 +5,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
@@ -285,6 +285,33 @@ function TableComponent({
       });
     }
   }
+  // const fileNames = [];
+  // function setFileNameById() {
+  //   try {
+  //     archive1Id?.forEach((object) => {
+  //       console.log(object);
+  //       const response = managerService.getFileNameById(object);
+  //       console.log('🚀 ~ file: dashboardComponent.js ~ line 294 ~ archive1Id.forEach ~ response', response);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error('Não foi possível pegar o arquivo', {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //       autoClose: 5000,
+  //     });
+  //   }
+  // }
+
+  async function getFileNameById(archiveId) {
+    const response = await managerService.getFileNameById(archiveId);
+    console.log('🚀 ~ file: dashboardComponent.js ~ line 289 ~ getFileNameById ~ response', response);
+    return (
+      <div>{response}</div>
+    );
+  }
+  useEffect(() => {
+    getFileNameById('61e96e4537ad45c9ecdbb39');
+  }, []);
   return (
     <TableContainer
       component={Paper}

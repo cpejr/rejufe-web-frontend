@@ -17,13 +17,11 @@ export default function EditActionModal({
   archive1,
   archive2,
 }) {
-  console.log(comunic);
   const [dados, setDados] = useState({});
   const [comunicNumber, setComunicNumber] = useState(comunic.number);
   const [comunicType, setComunicType] = useState(comunic.type);
   // eslint-disable-next-line no-unused-vars
   const [comunicDescription, setComunicDescription] = useState(comunic.description);
-  console.log(comunic);
 
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });

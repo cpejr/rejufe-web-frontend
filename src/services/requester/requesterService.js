@@ -150,3 +150,9 @@ export const download = (id) => httpClient.get(`/arquivos/${id}`, {
 });
 
 export const createActions = (body) => httpClient.post('/acoes', body);
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById/', {
+  params: {
+    archiveId,
+  },
+});

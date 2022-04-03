@@ -261,7 +261,6 @@ export const getActions = async (field, filter) => {
   let allActions = [];
   do {
     response = await requesterService.getActions(times, field, filter);
-    console.log('🚀 ~ file: managerService.js ~ line 254 ~ getActions ~ response', response);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allActions = allActions.concat(response.data);
     times += 1;
@@ -281,6 +280,14 @@ export const updateAction = async (actionId, body) => {
 
 export const download = async (id) => {
   const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getFileNameById = async (id) => {
+  console.log('🚀 ~ file: managerService.js ~ line 288 ~ getFileNameById ~ id', id);
+  const response = await requesterService.getFileNameById(id);
+  console.log('🚀 ~ file: managerService.js ~ line 292 ~ getFileNameById ~ response.data', response.data, 'titit');
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
