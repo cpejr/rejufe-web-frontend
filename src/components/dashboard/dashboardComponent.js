@@ -115,7 +115,8 @@ function TableComponent({
   titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, comunicId, edit, editComunic, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
-  const [fileNames, setFileNames] = useState([]);
+  const [fileNames1, setFileNames1] = useState([]);
+  const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -283,22 +284,26 @@ function TableComponent({
     }
   }
 
-  // console.log('🚀 ~ file: dashboardComponent.js ~ line 300 ~ managerService.getFileNameById ~ fileNames', fileNames);
-
-  // async function getFileNameById(archiveId) {
-  //   const response = await managerService.getFileNameById(archiveId);
-  //   return response;
-  // }
-
   function setFileNameById() {
     try {
-      const aux = fileNames;
-      archive1Id?.forEach((object, i) => {
-        managerService.getFileNameById(object).then((response) => {
-          aux.splice(i, 0, response);
-          setFileNames(aux);
+      const aux1 = fileNames1;
+      const aux2 = fileNames2;
+      if (fileNames1.length === 0 && archive1Id) {
+        archive1Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            aux1.splice(index, 0, response);
+            setFileNames1(aux1);
+          });
         });
-      });
+      }
+      if (fileNames2.length === 0 && archive2Id) {
+        archive2Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            aux2.splice(index, 0, response);
+            setFileNames2(aux2);
+          });
+        });
+      }
     } catch (error) {
       console.error(error);
       toast.error('Não foi possível obter o nome do arquivo', {
@@ -309,10 +314,10 @@ function TableComponent({
   }
 
   useEffect(() => {
-    if (fileNames.length === 0 && archive1Id) {
+    if (archive1Id || archive2Id) {
       setFileNameById();
     }
-  }, [archive1Id]);
+  }, [archive1Id, archive2Id]);
 
   return (
     <TableContainer
@@ -450,7 +455,7 @@ function TableComponent({
                       <Link
                         onClick={() => getDownloads(archive1Id[index + (page * 10)])}
                       >
-                        {fileNames[index + (page * 10)]}
+                        {fileNames1[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
@@ -460,7 +465,7 @@ function TableComponent({
                       <Link
                         onClick={() => getDownloads(archive2Id[index + (page * 10)])}
                       >
-                        {archive2Id[index + (page * 10)]}
+                        {fileNames2[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
