@@ -2,7 +2,7 @@ import modelsTypes from '../consts/modelsType';
 
 const formsModels = [
   {
-    title: 'Cadastro de Notícia',
+    title: 'Cadastro de Modelos',
     items: [
       {
         type: 'text',
