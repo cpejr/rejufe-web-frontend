@@ -49,8 +49,12 @@ function AdmRegistrosAcoes() {
           object.archive_1,
           object.archive_2,
         ));
-        archive1Code.push(object.archive_1);
-        archive2Code.push(object.archive_2);
+        if (object.archive_1 !== '') {
+          archive1Code.push(object.archive_1);
+        }
+        if (object.archive_2 !== '') {
+          archive2Code.push(object.archive_2);
+        }
       });
       allComunic.forEach((object) => {
         comunicId.push(createId(
