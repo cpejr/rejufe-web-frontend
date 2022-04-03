@@ -24,21 +24,21 @@ function ConsultaMinutes() {
   }, []);
 
   return (
-    <div className="consult-atas-page">
-      <div className="consult-atas-field">
-        <div className="title-consult-atas">
+    <div className="consult-minutes-page">
+      <div className="consult-minutes-field">
+        <div className="title-consult-minutes">
           <h1>
             {'Consulta em Atas e Editais '}
           </h1>
         </div>
-        <div className="line-table-consult-atas" />
+        <div className="line-table-consult-minutes" />
         {loading ? (
-          <div className="loader-consult-atas">
+          <div className="loader-consult-minutes">
             <CircularProgress />
           </div>
         ) : (
-          <div className="container-consult-atas">
-            <TableComponent id={id} rows={minutes} titles={titles} print={false} searchAtas />
+          <div className="container-consult-minutes">
+            <TableComponent id={id} rows={minutes} titles={titles} print={false} searchMinutes />
           </div>
         )}
       </div>

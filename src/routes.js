@@ -18,13 +18,12 @@ import AdmRegistrosComunic from './pages/AdmRegistrosComunic';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import ValidarSocio from './pages/ValidarSocio';
 import Editais from './pages/Editais';
-import Atas from './pages/Atas';
 import AlteracoesExclusoes from './pages/AlteracoesExclusoes';
 import ModuloUsuarios from './pages/ModuloUsuarios';
 import ConsultaAssociados from './pages/ConsultaAssociados';
-import ConsultasAtas from './pages/ConsultasAtas';
+import ConsultasMinutes from './pages/ConsultasAtas';
 import FichaAssociados from './pages/FichaAssociados';
-import FichaAtas from './pages/FichaAtas';
+import FichaMinutes from './pages/FichaAtas';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
@@ -44,14 +43,13 @@ export function UserHeader() {
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/consulta-associados" component={ConsultaAssociados} type="administrador" />
-        <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasAtas} type="administrador" />
+        <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
-        <PrivateRoute path="/ficha-atas" component={FichaAtas} type="administrador" />
+        <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
-        <PrivateRoute path="/atas" component={Atas} type="administrador" />
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
         <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />

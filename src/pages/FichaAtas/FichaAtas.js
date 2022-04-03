@@ -6,7 +6,7 @@ import getMinutesById from '../../components/getAtasById/getAtasById';
 
 function FichaMinutes() {
   const { search } = useLocation();
-  const minutesId = new URLSearchParams(search).get('minutesId');
+  const minutesId = new URLSearchParams(search).get('atasId');
   const [minutes, setMinutes] = useState([]);
 
   useEffect(() => {
@@ -14,19 +14,19 @@ function FichaMinutes() {
   }, []);
 
   return (
-    <body className="forms-atas-body">
-      <div className="forms-atas-Container">
-        <table className="forms-atas-table-container">
-          <div className="forms-atas-grid-container">
+    <body className="forms-minutes-body">
+      <div className="forms-minutes-Container">
+        <table className="forms-minutes-table-container">
+          <div className="forms-minutes-grid-container">
             <table width="100%">
               <tr>
-                <td className="forms-atas-td-container">
-                  <table className="forms-atas-t-container">
+                <td className="forms-minutes-td-container">
+                  <table className="forms-minutes-t-container">
                     {fichaMinutes?.map((ficha) => (
-                      <table className="forms-atas-t-container">
+                      <table className="forms-minutes-t-container">
                         <table width="100%">
-                          <div className="forms-atas-title">
-                            <td className="forms-atas-td-title">
+                          <div className="forms-minutes-title">
+                            <td className="forms-minutes-td-title">
                               {ficha.title}
                             </td>
                           </div>
@@ -35,14 +35,14 @@ function FichaMinutes() {
                           <table width="100%">
                             <tr>
                               {line?.items.map((item) => (
-                                <div className="forms-atas-td-box">
-                                  <span className="forms-atas-subtitle">
+                                <div className="forms-minutes-td-box">
+                                  <span className="forms-minutes-subtitle">
                                     {' '}
                                     {item.label}
                                     {' '}
                                   </span>
                                   <br />
-                                  <span className="forms-atas-value">
+                                  <span className="forms-minutes-value">
                                     {' '}
                                     {minutes[item.id]}
                                     {' '}
@@ -56,7 +56,7 @@ function FichaMinutes() {
                     ))}
                     <table width="100%">
                       <tr>
-                        <td className="forms-atas-td-title" height="25px" />
+                        <td className="forms-minutes-td-title" height="25px" />
                       </tr>
                     </table>
                   </table>

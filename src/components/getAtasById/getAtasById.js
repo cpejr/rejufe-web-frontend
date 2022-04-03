@@ -12,7 +12,7 @@ const routingFunction = (param) => {
 
 async function getMinutesById(minutesId, setMinutes) {
   try {
-    const response = await managerService.getAtasById(minutesId);
+    const response = await managerService.getMinutesById(minutesId);
     const minutes = {
       number: response.number,
       type: response.type,

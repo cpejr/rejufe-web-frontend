@@ -11,7 +11,7 @@ async function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
   const auxMinutes = [];
   const minutesId = [];
   try {
-    const allMinutes = await managerService.getAtas();
+    const allMinutes = await managerService.getMinutes();
 
     allMinutes.forEach((object) => {
       minutesId.push(object._id);

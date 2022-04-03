@@ -225,27 +225,27 @@ export const getNews = async (field, filter) => {
   return allNews;
 };
 
-export const createAtas = async (body) => {
-  const response = await requesterService.createAtas(body);
+export const createMinutes = async (body) => {
+  const response = await requesterService.createMinutes(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
 
-export const getAtas = async (field, filter) => {
+export const getMinutes = async (field, filter) => {
   let times = 0;
   let response;
-  let allAtas = [];
+  let allMinutes = [];
   do {
-    response = await requesterService.getAtas(times, field, filter);
+    response = await requesterService.getMinutes(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allAtas = allAtas.concat(response.data);
+    allMinutes = allMinutes.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allAtas;
+  return allMinutes;
 };
 
-export const getAtasById = async (id) => {
-  const response = await requesterService.getAtasById(id);
+export const getMinutesById = async (id) => {
+  const response = await requesterService.getMinutesById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

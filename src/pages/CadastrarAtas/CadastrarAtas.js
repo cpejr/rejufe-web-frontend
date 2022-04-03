@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import formsMinutes from '../../components/formsData/formsAtas';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
-import { initialAtasState, initialAtasErrorState } from '../../components/initialStates/initialStates';
+import { initialMinutesState, initialMinutesErrorState } from '../../components/initialStates/initialStates';
 import checkMinutesData from '../../components/checkData/checkAtasData/checkAtasData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarAtas.css';
@@ -15,9 +15,9 @@ import './CadastrarAtas.css';
 toast.configure();
 
 function CadastrarMinutes() {
-  const [initialErrorState, setError] = useState(initialAtasErrorState);
+  const [initialErrorState, setError] = useState(initialMinutesErrorState);
   const [loading, setLoading] = useState(false);
-  const [dados, setDados] = useState(initialAtasState);
+  const [dados, setDados] = useState(initialMinutesState);
   const history = useHistory();
 
   function handleChange(value, field) {
@@ -53,7 +53,7 @@ function CadastrarMinutes() {
     }
 
     try {
-      await managerService.createAtas(formData);
+      await managerService.createMinutes(formData);
       toast.success('Atas/Edital criado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -71,11 +71,11 @@ function CadastrarMinutes() {
   }
 
   return (
-    <div className="register-atas-container">
-      <h1 className="register-atas-title"><div className="register-atas-text-margin">Cadastro de Atas/Editais</div></h1>
+    <div className="register-minutes-container">
+      <h1 className="register-minutes-title"><div className="register-minutes-text-margin">Cadastro de Atas/Editais</div></h1>
       {formsMinutes?.map((line) => (
         <Box>
-          <div className="register-atas-text-field">
+          <div className="register-minutes-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
@@ -94,7 +94,7 @@ function CadastrarMinutes() {
           </div>
         </Box>
       ))}
-      <LoadingButton className="register-atas-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Atas/Edital</LoadingButton>
+      <LoadingButton className="register-minutes-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Atas/Edital</LoadingButton>
     </div>
   );
 }

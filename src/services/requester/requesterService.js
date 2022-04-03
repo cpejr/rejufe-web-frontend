@@ -120,9 +120,9 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
 
 });
 
-export const createAtas = (body) => httpClient.post('/atas', body);
+export const createMinutes = (body) => httpClient.post('/atas', body);
 
-export const getAtas = (times, field, filter) => httpClient.get('/atas', {
+export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
   params: {
     times,
     field,
@@ -131,4 +131,4 @@ export const getAtas = (times, field, filter) => httpClient.get('/atas', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
-export const getAtasById = (atasId) => httpClient.get(`/atas/${atasId}`);
+export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
