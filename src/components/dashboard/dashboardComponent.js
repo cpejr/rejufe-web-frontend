@@ -117,6 +117,7 @@ function TableComponent({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
+  const [fileNames1, setFileNames1] = useState([]);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -282,32 +283,34 @@ function TableComponent({
       });
     }
   }
-  // const fileNames = [];
-  // function setFileNameById() {
-  //   try {
-  //     archive1Id?.forEach((object) => {
-  //       console.log(object);
-  //       const response = managerService.getFileNameById(object);
-  //       console.log('🚀 ~ file: dashboardComponent.js ~ line 294 ~ archive1Id.forEach ~ response', response);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error('Não foi possível pegar o arquivo', {
-  //       position: toast.POSITION.BOTTOM_RIGHT,
-  //       autoClose: 5000,
-  //     });
-  //   }
-  // }
-
-  async function getFileNameById(archiveId) {
-    const response = await managerService.getFileNameById(archiveId);
-    return (
-      <div>{response}</div>
-    );
+  function setFileNameById() {
+    try {
+      const aux1 = fileNames1;
+      if (fileNames1.length === 0 && archive1Id) {
+        console.log('alo');
+        archive1Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            console.log('🚀 ~ file: dashboardComponent.js ~ line 308 ~ managerService.getFileNameById ~ response', response);
+            aux1.splice(index, 0, response);
+            setFileNames1(aux1);
+          });
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Não foi possível obter o nome do arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
   }
+
   useEffect(() => {
-    getFileNameById('61e96e4537ad45c9ecdbb39');
-  }, []);
+    if (archive1Id) {
+      setFileNameById();
+    }
+  }, [archive1Id]);
+
   return (
     <TableContainer
       component={Paper}
@@ -445,20 +448,10 @@ function TableComponent({
                         to="/#"
                         onClick={() => getDownloads(archive1Id[index + (page * 10)])}
                       >
-                        {archive1Id[index + (page * 10)]}
+                        {fileNames1[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
-                {/* {archive2Id
-                  && (
-                    <TableCell>
-                      <Link
-                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
-                      >
-                        {archive2Id[index + (page * 10)]}
-                      </Link>
-                    </TableCell>
-                  )} */}
               </TableRow>
             ))}
           {emptyRows > 0 && (

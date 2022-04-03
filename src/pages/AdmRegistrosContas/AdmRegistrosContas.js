@@ -48,7 +48,9 @@ function AdmRegistrosContas() {
           object.title,
           object.description,
         ));
-        archive1Code.push(object.pdf);
+        if (object.pdf !== '') {
+          archive1Code.push(object.pdf);
+        }
       });
       allComunic.forEach((object) => {
         comunicId.push(createId(
