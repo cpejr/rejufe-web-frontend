@@ -248,3 +248,42 @@ export const createActions = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const getAccounts = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getAccounts(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length === 0);
+  return allActions;
+};
+
+export const deleteAccount = async (actionId) => {
+  const response = await requesterService.deleteAccount(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAccount = async (actionId, body) => {
+  const response = await requesterService.updateAccount(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getFileNameById = async (id) => {
+  const response = await requesterService.getFileNameById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+export const getImageById = async (id) => {
+  const response = await requesterService.getImageById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

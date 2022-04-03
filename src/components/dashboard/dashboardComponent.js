@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,6 +36,9 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
+import EditAccountModal from '../EditModal/EditAccountModal';
+import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -103,10 +112,11 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, associateId, actionId, edit, editAccount, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const actualArchive1 = { ...archive1Id };
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -259,6 +269,45 @@ function TableComponent({
     setPage(0);
   };
 
+  function getDownloads(archiveId) {
+    try {
+      managerService.download(archiveId).then((response) => {
+        FileSaver.saveAs(response, id);
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível baixar o arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+  // const fileNames = [];
+  // function setFileNameById() {
+  //   try {
+  //     archive1Id?.forEach((object) => {
+  //       console.log(object);
+  //       const response = managerService.getFileNameById(object);
+  //       console.log('🚀 ~ file: dashboardComponent.js ~ line 294 ~ archive1Id.forEach ~ response', response);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error('Não foi possível pegar o arquivo', {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //       autoClose: 5000,
+  //     });
+  //   }
+  // }
+
+  async function getFileNameById(archiveId) {
+    const response = await managerService.getFileNameById(archiveId);
+    return (
+      <div>{response}</div>
+    );
+  }
+  useEffect(() => {
+    getFileNameById('61e96e4537ad45c9ecdbb39');
+  }, []);
   return (
     <TableContainer
       component={Paper}
@@ -326,6 +375,15 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : editAccount ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveAccountModal setUse={setUse} id={actionId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditAccountModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} archive1={actualArchive1[index + (page * 10)]} />
+                      </IconButton>
+                    </TableCell>
                   ) : validate ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="reject">
@@ -380,6 +438,27 @@ function TableComponent({
                     {data}
                   </TableCell>
                 ))}
+                {archive1Id
+                  && (
+                    <TableCell>
+                      <Link
+                        to="/#"
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {archive1Id[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {/* {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {archive2Id[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )} */}
               </TableRow>
             ))}
           {emptyRows > 0 && (

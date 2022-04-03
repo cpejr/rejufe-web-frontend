@@ -91,7 +91,7 @@ export const getExternalAssociates = (times, field, filter) => httpClient.get('/
 
 export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);
 
-export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
+export const getFileById = (id) => httpClient.get(`/arquivos/${id}`);
 
 export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
@@ -133,3 +133,27 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
 });
 
 export const createActions = (body) => httpClient.post('/acoes', body);
+
+export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const deleteAccount = (actionId) => httpClient.delete(`/prestacaodecontas/${actionId}`);
+
+export const updateAccount = (actionId, body) => httpClient.put(`/prestacaodecontas/${actionId}`, body);
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
+  params: {
+    archiveId,
+  },
+});
+
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
