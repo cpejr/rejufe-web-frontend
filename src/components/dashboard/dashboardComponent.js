@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/button-has-type */
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
@@ -112,14 +108,30 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, actionId, edit, editActions, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable,
+  titles,
+  rows,
+  id,
+  sequentialId,
+  order,
+  setUse,
+  archive1Id,
+  archive2Id,
+  associateId,
+  actionId,
+  edit,
+  editActions,
+  search,
+  searchFile,
+  validate,
+  dados,
+  newsSequentialId,
+  renderButton,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
-  const actualArchive1 = { ...archive1Id };
-  const actualArchive2 = { ...archive2Id };
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -278,7 +290,7 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -337,6 +349,7 @@ function TableComponent({
       setFileNameById2();
     }
   }, [archive2Id]);
+
   return (
     <TableContainer
       component={Paper}
@@ -410,7 +423,7 @@ function TableComponent({
                         <RemoveActionModal setUse={setUse} id={actionId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditActionModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} archive1={actualArchive1[index + (page * 10)]} archive2={actualArchive2[index + (page * 10)]} />
+                        <EditActionModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (
@@ -419,7 +432,12 @@ function TableComponent({
                         <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="accept">
-                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
+                        <AcceptModal
+                          setUse={setUse}
+                          dados={dados[index + (page * 10)]}
+                          id={associateId[index + (page * 10)]}
+                          associate={row}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (
