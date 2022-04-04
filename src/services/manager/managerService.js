@@ -285,9 +285,7 @@ export const download = async (id) => {
 };
 
 export const getFileNameById = async (id) => {
-  console.log('🚀 ~ file: managerService.js ~ line 288 ~ getFileNameById ~ id', id);
   const response = await requesterService.getFileNameById(id);
-  console.log('🚀 ~ file: managerService.js ~ line 292 ~ getFileNameById ~ response.data', response.data, 'titit');
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

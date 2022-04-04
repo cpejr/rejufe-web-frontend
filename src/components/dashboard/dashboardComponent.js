@@ -425,7 +425,13 @@ function TableComponent({
                         <RemoveActionModal setUse={setUse} id={actionId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditActionModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} archive1={actualArchive1[index + (page * 10)]} archive2={actualArchive2[index + (page * 10)]} />
+                        <EditActionModal
+                          setUse={setUse}
+                          id={actionId[index + (page * 10)]}
+                          action={row}
+                          archive1={actualArchive1[index + (page * 10)]}
+                          archive2={actualArchive2[index + (page * 10)]}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (

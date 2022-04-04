@@ -12,38 +12,38 @@ import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
 export default function EditActionModal({
   id,
-  comunic,
+  action,
   setUse,
   archive1,
   archive2,
 }) {
   const [dados, setDados] = useState({});
-  const [comunicNumber, setComunicNumber] = useState(comunic.number);
-  const [comunicType, setComunicType] = useState(comunic.type);
+  const [actionNumber, setActionNumber] = useState(action.number);
+  const [actionType, setActionType] = useState(action.type);
   // eslint-disable-next-line no-unused-vars
-  const [comunicDescription, setComunicDescription] = useState(comunic.description);
+  const [actionDescription, setActionDescription] = useState(action.description);
 
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
 
   async function handleNumberChange(event) {
-    setComunicNumber(event.target.value);
+    setActionNumber(event.target.value);
   }
 
   async function handleTypeChange(event) {
-    setComunicType(event.target.value);
+    setActionType(event.target.value);
   }
 
   async function handleDescriptionChange(event) {
-    setComunicDescription(event.target.value);
+    setActionDescription(event.target.value);
   }
 
   async function handleSubmit() {
     try {
       await managerService.updateAction(
         id,
-        { numberAction: comunicNumber, type: comunicType, description: comunicDescription },
+        { numberAction: actionNumber, type: actionType, description: actionDescription },
       );
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -77,7 +77,7 @@ export default function EditActionModal({
         <div className="EditModal-text">
           Tipo:
         </div>
-        <select className="EditModal-Select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
+        <select className="EditModal-Select" placeholder="" require value={actionType} onChange={handleTypeChange}>
           <option value="ADMINISTRATIVAS">ADMINISTATIVAS</option>
           <option value="JUDICIAIS">JUDICIAIS</option>
         </select>
@@ -86,13 +86,13 @@ export default function EditActionModal({
         <div className="EditModal-text">
           Número:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={comunicNumber} onChange={handleNumberChange} />
+        <input className="EditModal-Input" placeholder="" require value={actionNumber} onChange={handleNumberChange} />
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
           Descrição:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
+        <input className="EditModal-Input" placeholder="" require value={actionDescription} onChange={handleDescriptionChange} />
         <div className="EditModal-archive-container">
           <div className="EditModal-archive-text">
             <div className="EditModal-text">
@@ -108,7 +108,7 @@ export default function EditActionModal({
               Arquivo 2:
             </div>
             <div className="EditModal-archive">
-              <SingleFileUpload id={archive2} action={comunic} fileType=".pdf" dados={dados} file={archive2} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+              <SingleFileUpload id={archive2} action={action} fileType=".pdf" dados={dados} file={archive2} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
             </div>
           </div>
         </div>

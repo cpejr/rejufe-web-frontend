@@ -29,12 +29,10 @@ const useStyles = makeStyles((theme) => ({
 function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update,
 }) {
-  console.log('🚀 ~ file: SingleFileUpload.js ~ line 32 ~ file', file);
   const classes = useStyles();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
-  console.log(id);
 
   async function getFile() {
     try {

@@ -13,10 +13,9 @@ import TableComponent from '../../components/dashboard/dashboardComponent';
 toast.configure();
 
 function AdmRegistrosAcoes() {
-  const [comunics, setAllComunics] = useState([]);
+  const [action, setAllActions] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
-  const [actualFile, setActualFile] = useState();
   const [fileId, setFileId] = useState();
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
@@ -32,19 +31,17 @@ function AdmRegistrosAcoes() {
   }
 
   async function getAllComunic() {
-    const auxComunic = [];
-    const comunicId = [];
+    const auxAction = [];
+    const actionId = [];
     const archive1Code = [];
     const archive2Code = [];
     try {
       const allComunic = await managerService.getActions();
       allComunic.forEach((object) => {
-        auxComunic.push(createData(
+        auxAction.push(createData(
           object.type,
           object.numberAction,
           object.description,
-          object.archive_1,
-          object.archive_2,
         ));
         if (object.archive_1 !== '') {
           archive1Code.push(object.archive_1);
@@ -54,13 +51,13 @@ function AdmRegistrosAcoes() {
         }
       });
       allComunic.forEach((object) => {
-        comunicId.push(createId(
+        actionId.push(createId(
           object._id,
         ));
       });
-      auxComunic.sort();
-      setId(comunicId);
-      setAllComunics(auxComunic);
+      auxAction.sort();
+      setId(actionId);
+      setAllActions(auxAction);
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
       setUse(false);
@@ -90,7 +87,7 @@ function AdmRegistrosAcoes() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} actionId={id} rows={comunics} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} editActions />
+      <TableComponent setUse={setUse} actionId={id} rows={action} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} editActions />
     </div>
   );
 }
