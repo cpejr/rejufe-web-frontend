@@ -32,15 +32,12 @@ function AdmRegistrosAcoes() {
   }
 
   async function getAllComunic() {
-    console.log('ali');
     const auxComunic = [];
     const comunicId = [];
     const archive1Code = [];
     const archive2Code = [];
     try {
-      console.log('alo');
       const allComunic = await managerService.getActions();
-      console.log('🚀 ~ file: AdmRegistrosAcoes.js ~ line 41 ~ getAllComunic ~ allComunic', allComunic);
       allComunic.forEach((object) => {
         auxComunic.push(createData(
           object.type,
@@ -74,7 +71,7 @@ function AdmRegistrosAcoes() {
   }
   useEffect(() => {
     getAllComunic();
-  }, []);
+  }, [use]);
 
   const titles = [
     '',

@@ -132,6 +132,8 @@ function TableComponent({
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const actualArchive1 = { ...archive1Id };
+  const actualArchive2 = { ...archive2Id };
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -423,7 +425,7 @@ function TableComponent({
                         <RemoveActionModal setUse={setUse} id={actionId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditActionModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} />
+                        <EditActionModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} archive1={actualArchive1[index + (page * 10)]} archive2={actualArchive2[index + (page * 10)]} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (
