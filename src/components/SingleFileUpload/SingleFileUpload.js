@@ -39,7 +39,6 @@ function SingleFileUpload({
       const response = await managerService.getFileById(file);
       setActualFile(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -52,7 +51,6 @@ function SingleFileUpload({
       const response = await managerService.getImageById(file);
       setImage(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -66,7 +64,6 @@ function SingleFileUpload({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
