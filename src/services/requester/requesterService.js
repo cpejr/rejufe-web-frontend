@@ -133,3 +133,5 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
 });
 
 export const createActions = (body) => httpClient.post('/acoes', body);
+
+export const createModels = (body) => httpClient.post('/modelos', body);

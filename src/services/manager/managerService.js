@@ -248,3 +248,8 @@ export const createActions = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const createModels = async (body) => {
+  const response = await requesterService.createModels(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
