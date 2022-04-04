@@ -13,7 +13,7 @@ const formsModels = [
         required: true,
       },
       {
-        type: 'text',
+        type: 'number',
         id: 'numberModels',
         label: 'Número',
         field: null,

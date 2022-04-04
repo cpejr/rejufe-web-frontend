@@ -31,6 +31,13 @@ function CadastrarModelos() {
     const aux = initialErrorState;
     let checkError = 0;
 
+    const numberRegex = /^[0-9\b]+$/;
+
+    if (numberRegex.test(dados.numberModels)) {
+      aux.numberModels = true;
+      checkError = 1;
+    }
+
     Object.entries(dados)?.forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
