@@ -253,3 +253,9 @@ export const createModels = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const createAccountability = async (body) => {
+  const response = await requesterService.createAccountability(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

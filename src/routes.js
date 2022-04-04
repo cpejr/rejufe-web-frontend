@@ -28,6 +28,7 @@ import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Imprimir from './pages/Imprimir';
+import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 
@@ -39,6 +40,7 @@ export function UserHeader() {
         <PrivateRoute path="/cadastrar-noticias" component={CadastrarNoticias} type="administrador" />
         <PrivateRoute path="/cadastrar-comunic" component={CadastrarComunic} type="administrador" />
         <PrivateRoute path="/cadastrar-acoes" component={CadastrarAcoes} type="administrador" />
+        <PrivateRoute path="/cadastrar-contas" component={CadastroContas} type="administrador" />
         <PrivateRoute path="/administracao-registros-noticias" component={AdmRegistrosNoticias} type="administrador" />
         <PrivateRoute path="/administracao-registros-comunic" component={AdmRegistrosComunic} type="administrador" />
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />

@@ -75,23 +75,6 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links3 = [
-    {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
-      link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
-      text: 'Administração de Registros',
-    },
-    {
-      link: () => handleClick('/cadastrar-acoes'),
-      pathName: '/cadastrar-acoes',
-      text: 'Cadastrar',
-    },
-  ];
   const linksModels = [
     {
       link: () => handleClick('/admregistros'),
@@ -135,6 +118,23 @@ function Header(props) {
     {
       link: () => handleClick('/cadastrar-comunic'),
       pathName: '/cadastrar-comunic',
+      text: 'Cadastrar',
+    },
+  ];
+  const linksContas = [
+    {
+      link: () => handleClick('/consultas'),
+      pathName: '/consultas',
+      text: 'Consultas',
+    },
+    {
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-contas'),
+      pathName: '/cadastrar-contas',
       text: 'Cadastrar',
     },
   ];
@@ -195,7 +195,7 @@ function Header(props) {
     },
     {
       text: 'Prestação de Contas',
-      links: links3,
+      links: linksContas,
       icon: <MonetizationOnOutlinedIcon />,
     },
     {

@@ -147,3 +147,17 @@ export const initialModelsErrorState = {
   archive_1: false,
   archive_2: false,
 };
+
+export const initialAccountabilityState = {
+  date: '',
+  title: '',
+  description: '',
+  pdf: undefined,
+};
+
+export const initialAccountabilityErrorState = {
+  date: false,
+  title: false,
+  description: false,
+  pdf: false,
+};
