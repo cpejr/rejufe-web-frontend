@@ -8,6 +8,7 @@ function FichaMinutes() {
   const { search } = useLocation();
   const minutesId = new URLSearchParams(search).get('atasId');
   const [minutes, setMinutes] = useState([]);
+  console.log('🚀 ~ file: FichaAtas.js ~ line 11 ~ FichaMinutes ~ minutes', minutes);
 
   useEffect(() => {
     getMinutesById(minutesId, setMinutes);

@@ -12,15 +12,21 @@ const routingFunction = (param) => {
 
 async function getMinutesById(minutesId, setMinutes) {
   try {
-    const response = await managerService.getMinutesById(minutesId);
-    const minutes = {
-      number: response.number,
-      type: response.type,
-      description: response.description,
-      archive_1: response.archive_1,
-      archive_2: response.archive_2,
-    };
-    setMinutes(minutes);
+    managerService.getMinutesById(minutesId).then((Minute) => {
+      Promise.all([
+        managerService.getFileNameById(Minute.archive_1),
+        managerService.getFileNameById(Minute.archive_2),
+      ]).then((response) => {
+        const minutes = {
+          number: Minute.number,
+          type: Minute.type,
+          description: Minute.description,
+          archive_1: response[0],
+          archive_2: response[1],
+        };
+        setMinutes(minutes);
+      });
+    });
   } catch (error) {
     routingFunction();
   }

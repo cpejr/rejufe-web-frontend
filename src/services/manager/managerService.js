@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
@@ -251,7 +252,12 @@ export const getMinutesById = async (id) => {
 };
 
 export const getFileNameById = async (id) => {
-  const response = await requesterService.getFileNameById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
+  let response;
+  if (id.length !== 0) {
+    response = await requesterService.getFileNameById(id);
+    return response.data;
+  } else {
+    response = '';
+    return response;
+  }
 };
