@@ -15,8 +15,8 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
     managerService.getMinutes().then((allMinutes) => {
       allMinutes.forEach((object) => {
         Promise.all([
-          managerService.getFileNameById('6237dbb3313f3cf5a9e8bd0f'),
-          managerService.getFileNameById('6237dbb3313f3cf5a9e8bd0f'),
+          managerService.getFileNameById(object.archive_1),
+          managerService.getFileNameById(object.archive_2),
         ]).then((response) => {
           minutesId.push(object._id);
           auxMinutes.push(createData(
