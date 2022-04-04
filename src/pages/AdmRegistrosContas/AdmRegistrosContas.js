@@ -69,7 +69,7 @@ function AdmRegistrosContas() {
   }
   useEffect(() => {
     getAllComunic();
-  }, []);
+  }, [use]);
 
   const titles = [
     '',

@@ -102,7 +102,7 @@ function SingleFileUpload({
       });
       return;
     }
-    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
+    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, 'pdf');
   }, [dados]);
 
   const { getRootProps, getInputProps } = useDropzone({
