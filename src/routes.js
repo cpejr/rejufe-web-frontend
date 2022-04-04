@@ -11,6 +11,7 @@ import Cadastro from './pages/Cadastro';
 import CadastrarNoticias from './pages/CadastrarNoticias';
 import CadastrarComunic from './pages/CadastrarComunic';
 import CadastroExterno from './pages/CadastroExterno';
+import CadastrarAcoes from './pages/CadastrarAcoes/CadastrarAcoes';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
 import AdmRegistrosComunic from './pages/AdmRegistrosComunic';
@@ -28,6 +29,8 @@ import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Imprimir from './pages/Imprimir';
 import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
+import CadastrarModelos from './pages/CadastrarModelos';
+import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 
 export function UserHeader() {
   return (
@@ -36,6 +39,7 @@ export function UserHeader() {
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <PrivateRoute path="/cadastrar-noticias" component={CadastrarNoticias} type="administrador" />
         <PrivateRoute path="/cadastrar-comunic" component={CadastrarComunic} type="administrador" />
+        <PrivateRoute path="/cadastrar-acoes" component={CadastrarAcoes} type="administrador" />
         <PrivateRoute path="/cadastrar-contas" component={CadastroContas} type="administrador" />
         <PrivateRoute path="/administracao-registros-noticias" component={AdmRegistrosNoticias} type="administrador" />
         <PrivateRoute path="/administracao-registros-comunic" component={AdmRegistrosComunic} type="administrador" />
@@ -51,6 +55,8 @@ export function UserHeader() {
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
         <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
+        <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
+        <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>

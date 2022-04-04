@@ -243,6 +243,16 @@ export const getNews = async (field, filter) => {
   } while (response.data.length > 0);
   return allNews;
 };
+export const createActions = async (body) => {
+  const response = await requesterService.createActions(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+export const createModels = async (body) => {
+  const response = await requesterService.createModels(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
 
 export const createAccountability = async (body) => {
   const response = await requesterService.createAccountability(body);
