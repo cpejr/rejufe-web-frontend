@@ -445,7 +445,6 @@ function TableComponent({
                   && (
                     <TableCell>
                       <Link
-                        to="/#"
                         onClick={() => getDownloads(archive1Id[index + (page * 10)])}
                       >
                         {fileNames1[index + (page * 10)]}
