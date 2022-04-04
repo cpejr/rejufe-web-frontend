@@ -273,6 +273,7 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -292,6 +293,7 @@ function TableComponent({
         });
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       toast.error('Não foi possível obter o nome do arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -312,6 +314,7 @@ function TableComponent({
         });
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       toast.error('Não foi possível obter o nome do arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,

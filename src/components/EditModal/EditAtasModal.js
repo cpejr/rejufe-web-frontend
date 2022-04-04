@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
@@ -13,6 +14,7 @@ export default function EditMinutesModal({ id, minutes, setUse }) {
   const [minutesNumber, setMinutesNumber] = useState(minutes.number);
   const [minutesType, setMinutesType] = useState(minutes.type);
   const [minutesDescription, setMinutesDescription] = useState(minutes.description);
+  const history = useHistory();
 
   async function handleNumberChange(event) {
     setMinutesNumber(event.target.value);
@@ -39,6 +41,7 @@ export default function EditMinutesModal({ id, minutes, setUse }) {
       setUse(true);
     } catch (error) {
       console.error(error);
+      history.push('/NotFound');
     }
   }
 
