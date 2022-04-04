@@ -35,6 +35,8 @@ async function getAllAdministrationRecords(setId, setAllAdministrationRecords, s
     setAllAdministrationRecords(auxNews);
     setSequentialId(newsCode);
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn(error);
     history.push('/NotFound');
   }
 }

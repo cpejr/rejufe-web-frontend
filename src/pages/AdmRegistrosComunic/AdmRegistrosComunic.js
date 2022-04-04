@@ -1,11 +1,7 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './AdmRegistrosComunic.css';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/dashboard/dashboardComponent';
@@ -16,10 +12,9 @@ function AdmRegistrosComunic() {
   const [comunics, setAllComunics] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
-  const [actualFile, setActualFile] = useState();
-  const [fileId, setFileId] = useState();
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
+  const history = useHistory();
 
   function createData(type, number, description) {
     return {
@@ -65,6 +60,7 @@ function AdmRegistrosComunic() {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
+      history.push('/NotFound');
     }
   }
   useEffect(() => {
@@ -81,14 +77,22 @@ function AdmRegistrosComunic() {
   ];
 
   return (
-    <div className="container-administration-register">
-      <div className="title-adm-registers">
+    <div className="container-administration-register-comunic">
+      <div className="title-adm-registers-comunic">
         <h1>
           {'Manutenção em Comunicados e Informativos '}
         </h1>
       </div>
-      <div className="line-table-registers" />
-      <TableComponent setUse={setUse} comunicId={id} rows={comunics} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} editComunic />
+      <div className="line-table-registers-comunic" />
+      <TableComponent
+        setUse={setUse}
+        comunicId={id}
+        rows={comunics}
+        titles={titles}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+        editComunic
+      />
     </div>
   );
 }

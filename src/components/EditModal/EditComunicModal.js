@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
@@ -12,6 +13,7 @@ export default function EditComunicModal({ id, comunic, setUse }) {
   const [comunicNumber, setComunicNumber] = useState(comunic.number);
   const [comunicType, setComunicType] = useState(comunic.type);
   const [comunicDescription, setComunicDescription] = useState(comunic.description);
+  const history = useHistory();
 
   async function handleNumberChange(event) {
     setComunicNumber(event.target.value);
@@ -37,7 +39,9 @@ export default function EditComunicModal({ id, comunic, setUse }) {
       });
       setUse(true);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
+      history.push('/NotFound');
     }
   }
 
@@ -52,36 +56,36 @@ export default function EditComunicModal({ id, comunic, setUse }) {
   };
 
   const body = (
-    <Box className="EditComunicModal-ContainerModal">
-      <div role="button" tabIndex={0} className="EditComunicModal-cancel" onClick={handleClose}>
+    <Box className="edit-comunic-modal-container-modal">
+      <div role="button" tabIndex={0} className="edit-comunic-modal-cancel" onClick={handleClose}>
         <CancelIcon />
       </div>
-      <div className="EditComunicModal-Title">
+      <div className="edit-comunic-modal-title">
         <p>Editar dados</p>
       </div>
-      <div className="EditComunicModal-field">
-        <div className="EditComunicModal-text">
+      <div className="edit-comunic-modal-field">
+        <div className="edit-comunic-modal-text">
           Status:
         </div>
-        <select className="EditComunicModal-Select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
+        <select className="edit-comunic-modal-select" placeholder="" require value={comunicType} onChange={handleTypeChange}>
           <option value="COMUNICADO">COMUNICADO</option>
           <option value="INFORMATIVO">INFORMATIVO</option>
         </select>
       </div>
-      <div className="EditComunicModal-field">
-        <div className="EditComunicModal-text">
+      <div className="edit-comunic-modal-field">
+        <div className="edit-comunic-modal-text">
           Número:
         </div>
-        <input className="EditComunicModal-Input" placeholder="" require value={comunicNumber} onChange={handleNumberChange} />
+        <input className="edit-comunic-modal-input" placeholder="" require value={comunicNumber} onChange={handleNumberChange} />
       </div>
-      <div className="EditComunicModal-field">
-        <div className="EditComunicModal-text">
+      <div className="edit-comunic-modal-field">
+        <div className="edit-comunic-modal-text">
           Descrição:
         </div>
-        <input className="EditComunicModal-Input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
+        <input className="edit-comunic-modal-input" placeholder="" require value={comunicDescription} onChange={handleDescriptionChange} />
       </div>
       <button
-        className="EditComunicModal-ButtonConfirm"
+        className="edit-comunic-modal-ButtonConfirm"
         onClick={(e) => {
           e.preventDefault();
           handleSubmit();
@@ -95,7 +99,7 @@ export default function EditComunicModal({ id, comunic, setUse }) {
   );
   return (
     <div>
-      <button type="button" className="EditComunicModal-EditGroup" onClick={handleOpen}>
+      <button type="button" className="edit-comunic-modal-edit-group" onClick={handleOpen}>
         <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
