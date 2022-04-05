@@ -112,7 +112,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, associateId, actionId, edit, editAccount, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, associateId, accountId, edit, editAccount, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -381,10 +381,10 @@ function TableComponent({
                   ) : editAccount ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="delete">
-                        <RemoveAccountModal setUse={setUse} id={actionId[index + (page * 10)]} />
+                        <RemoveAccountModal setUse={setUse} id={accountId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditAccountModal setUse={setUse} id={actionId[index + (page * 10)]} comunic={row} archive1={actualArchive1[index + (page * 10)]} />
+                        <EditAccountModal setUse={setUse} id={accountId[index + (page * 10)]} account={row} archive1={actualArchive1[index + (page * 10)]} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (

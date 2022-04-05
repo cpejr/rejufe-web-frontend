@@ -32,10 +32,10 @@ function AdmRegistrosContas() {
     return _id;
   }
 
-  async function getAllComunic() {
+  async function getAllAccounts() {
     console.log('ali');
-    const auxComunic = [];
-    const comunicId = [];
+    const auxAccount = [];
+    const accountId = [];
     const archive1Code = [];
     const archive2Code = [];
     try {
@@ -43,7 +43,7 @@ function AdmRegistrosContas() {
       const allComunic = await managerService.getAccounts();
       console.log('🚀 ~ file: AdmRegistrosAcoes.js ~ line 41 ~ getAllComunic ~ allComunic', allComunic);
       allComunic.forEach((object) => {
-        auxComunic.push(createData(
+        auxAccount.push(createData(
           object.date,
           object.title,
           object.description,
@@ -53,13 +53,13 @@ function AdmRegistrosContas() {
         }
       });
       allComunic.forEach((object) => {
-        comunicId.push(createId(
+        accountId.push(createId(
           object._id,
         ));
       });
-      auxComunic.sort();
-      setId(comunicId);
-      setAllComunics(auxComunic);
+      auxAccount.sort();
+      setId(accountId);
+      setAllComunics(auxAccount);
       setArchive1Id(archive1Code);
       setUse(false);
     } catch (error) {
@@ -68,7 +68,7 @@ function AdmRegistrosContas() {
     }
   }
   useEffect(() => {
-    getAllComunic();
+    getAllAccounts();
   }, [use]);
 
   const titles = [
@@ -87,7 +87,7 @@ function AdmRegistrosContas() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} actionId={id} rows={comunics} titles={titles} archive1Id={archive1Id} editAccount />
+      <TableComponent setUse={setUse} accountId={id} rows={comunics} titles={titles} archive1Id={archive1Id} editAccount />
     </div>
   );
 }

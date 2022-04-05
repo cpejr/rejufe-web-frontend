@@ -13,16 +13,16 @@ import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
 export default function EditAccountModal({
   id,
-  comunic,
+  account,
   setUse,
   archive1,
 }) {
   const [dados, setDados] = useState({});
-  const accountDateInitial = moment(comunic.date).format('YYYY-MM-DD');
+  const accountDateInitial = moment(account.date).format('YYYY-MM-DD');
   const [accountDate, setAccountDate] = useState(accountDateInitial);
-  const [accountTitle, setAccountTitle] = useState(comunic.title);
+  const [accountTitle, setAccountTitle] = useState(account.title);
   // eslint-disable-next-line no-unused-vars
-  const [accountDescription, setAccountDescription] = useState(comunic.description);
+  const [accountDescription, setAccountDescription] = useState(account.description);
 
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });

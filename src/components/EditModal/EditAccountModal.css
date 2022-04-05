@@ -146,8 +146,7 @@
 
 @media (max-width: 495px) {
   .EditModal-ContainerModal {
-    height: 320px;
-    width: 380px;
+    width: 330px;
   }
 
   .EditModal-cancel {
@@ -172,7 +171,6 @@
 
 @media (max-width: 395px) {
   .EditModal-ContainerModal {
-    height: 300px;
     width: 270px;
   }
   .EditModal-cancel {
