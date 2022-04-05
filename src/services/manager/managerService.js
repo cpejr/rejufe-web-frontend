@@ -289,7 +289,7 @@ export const getFileNameById = async (id) => {
     response = '';
     return response;
   }
- };
+};
 export const createAccountability = async (body) => {
   const response = await requesterService.createAccountability(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
