@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
-import GraphicQuizzes from '../GraphicResultQuizzes/ResultadoQuizzes';
+import { FormControl } from '@mui/material';
+import { CircularProgress } from '@material-ui/core';
+import ConfirmModal from '../confirmModal/ConfirmModal';
+import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
-function Quizzes({ quizz, associates }) {
+function Quizzes({
+  quizz, associates, dateQuizz, user, setVoted,
+}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
-  const [date] = useState(new Date());
   const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
+  const [loading, setLoading] = useState();
+
+  useEffect(() => {
+    setLoading(false);
+  }, [quizz.alreadyVoted]);
 
   return (
     <div className="body-quizzes-card">
@@ -38,16 +46,39 @@ function Quizzes({ quizz, associates }) {
       </div>
       {open === true ? (
         <div className="description-card-quizzes">
-          <p>{quizz.description}</p>
-          <h1>
-            {quizz.options.alternatives}
-          </h1>
-          <GraphicQuizzes
-            toVote={quizz?.toVote}
-            associates={associates}
-            quizz={quizz?.options}
-            alreadyVoted={quizz?.alreadyVoted}
-          />
+          <p>{quizz?.description}</p>
+          {loading ? (
+            <div className="form-vote-quizz-container">
+              <CircularProgress />
+            </div>
+          ) : (
+            <>
+              {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
+                <GraphicQuizzes
+                  toVote={quizz?.toVote}
+                  associates={associates}
+                  quizz={quizz?.options}
+                  alreadyVoted={quizz?.alreadyVoted}
+                  userType={user?.type}
+                />
+              ) : (
+                <div className="form-vote-quizz-container">
+                  <FormControl className="form-content-vote-quizzes">
+                    <h2>Alternativas</h2>
+                    <ConfirmModal
+                      quizz={quizz}
+                      userId={user?.id}
+                      setVoted={setVoted}
+                      alreadyVoted={quizz?.alreadyVoted}
+                      setLoading={setLoading}
+                    />
+                  </FormControl>
+                </div>
+              )}
+              <div />
+            </>
+
+          )}
         </div>
       ) : (
         null

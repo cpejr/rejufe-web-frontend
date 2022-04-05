@@ -36,15 +36,6 @@ export const getUsersBySection = (times, section) => httpClient.get(`/usuario/se
   },
 });
 
-export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
-  params: {
-    times,
-    field,
-    filter,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
-
 export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);
 
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
@@ -67,6 +58,27 @@ export const getExcludedAssociate = (status) => httpClient.get('/usuario/getExcl
 export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${associateId}`);
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
+
+export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
+  params: {
+    date,
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/vote/${id}`, quizz);
 
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
@@ -138,3 +150,9 @@ export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileN
     archiveId,
   },
 });
+
+export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
+
+export const createActions = (body) => httpClient.post('/acoes', body);
+
+export const createModels = (body) => httpClient.post('/modelos', body);
