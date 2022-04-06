@@ -17,13 +17,13 @@ export default function EditAccountModal({
   setUse,
   archive1,
 }) {
+  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account);
   const [dados, setDados] = useState({});
   const accountDateInitial = moment(account.date).format('YYYY-MM-DD');
   const [accountDate, setAccountDate] = useState(accountDateInitial);
   const [accountTitle, setAccountTitle] = useState(account.title);
   // eslint-disable-next-line no-unused-vars
   const [accountDescription, setAccountDescription] = useState(account.description);
-
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
@@ -44,7 +44,9 @@ export default function EditAccountModal({
     try {
       await managerService.updateAccount(
         id,
-        { date: accountDate, title: accountTitle, description: accountDescription },
+        {
+          date: accountDate, title: accountTitle, description: accountDescription,
+        },
       );
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -92,11 +94,11 @@ export default function EditAccountModal({
         </div>
         <input className="EditModal-Input" placeholder="" require value={accountDescription} onChange={handleDescriptionChange} />
         <div className="EditModal-text">
-          Arquivo 1:
+          Anexo:
         </div>
         { }
         <div className="EditModal-archive">
-          <SingleFileUpload id={archive1} fileType=".pdf" dados={dados} file={archive1} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+          <SingleFileUpload id="pdf" fileType=".pdf" dados={dados} archiveId={archive1} file={dados.pdf} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
         </div>
       </div>
       <button

@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SingleFileUpload({
-  id, fileType, dados, file, setDados, label, update,
+  id, fileType, dados, file, setDados, label, update, archiveId,
 }) {
+  console.log('🚀 ~ file: SingleFileUpload.js ~ line 32 ~ archiveId', archiveId);
   console.log('🚀 ~ file: SingleFileUpload.js ~ line 32 ~ file', file);
   const classes = useStyles();
   // eslint-disable-next-line no-unused-vars
@@ -37,8 +38,10 @@ function SingleFileUpload({
   console.log(id);
 
   async function getFile() {
+    console.log('aloo');
     try {
-      const response = await managerService.getFileById(file);
+      const response = await managerService.getFileById(archiveId);
+      console.log('🚀 ~ file: SingleFileUpload.js ~ line 44 ~ getFile ~ response', response);
       setActualFile(response);
     } catch (error) {
       console.log(error);
@@ -51,7 +54,7 @@ function SingleFileUpload({
 
   async function getImage() {
     try {
-      const response = await managerService.getImageById(file);
+      const response = await managerService.getImageById(archiveId);
       setImage(response);
     } catch (error) {
       console.log(error);
@@ -81,10 +84,10 @@ function SingleFileUpload({
       if (id === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-      if ((id === 'archive_1' || id === 'archive_2' || fileType === '.pdf') && file !== undefined) {
+      if (((id === 'archive_1' || id === 'archive_2') && file !== undefined) || (id === 'pdf')) {
         getFile();
       }
-    }, [file]);
+    }, [file, archiveId]);
   }
 
   const onDrop = useCallback((accFiles, rejFiles) => {
@@ -102,7 +105,8 @@ function SingleFileUpload({
       });
       return;
     }
-    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, 'pdf');
+    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
+    console.log(id);
   }, [dados]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -144,7 +148,8 @@ function SingleFileUpload({
                 <>
                   {update === true && label === 'Arquivo' && file !== 'undefined' ? (
                     <Button variant="primary" onClick={() => getDownloads()}>
-                      Arquivo atual
+                      {file.file.path}
+                      {' '}
                       <PictureAsPdfIcon />
                     </Button>
                   ) : (
@@ -157,7 +162,7 @@ function SingleFileUpload({
                   <div />
                 </>
               )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
+            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
               Remover Arquivo
             </Button>
           </div>
