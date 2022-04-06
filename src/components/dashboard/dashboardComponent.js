@@ -30,6 +30,8 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import ExcludeModelModal from '../DeleteModel/excludeModelModal';
+import EditModel from '../DeleteModel/editModelsModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -103,7 +105,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton, modelsSequentialId,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -373,6 +375,13 @@ function TableComponent({
                       >
                         {newsSequentialId[index + (page * 10)]}
                       </Link>
+                    </TableCell>
+                  )}
+                {modelsSequentialId
+                  && (
+                    <TableCell {...cellFontProps}>
+                      <ExcludeModelModal id={modelsSequentialId[index]} />
+                      <EditModel id={modelsSequentialId[index]} model={row} />
                     </TableCell>
                   )}
                 {Object.values(row)?.map((data) => (

@@ -136,3 +136,17 @@ export const createAccountability = (body) => httpClient.post('/prestacaodeconta
 export const createActions = (body) => httpClient.post('/acoes', body);
 
 export const createModels = (body) => httpClient.post('/modelos', body);
+
+export const getModels = (times, field, filter) => httpClient.get('/modelos', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});
+
+export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
+
+export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);

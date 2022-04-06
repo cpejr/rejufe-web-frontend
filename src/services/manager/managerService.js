@@ -259,3 +259,27 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getModels = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allModels = [];
+  do {
+    response = await requesterService.getModels(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allModels = allModels.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allModels;
+};
+
+export const deleteModel = async (modelId) => {
+  const response = await requesterService.deleteModel(modelId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateModel = async (id, model) => {
+  const response = await requesterService.updateModel(id, model);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

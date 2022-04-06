@@ -1,0 +1,178 @@
+.EditModal-EditGroup{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: Roboto;
+    font-size: 100%;
+    font-weight: 500;
+    border: 0;
+    cursor: pointer;
+    outline:none;    
+    margin-top: 5%;
+    margin-bottom: 2%;
+    background-color: white;
+  }
+  .EditModal-ContainerModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 550px;
+    border-radius: 6px;
+    background-color: white;
+    border: 0.5px solid black;
+    box-shadow: 24;
+    padding: 4;
+  }
+  
+  .EditModal-field{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    height: 20%;
+    width: 120%;
+    color: black;
+  }
+  
+  .EditModal-Title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    font-family:Roboto;
+    font-weight: bold;
+    font-size:24px;
+    margin-bottom: 5%;
+  }
+  
+  .EditModal-text{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    flex-direction: column;
+    font-family: Roboto;
+  }
+  
+  .EditModal-ButtonConfirm{
+    display:flex;
+    height: 10%;
+    width: 30%;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 3%;
+    background-color: var(--button);
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  
+  .EditModal-Input{
+    margin-bottom: 5%;
+    margin-top: 1%;
+    width: 40%;
+    height: 100%;
+    background-color: #f0f0f5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .EditModal-Select{
+    margin-bottom: 5%;
+    margin-top: 1%;
+    width: 40%;
+    height: 100%;
+    background-color: #f0f0f5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  
+  .EditModal-cancel{
+    display: flex;
+    align-self: flex-start;
+    margin-left: 5%;
+    cursor: pointer;
+  }
+  
+  .EditModal-ButtonConfirm:hover{
+    background-color: var(--primary);
+  }
+  
+  @media(max-width: 695px){
+    .EditModal-ContainerModal{
+      height: 370px;
+      width: 450px;
+    }
+  }
+  
+  @media(max-width: 495px){
+    .EditModal-ContainerModal{
+      height: 320px;
+      width: 380px;
+    }
+  
+    .EditModal-cancel{
+      margin-top: 2%;
+    }
+  
+    .EditModal-Title{
+      font-size:22px;
+    }
+  
+    .EditModal-text{
+      font-size: 14px;
+    }
+    .EditModal-ButtonConfirm{
+      font-size: 14px;
+    }
+    .EditModal-EditGroup .css-i4bv87-MuiSvgIcon-root {
+      width: 0.75em !important;
+      height: 0.75em !important;
+    }
+  }
+  
+  @media(max-width: 395px){
+    .EditModal-ContainerModal{
+      height: 300px;
+      width: 270px;
+    }
+    .EditModal-cancel{
+      margin-top: 2%;
+    }
+    .EditModal-Title{
+      font-size:22px;
+    }
+    .EditModal-text{
+      font-size: 14px;
+    }
+    .EditModal-ButtonConfirm{
+      font-size: 14px;
+    }
+    .EditModal-Input{
+      width: 50%;
+    }
+    .EditModal-Select{
+      width: 50%;
+    }
+  }
+  
