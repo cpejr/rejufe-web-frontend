@@ -248,9 +248,20 @@ export const createActions = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const createModels = async (body) => {
+  const response = await requesterService.createModels(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
 
 export const contactUs = async (body) => {
   const response = await requesterService.contactUs(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createAccountability = async (body) => {
+  const response = await requesterService.createAccountability(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
