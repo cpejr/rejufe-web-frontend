@@ -27,10 +27,10 @@ import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Imprimir from './pages/Imprimir';
 import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
+import ImprimirAssociados from './pages/ImprimirAssociados';
 
 export function UserHeader() {
   return (
@@ -71,7 +71,7 @@ function Routes() {
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
-        <Route path="/imprimir" component={Imprimir} />
+        <Route path="/imprimir-associados" component={ImprimirAssociados} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />
