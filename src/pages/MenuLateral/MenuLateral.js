@@ -4,7 +4,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
-import renderPage from '../../components/contactUs/contactUs';
 
 const buttons = [
   { buttonName: 'Home' },
@@ -53,9 +52,6 @@ function MenuLateral({ setSelectedButton, selectedButton }) {
               ))}
             </ButtonGroup>
           </ThemeProvider>
-        </div>
-        <div className="boxRenderPage">
-          {renderPage(selectedButton)}
         </div>
       </div>
     </Box>

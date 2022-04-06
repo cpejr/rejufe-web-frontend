@@ -6,7 +6,7 @@ import './contactUs.css';
 
 toast.configure();
 
-export default function renderPage(selectedButton) {
+function ContactUs() {
   const initialState = {
     name: '',
     email: '',
@@ -34,7 +34,7 @@ export default function renderPage(selectedButton) {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/menu-lateral');
+      history.push('/intranet');
     } catch (error) {
       toast.error('Falha ao enviar email!', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -44,20 +44,18 @@ export default function renderPage(selectedButton) {
     }
     setLoading(false);
   }
+  return (
+    <div className="boxFormContactUs">
+      <h1>Fale Conosco</h1>
+      <input placeholder="Nome" name="name" onChange={handleChange} />
+      <input placeholder="Email" name="email" onChange={handleChange} />
+      <textarea placeholder="Mensagem" name="message" onChange={handleChange} />
 
-  if (selectedButton === 'Fale Conosco') {
-    return (
-      <div className="boxFormContactUs">
-        <h1>Fale Conosco</h1>
-        <input placeholder="Nome" name="name" onChange={handleChange} />
-        <input placeholder="Email" name="email" onChange={handleChange} />
-        <textarea placeholder="Mensagem" name="message" onChange={handleChange} />
-
-        <div className="buttonGroupContactUs">
-          <button type="button" loading={loading} className="sendButton" onClick={(e) => emailSubmit(e)}> Enviar </button>
-        </div>
+      <div className="buttonGroupContactUs">
+        <button type="button" loading={loading} className="sendButton" onClick={(e) => emailSubmit(e)}> Enviar </button>
       </div>
-    );
-  }
-  return null;
+    </div>
+  );
 }
+
+export default ContactUs;

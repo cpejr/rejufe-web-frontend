@@ -7,8 +7,12 @@
 }
 
 .intranet-dashboad-quizzes {
-  padding: 75px 0;
+  padding: 75px;
   width: 70%;
+}
+
+.intranet-dashboad-contactus {
+  width: 100%
 }
 
 .intranet-side-menu {
@@ -26,7 +30,7 @@
     padding: 75px 0 0 20px;
   }
   .intranet-main-container {
-    padding: 0 50px;
+    padding-left: 50px;
   }
 }
 

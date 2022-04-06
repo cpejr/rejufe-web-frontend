@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
+import ContactUs from '../contactUs/contactUs';
 import './Intranet.css';
 
 function Intranet() {
@@ -15,6 +16,13 @@ function Intranet() {
         {selectedButton === 'Enquetes' ? (
           <div className="intranet-dashboad-quizzes">
             <ResultadoQuizzes />
+          </div>
+        ) : (
+          <div />
+        )}
+        {selectedButton === 'Fale Conosco' ? (
+          <div className="intranet-dashboad-contactus">
+            <ContactUs />
           </div>
         ) : (
           <div />
