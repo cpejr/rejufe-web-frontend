@@ -11,6 +11,7 @@ import backgroundImage from '../../images/martelin.png';
 import { useAuth } from '../../providers/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
+import StyledInput from '../../components/StyledInput/StyledInput';
 
 moment.locale('pt-br', [ptLocale]);
 
@@ -148,10 +149,11 @@ function Login() {
               onChange={(e) => setUsuario({ ...usuario, user: e.target.value })}
             />
             <h1>Senha </h1>
-            <input
+            {/* <input
               type="password"
               onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
-            />
+            /> */}
+            <StyledInput />
 
             <div className="Remember-Box">
               <input
