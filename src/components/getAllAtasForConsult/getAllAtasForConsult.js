@@ -28,9 +28,11 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
           ));
           return [auxMinutes, minutesId];
         }).then((response2) => {
-          setAllMinutes(response2[0]);
-          setId(response2[1]);
-          setLoading(false);
+          if (response2[0]?.length === allMinutes?.length) {
+            setAllMinutes(response2[0]);
+            setId(response2[1]);
+            setLoading(false);
+          }
         });
       });
     });
