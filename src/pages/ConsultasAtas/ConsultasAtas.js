@@ -44,7 +44,7 @@ function ConsultaMinutes() {
               titles={titles}
               searchMinutes
               printButton
-              route={'/imprimir-atas-editais'}
+              route="/imprimir-atas-editais"
             />
           </div>
         )}
