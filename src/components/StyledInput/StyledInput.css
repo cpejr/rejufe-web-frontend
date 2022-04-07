@@ -1,0 +1,7 @@
+.styled-input-container {
+  width: 55%;
+}
+
+.styled-input-container .MuiFormControl-root {
+  display: flex !important;
+}

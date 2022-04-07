@@ -19,6 +19,7 @@
   justify-content: center;
   text-align: center;
 }
+
 .Box-login h2 {
   font-family: "Roboto", sans-serif;
   font: normal 10pt Roboto;
@@ -32,6 +33,7 @@
   margin-bottom: 0;
   font-weight: normal;
 }
+
 .campo-login {
   display: flex;
   justify-content: center;
@@ -39,6 +41,7 @@
   height: auto;
   width: 100%;
 }
+
 .Box-login {
   display: flex;
   flex-direction: column;
@@ -51,20 +54,24 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.Box-login button p{
+
+.Box-login button p {
   color: white;
 }
+
 .text-login {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .container-login img {
   margin-bottom: -3%;
   height: 40%;
   width: 90%;
 }
-.container-login input {
+
+.container-login-input-username {
   margin-bottom: 3%;
   margin-top: 1%;
   width: 55%;
@@ -76,6 +83,7 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
 .container-login-button {
   background-color: var(--button);
   border: 1px solid var(--button);
@@ -96,9 +104,11 @@
   font-family: "Roboto", sans-serif;
   cursor: pointer;
 }
+
 .container-login-button:hover {
   background-color: var(--color1);
 }
+
 .outlined-basic {
   align-items: center;
   display: flex;
@@ -106,11 +116,13 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .Remember-Box {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .Remember-Box input {
   margin-top: 0px;
   height: 5.4vh;
@@ -146,7 +158,8 @@ label {
   border-top: 10px solid #3498db;
   width: 10px;
   height: 10px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
   animation: spin 2s linear infinite;
 }
 
@@ -172,9 +185,11 @@ label {
     justify-content: center;
     width: 35%;
   }
+
   .Box-login h1 {
     font: normal 13pt Roboto;
   }
+
   .Link-ForgottenPassword a {
     color: black;
     font-weight: bold;
@@ -183,17 +198,21 @@ label {
     font-size: 0.7em;
   }
 }
+
 @media (max-width: 353px) {
   .Box-login {
     width: 90%;
   }
+
   .container-login input {
     height: 23px;
   }
+
   .container-login-button {
     font-size: 80%;
     height: 14%;
   }
+
   .Box-login h1 {
     font: normal 13pt Roboto;
   }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './StyledInput.css';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -45,7 +46,7 @@ function StyledInput({
     setDados(value, entrada);
   };
   return (
-    <div>
+    <div className="styled-input-container">
       <CssTextField
         InputLabelProps={{
           style: {
@@ -86,6 +87,7 @@ function StyledInput({
         variant="outlined"
         id={id}
         width={width}
+        height={height}
         select={select}
         onChange={(e) => handleChange(e, id)}
       />

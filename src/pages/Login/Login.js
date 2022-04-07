@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -28,6 +29,15 @@ function Login() {
   const [contentWarningModal, setContentWarningModal] = useState('');
   const history = useHistory();
   const { setUser } = useAuth();
+
+  const handleChange = (value, field) => {
+    setUsuario({ ...usuario, [field]: value });
+  };
+
+  { /* <input
+              type="password"
+              onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
+            /> */ }
 
   const handleClickClose = () => {
     setShowWarningModal(false);
@@ -143,17 +153,22 @@ function Login() {
             <img src="images/logoSemFundo.png" alt="Logo" />
             <h1>Usuário </h1>
             <input
+              className="container-login-input-username"
               type="user"
               id="user"
               value={usuario.user}
               onChange={(e) => setUsuario({ ...usuario, user: e.target.value })}
             />
             <h1>Senha </h1>
-            {/* <input
+            <StyledInput
               type="password"
-              onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
-            /> */}
-            <StyledInput />
+              id="password"
+              label=""
+              width="100%"
+              height="40px"
+              dados={usuario}
+              setDados={handleChange}
+            />
 
             <div className="Remember-Box">
               <input
