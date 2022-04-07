@@ -18,7 +18,6 @@ function ConsultaMinutes() {
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
-  const route = '/imprimir-atas-editais';
 
   useEffect(() => {
     getAllMinutesForConsult(setId, setAllMinutes, setLoading);
@@ -45,7 +44,7 @@ function ConsultaMinutes() {
               titles={titles}
               searchMinutes
               printButton
-              route={route}
+              route={'/imprimir-atas-editais'}
             />
           </div>
         )}
