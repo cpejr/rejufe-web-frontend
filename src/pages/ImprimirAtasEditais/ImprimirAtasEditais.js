@@ -1,11 +1,13 @@
 import React, {
-  useRef, useEffect, useState,
+  useRef, useState, useEffect,
 } from 'react';
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
 import { CircularProgress } from '@mui/material';
 import './ImprimirAtasEditais.css';
+import TableComponent from '../../components/dashboard/dashboardComponent';
+import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
@@ -23,17 +25,22 @@ class ComponentToPrint extends React.Component {
   }
 }
 
+const titles = [
+  '',
+  'Número',
+  'Tipo',
+  'Descrição',
+  'Arquivo 1',
+  'Arquivo 2',
+];
+
 function Imprimir() {
-  const [associates, setAllAssociates] = useState([]);
+  const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
-  }, []);
-
   const handleWindowClose = () => {
-    window.close('/imprimir');
+    window.close();
   };
 
   const tableAssociates = useRef(null);
@@ -42,15 +49,9 @@ function Imprimir() {
     content: () => tableAssociates?.current,
   });
 
-  const titles = [
-    '',
-    'Nome',
-    'Celular',
-    'Status',
-    'Lotação',
-    'Atuação',
-    'Email',
-  ];
+  useEffect(() => {
+    getAllMinutesForConsult(setId, setAllMinutes, setLoading);
+  }, []);
 
   return (
     <div className="container-print-associates-page">
@@ -78,7 +79,7 @@ function Imprimir() {
         </div>
       ) : (
         <div className="print-associates-table">
-          <ComponentToPrint id={id} rows={associates} titles={titles} ref={tableAssociates} />
+          <ComponentToPrint id={id} rows={minutes} titles={titles} ref={tableAssociates} />
         </div>
       )}
     </div>

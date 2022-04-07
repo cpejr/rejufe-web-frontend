@@ -33,6 +33,7 @@ import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 import ImprimirAssociados from './pages/ImprimirAssociados';
+import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
 
 export function UserHeader() {
   return (
@@ -76,6 +77,7 @@ function Routes() {
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir-associados" component={ImprimirAssociados} />
+        <Route path="/imprimir-atas-editais" component={ImprimirAtasEditais} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />
