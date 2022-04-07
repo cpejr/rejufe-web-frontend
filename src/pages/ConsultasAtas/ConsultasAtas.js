@@ -42,8 +42,9 @@ function ConsultaMinutes() {
               id={id}
               rows={minutes}
               titles={titles}
-              print={false}
               searchMinutes
+              printButton
+              route={'/imprimir-atas-editais'}
             />
           </div>
         )}
