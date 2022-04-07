@@ -103,7 +103,7 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchMinutes, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -254,6 +254,12 @@ function TableComponent({
     setPage(newPage);
   };
 
+  function redirect(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
@@ -315,6 +321,12 @@ function TableComponent({
                         <SearchIcon />
                         {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                      </IconButton>
+                    </TableCell>
+                  ) : searchMinutes ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
                       </IconButton>
                     </TableCell>
                   ) : edit ? (
