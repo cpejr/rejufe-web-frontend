@@ -5,7 +5,6 @@ import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
 import { CircularProgress } from '@mui/material';
-import './ImprimirAtasEditais.css';
 import TableComponent from '../../components/dashboard/dashboardComponent';
 import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
