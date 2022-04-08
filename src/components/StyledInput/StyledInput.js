@@ -12,10 +12,10 @@ const CssTextField = withStyles(() => ({
         borderColor: 'white', // bordar normal
       },
       '&:hover fieldset': {
-        borderColor: '#AAA', // borda quando passa o mouse
+        borderColor: 'white', // borda quando passa o mouse
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#AAA', // borda quando digita
+        borderColor: 'white', // borda quando digita
       },
       valueStyle: 'color: red',
     },
