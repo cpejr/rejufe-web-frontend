@@ -9,7 +9,6 @@ function AccountQuery() {
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const titles = [
-    '',
     'Data',
     'Título',
     'Descrição',
@@ -28,16 +27,13 @@ function AccountQuery() {
   }
 
   async function getAllAccounts() {
-    console.log('ali');
     const auxAccount = [];
     const accountId = [];
     const archive1Code = [];
 
     try {
-      console.log('alo');
-      const allComunic = await managerService.getAccounts();
-      console.log('🚀 ~ file: AdmRegistrosAcoes.js ~ line 41 ~ getAllComunic ~ allComunic', allComunic);
-      allComunic.forEach((object) => {
+      const allAccounts = await managerService.getAccounts();
+      allAccounts.forEach((object) => {
         auxAccount.push(createData(
           object.date,
           object.title,
@@ -47,7 +43,7 @@ function AccountQuery() {
           archive1Code.push(object.pdf);
         }
       });
-      allComunic.forEach((object) => {
+      allAccounts.forEach((object) => {
         accountId.push(createId(
           object._id,
         ));
@@ -68,7 +64,13 @@ function AccountQuery() {
 
   return (
     <div>
-      <TableComponent setUse={setUse} accountId={id} rows={account} titles={titles} archive1Id={archive1Id} order />
+      <div className="title-adm-registers">
+        <h1>
+          {'Manutenção em Prestação de Contas '}
+        </h1>
+      </div>
+      <div className="line-table-registers" />
+      <TableComponent setUse={setUse} accountId={id} rows={account} titles={titles} archive1Id={archive1Id} />
     </div>
   );
 }
