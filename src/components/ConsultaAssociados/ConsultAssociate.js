@@ -161,7 +161,7 @@ function ConsultaAssociados({
         fontSize: '85%',
         backgroundColor: '#2574A9',
         color: 'white',
-        padding: '4px',
+        padding: '3px',
         textAlign: 'center',
       }
       : matchesFont90
