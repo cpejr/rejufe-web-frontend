@@ -109,7 +109,7 @@ function ConsultaAssociados({
   const matchesFont400px = useMediaQuery('(max-width:400px)');
 
   const handleWindowOpen = () => {
-    window.open('/imprimir');
+    window.open('/imprimir-associados');
   };
 
   const footerProps = {
