@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import TableComponent from '../dashboard/dashboardComponent';
 import * as managerService from '../../services/manager/managerService';
+import './AccountQuery.css';
 
 function AccountQuery() {
   const [account, setAllAccount] = useState([]);
@@ -64,12 +65,12 @@ function AccountQuery() {
 
   return (
     <div>
-      <div className="title-adm-registers">
+      <div className="title-account-menu">
         <h1>
           {'Manutenção em Prestação de Contas '}
         </h1>
       </div>
-      <div className="line-table-registers" />
+      <div className="line-table-account" />
       <TableComponent setUse={setUse} accountId={id} rows={account} titles={titles} archive1Id={archive1Id} />
     </div>
   );
