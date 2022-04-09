@@ -37,7 +37,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 680px) {
   .intranet-main-container {
     flex-direction: column;
     justify-content: center;
