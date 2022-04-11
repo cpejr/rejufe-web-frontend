@@ -192,7 +192,7 @@ function ConsultaAssociados({
           color: 'white',
         }
         : {
-          fontSize: '100%',
+          fontSize: '77%',
           backgroundColor: '#2574A9',
           color: 'white',
         },
