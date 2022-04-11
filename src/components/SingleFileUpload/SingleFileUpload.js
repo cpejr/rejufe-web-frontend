@@ -119,27 +119,26 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item>
         <div>
-          {update === true && archiveId !== undefined ? (
+          <div {...getRootProps({ className: classes.dropzone })}>
+            <input {...getInputProps()} />
+            {update === true && label === 'Imagem' && file !== '' ? (
+              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
+            ) : (
+              <p>
+                Arraste e solte a/o
+                {' '}
+                {`${label}`}
+                {' '}
+                aqui
+              </p>
+            )}
+          </div>
+          {update === true && archiveId !== undefined && (
             <Button variant="primary" onClick={() => getDownloads()}>
               Download
               {' '}
               <PictureAsPdfIcon />
             </Button>
-          ) : (
-            <div {...getRootProps({ className: classes.dropzone })}>
-              <input {...getInputProps()} />
-              {update === true && label === 'Imagem' && file !== '' ? (
-                <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
-              ) : (
-                <p>
-                  Arraste e solte a/o
-                  {' '}
-                  {`${label}`}
-                  {' '}
-                  aqui
-                </p>
-              )}
-            </div>
           )}
         </div>
       </Grid>
