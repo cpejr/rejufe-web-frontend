@@ -119,10 +119,14 @@ function TableComponent({
   edit,
   search,
   searchFile,
+  searchMinutes,
   validate,
   dados,
   newsSequentialId,
   renderButton,
+  print,
+  printButton,
+  route,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -280,6 +284,16 @@ function TableComponent({
     setPage(0);
   };
 
+  function redirect(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
+  const handleWindowOpen = () => {
+    window.open(route);
+  };
+
   function getDownloads(archiveId) {
     try {
       managerService.download(archiveId).then((response) => {
@@ -410,6 +424,12 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : searchMinutes ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
                   ) : validate ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="reject">
@@ -502,30 +522,61 @@ function TableComponent({
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          labelRowsPerPage="Linhas por pagina"
-          page={page}
-          SelectProps={{
-            inputProps: {
-              'aria-label': 'Linhas por pagina',
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-        />
-        {renderButton && (
-          <Button
-            {...buttonFontProps}
-          >
-            Pesquisa Avançada
-            {/* TODO Implementar o botão de pesquisa avançada */}
-          </Button>
+        {print ? (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            component="div"
+            count={rows?.length}
+            rowsPerPage={rows?.length}
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
+        ) : (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              labelRowsPerPage="Linhas por pagina"
+              page={page}
+              SelectProps={{
+                inputProps: {
+                  'aria-label': 'Linhas por pagina',
+                },
+                native: true,
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+            <div className="button-table-component-pagination-consult">
+              {renderButton && (
+                <Button
+                  {...buttonFontProps}
+                >
+                  Pesquisa Avançada
+                  {/* TODO Implementar o botão de pesquisa avançada */}
+                </Button>
+              )}
+              {printButton && (
+                <Button
+                  {...buttonFontProps}
+                  onClick={handleWindowOpen}
+                >
+                  Imprimir
+                </Button>
+              )}
+            </div>
+          </>
         )}
       </TableFooter>
     </TableContainer>
