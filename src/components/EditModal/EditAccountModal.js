@@ -40,20 +40,12 @@ export default function EditAccountModal({
     setAccountDescription(event.target.value);
   }
 
-  const formData = new FormData();
-
-  Object.entries(dados)?.forEach((dado) => {
-    if (dado[0] === 'pdf') {
-      dado[1] = dado[1] ? dado[1]?.file : '';
-      formData.append(dado[0], dado[1]);
-    }
-  });
   async function handleSubmit() {
     try {
       await managerService.updateAccount(
         id,
         {
-          date: accountDate, title: accountTitle, description: accountDescription, pdf: formData,
+          date: accountDate, title: accountTitle, description: accountDescription,
         },
       );
       toast.success('Dados editados!', {

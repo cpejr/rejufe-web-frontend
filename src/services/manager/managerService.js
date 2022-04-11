@@ -267,6 +267,7 @@ export const deleteAccount = async (actionId) => {
 };
 
 export const updateAccount = async (actionId, body) => {
+  console.log('🚀 ~ file: managerService.js ~ line 270 ~ updateAccount ~ body', body);
   const response = await requesterService.updateAccount(actionId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };

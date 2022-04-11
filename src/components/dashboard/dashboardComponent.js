@@ -287,10 +287,8 @@ function TableComponent({
     try {
       const aux1 = fileNames1;
       if (fileNames1.length === 0 && archive1Id) {
-        console.log('alo');
         archive1Id?.forEach((_id, index) => {
           managerService.getFileNameById(_id).then((response) => {
-            console.log('🚀 ~ file: dashboardComponent.js ~ line 308 ~ managerService.getFileNameById ~ response', response);
             aux1.splice(index, 0, response);
             setFileNames1(aux1);
           });
