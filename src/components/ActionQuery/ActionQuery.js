@@ -41,18 +41,13 @@ function AccountQuery() {
 
     try {
       const allAccounts = await managerService.getActions();
-      console.log('🚀 ~ file: ActionQuery.js ~ line 44 ~ getAllActions ~ allAccounts', allAccounts);
       allAccounts.filter((account) => account.type === 'ADMINISTRATIVAS').forEach((object) => {
         auxAction.push(createData(
           object.numberAction,
           object.description,
         ));
-        if (object.archive_1 !== '') {
-          archive1Code.push(object.archive_1);
-        }
-        if (object.archive_2 !== '') {
-          archive2Code.push(object.archive_2);
-        }
+        archive1Code.push(object.archive_1);
+        archive2Code.push(object.archive_2);
       });
       allAccounts.forEach((object) => {
         actionId.push(createId(
@@ -63,7 +58,9 @@ function AccountQuery() {
       setId(actionId);
       setAllActions(auxAction);
       setArchive1Id(archive1Code);
+      console.log('🚀 ~ file: ActionQuery.js ~ line 66 ~ getAllActions ~ archive1Code', archive1Code);
       setArchive2Id(archive2Code);
+      console.log('🚀 ~ file: ActionQuery.js ~ line 68 ~ getAllActions ~ archive2Code', archive2Code);
       setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
