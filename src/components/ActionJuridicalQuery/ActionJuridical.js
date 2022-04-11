@@ -17,13 +17,6 @@ function ActionJuridical() {
   ];
 
   function createData(number, description) {
-    // let actualNumber = [];
-    // let actualDescription = [];
-
-    // if (type === 'ADMINISTRATIVAS') {
-    //   actualNumber = number;
-    //   actualDescription = description;
-    // }
     return {
       number, description,
     };
@@ -41,7 +34,7 @@ function ActionJuridical() {
 
     try {
       const allAccounts = await managerService.getActions();
-      allAccounts.filter((account) => account.type === 'ADMINISTRATIVAS').forEach((object) => {
+      allAccounts.filter((account) => account.type === 'JUDICIAIS').forEach((object) => {
         auxAction.push(createData(
           object.numberAction,
           object.description,
@@ -73,7 +66,7 @@ function ActionJuridical() {
     <div>
       <div className="title-account-menu">
         <h1>
-          {'Manutenção em Ações Administrativas '}
+          {'Manutenção em Ações Judiciais '}
         </h1>
       </div>
       <div className="line-table-account" />
