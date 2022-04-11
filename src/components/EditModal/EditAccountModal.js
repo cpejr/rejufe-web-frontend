@@ -17,7 +17,7 @@ export default function EditAccountModal({
   setUse,
   archive1,
 }) {
-  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account);
+  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account, id);
   const [dados, setDados] = useState({});
   const accountDateInitial = moment(account.date).format('YYYY-MM-DD');
   const [accountDate, setAccountDate] = useState(accountDateInitial);
@@ -40,12 +40,20 @@ export default function EditAccountModal({
     setAccountDescription(event.target.value);
   }
 
+  const formData = new FormData();
+
+  Object.entries(dados)?.forEach((dado) => {
+    if (dado[0] === 'pdf') {
+      dado[1] = dado[1] ? dado[1]?.file : '';
+      formData.append(dado[0], dado[1]);
+    }
+  });
   async function handleSubmit() {
     try {
       await managerService.updateAccount(
         id,
         {
-          date: accountDate, title: accountTitle, description: accountDescription,
+          date: accountDate, title: accountTitle, description: accountDescription, pdf: formData,
         },
       );
       toast.success('Dados editados!', {
