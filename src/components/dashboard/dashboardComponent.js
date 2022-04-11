@@ -279,7 +279,6 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -299,7 +298,6 @@ function TableComponent({
         });
       }
     } catch (error) {
-      console.error(error);
       toast.error('Não foi possível obter o nome do arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
