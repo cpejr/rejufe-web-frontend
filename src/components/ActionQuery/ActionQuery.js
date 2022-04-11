@@ -3,7 +3,7 @@ import TableComponent from '../dashboard/dashboardComponent';
 import * as managerService from '../../services/manager/managerService';
 import './ActionQuery.css';
 
-function AccountQuery() {
+function ActionQuery() {
   const [action, setAllActions] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
@@ -17,13 +17,6 @@ function AccountQuery() {
   ];
 
   function createData(number, description) {
-    // let actualNumber = [];
-    // let actualDescription = [];
-
-    // if (type === 'ADMINISTRATIVAS') {
-    //   actualNumber = number;
-    //   actualDescription = description;
-    // }
     return {
       number, description,
     };
@@ -89,4 +82,4 @@ function AccountQuery() {
   );
 }
 
-export default AccountQuery;
+export default ActionQuery;
