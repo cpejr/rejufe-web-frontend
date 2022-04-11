@@ -1,12 +1,14 @@
-/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,6 +32,7 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -103,9 +106,27 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchMinutes, searchFile, validate, dados, newsSequentialId, renderButton, print, printButton, route,
+  titleTable,
+  titles,
+  rows,
+  id,
+  sequentialId,
+  order,
+  setUse,
+  archive1Id,
+  archive2Id,
+  associateId,
+  edit,
+  search,
+  searchFile,
+  validate,
+  dados,
+  newsSequentialId,
+  renderButton,
 }) {
   const [page, setPage] = useState(0);
+  const [fileNames1, setFileNames1] = useState([]);
+  const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -254,20 +275,73 @@ function TableComponent({
     setPage(newPage);
   };
 
-  function redirect(e, redirectId) {
-    e.preventDefault();
-    const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
-    win.focus();
-  }
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
-  const handleWindowOpen = () => {
-    window.open(route);
-  };
+  function getDownloads(archiveId) {
+    try {
+      managerService.download(archiveId).then((response) => {
+        FileSaver.saveAs(response, id);
+      });
+    } catch (error) {
+      toast.error('Não foi possível baixar o arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  function setFileNameById() {
+    try {
+      const aux1 = fileNames1;
+      if (fileNames1.length === 0 && archive1Id) {
+        archive1Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            aux1.splice(index, 0, response);
+            setFileNames1(aux1);
+          });
+        });
+      }
+    } catch (error) {
+      toast.error('Não foi possível obter o nome do arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  function setFileNameById2() {
+    try {
+      const aux2 = fileNames2;
+      if (fileNames2.length === 0 && archive2Id) {
+        archive2Id?.forEach((_id, index) => {
+          managerService.getFileNameById(_id).then((response) => {
+            aux2.splice(index, 0, response);
+            setFileNames2(aux2);
+          });
+        });
+      }
+    } catch (error) {
+      toast.error('Não foi possível obter o nome do arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (archive1Id) {
+      setFileNameById();
+    }
+  }, [archive1Id]);
+
+  useEffect(() => {
+    if (archive2Id) {
+      setFileNameById2();
+    }
+  }, [archive2Id]);
 
   return (
     <TableContainer
@@ -327,12 +401,6 @@ function TableComponent({
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                       </IconButton>
                     </TableCell>
-                  ) : searchMinutes ? (
-                    <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
-                        <SearchIcon />
-                      </IconButton>
-                    </TableCell>
                   ) : edit ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="delete">
@@ -348,7 +416,12 @@ function TableComponent({
                         <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="accept">
-                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
+                        <AcceptModal
+                          setUse={setUse}
+                          dados={dados[index + (page * 10)]}
+                          id={associateId[index + (page * 10)]}
+                          associate={row}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (
@@ -356,7 +429,7 @@ function TableComponent({
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
                   ) : (
-                    <TableCell> </TableCell>
+                    null
                   )
                 }
                 {sequentialId
@@ -396,6 +469,26 @@ function TableComponent({
                     {data}
                   </TableCell>
                 ))}
+                {archive1Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {fileNames1[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {fileNames2[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
               </TableRow>
             ))}
           {emptyRows > 0 && (
@@ -409,61 +502,30 @@ function TableComponent({
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
-        {print ? (
-          <TablePagination
-            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
-            component="div"
-            count={rows?.length}
-            rowsPerPage={rows?.length}
-            labelRowsPerPage="Linhas por pagina"
-            page={page}
-            SelectProps={{
-              inputProps: {
-                'aria-label': 'Linhas por pagina',
-              },
-              native: true,
-            }}
-            onPageChange={handleChangePage}
-            ActionsComponent={TablePaginationActions}
-          />
-        ) : (
-          <>
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              labelRowsPerPage="Linhas por pagina"
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'Linhas por pagina',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-            <div className="button-table-component-pagination-consult">
-              {renderButton && (
-                <Button
-                  {...buttonFontProps}
-                >
-                  Pesquisa Avançada
-                  {/* TODO Implementar o botão de pesquisa avançada */}
-                </Button>
-              )}
-              {printButton && (
-                <Button
-                  {...buttonFontProps}
-                  onClick={handleWindowOpen}
-                >
-                  Imprimir
-                </Button>
-              )}
-            </div>
-          </>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          labelRowsPerPage="Linhas por pagina"
+          page={page}
+          SelectProps={{
+            inputProps: {
+              'aria-label': 'Linhas por pagina',
+            },
+            native: true,
+          }}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          ActionsComponent={TablePaginationActions}
+        />
+        {renderButton && (
+          <Button
+            {...buttonFontProps}
+          >
+            Pesquisa Avançada
+            {/* TODO Implementar o botão de pesquisa avançada */}
+          </Button>
         )}
       </TableFooter>
     </TableContainer>
