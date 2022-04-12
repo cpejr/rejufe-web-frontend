@@ -136,3 +136,13 @@ export const createAccountability = (body) => httpClient.post('/prestacaodeconta
 export const createActions = (body) => httpClient.post('/acoes', body);
 
 export const createModels = (body) => httpClient.post('/modelos', body);
+
+export const getComunication = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});

@@ -2,35 +2,31 @@ import React, { useState, useEffect } from 'react';
 import './ListaComunicados.css';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/dashboard/dashboardComponent';
-import getAllAdministrationRecords from '../../components/AdmRegistrosNoticias/getAllAdministrationRecords';
+import getAllListaComunicados from '../../components/ListaComunicados/getAllListaComunicados';
 
 const titles = [
-  ' ',
-  'Reg.',
-  'Status',
-  'Título',
-  'Postado',
-  'Seção',
-  'Tipo',
+  'Número',
+  'Descrição',
+  'Arquivo 1',
+  'Arquivo 2',
 ];
 
-function AdmRegistrosNoticias() {
-  const [news, setAllAdministrationRecords] = useState([]);
-  const [id, setId] = useState([]);
-  const [newsSequentialId, setNewsSequentialId] = useState([]);
+function ListaComunicados() {
+  const [comunications, setAllComunications] = useState([]);
+  const [number, setnumber] = useState([]);
 
   useEffect(() => {
-    getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId);
+    getAllListaComunicados(setAllComunications, setnumber);
   }, []);
 
   return (
     <div>
-      <h1 className="titleAdministrationRecords"> Administração de Registros </h1>
+      <h1 className="titleAdministrationRecords"> Comunicados </h1>
       <div className="containerAdministrationRecords">
-        <TableComponent id={id} newsSequentialId={newsSequentialId} rows={news} titles={titles} search />
+        <TableComponent number={number} rows={comunications} titles={titles} search />
       </div>
     </div>
   );
 }
 
-export default AdmRegistrosNoticias;
+export default ListaComunicados;

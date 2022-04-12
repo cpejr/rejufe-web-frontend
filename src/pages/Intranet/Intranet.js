@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
-import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
+import ListaComunicados from '../ListaComunicados/ListaComunicados';
 import './Intranet.css';
 
 function Intranet() {
@@ -12,9 +12,9 @@ function Intranet() {
         <div className="intranet-side-menu">
           <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
         </div>
-        {selectedButton === 'Enquetes' ? (
+        {selectedButton === 'Comunicados' ? (
           <div className="intranet-dashboad-quizzes">
-            <ResultadoQuizzes />
+            <ListaComunicados />
           </div>
         ) : (
           <div />
