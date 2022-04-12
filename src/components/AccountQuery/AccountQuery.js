@@ -40,9 +40,8 @@ function AccountQuery() {
           object.title,
           object.description,
         ));
-        if (object.pdf !== '') {
-          archive1Code.push(object.pdf);
-        }
+
+        archive1Code.push(object.pdf);
       });
       allAccounts.forEach((object) => {
         accountId.push(createId(
