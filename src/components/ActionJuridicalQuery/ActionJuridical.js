@@ -33,8 +33,8 @@ function ActionJuridical() {
     const archive2Code = [];
 
     try {
-      const allAccounts = await managerService.getActions();
-      allAccounts.filter((account) => account.type === 'JUDICIAIS').forEach((object) => {
+      const allActions = await managerService.getActions();
+      allActions.filter((account) => account.type === 'JUDICIAIS').forEach((object) => {
         auxAction.push(createData(
           object.numberAction,
           object.description,
@@ -42,7 +42,7 @@ function ActionJuridical() {
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
       });
-      allAccounts.forEach((object) => {
+      allActions.forEach((object) => {
         actionId.push(createId(
           object._id,
         ));
@@ -64,12 +64,12 @@ function ActionJuridical() {
 
   return (
     <div>
-      <div className="title-account-menu">
+      <div className="title-action-menu">
         <h1>
           {'Manutenção em Ações Judiciais '}
         </h1>
       </div>
-      <div className="line-table-account" />
+      <div className="line-table-action" />
       <TableComponent
         setUse={setUse}
         accountId={id}
