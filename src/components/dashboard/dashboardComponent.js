@@ -33,8 +33,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive1 from '../SetFileNameArchive/setFileNameArchive1';
-import setFileNameArchive2 from '../SetFileNameArchive/setFileNameArchive2';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -311,15 +310,18 @@ function TableComponent({
 
   useEffect(() => {
     if (archive1Id) {
-      setFileNameArchive1(fileNames1, archive1Id, setFileNames1);
+      setFileNameArchive(fileNames1, archive1Id, setFileNames1);
     }
-  }, [archive1Id]);
-
-  useEffect(() => {
     if (archive2Id) {
-      setFileNameArchive2(fileNames2, archive2Id, setFileNames2);
+      setFileNameArchive(fileNames2, archive2Id, setFileNames2);
     }
-  }, [archive2Id]);
+  }, [archive1Id, archive2Id]);
+
+  // useEffect(() => {
+  //   if (archive2Id) {
+  //     setFileNameArchive2(fileNames2, archive2Id, setFileNames2);
+  //   }
+  // }, [archive2Id]);
 
   return (
     <TableContainer
