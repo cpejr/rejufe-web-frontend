@@ -165,7 +165,7 @@ function Login() {
               id="password"
               label=""
               width="100%"
-              height="40px"
+              height="6vh"
               dados={usuario}
               setDados={handleChange}
             />

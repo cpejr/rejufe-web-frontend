@@ -62,6 +62,7 @@ function StyledInput({
             width,
             marginBottom: '4.5vh',
             background: 'white',
+            borderRadius: '6px',
           },
           endAdornment: (
             <div>
