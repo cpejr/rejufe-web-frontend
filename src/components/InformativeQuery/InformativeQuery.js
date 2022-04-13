@@ -69,12 +69,12 @@ function InformativeQuery() {
 
   return (
     <div>
-      <div className="title-action-adm-menu">
+      <div className="title-informative-adm-menu">
         <h1>
-          {'Manutenção em Ações Administrativas '}
+          {'Manutenção em Informativos '}
         </h1>
       </div>
-      <div className="line-table-action-adm-menu" />
+      <div className="line-table-informative-adm-menu" />
       <TableComponent
         setUse={setUse}
         accountId={id}
