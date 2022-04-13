@@ -317,12 +317,6 @@ function TableComponent({
     }
   }, [archive1Id, archive2Id]);
 
-  // useEffect(() => {
-  //   if (archive2Id) {
-  //     setFileNameArchive2(fileNames2, archive2Id, setFileNames2);
-  //   }
-  // }, [archive2Id]);
-
   return (
     <TableContainer
       component={Paper}
