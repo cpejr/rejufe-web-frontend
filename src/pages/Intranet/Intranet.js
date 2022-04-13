@@ -3,6 +3,7 @@ import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
+import ListaEditais from '../ListaEditais/ListaEditais';
 import './Intranet.css';
 
 function Intranet() {
@@ -11,6 +12,7 @@ function Intranet() {
     switch (selectedButton) {
     case 'Enquetes': return <ResultadoQuizzes />;
     case 'Associados': return <ConsultaAssociados />;
+    case 'Editais': return <ListaEditais />;
 
     default: return <div />;
     }

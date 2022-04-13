@@ -295,3 +295,15 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const getEditais = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allEditais = [];
+  do {
+    response = await requesterService.getEditais(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allEditais = allEditais.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allEditais;
+};
