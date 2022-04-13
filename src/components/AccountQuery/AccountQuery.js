@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 import TableComponent from '../dashboard/dashboardComponent';
 import * as managerService from '../../services/manager/managerService';
@@ -56,6 +57,10 @@ function AccountQuery() {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
+      toast.error('Não foi possível obter prestações de contas!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
   useEffect(() => {
