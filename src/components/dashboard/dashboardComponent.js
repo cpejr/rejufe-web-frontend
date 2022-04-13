@@ -33,6 +33,8 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
+import setFileNameArchive1 from '../SetFileNameArchive/setFileNameArchive1';
+import setFileNameArchive2 from '../SetFileNameArchive/setFileNameArchive2';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -307,53 +309,15 @@ function TableComponent({
     }
   }
 
-  function setFileNameById() {
-    try {
-      const aux1 = fileNames1;
-      if (fileNames1.length === 0 && archive1Id) {
-        archive1Id?.forEach((_id, index) => {
-          managerService.getFileNameById(_id).then((response) => {
-            aux1.splice(index, 0, response);
-            setFileNames1(aux1);
-          });
-        });
-      }
-    } catch (error) {
-      toast.error('Não foi possível obter o nome do arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
-
-  function setFileNameById2() {
-    try {
-      const aux2 = fileNames2;
-      if (fileNames2.length === 0 && archive2Id) {
-        archive2Id?.forEach((_id, index) => {
-          managerService.getFileNameById(_id).then((response) => {
-            aux2.splice(index, 0, response);
-            setFileNames2(aux2);
-          });
-        });
-      }
-    } catch (error) {
-      toast.error('Não foi possível obter o nome do arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
-
   useEffect(() => {
     if (archive1Id) {
-      setFileNameById();
+      setFileNameArchive1(fileNames1, archive1Id, setFileNames1);
     }
   }, [archive1Id]);
 
   useEffect(() => {
     if (archive2Id) {
-      setFileNameById2();
+      setFileNameArchive2(fileNames2, archive2Id, setFileNames2);
     }
   }, [archive2Id]);
 

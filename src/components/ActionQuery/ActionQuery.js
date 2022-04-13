@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import TableComponent from '../dashboard/dashboardComponent';
 import * as managerService from '../../services/manager/managerService';
 import './ActionQuery.css';
@@ -56,6 +57,10 @@ function ActionQuery() {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
+      toast.error('Não foi possível obter ações administrativas!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
   useEffect(() => {
@@ -64,12 +69,12 @@ function ActionQuery() {
 
   return (
     <div>
-      <div className="title-action-menu">
+      <div className="title-action-adm-menu">
         <h1>
           {'Manutenção em Ações Administrativas '}
         </h1>
       </div>
-      <div className="line-table-action" />
+      <div className="line-table-action-adm-menu" />
       <TableComponent
         setUse={setUse}
         accountId={id}
