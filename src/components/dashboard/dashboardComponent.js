@@ -385,7 +385,7 @@ function TableComponent({
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
                   ) : (
-                    <TableCell> </TableCell>
+                    null
                   )
                 }
                 {sequentialId
