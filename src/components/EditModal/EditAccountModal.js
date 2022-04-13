@@ -45,7 +45,7 @@ export default function EditAccountModal({
       await managerService.updateAccount(
         id,
         {
-          date: accountDate, title: accountTitle, description: accountDescription,
+          date: accountDate, title: accountTitle, description: accountDescription, pdf: archive1,
         },
       );
       toast.success('Dados editados!', {

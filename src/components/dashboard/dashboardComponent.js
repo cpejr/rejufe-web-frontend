@@ -114,6 +114,7 @@ TablePaginationActions.propTypes = {
 function TableComponent({
   titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, associateId, accountId, edit, editAccount, search, searchFile, validate, dados, newsSequentialId, renderButton,
 }) {
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 117 ~ archive1Id', archive1Id);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };

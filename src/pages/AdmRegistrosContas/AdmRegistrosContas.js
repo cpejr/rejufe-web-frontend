@@ -37,7 +37,6 @@ function AdmRegistrosContas() {
     const auxAccount = [];
     const accountId = [];
     const archive1Code = [];
-    const archive2Code = [];
     try {
       console.log('alo');
       const allComunic = await managerService.getAccounts();
