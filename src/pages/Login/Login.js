@@ -34,11 +34,6 @@ function Login() {
     setUsuario({ ...usuario, [field]: value });
   };
 
-  { /* <input
-              type="password"
-              onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
-            /> */ }
-
   const handleClickClose = () => {
     setShowWarningModal(false);
   };
