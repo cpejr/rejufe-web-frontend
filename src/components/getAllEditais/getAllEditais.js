@@ -13,7 +13,7 @@ function getAllEditais(setId, setAllEditais, setLoading) {
 
   try {
     managerService.getEditais().then((allEditais) => {
-      allEditais.forEach((object) => {
+      allEditais.filter((user) => user.type.toLowerCase() !== 'editais').forEach((object) => {
         Promise.all([
           managerService.getFileNameById(object.archive_1),
           managerService.getFileNameById(object.archive_2),
