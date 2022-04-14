@@ -1,18 +1,21 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
+import AdministrativeRequirements from '../../components/AdministrativeRequirements/AdministrativeRequirements';
 import './Intranet.css';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
   const menuSide = () => {
     switch (selectedButton) {
-    case 'Enquetes': return <ResultadoQuizzes />;
-    case 'Associados': return <ConsultaAssociados />;
+      case 'Enquetes': return <ResultadoQuizzes />;
+      case 'Associados': return <ConsultaAssociados />;
+      case 'buttonAdminRequirement': return <AdministrativeRequirements />;
 
-    default: return <div />;
+      default: return <div />;
     }
   };
   return (
@@ -26,7 +29,7 @@ function Intranet() {
         </div>
       </div>
       <div>
-        <BottomMenu />
+        <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
     </div>
   );

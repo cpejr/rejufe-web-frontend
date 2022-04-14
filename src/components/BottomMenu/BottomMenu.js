@@ -10,22 +10,22 @@ import flagPernambuco from '../../images/flagPernambuco.png';
 import flagRioGrandeDoNorte from '../../images/flagRioGrandeDoNorte.png';
 import flagSergipe from '../../images/flagSergipe.png';
 
-function BottomMenu() {
+function BottomMenu({ setSelectedButton }) {
   return (
     <div className="containerBottomMenu">
       <div className="boxBottomMenu">
         <div className="buttonsBottomMenu">
-          <button type="button" className="buttonBottomMenu">
+          <button type="button" key="buttonAdminRequirement" className="buttonBottomMenu" onClick={() => setSelectedButton('buttonAdminRequirement')}>
             <GavelRoundedIcon className="iconBottomMenu" />
             Requerimentos Administrativos
           </button>
 
-          <button type="button" className="buttonBottomMenu">
+          <button type="button" key="buttonPetitions" className="buttonBottomMenu" onClick={() => setSelectedButton('buttonPetitions')}>
             <FilePresentRoundedIcon className="iconBottomMenu" />
             Petições Iniciais
           </button>
 
-          <button type="button" className="buttonBottomMenu">
+          <button type="button" key="buttonJurisprudence" className="buttonBottomMenu" onClick={() => setSelectedButton('buttonJurisprudence')}>
             <FeedRoundedIcon className="iconBottomMenu" />
             Jurisprudência
           </button>
