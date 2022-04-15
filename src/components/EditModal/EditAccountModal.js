@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
-import moment from 'moment';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -17,27 +16,10 @@ export default function EditAccountModal({
   setUse,
   archive1,
 }) {
-  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account, archive1);
-  const [dados, setDados] = useState({});
-  const accountDateInitial = moment(account.date).format('YYYY-MM-DD');
-  const [accountDate, setAccountDate] = useState(accountDateInitial);
-  const [accountTitle, setAccountTitle] = useState(account.title);
-  // eslint-disable-next-line no-unused-vars
-  const [accountDescription, setAccountDescription] = useState(account.description);
+  const [dados, setDados] = useState(account);
+
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
-  }
-
-  async function handleDateChange(event) {
-    setAccountDate(event.target.value);
-  }
-
-  // async function handleTitleChange(event) {
-  //   setAccountTitle(event.target.value);
-  // }
-
-  async function handleDescriptionChange(event) {
-    setAccountDescription(event.target.value);
   }
 
   console.log('🚀 ~ file: EditAccountModal.js ~ line 50 ~ handleSubmit ~ dados', dados);
@@ -51,13 +33,9 @@ export default function EditAccountModal({
         formData.append(dado[0], dado[1]);
       }
     });
+
     try {
-      await managerService.updateAccount(
-        id,
-        {
-          formData,
-        },
-      );
+      await managerService.updateAccount(id, formData);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -90,19 +68,19 @@ export default function EditAccountModal({
         <div className="EditModal-text">
           Título:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={accountTitle} onChange={(value, entrada) => handleChange(value, entrada)} />
+        <input className="EditModal-Input" placeholder="" require value={dados?.title} onChange={(e) => handleChange(e.target.value, 'title')} />
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
           Data:
         </div>
-        <input type="date" className="EditModal-Input" placeholder="" require value={accountDate} onChange={handleDateChange} />
+        <input type="date" className="EditModal-Input" placeholder="" require value={dados?.date} onChange={(e) => handleChange(e.target.value, 'date')} />
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
           Descrição:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={accountDescription} onChange={handleDescriptionChange} />
+        <input className="EditModal-Input" placeholder="" require value={dados?.description} onChange={(e) => handleChange(e.target.value, 'description')} />
         <div className="EditModal-text">
           Anexo:
         </div>
