@@ -1,0 +1,39 @@
+.title-list-comunic {
+    color: #2574A9;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:3%;
+    margin-left: 40%;
+    margin-right: 30%; 
+}
+
+.container-list-comunic {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+}
+
+@media (max-width: 601px) {
+    .title-list-comunic {
+        margin-left: 35%;
+
+    }
+     
+}
+
+@media (max-width: 445px) {
+    .title-list-comunic {
+        margin-left: 30%;
+        margin-right: 0%;
+    }
+     
+}
+@media (max-width: 509px) {
+    .title-list-comunic {
+        margin-left: 20%;
+
+    }
+     
+}

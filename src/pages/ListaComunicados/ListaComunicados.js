@@ -21,8 +21,8 @@ function ListaComunicados() {
 
   return (
     <div>
-      <h1 className="titleAdministrationRecords"> Comunicados </h1>
-      <div className="containerAdministrationRecords">
+      <h1 className="title-list-comunic"> Comunicados </h1>
+      <div className="container-list-comunic">
         <TableComponent number={number} rows={comunications} titles={titles} search />
       </div>
     </div>
