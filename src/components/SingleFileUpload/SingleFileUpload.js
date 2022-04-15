@@ -39,7 +39,6 @@ function SingleFileUpload({
       const response = await managerService.getFileById(archiveId);
       setActualFile(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -52,7 +51,6 @@ function SingleFileUpload({
       const response = await managerService.getImageById(archiveId);
       setImage(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -66,7 +64,6 @@ function SingleFileUpload({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -101,7 +98,6 @@ function SingleFileUpload({
       return;
     }
     setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
-    console.log(id);
   }, [dados]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -128,16 +124,34 @@ function SingleFileUpload({
               </p>
             )}
           </div>
-          {update === true && archiveId !== undefined && (
-            <Button variant="primary" onClick={() => getDownloads()}>
-              Download
-              {' '}
-              <PictureAsPdfIcon />
-            </Button>
+          {update === true && archiveId !== undefined && dados.pdf === undefined && (
+            <div>
+              <Button variant="primary" onClick={() => getDownloads()}>
+                Download
+                {' '}
+                <PictureAsPdfIcon />
+              </Button>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+                Remover Arquivo
+              </Button>
+            </div>
           )}
+          {dados.pdf && (
+            <div>
+              <div className="register-news-align-test">
+                {file?.file?.path}
+                {' '}
+                <PictureAsPdfIcon />
+              </div>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+                Remover Arquivo
+              </Button>
+            </div>
+          )}
+
         </div>
       </Grid>
-      {file && (
+      {file && dados.pdf === undefined && (
         <Grid item>
           <div key={file.url}>
             {label === 'Imagem'

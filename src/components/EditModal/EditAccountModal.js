@@ -22,7 +22,6 @@ export default function EditAccountModal({
     setDados({ ...dados, [field]: value });
   }
 
-  console.log('🚀 ~ file: EditAccountModal.js ~ line 50 ~ handleSubmit ~ dados', dados);
   async function handleSubmit() {
     const formData = new FormData();
     Object.entries(dados).forEach((dado) => {

@@ -22,7 +22,7 @@ function AdmRegistrosContas() {
   const [archive1Id, setArchive1Id] = useState();
 
   function createData(dateActual, title, description) {
-    const date = moment(dateActual).format('YYYY-MM-DD');
+    const date = moment(dateActual).format('DD-MM-YYYY');
     return {
       date, title, description,
     };
@@ -33,14 +33,11 @@ function AdmRegistrosContas() {
   }
 
   async function getAllAccounts() {
-    console.log('ali');
     const auxAccount = [];
     const accountId = [];
     const archive1Code = [];
     try {
-      console.log('alo');
       const allComunic = await managerService.getAccounts();
-      console.log('🚀 ~ file: AdmRegistrosAcoes.js ~ line 41 ~ getAllComunic ~ allComunic', allComunic);
       allComunic.forEach((object) => {
         auxAccount.push(createData(
           object.date,
