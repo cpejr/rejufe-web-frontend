@@ -260,15 +260,15 @@ export const createAccountability = async (body) => {
   return response.data;
 };
 
-export const getComunication = async (field, filter) => {
+export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
-  let allComunication = [];
+  let allCommunique = [];
   do {
-    response = await requesterService.getComunication(times, field, filter);
+    response = await requesterService.getCommunique(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allComunication = allComunication.concat(response.data);
+    allCommunique = allCommunique.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allComunication;
+  return allCommunique;
 };
