@@ -9,10 +9,10 @@ function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
   const menuSide = () => {
     switch (selectedButton) {
-      case 'Enquetes': return <ResultadoQuizzes />;
-      case 'Ações Adm': return <ActionQuery />;
+    case 'Enquetes': return <ResultadoQuizzes />;
+    case 'Ações Adm': return <ActionQuery />;
 
-      default: return <div />;
+    default: return <div />;
     }
   };
 
