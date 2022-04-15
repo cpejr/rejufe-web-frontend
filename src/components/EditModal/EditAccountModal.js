@@ -17,7 +17,7 @@ export default function EditAccountModal({
   setUse,
   archive1,
 }) {
-  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account, id);
+  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account, archive1);
   const [dados, setDados] = useState({});
   const accountDateInitial = moment(account.date).format('YYYY-MM-DD');
   const [accountDate, setAccountDate] = useState(accountDateInitial);
@@ -32,20 +32,30 @@ export default function EditAccountModal({
     setAccountDate(event.target.value);
   }
 
-  async function handleTitleChange(event) {
-    setAccountTitle(event.target.value);
-  }
+  // async function handleTitleChange(event) {
+  //   setAccountTitle(event.target.value);
+  // }
 
   async function handleDescriptionChange(event) {
     setAccountDescription(event.target.value);
   }
 
+  console.log('🚀 ~ file: EditAccountModal.js ~ line 50 ~ handleSubmit ~ dados', dados);
   async function handleSubmit() {
+    const formData = new FormData();
+    Object.entries(dados).forEach((dado) => {
+      if (dado[0] === 'pdf') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
+      }
+    });
     try {
       await managerService.updateAccount(
         id,
         {
-          date: accountDate, title: accountTitle, description: accountDescription, pdf: archive1,
+          formData,
         },
       );
       toast.success('Dados editados!', {
@@ -80,7 +90,7 @@ export default function EditAccountModal({
         <div className="EditModal-text">
           Título:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={accountTitle} onChange={handleTitleChange} />
+        <input className="EditModal-Input" placeholder="" require value={accountTitle} onChange={(value, entrada) => handleChange(value, entrada)} />
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
