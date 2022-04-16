@@ -13,7 +13,7 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
 
   try {
     managerService.getMinutes().then((allMinutes) => {
-      allMinutes.forEach((object) => {
+      allMinutes.filter((account) => account.type === 'ATAS').forEach((object) => {
         Promise.all([
           managerService.getFileNameById(object.archive_1),
           managerService.getFileNameById(object.archive_2),
