@@ -78,12 +78,12 @@ function MinuteQuery() {
       <div className="line-table-informative-adm-menu" />
       <TableComponent
         setUse={setUse}
-        accountId={id}
+        id={id}
         rows={minute}
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
-        search
+        searchMinutes
       />
     </div>
   );
