@@ -1,5 +1,15 @@
 /* eslint-disable camelcase */
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
+
+const routingFunction = (param) => {
+  const history = useHistory();
+
+  history.push({
+    pathname: '/NotFound',
+    state: param,
+  });
+};
 
 function createData(number, type, description, archive_1, archive_2) {
   return {
@@ -39,6 +49,7 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);
+    routingFunction();
   }
 }
 

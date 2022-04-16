@@ -25,7 +25,6 @@ class ComponentToPrint extends React.Component {
 }
 
 const titles = [
-  '',
   'Número',
   'Tipo',
   'Descrição',

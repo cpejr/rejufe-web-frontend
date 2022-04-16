@@ -79,7 +79,7 @@ function Routes() {
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir-associados" component={ImprimirAssociados} />
         <Route path="/imprimir-atas-editais" component={ImprimirAtasEditais} />
-        <Route path="imprimir-atas" component={ImprimirAtas} />
+        <Route path="/imprimir-atas" component={ImprimirAtas} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

@@ -85,7 +85,7 @@ function MinuteQuery() {
         archive2Id={archive2Id}
         searchMinutes
         printButton
-        route="/imprimir-atas-editais"
+        route="/imprimir-atas"
       />
     </div>
   );
