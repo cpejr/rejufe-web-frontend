@@ -37,7 +37,6 @@ function StyledInput({
     }
   }, []);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const [error, setError] = useState(false);
   const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
@@ -77,7 +76,6 @@ function StyledInput({
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
                         >
                           { showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
@@ -123,7 +121,6 @@ function StyledInput({
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
                         >
                           { showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
@@ -169,7 +166,6 @@ function StyledInput({
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
                         >
                           { showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
@@ -215,7 +211,6 @@ function StyledInput({
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
                         >
                           { showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
@@ -261,7 +256,6 @@ function StyledInput({
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
                         >
                           { showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
