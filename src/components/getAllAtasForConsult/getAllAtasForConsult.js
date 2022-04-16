@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 
 function createData(number, type, description, archive_1, archive_2) {
@@ -10,6 +11,7 @@ function createData(number, type, description, archive_1, archive_2) {
 function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
   const auxMinutes = [];
   const minutesId = [];
+  const history = useHistory();
 
   try {
     managerService.getMinutes().then((allMinutes) => {
@@ -39,6 +41,7 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);
+    history.push('/NotFound');
   }
 }
 

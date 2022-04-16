@@ -1,4 +1,3 @@
-/* eslint-disable no-else-return */
 import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
@@ -285,10 +284,9 @@ export const getFileNameById = async (id) => {
   if (id.length !== 0) {
     response = await requesterService.getFileNameById(id);
     return response.data;
-  } else {
-    response = '';
-    return response;
   }
+  response = '';
+  return response;
 };
 export const createAccountability = async (body) => {
   const response = await requesterService.createAccountability(body);
