@@ -7,28 +7,24 @@ function createData(number, description) {
   };
 }
 
-function getAllEditais(setId, setAllEditais, setLoading) {
+function getAllEditais(setAllEditais) {
   const auxEditais = [];
-  const editaisId = [];
 
   try {
     managerService.getEditais().then((allEditais) => {
-      allEditais.filter((user) => user.type.toLowerCase() !== 'editais').forEach((object) => {
+      allEditais.filter((user) => user.type.toLowerCase() !== 'atas').forEach((object) => {
         Promise.all([
           managerService.getFileNameById(object.archive_1),
           managerService.getFileNameById(object.archive_2),
         ]).then(() => {
-          editaisId.push(object._id);
           auxEditais.push(createData(
             object.number,
             object.description,
           ));
-          return [auxEditais, editaisId];
+          return [auxEditais];
         }).then((response2) => {
           if (response2[0]?.length === allEditais?.length) {
             setAllEditais(response2[0]);
-            setId(response2[1]);
-            setLoading(false);
           }
         });
       });

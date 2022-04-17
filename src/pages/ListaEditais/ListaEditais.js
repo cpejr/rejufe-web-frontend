@@ -19,9 +19,9 @@ function ListaEditais() {
   }, []);
 
   return (
-    <div className="consultAssociatePage">
-      <h1 className="titleConsultAssociate"> Associados Ativos </h1>
-      <div className="containerConsultAssociate">
+    <div className="lista-editais-page">
+      <h1 className="titulo-lista-editais"> Associados Ativos </h1>
+      <div className="conteiner-lista-editais">
         <TableComponent id={id} rows={editais} titles={titles} print={false} search />
       </div>
     </div>
