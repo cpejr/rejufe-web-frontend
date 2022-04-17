@@ -20,9 +20,9 @@ function AdmRegistrosAcoes() {
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
 
-  function createData(type, number, description) {
+  function createData(type, numberAction, description) {
     return {
-      type, number, description,
+      type, numberAction, description,
     };
   }
 
@@ -30,27 +30,23 @@ function AdmRegistrosAcoes() {
     return _id;
   }
 
-  async function getAllComunic() {
+  async function getAllActions() {
     const auxAction = [];
     const actionId = [];
     const archive1Code = [];
     const archive2Code = [];
     try {
-      const allComunic = await managerService.getActions();
-      allComunic.forEach((object) => {
+      const allAction = await managerService.getActions();
+      allAction.forEach((object) => {
         auxAction.push(createData(
           object.type,
           object.numberAction,
           object.description,
         ));
-        if (object.archive_1 !== '') {
-          archive1Code.push(object.archive_1);
-        }
-        if (object.archive_2 !== '') {
-          archive2Code.push(object.archive_2);
-        }
+        archive1Code.push(object.archive_1);
+        archive2Code.push(object.archive_2);
       });
-      allComunic.forEach((object) => {
+      allAction.forEach((object) => {
         actionId.push(createId(
           object._id,
         ));
@@ -67,7 +63,7 @@ function AdmRegistrosAcoes() {
     }
   }
   useEffect(() => {
-    getAllComunic();
+    getAllActions();
   }, [use]);
 
   const titles = [

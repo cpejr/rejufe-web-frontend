@@ -25,18 +25,32 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '4%',
   },
 }));
+const useStyle = makeStyles(() => ({
+  dropzone: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '1%',
+    marginRight: '4%',
+    marginLeft: '4%',
+  },
+}));
 
 function SingleFileUpload({
-  id, fileType, dados, file, setDados, label, update,
+  id, fileType, dados, file, setDados, label, update, archiveId,
 }) {
+  console.log(archiveId);
+  console.log('🚀 ~ file: SingleFileUpload.js ~ line 43 ~ file', dados);
   const classes = useStyles();
+  const buttonArchive = useStyle();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
 
   async function getFile() {
     try {
-      const response = await managerService.getFileById(file);
+      const response = await managerService.getFileById(archiveId);
       setActualFile(response);
     } catch (error) {
       toast.error('Não foi possível obter arquivo', {
@@ -48,10 +62,9 @@ function SingleFileUpload({
 
   async function getImage() {
     try {
-      const response = await managerService.getImageById(file);
+      const response = await managerService.getImageById(archiveId);
       setImage(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -61,11 +74,10 @@ function SingleFileUpload({
 
   function getDownloads() {
     try {
-      managerService.download(file).then((response) => {
+      managerService.download(archiveId).then((response) => {
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -78,10 +90,10 @@ function SingleFileUpload({
       if (id === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-      if ((id === 'archive_1' || id === 'archive_2' || fileType === '.pdf') && file !== undefined) {
+      if (((id === 'archive_1' || id === 'archive_2') && file !== undefined) || (id === 'pdf')) {
         getFile();
       }
-    }, [file]);
+    }, [file, archiveId]);
   }
 
   const onDrop = useCallback((accFiles, rejFiles) => {
@@ -126,40 +138,68 @@ function SingleFileUpload({
               </p>
             )}
           </div>
+          {update === true && file !== undefined && archiveId && (
+            <div {...getRootProps({ className: buttonArchive.dropzone })}>
+              <Button style={{ alignItems: 'center', justifyContent: 'center', marginTop: '2%' }} variant="primary" onClick={() => getDownloads()}>
+                Download
+                {' '}
+                <PictureAsPdfIcon />
+              </Button>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
+                Remover Arquivo
+              </Button>
+            </div>
+          )}
+          {file && (
+            <div {...getRootProps({ className: buttonArchive.dropzone })}>
+              <div className="register-news-align-test">
+                {file?.file?.path}
+                {' '}
+                <PictureAsPdfIcon />
+              </div>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
+                Remover Arquivo
+              </Button>
+            </div>
+          )}
+
         </div>
       </Grid>
-      {file && (
-        <Grid item>
-          <div key={file.url}>
-            {label === 'Imagem'
-              ? (
-                <div>
-                  <img src={file.url} style={{ width: '200px' }} alt="preview" />
-                </div>
-              )
-              : (
-                <>
-                  {update === true && label === 'Arquivo' && file !== 'undefined' ? (
-                    <Button variant="primary" onClick={() => getDownloads()}>
-                      Arquivo atual
-                      <PictureAsPdfIcon />
-                    </Button>
-                  ) : (
-                    <div className="register-news-align-test">
-                      {file?.file?.path}
-                      {' '}
-                      <PictureAsPdfIcon />
-                    </div>
-                  )}
-                  <div />
-                </>
-              )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
-              Remover Arquivo
-            </Button>
-          </div>
-        </Grid>
-      )}
+      {
+        file && (archiveId === undefined) && (
+          <Grid item>
+            <div key={file.url}>
+              {label === 'Imagem'
+                ? (
+                  <div>
+                    <img src={file.url} style={{ width: '200px' }} alt="preview" />
+                  </div>
+                )
+                : (
+                  <>
+                    {update === true && file !== undefined ? (
+                      <Button variant="primary" onClick={() => getDownloads()}>
+                        Download
+                        {' '}
+                        <PictureAsPdfIcon />
+                      </Button>
+                    ) : (
+                      <div className="register-news-align-test">
+                        {file?.file?.path}
+                        {' '}
+                        <PictureAsPdfIcon />
+                      </div>
+                    )}
+                    <div />
+                  </>
+                )}
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
+                Remover Arquivo
+              </Button>
+            </div>
+          </Grid>
+        )
+      }
     </Grid>
   );
 }

@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
+// import moment from 'moment';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
@@ -10,41 +11,31 @@ import * as managerService from '../../services/manager/managerService';
 import './EditActionModal.css';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
-export default function EditActionModal({
+export default function EditAccountModal({
   id,
   action,
   setUse,
   archive1,
   archive2,
 }) {
-  const [dados, setDados] = useState({});
-  const [actionNumber, setActionNumber] = useState(action.number);
-  const [actionType, setActionType] = useState(action.type);
-  // eslint-disable-next-line no-unused-vars
-  const [actionDescription, setActionDescription] = useState(action.description);
-
+  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', action);
+  const [dados, setDados] = useState(action);
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
 
-  async function handleNumberChange(event) {
-    setActionNumber(event.target.value);
-  }
-
-  async function handleTypeChange(event) {
-    setActionType(event.target.value);
-  }
-
-  async function handleDescriptionChange(event) {
-    setActionDescription(event.target.value);
-  }
-
   async function handleSubmit() {
+    const formData = new FormData();
+    Object.entries(dados).forEach((dado) => {
+      if (dado[0] === 'archive1' || dado[0] === 'archive2') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
+      }
+    });
     try {
-      await managerService.updateAction(
-        id,
-        { numberAction: actionNumber, type: actionType, description: actionDescription },
-      );
+      await managerService.updateAction(id, formData);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -64,7 +55,7 @@ export default function EditActionModal({
   const handleClose = () => {
     setOpen(false);
   };
-
+  console.log('🚀 ~ file: EditActionModal.js ~ line 25 ~ handleChange ~ dados', dados);
   const body = (
     <Box className="EditModal-ContainerModal">
       <div role="button" tabIndex={0} className="EditModal-cancel" onClick={handleClose}>
@@ -77,7 +68,7 @@ export default function EditActionModal({
         <div className="EditModal-text">
           Tipo:
         </div>
-        <select className="EditModal-Select" placeholder="" require value={actionType} onChange={handleTypeChange}>
+        <select className="EditModal-Input" placeholder="" require value={dados?.type} onChange={(e) => handleChange(e.target.value, 'type')}>
           <option value="ADMINISTRATIVAS">ADMINISTATIVAS</option>
           <option value="JUDICIAIS">JUDICIAIS</option>
         </select>
@@ -86,13 +77,13 @@ export default function EditActionModal({
         <div className="EditModal-text">
           Número:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={actionNumber} onChange={handleNumberChange} />
+        <input className="EditModal-Input" placeholder="" value={dados?.numberAction} onChange={(e) => handleChange(e.target.value, 'numberAction')} />
       </div>
       <div className="EditModal-field">
         <div className="EditModal-text">
           Descrição:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={actionDescription} onChange={handleDescriptionChange} />
+        <input className="EditModal-Input" placeholder="" require value={dados?.description} onChange={(e) => handleChange(e.target.value, 'description')} />
         <div className="EditModal-archive-container">
           <div className="EditModal-archive-text">
             <div className="EditModal-text">
@@ -100,7 +91,7 @@ export default function EditActionModal({
             </div>
             { }
             <div className="EditModal-archive">
-              <SingleFileUpload id={archive1} fileType=".pdf" dados={dados} file={archive1} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+              <SingleFileUpload id="archive_1" fileType=".pdf" dados={dados} archiveId={archive1} file={dados.archive_1} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
             </div>
           </div>
           <div className="EditModal-archive-text">
@@ -108,7 +99,7 @@ export default function EditActionModal({
               Arquivo 2:
             </div>
             <div className="EditModal-archive">
-              <SingleFileUpload id={archive2} action={action} fileType=".pdf" dados={dados} file={archive2} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+              <SingleFileUpload id="archive_2" fileType=".pdf" dados={dados} archiveId={archive2} file={dados.archive_2} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
             </div>
           </div>
         </div>
