@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
@@ -108,7 +107,27 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, archive2Id, associateId, edit, search, searchMinutes, searchFile, validate, dados, newsSequentialId, renderButton, print, printButton, route,
+  titleTable,
+  titles,
+  rows,
+  id,
+  sequentialId,
+  order,
+  setUse,
+  archive1Id,
+  archive2Id,
+  associateId,
+  edit,
+  search,
+  searchFile,
+  searchMinutes,
+  validate,
+  dados,
+  newsSequentialId,
+  renderButton,
+  print,
+  printButton,
+  route,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -262,16 +281,16 @@ function TableComponent({
     setPage(newPage);
   };
 
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
     win.focus();
   }
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
 
   const handleWindowOpen = () => {
     window.open(route);
@@ -357,12 +376,6 @@ function TableComponent({
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                       </IconButton>
                     </TableCell>
-                  ) : searchMinutes ? (
-                    <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
-                        <SearchIcon />
-                      </IconButton>
-                    </TableCell>
                   ) : edit ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="delete">
@@ -372,13 +385,24 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : searchMinutes ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
                   ) : validate ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="reject">
                         <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="accept">
-                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
+                        <AcceptModal
+                          setUse={setUse}
+                          dados={dados[index + (page * 10)]}
+                          id={associateId[index + (page * 10)]}
+                          associate={row}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (

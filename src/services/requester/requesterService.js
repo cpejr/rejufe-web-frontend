@@ -165,6 +165,14 @@ export const getInformations = (times, field, filter) => httpClient.get('/inform
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const getActions = (times, field, filter) => httpClient.get('/acoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
