@@ -4,6 +4,7 @@ import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
+import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import './Intranet.css';
 
 function Intranet() {
@@ -13,6 +14,7 @@ function Intranet() {
     case 'Enquetes': return <ResultadoQuizzes />;
     case 'Ações Adm': return <ActionQuery />;
     case 'Associados': return <ConsultaAssociados />;
+    case 'Informativos': return <InformativeQuery />;
 
     default: return <div />;
     }
