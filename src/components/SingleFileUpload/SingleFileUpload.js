@@ -90,7 +90,7 @@ function SingleFileUpload({
       if (id === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-      if (((id === 'archive_1' || id === 'archive_2') && file !== undefined) || (id === 'pdf')) {
+      if (((id === 'archive_1' || id === 'archive_2') && archiveId !== undefined) || (id === 'pdf')) {
         getFile();
       }
     }, [file, archiveId]);
