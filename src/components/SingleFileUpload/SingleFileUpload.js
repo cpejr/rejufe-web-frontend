@@ -25,11 +25,23 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '4%',
   },
 }));
+const useStyle = makeStyles(() => ({
+  dropzone: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '1%',
+    marginRight: '4%',
+    marginLeft: '4%',
+  },
+}));
 
 function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update, archiveId,
 }) {
   const classes = useStyles();
+  const buttonArchive = useStyle();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
@@ -125,8 +137,8 @@ function SingleFileUpload({
             )}
           </div>
           {update === true && archiveId !== undefined && dados.pdf === undefined && (
-            <div>
-              <Button variant="primary" onClick={() => getDownloads()}>
+            <div {...getRootProps({ className: buttonArchive.dropzone })}>
+              <Button style={{ alignItems: 'center', justifyContent: 'center', marginTop: '2%' }} variant="primary" onClick={() => getDownloads()}>
                 Download
                 {' '}
                 <PictureAsPdfIcon />
@@ -137,7 +149,7 @@ function SingleFileUpload({
             </div>
           )}
           {dados.pdf && (
-            <div>
+            <div {...getRootProps({ className: buttonArchive.dropzone })}>
               <div className="register-news-align-test">
                 {file?.file?.path}
                 {' '}
@@ -151,39 +163,41 @@ function SingleFileUpload({
 
         </div>
       </Grid>
-      {file && dados.pdf === undefined && (
-        <Grid item>
-          <div key={file.url}>
-            {label === 'Imagem'
-              ? (
-                <div>
-                  <img src={file.url} style={{ width: '200px' }} alt="preview" />
-                </div>
-              )
-              : (
-                <>
-                  {update === true && archiveId !== undefined ? (
-                    <Button variant="primary" onClick={() => getDownloads()}>
-                      Download
-                      {' '}
-                      <PictureAsPdfIcon />
-                    </Button>
-                  ) : (
-                    <div className="register-news-align-test">
-                      {file?.file?.path}
-                      {' '}
-                      <PictureAsPdfIcon />
-                    </div>
-                  )}
-                  <div />
-                </>
-              )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
-              Remover Arquivo
-            </Button>
-          </div>
-        </Grid>
-      )}
+      {
+        file && dados.pdf === undefined && (
+          <Grid item>
+            <div key={file.url}>
+              {label === 'Imagem'
+                ? (
+                  <div>
+                    <img src={file.url} style={{ width: '200px' }} alt="preview" />
+                  </div>
+                )
+                : (
+                  <>
+                    {update === true && archiveId !== undefined ? (
+                      <Button variant="primary" onClick={() => getDownloads()}>
+                        Download
+                        {' '}
+                        <PictureAsPdfIcon />
+                      </Button>
+                    ) : (
+                      <div className="register-news-align-test">
+                        {file?.file?.path}
+                        {' '}
+                        <PictureAsPdfIcon />
+                      </div>
+                    )}
+                    <div />
+                  </>
+                )}
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+                Remover Arquivo
+              </Button>
+            </div>
+          </Grid>
+        )
+      }
     </Grid>
   );
 }
