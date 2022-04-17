@@ -21,8 +21,7 @@ function AdmRegistrosContas() {
   const [fileId, setFileId] = useState();
   const [archive1Id, setArchive1Id] = useState();
 
-  function createData(dateActual, title, description) {
-    const date = moment(dateActual).format('DD-MM-YYYY');
+  function createData(date, title, description) {
     return {
       date, title, description,
     };
@@ -40,7 +39,7 @@ function AdmRegistrosContas() {
       const allComunic = await managerService.getAccounts();
       allComunic.forEach((object) => {
         auxAccount.push(createData(
-          object.date,
+          moment(object.date).format('DD-MM-YYYY'),
           object.title,
           object.description,
         ));
