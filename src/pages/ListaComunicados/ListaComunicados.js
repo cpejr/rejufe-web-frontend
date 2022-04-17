@@ -13,18 +13,18 @@ const titles = [
 ];
 
 function ListaComunicados() {
-  const [comunications, setAllComunications] = useState([]);
+  const [communique, setAllCommunique] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    getAllListaComunicados(setAllComunications, history);
+    getAllListaComunicados(setAllCommunique, history);
   }, []);
 
   return (
     <div>
       <h1 className="title-list-comunic"> Comunicados </h1>
       <div className="container-list-comunic">
-        <TableComponent rows={comunications} titles={titles} />
+        <TableComponent rows={communique} titles={titles} />
       </div>
     </div>
   );
