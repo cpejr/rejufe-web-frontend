@@ -138,16 +138,11 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links4 = [
+  const linksMinutes = [
     {
-      link: () => handleClick('/editais'),
-      pathName: '/editais',
-      text: 'Consulta Editais',
-    },
-    {
-      link: () => handleClick('/atas'),
-      pathName: '/atas',
-      text: 'Consulta Atas',
+      link: () => handleClick('/consulta-atas'),
+      pathName: '/consulta-atas-e-editais',
+      text: 'Consultas',
     },
     {
       link: () => handleClick('/alteracoeseexclusoes'),
@@ -155,8 +150,8 @@ function Header(props) {
       text: 'Alterações e exclusões',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-atas'),
+      pathName: '/cadastrar-atas',
       text: 'Cadastrar',
     },
   ];
@@ -205,7 +200,7 @@ function Header(props) {
     },
     {
       text: 'Atas/Editais',
-      links: links4,
+      links: linksMinutes,
       icon: <FilePresentOutlinedIcon />,
     },
     {

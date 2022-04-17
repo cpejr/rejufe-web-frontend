@@ -5,19 +5,19 @@ import { toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import formsComunic from '../../components/formsData/formsComunic';
+import formsMinutes from '../../components/formsData/formsAtas';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
-import { initialComunicState, initialComunicErrorState } from '../../components/initialStates/initialStates';
-import checkComunicData from '../../components/checkData/checkComunicData/checkComunicData';
+import { initialMinutesState, initialMinutesErrorState } from '../../components/initialStates/initialStates';
+import checkMinutesData from '../../components/checkData/checkAtasData/checkAtasData';
 import * as managerService from '../../services/manager/managerService';
-import './CadastrarComunic.css';
+import './CadastrarAtas.css';
 
 toast.configure();
 
-function CadastrarComunic() {
-  const [initialErrorState, setError] = useState(initialComunicErrorState);
+function CadastrarMinutes() {
+  const [initialErrorState, setError] = useState(initialMinutesErrorState);
   const [loading, setLoading] = useState(false);
-  const [dados, setDados] = useState(initialComunicState);
+  const [dados, setDados] = useState(initialMinutesState);
   const history = useHistory();
 
   function handleChange(value, field) {
@@ -38,7 +38,7 @@ function CadastrarComunic() {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
       } else {
-        if (checkComunicData(dado[0], dado[1])) {
+        if (checkMinutesData(dado[0], dado[1])) {
           checkError = 1;
           aux[dado[0]] = true;
         }
@@ -53,12 +53,12 @@ function CadastrarComunic() {
     }
 
     try {
-      await managerService.createComunic(formData);
-      toast.success('Comunicado criado com sucesso!!', {
+      await managerService.createMinutes(formData);
+      toast.success('Atas/Edital criado com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros-comunic');
+      history.push('/consulta-atas-e-editais');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
@@ -71,11 +71,11 @@ function CadastrarComunic() {
   }
 
   return (
-    <div className="register-comunic-container">
-      <h1 className="register-comunic-title"><div className="register-comunic-text-margin">Cadastro de Comunicados/Informações</div></h1>
-      {formsComunic?.map((line) => (
+    <div className="register-minutes-container">
+      <h1 className="register-minutes-title"><div className="register-minutes-text-margin">Cadastro de Atas/Editais</div></h1>
+      {formsMinutes?.map((line) => (
         <Box>
-          <div className="register-comunic-text-field">
+          <div className="register-minutes-text-field">
             {line?.items?.map((item) => (
               <RegisterInputs
                 type={item.type}
@@ -94,9 +94,9 @@ function CadastrarComunic() {
           </div>
         </Box>
       ))}
-      <LoadingButton className="register-comunic-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Comunicado/Informação</LoadingButton>
+      <LoadingButton className="register-minutes-button" variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar Atas/Edital</LoadingButton>
     </div>
   );
 }
 
-export default CadastrarComunic;
+export default CadastrarMinutes;
