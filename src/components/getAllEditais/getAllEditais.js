@@ -11,21 +11,25 @@ function createId(_id) {
   return _id;
 }
 
-async function getAllEditais(setId, setAllEditais, history) {
+async function getAllEditais(setId, setAllEditais, history, setUse, setArchive1Id, setArchive2Id) {
   const auxEdicts = [];
   const edictsId = [];
+  const archive1Code = [];
+  const archive2Code = [];
 
   try {
-    const allEdicts = await managerService.getEditais();
-    allEdicts.sort();
+    const allEditais = await managerService.getEditais();
+    allEditais.sort();
 
-    allEdicts.filter((editais) => editais.type.toLowerCase() !== 'atas').forEach((object) => {
+    allEditais.filter((editais) => editais.type.toLowerCase() !== 'atas').forEach((object) => {
       auxEdicts.push(createData(
         object.number,
         object.description,
       ));
+      archive1Code.push(object.archive_1);
+      archive2Code.push(object.archive_2);
     });
-    allEdicts.forEach((object) => {
+    allEditais.forEach((object) => {
       edictsId.push(createId(
         object._id,
       ));
@@ -33,6 +37,9 @@ async function getAllEditais(setId, setAllEditais, history) {
 
     setAllEditais(auxEdicts);
     setId(edictsId);
+    setArchive1Id(archive1Code);
+    setArchive2Id(archive2Code);
+    setUse(false);
   } catch (error) {
     history.push('/NotFound');
   }
