@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './ListaEditais.css';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
@@ -13,9 +14,10 @@ const titles = [
 function ListaEditais() {
   const [editais, setAllEditais] = useState([]);
   const [id, setId] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
-    getAllEditais(setId, setAllEditais);
+    getAllEditais(setId, setAllEditais, history);
   }, []);
 
   return (

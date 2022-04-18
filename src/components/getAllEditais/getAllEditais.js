@@ -7,7 +7,7 @@ function createData(number, description) {
   };
 }
 
-function getAllEditais(setAllEditais) {
+function getAllEditais(setAllEditais, history) {
   const auxEditais = [];
 
   try {
@@ -30,8 +30,7 @@ function getAllEditais(setAllEditais) {
       });
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.warn(error);
+    history.push('/NotFound');
   }
 }
 
