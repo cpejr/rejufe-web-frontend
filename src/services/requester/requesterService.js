@@ -145,12 +145,6 @@ export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
 
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
 
-export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
-  params: {
-    archiveId,
-  },
-});
-
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
 
 export const createActions = (body) => httpClient.post('/acoes', body);
@@ -172,10 +166,6 @@ export const getActions = (times, field, filter) => httpClient.get('/acoes', {
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-});
-
-export const download = (id) => httpClient.get(`/arquivos/${id}`, {
-  responseType: 'blob',
 });
 
 export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {

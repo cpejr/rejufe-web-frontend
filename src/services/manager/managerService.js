@@ -348,17 +348,6 @@ export const updateAccount = async (actionId, body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const download = async (id) => {
-  const response = await requesterService.download(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
-export const getFileNameById = async (id) => {
-  const response = await requesterService.getFileNameById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
 export const getImageById = async (id) => {
   const response = await requesterService.getImageById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

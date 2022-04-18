@@ -34,7 +34,6 @@ import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 import ImprimirAssociados from './pages/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
-import Imprimir from './pages/Imprimir';
 import AdmRegistrosContas from './pages/AdmRegistrosContas';
 
 export function UserHeader() {

@@ -36,7 +36,7 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import EditAccountModal from '../EditModal/EditAccountModal';
 import * as managerService from '../../services/manager/managerService';
@@ -135,13 +135,13 @@ function TableComponent({
   printButton,
   editAccount,
   accountId,
+  route,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
-  const [fileNames1, setFileNames1] = useState([]);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
