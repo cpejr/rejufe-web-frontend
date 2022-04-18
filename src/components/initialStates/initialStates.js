@@ -116,6 +116,14 @@ export const initialComunicErrorState = {
   archive_2: false,
 };
 
+export const initialMinutesState = {
+  number: '',
+  type: '',
+  description: '',
+  archive_1: undefined,
+  archive_2: undefined,
+};
+
 export const initialActionsState = {
   numberAction: '',
   type: '',
@@ -124,10 +132,48 @@ export const initialActionsState = {
   archive_2: undefined,
 };
 
+export const initialMinutesErrorState = {
+  number: false,
+  type: false,
+  description: false,
+  archive_1: false,
+  archive_2: false,
+};
+
 export const initialActionsErrorState = {
   numberAction: false,
   type: false,
   description: false,
   archive_1: false,
   archive_2: false,
+};
+
+export const initialModelsState = {
+  numberModels: '',
+  type: '',
+  description: '',
+  archive_1: undefined,
+  archive_2: undefined,
+};
+
+export const initialModelsErrorState = {
+  numberModels: false,
+  type: false,
+  description: false,
+  archive_1: false,
+  archive_2: false,
+};
+
+export const initialAccountabilityState = {
+  date: '',
+  title: '',
+  description: '',
+  pdf: undefined,
+};
+
+export const initialAccountabilityErrorState = {
+  date: false,
+  title: false,
+  description: false,
+  pdf: false,
 };

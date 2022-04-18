@@ -36,6 +36,7 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import EditAccountModal from '../EditModal/EditAccountModal';
 import * as managerService from '../../services/manager/managerService';
@@ -112,9 +113,32 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, archive1Id, associateId, accountId, edit, editAccount, search, searchFile, validate, dados, newsSequentialId, renderButton,
+  titleTable,
+  titles,
+  rows,
+  id,
+  sequentialId,
+  order,
+  setUse,
+  archive1Id,
+  archive2Id,
+  associateId,
+  edit,
+  search,
+  searchFile,
+  searchMinutes,
+  validate,
+  dados,
+  newsSequentialId,
+  renderButton,
+  print,
+  printButton,
+  editAccount,
+  accountId,
 }) {
   const [page, setPage] = useState(0);
+  const [fileNames1, setFileNames1] = useState([]);
+  const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
   const [fileNames1, setFileNames1] = useState([]);
@@ -171,7 +195,8 @@ function TableComponent({
         fontSize: '85%',
         backgroundColor: '#2574A9',
         color: 'white',
-        padding: '0px',
+        padding: '3px',
+        textAlign: 'center',
       }
       : matchesFont90
         ? {
@@ -270,6 +295,16 @@ function TableComponent({
     setPage(0);
   };
 
+  function redirect(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
+  const handleWindowOpen = () => {
+    window.open(route);
+  };
+
   function getDownloads(archiveId) {
     try {
       managerService.download(archiveId).then((response) => {
@@ -282,30 +317,15 @@ function TableComponent({
       });
     }
   }
-  function setFileNameById() {
-    try {
-      const aux1 = fileNames1;
-      if (fileNames1.length === 0 && archive1Id) {
-        archive1Id?.forEach((_id, index) => {
-          managerService.getFileNameById(_id).then((response) => {
-            aux1.splice(index, 0, response);
-            setFileNames1(aux1);
-          });
-        });
-      }
-    } catch (error) {
-      toast.error('Não foi possível obter o nome do arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
 
   useEffect(() => {
     if (archive1Id) {
-      setFileNameById();
+      setFileNameArchive(fileNames1, archive1Id, setFileNames1);
     }
-  }, [archive1Id]);
+    if (archive2Id) {
+      setFileNameArchive(fileNames2, archive2Id, setFileNames2);
+    }
+  }, [archive1Id, archive2Id]);
 
   return (
     <TableContainer
@@ -374,6 +394,12 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : searchMinutes ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
                   ) : editAccount ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="delete">
@@ -389,7 +415,12 @@ function TableComponent({
                         <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="accept">
-                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
+                        <AcceptModal
+                          setUse={setUse}
+                          dados={dados[index + (page * 10)]}
+                          id={associateId[index + (page * 10)]}
+                          associate={row}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (
@@ -397,7 +428,7 @@ function TableComponent({
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
                   ) : (
-                    <TableCell> </TableCell>
+                    null
                   )
                 }
                 {sequentialId
@@ -447,6 +478,16 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
+                {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {fileNames2[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
               </TableRow>
             ))}
           {emptyRows > 0 && (
@@ -460,30 +501,61 @@ function TableComponent({
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          labelRowsPerPage="Linhas por pagina"
-          page={page}
-          SelectProps={{
-            inputProps: {
-              'aria-label': 'Linhas por pagina',
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-        />
-        {renderButton && (
-          <Button
-            {...buttonFontProps}
-          >
-            Pesquisa Avançada
-            {/* TODO Implementar o botão de pesquisa avançada */}
-          </Button>
+        {print ? (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            component="div"
+            count={rows?.length}
+            rowsPerPage={rows?.length}
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
+        ) : (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              labelRowsPerPage="Linhas por pagina"
+              page={page}
+              SelectProps={{
+                inputProps: {
+                  'aria-label': 'Linhas por pagina',
+                },
+                native: true,
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+            <div className="button-table-component-pagination-consult">
+              {renderButton && (
+                <Button
+                  {...buttonFontProps}
+                >
+                  Pesquisa Avançada
+                  {/* TODO Implementar o botão de pesquisa avançada */}
+                </Button>
+              )}
+              {printButton && (
+                <Button
+                  {...buttonFontProps}
+                  onClick={handleWindowOpen}
+                >
+                  Imprimir
+                </Button>
+              )}
+            </div>
+          </>
         )}
       </TableFooter>
     </TableContainer>
