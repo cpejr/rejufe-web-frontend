@@ -67,6 +67,7 @@ function StyledInput({
                 marginBottom: '4.5vh',
                 background: 'white',
                 borderRadius: '6px',
+                fontSize: '1rem',
               },
               endAdornment: (
                 <div>
@@ -112,6 +113,7 @@ function StyledInput({
                 marginBottom: '4.5vh',
                 background: 'white',
                 borderRadius: '6px',
+                fontSize: '0.95rem',
               },
               endAdornment: (
                 <div>
@@ -157,6 +159,7 @@ function StyledInput({
                 marginBottom: '4.5vh',
                 background: 'white',
                 borderRadius: '6px',
+                fontSize: '0.9rem',
               },
               endAdornment: (
                 <div>
@@ -202,6 +205,7 @@ function StyledInput({
                 marginBottom: '4.5vh',
                 background: 'white',
                 borderRadius: '6px',
+                fontSize: '0.85rem',
               },
               endAdornment: (
                 <div>
@@ -247,6 +251,7 @@ function StyledInput({
                 marginBottom: '4.5vh',
                 background: 'white',
                 borderRadius: '6px',
+                fontSize: '0.85rem',
               },
               endAdornment: (
                 <div>

@@ -75,7 +75,7 @@
   margin-bottom: 3%;
   margin-top: 1%;
   width: 55%;
-  height: 6vh;
+  height: 43px;
   background-color: var(--fontColor1);
   box-sizing: border-box;
   border-radius: 6px;
@@ -200,13 +200,37 @@ label {
   }
 }
 
+@media (min-width: 1250px) {
+  .container-login-input-username {
+    height: 43px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1250px) {
+  .container-login-input-username {
+    height: 37px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 690px) {
+  .container-login-input-username {
+    height: 34px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 570px) {
+  .container-login-input-username {
+    height: 31px;
+    font-size: 0.85rem;
+  }
+}
+
 @media (max-width: 353px) {
   .Box-login {
     width: 90%;
-  }
-
-  .container-login input {
-    height: 6.5vh;
   }
 
   .container-login-button {
