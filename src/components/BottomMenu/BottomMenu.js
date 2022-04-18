@@ -10,12 +10,15 @@ import flagPernambuco from '../../images/flagPernambuco.png';
 import flagRioGrandeDoNorte from '../../images/flagRioGrandeDoNorte.png';
 import flagSergipe from '../../images/flagSergipe.png';
 
-function BottomMenu({ setSelectedButton }) {
+function BottomMenu({ setSelectedButton, selectedButton }) {
+  const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
+    ? 'buttonselectedBottomMenu'
+    : 'buttonBottomMenu');
   return (
     <div className="containerBottomMenu">
       <div className="boxBottomMenu">
         <div className="buttonsBottomMenu">
-          <button type="button" key="buttonAdminRequirement" className="buttonBottomMenu" onClick={() => setSelectedButton('buttonAdminRequirement')}>
+          <button type="button" key="buttonAdminRequirement" className={defineBackgroundColor('buttonAdminRequirement')} onClick={() => setSelectedButton('buttonAdminRequirement')}>
             <GavelRoundedIcon className="iconBottomMenu" />
             Requerimentos Administrativos
           </button>

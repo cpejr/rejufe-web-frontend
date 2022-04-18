@@ -37,6 +37,25 @@
 .buttonBottomMenu:hover {
   box-shadow: 0 0 1em rgb(0, 0, 0, 0.1);
 }
+.buttonselectedBottomMenu {
+  height: 40px;
+  display: flex;
+  padding: 8px;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  color: var(--hover);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+  box-shadow: 0 8px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+}
 
 .iconBottomMenu {
   margin-right: 20px;
