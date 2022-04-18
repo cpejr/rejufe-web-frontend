@@ -15,16 +15,27 @@ const titles = [
 function ListaComunicados() {
   const [communique, setAllCommunique] = useState([]);
   const history = useHistory();
+  const [id, setId] = useState([]);
+  const [user, setUse] = useState(true);
+  const [archive1Id, setArchive1Id] = useState();
+  const [archive2Id, setArchive2Id] = useState();
 
   useEffect(() => {
-    getAllListaComunicados(setAllCommunique, history);
-  }, []);
+    getAllListaComunicados(setAllCommunique, history, setId, setUse, setArchive1Id, setArchive2Id);
+  }, [user]);
 
   return (
     <div>
       <h1 className="title-list-comunic"> Comunicados </h1>
       <div className="container-list-comunic">
-        <TableComponent rows={communique} titles={titles} />
+        <TableComponent
+          setUse={setUse}
+          communiqueId={id}
+          rows={communique}
+          titles={titles}
+          archive1Id={archive1Id}
+          archive2Id={archive2Id}
+        />
       </div>
     </div>
   );

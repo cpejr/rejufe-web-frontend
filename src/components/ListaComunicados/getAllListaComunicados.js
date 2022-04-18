@@ -1,14 +1,21 @@
 import * as managerService from '../../services/manager/managerService';
 
 // eslint-disable-next-line camelcase
-function createData(number, description, archive_1, archive_2) {
+function createData(number, description) {
   return {
-    number, description, archive_1, archive_2,
+    number, description,
   };
 }
 
-async function getAllListaComunicados(setAllCommunique, history) {
+function createId(_id) {
+  return _id;
+}
+
+async function getAllListaComunicados(setAllCommunique, history, setId, setUse, setArchive1Id, setArchive2Id) {
   const auxCommunique = [];
+  const communiqueId = [];
+  const archive1Code = [];
+  const archive2Code = [];
 
   try {
     const allCommunique = await managerService.getCommunique();
@@ -18,12 +25,21 @@ async function getAllListaComunicados(setAllCommunique, history) {
       auxCommunique.push(createData(
         object.number,
         object.description,
-        object.archive_1,
-        object.archive_2,
+      ));
+      archive1Code.push(object.archive_1);
+      archive2Code.push(object.archive_2);
+    });
+    allCommunique.forEach((object) => {
+      communiqueId.push(createId(
+        object._id,
       ));
     });
 
     setAllCommunique(auxCommunique);
+    setId(communiqueId);
+    setArchive1Id(archive1Code);
+    setArchive2Id(archive2Code);
+    setUse(false);
   } catch (error) {
     history.push('/NotFound');
   }

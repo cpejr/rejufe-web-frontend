@@ -16,12 +16,12 @@ function Intranet() {
     case 'Ações Adm': return <ActionQuery />;
     case 'Associados': return <ConsultaAssociados />;
     case 'Informativos': return <InformativeQuery />;
+    case 'Comunicados': return <ListaComunicados />;
 
     default: return <div />;
     }
   };
 
-    case 'Comunicados': return <ListaComunicados />;
   return (
     <div>
       <div className="intranet-main-container">
