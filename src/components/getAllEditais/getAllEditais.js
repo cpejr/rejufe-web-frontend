@@ -1,34 +1,38 @@
-/* eslint-disable camelcase */
 import * as managerService from '../../services/manager/managerService';
 
+// eslint-disable-next-line camelcase
 function createData(number, description) {
   return {
     number, description,
   };
 }
 
-function getAllEditais(setAllEditais, history) {
-  const auxEditais = [];
+function createId(_id) {
+  return _id;
+}
+
+async function getAllEditais(setId, setAllEditais, history) {
+  const auxEdicts = [];
+  const edictsId = [];
 
   try {
-    managerService.getEditais().then((allEditais) => {
-      allEditais.filter((user) => user.type.toLowerCase() !== 'atas').forEach((object) => {
-        Promise.all([
-          managerService.getFileNameById(object.archive_1),
-          managerService.getFileNameById(object.archive_2),
-        ]).then(() => {
-          auxEditais.push(createData(
-            object.number,
-            object.description,
-          ));
-          return [auxEditais];
-        }).then((response2) => {
-          if (response2[0]?.length === allEditais?.length) {
-            setAllEditais(response2[0]);
-          }
-        });
-      });
+    const allEdicts = await managerService.getEditais();
+    allEdicts.sort();
+
+    allEdicts.filter((editais) => editais.type.toLowerCase() !== 'atas').forEach((object) => {
+      auxEdicts.push(createData(
+        object.number,
+        object.description,
+      ));
     });
+    allEdicts.forEach((object) => {
+      edictsId.push(createId(
+        object._id,
+      ));
+    });
+
+    setAllEditais(auxEdicts);
+    setId(edictsId);
   } catch (error) {
     history.push('/NotFound');
   }
