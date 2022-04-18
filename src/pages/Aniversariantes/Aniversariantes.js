@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/dashboard/dashboardComponent';
 import getAllBirthdays from '../../components/getAllBirthdays/getAllBirthdays';
 import './Aniversariantes.css';
@@ -15,9 +16,10 @@ function Aniversariantes() {
   const [Birthdays, setAllBirthdays] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
-    getAllBirthdays(setId, setAllBirthdays);
+    getAllBirthdays(setId, setAllBirthdays, history);
   }, [use]);
 
   return (

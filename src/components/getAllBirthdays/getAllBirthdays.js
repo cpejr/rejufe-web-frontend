@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import moment from 'moment';
+import { toast } from 'react-toastify';
 import ptLocale from 'moment/locale/pt-br';
 import * as managerService from '../../services/manager/managerService';
 
@@ -18,7 +19,7 @@ function compare(a, b) {
   return x === y ? 0 : x > y ? 1 : -1;
 }
 
-async function getAllBirthdays(setId, setAllAssociates, setLoading) {
+async function getAllBirthdays(setId, setAllAssociates, setLoading, history) {
   const auxAssociate = [];
   const associateId = [];
   try {
@@ -38,8 +39,11 @@ async function getAllBirthdays(setId, setAllAssociates, setLoading) {
     setAllAssociates(auxAssociate);
     setLoading(false);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.warn(error);
+    history.push('/NotFound');
+    toast.error('Erro ao listar os Aniversariantes!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
   }
 }
 
