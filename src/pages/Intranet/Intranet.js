@@ -5,6 +5,8 @@ import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
+import Aniversariantes from '../Aniversariantes/Aniversariantes';
+
 import './Intranet.css';
 
 function Intranet() {
@@ -15,6 +17,7 @@ function Intranet() {
     case 'Ações Adm': return <ActionQuery />;
     case 'Associados': return <ConsultaAssociados />;
     case 'Informativos': return <InformativeQuery />;
+    case 'Aniversariantes': return <Aniversariantes />;
 
     default: return <div />;
     }
