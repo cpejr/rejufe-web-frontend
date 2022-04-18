@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 
 // eslint-disable-next-line camelcase
@@ -42,6 +43,10 @@ async function getAllEditais(setId, setAllEditais, history, setUse, setArchive1I
     setUse(false);
   } catch (error) {
     history.push('/NotFound');
+    toast.error('Erro ao listar os Editais!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
   }
 }
 
