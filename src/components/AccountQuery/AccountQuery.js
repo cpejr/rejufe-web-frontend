@@ -69,12 +69,12 @@ function AccountQuery() {
 
   return (
     <div>
-      <div className="title-account-menu">
+      <div className="title-account-menu-side">
         <h1>
           {'Manutenção em Prestação de Contas '}
         </h1>
       </div>
-      <div className="line-table-account" />
+      <div className="line-table-account-menu-side" />
       <TableComponent setUse={setUse} accountId={id} rows={account} titles={titles} archive1Id={archive1Id} />
     </div>
   );
