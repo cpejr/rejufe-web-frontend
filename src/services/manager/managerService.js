@@ -294,8 +294,6 @@ export const createAccountability = async (body) => {
   return response.data;
 };
 
-};
-
 export const getInformations = async (field, filter) => {
   let times = 0;
   let response;
