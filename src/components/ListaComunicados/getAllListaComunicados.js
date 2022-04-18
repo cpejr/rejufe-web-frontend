@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 
 // eslint-disable-next-line camelcase
@@ -42,6 +43,10 @@ async function getAllListaComunicados(setAllCommunique, history, setId, setUse, 
     setUse(false);
   } catch (error) {
     history.push('/NotFound');
+    toast.error('Erro ao listar os comunicados!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
   }
 }
 
