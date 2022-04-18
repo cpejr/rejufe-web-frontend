@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
-// import moment from 'moment';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,7 +17,6 @@ export default function EditAccountModal({
   setUse,
   archive1,
 }) {
-  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', account);
   const [dados, setDados] = useState(account);
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
@@ -55,6 +54,9 @@ export default function EditAccountModal({
   const handleClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    setDados({ ...dados, date: moment(account?.date, 'DD-MM-YYYY').format('YYYY-MM-DD') });
+  }, []);
 
   const body = (
     <Box className="EditModal-ContainerModal">

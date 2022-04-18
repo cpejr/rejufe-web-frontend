@@ -39,7 +39,7 @@ function AdmRegistrosContas() {
       const allComunic = await managerService.getAccounts();
       allComunic.forEach((object) => {
         auxAccount.push(createData(
-          moment(object.date).format('DD-MM-YYYY'),
+          moment(object.date).add(1, 'days').format('DD-MM-YYYY'),
           object.title,
           object.description,
         ));
