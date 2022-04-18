@@ -1,4 +1,3 @@
-/* eslint-disable no-else-return */
 import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
@@ -285,15 +284,29 @@ export const getFileNameById = async (id) => {
   if (id.length !== 0) {
     response = await requesterService.getFileNameById(id);
     return response.data;
-  } else {
-    response = '';
-    return response;
   }
+  response = '';
+  return response;
 };
 export const createAccountability = async (body) => {
   const response = await requesterService.createAccountability(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+};
+
+export const getInformations = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allInformatives = [];
+  do {
+    response = await requesterService.getInformations(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allInformatives = allInformatives.concat(response.data);
+    times += 1;
+  } while (response.data.length === 0);
+  return allInformatives;
 };
 
 export const getActions = async (field, filter) => {
@@ -308,6 +321,7 @@ export const getActions = async (field, filter) => {
   } while (response.data.length === 0);
   return allActions;
 };
+
 export const download = async (id) => {
   const response = await requesterService.download(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
