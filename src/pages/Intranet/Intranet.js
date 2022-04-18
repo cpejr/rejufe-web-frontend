@@ -13,17 +13,16 @@ function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
   const menuSide = () => {
     switch (selectedButton) {
-    case 'Enquetes': return <ResultadoQuizzes />;
-    case 'Ações Adm': return <ActionQuery />;
-    case 'Associados': return <ConsultaAssociados />;
-    case 'Informativos': return <InformativeQuery />;
-    case 'Prestação de Contas': return <AccountQuery />;
+      case 'Enquetes': return <ResultadoQuizzes />;
+      case 'Ações Adm': return <ActionQuery />;
+      case 'Associados': return <ConsultaAssociados />;
+      case 'Informativos': return <InformativeQuery />;
+      case 'Prestação de Contas': return <AccountQuery />;
 
-    default: return <div />;
+      default: return <div />;
     }
   };
 
-    
   return (
     <div>
       <div className="intranet-main-container">
