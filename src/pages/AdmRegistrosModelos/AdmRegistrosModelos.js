@@ -2,12 +2,12 @@ import React from 'react';
 
 function AdmRegistrosModelos() {
   return (
-    <h1>
-      TESTE CONFLITO
+    <div>
+      Capacitação de gitKraken
       <div>
         Adm registros Modelos
       </div>
-    </h1>
+    </div>
   );
 }
 
