@@ -3,7 +3,10 @@ import React from 'react';
 function AdmRegistrosModelos() {
   return (
     <div>
-      Adm registros Modelos
+      Capacitação de gitKraken
+      <div>
+        Adm registros Modelos
+      </div>
     </div>
   );
 }
