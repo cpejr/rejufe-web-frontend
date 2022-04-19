@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable no-undef */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
@@ -32,6 +34,8 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../DeleteModel/editModelsModal';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -105,10 +109,29 @@ TablePaginationActions.propTypes = {
 };
 
 function TableComponent({
-  titleTable, titles, rows, id, sequentialId, order, setUse, associateId, edit, search, searchFile, validate, dados, newsSequentialId, renderButton, modelsSequentialId,
+  titleTable,
+  titles,
+  rows,
+  id,
+  sequentialId,
+  order,
+  setUse,
+  associateId,
+  edit,
+  search,
+  searchFile,
+  validate,
+  dados,
+  newsSequentialId,
+  renderButton,
+  modelsSequentialId,
+  archive1Id,
+  archive2Id,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [fileNames1, setFileNames1] = useState([]);
+  const [fileNames2, setFileNames2] = useState([]);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -261,6 +284,28 @@ function TableComponent({
     setPage(0);
   };
 
+  function getDownloads(archiveId) {
+    try {
+      managerService.download(archiveId).then((response) => {
+        FileSaver.saveAs(response, id);
+      });
+    } catch (error) {
+      toast.error('Não foi possível baixar o arquivo', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (archive1Id) {
+      setFileNameArchive(fileNames1, archive1Id, setFileNames1);
+    }
+    if (archive2Id) {
+      setFileNameArchive(fileNames2, archive2Id, setFileNames2);
+    }
+  }, [archive1Id, archive2Id]);
+
   return (
     <TableContainer
       component={Paper}
@@ -342,7 +387,7 @@ function TableComponent({
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
                   ) : (
-                    <TableCell> </TableCell>
+                    null
                   )
                 }
                 {sequentialId
@@ -374,6 +419,26 @@ function TableComponent({
                         }}
                       >
                         {newsSequentialId[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {archive1Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {fileNames1[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {fileNames2[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}

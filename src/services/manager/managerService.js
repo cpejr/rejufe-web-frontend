@@ -283,3 +283,19 @@ export const updateModel = async (id, model) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getFileNameById = async (id) => {
+  let response;
+  if (id.length !== 0) {
+    response = await requesterService.getFileNameById(id);
+    return response.data;
+  }
+  response = '';
+  return response;
+};
