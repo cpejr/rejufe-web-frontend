@@ -2,9 +2,12 @@ import React from 'react';
 
 function AdmRegistrosModelos() {
   return (
-    <div>
-      Adm registros Modelos
-    </div>
+    <h1>
+      TESTE CONFLITO
+      <div>
+        Adm registros Modelos
+      </div>
+    </h1>
   );
 }
 
