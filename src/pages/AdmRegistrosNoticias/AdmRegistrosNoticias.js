@@ -25,7 +25,14 @@ function AdmRegistrosNoticias() {
 
   return (
     <div>
-      <h1 className="titleAdministrationRecords"> Administração de Registros </h1>
+      <div className="consultNoticePageField">
+        <div className="title-adm-register-notice">
+          <h1>
+            {'Administração de Registros '}
+          </h1>
+        </div>
+        <div className="line-table-adm-register-notice" />
+      </div>
       <div className="containerAdministrationRecords">
         <TableComponent id={id} newsSequentialId={newsSequentialId} rows={news} titles={titles} search />
       </div>
