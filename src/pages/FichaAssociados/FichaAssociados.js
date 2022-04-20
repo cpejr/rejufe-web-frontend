@@ -7,6 +7,7 @@ import getAssociateById from '../../components/getAssociateById/getAssociateById
 function FichaAssociados() {
   const { search } = useLocation();
   const associateId = new URLSearchParams(search).get('associateId');
+  console.log('🚀 ~ file: FichaAssociados.js ~ line 10 ~ FichaAssociados ~ associateId', associateId);
   const [associate, setAssociate] = useState([]);
 
   useEffect(() => {

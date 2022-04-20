@@ -51,6 +51,7 @@ function ValidarSocio() {
 
   const titles = [
     '',
+    '',
     'Nome',
     'Cpf',
     'Status',
@@ -65,7 +66,15 @@ function ValidarSocio() {
           </h1>
         </div>
         <div className="line-table-validateAssociate" />
-        <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
+        <TableComponent
+          setUse={setUse}
+          dados={data}
+          associateId={id}
+          rows={associates}
+          titles={titles}
+          validate
+          searchAssociate
+        />
       </div>
     </div>
   );
