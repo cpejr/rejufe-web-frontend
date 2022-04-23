@@ -157,7 +157,7 @@ export const createActions = (body) => httpClient.post('/acoes', body);
 
 export const createModels = (body) => httpClient.post('/modelos', body);
 
-export const getEditais = (times, field, filter) => httpClient.get('/atas', {
+export const getEdicts = (times, field, filter) => httpClient.get('/atas', {
   params: {
     times,
     field,

@@ -293,17 +293,17 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
-export const getEditais = async (field, filter) => {
+export const getEdicts = async (field, filter) => {
   let times = 0;
   let response;
-  let allEditais = [];
+  let allEdicts = [];
   do {
-    response = await requesterService.getEditais(times, field, filter);
+    response = await requesterService.getEdicts(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allEditais = allEditais.concat(response.data);
+    allEdicts = allEdicts.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allEditais;
+  return allEdicts;
 };
 
 export const getInformations = async (field, filter) => {

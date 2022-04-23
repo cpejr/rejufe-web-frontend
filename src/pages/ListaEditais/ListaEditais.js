@@ -14,7 +14,7 @@ const titles = [
 ];
 
 function ListaEditais() {
-  const [editais, setAllEditais] = useState([]);
+  const [editais, setAllEdicts] = useState([]);
   const [id, setId] = useState([]);
   const history = useHistory();
   const [user, setUse] = useState(true);
@@ -22,13 +22,13 @@ function ListaEditais() {
   const [archive2Id, setArchive2Id] = useState();
 
   useEffect(() => {
-    getAllEditais(setId, setAllEditais, history, setUse, setArchive1Id, setArchive2Id);
+    getAllEditais(setId, setAllEdicts, history, setUse, setArchive1Id, setArchive2Id);
   }, [user]);
 
   return (
-    <div className="lista-editais-page">
-      <h1 className="titulo-lista-editais"> Editais </h1>
-      <div className="conteiner-lista-editais">
+    <div className="lista-edicts-page">
+      <h1 className="titulo-lista-edicts"> Editais </h1>
+      <div className="conteiner-lista-edicts">
         <TableComponent
           setUse={setUse}
           id={id}
