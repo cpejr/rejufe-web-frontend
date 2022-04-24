@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '1%',
     marginRight: '4%',
     marginLeft: '4%',
+    fontSize: 'Roboto',
   },
 }));
 
@@ -54,7 +55,7 @@ function SingleFileUpload({
   });
 
   return (
-    <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
+    <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" font-Size="Roboto" style={{ marginBottom: '1%', fontSize: 'Roboto' }}>
       <Grid item>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
@@ -85,7 +86,13 @@ function SingleFileUpload({
                   <PictureAsPdfIcon />
                 </div>
               )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, id)}>
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%', fontSize: 'Roboto',
+              }}
+              onClick={() => setDados(undefined, id)}
+            >
               Remover Arquivo
             </Button>
           </div>
