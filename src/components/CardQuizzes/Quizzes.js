@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-lone-blocks */
 import React, { useEffect, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
@@ -10,6 +12,7 @@ import './Quizzes.css';
 function Quizzes({
   quizz, associates, dateQuizz, user, setVoted,
 }) {
+  console.log('🚀 ~ file: Quizzes.js ~ line 13 ~ quizz', quizz);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);

@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background:var(--color2);
+  background: var(--color2);
   border-radius: 30px;
 }
 
@@ -26,7 +26,7 @@
   margin-top: 20px;
   color: var(--secondary);
   font-weight: 700;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -38,7 +38,7 @@
   background-color: var(--hover);
 }
 
-.container-modal-quizz button {  
+.container-modal-quizz button {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -78,13 +78,13 @@
 }
 
 .close-modal-quizz {
-  height: 30px;  
+  height: 30px;
   background-color: transparent;
   border: none;
 }
-  
+
 .confirm-button-modal-quizz {
-  width: 30%;  
+  width: 30%;
   height: 45px;
   background-color: var(--primary);
   color: var(--fontColor1);
@@ -119,9 +119,22 @@
 
 .last-button-modal-quizz {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.private-result {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.private-result input {
+  margin-left: 4px;
 }
 
 .delete-alternative-modal-quizz {
@@ -146,17 +159,19 @@
 .empty-div-alternatives-modal-quizz {
   width: 10%;
 }
-  
+
 @media (max-width: 1380px) {
   .create-quizz-button {
     width: 30px;
     height: 30px;
   }
 }
+
 @media (max-width: 1150px) {
   .container-modal-quizz {
     height: 100%;
   }
+
   .confirm-button-modal-quizz {
     width: 40%;
   }
@@ -169,11 +184,12 @@
   }
 }
 
-  
+
 @media (max-width: 440px) {
   .title-modal-quizz h2 {
     font-size: 25px;
   }
+
   .confirm-button-modal-quizz {
     font-size: 15px;
   }
@@ -183,12 +199,12 @@
   .input-label-forms-create-quizz {
     margin: 10px 0 30px;
   }
+
   .plus-button-modal-quizz {
     margin-top: 3%;
   }
+
   .confirm-button-modal-quizz {
     margin-top: 3%;
   }
 }
-
-  
