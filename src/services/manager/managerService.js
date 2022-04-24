@@ -293,17 +293,18 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
 export const getAccounts = async (field, filter) => {
   let times = 0;
   let response;
-  let allActions = [];
+  let allAccounts = [];
   do {
     response = await requesterService.getAccounts(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
+    allAccounts = allAccounts.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
-  return allActions;
+  } while (response.data.length > 0);
+  return allAccounts;
 };
 
 export const getInformations = async (field, filter) => {
@@ -328,7 +329,7 @@ export const getActions = async (field, filter) => {
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allActions = allActions.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
+  } while (response.data.length > 0);
   return allActions;
 };
 
