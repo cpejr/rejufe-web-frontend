@@ -275,7 +275,6 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
-  console.log(associateId);
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -295,7 +294,7 @@ function TableComponent({
 
   function redirectAssociate(e, redirectId) {
     e.preventDefault();
-    const win = window.open(`/ficha-associados?associateId=${redirectId}`, '_blank');
+    const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
     win.focus();
   }
 

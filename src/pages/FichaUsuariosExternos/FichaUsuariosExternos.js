@@ -1,17 +1,17 @@
 import { React, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import './FichaAssociados.css';
+import './FichaUsuariosExternos.css';
 import fichaAssociate from '../../components/ConsultaAssociados/FichaAssociate';
-import getAssociateById from '../../components/getAssociateById/getAssociateById';
+import getExternalUserById from '../../components/getAssociateById/getExternalUserById';
 
-function FichaAssociados() {
+function FichaAssociadosExternos() {
   const history = useHistory();
   const { search } = useLocation();
   const associateId = new URLSearchParams(search).get('associateId');
   const [associate, setAssociate] = useState([]);
 
   useEffect(() => {
-    getAssociateById(associateId, setAssociate, history);
+    getExternalUserById(associateId, setAssociate, history);
   }, []);
 
   return (
@@ -81,4 +81,4 @@ function FichaAssociados() {
   );
 }
 
-export default FichaAssociados;
+export default FichaAssociadosExternos;

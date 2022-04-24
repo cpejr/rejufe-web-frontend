@@ -177,3 +177,5 @@ export const getActions = (times, field, filter) => httpClient.get('/acoes', {
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });
+
+export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);

@@ -1,9 +1,9 @@
 import moment from 'moment';
 import * as managerService from '../../services/manager/managerService';
 
-async function getAssociateById(associateId, setAssociate, history) {
+async function getExternalUserById(associateId, setAssociate, history) {
   try {
-    const response = await managerService.getById(associateId);
+    const response = await managerService.getExternalUserById(associateId);
     const associate = {
       status: response.status,
       name: response.name,
@@ -51,4 +51,4 @@ async function getAssociateById(associateId, setAssociate, history) {
   }
 }
 
-export default getAssociateById;
+export default getExternalUserById;

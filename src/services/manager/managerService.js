@@ -325,3 +325,9 @@ export const download = async (id) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getExternalUserById = async (id) => {
+  const response = await requesterService.getExternalUserById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
