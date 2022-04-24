@@ -3,14 +3,14 @@ td
        border:1px solid #DCDCDC;
 }
 
-.formsAssociatesContainer{
+.formsExternalAssociatesContainer{
        width:300px;
        border-style:solid;
        border-width: 2px;
        background-color: #DCDCDC;
 }
 
-.formsAssociateGridContainer{
+.formsExternalAssociateGridContainer{
     background-color: #fff;
     background-image: none;
     opacity: 1;
@@ -21,13 +21,13 @@ td
     font-size: 13px;
 }
 
-.formsAssociateTdContainer{
+.formsExternalAssociateTdContainer{
        padding: 0px;
        vertical-align: top;
        width: 100%;
 }
 
-.formsAssociateTableContainer{
+.formsExternalAssociateTableContainer{
        width: 70%;
        position: center;
        margin-left: 15%;
@@ -39,14 +39,14 @@ td
 
 }
 
-.formsAssociateTContainer{
+.formsExternalAssociateTContainer{
        width: 100%;
        padding: 0px;
        border-spacing: 0px;
        border-width: 0px;
 }
 
-.formsAssociateTdBox {
+.formsExternalAssociateTdBox {
        background-color: #fff;
        background-image: none;
        opacity: 1;
@@ -62,7 +62,7 @@ td
        text-align: left;
        height: "100%"
    }
-   .formsAssociateTdTitle {
+   .formsExternalAssociateTdTitle {
        background-color: #e7e7e7;
        background-image: none;
        opacity: 1;
@@ -79,26 +79,26 @@ td
        text-align: center;
 }
 
-.formsAssociateSubtitle{
+.formsExternalAssociateSubtitle{
        font-weight: bold;
        vertical-align: top;
 }
 
 @media(max-width: 1000px) {
-       .formsAssociateTableContainer{
+       .formsExternalAssociateTableContainer{
               width: max-content;  
               margin-left: 10%;
        }
 }
 
 @media(max-width: 900px) {
-       .formsAssociateTableContainer{
+       .formsExternalAssociateTableContainer{
               margin-left: 5%;
        }
 }
 
 @media(max-width: 790px) {
-       .formsAssociateTableContainer{
+       .formsExternalAssociateTableContainer{
               margin-left: 0%;
               margin-right: 0%; 
        }

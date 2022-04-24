@@ -16,12 +16,12 @@ function FichaAssociadosExternos() {
 
   return (
     <body>
-      <table className="formsAssociateTableContainer">
-        <div className="formsAssociateGridContainer">
+      <table className="formsExternalAssociateTableContainer">
+        <div className="formsExternalAssociateGridContainer">
           <table width="100%">
             <tr>
-              <td className="formsAssociateTdContainer">
-                <table className="formsAssociateTContainer">
+              <td className="formsExternalAssociateTdContainer">
+                <table className="formsExternalAssociateTContainer">
                   <table width="100%">
                     <tr>
                       <td>
@@ -33,10 +33,10 @@ function FichaAssociadosExternos() {
                     </tr>
                   </table>
                   {fichaAssociate?.map((ficha) => (
-                    <table className="formsAssociateTContainer">
+                    <table className="formsExternalAssociateTContainer">
                       <table width="100%">
                         <tr>
-                          <td className="formsAssociateTdTitle">
+                          <td className="formsExternalAssociateTdTitle">
                             {ficha.title}
                           </td>
                         </tr>
@@ -45,8 +45,8 @@ function FichaAssociadosExternos() {
                         <table width="100%">
                           <tr>
                             {line?.items.map((item) => (
-                              <td className="formsAssociateTdBox">
-                                <span className="formsAssociateSubtitle">
+                              <td className="formsExternalAssociateTdBox">
+                                <span className="formsExternalAssociateSubtitle">
                                   {' '}
                                   {item.label}
                                   {' '}
@@ -66,7 +66,7 @@ function FichaAssociadosExternos() {
                   ))}
                   <table width="100%">
                     <tr>
-                      <td className="formsAssociateTdTitle" height="25px" />
+                      <td className="formsExternalAssociateTdTitle" height="25px" />
                     </tr>
                   </table>
                 </table>
