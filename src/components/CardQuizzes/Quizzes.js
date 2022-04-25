@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-lone-blocks */
 import React, { useEffect, useState } from 'react';
@@ -12,7 +14,6 @@ import './Quizzes.css';
 function Quizzes({
   quizz, associates, dateQuizz, user, setVoted,
 }) {
-  console.log('🚀 ~ file: Quizzes.js ~ line 13 ~ quizz', quizz);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -47,7 +48,7 @@ function Quizzes({
           <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} />
         </button>
       </div>
-      {open === true ? (
+      {(open === true && quizz.privateResult === false) || (open === true && quizz.privateResult === true && closingDate < dateQuizz) || (open === true && quizz.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -83,6 +84,10 @@ function Quizzes({
 
           )}
         </div>
+      ) : (open === true && quizz.privateResult === true && user?.type === 'administrador') ? (
+        <div>Resultado indisponível, aguardando finalização da enquete</div>
+      ) : (open === true && quizz.privateResult === true && user?.type === 'usuario') ? (
+        <div>Você já votou nessa enquete, resultado parcial indisponível no momento</div>
       ) : (
         null
       )}
