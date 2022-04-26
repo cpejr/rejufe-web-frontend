@@ -422,26 +422,6 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
-                {archive1Id
-                  && (
-                    <TableCell>
-                      <Link
-                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
-                      >
-                        {fileNames1[index + (page * 10)]}
-                      </Link>
-                    </TableCell>
-                  )}
-                {archive2Id
-                  && (
-                    <TableCell>
-                      <Link
-                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
-                      >
-                        {fileNames2[index + (page * 10)]}
-                      </Link>
-                    </TableCell>
-                  )}
                 {modelsSequentialId
                   && (
                     <TableCell {...cellFontProps}>
@@ -454,6 +434,26 @@ function TableComponent({
                     {data}
                   </TableCell>
                 ))}
+                {archive1Id
+                && (
+                  <TableCell>
+                    <Link
+                      onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                    >
+                      {fileNames1[index + (page * 10)]}
+                    </Link>
+                  </TableCell>
+                )}
+                {archive2Id
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive2Id[index + (page * 10)])}
+                      >
+                        {fileNames2[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
               </TableRow>
             ))}
           {emptyRows > 0 && (

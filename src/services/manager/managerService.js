@@ -292,7 +292,8 @@ export const download = async (id) => {
 
 export const getFileNameById = async (id) => {
   let response;
-  if (id.length !== 0) {
+  if (id?.length !== 0 && id !== undefined) {
+    console.log(id);
     response = await requesterService.getFileNameById(id);
     return response.data;
   }

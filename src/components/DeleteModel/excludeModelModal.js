@@ -62,8 +62,6 @@ export default function ModalAdminExclude({ id }) {
     setOpen(false);
   };
 
-  console.log(id);
-
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div className="exit-user-module-exclude">

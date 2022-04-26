@@ -37,7 +37,8 @@ function AdmRegistrosContas() {
     const archive2Code = [];
     try {
       const allModels = await managerService.getModels();
-      allModels.forEach((object) => {
+      const values = [...allModels];
+      values.forEach((object) => {
         auxModels.push(createData(
           object.numberModel,
           object.description,
@@ -46,19 +47,21 @@ function AdmRegistrosContas() {
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
       });
-      allModels.forEach((object) => {
+      values.forEach((object) => {
         sequentialIds.push(createId(
           object._id,
         ));
       });
+      const valueSequentialIds = [...sequentialIds];
       setId(sequentialIds);
       setAllComunics(auxModels);
       setArchive1Id(archive1Code);
+      setId(sequentialIds);
       setArchive2Id(archive1Code);
       setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.warn(error);
+      console.log(error);
     }
   }
   useEffect(() => {
@@ -82,7 +85,7 @@ function AdmRegistrosContas() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} accountId={id} rows={comunics} titles={titles} archive1Id={archive1Id} editAccount />
+      <TableComponent setUse={setUse} accountId={id} rows={comunics} titles={titles} archive1Id={archive1Id} modelsSequentialId={id} editAccount />
     </div>
   );
 }
