@@ -32,7 +32,7 @@ function Intranet() {
           <img src={Simbolo} alt="Logo" />
           <h1>REJUFE</h1>
         </div>
-        <h2>Bem vindo a Intranet</h2>
+        <h2>Bem vindo a Intranet!</h2>
       </div>
       <Divider variant="inset" />
       <div className="intranet-main-container">
