@@ -133,6 +133,10 @@
   justify-content: center;
 }
 
+.private-result label {
+  font-size: 14px;
+}
+
 .private-result input {
   margin-left: 4px;
 }

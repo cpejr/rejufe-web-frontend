@@ -85,9 +85,9 @@ function Quizzes({
           )}
         </div>
       ) : (open === true && quizz.privateResult === true && user?.type === 'administrador') ? (
-        <div>Resultado indisponível, aguardando finalização da enquete</div>
+        <div className="unavaible-result">Resultado indisponível, aguardando finalização da enquete</div>
       ) : (open === true && quizz.privateResult === true && user?.type === 'usuario') ? (
-        <div>Você já votou nessa enquete, resultado parcial indisponível no momento</div>
+        <div className="unavaible-result">Você já votou nessa enquete, resultado parcial indisponível no momento</div>
       ) : (
         null
       )}

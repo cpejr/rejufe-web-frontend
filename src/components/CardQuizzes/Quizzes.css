@@ -40,6 +40,7 @@
   text-align: initial;
   word-break: break-all;
 }
+
 .description-card-quizzes {
   display: flex;
   flex-direction: column;
@@ -47,7 +48,8 @@
   width: 100%;
   border-radius: 8px;
   background-color: var(--background);
-  padding: 10px;;
+  padding: 10px;
+  ;
 }
 
 .description-card-quizzes p {
@@ -120,6 +122,12 @@
   border-color: var(--color2);
 }
 
+.unavaible-result {
+  font-size: 16px;
+  font-family: Roboto;
+  padding: 5%;
+}
+
 @media (max-width: 786px) {
   .alternatives-vote-quizzes button {
     max-width: 300px;
@@ -137,4 +145,3 @@
     max-width: 200px;
   }
 }
-
