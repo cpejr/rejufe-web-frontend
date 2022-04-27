@@ -93,6 +93,12 @@
   }
 }
 
+@media (max-width: 841px) {
+  .intranet-total-page-container {
+    background-position: 100px 200px;
+  }
+}
+
 @media (max-width: 800px) {
   .intranet-dashboad-all {
     width: 70%;
