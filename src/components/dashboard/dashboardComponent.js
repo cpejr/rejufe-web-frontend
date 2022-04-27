@@ -28,6 +28,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
+import FileSaver from 'file-saver';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
@@ -426,7 +427,7 @@ function TableComponent({
                   && (
                     <TableCell {...cellFontProps}>
                       <ExcludeModelModal id={modelsSequentialId[index]} />
-                      <EditModel id={modelsSequentialId[index]} model={row} />
+                      <EditModel id={modelsSequentialId[index]} model={row} archive1Id={archive1Id} archive2Id={archive2Id} fileNames1={fileNames1} fileNames2={fileNames2} />
                     </TableCell>
                   )}
                 {Object.values(row)?.map((data) => (

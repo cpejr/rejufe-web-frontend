@@ -8,8 +8,12 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import './editModelsModal.css';
+import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
-export default function EditModel({ id, model }) {
+export default function EditModel({
+  id, model, archive1Id, archive2Id, fileNames1, fileNames2,
+}) {
+  console.log(model);
   const [modelDescription, setModelDescription] = useState(model?.description);
   const [modelType, setModelType] = useState(model?.type);
   const [modelNumber, setModelNumber] = useState(model?.numberModel);
@@ -80,6 +84,18 @@ export default function EditModel({ id, model }) {
           <option value="PETIÇÕES INICIAIS">PETIÇÕES INICIAIS</option>
           <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>
         </select>
+      </div>
+      <div className="EditModal-field">
+        <div className="EditModal-text">
+          Arquivo1:
+        </div>
+        <SingleFileUpload />
+      </div>
+      <div className="EditModal-field">
+        <div className="EditModal-text">
+          Arquivo2:
+        </div>
+        <SingleFileUpload />
       </div>
       <button
         className="EditModal-ButtonConfirm"

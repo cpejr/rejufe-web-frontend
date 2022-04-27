@@ -57,7 +57,7 @@ function AdmRegistrosContas() {
       setAllComunics(auxModels);
       setArchive1Id(archive1Code);
       setId(sequentialIds);
-      setArchive2Id(archive1Code);
+      setArchive2Id(archive2Code);
       setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -85,7 +85,7 @@ function AdmRegistrosContas() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} accountId={id} rows={comunics} titles={titles} archive1Id={archive1Id} modelsSequentialId={id} editAccount />
+      <TableComponent setUse={setUse} rows={comunics} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} modelsSequentialId={id} />
     </div>
   );
 }

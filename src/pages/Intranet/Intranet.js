@@ -3,15 +3,11 @@ import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import './Intranet.css';
-import LogoPretoBranco from '../../images/LogoPretoBranco.png';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
-  const myStyle = {
-    backgroundImage: `url(${LogoPretoBranco})`,
-  };
   return (
-    <div style={myStyle}>
+    <div>
       <div className="intranet-main-container">
         <div className="intranet-side-menu">
           <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
