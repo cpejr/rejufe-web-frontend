@@ -8,7 +8,7 @@ import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
-import LogoPretoBranco from '../../images/LogoPretoBranco.png';
+import Simbolo from '../../images/simbolo.png';
 import './Intranet.css';
 
 function Intranet() {
@@ -25,16 +25,13 @@ function Intranet() {
     }
   };
 
-  const myStyle = {
-    backgroundImage: `url(${LogoPretoBranco})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '400px 200px',
-  };
-
   return (
-    <div style={myStyle}>
+    <div className="intranet-total-page-container">
       <div className="intranet-welcome">
-        <h1>REJUFE</h1>
+        <div className="intranet-rejufe-logo">
+          <img src={Simbolo} alt="Logo" />
+          <h1>REJUFE</h1>
+        </div>
         <h2>Bem vindo a Intranet</h2>
       </div>
       <Divider variant="inset" />
