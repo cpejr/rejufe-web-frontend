@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
 .intranet-main-container {
   display: flex;
   flex-direction: row;
@@ -13,6 +15,25 @@
 
 .intranet-side-menu {
   padding: 150px 0;
+}
+
+.intranet-welcome {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  color: var(--primary);
+  margin: 75px 235px 0 200px;
+}
+
+.intranet-welcome h1 {
+  font-size: 75px;
+  font-weight: 200;
+}
+
+.intranet-welcome h2 {
+  font-weight: 200;
 }
 
 @media (max-width: 1200px) {

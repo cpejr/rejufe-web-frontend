@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 import React, { useState } from 'react';
+import Divider from '@mui/material/Divider';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
@@ -7,6 +8,7 @@ import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
+import LogoPretoBranco from '../../images/LogoPretoBranco.png';
 import './Intranet.css';
 
 function Intranet() {
@@ -23,8 +25,19 @@ function Intranet() {
     }
   };
 
+  const myStyle = {
+    backgroundImage: `url(${LogoPretoBranco})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '400px 200px',
+  };
+
   return (
-    <div>
+    <div style={myStyle}>
+      <div className="intranet-welcome">
+        <h1>REJUFE</h1>
+        <h2>Bem vindo a Intranet</h2>
+      </div>
+      <Divider variant="inset" />
       <div className="intranet-main-container">
         <div className="intranet-side-menu">
           <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
@@ -39,4 +52,5 @@ function Intranet() {
     </div>
   );
 }
+
 export default Intranet;
