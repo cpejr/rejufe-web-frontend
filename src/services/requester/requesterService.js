@@ -160,3 +160,5 @@ export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileN
     archiveId,
   },
 });
+
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);

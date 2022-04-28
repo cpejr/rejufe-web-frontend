@@ -300,3 +300,9 @@ export const getFileNameById = async (id) => {
   response = '';
   return response;
 };
+
+export const getImageById = async (id) => {
+  const response = await requesterService.getImageById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
