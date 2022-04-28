@@ -11,7 +11,7 @@ import './editModelsModal.css';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
 export default function EditModel({
-  id, model, archive1Id, archive2Id, fileNames1, fileNames2,
+  id, model,
 }) {
   console.log(model);
   const [modelDescription, setModelDescription] = useState(model?.description);
