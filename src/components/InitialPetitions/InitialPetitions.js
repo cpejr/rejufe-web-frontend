@@ -17,12 +17,30 @@ const titles = [
 
 function InitialPetitions() {
   const [initialPetitions, setInitialPetitions] = useState([]);
+  const [archive1Id, setArchive1Id] = useState([]);
+  const [archive2Id, setArchive2Id] = useState([]);
   const history = useHistory();
 
   async function getInitialPetitions() {
+    const auxPetitions = [];
+    const archive1Code = [];
+    const archive2Code = [];
+
     try {
       const response = await managerService.getModels();
-      setInitialPetitions(response.filter((model) => model.type === 'PETIÇÕES INICIAIS'));
+      const petitions = response.filter((model) => model.type === 'PETIÇÕES INICIAIS');
+      petitions.forEach((object) => {
+        auxPetitions.push(createData(
+          object.numberModel,
+          object.description,
+          object.type,
+        ));
+        archive1Code.push(object.archive_1);
+        archive2Code.push(object.archive_2);
+      });
+      setInitialPetitions(auxPetitions);
+      setArchive1Id(archive1Code);
+      setArchive2Id(archive2Code);
     } catch (error) {
       console.log(error);
       history.push('/NotFound');
