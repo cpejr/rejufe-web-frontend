@@ -34,7 +34,6 @@ function InitialPetitions() {
     try {
       const response = await managerService.getModels();
       const petitions = response.filter((model) => model.type === 'PETIÇÕES INICIAIS');
-      console.log(petitions);
       petitions.forEach((object) => {
         auxPetitions.push(createData(
           object.numberModels,
@@ -51,8 +50,6 @@ function InitialPetitions() {
       history.push('/NotFound');
     }
   }
-
-  console.log(archive1Id);
 
   useEffect(() => {
     getInitialPetitions();
