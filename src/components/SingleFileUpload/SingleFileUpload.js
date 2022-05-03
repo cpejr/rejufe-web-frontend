@@ -46,16 +46,21 @@ function SingleFileUpload({
   const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
 
-  async function getFile() {
-    try {
-      const response = await managerService.getFileById(archiveId);
-      setActualFile(response);
-    } catch (error) {
-      toast.error('Não foi possível obter arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
+  // async function getFile() {
+  //   try {
+  //     const response = await managerService.getFileById(archiveId);
+  //     setActualFile(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error('Não foi possível obter arquivo', {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //       autoClose: 5000,
+  //     });
+  //   }
+  // }
+
+  function removeFile() {
+    console.log(archiveId);
   }
 
   async function getImage() {
@@ -88,9 +93,9 @@ function SingleFileUpload({
       if (id === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-      if (((id === 'archive_1' || id === 'archive_2') && file !== undefined) || (id === 'pdf')) {
-        getFile();
-      }
+      // if (((id === 'archive_1' || id === 'archive_2') && file !== undefined) || (id === 'pdf')) {
+      //   getFile();
+      // }
     }, [file, archiveId]);
   }
 
@@ -143,7 +148,7 @@ function SingleFileUpload({
                 {' '}
                 <PictureAsPdfIcon />
               </Button>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => removeFile()}>
                 Remover Arquivo
               </Button>
             </div>

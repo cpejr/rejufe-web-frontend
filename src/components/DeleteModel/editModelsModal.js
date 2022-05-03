@@ -11,31 +11,28 @@ import './editModelsModal.css';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
 export default function EditModel({
-  id, model,
+  id, model, archive1Id, archive2Id,
 }) {
-  console.log(model);
-  const [modelDescription, setModelDescription] = useState(model?.description);
-  const [modelType, setModelType] = useState(model?.type);
-  const [modelNumber, setModelNumber] = useState(model?.numberModel);
+  console.log(archive1Id);
+  const [dados, setDados] = useState(model);
 
-  async function handleDescriptionChange(event) {
-    setModelDescription(event.target.value);
-  }
-
-  async function handleTypeChange(event) {
-    setModelType(event.target.value);
-  }
-
-  async function handleNumberChange(event) {
-    setModelNumber(event.target.value);
+  function handleChange(value, field) {
+    setDados({ ...dados, [field]: value });
   }
 
   async function handleSubmit() {
+    const formData = new FormData();
+    Object.entries(dados).forEach((dado) => {
+      if (dado[0] === 'pdf') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
+      }
+    });
+
     try {
-      await managerService.updateModel(
-        id,
-        { description: modelDescription, type: modelType, number: modelNumber },
-      );
+      await managerService.updateModel(id, formData);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -56,49 +53,52 @@ export default function EditModel({
   };
 
   const body = (
-    <Box className="EditModal-ContainerModal">
-      <div role="button" tabIndex={0} className="EditModal-cancel" onClick={handleClose}>
+    <Box className="EditModal-model-container">
+      <div role="button" tabIndex={0} className="EditModal-model-cancel" onClick={handleClose}>
         <CancelIcon />
       </div>
-      <div className="EditModal-Title">
+      <div className="EditModal-model-title">
         <p>Editar dados</p>
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
+      <div className="EditModal-model-field">
+        <div className="EditModal-model-text">
           Número:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={modelNumber} onChange={handleNumberChange} />
+        <input className="EditModal-model-input" placeholder="" require value={dados?.numberModel} onChange={(e) => handleChange(e.target.value, 'numberModel')} />
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
+      <div className="EditModal-model-field">
+        <div className="EditModal-model-text">
           Descrição:
         </div>
-        <input className="EditModal-Input" placeholder="" require value={modelDescription} onChange={handleDescriptionChange} />
+        <input className="EditModal-model-input" placeholder="" require value={dados?.description} onChange={(e) => handleChange(e.target.value, 'description')} />
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
+      <div className="EditModal-model-field">
+        <div className="EditModal-model-text">
           Tipo:
         </div>
-        <select className="EditModal-Select" placeholder="" require value={modelType} onChange={handleTypeChange}>
+        <select className="EditModal-model-select" placeholder="" require value={dados?.Type} onChange={handleChange}>
           <option value="REQUERIMENTOS ADMINISTRATIVOS">REQUERIMENTOS ADMINISTRATIVOS</option>
           <option value="PETIÇÕES INICIAIS">PETIÇÕES INICIAIS</option>
           <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>
         </select>
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
-          Arquivo1:
+      <div className="EditModal-model-files">
+        <div className="EditModal-model-field">
+          <div className="EditModal-model-text">
+            Arquivo1:
+          </div>
+          <SingleFileUpload id="pdf" fileType=".pdf" dados={dados} archiveId={archive1Id} file={dados.pdf} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
         </div>
-        <SingleFileUpload />
-      </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
-          Arquivo2:
+        <div className="EditModal-model-field">
+          <div className="EditModal-model-text">
+            Arquivo2:
+          </div>
+          <SingleFileUpload id="pdf" fileType=".pdf" dados={dados} archiveId={archive2Id} file={dados.pdf} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
         </div>
-        <SingleFileUpload />
+
       </div>
       <button
-        className="EditModal-ButtonConfirm"
+        className="EditModal-model-buttonConfirm"
         onClick={(e) => {
           e.preventDefault();
           handleSubmit();
@@ -112,7 +112,7 @@ export default function EditModel({
   );
   return (
     <div>
-      <button type="button" className="EditModal-EditGroup" onClick={handleOpen}>
+      <button type="button" className="EditModal-model-editGroup" onClick={handleOpen}>
         <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal

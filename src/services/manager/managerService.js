@@ -180,6 +180,7 @@ export const deleteExternalAssociate = async (associateId) => {
 };
 
 export const getFileById = async (id) => {
+  console.log(id);
   const response = await requesterService.getFileById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
@@ -293,7 +294,6 @@ export const download = async (id) => {
 export const getFileNameById = async (id) => {
   let response;
   if (id?.length !== 0 && id !== undefined) {
-    console.log(id);
     response = await requesterService.getFileNameById(id);
     return response.data;
   }

@@ -427,7 +427,7 @@ function TableComponent({
                   && (
                     <TableCell {...cellFontProps}>
                       <ExcludeModelModal id={modelsSequentialId[index]} />
-                      <EditModel id={modelsSequentialId[index]} model={row} archive1Id={archive1Id} archive2Id={archive2Id} fileNames1={fileNames1} fileNames2={fileNames2} />
+                      <EditModel id={modelsSequentialId[index]} model={row} archive1Id={archive1Id && archive1Id[index]} archive2Id={archive2Id && archive2Id[index]} index={index} />
                     </TableCell>
                   )}
                 {Object.values(row)?.map((data) => (
