@@ -157,6 +157,16 @@ export const createActions = (body) => httpClient.post('/acoes', body);
 
 export const createModels = (body) => httpClient.post('/modelos', body);
 
+export const getModels = (times, field, filter) => httpClient.get('/modelos', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});
+
 export const getInformations = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
     times,

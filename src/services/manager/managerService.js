@@ -279,6 +279,19 @@ export const createModels = async (body) => {
   return response.data;
 };
 
+export const getModels = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allModels = [];
+  do {
+    response = await requesterService.getModels(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allModels = allModels.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allModels;
+};
+
 export const getFileNameById = async (id) => {
   let response;
   if (id.length !== 0) {

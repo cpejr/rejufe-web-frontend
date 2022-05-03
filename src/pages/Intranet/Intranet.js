@@ -7,6 +7,7 @@ import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
+import InitialPetitions from '../../components/InitialPetitions/InitialPetitions';
 import './Intranet.css';
 
 function Intranet() {
@@ -18,7 +19,7 @@ function Intranet() {
       case 'Associados': return <ConsultaAssociados />;
       case 'Informativos': return <InformativeQuery />;
       case 'Prestação de Contas': return <AccountQuery />;
-      // case 'Petições Iniciais' : return
+      case 'Petições Iniciais': return <InitialPetitions />;
 
       default: return <div />;
     }
@@ -35,7 +36,7 @@ function Intranet() {
         </div>
       </div>
       <div>
-        <BottomMenu setSelectedButton={setSelectedButton} />
+        <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
     </div>
   );
