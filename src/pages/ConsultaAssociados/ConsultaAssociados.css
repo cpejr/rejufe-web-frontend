@@ -1,4 +1,4 @@
-.consult-associate-page {
+.consultAssociatePage {
     min-height: calc(100vh - 221px);
     display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
     font-weight: 700;
     font-size: 2em;
   }
-  .consult-associate-page-field{
+  .consultAssociatePageField{
       padding: 25px 25px 0 25px;
   }
   
