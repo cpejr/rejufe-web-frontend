@@ -18,6 +18,7 @@ function Intranet() {
       case 'Associados': return <ConsultaAssociados />;
       case 'Informativos': return <InformativeQuery />;
       case 'Prestação de Contas': return <AccountQuery />;
+      // case 'Petições Iniciais' : return
 
       default: return <div />;
     }
@@ -34,7 +35,7 @@ function Intranet() {
         </div>
       </div>
       <div>
-        <BottomMenu />
+        <BottomMenu setSelectedButton={setSelectedButton} />
       </div>
     </div>
   );
