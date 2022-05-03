@@ -3,12 +3,11 @@ import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/dashboard/dashboardComponent';
+import TableComponent from '../dashboard/dashboardComponent';
 
 toast.configure();
 
 const titles = [
-  '',
   'Número',
   'Descrição',
   'Arquivo 1',
@@ -21,6 +20,12 @@ function InitialPetitions() {
   const [archive2Id, setArchive2Id] = useState([]);
   const history = useHistory();
 
+  function createData(numberModels, description) {
+    return {
+      numberModels, description,
+    };
+  }
+
   async function getInitialPetitions() {
     const auxPetitions = [];
     const archive1Code = [];
@@ -29,11 +34,11 @@ function InitialPetitions() {
     try {
       const response = await managerService.getModels();
       const petitions = response.filter((model) => model.type === 'PETIÇÕES INICIAIS');
+      console.log(petitions);
       petitions.forEach((object) => {
         auxPetitions.push(createData(
-          object.numberModel,
+          object.numberModels,
           object.description,
-          object.type,
         ));
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
@@ -47,7 +52,7 @@ function InitialPetitions() {
     }
   }
 
-  console.log(initialPetitions);
+  console.log(archive1Id);
 
   useEffect(() => {
     getInitialPetitions();
@@ -56,7 +61,7 @@ function InitialPetitions() {
   return (
     <div className="initial-petitions-container">
       <h1>Petições Iniciais</h1>
-      <TableComponent rows={initialPetitions} titles={titles} />
+      <TableComponent rows={initialPetitions} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} />
     </div>
 
   );
