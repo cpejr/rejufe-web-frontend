@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -35,8 +37,8 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../DeleteModel/editModelsModal';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import * as managerService from '../../services/manager/managerService';
+import setFileNameArchive from '../../components/SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -117,22 +119,26 @@ function TableComponent({
   sequentialId,
   order,
   setUse,
+  archive1Id,
+  archive2Id,
   associateId,
   edit,
   search,
   searchFile,
+  searchMinutes,
   validate,
   dados,
   newsSequentialId,
   renderButton,
   modelsSequentialId,
-  archive1Id,
-  archive2Id,
+  print,
+  printButton,
+  route,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -186,7 +192,8 @@ function TableComponent({
         fontSize: '85%',
         backgroundColor: '#2574A9',
         color: 'white',
-        padding: '0px',
+        padding: '3px',
+        textAlign: 'center',
       }
       : matchesFont90
         ? {
@@ -285,6 +292,16 @@ function TableComponent({
     setPage(0);
   };
 
+  function redirect(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
+  const handleWindowOpen = () => {
+    window.open(route);
+  };
+
   function getDownloads(archiveId) {
     try {
       managerService.download(archiveId).then((response) => {
@@ -374,13 +391,24 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : searchMinutes ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
                   ) : validate ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton aria-label="reject">
                         <RejectModal setUse={setUse} id={associateId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="accept">
-                        <AcceptModal setUse={setUse} dados={dados[index + (page * 10)]} id={associateId[index + (page * 10)]} associate={row} />
+                        <AcceptModal
+                          setUse={setUse}
+                          dados={dados[index + (page * 10)]}
+                          id={associateId[index + (page * 10)]}
+                          associate={row}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchFile ? (
@@ -436,15 +464,15 @@ function TableComponent({
                   </TableCell>
                 ))}
                 {archive1Id
-                && (
-                  <TableCell>
-                    <Link
-                      onClick={() => getDownloads(archive1Id[index + (page * 10)])}
-                    >
-                      {fileNames1[index + (page * 10)]}
-                    </Link>
-                  </TableCell>
-                )}
+                  && (
+                    <TableCell>
+                      <Link
+                        onClick={() => getDownloads(archive1Id[index + (page * 10)])}
+                      >
+                        {fileNames1[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
                 {archive2Id
                   && (
                     <TableCell>
@@ -468,30 +496,61 @@ function TableComponent({
         </TableBody>
       </Table>
       <TableFooter {...footerProps}>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          labelRowsPerPage="Linhas por pagina"
-          page={page}
-          SelectProps={{
-            inputProps: {
-              'aria-label': 'Linhas por pagina',
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-        />
-        {renderButton && (
-          <Button
-            {...buttonFontProps}
-          >
-            Pesquisa Avançada
-            {/* TODO Implementar o botão de pesquisa avançada */}
-          </Button>
+        {print ? (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            component="div"
+            count={rows?.length}
+            rowsPerPage={rows?.length}
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
+        ) : (
+          <>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              labelRowsPerPage="Linhas por pagina"
+              page={page}
+              SelectProps={{
+                inputProps: {
+                  'aria-label': 'Linhas por pagina',
+                },
+                native: true,
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+            <div className="button-table-component-pagination-consult">
+              {renderButton && (
+                <Button
+                  {...buttonFontProps}
+                >
+                  Pesquisa Avançada
+                  {/* TODO Implementar o botão de pesquisa avançada */}
+                </Button>
+              )}
+              {printButton && (
+                <Button
+                  {...buttonFontProps}
+                  onClick={handleWindowOpen}
+                >
+                  Imprimir
+                </Button>
+              )}
+            </div>
+          </>
         )}
       </TableFooter>
     </TableContainer>
