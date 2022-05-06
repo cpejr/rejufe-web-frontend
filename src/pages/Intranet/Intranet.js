@@ -9,6 +9,7 @@ import MinuteQuery from '../../components/MinutesQuery/MinutesQuery';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
+import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import './Intranet.css';
 
 function Intranet() {
@@ -22,6 +23,7 @@ function Intranet() {
       case 'Ações Jurídicas': return <ActionJuridical />;
       case 'Prestação de Contas': return <AccountQuery />;
       case 'Atas': return <MinuteQuery />;
+      case 'Jurisprudência': return <Jurisprudence />;
 
       default: return <div />;
     }
@@ -38,7 +40,7 @@ function Intranet() {
         </div>
       </div>
       <div>
-        <BottomMenu />
+        <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
     </div>
   );
