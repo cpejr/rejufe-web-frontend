@@ -17,6 +17,7 @@ const titles = [
 
 function ConsultaAssociados() {
   const [associates, setAllAssociates] = useState([]);
+  console.log('🚀 ~ file: ConsultaAssociados.js ~ line 20 ~ ConsultaAssociados ~ associates', associates);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +34,14 @@ function ConsultaAssociados() {
         </div>
       ) : (
         <div className="containerConsultAssociate">
-          <TableComponent id={id} rows={associates} titles={titles} print={false} search />
+          <TableComponent
+            id={id}
+            rows={associates}
+            associates={associates}
+            titles={titles}
+            print={false}
+            search
+          />
         </div>
       )}
     </div>

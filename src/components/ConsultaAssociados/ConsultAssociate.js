@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import Modal from '@material-ui/core/Modal';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -25,6 +28,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import './ConsultAssociates.css';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -100,9 +104,14 @@ TablePaginationActions.propTypes = {
 function ConsultaAssociados({
   titles, rows, id, order, edit, search, searchFile, print,
 }) {
+  console.log('🚀 ~ file: ConsultAssociate.js ~ line 106 ~ id', id);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(-1);
-
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const filteredAssociate = JSON.parse(JSON.stringify(rows));
+  const renderAssociate = [];
+  console.log('🚀 ~ file: ConsultAssociate.js ~ line 112 ~ associate', filteredAssociate);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -227,6 +236,51 @@ function ConsultaAssociados({
     setPage(0);
   };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  function replaceSpecialChars(str) {
+    str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
+    str = str.replace(/[àáâãäå]/, 'a');
+    str = str.replace(/[ÙÚÛÜ]/, 'U');
+    str = str.replace(/[úúûü]/, 'u');
+    str = str.replace(/[ÈÉÊË]/, 'E');
+    str = str.replace(/[éèêë]/, 'e');
+    str = str.replace(/[íìîï]/, 'i');
+    str = str.replace(/[ÍÌÎÏ]/, 'I');
+    str = str.replace(/[óòôöõ]/, 'o');
+    str = str.replace(/[ÓÒÔÖÕ]/, 'O');
+    str = str.replace(/[Ç]/, 'C');
+    str = str.replace(/[ç]/, 'c');
+
+    // o resto
+
+    return str.replace(/[^a-z0-9]/gi, '');
+  }
+
+  let count = 0;
+  filteredAssociate?.forEach((object) => {
+    object.name = replaceSpecialChars(object.name);
+    object.id = id[count];
+    count += 1;
+  });
+  // eslint-disable-next-line max-len
+  const filter = filteredAssociate?.filter(((item) => item.name.toLowerCase().includes(replaceSpecialChars(query))));
+  // console.log(rows.filter((id) => id.replaceSpecialChars(name) === )
+  const c = [];
+  let add = 0;
+  filter?.forEach((obj) => {
+    c[add] = rows.filter(((item) => item.email === obj.email));
+    add += 1;
+  });
+
+  console.log(filter);
+  console.log('🚀 ~ file: ConsultAssociate.js ~ line 279 ~ filter?.forEach ~ c ', c);
   return (
     <TableContainer
       component={Paper}
@@ -324,10 +378,66 @@ function ConsultaAssociados({
                   marginRight: '15px',
                   marginLeft: '15px',
                 }}
+                onClick={handleOpen}
               >
                 Pesquisa Avançada
                 {/* TODO Implementar o botão de pesquisa avançada */}
               </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                <Box className="AcceptModal-ContainerModal">
+                  <div className="AcceptModal-text">
+                    <div className="AcceptModal-Question">Pesquisa Avançada</div>
+                  </div>
+                  <div className="AcceptModal-Buttons">
+                    <div className="AcceptModal-Bu">
+                      <label>Nome:</label>
+                      <input type="text" onChange={(e) => setQuery(e.target.value.toLowerCase())} />
+                    </div>
+                    <div className="AcceptModal-Bu">
+                      <label>Seção Judiciária:</label>
+                      <input type="text" onChange={(e) => setQuery(e.target.value.toLowerCase())} />
+                    </div>
+                    <div className="buttons">
+                      <div className="AcceptModal-button1">
+                        <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+                          <div className="AcceptModal-align">
+                            <p>Pesquisa Avançada</p>
+                          </div>
+                        </button>
+                      </div>
+                      <div className="AcceptModal-button2">
+                        <button
+                          className="AcceptModal-ButtonConfirm"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            // handleSubmit();
+                            handleClose();
+                          }}
+                          type="button"
+                        >
+                          <div className="AcceptModal-align">
+                            <p>Limpar</p>
+                          </div>
+                        </button>
+                      </div>
+                      <div className="AcceptModal-button1">
+                        <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+                          <div className="AcceptModal-align">
+                            <p>Voltar</p>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Box>
+              </Modal>
+            </div>
+            <div>
               <Button
                 {...buttonFontProps}
                 onClick={handleWindowOpen}
