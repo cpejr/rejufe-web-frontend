@@ -26,9 +26,9 @@ function ListaEditais() {
   }, [user]);
 
   return (
-    <div className="lista-edicts-page">
-      <h1 className="titulo-lista-edicts"> Editais </h1>
-      <div className="conteiner-lista-edicts">
+    <div className="list-edicts-page">
+      <h1 className="title-list-edicts"> Editais </h1>
+      <div className="container-list-edicts">
         <TableComponent
           setUse={setUse}
           id={id}
