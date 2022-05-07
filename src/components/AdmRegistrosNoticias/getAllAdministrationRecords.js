@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
@@ -9,7 +8,8 @@ function createData(status, title, date, section, type) {
   };
 }
 
-async function getAllAdministrationRecords(setId, setAllAdministrationRecords, setSequentialId) {
+async function getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, setLoading) {
+  setLoading(true);
   const auxNews = [];
   const newsId = [];
   const newsCode = [];
@@ -33,9 +33,11 @@ async function getAllAdministrationRecords(setId, setAllAdministrationRecords, s
 
     setId(newsId);
     setAllAdministrationRecords(auxNews);
-    setSequentialId(newsCode);
+    setNewsSequentialId(newsCode);
+    setLoading(false);
   } catch (error) {
     history.push('/NotFound');
+    setLoading(false);
   }
 }
 

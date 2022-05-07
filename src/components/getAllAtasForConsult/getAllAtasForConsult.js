@@ -9,6 +9,7 @@ function createData(number, type, description, archive_1, archive_2) {
 }
 
 function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
+  setLoading(true);
   const auxMinutes = [];
   const minutesId = [];
   const history = useHistory();
@@ -42,6 +43,7 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
     // eslint-disable-next-line no-console
     console.warn(error);
     history.push('/NotFound');
+    setLoading(false);
   }
 }
 

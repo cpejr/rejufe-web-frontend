@@ -10,6 +10,7 @@ function ActionQuery() {
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
+  const [loading, setLoading] = useState(false);
   const titles = [
     'Número',
     'Descrição',
@@ -28,6 +29,7 @@ function ActionQuery() {
   }
 
   async function getAllActions() {
+    setLoading(true);
     const auxAction = [];
     const actionId = [];
     const archive1Code = [];
@@ -54,6 +56,7 @@ function ActionQuery() {
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
       setUse(false);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -61,6 +64,7 @@ function ActionQuery() {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -82,6 +86,7 @@ function ActionQuery() {
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
+        loading={loading}
       />
     </div>
   );
