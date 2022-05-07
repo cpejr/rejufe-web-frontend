@@ -303,6 +303,7 @@ function ConsultaAssociados({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
               component="div"
+              style={{ overflow: 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
@@ -340,6 +341,7 @@ function ConsultaAssociados({
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
+            style={{ overflow: 'hidden' }}
             count={rows.length}
             rowsPerPage={rows.length}
             labelRowsPerPage="Linhas por pagina"

@@ -33,7 +33,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -486,6 +486,7 @@ function TableComponent({
         {print ? (
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            style={{ overflow: 'hidden' }}
             component="div"
             count={rows?.length}
             rowsPerPage={rows?.length}
@@ -505,6 +506,7 @@ function TableComponent({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
               component="div"
+              style={{ overflow: 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
