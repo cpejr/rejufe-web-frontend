@@ -278,7 +278,7 @@ function ConsultaAssociados({
                     <FindInPageIcon aria-label="findFile" />
                   </TableCell>
                 ) : (
-                  <TableCell> </TableCell>
+                  null
                 )}
                 {Object.values(row)?.map((data) => (
                   <TableCell {...cellFontProps}>
