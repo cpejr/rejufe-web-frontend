@@ -7,6 +7,7 @@ import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import MinuteQuery from '../../components/MinutesQuery/MinutesQuery';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
+import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
 import './Intranet.css';
@@ -20,6 +21,7 @@ function Intranet() {
       case 'Associados': return <ConsultaAssociados />;
       case 'Informativos': return <InformativeQuery />;
       case 'Ações Jurídicas': return <ActionJuridical />;
+      case 'Aniversariantes': return <Aniversariantes />;
       case 'Prestação de Contas': return <AccountQuery />;
       case 'Atas': return <MinuteQuery />;
 
