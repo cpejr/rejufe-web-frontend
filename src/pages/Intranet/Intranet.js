@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import Divider from '@mui/material/Divider';
 import MenuLateral from '../MenuLateral';
