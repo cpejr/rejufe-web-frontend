@@ -11,6 +11,7 @@ import { initialNewsState, initialNewsErrorState } from '../../components/initia
 import checkNewsData from '../../components/checkData/checkNewsData/checkNewsData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarNoticias.css';
+import TextEditor from '../../components/TextEditor/TextEditor';
 
 toast.configure();
 
@@ -73,6 +74,7 @@ function CadastrarNoticias() {
   return (
     <div className="register-news-container">
       <h1 className="register-news-title"><div className="register-news-text-margin">Cadastro de Notícia</div></h1>
+      <TextEditor />
       {formsNews?.map((line) => (
         <Box>
           <div className="register-news-text-field">
