@@ -5,12 +5,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -38,7 +36,7 @@ import AcceptModal from '../AcceptModal/AcceptModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../DeleteModel/editModelsModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../../components/SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
