@@ -8,8 +8,6 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  console.log(user);
-
   async function logIn() {
     try {
       if (user?.acessToken === '' || !user?.acessToken) {

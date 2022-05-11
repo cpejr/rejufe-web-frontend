@@ -1,0 +1,7 @@
+.text-editor-box {
+    width: 100%;
+    border: 1.5px solid;
+    border-color: var(--color3);
+    padding: 2px;
+    min-height: 300px;
+}

@@ -31,9 +31,9 @@
 .register-news-text-field{
   padding: 15px;
   margin: 15px;
-  display: grid;
+  /* display: grid;
   grid-row-gap: 30px;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, minmax(250px, 1fr)); */
   padding-left: 15%;
   padding-right: 15%;
 
