@@ -17,7 +17,7 @@ import './Intranet.css';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
-  const menuSide = () => {
+  const menuDashboard = () => {
     switch (selectedButton) {
       case 'Enquetes': return <ResultadoQuizzes />;
       case 'Ações Adm': return <ActionQuery />;
@@ -48,7 +48,7 @@ function Intranet() {
           <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
         </div>
         <div className="intranet-dashboad-all">
-          {menuSide()}
+          {menuDashboard()}
         </div>
       </div>
       <div>
