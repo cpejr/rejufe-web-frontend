@@ -21,8 +21,6 @@ function AdmRegistrosNoticias() {
   const [newsSequentialId, setNewsSequentialId] = useState([]);
   const history = useHistory();
 
-  console.log(news);
-
   useEffect(() => {
     getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, history);
   }, []);

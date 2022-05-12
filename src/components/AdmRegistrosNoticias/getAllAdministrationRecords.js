@@ -34,7 +34,6 @@ async function getAllAdministrationRecords(setId, setAllAdministrationRecords, s
     setSequentialId(newsCode);
   } catch (error) {
     history.push('/NotFound');
-    console.log(error);
   }
 }
 

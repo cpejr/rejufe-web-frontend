@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-export default function textEditor({ id, setDados, dados }) {
+export default function textEditor({ id, setDados }) {
   const [convertedText, setConvertedText] = useState('');
   const modules = {
     toolbar: [
@@ -21,10 +21,7 @@ export default function textEditor({ id, setDados, dados }) {
     setDados(value, id);
   };
 
-  console.log(dados);
-
   useEffect(() => {
-    console.log(typeof convertedText);
     handleChange(convertedText);
   }, [convertedText]);
 
