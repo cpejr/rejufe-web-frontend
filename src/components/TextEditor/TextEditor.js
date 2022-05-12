@@ -1,19 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import { EditorState } from 'draft-js';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import './TextEditor.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
-export default function TextEditor() {
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+export default function textEditor({ id, setDados, dados }) {
+  const [convertedText, setConvertedText] = useState('');
+  const modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { align: [] }],
+      [{ script: 'sub' }, { script: 'super' }],
+      [{ size: ['small', false, 'large', 'huge'] }, { color: [] }, { background: [] }, { font: [] }],
+      ['link'],
+      ['clean'],
+    ],
+  };
+
+  const handleChange = (value) => {
+    setDados(value, id);
+  };
+
+  console.log(dados);
+
   useEffect(() => {
-    console.log(editorState);
-  }, [editorState]);
+    console.log(typeof convertedText);
+    handleChange(convertedText);
+  }, [convertedText]);
+
+  const formats = [
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'code-block',
+    'header',
+    'list',
+    'align',
+    'script',
+    'size',
+    'color',
+    'background',
+    'font',
+    'code',
+    'link',
+    'clean',
+  ];
+
   return (
-    <div className="text-editor-box">
-      <Editor
-        editorState={editorState}
-        onEditorStateChange={setEditorState}
+    <div>
+      <ReactQuill
+        theme="snow"
+        value={convertedText}
+        onChange={setConvertedText}
+        placeholder="Escreva a descrição aqui!"
+        modules={modules}
+        formats={formats}
       />
     </div>
   );

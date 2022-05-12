@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AdmRegistrosNoticias.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/dashboard/dashboardComponent';
 import getAllAdministrationRecords from '../../components/AdmRegistrosNoticias/getAllAdministrationRecords';
 
@@ -18,9 +19,12 @@ function AdmRegistrosNoticias() {
   const [news, setAllAdministrationRecords] = useState([]);
   const [id, setId] = useState([]);
   const [newsSequentialId, setNewsSequentialId] = useState([]);
+  const history = useHistory();
+
+  console.log(news);
 
   useEffect(() => {
-    getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId);
+    getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, history);
   }, []);
 
   return (
