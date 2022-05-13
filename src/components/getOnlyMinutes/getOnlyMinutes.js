@@ -17,13 +17,13 @@ function createData(number, type, description, archive_1, archive_2) {
   };
 }
 
-function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
+function getOnlyMinutes(setId, setAllMinutes, setLoading) {
   const auxMinutes = [];
   const minutesId = [];
 
   try {
     managerService.getMinutes().then((allMinutes) => {
-      allMinutes.forEach((object) => {
+      allMinutes.filter((account) => account.type === 'ATAS').forEach((object) => {
         Promise.all([
           managerService.getFileNameById(object.archive_1),
           managerService.getFileNameById(object.archive_2),
@@ -38,7 +38,7 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
           ));
           return [auxMinutes, minutesId];
         }).then((response2) => {
-          if (response2[0]?.length === allMinutes?.length) {
+          if (response2[0]?.length === allMinutes.filter((account) => account.type === 'ATAS')?.length) {
             setAllMinutes(response2[0]);
             setId(response2[1]);
             setLoading(false);
@@ -53,4 +53,4 @@ function getAllMinutesForConsult(setId, setAllMinutes, setLoading) {
   }
 }
 
-export default getAllMinutesForConsult;
+export default getOnlyMinutes;
