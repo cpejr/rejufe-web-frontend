@@ -8,27 +8,35 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  useEffect(async () => {
-    if (user?.acessToken === '' || !user?.acessToken) {
-      const getStorage = JSON.parse(localStorage.getItem('user'));
-      if (getStorage?.id) {
-        try {
-          const response = await managerService.getById(getStorage?.id);
-          setUser({
-            name: response?.name,
-            email: response?.email,
-            type: response?.type,
-            acessToken: getStorage.acessToken,
-            id: response?._id,
-          });
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.error(error); // TO DO: Substitute for redirect to not Found when done
-          setLoading(false);
+  async function logIn() {
+    try {
+      if (user?.acessToken === '' || !user?.acessToken) {
+        const getStorage = JSON.parse(localStorage.getItem('user'));
+        if (getStorage?.id) {
+          try {
+            const response = await managerService.getById(getStorage?.id);
+            setUser({
+              name: response?.name,
+              email: response?.email,
+              type: response?.type,
+              acessToken: getStorage.acessToken,
+              id: response?._id,
+            });
+          } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error); // TO DO: Substitute for redirect to not Found when done
+            setLoading(false);
+          }
         }
       }
+      setLoading(false);
+    } catch (error) {
+      console.warn(error);
     }
-    setLoading(false);
+  }
+
+  useEffect(() => {
+    logIn();
   }, [user]);
 
   const [token, setToken] = useState();

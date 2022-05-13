@@ -13,7 +13,6 @@ import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 export default function EditModel({
   id, model, archive1Id, archive2Id,
 }) {
-  console.log(archive1Id);
   const [dados, setDados] = useState(model);
 
   function handleChange(value, field) {
