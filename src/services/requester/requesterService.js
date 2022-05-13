@@ -10,6 +10,12 @@ export const getUserEmailByUsername = (user) => httpClient.get('/usuario/getUser
   },
 });
 
+export const getUserEmailByCpf = (cpf) => httpClient.get('/usuario/getUserEmailByCpf', {
+  params: {
+    cpf,
+  },
+});
+
 export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);
 
 export const register = (body) => httpClient.post('/usuario', body);

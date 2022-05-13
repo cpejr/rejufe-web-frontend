@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -36,7 +37,24 @@ function Login() {
     setLoading(true);
     let res;
     let attempts;
-    const email = await managerService.getUserEmailByUsername(usuario.user);
+    let email = '';
+    if (usuario.user !== undefined && usuario.cpf === undefined) {
+      console.log('tutu');
+      email = await managerService.getUserEmailByUsername(usuario.user);
+    }
+    if (usuario.cpf !== undefined) {
+      console.log('titi');
+      email = await managerService.getUserEmailByCpf(usuario.cpf);
+    }
+    if (usuario.cpf !== undefined && usuario.user !== undefined) {
+      console.log('tt');
+      toast.error('Insira somente seu CPF ou seu usuário!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+      setLoading(false);
+    }
+    console.log(email);
     const field = {
       email,
       lock_time: moment(),
@@ -85,41 +103,41 @@ function Login() {
           await managerService.updateTime(email, time);
         } else {
           switch (attempts) {
-          case 2: {
-            const time = moment().add(3, 'minutes');
-            setContentWarningModal('após 3 minutos');
-            await managerService.updateTime(email, time);
-            setShowWarningModal(true);
-            break;
-          }
-          case 3: {
-            const time = moment().add(5, 'minutes');
-            setContentWarningModal('após 5 minutos');
-            await managerService.updateTime(email, time);
-            setShowWarningModal(true);
-            break;
-          }
-          case 4: {
-            const time = moment().add(15, 'minutes');
-            setContentWarningModal('após 15 minutos');
-            await managerService.updateTime(email, time);
-            setShowWarningModal(true);
-            break;
-          }
-          case 5: {
-            const time = moment().add(15, 'minutes');
-            setContentWarningModal('após 15 minutos');
-            await managerService.updateTime(email, time);
-            setShowWarningModal(true);
-            break;
-          }
-          default: {
-            const time = moment().add(15, 'minutes');
-            setContentWarningModal('após 15 minutos');
-            await managerService.updateTime(email, time);
-            setShowWarningModal(true);
-            break;
-          }
+            case 2: {
+              const time = moment().add(3, 'minutes');
+              setContentWarningModal('após 3 minutos');
+              await managerService.updateTime(email, time);
+              setShowWarningModal(true);
+              break;
+            }
+            case 3: {
+              const time = moment().add(5, 'minutes');
+              setContentWarningModal('após 5 minutos');
+              await managerService.updateTime(email, time);
+              setShowWarningModal(true);
+              break;
+            }
+            case 4: {
+              const time = moment().add(15, 'minutes');
+              setContentWarningModal('após 15 minutos');
+              await managerService.updateTime(email, time);
+              setShowWarningModal(true);
+              break;
+            }
+            case 5: {
+              const time = moment().add(15, 'minutes');
+              setContentWarningModal('após 15 minutos');
+              await managerService.updateTime(email, time);
+              setShowWarningModal(true);
+              break;
+            }
+            default: {
+              const time = moment().add(15, 'minutes');
+              setContentWarningModal('após 15 minutos');
+              await managerService.updateTime(email, time);
+              setShowWarningModal(true);
+              break;
+            }
           }
         }
       }
@@ -146,6 +164,13 @@ function Login() {
               id="user"
               value={usuario.user}
               onChange={(e) => setUsuario({ ...usuario, user: e.target.value })}
+            />
+            <h1>CPF </h1>
+            <input
+              type="user"
+              id="user"
+              value={usuario.cpf}
+              onChange={(e) => setUsuario({ ...usuario, cpf: e.target.value })}
             />
             <h1>Senha </h1>
             <input

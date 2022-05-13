@@ -28,6 +28,12 @@ export const getUserEmailByUsername = async (user) => {
   return response.data;
 };
 
+export const getUserEmailByCpf = async (cpf) => {
+  const response = await requesterService.getUserEmailByCpf(cpf);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const changeUserTypeById = async (typeChange, id) => {
   const response = await requesterService.changeUserTypeById(typeChange, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
