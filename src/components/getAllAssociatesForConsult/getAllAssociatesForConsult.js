@@ -21,7 +21,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
     const allAssociates = await managerService.getAssociates();
     allAssociates.sort(compare);
 
-    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').forEach((object) => {
+    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').filter((associate) => associate.status === 'A').forEach((object) => {
       associateId.push(object._id);
       auxAssociate.push(createData(
         object.name,
