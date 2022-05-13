@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -33,7 +34,8 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import SearchAtas from '../SearchAdvanced/SearchAtas';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -128,8 +130,17 @@ function TableComponent({
   print,
   printButton,
   route,
+  filterList,
 }) {
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', filterList);
   const [page, setPage] = useState(0);
+  const [query, setQuery] = useState('');
+  const [type, setType] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState(rows);
+  // eslint-disable-next-line no-unused-vars
+  let filter = [];
+  const [open, setOpen] = useState(false);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -275,7 +286,7 @@ function TableComponent({
         : 'big',
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -302,6 +313,39 @@ function TableComponent({
     window.open(route);
   };
 
+  const filterDescription = rows?.filter(((item) => item.description?.toLowerCase().includes(query)));
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 320 ~ filterDescription', rows?.filter(((item) => item.description.toLowerCase().includes(query))));
+
+  console.log(query);
+  const filterType = rows?.filter(((item) => item.type?.includes(type)));
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', filterType);
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', query);
+
+  // eslint-disable-next-line no-unused-vars
+  const handleData = () => {
+    setOpen(false);
+    if (query !== '' && type === '') {
+      console.log('vida');
+      setData(filterDescription);
+      setQuery('');
+    }
+    if (type !== '' && query === '') {
+      console.log('top');
+      setData(filterType);
+      setType('');
+    }
+    if (type !== '' && query !== '') {
+      console.log('hel');
+      // let add = 0;
+      filterType?.forEach((obj) => {
+        filter = filterDescription?.filter(((item) => item.type.includes(obj.type)));
+        // add += 1;
+        setData(filter);
+      });
+      console.log('🚀 ~ file: dashboardComponent.js ~ line 340 ~ handleData ~ filter', data);
+    }
+  };
+  console.log(data);
   function getDownloads(archiveId) {
     try {
       managerService.download(archiveId).then((response) => {
@@ -358,7 +402,7 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
@@ -462,9 +506,9 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
-                {Object.values(row)?.map((data) => (
+                {Object.values(row)?.map((value) => (
                   <TableCell {...cellFontProps}>
-                    {data}
+                    {value}
                   </TableCell>
                 ))}
                 {archive1Id
@@ -504,8 +548,8 @@ function TableComponent({
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
-            count={rows?.length}
-            rowsPerPage={rows?.length}
+            count={data?.length}
+            rowsPerPage={data?.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}
             SelectProps={{
@@ -520,9 +564,9 @@ function TableComponent({
         ) : (
           <>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: data.length }]}
               component="div"
-              count={rows.length}
+              count={data.length} //
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}
@@ -538,12 +582,9 @@ function TableComponent({
             />
             <div className="button-table-component-pagination-consult">
               {renderButton && (
-                <Button
-                  {...buttonFontProps}
-                >
-                  Pesquisa Avançada
-                  {/* TODO Implementar o botão de pesquisa avançada */}
-                </Button>
+                <div>
+                  <SearchAtas rows={rows} dados={dados} open={open} />
+                </div>
               )}
               {printButton && (
                 <Button

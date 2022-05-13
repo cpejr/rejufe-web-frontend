@@ -16,6 +16,7 @@ const titles = [
 
 function ConsultaMinutes() {
   const [minutes, setAllMinutes] = useState([]);
+  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ minutes', minutes);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,6 +45,8 @@ function ConsultaMinutes() {
               titles={titles}
               searchMinutes
               printButton
+              search
+              renderButton
               route="/imprimir-atas-editais"
             />
           </div>
