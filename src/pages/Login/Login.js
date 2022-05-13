@@ -32,21 +32,37 @@ function Login() {
   const handleClickClose = () => {
     setShowWarningModal(false);
   };
-
+  // 154.793.607-01
   const handleClick = async (e) => {
     setLoading(true);
     let res;
     let attempts;
     let email = '';
-    if (usuario.user !== undefined && usuario.cpf === undefined) {
-      console.log('tutu');
-      email = await managerService.getUserEmailByUsername(usuario.user);
+    if (usuario.user !== '' && usuario.cpf === undefined) {
+      try {
+        console.log('tutu');
+        email = await managerService.getUserEmailByUsername(usuario.user);
+      } catch (error) {
+        toast.error('Credenciais Inválidas!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+        console.error(error);
+      }
     }
-    if (usuario.cpf !== undefined) {
-      console.log('titi');
-      email = await managerService.getUserEmailByCpf(usuario.cpf);
+    if (usuario.cpf !== undefined && usuario.user === '') {
+      try {
+        console.log('titi');
+        email = await managerService.getUserEmailByCpf(usuario.cpf);
+      } catch (error) {
+        toast.error('Credenciais Inválidas!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+        console.error(error);
+      }
     }
-    if (usuario.cpf !== undefined && usuario.user !== undefined) {
+    if (usuario.cpf !== undefined && usuario.user !== '') {
       console.log('tt');
       toast.error('Insira somente seu CPF ou seu usuário!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -93,50 +109,49 @@ function Login() {
         await managerService.resetAttempts(email);
         history.push('/intranet');
       } catch (error) {
-        toast.error('Credenciais inválidas!!', {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
-        });
         setLoading(false);
-        if (attempts <= 1) {
-          const time = moment();
-          await managerService.updateTime(email, time);
-        } else {
-          switch (attempts) {
-            case 2: {
-              const time = moment().add(3, 'minutes');
-              setContentWarningModal('após 3 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            case 3: {
-              const time = moment().add(5, 'minutes');
-              setContentWarningModal('após 5 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            case 4: {
-              const time = moment().add(15, 'minutes');
-              setContentWarningModal('após 15 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            case 5: {
-              const time = moment().add(15, 'minutes');
-              setContentWarningModal('após 15 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            default: {
-              const time = moment().add(15, 'minutes');
-              setContentWarningModal('após 15 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
+        if (email !== '' && ((usuario.cpf !== undefined && usuario.user === '') || (usuario.user !== '' && usuario.cpf === undefined))) {
+          console.log('fio');
+          if (attempts <= 1) {
+            const time = moment();
+            await managerService.updateTime(email, time);
+          } else {
+            switch (attempts) {
+              case 2: {
+                const time = moment().add(3, 'minutes');
+                setContentWarningModal('após 3 minutos');
+                await managerService.updateTime(email, time);
+                setShowWarningModal(true);
+                break;
+              }
+              case 3: {
+                const time = moment().add(5, 'minutes');
+                setContentWarningModal('após 5 minutos');
+                await managerService.updateTime(email, time);
+                setShowWarningModal(true);
+                break;
+              }
+              case 4: {
+                const time = moment().add(15, 'minutes');
+                setContentWarningModal('após 15 minutos');
+                await managerService.updateTime(email, time);
+                setShowWarningModal(true);
+                break;
+              }
+              case 5: {
+                const time = moment().add(15, 'minutes');
+                setContentWarningModal('após 15 minutos');
+                await managerService.updateTime(email, time);
+                setShowWarningModal(true);
+                break;
+              }
+              default: {
+                const time = moment().add(15, 'minutes');
+                setContentWarningModal('após 15 minutos');
+                await managerService.updateTime(email, time);
+                setShowWarningModal(true);
+                break;
+              }
             }
           }
         }
