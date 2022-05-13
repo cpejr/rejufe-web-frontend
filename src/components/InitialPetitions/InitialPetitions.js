@@ -55,6 +55,9 @@ function InitialPetitions() {
     getInitialPetitions();
   }, []);
 
+  console.log(archive1Id);
+  console.log(archive2Id);
+
   return (
     <div className="initial-petitions-container">
       <h1>Petições Iniciais</h1>
