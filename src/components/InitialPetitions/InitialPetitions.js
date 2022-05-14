@@ -51,6 +51,8 @@ function InitialPetitions() {
     }
   }
 
+  console.log(archive1Id);
+
   useEffect(() => {
     getInitialPetitions();
   }, []);
