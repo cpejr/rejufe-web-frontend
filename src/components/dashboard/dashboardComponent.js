@@ -33,7 +33,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -292,6 +292,12 @@ function TableComponent({
     win.focus();
   }
 
+  function redirectAssociate(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-associados?associateId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   const handleWindowOpen = () => {
     window.open(route);
   };
@@ -359,7 +365,18 @@ function TableComponent({
             ?.map((row, index) => (
               <TableRow>
                 {
-                  order ? (
+                  order && search ? (
+                    <>
+                      <TableCell {...cellFontProps} align="center">
+                        {index + 1 + (page * 10)}
+                      </TableCell>
+                      <TableCell {...cellFontProps} align="center">
+                        <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, id[index + (page * 10)])}>
+                          <SearchIcon />
+                        </IconButton>
+                      </TableCell>
+                    </>
+                  ) : order ? (
                     <TableCell {...cellFontProps} align="center">
                       {index + 1 + (page * 10)}
                     </TableCell>
