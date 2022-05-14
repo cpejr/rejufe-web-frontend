@@ -23,4 +23,6 @@ export default function setFileNameById(fileNames1, archive1Id, setFileNames1) {
       autoClose: 5000,
     });
   }
+
+  console.log(fileNames1);
 }

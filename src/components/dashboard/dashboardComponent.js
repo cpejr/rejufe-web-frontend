@@ -309,6 +309,8 @@ function TableComponent({
     }
   }
 
+  console.log(fileNames1);
+
   useEffect(() => {
     if (archive1Id) {
       setFileNameArchive(fileNames1, archive1Id, setFileNames1);
