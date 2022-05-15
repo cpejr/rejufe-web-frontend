@@ -18,6 +18,7 @@ function InitialPetitions() {
   const [initialPetitions, setInitialPetitions] = useState([]);
   const [archive1Id, setArchive1Id] = useState([]);
   const [archive2Id, setArchive2Id] = useState([]);
+  const [use, setUse] = useState(true);
   const history = useHistory();
 
   function createData(numberModels, description) {
@@ -45,6 +46,7 @@ function InitialPetitions() {
       setInitialPetitions(auxPetitions);
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
+      setUse(false);
     } catch (error) {
       console.log(error);
       history.push('/NotFound');
@@ -60,7 +62,13 @@ function InitialPetitions() {
   return (
     <div className="initial-petitions-container">
       <h1>Petições Iniciais</h1>
-      <TableComponent rows={initialPetitions} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} />
+      <TableComponent
+        setUse={setUse}
+        rows={initialPetitions}
+        titles={titles}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+      />
     </div>
 
   );
