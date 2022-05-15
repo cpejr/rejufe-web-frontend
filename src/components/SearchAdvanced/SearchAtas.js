@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
-
+import './SearchAtas.css';
 import { useMediaQuery } from '@mui/material/';
 import Box from '@mui/material/Box';
 
@@ -12,6 +13,7 @@ function SearchAtas({
 }) {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
+  const history = useHistory();
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(rows);
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -31,16 +33,24 @@ function SearchAtas({
   const handleClose = () => {
     setOpen(false);
   };
+  const handleData = () => {
+    history.push({
+      pathname: '/consulta-atas-e-editais',
+      state: { data },
+    });
+    setOpen(false);
+  };
 
   console.log(query);
   const filterType = rows?.filter(((item) => item.type?.includes(type)));
   console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', filterType);
   console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', query);
-  const handleData = () => {
+  useEffect(() => {
     if (query !== '' && type === '') {
       console.log('vida');
       setData(filterDescription);
       setQuery('');
+      console.log('🚀 ~ file: SearchAtas.js ~ line 19 ~ data', data);
     }
     if (type !== '' && query === '') {
       console.log('top');
@@ -49,16 +59,13 @@ function SearchAtas({
     }
     if (type !== '' && query !== '') {
       console.log('hel');
-      // let add = 0;
       filterType?.forEach((obj) => {
         filter = filterDescription?.filter(((item) => item.type.includes(obj.type)));
-        // add += 1;
         setData(filter);
       });
     }
-    // setOpen(false);
-    console.log('🚀 ~ file: dashboardComponent.js ~ line 340 ~ handleData ~ filter', data);
-  };
+  }, [data]);
+  console.log('🚀 ~ file: SearchAtas.js ~ line 88 ~ data', data);
 
   const buttonFontProps = {
     // eslint-disable-next-line no-nested-ternary
@@ -89,13 +96,15 @@ function SearchAtas({
       </div>
       <div className="AcceptModal-Buttons">
         <div className="AcceptModal-Bu">
+
           <label>Descrição:</label>
+
           <input type="text" onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
         <div className="AcceptModal-Bu">
-          <div className="EditModal-text">
-            Tipo:
-          </div>
+
+          <p> Tipo:</p>
+
           <select className="EditModal-Input" placeholder="" onChange={(e) => setType(e.target.value)}>
             <option value="ATAS">ATAS</option>
             <option value="EDITAIS">EDITAIS</option>
@@ -120,7 +129,7 @@ function SearchAtas({
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button1">
+          <div className="AcceptModal-button3">
             <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
               <div className="AcceptModal-align">
                 <p>Voltar</p>

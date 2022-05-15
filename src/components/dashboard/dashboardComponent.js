@@ -130,16 +130,12 @@ function TableComponent({
   print,
   printButton,
   route,
-  filterList,
 }) {
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', filterList);
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', rows);
   const [page, setPage] = useState(0);
-  const [query, setQuery] = useState('');
-  const [type, setType] = useState('');
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(rows);
   // eslint-disable-next-line no-unused-vars
-  let filter = [];
   const [open, setOpen] = useState(false);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
@@ -313,39 +309,6 @@ function TableComponent({
     window.open(route);
   };
 
-  const filterDescription = rows?.filter(((item) => item.description?.toLowerCase().includes(query)));
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 320 ~ filterDescription', rows?.filter(((item) => item.description.toLowerCase().includes(query))));
-
-  console.log(query);
-  const filterType = rows?.filter(((item) => item.type?.includes(type)));
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', filterType);
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', query);
-
-  // eslint-disable-next-line no-unused-vars
-  const handleData = () => {
-    setOpen(false);
-    if (query !== '' && type === '') {
-      console.log('vida');
-      setData(filterDescription);
-      setQuery('');
-    }
-    if (type !== '' && query === '') {
-      console.log('top');
-      setData(filterType);
-      setType('');
-    }
-    if (type !== '' && query !== '') {
-      console.log('hel');
-      // let add = 0;
-      filterType?.forEach((obj) => {
-        filter = filterDescription?.filter(((item) => item.type.includes(obj.type)));
-        // add += 1;
-        setData(filter);
-      });
-      console.log('🚀 ~ file: dashboardComponent.js ~ line 340 ~ handleData ~ filter', data);
-    }
-  };
-  console.log(data);
   function getDownloads(archiveId) {
     try {
       managerService.download(archiveId).then((response) => {
