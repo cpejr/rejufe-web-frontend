@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 
 function createData(name, cellPhoneNumber, status, allocation, acting, email) {
@@ -15,6 +16,7 @@ function compare(a, b) {
 }
 
 async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
+  const history = useHistory();
   const auxAssociate = [];
   const associateId = [];
   try {
@@ -39,6 +41,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);
+    history.push('/NotFound');
   }
 }
 
