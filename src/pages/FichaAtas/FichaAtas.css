@@ -2,6 +2,41 @@ td {
     border: 1px solid #DCDCDC;
 }
 
+.header-print-minutes-icon {
+    display: flex;
+    align-items: center;
+    background-color: var(--header);
+    height: 50px;
+    justify-content: center;
+  }
+
+.print-minutes-button {
+   margin-left: 30px;
+}
+
+.return-print-minutes-button {
+    margin-left: 60px;
+}
+
+.header-print-minutes-icon button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: thin solid transparent;
+    color: var(--fontColor1);
+    font-size: 17px;
+    cursor: pointer;
+    padding: 0 5px;
+    height: 100%;
+  }
+  
+  .header-print-minutes-icon button:hover {
+    background-color: var(--hover);
+    border: thin solid var(--hover);
+    border-radius: 5px;
+  }
+
 .forms-minutes-body {
     min-height: calc(100vh);
 }
