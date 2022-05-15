@@ -57,7 +57,7 @@ function InitialPetitions() {
 
   useEffect(() => {
     getInitialPetitions();
-  }, []);
+  }, [use]);
 
   return (
     <div className="initial-petitions-container">
