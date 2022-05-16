@@ -123,7 +123,7 @@ function SingleFileUpload({
           </div>
           {update === true && archiveId !== undefined && dados.pdf === undefined && (
             <div {...buttonArchive.dropzone}>
-              {file === undefined && (
+              {file === undefined && archiveId && (
                 <>
                   <Button style={{ alignItems: 'center', justifyContent: 'center', marginTop: '2%' }} variant="primary" onClick={() => getDownloads()}>
                     Baixar arquivo atual
@@ -135,6 +135,16 @@ function SingleFileUpload({
                   </Button>
                 </>
               )}
+              {file && (
+                <div className="register-news-align-test">
+                  {file?.file?.path}
+                  {' '}
+                  <PictureAsPdfIcon />
+                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                    Remover Arquivo
+                  </Button>
+                </div>
+              )}
               <div />
             </div>
           )}
@@ -145,7 +155,7 @@ function SingleFileUpload({
                 {' '}
                 <PictureAsPdfIcon />
               </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados('', 'pdf')}>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
                 Remover Arquivo
               </Button>
             </div>
@@ -153,41 +163,6 @@ function SingleFileUpload({
 
         </div>
       </Grid>
-      {
-        file && dados.pdf === undefined && (
-          <Grid item>
-            <div key={file.url}>
-              {label === 'Imagem'
-                ? (
-                  <div>
-                    <img src={file.url} style={{ width: '200px' }} alt="preview" />
-                  </div>
-                )
-                : (
-                  <>
-                    {update === true && archiveId !== undefined ? (
-                      <Button variant="primary" onClick={() => getDownloads()}>
-                        Download
-                        {' '}
-                        <PictureAsPdfIcon />
-                      </Button>
-                    ) : (
-                      <div className="register-news-align-test">
-                        {file?.file?.path}
-                        {' '}
-                        <PictureAsPdfIcon />
-                      </div>
-                    )}
-                    <div />
-                  </>
-                )}
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                Remover Arquivo
-              </Button>
-            </div>
-          </Grid>
-        )
-      }
     </Grid>
   );
 }

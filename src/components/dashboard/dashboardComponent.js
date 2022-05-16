@@ -453,7 +453,7 @@ function TableComponent({
                   && (
                     <TableCell {...cellFontProps}>
                       <ExcludeModelModal id={modelsSequentialId[index]} />
-                      <EditModel id={modelsSequentialId[index]} model={row} archive1Id={archive1Id && archive1Id[index]} archive2Id={archive2Id && archive2Id[index]} index={index} />
+                      <EditModel id={modelsSequentialId[index]} model={row} archive1Id={archive1Id && archive1Id[index]} archive2Id={archive2Id && archive2Id[index]} index={index} setUse={setUse} />
                     </TableCell>
                   )}
                 {Object.values(row)?.map((data) => (

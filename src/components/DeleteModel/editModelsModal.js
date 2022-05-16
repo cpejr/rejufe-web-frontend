@@ -13,26 +13,28 @@ import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 toast.configure();
 
 export default function EditModel({
-  id, model, archive1Id, archive2Id,
+  id, model, archive1Id, archive2Id, setUse,
 }) {
   const [dados, setDados] = useState(model);
-  console.log(dados);
 
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
 
   async function handleSubmit() {
-    // const formData = new FormData();
-    // Object.entries(dados).forEach((dado) => {
-    //   formData.append(dado[0], dado[1]);
-    //   if (dado[0] === 'pdf') {
-    //     dado[1] = dado[1] ? dado[1]?.file : '';
-    //     formData.append(dado[0], dado[1]);
-    //   } else {
-    //     formData.append(dado[0], dado[1]);
-    //   }
-    // });
+    const formData = new FormData();
+    Object.entries(dados).forEach((dado) => {
+      console.log(formData.append(dado[0], dado[1]));
+      console.log(dado[1]);
+      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
+      }
+    });
+
+    console.log(new FormData());
 
     try {
       console.log(dados);
@@ -42,6 +44,7 @@ export default function EditModel({
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setUse(true);
     } catch (error) {
       console.log(error);
       toast.error('Não foi possível editar o modelo', {

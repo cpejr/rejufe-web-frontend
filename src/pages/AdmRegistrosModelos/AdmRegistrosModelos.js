@@ -37,7 +37,6 @@ function AdmRegistrosContas() {
     const archive2Code = [];
     try {
       const allModels = await managerService.getModels();
-      console.log(allModels);
       const values = [...allModels];
       values.forEach((object) => {
         auxModels.push(createData(
