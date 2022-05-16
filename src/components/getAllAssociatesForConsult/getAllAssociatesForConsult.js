@@ -2,6 +2,15 @@
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 
+const routingFunction = (param) => {
+  const history = useHistory();
+
+  history.push({
+    pathname: '/NotFound',
+    state: param,
+  });
+};
+
 function createData(name, cellPhoneNumber, status, allocation, acting, email) {
   return {
     name, cellPhoneNumber, status, allocation, acting, email,
@@ -16,7 +25,6 @@ function compare(a, b) {
 }
 
 async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
-  const history = useHistory();
   const auxAssociate = [];
   const associateId = [];
   try {
@@ -41,7 +49,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);
-    history.push('/NotFound');
+    routingFunction();
   }
 }
 
