@@ -10,34 +10,44 @@ import * as managerService from '../../services/manager/managerService';
 import './editModelsModal.css';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 
+toast.configure();
+
 export default function EditModel({
   id, model, archive1Id, archive2Id,
 }) {
   const [dados, setDados] = useState(model);
+  console.log(dados);
 
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
 
   async function handleSubmit() {
-    const formData = new FormData();
-    Object.entries(dados).forEach((dado) => {
-      if (dado[0] === 'pdf') {
-        dado[1] = dado[1] ? dado[1]?.file : '';
-        formData.append(dado[0], dado[1]);
-      } else {
-        formData.append(dado[0], dado[1]);
-      }
-    });
+    // const formData = new FormData();
+    // Object.entries(dados).forEach((dado) => {
+    //   formData.append(dado[0], dado[1]);
+    //   if (dado[0] === 'pdf') {
+    //     dado[1] = dado[1] ? dado[1]?.file : '';
+    //     formData.append(dado[0], dado[1]);
+    //   } else {
+    //     formData.append(dado[0], dado[1]);
+    //   }
+    // });
 
     try {
-      await managerService.updateModel(id, formData);
+      console.log(dados);
+      const response = await managerService.updateModel(id, dados);
+      console.log(response);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      toast.error('Não foi possível editar o modelo', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
 
@@ -63,7 +73,7 @@ export default function EditModel({
         <div className="EditModal-model-text">
           Número:
         </div>
-        <input className="EditModal-model-input" placeholder="" require value={dados?.numberModel} onChange={(e) => handleChange(e.target.value, 'numberModel')} />
+        <input className="EditModal-model-input" placeholder="" require value={dados?.numberModels} onChange={(e) => handleChange(e.target.value, 'numberModels')} />
       </div>
       <div className="EditModal-model-field">
         <div className="EditModal-model-text">
@@ -81,20 +91,17 @@ export default function EditModel({
           <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>
         </select>
       </div>
-      <div className="EditModal-model-files">
-        <div className="EditModal-model-field">
-          <div className="EditModal-model-text">
-            Arquivo1:
-          </div>
-          <SingleFileUpload id="pdf" fileType=".pdf" dados={dados} archiveId={archive1Id} file={dados.pdf} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+      <div className="EditModal-model-field">
+        <div className="EditModal-model-text">
+          Arquivo1:
         </div>
-        <div className="EditModal-model-field">
-          <div className="EditModal-model-text">
-            Arquivo2:
-          </div>
-          <SingleFileUpload id="pdf" fileType=".pdf" dados={dados} archiveId={archive2Id} file={dados.pdf} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
+        <SingleFileUpload field="archive_1" fileType=".pdf" file={dados.archive_1} dados={dados} archiveId={archive1Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
+      </div>
+      <div className="EditModal-model-field">
+        <div className="EditModal-model-text">
+          Arquivo2:
         </div>
-
+        <SingleFileUpload field="archive_2" fileType=".pdf" file={dados.archive_2} dados={dados} archiveId={archive2Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
       </div>
       <button
         className="EditModal-model-buttonConfirm"

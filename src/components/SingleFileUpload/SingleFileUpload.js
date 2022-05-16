@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     background: theme.palette.background.default,
-    height: theme.spacing(10),
+    height: '50px',
     outline: 'none',
     marginBottom: '1%',
     marginRight: '4%',
@@ -38,15 +38,13 @@ const useStyle = makeStyles(() => ({
 }));
 
 function SingleFileUpload({
-  id, fileType, dados, file, setDados, label, update, archiveId,
+  fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
   const classes = useStyles();
   const buttonArchive = useStyle();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
-
-  console.log(archiveId);
 
   async function getImage() {
     try {
@@ -63,7 +61,7 @@ function SingleFileUpload({
   function getDownloads() {
     try {
       managerService.download(archiveId).then((response) => {
-        FileSaver.saveAs(response, id);
+        FileSaver.saveAs(response, field);
       });
     } catch (error) {
       toast.error('Não foi possível baixar o arquivo', {
@@ -75,7 +73,7 @@ function SingleFileUpload({
 
   if (update === true) {
     useEffect(() => {
-      if (id === 'photos' && file !== '' && file !== undefined) {
+      if (field === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
     }, [file, archiveId]);
@@ -96,7 +94,7 @@ function SingleFileUpload({
       });
       return;
     }
-    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
+    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, field);
   }, [dados]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -124,25 +122,30 @@ function SingleFileUpload({
             )}
           </div>
           {update === true && archiveId !== undefined && dados.pdf === undefined && (
-            <div {...getRootProps({ className: buttonArchive.dropzone })}>
-              <Button style={{ alignItems: 'center', justifyContent: 'center', marginTop: '2%' }} variant="primary" onClick={() => getDownloads()}>
-                Fazer Download
-                {' '}
-                <PictureAsPdfIcon />
-              </Button>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
-                Remover Arquivo
-              </Button>
+            <div {...buttonArchive.dropzone}>
+              {file === undefined && (
+                <>
+                  <Button style={{ alignItems: 'center', justifyContent: 'center', marginTop: '2%' }} variant="primary" onClick={() => getDownloads()}>
+                    Baixar arquivo atual
+                    {' '}
+                    <PictureAsPdfIcon />
+                  </Button>
+                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados('', field)}>
+                    Remover Arquivo
+                  </Button>
+                </>
+              )}
+              <div />
             </div>
           )}
           {dados.pdf && (
-            <div {...getRootProps({ className: buttonArchive.dropzone })}>
+            <div {...buttonArchive.dropzone}>
               <div className="register-news-align-test">
                 {file?.file?.path}
                 {' '}
                 <PictureAsPdfIcon />
               </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados('', 'pdf')}>
                 Remover Arquivo
               </Button>
             </div>
@@ -178,7 +181,7 @@ function SingleFileUpload({
                     <div />
                   </>
                 )}
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
                 Remover Arquivo
               </Button>
             </div>

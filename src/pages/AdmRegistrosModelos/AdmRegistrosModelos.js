@@ -14,15 +14,15 @@ import TableComponent from '../../components/dashboard/dashboardComponent';
 toast.configure();
 
 function AdmRegistrosContas() {
-  const [comunics, setAllComunics] = useState([]);
+  const [models, setAllModels] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
 
-  function createData(numberModel, description, type) {
+  function createData(numberModels, description, type) {
     return {
-      numberModel, description, type,
+      numberModels, description, type,
     };
   }
 
@@ -37,10 +37,11 @@ function AdmRegistrosContas() {
     const archive2Code = [];
     try {
       const allModels = await managerService.getModels();
+      console.log(allModels);
       const values = [...allModels];
       values.forEach((object) => {
         auxModels.push(createData(
-          object.numberModel,
+          object.numberModels,
           object.description,
           object.type,
         ));
@@ -54,7 +55,7 @@ function AdmRegistrosContas() {
       });
       const valueSequentialIds = [...sequentialIds];
       setId(sequentialIds);
-      setAllComunics(auxModels);
+      setAllModels(auxModels);
       setArchive1Id(archive1Code);
       setId(sequentialIds);
       setArchive2Id(archive2Code);
@@ -85,7 +86,7 @@ function AdmRegistrosContas() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} rows={comunics} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} modelsSequentialId={id} />
+      <TableComponent setUse={setUse} rows={models} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} modelsSequentialId={id} />
     </div>
   );
 }
