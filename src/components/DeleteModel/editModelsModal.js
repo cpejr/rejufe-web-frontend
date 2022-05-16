@@ -22,19 +22,14 @@ export default function EditModel({
   }
 
   async function handleSubmit() {
-    const formData = new FormData();
     Object.entries(dados).forEach((dado) => {
-      console.log(formData.append(dado[0], dado[1]));
-      console.log(dado[1]);
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
-        formData.append(dado[0], dado[1]);
-      } else {
-        formData.append(dado[0], dado[1]);
+        setDados(dado[0], dado[1]);
       }
     });
 
-    console.log(new FormData());
+    console.log(dados);
 
     try {
       console.log(dados);
