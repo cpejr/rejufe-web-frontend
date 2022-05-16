@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 
 function createData(status, title, date, section, type) {
@@ -8,12 +7,11 @@ function createData(status, title, date, section, type) {
   };
 }
 
-async function getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, setLoading) {
+async function getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, history, setLoading) {
   setLoading(true);
   const auxNews = [];
   const newsId = [];
   const newsCode = [];
-  const history = useHistory();
 
   try {
     const allNews = await managerService.getNews();

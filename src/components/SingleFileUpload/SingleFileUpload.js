@@ -55,8 +55,8 @@ function SingleFileUpload({
   });
 
   return (
-    <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%', fontSize: 'Roboto' }}>
-      <Grid item>
+    <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1.5%', fontSize: 'Roboto'  }}>
+      <Grid item style={{ width: '75%' }}>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />

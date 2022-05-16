@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
 import TableComponent from '../dashboard/dashboardComponent';
 import * as managerService from '../../services/manager/managerService';
-import './ActionQuery.css';
+import './ActionJuridical.css';
 
-function ActionQuery() {
+function ActionJuridical() {
   const [action, setAllActions] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
-  const [loading, setLoading] = useState(false);
-  const history = useHistory();
   const titles = [
     'Número',
     'Descrição',
@@ -31,7 +28,6 @@ function ActionQuery() {
   }
 
   async function getAllActions() {
-    setLoading(true);
     const auxAction = [];
     const actionId = [];
     const archive1Code = [];
@@ -39,7 +35,7 @@ function ActionQuery() {
 
     try {
       const allActions = await managerService.getActions();
-      allActions.filter((account) => account.type === 'ADMINISTRATIVAS').forEach((object) => {
+      allActions.filter((account) => account.type === 'JUDICIAIS').forEach((object) => {
         auxAction.push(createData(
           object.numberAction,
           object.description,
@@ -58,11 +54,10 @@ function ActionQuery() {
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
       setUse(false);
-      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
-      toast.error('Não foi possível obter ações administrativas!', {
+      toast.error('Não foi possível obter ações judiciais!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -74,12 +69,12 @@ function ActionQuery() {
 
   return (
     <div>
-      <div className="title-action-adm-menu">
+      <div className="title-action-juridical-menu">
         <h1>
-          {'Manutenção em Ações Administrativas '}
+          {'Manutenção em Ações Judiciais '}
         </h1>
       </div>
-      <div className="line-table-action-adm-menu" />
+      <div className="line-table-action-juridical-menu" />
       <TableComponent
         setUse={setUse}
         accountId={id}
@@ -87,10 +82,9 @@ function ActionQuery() {
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
-        loading={loading}
       />
     </div>
   );
 }
 
-export default ActionQuery;
+export default ActionJuridical;
