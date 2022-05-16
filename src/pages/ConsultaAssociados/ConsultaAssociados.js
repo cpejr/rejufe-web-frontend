@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
 import './ConsultaAssociados.css';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';

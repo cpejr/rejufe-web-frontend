@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
 import TableComponent from '../dashboard/dashboardComponent';
 import * as managerService from '../../services/manager/managerService';
 import './ActionQuery.css';
@@ -12,7 +11,6 @@ function ActionQuery() {
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
   const titles = [
     'Número',
     'Descrição',
