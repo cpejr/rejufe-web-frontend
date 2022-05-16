@@ -24,3 +24,15 @@
     font-size: 1.3em;
   }
 }
+
+@media (max-width: 1300px) {
+  .intranet-home-all {
+    width: 90%;
+  }
+}
+
+@media (max-width: 680px) {
+  .intranet-home-all {
+    width: 100%;
+  }
+}
