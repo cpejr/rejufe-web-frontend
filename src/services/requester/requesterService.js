@@ -187,3 +187,12 @@ export const getCommunique = (times, field, filter) => httpClient.get('/informac
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+
+export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
