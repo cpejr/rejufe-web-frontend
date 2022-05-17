@@ -85,15 +85,10 @@ function FichaMinutes() {
   };
 
   const tableMinutes = useRef(null);
-  console.log('🚀 ~ file: FichaAtas.js ~ line 88 ~ FichaMinutes ~ tableMinutes', tableMinutes);
 
   const handlePrint = useReactToPrint({
     content: () => tableMinutes?.current,
   });
-
-  // const handleWindowOpen = () => {
-  //   window.open(route);
-  // };
 
   return (
     <body className="forms-minutes-body">
