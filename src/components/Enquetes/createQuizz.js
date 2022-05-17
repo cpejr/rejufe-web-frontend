@@ -131,7 +131,7 @@ function CreateQuizz({
   return (
     <div className="last-button-modal-quizz">
       <div className="private-result">
-        <label htmlFor="privateResult">Privar resultado até a finalização da enquete?</label>
+        <label htmlFor="privateResult">Privar resultado até a finalização da enquete:</label>
         <input
           type="checkbox"
           id="privateResult"
