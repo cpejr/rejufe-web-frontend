@@ -452,8 +452,8 @@ function TableComponent({
                 {modelsSequentialId
                   && (
                     <TableCell {...cellFontProps}>
-                      <ExcludeModelModal id={modelsSequentialId[index]} />
-                      <EditModel id={modelsSequentialId[index]} model={row} archive1Id={archive1Id && archive1Id[index]} archive2Id={archive2Id && archive2Id[index]} index={index} setUse={setUse} />
+                      <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} />
+                      <EditModel id={modelsSequentialId[index + (page * 10)]} model={row} archive1Id={archive1Id && archive1Id[index + (page * 10)]} archive2Id={archive2Id && archive2Id[index + (page * 10)]} setUse={setUse} index={index + (page * 10)} page={page} />
                     </TableCell>
                   )}
                 {Object.values(row)?.map((data) => (

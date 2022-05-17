@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
@@ -13,9 +13,10 @@ import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 toast.configure();
 
 export default function EditModel({
-  id, model, archive1Id, archive2Id, setUse,
+  id, model, archive1Id, archive2Id, setUse, index, page,
 }) {
   const [dados, setDados] = useState(model);
+  const formData = new FormData();
 
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
@@ -25,15 +26,20 @@ export default function EditModel({
     Object.entries(dados).forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
-        setDados(dado[0], dado[1]);
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
       }
     });
 
-    console.log(dados);
+    // eslint-disable-next-line no-restricted-syntax
+    // for (const pair of formData.entries()) {
+    //   console.log(`${pair[0]},${pair[1]}`);
+    // }
 
     try {
       console.log(dados);
-      const response = await managerService.updateModel(id, dados);
+      const response = await managerService.updateModel(id, formData);
       console.log(response);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -52,12 +58,18 @@ export default function EditModel({
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
+    console.log('🚀 ~ file: editModelsModal.js ~ line 18 ~ index', index);
+    console.log('🚀 ~ file: editModelsModal.js ~ line 18 ~ model', model);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    setDados(model);
+  }, [page]);
 
   const body = (
     <Box className="EditModal-model-container">
@@ -83,7 +95,7 @@ export default function EditModel({
         <div className="EditModal-model-text">
           Tipo:
         </div>
-        <select className="EditModal-model-select" placeholder="" require value={dados?.Type} onChange={handleChange}>
+        <select className="EditModal-model-select" placeholder="" require value={dados?.type} onChange={handleChange}>
           <option value="REQUERIMENTOS ADMINISTRATIVOS">REQUERIMENTOS ADMINISTRATIVOS</option>
           <option value="PETIÇÕES INICIAIS">PETIÇÕES INICIAIS</option>
           <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>

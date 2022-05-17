@@ -313,6 +313,8 @@ export const deleteModel = async (modelId) => {
 };
 
 export const updateModel = async (id, model) => {
+  // eslint-disable-next-line no-restricted-syntax
+  console.log('🚀 ~ file: managerService.js ~ line 318 ~ updateModel ~ model.entries()', model.entries());
   const response = await requesterService.updateModel(id, model);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;

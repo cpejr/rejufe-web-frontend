@@ -64,6 +64,7 @@ function AdmRegistrosContas() {
       console.log(error);
     }
   }
+
   useEffect(() => {
     getAllModels();
   }, [use]);

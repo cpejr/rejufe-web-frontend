@@ -135,17 +135,17 @@ function SingleFileUpload({
                   </Button>
                 </>
               )}
-              {file && (
-                <div className="register-news-align-test">
-                  {file?.file?.path}
-                  {' '}
-                  <PictureAsPdfIcon />
-                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                    Remover Arquivo
-                  </Button>
-                </div>
-              )}
               <div />
+            </div>
+          )}
+          {file && (
+            <div className="register-news-align-test">
+              {file?.file?.path}
+              {' '}
+              <PictureAsPdfIcon />
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                Remover Arquivo
+              </Button>
             </div>
           )}
           {dados.pdf && (
