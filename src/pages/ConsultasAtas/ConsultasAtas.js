@@ -22,14 +22,10 @@ function ConsultaMinutes(data) {
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filtered, setFiltered] = useState(false);
 
   useEffect(() => {
     getAllMinutesForConsult(setId, setAllMinutes, setLoading);
-    if (dados !== undefined) { console.log('top'); setFiltered(true); }
   }, []);
-
-  console.log('🚀 ~ file: ConsultasAtas.js ~ line 26 ~ ConsultaMinutes ~ filtered', filtered);
 
   console.log('🚀 555555555555555~ ConsultaMinutes ~ location', minutes);
   return (
@@ -45,25 +41,18 @@ function ConsultaMinutes(data) {
           <div className="loader-consult-minutes">
             <CircularProgress />
           </div>
-        ) : filtered ? (
-          <div className="container-consult-minutes">
-            <TableComponent
-              id={id}
-              rows={dados?.data}
-              titles={titles}
-              searchMinutes
-              printButton
-              search
-              renderButton
-              route="/imprimir-atas-editais"
-            />
-          </div>
         ) : (
           <div className="container-consult-minutes">
             <TableComponent
               id={id}
               rows={minutes}
               titles={titles}
+              filterDescription={dados?.filterDescription}
+              filterType={dados?.filterType}
+              type={dados?.type}
+              query={dados?.query}
+              setType={dados?.setType}
+              setQuery={dados?.setQuery}
               searchMinutes
               printButton
               search

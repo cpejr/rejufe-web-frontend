@@ -130,8 +130,12 @@ function TableComponent({
   print,
   printButton,
   route,
+  filterDescription,
+  filterType,
+  type,
+  query,
 }) {
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', rows);
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', filterType, filterDescription);
   const [page, setPage] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(rows);
@@ -321,6 +325,8 @@ function TableComponent({
       });
     }
   }
+  let filter = [];
+  const type2 = '';
 
   useEffect(() => {
     if (archive1Id) {
@@ -329,7 +335,23 @@ function TableComponent({
     if (archive2Id) {
       setFileNameArchive(fileNames2, archive2Id, setFileNames2);
     }
-  }, [archive1Id, archive2Id]);
+    if (query !== '' && type === '') {
+      console.log('vida');
+      setData(filterDescription);
+      console.log('🚀 ~ file: SearchAtas.js ~ line 19 ~ data', data);
+    }
+    if (type !== '' && query === '') {
+      console.log('top');
+      setData(filterType);
+    }
+    if (type !== '' && query !== '') {
+      console.log('hel');
+      filterType?.forEach((obj) => {
+        filter = filterDescription?.filter(((item) => item.type.includes(obj.type)));
+        setData(filter);
+      });
+    }
+  }, [archive1Id, archive2Id, filterDescription, filterType]);
 
   return (
     <TableContainer
@@ -546,7 +568,7 @@ function TableComponent({
             <div className="button-table-component-pagination-consult">
               {renderButton && (
                 <div>
-                  <SearchAtas rows={rows} dados={dados} open={open} />
+                  <SearchAtas rows={rows} dados={dados} open={open} type2={type2} />
                 </div>
               )}
               {printButton && (
