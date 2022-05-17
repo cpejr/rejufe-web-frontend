@@ -111,11 +111,31 @@ function FormInputs({ setNewQuizz, handleClose }) {
           />
         </FormControl>
         <FormControl>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-label-forms-create-quizz">Horário de início </InputLabel>
+          <Input
+            required
+            error={initialErrorState.openingDate}
+            type="time"
+            value={dados.openingDate}
+            onChange={(e) => handleChange(e.target.value, 'openingDate')}
+          />
+        </FormControl>
+        <FormControl>
           <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Data de fim </InputLabel>
           <Input
             required
             error={initialErrorState.closingDate}
             type="Date"
+            value={dados.closingDate}
+            onChange={(e) => handleChange(e.target.value, 'closingDate')}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Horário de fim </InputLabel>
+          <Input
+            required
+            error={initialErrorState.closingDate}
+            type="time"
             value={dados.closingDate}
             onChange={(e) => handleChange(e.target.value, 'closingDate')}
           />

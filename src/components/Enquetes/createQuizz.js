@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import * as managerService from '../../services/manager/managerService';
+// import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
 
@@ -107,7 +107,8 @@ function CreateQuizz({
         closingDate: dados.closingDate,
         options: descriptions,
       };
-      await managerService.createQuizz(body);
+      console.log('🚀 ~ file: createQuizz.js ~ line 107 ~ create ~ openingDate', body.openingDate);
+      // await managerService.createQuizz(body);
       setNewQuizz(true);
       toast.success('Enquete criada com sucesso!!', {
         position: toast.POSITION.BOTTOM_RIGHT,
