@@ -280,8 +280,6 @@ export const createModels = async (body) => {
 };
 
 export const getModels = async (field, filter) => {
-  console.log(field);
-  console.log(filter);
   let times = 0;
   let response;
   let allModels = [];

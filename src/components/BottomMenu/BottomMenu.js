@@ -10,8 +10,7 @@ import flagPernambuco from '../../images/flagPernambuco.png';
 import flagRioGrandeDoNorte from '../../images/flagRioGrandeDoNorte.png';
 import flagSergipe from '../../images/flagSergipe.png';
 
-function BottomMenu({ setSelectedButton, selectedButton }) {
-  console.log(selectedButton);
+function BottomMenu({ setSelectedButton }) {
   return (
     <div className="containerBottomMenu">
       <div className="boxBottomMenu">
