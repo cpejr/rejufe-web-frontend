@@ -7,6 +7,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import { FormControl } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
@@ -85,9 +86,22 @@ function Quizzes({
           )}
         </div>
       ) : (open === true && quizz.privateResult === true && user?.type === 'administrador') ? (
-        <div className="unavaible-result">Resultado indisponível, aguardando finalização da enquete</div>
+        <div className="unavaible-result">
+          <div className="line-table-registers" />
+          <div className="unavaible-result-text">
+            <span><AccessTimeIcon /></span>
+            Resultado indisponível, aguardando finalização da enquete
+          </div>
+        </div>
       ) : (open === true && quizz.privateResult === true && user?.type === 'usuario') ? (
-        <div className="unavaible-result">Você já votou nessa enquete, resultado parcial indisponível no momento</div>
+        <div className="unavaible-result">
+          <div className="line-table-registers" />
+          <div className="unavaible-result-text">
+            <div className="line-table-registers" />
+            <span><AccessTimeIcon /></span>
+            Você já votou nessa enquete, resultado parcial indisponível no momento
+          </div>
+        </div>
       ) : (
         null
       )}
