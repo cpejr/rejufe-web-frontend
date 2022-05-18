@@ -9,14 +9,18 @@ export default function setFileNameById(fileNames1, archive1Id, setFileNames1) {
     const aux1 = fileNames1;
     if (fileNames1.length === 0 && archive1Id) {
       value?.forEach((_id, index) => {
-        if (_id !== undefined) {
+        if (_id) {
           managerService.getFileNameById(_id).then((response) => {
             aux1.splice(index, 0, response);
             setFileNames1(aux1);
           });
+        } else {
+          aux1.splice(index, 0, '');
+          setFileNames1(aux1);
         }
       });
     }
+    console.log(fileNames1);
   } catch (error) {
     toast.error('Não foi possível obter o nome do arquivo', {
       position: toast.POSITION.BOTTOM_RIGHT,

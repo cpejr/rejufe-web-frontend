@@ -13,7 +13,7 @@ import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 toast.configure();
 
 export default function EditModel({
-  id, model, archive1Id, archive2Id, setUse, index, page,
+  id, model, archive1Id, archive2Id, setUse, page,
 }) {
   const [dados, setDados] = useState(model);
   const formData = new FormData();
@@ -58,8 +58,7 @@ export default function EditModel({
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    console.log('🚀 ~ file: editModelsModal.js ~ line 18 ~ index', index);
-    console.log('🚀 ~ file: editModelsModal.js ~ line 18 ~ model', model);
+    console.log('🚀 ~ file: editModelsModal.js ~ line 18 ~ model', archive1Id);
     setOpen(true);
   };
 

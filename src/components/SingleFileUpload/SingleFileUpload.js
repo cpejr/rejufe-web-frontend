@@ -19,29 +19,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     background: theme.palette.background.default,
     height: '50px',
+    width: '100%',
     outline: 'none',
     marginBottom: '1%',
-    marginRight: '4%',
-    marginLeft: '4%',
   },
 }));
-const useStyle = makeStyles(() => ({
-  dropzone: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: '1%',
-    marginRight: '4%',
-    marginLeft: '4%',
-  },
-}));
-
 function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
   const classes = useStyles();
-  const buttonArchive = useStyle();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
@@ -105,7 +91,7 @@ function SingleFileUpload({
 
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
-      <Grid item>
+      <Grid item style={{ width: '65%' }}>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
@@ -122,15 +108,27 @@ function SingleFileUpload({
             )}
           </div>
           {update === true && archiveId !== undefined && dados.pdf === undefined && (
-            <div {...buttonArchive.dropzone}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {file === undefined && archiveId && (
                 <>
-                  <Button style={{ alignItems: 'center', justifyContent: 'center', marginTop: '2%' }} variant="primary" onClick={() => getDownloads()}>
+                  <Button
+                    style={{
+                      alignItems: 'center', justifyContent: 'center', marginTop: '2%', width: '100%',
+                    }}
+                    variant="primary"
+                    onClick={() => getDownloads()}
+                  >
                     Baixar arquivo atual
                     {' '}
-                    <PictureAsPdfIcon />
+                    <PictureAsPdfIcon style={{ marginLeft: '1%' }} />
                   </Button>
-                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados('', field)}>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                    }}
+                    onClick={() => setDados('', field)}
+                  >
                     Remover Arquivo
                   </Button>
                 </>
@@ -139,17 +137,23 @@ function SingleFileUpload({
             </div>
           )}
           {file && (
-            <div className="register-news-align-test">
-              {file?.file?.path}
-              {' '}
-              <PictureAsPdfIcon />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div
+                style={{
+                  display: 'flex', alignItems: 'center', marginTop: '3%', marginBottom: '1%',
+                }}
+              >
+                {file?.file?.path}
+                {' '}
+                <PictureAsPdfIcon />
+              </div>
               <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
                 Remover Arquivo
               </Button>
             </div>
           )}
           {dados.pdf && (
-            <div {...buttonArchive.dropzone}>
+            <div div className="file-upload-download-file">
               <div className="register-news-align-test">
                 {file?.file?.path}
                 {' '}
