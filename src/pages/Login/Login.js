@@ -147,12 +147,11 @@ function Login() {
           <div className="text-login">
             <img src="images/logoSemFundo.png" alt="Logo" />
             <h1>Usuário </h1>
-            <input
-              className="container-login-input-username"
-              type="user"
+            <StyledInput
+              type="text"
               id="user"
-              value={usuario.user}
-              onChange={(e) => setUsuario({ ...usuario, user: e.target.value })}
+              dados={usuario}
+              setDados={handleChange}
             />
             <h1>Senha </h1>
             <StyledInput

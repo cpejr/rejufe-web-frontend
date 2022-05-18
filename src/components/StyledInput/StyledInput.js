@@ -59,6 +59,7 @@ function StyledInput({
               },
             }}
             InputProps={{
+              autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
