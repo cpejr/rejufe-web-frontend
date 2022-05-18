@@ -64,6 +64,7 @@ function Routes() {
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir" component={Imprimir} />
+        {/* <Route path="/intranet" component={Intranet} /> */}
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

@@ -3,6 +3,7 @@ import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes';
 import './Intranet.css';
+import BirthdayNotificationModal from '../../components/BirthdayNotification/BirthdayNotification';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
@@ -23,6 +24,7 @@ function Intranet() {
       <div>
         <BottomMenu />
       </div>
+      <BirthdayNotificationModal />
     </div>
   );
 }
