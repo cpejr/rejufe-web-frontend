@@ -12,6 +12,7 @@ import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
 import Simbolo from '../../images/simbolo.png';
+import NewsQuery from '../../components/NewsQuery/NewsQuery';
 import './Intranet.css';
 
 function Intranet() {
@@ -26,6 +27,7 @@ function Intranet() {
       case 'Aniversariantes': return <Aniversariantes />;
       case 'Prestação de Contas': return <AccountQuery />;
       case 'Atas': return <MinuteQuery />;
+      case 'Home': return <NewsQuery />;
 
       default: return <div />;
     }
