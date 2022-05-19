@@ -11,14 +11,10 @@ export default function setFileNameById(fileNames1, archive1Id, setFileNames1) {
       value?.forEach((_id, index) => {
         if (_id) {
           managerService.getFileNameById(_id).then((response) => {
-            console.log(index);
-            aux1.splice(index, 0, response);
-            console.log(aux1);
+            aux1[index] = response;
           });
         } else {
-          console.log(index);
-          aux1.splice(index, 0, '');
-          console.log(aux1);
+          aux1[index] = '';
         }
       });
     }

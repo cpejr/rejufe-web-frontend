@@ -39,7 +39,6 @@ function InitialPetitions() {
 
     try {
       const petitions = await managerService.getModels(field, filter);
-      console.log(petitions);
       petitions.forEach((object) => {
         auxPetitions.push(createData(
           object.numberModels,
@@ -54,7 +53,6 @@ function InitialPetitions() {
       setUse(false);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       history.push('/NotFound');
       toast.error('Não foi possível obter petições iniciais!', {
         position: toast.POSITION.TOP_RIGHT,
