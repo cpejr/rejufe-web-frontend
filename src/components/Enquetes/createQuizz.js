@@ -6,7 +6,7 @@ import * as managerService from '../../services/manager/managerService';
 toast.configure();
 
 function CreateQuizz({
-  dados, initialErrorState, users, setError, options, inputs, setNewQuizz, voterSection,
+  dados, initialErrorState, users, setError, options, inputs, setNewQuizz, voterSection, handleClose,
 }) {
   const voted = [];
   let descriptions = [];
@@ -120,6 +120,7 @@ function CreateQuizz({
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
+      handleClose();
     } catch (error) {
       toast.error('Não foi possível criar enquete!!', {
         position: toast.POSITION.TOP_RIGHT,
