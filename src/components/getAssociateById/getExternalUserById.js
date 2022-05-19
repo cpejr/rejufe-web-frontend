@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 
 async function getExternalUserById(associateId, setAssociate, history) {
@@ -44,6 +45,10 @@ async function getExternalUserById(associateId, setAssociate, history) {
     };
     setAssociate(associate);
   } catch (error) {
+    toast.error('Usuário não encontrado!!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
     history.push({
       pathname: '/NotFound',
       state: null,
