@@ -20,13 +20,13 @@ function BottomMenu({ setSelectedButton }) {
             Requerimentos Administrativos
           </button>
 
-          <button type="button" className="buttonBottomMenu">
-            <FilePresentRoundedIcon className="iconBottomMenu" onClick={() => setSelectedButton('Petições Iniciais')} />
+          <button type="button" className="buttonBottomMenu" onClick={() => setSelectedButton('Petições Iniciais')}>
+            <FilePresentRoundedIcon className="iconBottomMenu" />
             Petições Iniciais
           </button>
 
-          <button type="button" className="buttonBottomMenu">
-            <FeedRoundedIcon className="iconBottomMenu" onClick={() => setSelectedButton('Jurisprudência')} />
+          <button type="button" className="buttonBottomMenu" onClick={() => setSelectedButton('Jurisprudência')}>
+            <FeedRoundedIcon className="iconBottomMenu" />
             Jurisprudência
           </button>
         </div>
