@@ -110,7 +110,7 @@ function Login() {
         history.push('/intranet');
       } catch (error) {
         setLoading(false);
-        if (email !== '' && ((usuario.cpf !== undefined && usuario.user === '') || (usuario.user !== '' && usuario.cpf === undefined))) {
+        if (email !== undefined) {
           console.log('fio');
           if (attempts <= 1) {
             const time = moment();
