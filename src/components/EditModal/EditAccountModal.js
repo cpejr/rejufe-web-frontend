@@ -42,6 +42,10 @@ export default function EditAccountModal({
       setUse(true);
     } catch (error) {
       console.error(error);
+      toast.error('Falha ao editar prestação de contas!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
 
