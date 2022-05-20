@@ -12,23 +12,23 @@ import flagSergipe from '../../images/flagSergipe.png';
 
 function BottomMenu({ setSelectedButton, selectedButton }) {
   const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
-    ? 'buttonselectedBottomMenu'
+    ? 'buttonSelectedBottomMenu'
     : 'buttonBottomMenu');
   return (
     <div className="containerBottomMenu">
       <div className="boxBottomMenu">
         <div className="buttonsBottomMenu">
-          <button type="button" key="buttonAdminRequirement" className={defineBackgroundColor('buttonAdminRequirement')} onClick={() => setSelectedButton('buttonAdminRequirement')}>
+          <button type="button" key="buttonAdminRequirement" className={defineBackgroundColor('Requerimentos Administrativos')} onClick={() => setSelectedButton('Requerimentos Administrativos')}>
             <GavelRoundedIcon className="iconBottomMenu" />
             Requerimentos Administrativos
           </button>
 
-          <button type="button" key="buttonPetitions" className="buttonBottomMenu" onClick={() => setSelectedButton('buttonPetitions')}>
+          <button type="button" key="buttonPetitions" className={defineBackgroundColor('Petições')} onClick={() => setSelectedButton('Petições')}>
             <FilePresentRoundedIcon className="iconBottomMenu" />
             Petições Iniciais
           </button>
 
-          <button type="button" key="buttonJurisprudence" className="buttonBottomMenu" onClick={() => setSelectedButton('buttonJurisprudence')}>
+          <button type="button" key="buttonJurisprudence" className={defineBackgroundColor('Jurisprudência')} onClick={() => setSelectedButton('Jurisprudência')}>
             <FeedRoundedIcon className="iconBottomMenu" />
             Jurisprudência
           </button>

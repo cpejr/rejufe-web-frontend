@@ -335,6 +335,6 @@ export const getModels = async (field, filter) => {
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allModels = allModels.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
+  } while (response.data.length > 0);
   return allModels;
 };

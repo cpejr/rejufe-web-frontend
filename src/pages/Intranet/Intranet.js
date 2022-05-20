@@ -13,11 +13,11 @@ function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
   const menuDashboard = () => {
     switch (selectedButton) {
-    case 'Enquetes': return <ResultadoQuizzes />;
-    case 'Ações Adm': return <ActionQuery />;
-    case 'Associados': return <ConsultaAssociados />;
-    case 'Informativos': return <InformativeQuery />;
-    case 'buttonAdminRequirement': return <AdministrativeRequirements />;
+      case 'Enquetes': return <ResultadoQuizzes />;
+      case 'Ações Adm': return <ActionQuery />;
+      case 'Associados': return <ConsultaAssociados />;
+      case 'Informativos': return <InformativeQuery />;
+      case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
 
       default: return <div />;
     }

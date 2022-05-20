@@ -186,4 +186,3 @@ export const getModels = (times, field, filter) => httpClient.get('/modelos', {
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
-

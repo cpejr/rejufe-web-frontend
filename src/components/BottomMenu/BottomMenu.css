@@ -37,7 +37,7 @@
 .buttonBottomMenu:hover {
   box-shadow: 0 0 1em rgb(0, 0, 0, 0.1);
 }
-.buttonselectedBottomMenu {
+.buttonSelectedBottomMenu {
   height: 40px;
   display: flex;
   padding: 8px;
