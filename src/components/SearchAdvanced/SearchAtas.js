@@ -50,10 +50,6 @@ function SearchAtas({
       },
     });
     setOpen(false);
-    // reset({
-    //   type: '',
-    //   query: '',
-    // });
   };
 
   console.log(query);
@@ -95,7 +91,7 @@ function SearchAtas({
 
           <label>Descrição:</label>
 
-          <input type="text" {...register('firstName')} onChange={(e) => setQuery(e.target.value.toLowerCase())} />
+          <input type="text" onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
         <div className="AcceptModal-Bu">
 
@@ -108,7 +104,13 @@ function SearchAtas({
         </div>
         <div className="buttons">
           <div className="AcceptModal-button1">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleData}>
+            <button
+              type="button"
+              className="AcceptModal-ButtonCancel"
+              onClick={() => {
+                handleData();
+              }}
+            >
               <div className="AcceptModal-align">
                 <p>Pesquisa Avançada</p>
               </div>
