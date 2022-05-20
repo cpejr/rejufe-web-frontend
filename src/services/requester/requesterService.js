@@ -178,6 +178,15 @@ export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });
 
+export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
 export const getModels = (times, field, filter) => httpClient.get('/modelos', {
   params: {
     times,

@@ -36,6 +36,7 @@ export const changeUserTypeById = async (typeChange, id) => {
 
 export const register = async (body) => {
   const response = await requesterService.register(body);
+  if (response?.data?.notification === 'Email already in use') throw new Error('Email already in use');
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -292,6 +293,18 @@ export const createAccountability = async (body) => {
   const response = await requesterService.createAccountability(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+export const getAccounts = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getAccounts(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length === 0);
+  return allActions;
 };
 
 export const getInformations = async (field, filter) => {

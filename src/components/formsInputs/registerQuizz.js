@@ -12,7 +12,7 @@ import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from '../initialStates/initialQuizzStates';
 import judicialSection from '../consts/judicialSection';
 
-function FormInputs({ setNewQuizz }) {
+function FormInputs({ setNewQuizz, handleClose }) {
   const users = [];
   const [voterSection, setVoterSection] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
@@ -157,6 +157,7 @@ function FormInputs({ setNewQuizz }) {
           setError={setError}
           setNewQuizz={setNewQuizz}
           voterSection={voterSection}
+          handleClose={handleClose}
         />
       </div>
     </div>
