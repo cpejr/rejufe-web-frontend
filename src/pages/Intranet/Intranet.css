@@ -1,3 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap");
+
+.intranet-total-page-container {
+  background-image: url(../../images/LogoPretoBranco.png);
+  background-repeat: no-repeat;
+  background-position: 400px 200px;
+}
+
 .intranet-main-container {
   display: flex;
   flex-direction: row;
@@ -15,10 +23,52 @@
   padding: 150px 0;
 }
 
+.intranet-welcome {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  color: var(--primary);
+  margin: 75px 13% 0 10%;
+}
+
+.intranet-welcome img {
+  height: 75px;
+}
+
+.intranet-welcome h1 {
+  font-size: 75px;
+  font-weight: 200;
+  margin-left: 10px;
+}
+
+.intranet-welcome h2 {
+  font-weight: 200;
+}
+
+.intranet-rejufe-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 @media (max-width: 1200px) {
   .intranet-dashboad-all {
     padding: 75px 20px;
     width: 80%;
+  }
+}
+
+@media (max-width: 1070px) {
+  .intranet-total-page-container {
+    background-position: 300px 200px;
+  }
+}
+
+@media (max-width: 974px) {
+  .intranet-total-page-container {
+    background-position: 300px 200px;
   }
 }
 
@@ -28,6 +78,24 @@
   }
   .intranet-main-container {
     padding: 0 50px;
+  }
+  .intranet-welcome {
+    margin: 75px 70px 0 50px;
+  }
+  .intranet-welcome h1 {
+    font-size: 55px;
+  }
+  .intranet-welcome img {
+    height: 55px;
+  }
+  .intranet-total-page-container {
+    background-position: 200px 200px;
+  }
+}
+
+@media (max-width: 841px) {
+  .intranet-total-page-container {
+    background-position: 100px 200px;
   }
 }
 
@@ -45,12 +113,22 @@
   }
 
   .intranet-side-menu {
-    padding: 70px 0;
+    padding: 50px 0;
   }
 
   .intranet-dashboad-all {
     padding: 2%;
     width: 100%;
+  }
+  .intranet-welcome {
+    flex-direction: column;
+    margin: 75px 0 0;
+  }
+  .intranet-rejufe-logo {
+    margin-bottom: 20px;
+  }
+  .intranet-total-page-container {
+    background-position: 45px 200px;
   }
 }
 

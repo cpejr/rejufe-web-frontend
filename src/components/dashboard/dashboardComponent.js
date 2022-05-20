@@ -372,7 +372,18 @@ function TableComponent({
                   </TableCell>
                 )}
                 {
-                  order ? (
+                  order && search ? (
+                    <>
+                      <TableCell {...cellFontProps} align="center">
+                        {index + 1 + (page * 10)}
+                      </TableCell>
+                      <TableCell {...cellFontProps} align="center">
+                        <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, id[index + (page * 10)])}>
+                          <SearchIcon />
+                        </IconButton>
+                      </TableCell>
+                    </>
+                  ) : order ? (
                     <TableCell {...cellFontProps} align="center">
                       {index + 1 + (page * 10)}
                     </TableCell>
