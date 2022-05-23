@@ -141,6 +141,13 @@
   margin-top: 1px;
 }
 
+@media (max-width: 1075px) {
+  .css-i4bv87-MuiSvgIcon-root {
+    height: 1.4em !important;
+    width: 1.4em !important;
+  }
+}
+
 @media (max-width: 786px) {
   .alternatives-vote-quizzes button {
     max-width: 300px;
