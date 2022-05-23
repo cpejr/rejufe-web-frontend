@@ -13,7 +13,7 @@ import TableComponent from '../../components/dashboard/dashboardComponent';
 
 toast.configure();
 
-function AdmRegistrosContas() {
+function AdmRegistrosModelos() {
   const [models, setAllModels] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
@@ -93,4 +93,4 @@ function AdmRegistrosContas() {
   );
 }
 
-export default AdmRegistrosContas;
+export default AdmRegistrosModelos;
