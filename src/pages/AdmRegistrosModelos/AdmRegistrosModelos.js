@@ -60,8 +60,10 @@ function AdmRegistrosContas() {
       setArchive2Id(archive2Code);
       setUse(false);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      toast.error('Não foi possível obter modelos!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
 

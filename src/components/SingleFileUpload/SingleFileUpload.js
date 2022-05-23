@@ -44,6 +44,23 @@ function SingleFileUpload({
     }
   }
 
+  // async function removeFile() {
+  //   try {
+  //     if (field === 'archive_1') {
+  //       await managerService.updateModel(modelId, {
+  //         archive_1: '',
+  //       });
+  //     }
+  //     if (field === 'archive_2') {
+  //       await managerService.updateModel(modelId, {
+  //         archive_2: '',
+  //       });
+  //     }
+  //   } catch (error) {
+
+  //   }
+  // }
+
   function getDownloads() {
     try {
       managerService.download(archiveId).then((response) => {
@@ -132,6 +149,9 @@ function SingleFileUpload({
                     Remover Arquivo
                   </Button>
                 </>
+              )}
+              {file === '' && (
+                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
               )}
               <div />
             </div>

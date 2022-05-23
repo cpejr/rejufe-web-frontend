@@ -10,10 +10,8 @@ function DeleteModel({ setOpen, id }) {
   };
   async function deleteModelById() {
     try {
-      const response = await managerService.deleteModel(id);
-      console.log(response);
+      await managerService.deleteModel(id);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível deletar modelos', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

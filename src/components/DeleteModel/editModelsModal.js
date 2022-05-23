@@ -32,22 +32,14 @@ export default function EditModel({
       }
     });
 
-    // eslint-disable-next-line no-restricted-syntax
-    // for (const pair of formData.entries()) {
-    //   console.log(`${pair[0]},${pair[1]}`);
-    // }
-
     try {
-      console.log(dados);
-      const response = await managerService.updateModel(id, formData);
-      console.log(response);
+      await managerService.updateModel(id, formData);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
       setUse(true);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível editar o modelo', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -58,7 +50,6 @@ export default function EditModel({
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    console.log('🚀 ~ file: editModelsModal.js ~ line 18 ~ model', archive1Id);
     setOpen(true);
   };
 
@@ -104,13 +95,13 @@ export default function EditModel({
         <div className="EditModal-model-text">
           Arquivo1:
         </div>
-        <SingleFileUpload field="archive_1" fileType=".pdf" file={dados.archive_1} dados={dados} archiveId={archive1Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
+        <SingleFileUpload modelId={id} field="archive_1" fileType=".pdf" file={dados.archive_1} dados={dados} archiveId={archive1Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
       </div>
       <div className="EditModal-model-field">
         <div className="EditModal-model-text">
           Arquivo2:
         </div>
-        <SingleFileUpload field="archive_2" fileType=".pdf" file={dados.archive_2} dados={dados} archiveId={archive2Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
+        <SingleFileUpload modelId={id} field="archive_2" fileType=".pdf" file={dados.archive_2} dados={dados} archiveId={archive2Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
       </div>
       <button
         className="EditModal-model-buttonConfirm"
