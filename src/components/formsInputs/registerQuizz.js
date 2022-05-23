@@ -82,44 +82,52 @@ function FormInputs({ setNewQuizz, handleClose }) {
         <h2>Insira as informações da nova enquete</h2>
       </div>
       <div className="form-modal-quizz">
-        <FormControl>
-          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Título</InputLabel>
-          <Input
-            required
-            error={initialErrorState.title}
-            value={dados.title}
-            onChange={(e) => handleChange(e.target.value, 'title')}
-          />
-        </FormControl>
-        <FormControl>
-          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Descrição</InputLabel>
-          <Input
-            required
-            error={initialErrorState.description}
-            value={dados.description}
-            onChange={(e) => handleChange(e.target.value, 'description')}
-          />
-        </FormControl>
-        <FormControl>
-          <InputLabel shrink sx={{ fontSize: 22 }} className="input-label-forms-create-quizz">Data de início </InputLabel>
-          <Input
-            required
-            error={initialErrorState.openingDate}
-            type="Date"
-            value={dados.openingDate}
-            onChange={(e) => handleChange(e.target.value, 'openingDate')}
-          />
-        </FormControl>
-        <FormControl>
-          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Data de fim </InputLabel>
-          <Input
-            required
-            error={initialErrorState.closingDate}
-            type="Date"
-            value={dados.closingDate}
-            onChange={(e) => handleChange(e.target.value, 'closingDate')}
-          />
-        </FormControl>
+        <div className="label-modal-quizz">
+          <FormControl>
+            <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Título</InputLabel>
+            <Input
+              required
+              error={initialErrorState.title}
+              value={dados.title}
+              onChange={(e) => handleChange(e.target.value, 'title')}
+            />
+          </FormControl>
+        </div>
+        <div className="label-modal-quizz">
+          <FormControl>
+            <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Descrição</InputLabel>
+            <Input
+              required
+              error={initialErrorState.description}
+              value={dados.description}
+              onChange={(e) => handleChange(e.target.value, 'description')}
+            />
+          </FormControl>
+        </div>
+        <div className="label-modal-quizz">
+          <FormControl>
+            <InputLabel shrink sx={{ fontSize: 22 }} className="input-label-forms-create-quizz">Data de início </InputLabel>
+            <Input
+              required
+              error={initialErrorState.openingDate}
+              type="Date"
+              value={dados.openingDate}
+              onChange={(e) => handleChange(e.target.value, 'openingDate')}
+            />
+          </FormControl>
+        </div>
+        <div className="label-modal-quizz">
+          <FormControl>
+            <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Data de fim </InputLabel>
+            <Input
+              required
+              error={initialErrorState.closingDate}
+              type="Date"
+              value={dados.closingDate}
+              onChange={(e) => handleChange(e.target.value, 'closingDate')}
+            />
+          </FormControl>
+        </div>
         <FormControl>
           <InputLabel id="select-voter" shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Selecione quem irá votar</InputLabel>
           <Select

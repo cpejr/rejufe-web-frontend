@@ -9,6 +9,9 @@ export const options = {
   vAxis: {
     title: 'Opções',
   },
+  // legend: { position: 'top', alignment: 'start' },
+  // width: 520,
+  // height: 350
 };
 
 function GraphicQuizzes({
