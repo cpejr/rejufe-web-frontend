@@ -1,17 +1,34 @@
 import { React, useEffect, useState } from 'react';
 import './FichaNoticia.css';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import fichaNews from '../../components/NewsQuery/FichaNoticias';
 import getNewsById from '../../components/getNewsById/getNewsById';
+import * as managerService from '../../services/manager/managerService';
 
 function FichaNoticia() {
   const { search } = useLocation();
   const newsId = new URLSearchParams(search).get('newsId');
   const [news, setNews] = useState([]);
-  console.log('🚀 ~ file: FichaNoticia.js ~ line 11 ~ FichaNoticia ~ news', news);
+  console.log('🚀 ~ file: FichaNoticia.js ~ line 13 ~ FichaNoticia ~ news', news);
+  const [image, setImage] = useState();
+  console.log('🚀 ~ file: FichaNoticia.js ~ line 15 ~ FichaNoticia ~ image', image);
+
+  async function getImage(id) {
+    try {
+      const response = await managerService.getImageById(id);
+      setImage(response);
+    } catch (error) {
+      toast.error('Não foi possível obter imagem', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
 
   useEffect(() => {
     getNewsById(newsId, setNews);
+    getImage();
   }, []);
 
   return (
