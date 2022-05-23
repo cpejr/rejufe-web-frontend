@@ -44,23 +44,6 @@ function SingleFileUpload({
     }
   }
 
-  // async function removeFile() {
-  //   try {
-  //     if (field === 'archive_1') {
-  //       await managerService.updateModel(modelId, {
-  //         archive_1: '',
-  //       });
-  //     }
-  //     if (field === 'archive_2') {
-  //       await managerService.updateModel(modelId, {
-  //         archive_2: '',
-  //       });
-  //     }
-  //   } catch (error) {
-
-  //   }
-  // }
-
   function getDownloads() {
     try {
       managerService.download(archiveId).then((response) => {

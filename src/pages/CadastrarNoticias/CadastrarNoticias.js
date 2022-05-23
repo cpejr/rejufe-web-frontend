@@ -89,6 +89,7 @@ function CadastrarNoticias() {
                 mask={item.mask}
                 initialErrorState={initialErrorState}
                 dados={dados}
+                news
               />
             ))}
           </div>

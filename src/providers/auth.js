@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../services/manager/managerService';
 import LinearColor from '../components/Loading/Loading';
 
 export const AuthContext = React.createContext({});
 
 export function AuthProvider({ children }) {
+  const history = useHistory();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  async function logIn() {
+  async function login() {
     try {
       if (user?.acessToken === '' || !user?.acessToken) {
         const getStorage = JSON.parse(localStorage.getItem('user'));
@@ -24,19 +26,23 @@ export function AuthProvider({ children }) {
             });
           } catch (error) {
             // eslint-disable-next-line no-console
-            console.error(error); // TO DO: Substitute for redirect to not Found when done
+            console.error(error);
+            history.push('/NotFound');
             setLoading(false);
           }
         }
       }
       setLoading(false);
     } catch (error) {
-      console.warn(error);
+      // eslint-disable-next-line no-console
+      console.error(error);
+      history.push('/NotFound');
+      setLoading(false);
     }
   }
 
   useEffect(() => {
-    logIn();
+    login();
   }, [user]);
 
   const [token, setToken] = useState();
