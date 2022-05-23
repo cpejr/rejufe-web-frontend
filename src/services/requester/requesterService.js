@@ -36,15 +36,6 @@ export const getUsersBySection = (times, section) => httpClient.get(`/usuario/se
   },
 });
 
-export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
-  params: {
-    times,
-    field,
-    filter,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
-
 export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);
 
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
@@ -68,6 +59,27 @@ export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${ass
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
 
+export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
+  params: {
+    date,
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/vote/${id}`, quizz);
+
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
     times,
@@ -85,11 +97,88 @@ export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
 export const createNews = (body) => httpClient.post('/noticias', body);
 
+export const getAttempts = (email) => httpClient.get('/attempts/getAttemptsByEmail', {
+  params: {
+    email,
+  },
+});
+
+export const createAttempt = (field) => httpClient.post('/attempts', field);
+
+export const resetAttempts = (email) => httpClient.put('/attempts/resetByEmail', {
+  params: {
+    email,
+  },
+});
+
+export const updateTime = (email, time) => httpClient.put('/attempts/updateTime', {
+  params: {
+    email,
+    time,
+  },
+});
+
 export const createComunic = (body) => httpClient.post('/informacoes', body);
 
 export const getNewsById = (id) => httpClient.get(`/noticias/${id}`);
 
 export const getNews = (times, field, filter) => httpClient.get('/noticias', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});
+
+export const createMinutes = (body) => httpClient.post('/atas', body);
+
+export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
+  params: {
+    archiveId,
+  },
+});
+
+export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
+
+export const createActions = (body) => httpClient.post('/acoes', body);
+
+export const createModels = (body) => httpClient.post('/modelos', body);
+
+export const getInformations = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const getActions = (times, field, filter) => httpClient.get('/acoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
+
+export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
   params: {
     times,
     field,

@@ -12,7 +12,7 @@ import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from '../initialStates/initialQuizzStates';
 import judicialSection from '../consts/judicialSection';
 
-function FormInputs({ setNewQuizz }) {
+function FormInputs({ setNewQuizz, handleClose }) {
   const users = [];
   const [voterSection, setVoterSection] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
@@ -83,7 +83,7 @@ function FormInputs({ setNewQuizz }) {
       </div>
       <div className="form-modal-quizz">
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Título</InputLabel>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Título</InputLabel>
           <Input
             required
             error={initialErrorState.title}
@@ -92,7 +92,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Descrição</InputLabel>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Descrição</InputLabel>
           <Input
             required
             error={initialErrorState.description}
@@ -101,7 +101,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }} className="input-label-forms-create-quizz">Data de início </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-label-forms-create-quizz">Data de início </InputLabel>
           <Input
             required
             error={initialErrorState.openingDate}
@@ -111,7 +111,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Data de fim </InputLabel>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Data de fim </InputLabel>
           <Input
             required
             error={initialErrorState.closingDate}
@@ -121,7 +121,7 @@ function FormInputs({ setNewQuizz }) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel id="select-voter" shrink sx={{ fontSize: 25 }} className="input-forms-create-quizz">Selecione quem irá votar</InputLabel>
+          <InputLabel id="select-voter" shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Selecione quem irá votar</InputLabel>
           <Select
             required
             error={initialErrorState.toVote}
@@ -157,6 +157,7 @@ function FormInputs({ setNewQuizz }) {
           setError={setError}
           setNewQuizz={setNewQuizz}
           voterSection={voterSection}
+          handleClose={handleClose}
         />
       </div>
     </div>

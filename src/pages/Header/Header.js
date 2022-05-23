@@ -75,7 +75,19 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links3 = [
+  const linksModels = [
+    {
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros-modelos',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-modelos'),
+      pathName: '/cadastrar-modelos',
+      text: 'Cadastrar',
+    },
+  ];
+  const linksAcoes = [
     {
       link: () => handleClick('/consultas'),
       pathName: '/consultas',
@@ -87,8 +99,8 @@ function Header(props) {
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-acoes'),
+      pathName: '/cadastrar-acoes',
       text: 'Cadastrar',
     },
   ];
@@ -109,16 +121,28 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links4 = [
+  const linksContas = [
     {
-      link: () => handleClick('/editais'),
-      pathName: '/editais',
-      text: 'Consulta Editais',
+      link: () => handleClick('/consultas'),
+      pathName: '/consultas',
+      text: 'Consultas',
     },
     {
-      link: () => handleClick('/atas'),
-      pathName: '/atas',
-      text: 'Consulta Atas',
+      link: () => handleClick('/admregistros'),
+      pathName: '/administracao-registros',
+      text: 'Administração de Registros',
+    },
+    {
+      link: () => handleClick('/cadastrar-contas'),
+      pathName: '/cadastrar-contas',
+      text: 'Cadastrar',
+    },
+  ];
+  const linksMinutes = [
+    {
+      link: () => handleClick('/consulta-atas'),
+      pathName: '/consulta-atas-e-editais',
+      text: 'Consultas',
     },
     {
       link: () => handleClick('/alteracoeseexclusoes'),
@@ -126,8 +150,8 @@ function Header(props) {
       text: 'Alterações e exclusões',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-atas'),
+      pathName: '/cadastrar-atas',
       text: 'Cadastrar',
     },
   ];
@@ -156,17 +180,17 @@ function Header(props) {
     },
     {
       text: 'Modelos',
-      links: links2,
+      links: linksModels,
       icon: <ArticleOutlinedIcon />,
     },
     {
       text: 'Ações',
-      links: links3,
+      links: linksAcoes,
       icon: <PendingActionsOutlinedIcon />,
     },
     {
       text: 'Prestação de Contas',
-      links: links3,
+      links: linksContas,
       icon: <MonetizationOnOutlinedIcon />,
     },
     {
@@ -176,7 +200,7 @@ function Header(props) {
     },
     {
       text: 'Atas/Editais',
-      links: links4,
+      links: linksMinutes,
       icon: <FilePresentOutlinedIcon />,
     },
     {
