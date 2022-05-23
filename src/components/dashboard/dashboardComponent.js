@@ -33,7 +33,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -292,6 +292,12 @@ function TableComponent({
     win.focus();
   }
 
+  function redirectNews(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-noticia?newsId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   function redirectAssociate(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-associados?associateId=${redirectId}`, '_blank');
@@ -387,10 +393,8 @@ function TableComponent({
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectNews(e, id[index + (page * 10)])}>
                         <SearchIcon />
-                        {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                       </IconButton>
                     </TableCell>
                   ) : edit ? (

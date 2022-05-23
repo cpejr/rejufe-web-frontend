@@ -25,6 +25,7 @@ import ConsultaAssociados from './pages/ConsultaAssociados';
 import ConsultasMinutes from './pages/ConsultasAtas';
 import FichaAssociados from './pages/FichaAssociados';
 import FichaMinutes from './pages/FichaAtas';
+import FichaNoticia from './pages/FichaNoticia/FichaNoticia';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
@@ -55,6 +56,7 @@ export function UserHeader() {
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="administrador" />
+        <PrivateRoute path="/ficha-noticia" component={FichaNoticia} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
