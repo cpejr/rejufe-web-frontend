@@ -26,17 +26,20 @@ function ListaComunicados() {
 
   return (
     <div>
-      <h1 className="title-list-comunic"> Comunicados </h1>
-      <div className="container-list-comunic">
-        <TableComponent
-          setUse={setUse}
-          communiqueId={id}
-          rows={communique}
-          titles={titles}
-          archive1Id={archive1Id}
-          archive2Id={archive2Id}
-        />
+      <div className="title-list-comunic">
+        <h1>
+          {'Comunicados '}
+        </h1>
       </div>
+      <div className="container-list-comunic" />
+      <TableComponent
+        setUse={setUse}
+        communiqueId={id}
+        rows={communique}
+        titles={titles}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+      />
     </div>
   );
 }
