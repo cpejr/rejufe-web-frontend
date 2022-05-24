@@ -10,7 +10,7 @@ function FichaNoticia() {
   const { search } = useLocation();
   const newsId = new URLSearchParams(search).get('newsId');
   const [news, setNews] = useState([]);
-  console.log('🚀 ~ file: FichaNoticia.js ~ line 13 ~ FichaNoticia ~ news', news);
+  console.log('🚀 ~ file: FichaNoticia.js ~ line 13 ~ FichaNoticia ~ news', news.photos);
   const [image, setImage] = useState();
   console.log('🚀 ~ file: FichaNoticia.js ~ line 15 ~ FichaNoticia ~ image', image);
 
@@ -28,8 +28,9 @@ function FichaNoticia() {
 
   useEffect(() => {
     getNewsById(newsId, setNews);
-    getImage();
   }, []);
+
+  getImage(news.photos);
 
   return (
     <body className="forms-minutes-body">
@@ -54,17 +55,31 @@ function FichaNoticia() {
                             <tr>
                               {line?.items.map((item) => (
                                 <div className="forms-minutes-td-box">
-                                  <span className="forms-minutes-subtitle">
-                                    {' '}
-                                    {item.label}
-                                    {' '}
-                                  </span>
-                                  <br />
-                                  <span className="forms-minutes-value">
-                                    {' '}
-                                    {news[item.id]}
-                                    {' '}
-                                  </span>
+                                  {item.label === 'Imagem' ? (
+                                    <>
+                                      <span className="forms-minutes-subtitle">
+                                        {' '}
+                                        {item.label}
+                                        {' '}
+                                      </span>
+                                      <br />
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="forms-minutes-subtitle">
+                                        {' '}
+                                        {item.label}
+                                        {' '}
+                                      </span>
+                                      <br />
+                                      <span className="forms-minutes-value">
+                                        {' '}
+                                        {news[item.id]}
+                                        {' '}
+                                      </span>
+
+                                    </>
+                                  )}
                                 </div>
                               ))}
                             </tr>
@@ -84,6 +99,7 @@ function FichaNoticia() {
             </table>
           </div>
         </table>
+        <img src={`data:image;base64,${image}`} style={{ width: '250px' }} alt="" />
       </div>
     </body>
 
