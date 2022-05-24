@@ -282,7 +282,7 @@ export const createModels = async (body) => {
 
 export const getFileNameById = async (id) => {
   let response;
-  if (id.length !== 0) {
+  if (id !== undefined && id.length !== 0) {
     response = await requesterService.getFileNameById(id);
     return response.data;
   }
@@ -337,4 +337,17 @@ export const download = async (id) => {
   const response = await requesterService.download(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const getModels = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allMinutes = [];
+  do {
+    response = await requesterService.getModels(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allMinutes = allMinutes.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allMinutes;
 };

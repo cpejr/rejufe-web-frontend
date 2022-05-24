@@ -11,13 +11,14 @@ import InformativeQuery from '../../components/InformativeQuery/InformativeQuery
 import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
+import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import Simbolo from '../../images/simbolo.png';
 import NewsQuery from '../../components/NewsQuery/NewsQuery';
 import './Intranet.css';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
-  const menuSide = () => {
+  const menuDashboard = () => {
     switch (selectedButton) {
       case 'Enquetes': return <ResultadoQuizzes />;
       case 'Ações Adm': return <ActionQuery />;
@@ -27,6 +28,7 @@ function Intranet() {
       case 'Aniversariantes': return <Aniversariantes />;
       case 'Prestação de Contas': return <AccountQuery />;
       case 'Atas': return <MinuteQuery />;
+      case 'Jurisprudência': return <Jurisprudence />;
       case 'Home': return <NewsQuery />;
 
       default: return <div />;
@@ -48,11 +50,11 @@ function Intranet() {
           <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
         </div>
         <div className="intranet-dashboad-all">
-          {menuSide()}
+          {menuDashboard()}
         </div>
       </div>
       <div>
-        <BottomMenu />
+        <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
     </div>
   );

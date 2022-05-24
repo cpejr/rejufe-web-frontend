@@ -186,3 +186,12 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getModels = (times, field, filter) => httpClient.get('/modelos', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
