@@ -3,17 +3,34 @@ import './BirthdayNotification.css';
 import '../../global.css';
 import Modal from '@material-ui/core/Modal';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import LottieControl from './BirthdayAnimation';
+import * as managerService from '../../services/manager/managerService';
 
-function sendEmail(email) {
-  // eslint-disable-next-line
-  console.log(email);
-}
+toast.configure();
 
 export default function BirthdayNotificationModal() {
   const [birthdaysUsers, setBirthdayUsers] = useState();
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
+
+  async function sendEmail(email) {
+    try {
+      await managerService.sendResetEmail();
+      toast.success('Email enviado com sucesso!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+      setOpen(false);
+    } catch {
+      toast.error('Email não cadastrado!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+      setOpen(false);
+    }
+    console.log(email);
+  }
 
   useEffect(() => {
     // eslint-disable-next-line
@@ -45,7 +62,7 @@ export default function BirthdayNotificationModal() {
           </div>
           <div className="UsersBirthday">
             {(birthdaysUsers !== undefined && birthdaysUsers !== null)
-              ? birthdaysUsers.data.map((users) => {
+              && birthdaysUsers.data.map((users) => {
                 // eslint-disable-next-line
                 console.log(birthdaysUsers);
                 const { name, email } = users;
@@ -61,8 +78,7 @@ export default function BirthdayNotificationModal() {
                     </button>
                   </div>
                 );
-              })
-              : setOpen(false)}
+              })}
           </div>
         </div>
         <buttons>
