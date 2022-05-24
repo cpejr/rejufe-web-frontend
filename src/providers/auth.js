@@ -37,6 +37,7 @@ export function AuthProvider({ children }) {
       // eslint-disable-next-line no-console
       console.error(error);
       history.push('/NotFound');
+      setLoading(false);
     }
   }
 

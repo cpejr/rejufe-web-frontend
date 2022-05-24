@@ -13,6 +13,7 @@ import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridic
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
 import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import Simbolo from '../../images/simbolo.png';
+import NewsQuery from '../../components/NewsQuery/NewsQuery';
 import './Intranet.css';
 
 function Intranet() {
@@ -28,6 +29,7 @@ function Intranet() {
       case 'Prestação de Contas': return <AccountQuery />;
       case 'Atas': return <MinuteQuery />;
       case 'Jurisprudência': return <Jurisprudence />;
+      case 'Home': return <NewsQuery />;
 
       default: return <div />;
     }
