@@ -7,6 +7,7 @@ import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import ActionQuery from '../../components/ActionQuery/ActionQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import MinuteQuery from '../../components/MinutesQuery/MinutesQuery';
+import AdministrativeRequirements from '../../components/AdministrativeRequirements/AdministrativeRequirements';
 import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
@@ -30,6 +31,7 @@ function Intranet() {
       case 'Atas': return <MinuteQuery />;
       case 'Jurisprudência': return <Jurisprudence />;
       case 'Home': return <NewsQuery />;
+      case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
 
       default: return <div />;
     }
