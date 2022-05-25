@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-undef */
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
@@ -34,9 +32,9 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
-import EditModel from '../DeleteModel/editModelsModal';
+import EditModel from '../EditModal/EditModels/EditModelsModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -471,7 +469,14 @@ function TableComponent({
                     <TableCell {...cellFontProps} align="center">
                       <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} />
-                        <EditModel id={modelsSequentialId[index + (page * 10)]} model={row} archive1Id={archive1Id && archive1Id[index + (page * 10)]} archive2Id={archive2Id && archive2Id[index + (page * 10)]} setUse={setUse} page={page} />
+                        <EditModel
+                          id={modelsSequentialId[index + (page * 10)]}
+                          model={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          setUse={setUse}
+                          page={page}
+                        />
                       </div>
                     </TableCell>
                   )}

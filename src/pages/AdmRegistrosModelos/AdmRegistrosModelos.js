@@ -1,12 +1,6 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import './AdmRegistrosModelos.css';
-import moment from 'moment';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/dashboard/dashboardComponent';
@@ -52,7 +46,6 @@ function AdmRegistrosModelos() {
           object._id,
         ));
       });
-      const valueSequentialIds = [...sequentialIds];
       setId(sequentialIds);
       setAllModels(auxModels);
       setArchive1Id(archive1Code);
@@ -88,7 +81,14 @@ function AdmRegistrosModelos() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} rows={models} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} modelsSequentialId={id} />
+      <TableComponent
+        setUse={setUse}
+        rows={models}
+        titles={titles}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+        modelsSequentialId={id}
+      />
     </div>
   );
 }

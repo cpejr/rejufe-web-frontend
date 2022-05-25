@@ -28,8 +28,6 @@ function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
   const classes = useStyles();
-  // eslint-disable-next-line no-unused-vars
-  const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
 
   async function getImage() {
