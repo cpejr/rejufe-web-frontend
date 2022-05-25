@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './BirthdayNotification.css';
 import '../../global.css';
 import Modal from '@material-ui/core/Modal';
-import axios from 'axios';
+// import axios from 'axios';
 import { toast } from 'react-toastify';
 import LottieControl from './BirthdayAnimation';
 import * as managerService from '../../services/manager/managerService';
@@ -32,17 +32,32 @@ export default function BirthdayNotificationModal() {
     console.log(email);
   }
 
+  async function getBirthdayUsers() {
+    try {
+      const response = await managerService.getTodayBirthday();
+      console.log(response);
+      setBirthdayUsers(response);
+    } catch (error) {
+      console.log(error);
+      toast.error('Não foi possível obter aniversariantes!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   useEffect(() => {
     // eslint-disable-next-line
+    getBirthdayUsers();
     console.log('entrou');
-    axios
-      .get('http://localhost:3333/usuario/getUsersByTodaysBirthday')
-      .then((response) => setBirthdayUsers(response))
-      .catch((error) => {
-        // eslint-disable-next-line
-        console.err(error);
-        setOpen(false);
-      });
+    // axios
+    //   .get('http://localhost:3333/usuario/getUsersByTodaysBirthday')
+    //   .then((response) => setBirthdayUsers(response))
+    //   .catch((error) => {
+    //     // eslint-disable-next-line
+    //     console.err(error);
+    //     setOpen(false);
+    //   });
   }, []);
 
   return (

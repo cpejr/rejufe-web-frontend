@@ -346,3 +346,11 @@ export const sendBirthdayEmail = async () => {
   }
   return response;
 };
+
+export const getTodayBirthday = async () => {
+  const response = await requesterService.getTodayBirthday();
+  if (isFailureStatus(response)) {
+    throw new Error('Problem with api response');
+  }
+  return response;
+};
