@@ -282,7 +282,7 @@ export const createModels = async (body) => {
 
 export const getFileNameById = async (id) => {
   let response;
-  if (id.length !== 0) {
+  if (id !== undefined && id.length !== 0) {
     response = await requesterService.getFileNameById(id);
     return response.data;
   }
