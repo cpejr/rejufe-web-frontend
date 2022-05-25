@@ -36,6 +36,7 @@ export const changeUserTypeById = async (typeChange, id) => {
 
 export const register = async (body) => {
   const response = await requesterService.register(body);
+  if (response?.data?.notification === 'Email already in use') throw new Error('Email already in use');
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -281,7 +282,7 @@ export const createModels = async (body) => {
 
 export const getFileNameById = async (id) => {
   let response;
-  if (id.length !== 0) {
+  if (id !== undefined && id.length !== 0) {
     response = await requesterService.getFileNameById(id);
     return response.data;
   }
@@ -338,6 +339,7 @@ export const download = async (id) => {
   return response.data;
 };
 
+
 export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
@@ -349,4 +351,18 @@ export const getCommunique = async (field, filter) => {
     times += 1;
   } while (response.data.length > 0);
   return allCommunique;
+};
+ 
+export const getModels = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allModels = [];
+  do {
+    response = await requesterService.getModels(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allModels = allModels.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allModels;
+
 };
