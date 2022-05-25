@@ -339,7 +339,6 @@ export const download = async (id) => {
   return response.data;
 };
 
-
 export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
@@ -352,7 +351,7 @@ export const getCommunique = async (field, filter) => {
   } while (response.data.length > 0);
   return allCommunique;
 };
- 
+
 export const getModels = async (field, filter) => {
   let times = 0;
   let response;
@@ -364,5 +363,4 @@ export const getModels = async (field, filter) => {
     times += 1;
   } while (response.data.length > 0);
   return allModels;
-
 };

@@ -10,7 +10,6 @@ import InformativeQuery from '../../components/InformativeQuery/InformativeQuery
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import MinuteQuery from '../../components/MinutesQuery/MinutesQuery';
 import AdministrativeRequirements from '../../components/AdministrativeRequirements/AdministrativeRequirements';
-import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
