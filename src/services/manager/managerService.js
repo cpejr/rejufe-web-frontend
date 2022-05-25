@@ -339,6 +339,19 @@ export const download = async (id) => {
   return response.data;
 };
 
+export const getCommunique = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allCommunique = [];
+  do {
+    response = await requesterService.getCommunique(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCommunique = allCommunique.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allCommunique;
+};
+
 export const getModels = async (field, filter) => {
   let times = 0;
   let response;
