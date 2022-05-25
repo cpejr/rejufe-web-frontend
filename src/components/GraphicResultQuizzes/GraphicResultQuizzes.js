@@ -9,9 +9,6 @@ export const options = {
   vAxis: {
     title: 'Opções',
   },
-  // legend: { position: 'top', alignment: 'start' },
-  // width: 520,
-  // height: 350
 };
 
 function GraphicQuizzes({
@@ -28,6 +25,10 @@ function GraphicQuizzes({
     '',
     'Faltam Votar',
   ];
+  // function selectHandler() {
+  //   alert('A table row was selected');
+  // }
+  // google.visualization.events.addListener(options, 'onmouseover', selectHandler);
   const user = [];
   const name = [];
   const votes = [];
