@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -17,6 +18,11 @@ function FormInputs({ setNewQuizz, handleClose }) {
   const [voterSection, setVoterSection] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
+  let openingTime;
+  let openingDay;
+  let closingTime;
+  let closingDay;
+  let day;
 
   const handleSectionChange = (event) => {
     const {
@@ -32,9 +38,22 @@ function FormInputs({ setNewQuizz, handleClose }) {
 
   const sections = judicialSection?.filter((section) => section.value !== '');
 
+  function handleDay(value, field) {
+    setDados({ ...dados, [field]: value });
+    console.log('🚀 ~ file: registerQuizz.js ~ line 43 ~ handleDay ~ dados', dados);
+  }
+
+  function handleDate(value, field) {
+    console.log(dados.field);
+    const date = day.concat(',', value);
+    setDados({ ...dados, [field]: date });
+    console.log('🚀 ~ file: registerQuizz.js ~ line 47 ~ handleDate ~ date', date);
+  }
+
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
+    console.log('🚀 ~ file: registerQuizz.js ~ line 54 ~ handleChange ~ dados', dados);
   }
 
   const getUsers = async () => {
@@ -106,8 +125,8 @@ function FormInputs({ setNewQuizz, handleClose }) {
             required
             error={initialErrorState.openingDate}
             type="Date"
-            value={dados.openingDate}
-            onChange={(e) => handleChange(e.target.value, 'openingDate')}
+            value={openingDay}
+            onChange={(e) => handleDay(e.target.value, 'openingDate')}
           />
         </FormControl>
         <FormControl>
@@ -116,8 +135,8 @@ function FormInputs({ setNewQuizz, handleClose }) {
             required
             error={initialErrorState.openingDate}
             type="time"
-            value={dados.openingDate}
-            onChange={(e) => handleChange(e.target.value, 'openingDate')}
+            value={openingTime}
+            onChange={(e) => handleDate(e.target.value, 'openingDate')}
           />
         </FormControl>
         <FormControl>
@@ -126,7 +145,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
             required
             error={initialErrorState.closingDate}
             type="Date"
-            value={dados.closingDate}
+            value={closingDay}
             onChange={(e) => handleChange(e.target.value, 'closingDate')}
           />
         </FormControl>
@@ -136,7 +155,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
             required
             error={initialErrorState.closingDate}
             type="time"
-            value={dados.closingDate}
+            value={closingTime}
             onChange={(e) => handleChange(e.target.value, 'closingDate')}
           />
         </FormControl>
