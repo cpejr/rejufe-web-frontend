@@ -30,7 +30,7 @@ function FichaNoticia() {
     getNewsById(newsId, setNews);
   }, []);
 
-  getImage(news.photos);
+  getImage(news?.photos);
 
   return (
     <body className="forms-minutes-body">
@@ -63,6 +63,7 @@ function FichaNoticia() {
                                         {' '}
                                       </span>
                                       <br />
+                                      <img src={`data:image;base64,${image}`} style={{ width: '250px' }} alt="" />
                                     </>
                                   ) : (
                                     <>
@@ -99,7 +100,6 @@ function FichaNoticia() {
             </table>
           </div>
         </table>
-        <img src={`data:image;base64,${image}`} style={{ width: '250px' }} alt="" />
       </div>
     </body>
 
