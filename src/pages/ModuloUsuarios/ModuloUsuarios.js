@@ -29,10 +29,27 @@ function ModuloUsuarios() {
     }
     setFilter(value);
   };
+  function replaceSpecialChars(str) {
+    str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
+    str = str.replace(/[àáâãäå]/, 'a');
+    str = str.replace(/[ÙÚÛÜ]/, 'U');
+    str = str.replace(/[úúûü]/, 'u');
+    str = str.replace(/[ÈÉÊË]/, 'E');
+    str = str.replace(/[éèêë]/, 'e');
+    str = str.replace(/[íìîï]/, 'i');
+    str = str.replace(/[ÍÌÎÏ]/, 'I');
+    str = str.replace(/[óòôöõ]/, 'o');
+    str = str.replace(/[ÓÒÔÖÕ]/, 'O');
+    str = str.replace(/[Ç]/, 'C');
+    str = str.replace(/[ç]/, 'c');
+
+    return str.replace(/[^a-z0-9]/gi, '');
+  }
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
-      setRows(admins?.filter((admin) => admin?.name.toLowerCase().includes(value?.toLowerCase())));
+      // eslint-disable-next-line max-len
+      setRows(admins?.filter((admin) => replaceSpecialChars(admin?.name.toLowerCase()).includes(replaceSpecialChars(value))));
       setSearch(value);
     }
     if (filter === 'Seção') {
@@ -115,7 +132,7 @@ function ModuloUsuarios() {
                 id="demo-simple-select"
                 value={search}
                 label="Selecione uma seção"
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value.toLowerCase())}
               >
 
                 {judicialSection?.map((section) => (
@@ -131,7 +148,7 @@ function ModuloUsuarios() {
               endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
               placeholder="Busca rápida"
               value={search}
-              onChange={(e) => handleSearch(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value.toLowerCase())}
             />
           )}
         </div>
