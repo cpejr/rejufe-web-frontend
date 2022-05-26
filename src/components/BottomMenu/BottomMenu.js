@@ -10,22 +10,25 @@ import flagPernambuco from '../../images/flagPernambuco.png';
 import flagRioGrandeDoNorte from '../../images/flagRioGrandeDoNorte.png';
 import flagSergipe from '../../images/flagSergipe.png';
 
-function BottomMenu() {
+function BottomMenu({ setSelectedButton, selectedButton }) {
+  const defineBackgroundColor = (buttonType) => (selectedButton === buttonType
+    ? 'buttonSelectedBottomMenu'
+    : 'buttonBottomMenu');
   return (
     <div className="containerBottomMenu">
       <div className="boxBottomMenu">
         <div className="buttonsBottomMenu">
-          <button type="button" className="buttonBottomMenu">
+          <button type="button" key="buttonAdminRequirement" className={defineBackgroundColor('Requerimentos Administrativos')} onClick={() => setSelectedButton('Requerimentos Administrativos')}>
             <GavelRoundedIcon className="iconBottomMenu" />
             Requerimentos Administrativos
           </button>
 
-          <button type="button" className="buttonBottomMenu">
+          <button type="button" key="buttonPetitions" className={defineBackgroundColor('Petições')} onClick={() => setSelectedButton('Petições')}>
             <FilePresentRoundedIcon className="iconBottomMenu" />
             Petições Iniciais
           </button>
 
-          <button type="button" className="buttonBottomMenu">
+          <button type="button" key="buttonJurisprudence" className={defineBackgroundColor('Jurisprudência')} onClick={() => setSelectedButton('Jurisprudência')}>
             <FeedRoundedIcon className="iconBottomMenu" />
             Jurisprudência
           </button>
