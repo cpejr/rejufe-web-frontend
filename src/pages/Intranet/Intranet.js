@@ -13,6 +13,7 @@ import AdministrativeRequirements from '../../components/AdministrativeRequireme
 import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
+import InitialPetitions from '../../components/InitialPetitions/InitialPetitions';
 import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import Simbolo from '../../images/simbolo.png';
 import NewsQuery from '../../components/NewsQuery/NewsQuery';
@@ -29,6 +30,7 @@ function Intranet() {
       case 'Ações Jurídicas': return <ActionJuridical />;
       case 'Aniversariantes': return <Aniversariantes />;
       case 'Prestação de Contas': return <AccountQuery />;
+      case 'Petições Iniciais': return <InitialPetitions />;
       case 'Atas': return <MinuteQuery />;
       case 'Comunicados': return <ListaComunicados />;
       case 'Jurisprudência': return <Jurisprudence />;
