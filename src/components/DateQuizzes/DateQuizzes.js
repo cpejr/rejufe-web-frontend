@@ -1,10 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-console */
 import React from 'react';
 import './DateQuizzes.css';
 
 export default function DateQuizzes({ status }) {
-  console.log(status);
   return (
     <div>
       <div>
