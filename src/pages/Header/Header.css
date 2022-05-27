@@ -1,13 +1,13 @@
 .header-appbar {
   justify-content: space-between;
+  display: flex;
   width: 100%;
 }
 .header-toolbar {
   background-color: var(--header);
   height: 75px;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: flex-start;
 }
 
 /* Dropdown Button */
