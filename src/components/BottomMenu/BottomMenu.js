@@ -22,12 +22,10 @@ function BottomMenu({ setSelectedButton, selectedButton }) {
             <GavelRoundedIcon className="iconBottomMenu" />
             Requerimentos Administrativos
           </button>
-
-          <button type="button" key="buttonPetitions" className={defineBackgroundColor('Petições')} onClick={() => setSelectedButton('Petições')}>
+          <button type="button" key="buttonPetitions" className={defineBackgroundColor('Petições')} onClick={() => setSelectedButton('Petições Iniciais')}>
             <FilePresentRoundedIcon className="iconBottomMenu" />
             Petições Iniciais
           </button>
-
           <button type="button" key="buttonJurisprudence" className={defineBackgroundColor('Jurisprudência')} onClick={() => setSelectedButton('Jurisprudência')}>
             <FeedRoundedIcon className="iconBottomMenu" />
             Jurisprudência
