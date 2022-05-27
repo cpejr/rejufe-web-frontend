@@ -210,6 +210,8 @@ function Header(props) {
     },
   ];
 
+  const { user } = useAuth();
+
   return (
     <>
       <AppBar position="static" className="header-appbar">
@@ -221,7 +223,7 @@ function Header(props) {
           >
             Sair
           </button>
-          {pages?.map((listItem) => (
+          {user?.type === 'administrador' && pages?.map((listItem) => (
             <div className="header-dropdown">
               <button className="header-dropbtn" type="button">{listItem.text}</button>
               <div className="header-dropdown-content">
@@ -276,7 +278,7 @@ function Header(props) {
               ) : (
                 null
               )}
-              {open && pages?.map((item) => (
+              {user?.type === 'administrador' && open && pages?.map((item) => (
                 <SubMenu item={item} />
               ))}
               {open === true ? (
