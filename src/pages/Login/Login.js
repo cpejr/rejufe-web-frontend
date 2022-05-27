@@ -126,6 +126,13 @@ function Login() {
     }
     setLoading(false);
   };
+
+  const handleKeypress = (e) => {
+    if (e.key === 'Enter') {
+      handleClick(e);
+    }
+  };
+
   return (
     <div
       className="container-login"
@@ -149,8 +156,10 @@ function Login() {
             />
             <h1>Senha </h1>
             <input
+              id="PasswordInput"
               type="password"
               onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
+              onKeyPress={handleKeypress}
             />
 
             <div className="Remember-Box">
@@ -163,7 +172,7 @@ function Login() {
               />
               <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>
-            <button className="container-login-button" type="button" onClick={handleClick}>
+            <button id="LoginButton" className="container-login-button" type="button" onClick={handleClick}>
               {loading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (

@@ -26,16 +26,25 @@ function ConsultaAssociados() {
 
   return (
     <div className="consultAssociatePage">
-      <h1 className="titleConsultAssociate"> Associados Ativos </h1>
-      {loading ? (
-        <div className="loaderConsultAssociate">
-          <CircularProgress />
+      <div className="consultAssociatePageField">
+        <div className="title-consult-associates">
+          <h1>
+            {'Associados Ativos '}
+          </h1>
         </div>
-      ) : (
-        <div className="containerConsultAssociate">
-          <TableComponent id={id} rows={associates} titles={titles} print={false} search />
-        </div>
-      )}
+        <div className="line-table-consult-associates" />
+      </div>
+      {
+        loading ? (
+          <div className="loaderConsultAssociate">
+            <CircularProgress />
+          </div>
+        ) : (
+          <div className="containerConsultAssociate">
+            <TableComponent id={id} rows={associates} titles={titles} print={false} search />
+          </div>
+        )
+      }
     </div>
   );
 }
