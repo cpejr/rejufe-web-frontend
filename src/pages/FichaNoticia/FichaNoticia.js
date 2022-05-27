@@ -10,9 +10,8 @@ function FichaNoticia() {
   const { search } = useLocation();
   const newsId = new URLSearchParams(search).get('newsId');
   const [news, setNews] = useState([]);
-  console.log('🚀 ~ file: FichaNoticia.js ~ line 13 ~ FichaNoticia ~ news', news.photos);
-  const [image, setImage] = useState();
-  console.log('🚀 ~ file: FichaNoticia.js ~ line 15 ~ FichaNoticia ~ image', image);
+  const [image, setImage] = useState(news?.photos);
+  console.log('🚀 ~ file: FichaNoticia.js ~ line 14 ~ FichaNoticia ~ image', image);
 
   async function getImage(id) {
     try {
@@ -28,9 +27,8 @@ function FichaNoticia() {
 
   useEffect(() => {
     getNewsById(newsId, setNews);
+    getImage(news?.photos);
   }, []);
-
-  getImage(news?.photos);
 
   return (
     <body className="forms-minutes-body">
@@ -41,6 +39,7 @@ function FichaNoticia() {
               <tr>
                 <td className="forms-minutes-td-container">
                   <table className="forms-minutes-t-container">
+                    <img src={`data:image;base64,${image}`} style={{ width: '250px' }} alt="" />
                     {fichaNews?.map((ficha) => (
                       <table className="forms-minutes-t-container">
                         <table width="100%">
@@ -63,7 +62,6 @@ function FichaNoticia() {
                                         {' '}
                                       </span>
                                       <br />
-                                      <img src={`data:image;base64,${image}`} style={{ width: '250px' }} alt="" />
                                     </>
                                   ) : (
                                     <>
