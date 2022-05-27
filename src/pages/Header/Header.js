@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import { AppBar, Toolbar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -21,13 +21,21 @@ import simbolo from '../../images/simbolo.png';
 import { useAuth } from '../../providers/auth';
 
 function Header(props) {
+  const { user } = useAuth();
   const [className, setClassName] = useState('header-iconbutton-content');
+  const [headerUser, setHeaderUser] = useState('header-toolbar');
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
   const history = useHistory();
   const { logout } = useAuth();
+
+  useEffect(() => {
+    if (user?.type === 'usuario') {
+      setHeaderUser('header-toolbar-user-align');
+    }
+  }, []);
 
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
@@ -210,12 +218,16 @@ function Header(props) {
     },
   ];
 
-  const { user } = useAuth();
-
   return (
     <>
       <AppBar position="static" className="header-appbar">
-        <Toolbar className="header-toolbar">
+        <Toolbar className={headerUser}>
+          {user?.type === 'usuario'
+            && (
+              <div className="header-toolbar-user">
+                <img src={simbolo} alt="logo" />
+              </div>
+            )}
           <button
             className="header-dropbtn"
             onClick={() => handleClick('/login')}
@@ -243,7 +255,7 @@ function Header(props) {
           >
             Intranet
           </button>
-          <div>
+          <div className="header-toolbar">
             <img src={simbolo} alt="logo" />
           </div>
           <div
