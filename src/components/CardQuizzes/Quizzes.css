@@ -27,6 +27,11 @@
   cursor: pointer;
 }
 
+.teste{
+  position: absolute;
+  margin-left: 33%;
+}
+
 .title-card-quizzes p {
   font-family: 'Roboto', sans-serif;
   font-size: large;
@@ -119,6 +124,52 @@
   color: var(--fontColor1);
   border-color: var(--color2);
 }
+
+@media(max-width: 1163px){
+  .teste{
+    margin-left: 28% ;
+  }
+}
+@media(max-width: 1067px){
+  .teste{
+    margin-left: 23% ;
+  }
+}
+@media(max-width: 680px){
+  .teste{
+    margin-left: 60% ;
+  }
+}
+
+@media(max-width: 523px){
+  .teste{
+    margin-left: 55% ;
+  }
+}
+@media(max-width: 455px){
+  .teste{
+    margin-left: 50% ;
+  }
+  .title-card-quizzes p{
+    font-size: 1.3em;
+  }
+}
+
+@media(max-width: 383px){
+  .title-card-quizzes p{
+    font-size: 1.2em;
+  }
+}
+
+@media(max-width: 300px){
+  .title-card-quizzes p{
+    font-size: 0.9em;
+  }
+  .teste{
+    margin-left: 45% ;
+  }
+}
+
 
 @media (max-width: 786px) {
   .alternatives-vote-quizzes button {
