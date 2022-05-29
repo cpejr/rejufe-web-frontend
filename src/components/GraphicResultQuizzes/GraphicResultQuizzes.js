@@ -25,10 +25,7 @@ function GraphicQuizzes({
     '',
     'Faltam Votar',
   ];
-  // function selectHandler() {
-  //   alert('A table row was selected');
-  // }
-  // google.visualization.events.addListener(options, 'onmouseover', selectHandler);
+
   const user = [];
   const name = [];
   const votes = [];
