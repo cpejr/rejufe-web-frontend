@@ -48,8 +48,8 @@ function ModuloUsuarios() {
 
   const handleSearch = (value) => {
     if (filter === 'Usuários') {
-      // eslint-disable-next-line max-len
-      setRows(admins?.filter((admin) => replaceSpecialChars(admin?.name.toLowerCase()).includes(replaceSpecialChars(value))));
+      setRows(admins?.filter((admin) => replaceSpecialChars(admin?.name
+        .toLowerCase()).includes(replaceSpecialChars(value))));
       setSearch(value);
     }
     if (filter === 'Seção') {
