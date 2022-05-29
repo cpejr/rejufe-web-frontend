@@ -66,12 +66,12 @@ export default function BirthdayNotificationModal() {
       onClose={handleClose}
     >
       <div className="BirthdayModalBox">
-        Aniversariantes de hoje:
+        <h1>Aniversariantes de hoje:</h1>
         <div className="BirthdayCentralBox">
 
           <div className="BirthdayAnimation">
             <LottieControl
-              width={100}
+              width={70}
               height={100}
             />
           </div>
@@ -81,23 +81,22 @@ export default function BirthdayNotificationModal() {
                 // eslint-disable-next-line
                 console.log(birthdaysUsers);
                 const { name, email } = users;
+                const phoneNumber = users.cell_phone_number;
                 return (
                   <div className="UsersBirthdayine">
-                    <p>
-                      Aniversário de
-                      {' '}
-                      {name}
-                    </p>
-                    <button type="button" onClick={() => sendEmail(email)}>
+                    <p>{name}</p>
+                    <p>{email}</p>
+                    <p>{phoneNumber}</p>
+                    {/* <button type="button" onClick={() => sendEmail(email)}>
                       Enviar Email
-                    </button>
+                    </button> */}
                   </div>
                 );
               })}
           </div>
         </div>
         <buttons>
-          <button type="button" onClick={handleClose}>Enviar Email</button>
+          <button type="button" onClick={sendEmail}>Enviar Email</button>
           <button type="button" onClick={handleClose}>Fechar</button>
         </buttons>
       </div>

@@ -57,3 +57,13 @@
 .UsersBirthdayine {
   display: flex;
 }
+
+.UsersBirthdayine p {
+  font-family: 'Roboto', sans-serif;
+  margin-right: 2%;
+}
+
+.BirthdayModalBox h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+}
