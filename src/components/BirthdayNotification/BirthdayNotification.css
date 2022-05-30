@@ -27,6 +27,8 @@
   border-radius: 0.8vw;
   background-color: var(--button);
   color: white;
+  padding: 1%;
+  border: thin solid var(--button);
 }
 
 .BirthdayModalBox buttons > button + button {
@@ -41,6 +43,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 3%;
 }
 
 .BirthdayAnimation {
@@ -54,16 +57,27 @@
   display: flex;
   width: 100%;
 }
+
+.UsersBirthday {
+  width: 60%;
+}
+
 .UsersBirthdayine {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 3%;
 }
 
 .UsersBirthdayine p {
   font-family: 'Roboto', sans-serif;
-  margin-right: 2%;
+  margin-right: 5%;
+  font-size: 1em;
 }
 
 .BirthdayModalBox h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
+  margin-bottom: 3%;
+  font-size: 1.75em;
 }

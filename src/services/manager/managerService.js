@@ -340,7 +340,7 @@ export const download = async (id) => {
 };
 
 export const sendBirthdayEmail = async () => {
-  const response = await requesterService.sendBirthdayEmail(JSON.parse());
+  const response = await requesterService.sendBirthdayEmail();
   if (isFailureStatus(response)) {
     throw new Error('Problem with api response');
   }

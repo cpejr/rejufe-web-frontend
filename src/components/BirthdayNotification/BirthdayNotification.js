@@ -14,9 +14,9 @@ export default function BirthdayNotificationModal() {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
-  async function sendEmail(email) {
+  async function sendEmail() {
     try {
-      await managerService.sendResetEmail();
+      await managerService.sendBirthdayEmail();
       toast.success('Email enviado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -29,7 +29,6 @@ export default function BirthdayNotificationModal() {
       });
       setOpen(false);
     }
-    console.log(email);
   }
 
   async function getBirthdayUsers() {

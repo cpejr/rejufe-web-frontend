@@ -187,7 +187,7 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
   paramsSerializer: (params) => qs.stringify(params),
 });
 
-export const sendBirthdayEmail = () => httpClient.post('/birthdayNotification');
+export const sendBirthdayEmail = () => httpClient.post('/birthday');
 
 export const getTodayBirthday = (times, field, filter) => httpClient.get('usuario/getUsersByTodaysBirthday', {
   params: {
