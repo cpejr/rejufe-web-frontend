@@ -10,8 +10,6 @@ function EditModelInputs({
 
   const inputDados = Object.values(dados);
 
-  console.log(inputDados);
-
   return (
     <div className="EditModal-inputs">
       {titles.map((title, index) => (
