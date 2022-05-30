@@ -45,14 +45,14 @@ function ContactUs() {
     setLoading(false);
   }
   return (
-    <div className="boxFormContactUs">
+    <div className="box-form-contactUs">
       <h1>Fale Conosco</h1>
       <input placeholder="Nome" name="name" onChange={handleChange} />
       <input placeholder="Email" name="email" onChange={handleChange} />
       <textarea placeholder="Mensagem" name="message" onChange={handleChange} />
 
-      <div className="buttonGroupContactUs">
-        <button type="button" loading={loading} className="sendButton" onClick={(e) => emailSubmit(e)}> Enviar </button>
+      <div className="button-ContactUs">
+        <button type="button" loading={loading} className="send-button-ContactUs" onClick={(e) => emailSubmit(e)}> Enviar </button>
       </div>
     </div>
   );
