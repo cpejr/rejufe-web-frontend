@@ -23,7 +23,8 @@ import { useAuth } from '../../providers/auth';
 function Header(props) {
   const { user } = useAuth();
   const [className, setClassName] = useState('header-iconbutton-content');
-  const [headerUser, setHeaderUser] = useState('header-toolbar');
+  const [typeUser, setTypeUser] = useState('header-iconbutton');
+  const [toolbar, setHeaderToolbar] = useState('header-toolbar');
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -31,15 +32,16 @@ function Header(props) {
   const history = useHistory();
   const { logout } = useAuth();
 
-  useEffect(() => {
-    if (user?.type === 'usuario') {
-      setHeaderUser('header-toolbar-user-align');
-    }
-  }, []);
-
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
+
+  useEffect(() => {
+    if (user?.type === 'usuario') {
+      setTypeUser('header-iconbutton-user');
+      setHeaderToolbar('header-toolbar-user');
+    }
+  }, []);
 
   function handleClick(pathName) {
     history.push(pathName);
@@ -221,13 +223,7 @@ function Header(props) {
   return (
     <>
       <AppBar position="static" className="header-appbar">
-        <Toolbar className={headerUser}>
-          {user?.type === 'usuario'
-            && (
-              <div className="header-toolbar-user">
-                <img src={simbolo} alt="logo" />
-              </div>
-            )}
+        <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
             onClick={() => handleClick('/login')}
@@ -255,11 +251,11 @@ function Header(props) {
           >
             Intranet
           </button>
-          <div className="header-toolbar">
+          <div>
             <img src={simbolo} alt="logo" />
           </div>
           <div
-            className="header-iconbutton"
+            className={typeUser}
             onClick={handleClassName}
           >
             <IconButton
