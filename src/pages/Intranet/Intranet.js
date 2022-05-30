@@ -17,6 +17,7 @@ import InitialPetitions from '../../components/InitialPetitions/InitialPetitions
 import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import Simbolo from '../../images/simbolo.png';
 import NewsQuery from '../../components/NewsQuery/NewsQuery';
+import ContactUs from '../contactUs/contactUs';
 import './Intranet.css';
 
 function Intranet() {
@@ -36,6 +37,7 @@ function Intranet() {
       case 'Jurisprudência': return <Jurisprudence />;
       case 'Home': return <NewsQuery />;
       case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
+      case 'Fale Conosco': return <ContactUs />;
 
       default: return <div />;
     }

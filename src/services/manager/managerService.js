@@ -364,3 +364,9 @@ export const getCommunique = async (field, filter) => {
   } while (response.data.length > 0);
   return allCommunique;
 };
+
+export const contactUs = async (body) => {
+  const response = await requesterService.contactUs(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

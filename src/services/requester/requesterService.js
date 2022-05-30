@@ -38,6 +38,8 @@ export const getUsersBySection = (times, section) => httpClient.get(`/usuario/se
 
 export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/${id}`, typeChange);
 
+export const contactUs = (body) => httpClient.post('/faleConosco', body);
+
 export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
   params: {
     times,
