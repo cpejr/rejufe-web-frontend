@@ -5,9 +5,17 @@ import './GraphicResultQuizzes.css';
 
 export const options = {
   title: 'Quizz',
-  chartArea: { width: '50%', height: '100%' },
+  fontSize: '0.5em',
+  chartArea: { width: '50%', height: '700px' },
   vAxis: {
     title: 'Opções',
+  },
+  height: '100px',
+  hAxis: {
+    textStyle: {
+      fontSize: '0.5em', // or the number you want
+    },
+
   },
 };
 
@@ -59,7 +67,7 @@ function GraphicQuizzes({
         <Chart
           chartType="BarChart"
           width="100%"
-          height="50%"
+          height="600px"
           data={data}
           options={options}
           legendToggle
