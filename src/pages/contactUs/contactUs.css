@@ -25,10 +25,20 @@ textarea {
 }
 
 .box-form-contactUs h1 {
-  color: #0b162b;
+  margin-top: 20px;
   font-family: 'Roboto', sans-serif;
+  font: normal 18pt Roboto;
+  margin-bottom: 0.8%;
+  color: var(--secondary);
+  font-weight: 700;
   font-size: 2em;
-  margin-bottom: 5%;
+}
+
+.line-table-contactUs {
+  width: 100%;
+  border: 2px solid;
+  margin-bottom: 2%;
+  color: var(--secondary);
 }
 
 .box-form-contactUs button {
@@ -51,7 +61,7 @@ textarea {
 }
 
 .send-button-ContactUs {
-  background-color: #0b162b;
+  background-color: #2574A9;
 }
 
 @media (max-width: 480px) {

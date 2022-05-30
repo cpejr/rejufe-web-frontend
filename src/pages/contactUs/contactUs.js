@@ -47,6 +47,7 @@ function ContactUs() {
   return (
     <div className="box-form-contactUs">
       <h1>Fale Conosco</h1>
+      <div className="line-table-contactUs" />
       <input placeholder="Nome" name="name" onChange={handleChange} />
       <input placeholder="Email" name="email" onChange={handleChange} />
       <textarea placeholder="Mensagem" name="message" onChange={handleChange} />
