@@ -17,6 +17,11 @@ export default function EditModel({
 }) {
   const [dados, setDados] = useState(model);
   const formData = new FormData();
+  const titles = [
+    { label: 'Número:', field: 'input' },
+    { label: 'Descrição:', field: 'input' },
+    { label: 'Tipo:', field: 'select' },
+  ];
 
   async function handleSubmit() {
     Object.entries(dados).forEach((dado) => {
@@ -65,7 +70,14 @@ export default function EditModel({
       <div className="EditModal-model-title">
         <p>Editar dados</p>
       </div>
-      <EditModelInputs id={id} dados={dados} setDados={setDados} archive1Id={archive1Id} archive2Id={archive2Id} />
+      <EditModelInputs
+        id={id}
+        dados={dados}
+        setDados={setDados}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+        titles={titles}
+      />
       <button
         className="EditModal-model-buttonConfirm"
         onClick={(e) => {

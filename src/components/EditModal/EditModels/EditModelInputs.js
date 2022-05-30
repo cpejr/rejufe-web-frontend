@@ -2,36 +2,42 @@ import React from 'react';
 import SingleFileUpload from '../../SingleFileUpload/SingleFileUpload';
 
 function EditModelInputs({
-  id, dados, setDados, archive1Id, archive2Id,
+  id, dados, setDados, archive1Id, archive2Id, titles,
 }) {
   function handleChange(value, field) {
     setDados({ ...dados, [field]: value });
   }
 
+  const inputDados = Object.values(dados);
+
+  console.log(inputDados);
+
   return (
     <div className="EditModal-inputs">
-      <div className="EditModal-model-field">
-        <div className="EditModal-model-text">
-          Número:
-        </div>
-        <input className="EditModal-model-input" placeholder="" require value={dados?.numberModels} onChange={(e) => handleChange(e.target.value, 'numberModels')} />
-      </div>
-      <div className="EditModal-model-field">
-        <div className="EditModal-model-text">
-          Descrição:
-        </div>
-        <input className="EditModal-model-input" placeholder="" require value={dados?.description} onChange={(e) => handleChange(e.target.value, 'description')} />
-      </div>
-      <div className="EditModal-model-field">
-        <div className="EditModal-model-text">
-          Tipo:
-        </div>
-        <select className="EditModal-model-select" placeholder="" require value={dados?.type} onChange={handleChange}>
-          <option value="REQUERIMENTOS ADMINISTRATIVOS">REQUERIMENTOS ADMINISTRATIVOS</option>
-          <option value="PETIÇÕES INICIAIS">PETIÇÕES INICIAIS</option>
-          <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>
-        </select>
-      </div>
+      {titles.map((title, index) => (
+        <>
+          {title?.field === 'input' && (
+            <div className="EditModal-model-field">
+              <div className="EditModal-model-text">
+                {title?.label}
+              </div>
+              <input className="EditModal-model-input" placeholder="" require value={inputDados[index]} onChange={(e) => handleChange(e.target.value, `${inputDados[index]}`)} />
+            </div>
+          )}
+          {title?.field === 'select' && (
+            <div className="EditModal-model-field">
+              <div className="EditModal-model-text">
+                {title?.label}
+              </div>
+              <select className="EditModal-model-select" placeholder="" require value={inputDados[index]} onChange={handleChange}>
+                <option value="REQUERIMENTOS ADMINISTRATIVOS">REQUERIMENTOS ADMINISTRATIVOS</option>
+                <option value="PETIÇÕES INICIAIS">PETIÇÕES INICIAIS</option>
+                <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>
+              </select>
+            </div>
+          )}
+        </>
+      ))}
       <div className="EditModal-model-field">
         <div className="EditModal-model-text">
           Arquivo1:
