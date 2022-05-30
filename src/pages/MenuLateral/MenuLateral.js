@@ -50,6 +50,7 @@ function MenuLateral({ setSelectedButton, selectedButton }) {
               {buttons.map((button) => (
                 <Button key={`${button.buttonName}`} className={defineBackgroundColor(button.buttonName)} onClick={() => setSelectedButton(button.buttonName)}>{button.buttonName}</Button>
               ))}
+
             </ButtonGroup>
           </ThemeProvider>
         </div>

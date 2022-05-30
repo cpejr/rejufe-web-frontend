@@ -131,10 +131,78 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+
+export const createMinutes = (body) => httpClient.post('/atas', body);
+
+export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
+  params: {
+    archiveId,
+  },
+});
+
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
 
 export const createActions = (body) => httpClient.post('/acoes', body);
 
-export const contactUs = (body) => httpClient.post('/faleConosco', body);
-
 export const createModels = (body) => httpClient.post('/modelos', body);
+
+export const getModels = (times, field, filter) => httpClient.get('/modelos', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});
+
+export const getInformations = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const getActions = (times, field, filter) => httpClient.get('/acoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
+
+export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});
+
+export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
