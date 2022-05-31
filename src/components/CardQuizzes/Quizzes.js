@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
-import { FormControl } from '@mui/material';
+import { FormControl, useMediaQuery } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
 import ConfirmModal from '../confirmModal/ConfirmModal';
+import DateQuizzes from '../DateQuizzes/DateQuizzes';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
@@ -18,6 +20,15 @@ function Quizzes({
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
   const [loading, setLoading] = useState();
 
+  const matches = useMediaQuery('(max-width:411px)');
+
+  const cellFontProps = {
+    sx: matches
+      && {
+      display: 'none',
+    },
+  };
+
   useEffect(() => {
     setLoading(false);
   }, [quizz.alreadyVoted]);
@@ -27,21 +38,28 @@ function Quizzes({
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
+            {' '}
             {quizz.title}
-            {openingDate > dateQuizz ? (
-              ':  não iniciada'
-            ) : (
-              <>
-                <div />
-                {closingDate < dateQuizz ? (
-                  ':  finalizada'
-                ) : (
-                  ':  em andamento'
-                )}
-              </>
-            )}
           </p>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} />
+          {openingDate > dateQuizz ? (
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="init" />
+            </div>
+          ) : (
+            <>
+              <div />
+              {closingDate < dateQuizz ? (
+                <div className="tagg-status-quizz">
+                  <DateQuizzes status="finished" />
+                </div>
+              ) : (
+                <div className="tagg-status-quizz">
+                  <DateQuizzes status="progress" />
+                </div>
+              )}
+            </>
+          )}
+          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
         </button>
       </div>
       {open === true ? (
