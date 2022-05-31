@@ -174,6 +174,7 @@ export const getInformations = (times, field, filter) => httpClient.get('/inform
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
 export const getActions = (times, field, filter) => httpClient.get('/acoes', {
   params: {
     times,
@@ -192,6 +193,16 @@ export const download = (id) => httpClient.get(`/arquivos/${id}`, {
 });
 
 export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
+
+export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+
+});
 
 export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
   params: {

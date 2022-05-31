@@ -280,21 +280,6 @@ export const createModels = async (body) => {
   return response.data;
 };
 
-export const getFileNameById = async (id) => {
-  let response;
-  if (id.length !== 0) {
-    response = await requesterService.getFileNameById(id);
-    return response.data;
-  }
-  response = '';
-  return response;
-};
-export const createAccountability = async (body) => {
-  const response = await requesterService.createAccountability(body);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
 export const getModels = async (field, filter) => {
   let times = 0;
   let response;
@@ -306,6 +291,21 @@ export const getModels = async (field, filter) => {
     times += 1;
   } while (response.data.length > 0);
   return allModels;
+};
+
+export const getFileNameById = async (id) => {
+  let response;
+  if (id !== undefined && id.length !== 0) {
+    response = await requesterService.getFileNameById(id);
+    return response.data;
+  }
+  response = '';
+  return response;
+};
+export const createAccountability = async (body) => {
+  const response = await requesterService.createAccountability(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
 };
 
 export const deleteModel = async (modelId) => {
@@ -368,4 +368,17 @@ export const getImageById = async (id) => {
   const response = await requesterService.getImageById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const getCommunique = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allCommunique = [];
+  do {
+    response = await requesterService.getCommunique(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCommunique = allCommunique.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allCommunique;
 };
