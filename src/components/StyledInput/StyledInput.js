@@ -29,7 +29,7 @@ function StyledInput({
 }) {
   const [showPassword, setShowPassword] = useState();
   const { WindowWidth } = useWindowDimensions();
-  useEffect(async () => {
+  useEffect(() => {
     if (type === 'password') {
       setShowPassword(false);
     } else {
@@ -59,7 +59,7 @@ function StyledInput({
               },
             }}
             InputProps={{
-              autoComplete: 'off',
+              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -106,7 +106,7 @@ function StyledInput({
               },
             }}
             InputProps={{
-              autoComplete: 'off',
+              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -153,7 +153,7 @@ function StyledInput({
               },
             }}
             InputProps={{
-              autoComplete: 'off',
+              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -200,7 +200,7 @@ function StyledInput({
               },
             }}
             InputProps={{
-              autoComplete: 'off',
+              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -247,7 +247,7 @@ function StyledInput({
               },
             }}
             InputProps={{
-              autoComplete: 'off',
+              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
