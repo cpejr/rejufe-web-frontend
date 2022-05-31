@@ -54,6 +54,11 @@
     font-size: 23px;
   }
 }
+@media (max-width: 310px) {
+  .title-cards-quizzes-page h1 {
+    font-size: 20px;
+  }
+}
 
 @media (max-width: 650px) {
   .intranet-main-container {

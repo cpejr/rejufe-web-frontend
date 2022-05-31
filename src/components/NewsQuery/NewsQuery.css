@@ -1,14 +1,4 @@
-.ExcludedAssociate-container{
-  min-height: 109vh;
-}
-.ExcludedAssociate-field{
-  display: flex;
-  width: 100%;
-  padding: 25px;
-  flex-direction: column;
-  justify-content: center;
-}
-.title-ExcludedAssociate h1 {
+.intranet-home-menu h1 {
   margin-top: 20px;
   font-family: 'Roboto', sans-serif;
   font: normal 18pt Roboto;
@@ -18,15 +8,31 @@
   font-size: 2em;
 }
 
-.line-table-ExcludedAssociate {
+.line-table-intranet-home-adm-menu {
   width: 100%;
   border: 2px solid;
   margin-bottom: 2%;
   color: var(--secondary);
 }
 
+.intranet-home-all {
+  width: 80%;
+}
+
 @media (max-width: 540px) {
-  .title-ExcludedAssociate h1 {
+  .intranet-home-menu h1 {
     font-size: 1.3em;
+  }
+}
+
+@media (max-width: 1300px) {
+  .intranet-home-all {
+    width: 90%;
+  }
+}
+
+@media (max-width: 680px) {
+  .intranet-home-all {
+    width: 100%;
   }
 }
