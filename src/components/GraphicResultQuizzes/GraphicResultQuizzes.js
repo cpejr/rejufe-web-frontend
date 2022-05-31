@@ -3,22 +3,6 @@ import { Chart } from 'react-google-charts';
 import TableComponent from '../dashboard/dashboardComponent';
 import './GraphicResultQuizzes.css';
 
-export const options = {
-  title: 'Quizz',
-  fontSize: '0.5em',
-  chartArea: { width: '50%', height: '700px' },
-  vAxis: {
-    title: 'Opções',
-  },
-  height: '100px',
-  hAxis: {
-    textStyle: {
-      fontSize: '0.5em', // or the number you want
-    },
-
-  },
-};
-
 function GraphicQuizzes({
   toVote,
   quizz,
@@ -33,11 +17,9 @@ function GraphicQuizzes({
     '',
     'Faltam Votar',
   ];
-
   const user = [];
   const name = [];
   const votes = [];
-
   let index = 1;
 
   quizz?.forEach((option) => {
@@ -60,6 +42,23 @@ function GraphicQuizzes({
   const names = name?.map((value) => ({
     name: value,
   }));
+  // console.log(data);
+  let bars = [];
+  bars = data;
+  console.log(bars);
+
+  const handleHover = () => {
+    console.log('mouse over');
+  };
+
+  const options = {
+    title: 'Quizz',
+    chartArea: { width: '50%', height: '100%' },
+    vAxis: {
+      title: 'Opções',
+    },
+    onMouseOver: { handleHover },
+  };
 
   return (
     <div className="content-card-quizzes">
@@ -67,7 +66,7 @@ function GraphicQuizzes({
         <Chart
           chartType="BarChart"
           width="100%"
-          height="600px"
+          height="50%"
           data={data}
           options={options}
           legendToggle
