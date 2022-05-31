@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-.teste{
+.tagg-status-quizz{
   position: absolute;
   margin-left: 33%;
 }
@@ -36,6 +36,7 @@
   font-family: 'Roboto', sans-serif;
   font-size: large;
   font-weight: 200;
+  margin-right: 40%;
   align-items: center;
   display: flex;
   color: var(--fontColor2);
@@ -126,28 +127,37 @@
 }
 
 @media(max-width: 1163px){
-  .teste{
+  .tagg-status-quizz{
     margin-left: 28% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 45%;
   }
 }
 @media(max-width: 1067px){
-  .teste{
+  .tagg-status-quizz{
     margin-left: 23% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 60%;
   }
 }
 @media(max-width: 680px){
-  .teste{
+  .tagg-status-quizz{
     margin-left: 60% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 45%;
   }
 }
 
 @media(max-width: 523px){
-  .teste{
+  .tagg-status-quizz{
     margin-left: 55% ;
   }
 }
 @media(max-width: 455px){
-  .teste{
+  .tagg-status-quizz{
     margin-left: 50% ;
   }
   .title-card-quizzes p{
@@ -165,7 +175,7 @@
   .title-card-quizzes p{
     font-size: 0.9em;
   }
-  .teste{
+  .tagg-status-quizz{
     margin-left: 45% ;
   }
 }

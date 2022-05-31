@@ -16,7 +16,7 @@ export default function DateQuizzes({ status }) {
               )
               : (
                 <>
-                  {status === 'finish' ? (
+                  {status === 'finished' ? (
                     <div className="container-date-quizz-finish">
                       <h5>Finalizada</h5>
                     </div>

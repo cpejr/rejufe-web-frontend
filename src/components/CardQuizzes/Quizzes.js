@@ -25,8 +25,8 @@ function Quizzes({
   const cellFontProps = {
     sx: matches
       && {
-        display: 'none',
-      },
+      display: 'none',
+    },
   };
 
   useEffect(() => {
@@ -42,18 +42,18 @@ function Quizzes({
             {quizz.title}
           </p>
           {openingDate > dateQuizz ? (
-            <div className="teste">
+            <div className="tagg-status-quizz">
               <DateQuizzes status="init" />
             </div>
           ) : (
             <>
               <div />
               {closingDate < dateQuizz ? (
-                <div className="teste">
-                  <DateQuizzes status="finish" />
+                <div className="tagg-status-quizz">
+                  <DateQuizzes status="finished" />
                 </div>
               ) : (
-                <div className="teste">
+                <div className="tagg-status-quizz">
                   <DateQuizzes status="progress" />
                 </div>
               )}
