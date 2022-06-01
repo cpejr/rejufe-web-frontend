@@ -27,10 +27,16 @@
   cursor: pointer;
 }
 
+.tagg-status-quizz{
+  position: absolute;
+  margin-left: 33%;
+}
+
 .title-card-quizzes p {
   font-family: 'Roboto', sans-serif;
   font-size: large;
   font-weight: 200;
+  margin-right: 40%;
   align-items: center;
   display: flex;
   color: var(--fontColor2);
@@ -122,6 +128,7 @@
   border-color: var(--color2);
 }
 
+
 .unavaible-result {
   display: flex;
   flex-direction: column;
@@ -145,6 +152,60 @@
   .css-i4bv87-MuiSvgIcon-root {
     height: 1.4em !important;
     width: 1.4em !important;
+  }
+}
+
+@media(max-width: 1163px){
+  .tagg-status-quizz{
+    margin-left: 28% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 45%;
+  }
+}
+@media(max-width: 1067px){
+  .tagg-status-quizz{
+    margin-left: 23% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 60%;
+  }
+}
+@media(max-width: 680px){
+  .tagg-status-quizz{
+    margin-left: 60% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 45%;
+  }
+}
+
+@media(max-width: 523px){
+  .tagg-status-quizz{
+    margin-left: 55% ;
+  }
+}
+@media(max-width: 455px){
+  .tagg-status-quizz{
+    margin-left: 50% ;
+  }
+  .title-card-quizzes p{
+    font-size: 1.3em;
+  }
+}
+
+@media(max-width: 383px){
+  .title-card-quizzes p{
+    font-size: 1.2em;
+  }
+}
+
+@media(max-width: 300px){
+  .title-card-quizzes p{
+    font-size: 0.9em;
+  }
+  .tagg-status-quizz{
+    margin-left: 45% ;
   }
 }
 
