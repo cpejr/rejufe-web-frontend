@@ -24,7 +24,6 @@ function AdmRegistros() {
     const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
-      console.log(allAssociates);
       allAssociates.forEach((object) => {
         associateCode.push(object.sequential_Id);
         associateId.push(object._id);
