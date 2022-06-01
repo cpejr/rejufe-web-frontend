@@ -25,7 +25,7 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, select, height,
+  setDados, type, label, id, width, select, height, handleClick,
 }) {
   const [showPassword, setShowPassword] = useState();
   const { WindowWidth } = useWindowDimensions();
@@ -47,6 +47,11 @@ function StyledInput({
     const { value } = e.target;
     setDados(value, entrada);
   };
+  const handleKeypress = (e) => {
+    if (e.key === 'Enter') {
+      handleClick(e);
+    }
+  };
   return (
     <div className="styled-input-container">
       { WindowWidth > 1250
@@ -59,7 +64,6 @@ function StyledInput({
               },
             }}
             InputProps={{
-              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -96,6 +100,7 @@ function StyledInput({
             height={height}
             select={select}
             onChange={(e) => handleChange(e, id)}
+            onKeyPress={handleKeypress}
           />
         ) : WindowWidth > 690 ? (
           <CssTextField
@@ -106,7 +111,6 @@ function StyledInput({
               },
             }}
             InputProps={{
-              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -143,6 +147,7 @@ function StyledInput({
             height={height}
             select={select}
             onChange={(e) => handleChange(e, id)}
+            onKeyPress={handleKeypress}
           />
         ) : WindowWidth > 570 ? (
           <CssTextField
@@ -153,7 +158,6 @@ function StyledInput({
               },
             }}
             InputProps={{
-              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -190,6 +194,7 @@ function StyledInput({
             height={height}
             select={select}
             onChange={(e) => handleChange(e, id)}
+            onKeyPress={handleKeypress}
           />
         ) : WindowWidth > 420 ? (
           <CssTextField
@@ -200,7 +205,6 @@ function StyledInput({
               },
             }}
             InputProps={{
-              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -237,6 +241,7 @@ function StyledInput({
             height={height}
             select={select}
             onChange={(e) => handleChange(e, id)}
+            onKeyPress={handleKeypress}
           />
         ) : (
           <CssTextField
@@ -247,7 +252,6 @@ function StyledInput({
               },
             }}
             InputProps={{
-              // autoComplete: 'off',
               style: {
                 color: 'black',
                 padding: '0',
@@ -284,6 +288,7 @@ function StyledInput({
             height={height}
             select={select}
             onChange={(e) => handleChange(e, id)}
+            onKeyPress={handleKeypress}
           />
         )}
 

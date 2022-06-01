@@ -133,12 +133,6 @@ function Login() {
     setLoading(false);
   };
 
-  const handleKeypress = (e) => {
-    if (e.key === 'Enter') {
-      handleClick(e);
-    }
-  };
-
   return (
     <div
       className="container-login"
@@ -169,6 +163,7 @@ function Login() {
               height="6vh"
               dados={usuario}
               setDados={handleChange}
+              handleClick={handleClick}
             />
 
             <div className="Remember-Box">
