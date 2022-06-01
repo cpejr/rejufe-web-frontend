@@ -22,7 +22,7 @@ import IconButton from '@mui/material/IconButton';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import SearchIcon from '@mui/icons-material/Search';
 import TableFooter from '@mui/material/TableFooter';
-import { useMediaQuery } from '@mui/material/';
+import { useMediaQuery, CircularProgress } from '@mui/material/';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -33,7 +33,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -128,6 +128,7 @@ function TableComponent({
   print,
   printButton,
   route,
+  loading,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -358,7 +359,7 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {!loading && rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
@@ -499,6 +500,14 @@ function TableComponent({
           )}
         </TableBody>
       </Table>
+      {loading && (
+        <TableRow style={{
+          height: 53 * rowsPerPage, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}
+        >
+          <CircularProgress />
+        </TableRow>
+      )}
       <TableFooter {...footerProps}>
         {print ? (
           <TablePagination
