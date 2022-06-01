@@ -7,7 +7,13 @@ function createData(status, title, date, section, type) {
   };
 }
 
-async function getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, history, setLoading) {
+async function getAllAdministrationRecords(
+  setId,
+  setAllAdministrationRecords,
+  setNewsSequentialId,
+  history,
+  setLoading,
+) {
   setLoading(true);
   const auxNews = [];
   const newsId = [];

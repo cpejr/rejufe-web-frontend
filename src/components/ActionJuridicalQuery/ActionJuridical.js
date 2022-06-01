@@ -10,6 +10,7 @@ function ActionJuridical() {
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
+  const [loading, setLoading] = useState(false);
   const titles = [
     'Número',
     'Descrição',
@@ -28,6 +29,7 @@ function ActionJuridical() {
   }
 
   async function getAllActions() {
+    setLoading(true);
     const auxAction = [];
     const actionId = [];
     const archive1Code = [];
@@ -54,6 +56,7 @@ function ActionJuridical() {
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
       setUse(false);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -82,6 +85,7 @@ function ActionJuridical() {
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
+        loading={loading}
       />
     </div>
   );

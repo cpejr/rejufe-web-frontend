@@ -101,7 +101,7 @@ function ConsultaAssociados({
   titles, rows, id, order, edit, search, searchFile, print, loading,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(-1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
