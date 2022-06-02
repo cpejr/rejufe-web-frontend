@@ -29,7 +29,7 @@
 
 .tagg-status-quizz{
   position: absolute;
-  margin-left: 33%;
+  margin-left: 40%;
 }
 
 .title-card-quizzes p {
@@ -126,20 +126,56 @@
   border-color: var(--color2);
 }
 
-@media(max-width: 1163px){
+@media(max-width: 1316px){
   .tagg-status-quizz{
-    margin-left: 28% ;
+    margin-left: 38% ;
   }
   .title-card-quizzes p {
     margin-right: 45%;
   }
 }
-@media(max-width: 1067px){
+@media(max-width: 1218px){
   .tagg-status-quizz{
-    margin-left: 23% ;
+    margin-left: 35% ;
   }
-  .title-card-quizzes p {
-    margin-right: 60%;
+
+}
+@media(max-width: 1093px){
+  .tagg-status-quizz{
+    margin-left: 30% ;
+  }
+}
+
+@media(max-width: 989px){
+  .tagg-status-quizz{
+    margin-left: 28% ;
+  }
+}
+
+@media(max-width: 970px){
+  .tagg-status-quizz{
+    margin-left: 37% ;
+  }
+}
+
+@media(max-width: 917px){
+  .tagg-status-quizz{
+    margin-left: 34% ;
+  }
+}
+@media(max-width: 877px){
+  .tagg-status-quizz{
+    margin-left: 31% ;
+  }
+}
+@media(max-width: 842px){
+  .tagg-status-quizz{
+    margin-left: 27% ;
+  }
+}
+@media(max-width: 789px){
+  .tagg-status-quizz{
+    margin-left: 24% ;
   }
 }
 @media(max-width: 680px){
@@ -166,6 +202,9 @@
 }
 
 @media(max-width: 383px){
+  .tagg-status-quizz{
+    margin-left: 53% ;
+  }
   .title-card-quizzes p{
     font-size: 1.2em;
   }
@@ -198,4 +237,3 @@
     max-width: 200px;
   }
 }
-
