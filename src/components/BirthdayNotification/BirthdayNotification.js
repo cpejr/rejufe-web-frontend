@@ -34,10 +34,8 @@ export default function BirthdayNotificationModal() {
   async function getBirthdayUsers() {
     try {
       const response = await managerService.getTodayBirthday();
-      console.log(response);
       setBirthdayUsers(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter aniversariantes!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -46,17 +44,7 @@ export default function BirthdayNotificationModal() {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line
     getBirthdayUsers();
-    console.log('entrou');
-    // axios
-    //   .get('http://localhost:3333/usuario/getUsersByTodaysBirthday')
-    //   .then((response) => setBirthdayUsers(response))
-    //   .catch((error) => {
-    //     // eslint-disable-next-line
-    //     console.err(error);
-    //     setOpen(false);
-    //   });
   }, []);
 
   return (
@@ -64,40 +52,38 @@ export default function BirthdayNotificationModal() {
       open={open}
       onClose={handleClose}
     >
-      <div className="BirthdayModalBox">
-        <h1>Aniversariantes de hoje:</h1>
-        <div className="BirthdayCentralBox">
-
-          <div className="BirthdayAnimation">
+      <div className="birthday-modal-box">
+        <div className="birthday-modal-box-content">
+          <div className="birthday-animation">
             <LottieControl
-              width={70}
-              height={100}
+              width={120}
+              height={120}
             />
           </div>
-          <div className="UsersBirthday">
-            {(birthdaysUsers !== undefined && birthdaysUsers !== null)
-              && birthdaysUsers.data.map((users) => {
-                // eslint-disable-next-line
-                console.log(birthdaysUsers);
-                const { name, email } = users;
-                const phoneNumber = users.cell_phone_number;
-                return (
-                  <div className="UsersBirthdayine">
-                    <p>{name}</p>
-                    <p>{email}</p>
-                    <p>{phoneNumber}</p>
-                    {/* <button type="button" onClick={() => sendEmail(email)}>
-                      Enviar Email
-                    </button> */}
-                  </div>
-                );
-              })}
+          <div className="birthday-central-box">
+            <div className="birthday-central-box-title">
+              <h1>Aniversariantes de hoje:</h1>
+            </div>
+            <div className="users-birthday">
+              {(birthdaysUsers !== undefined && birthdaysUsers !== null)
+                && birthdaysUsers.data.map((users) => {
+                  const { name, email } = users;
+                  const phoneNumber = users.cell_phone_number;
+                  return (
+                    <div className="users-birthday-ine">
+                      <p>{name}</p>
+                      <p>{email}</p>
+                      <p>{phoneNumber}</p>
+                    </div>
+                  );
+                })}
+            </div>
+            <buttons>
+              <button type="button" onClick={sendEmail}>Enviar Email</button>
+              <button type="button" onClick={handleClose}>Fechar</button>
+            </buttons>
           </div>
         </div>
-        <buttons>
-          <button type="button" onClick={sendEmail}>Enviar Email</button>
-          <button type="button" onClick={handleClose}>Fechar</button>
-        </buttons>
       </div>
     </Modal>
   );

@@ -1,25 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap');
 
-.BirthdayModalBox {
+.birthday-modal-box {
   position: absolute;
   left: 10%;
   top: 20%;
-  height: 70%;
   width: 80%;
+  height: 60%;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 2vw;
-  padding: 5%;
   text-align: center;
 }
 
-.BirthdayModalBox buttons > button {
+.birthday-modal-box-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+}
+
+.birthday-central-box buttons > button {
   cursor: pointer;
   width: 12vw;
-  height: 100%;
   min-width: 120px;
   display: flex;
   align-items: center;
@@ -27,57 +33,107 @@
   border-radius: 0.8vw;
   background-color: var(--button);
   color: white;
-  padding: 1%;
+  padding: 2%;
   border: thin solid var(--button);
 }
 
-.BirthdayModalBox buttons > button + button {
-  margin-top: 1vh;
+.birthday-central-box buttons > button + button {
+  margin-left: 1vw;
 }
 
-.BirthdayModalBox > buttons {
+.birthday-central-box > buttons {
   height: 15%;
   min-height: 40px;
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3%;
+  margin-top: 2%;
 }
 
-.BirthdayAnimation {
-  min-width: 200px;
-  width: 35%;
+.birthday-animation {
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 6% 0 0;
+  border-radius: 2vw 0 0 2vw;
 }
 
-.BirthdayCentralBox {
+.birthday-central-box {
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   display: flex;
   width: 100%;
+  height: 100%;
+  padding: 3% ;
 }
 
-.UsersBirthday {
-  width: 60%;
+.users-birthday {
+  width: 100%;
 }
 
-.UsersBirthdayine {
+.users-birthday-ine {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 3%;
 }
 
-.UsersBirthdayine p {
+.users-birthday-ine p {
   font-family: 'Roboto', sans-serif;
-  margin-right: 5%;
+  color: var(--fontColor2);
   font-size: 1em;
 }
 
-.BirthdayModalBox h1 {
+.users-birthday-ine p + p {
+  margin-left: 5%;
+}
+
+.birthday-modal-box h1 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 200;
+  color: var(--fontColor2);
+  font-weight: 100;
   margin-bottom: 3%;
   font-size: 1.75em;
 }
+
+@media (max-width: 770px) {
+  .birthday-modal-box {
+    left: 5%;
+    width: 90%;
+  }
+  .birthday-animation {
+    width: 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .birthday-modal-box {
+    left: 0;
+    top: 25%;
+    width: 100%;
+    height: 50%;
+  }
+  .birthday-animation {
+    width: 35%;
+  }
+  .birthday-modal-box h1 {
+    font-size: 1.4em;
+  }
+  .birthday-central-box buttons > button {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 505px) {
+  .birthday-animation {
+    width: 5%;
+  }
+}
+
+
+
