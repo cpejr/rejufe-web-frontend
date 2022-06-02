@@ -113,7 +113,6 @@ function Quizzes({
         <div className="unavaible-result">
           <div className="line-table-registers" />
           <div className="unavaible-result-text">
-            <div className="line-table-registers" />
             <span><AccessTimeIcon /></span>
             Você já votou nessa enquete, resultado parcial indisponível no momento
           </div>
