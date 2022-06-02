@@ -43,11 +43,13 @@ function SingleFileUpload({
   }
 
   function getDownloads() {
+    console.log(field);
     try {
       managerService.download(archiveId).then((response) => {
         FileSaver.saveAs(response, field);
       });
     } catch (error) {
+      console.log('nem erro vem nessa bagaça');
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -86,7 +88,6 @@ function SingleFileUpload({
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
-
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
