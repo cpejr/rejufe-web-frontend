@@ -21,9 +21,9 @@ function AdmRegistrosContas() {
   const [fileId, setFileId] = useState();
   const [archive1Id, setArchive1Id] = useState();
 
-  function createData(date, title, description) {
+  function createData(title, date, description) {
     return {
-      date, title, description,
+      title, date, description,
     };
   }
 
@@ -39,8 +39,8 @@ function AdmRegistrosContas() {
       const allComunic = await managerService.getAccounts();
       allComunic.forEach((object) => {
         auxAccount.push(createData(
-          moment(object.date).add(1, 'days').format('DD-MM-YYYY'),
           object.title,
+          moment(object.date).add(1, 'days').format('DD-MM-YYYY'),
           object.description,
         ));
         if (object.pdf !== '') {

@@ -28,8 +28,6 @@ function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
   const classes = useStyles();
-  // eslint-disable-next-line no-unused-vars
-  const [actualFile, setActualFile] = useState();
   const [image, setImage] = useState();
 
   async function getImage() {
@@ -132,6 +130,9 @@ function SingleFileUpload({
                     Remover Arquivo
                   </Button>
                 </>
+              )}
+              {file === '' && (
+                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
               )}
               <div />
             </div>

@@ -38,7 +38,7 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
-import EditAccountModal from '../EditModal/EditAccountModal';
+import EditAccountModal from '../EditModal/EditAccount/EditAccountModal';
 import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {
@@ -406,7 +406,7 @@ function TableComponent({
                         <RemoveAccountModal setUse={setUse} id={accountId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditAccountModal setUse={setUse} id={accountId[index + (page * 10)]} account={row} archive1={actualArchive1[index + (page * 10)]} />
+                        <EditAccountModal setUse={setUse} id={accountId[index + (page * 10)]} account={row} archive1Id={actualArchive1[index + (page * 10)]} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (
