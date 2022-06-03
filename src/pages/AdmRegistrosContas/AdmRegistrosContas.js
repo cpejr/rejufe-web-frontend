@@ -68,8 +68,8 @@ function AdmRegistrosContas() {
 
   const titles = [
     '',
-    'Data',
     'Título',
+    'Data',
     'Descrição',
     'Anexo ',
   ];

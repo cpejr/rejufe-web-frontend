@@ -56,7 +56,8 @@ function SingleFileUpload({
       });
     }
   }
-
+  console.log(dados);
+  console.log(field);
   if (update === true) {
     useEffect(() => {
       if (field === 'photos' && file !== '' && file !== undefined) {
@@ -88,6 +89,7 @@ function SingleFileUpload({
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
+  console.log('kkkkkkk', file);
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
@@ -132,7 +134,7 @@ function SingleFileUpload({
                   </Button>
                 </>
               )}
-              {file === '' && (
+              {(file === '' || dados.pdf === '') && (
                 <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
               )}
               <div />
@@ -154,19 +156,6 @@ function SingleFileUpload({
               </Button>
             </div>
           )}
-          {dados.pdf && (
-            <div div className="file-upload-download-file">
-              <div className="register-news-align-test">
-                {file?.file?.path}
-                {' '}
-                <PictureAsPdfIcon />
-              </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
-                Remover Arquivo
-              </Button>
-            </div>
-          )}
-
         </div>
       </Grid>
     </Grid>
