@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import './modalEnquetes.css';
 import { createTheme, ThemeProvider } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FormInputs from '../formsInputs/registerQuizz';
 
 function getModalStyle() {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'stretch',
   },
-  paper: {
+  content: {
     position: 'absolute',
     width: '40%',
     backgroundColor: 'white',
@@ -71,7 +71,6 @@ const theme = createTheme({
         root: {
           color: '#264A6F',
           fontWeight: '500',
-          fontSize: '30',
         },
       },
     },
@@ -94,7 +93,7 @@ export default function ModalEnquete({ setNewQuizz }) {
 
   const body = (
     <ThemeProvider theme={theme}>
-      <div style={modalStyle} className={classes.paper}>
+      <div style={modalStyle} className={classes.content}>
         <div className="container-modal-quizz">
           <div className="exit-modal-quizz">
             <button
@@ -119,7 +118,7 @@ export default function ModalEnquete({ setNewQuizz }) {
               />
             </button>
           </div>
-          <FormInputs setNewQuizz={setNewQuizz} />
+          <FormInputs setNewQuizz={setNewQuizz} handleClose={handleClose} />
         </div>
       </div>
     </ThemeProvider>
@@ -132,7 +131,10 @@ export default function ModalEnquete({ setNewQuizz }) {
         type="button"
         onClick={handleOpen}
       >
-        <AddIcon />
+        <p>
+          Criar
+        </p>
+        <AddCircleOutlineIcon />
       </button>
       <Modal
         open={open}

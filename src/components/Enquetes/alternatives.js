@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CreateQuizz from './createQuizz';
 
 function Alternatives({
-  initialErrorState, dados, users, setError, setNewQuizz, voterSection,
+  initialErrorState, dados, users, setError, setNewQuizz, voterSection, handleClose,
 }) {
   const [inputs, setInputs] = useState([
     {
@@ -53,7 +53,7 @@ function Alternatives({
           <div className="empty-div-alternatives-modal-quizz" />
           <InputLabel
             shrink
-            sx={{ fontSize: 25 }}
+            sx={{ fontSize: 22 }}
             className="input-forms-create-quizz"
           >
             {input.name}
@@ -121,6 +121,7 @@ function Alternatives({
         inputs={inputs}
         setNewQuizz={setNewQuizz}
         voterSection={voterSection}
+        handleClose={handleClose}
       />
     </div>
   );
