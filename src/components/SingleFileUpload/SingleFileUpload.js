@@ -5,11 +5,11 @@ import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@mui/material/Button';
+// import axios from 'axios';
 import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
-
 const useStyles = makeStyles((theme) => ({
   dropzone: {
     border: `2px dashed ${theme.palette.primary.main}`,
@@ -23,16 +23,15 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '1%',
     marginRight: '4%',
     marginLeft: '4%',
-    fontFamily: 'Roboto',
   },
 }));
-
 function SingleFileUpload({
   id, fileType, dados, file, setDados, label, update,
 }) {
   const classes = useStyles();
   // eslint-disable-next-line no-unused-vars
   const [actualFile, setActualFile] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState();
 
   async function getFile() {
@@ -40,38 +39,38 @@ function SingleFileUpload({
       const response = await managerService.getFileById(file);
       setActualFile(response);
     } catch (error) {
-      toast.error('Não foi possível obter arquivo!', {
+      console.log(error);
+      toast.error('Não foi possível obter arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
   }
-
   async function getImage() {
     try {
       const response = await managerService.getImageById(file);
       setImage(response);
     } catch (error) {
+      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
   }
-
   function getDownloads() {
     try {
       managerService.download(file).then((response) => {
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
+      console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
   }
-
   if (update === true) {
     useEffect(() => {
       if (id === 'photos' && file !== '' && file !== undefined) {
@@ -82,7 +81,6 @@ function SingleFileUpload({
       }
     }, [file]);
   }
-
   const onDrop = useCallback((accFiles, rejFiles) => {
     if (rejFiles.length > 0) {
       toast.warn('Arquivo Inválido', {
@@ -100,16 +98,14 @@ function SingleFileUpload({
     }
     setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
   }, [dados]);
-
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
-
   return (
-    <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1.5%', fontSize: 'Roboto' }}>
-      <Grid item style={{ width: '75%' }}>
+    <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
+      <Grid item>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
@@ -153,13 +149,7 @@ function SingleFileUpload({
                   <div />
                 </>
               )}
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%', fontSize: 'Roboto',
-              }}
-              onClick={() => setDados(undefined, id)}
-            >
+            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados(undefined, id)}>
               Remover Arquivo
             </Button>
           </div>
@@ -168,5 +158,4 @@ function SingleFileUpload({
     </Grid>
   );
 }
-
 export default SingleFileUpload;

@@ -6,10 +6,6 @@ function createData(status, title, date, section, type) {
     status, title, date, section, type,
   };
 }
-
-<<<<<<< HEAD
-async function getAllAdministrationRecords(setId, setAllAdministrationRecords, setSequentialId, history) {
-=======
 async function getAllAdministrationRecords(
   setId,
   setAllAdministrationRecords,
@@ -18,7 +14,6 @@ async function getAllAdministrationRecords(
   setLoading,
 ) {
   setLoading(true);
->>>>>>> DEV
   const auxNews = [];
   const newsId = [];
   const newsCode = [];

@@ -90,7 +90,7 @@ function UpdateNews({
         <div />
       )}
       {type === 'file' && (
-        <SingleFileUpload id={id} fileType={fileType} dados={dados} file={dados[`${id}`]} setDados={setDados} label={label} update />
+        <SingleFileUpload id={id} field="archive_1" fileType={fileType} dados={dados} file={dados[`${id}`]} setDados={setDados} label={label} update />
       )}
     </div>
   );

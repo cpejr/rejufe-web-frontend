@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './AdmRegistrosNoticias.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
-import TableComponent from '../../components/dashboard/dashboardComponent';
 import getAllAdministrationRecords from '../../components/AdmRegistrosNoticias/getAllAdministrationRecords';
+import TableComponent from '../../components/dashboard/dashboardComponent';
 
 const titles = [
   ' ',
