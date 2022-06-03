@@ -39,7 +39,7 @@ function SingleFileUpload({
       const response = await managerService.getFileById(file);
       setActualFile(response);
     } catch (error) {
-      toast.error('Não foi possível obter arquivo', {
+      toast.error('Não foi possível obter arquivo!', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
