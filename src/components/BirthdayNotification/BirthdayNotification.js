@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './BirthdayNotification.css';
 import '../../global.css';
 import Modal from '@material-ui/core/Modal';
@@ -9,8 +9,7 @@ import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
 
-export default function BirthdayNotificationModal() {
-  const [birthdaysUsers, setBirthdayUsers] = useState();
+export default function BirthdayNotificationModal({ birthdaysUsers }) {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
@@ -30,22 +29,6 @@ export default function BirthdayNotificationModal() {
       setOpen(false);
     }
   }
-
-  async function getBirthdayUsers() {
-    try {
-      const response = await managerService.getTodayBirthday();
-      setBirthdayUsers(response);
-    } catch (error) {
-      toast.error('Não foi possível obter aniversariantes!!', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
-
-  useEffect(() => {
-    getBirthdayUsers();
-  }, []);
 
   return (
     <Modal
@@ -79,7 +62,15 @@ export default function BirthdayNotificationModal() {
                 })}
             </div>
             <buttons>
-              <button type="button" onClick={sendEmail}>Enviar Email</button>
+              <button
+                type="button"
+                onClick={() => {
+                  sendEmail();
+                  handleClose();
+                }}
+              >
+                Enviar Email
+              </button>
               <button type="button" onClick={handleClose}>Fechar</button>
             </buttons>
           </div>
