@@ -25,6 +25,7 @@ function compare(a, b) {
 }
 
 async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
+  setLoading(true);
   const auxAssociate = [];
   const associateId = [];
   try {
@@ -49,6 +50,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);
+    setLoading(false);
     routingFunction();
   }
 }

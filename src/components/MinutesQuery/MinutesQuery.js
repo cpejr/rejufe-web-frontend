@@ -10,6 +10,8 @@ function MinuteQuery() {
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
+  const [loading, setLoading] = useState(false);
+
   const titles = [
     '',
     'Número',
@@ -29,6 +31,7 @@ function MinuteQuery() {
   }
 
   async function getAllMinutes() {
+    setLoading(true);
     const auxMinute = [];
     const minuteId = [];
     const archive1Code = [];
@@ -55,6 +58,7 @@ function MinuteQuery() {
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
       setUse(false);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -83,6 +87,7 @@ function MinuteQuery() {
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
+        loading={loading}
         searchMinutes
         printButton
         route="/imprimir-atas"
