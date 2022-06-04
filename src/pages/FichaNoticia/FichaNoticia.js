@@ -61,17 +61,17 @@ function FichaNoticia() {
     <body className="forms-minutes-body">
       <div className="forms-minutes-Container">
         <div className="forms-minutes-Container">
-          <div className="header-print-minutes-icon">
+          <div className="header-print-associates-icon">
             <button
               type="button"
-              className="print-minutes-button"
+              className="print-associates-button"
             >
               <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
               Imprimir
             </button>
             <button
               type="button"
-              className="return-print-minutes-button"
+              className="return-print-associates-button"
               onClick={handleWindowClose}
             >
               <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
