@@ -352,7 +352,6 @@ export const download = async (id) => {
   return response.data;
 };
 
-<<<<<<< HEAD
 export const sendBirthdayEmail = async () => {
   const response = await requesterService.sendBirthdayEmail();
   if (isFailureStatus(response)) {
@@ -367,7 +366,8 @@ export const getTodayBirthday = async () => {
     throw new Error('Problem with api response');
   }
   return response;
-=======
+};
+
 export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
@@ -385,5 +385,4 @@ export const contactUs = async (body) => {
   const response = await requesterService.contactUs(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
->>>>>>> DEV
 };
