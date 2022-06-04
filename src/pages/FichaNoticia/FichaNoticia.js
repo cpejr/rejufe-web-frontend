@@ -13,80 +13,15 @@ import getNewsById from '../../components/getNewsById/getNewsById';
 import * as managerService from '../../services/manager/managerService';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class ComponentToPrint extends React.Component {
-  render() {
-    const { news } = this.props;
+// class ComponentToPrint extends React.Component {
+//   render() {
+//     const { news } = this.props;
 
-    return (
-      <div className="forms-minutes-Container">
-        <table className="forms-minutes-table-container">
-          <div className="forms-minutes-grid-container">
-            <table width="100%">
-              <tr>
-                <td className="forms-minutes-td-container">
-                  <table className="forms-minutes-t-container">
-                    {fichaNews?.map((ficha) => (
-                      <table className="forms-minutes-t-container">
-                        <table width="100%">
-                          <div className="forms-minutes-title">
-                            <td className="forms-minutes-td-title">
-                              {ficha.title}
-                            </td>
-                          </div>
-                        </table>
-                        {ficha?.lines.map((line) => (
-                          <table width="100%">
-                            <tr>
-                              {line?.items.map((item) => (
-                                <div className="forms-minutes-td-box">
-                                  {item.label === 'Imagem' ? (
-                                    <>
-                                      <span className="forms-minutes-subtitle">
-                                        {' '}
-                                        {item.label}
-                                        {' '}
-                                      </span>
-                                      <br />
-                                    </>
-                                  ) : (
-                                    <>
-                                      <span className="forms-minutes-subtitle">
-                                        {' '}
-                                        {item.label}
-                                        {' '}
-                                      </span>
-                                      <br />
-                                      <span className="forms-minutes-value">
-                                        {' '}
-                                        {news[item.id]}
-                                        {' '}
-                                      </span>
+//     return (
 
-                                    </>
-                                  )}
-                                </div>
-                              ))}
-                            </tr>
-                          </table>
-                        ))}
-                      </table>
-                    ))}
-                    <table width="100%">
-                      <tr>
-                        <td className="forms-minutes-td-title" height="25px" />
-                      </tr>
-                    </table>
-                  </table>
-                  <table />
-                </td>
-              </tr>
-            </table>
-          </div>
-        </table>
-      </div>
-    );
-  }
-}
+//     );
+//   }
+// }
 
 function FichaNoticia() {
   const { search } = useLocation();
@@ -115,36 +50,102 @@ function FichaNoticia() {
     window.close('/imprimir');
   };
 
-  const tableNews = useRef(null);
-  console.log('🚀 ~ file: FichaAtas.js ~ line 88 ~ FichaMinutes ~ tableMinutes', tableNews);
+  // const tableNews = useRef(null);
+  // console.log('🚀 ~ file: FichaAtas.js ~ line 88 ~ FichaMinutes ~ tableMinutes', tableNews);
 
-  const handlePrint = useReactToPrint({
-    content: () => tableNews?.current,
-  });
+  // const handlePrint = useReactToPrint({
+  //   content: () => tableNews?.current,
+  // });
 
   return (
     <body className="forms-minutes-body">
       <div className="forms-minutes-Container">
-        <div className="header-print-minutes-icon">
-          <button
-            type="button"
-            className="print-minutes-button"
-            onClick={handlePrint}
-          >
-            <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
-            Imprimir
-          </button>
-          <button
-            type="button"
-            className="return-print-minutes-button"
-            onClick={handleWindowClose}
-          >
-            <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
-            Fechar
-          </button>
-        </div>
-        <div className="print-associates-table">
-          <ComponentToPrint news={news} ref={tableNews} />
+        <div className="forms-minutes-Container">
+          <div className="header-print-minutes-icon">
+            <button
+              type="button"
+              className="print-minutes-button"
+            >
+              <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
+              Imprimir
+            </button>
+            <button
+              type="button"
+              className="return-print-minutes-button"
+              onClick={handleWindowClose}
+            >
+              <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
+              Fechar
+            </button>
+          </div>
+          <div className="print-associates-table">
+            <div>
+              <table className="forms-minutes-table-container">
+                <div className="forms-minutes-grid-container">
+                  <table width="100%">
+                    <tr>
+                      <td className="forms-minutes-td-container">
+                        <table className="forms-minutes-t-container">
+                          {fichaNews?.map((ficha) => (
+                            <table className="forms-minutes-t-container">
+                              <table width="100%">
+                                <div className="forms-minutes-title">
+                                  <td className="forms-minutes-td-title">
+                                    {ficha.title}
+                                  </td>
+                                </div>
+                              </table>
+                              {ficha?.lines.map((line) => (
+                                <table width="100%">
+                                  <tr>
+                                    {line?.items.map((item) => (
+                                      <div className="forms-minutes-td-box">
+                                        {item.label === 'Imagem' ? (
+                                          <>
+                                            <span className="forms-minutes-subtitle">
+                                              {' '}
+                                              {item.label}
+                                              {' '}
+                                            </span>
+                                            <br />
+                                          </>
+                                        ) : (
+                                          <>
+                                            <span className="forms-minutes-subtitle">
+                                              {' '}
+                                              {item.label}
+                                              {' '}
+                                            </span>
+                                            <br />
+                                            <span className="forms-minutes-value">
+                                              {' '}
+                                              {news[item.id]}
+                                              {' '}
+                                            </span>
+
+                                          </>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </tr>
+                                </table>
+                              ))}
+                            </table>
+                          ))}
+                          <table width="100%">
+                            <tr>
+                              <td className="forms-minutes-td-title" height="25px" />
+                            </tr>
+                          </table>
+                        </table>
+                        <table />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </body>
