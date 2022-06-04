@@ -333,9 +333,7 @@ export const getActions = async (field, filter) => {
 };
 
 export const download = async (id) => {
-  console.log('top');
   const response = await requesterService.download(id);
-  console.log('🚀 ~ file: managerService.js ~ line 338 ~ download ~ response', response);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
