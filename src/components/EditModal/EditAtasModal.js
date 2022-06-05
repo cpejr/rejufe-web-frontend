@@ -15,6 +15,7 @@ export default function EditMinutesModal({
   id, minutes, setUse, archive1Id, archive2Id,
 }) {
   console.log(minutes);
+  const [dados, setDados] = useState(minutes);
   const [minutesNumber, setMinutesNumber] = useState(minutes.number);
   const [minutesType, setMinutesType] = useState(minutes.type);
   const [minutesDescription, setMinutesDescription] = useState(minutes.description);
@@ -32,10 +33,10 @@ export default function EditMinutesModal({
     setMinutesDescription(event.target.value);
   }
 
-  const title = [
-    'Tipo:',
-    'Número',
-    'Descrição',
+  const titles = [
+    { label: 'Tipo', field: 'select' },
+    { label: 'Número:', field: 'input' },
+    { label: 'Descrição:', field: 'input' },
   ];
 
   async function handleSubmit() {
@@ -94,7 +95,13 @@ export default function EditMinutesModal({
         </div>
         <input className="EditMinutesModal-Input" placeholder="" require value={minutesDescription} onChange={handleDescriptionChange} />
       </div>
-      <EditModelInputs title={title} archive1Id={archive1Id} archive2Id={archive2Id} />
+      <EditModelInputs
+        titles={titles}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+        dados={dados}
+        setDados={setDados}
+      />
       <button
         className="EditMinutesModal-ButtonConfirm"
         onClick={(e) => {
