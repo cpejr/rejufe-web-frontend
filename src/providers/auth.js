@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  useEffect(async () => {
+  async function login() {
     if (user?.acessToken === '' || !user?.acessToken) {
       const getStorage = JSON.parse(localStorage.getItem('user'));
       if (getStorage?.id) {
@@ -29,6 +29,10 @@ export function AuthProvider({ children }) {
       }
     }
     setLoading(false);
+  }
+
+  useEffect(() => {
+    login();
   }, [user]);
 
   const [token, setToken] = useState();

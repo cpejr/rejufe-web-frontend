@@ -35,6 +35,7 @@ function AlteracoesExclusoesMinutes() {
     const archive2Code = [];
     try {
       const allMinutes = await managerService.getMinute();
+      console.log(allMinutes);
       allMinutes.forEach((object) => {
         auxMinute.push(createData(
           object.type,
