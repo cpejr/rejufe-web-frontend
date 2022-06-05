@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
@@ -28,19 +28,19 @@ function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
   const classes = useStyles();
-  const [image, setImage] = useState();
+  // const [image, setImage] = useState();
 
-  async function getImage() {
-    try {
-      const response = await managerService.getImageById(archiveId);
-      setImage(response);
-    } catch (error) {
-      toast.error('Não foi possível obter imagem', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
+  // async function getImage() {
+  //   try {
+  //     const response = await managerService.getImageById(archiveId);
+  //     setImage(response);
+  //   } catch (error) {
+  //     toast.error('Não foi possível obter imagem', {
+  //       position: toast.POSITION.BOTTOM_RIGHT,
+  //       autoClose: 5000,
+  //     });
+  //   }
+  // }
 
   function getDownloads() {
     try {
@@ -58,7 +58,7 @@ function SingleFileUpload({
   if (update === true) {
     useEffect(() => {
       if (field === 'photos' && file !== '' && file !== undefined) {
-        getImage();
+        // getImage();
       }
     }, [file, archiveId]);
   }
@@ -94,7 +94,8 @@ function SingleFileUpload({
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
             {update === true && label === 'Imagem' && file !== '' ? (
-              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
+              // <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
+              <h1>Obter imagem</h1>
             ) : (
               <p>
                 Arraste e solte a/o
