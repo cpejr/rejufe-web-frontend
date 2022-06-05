@@ -111,7 +111,7 @@ function FichaMinutes() {
             Fechar
           </button>
         </div>
-        <div className="print-associates-table">
+        <div className="print-minutes-table">
           <ComponentToPrint minutes={minutes} ref={tableMinutes} />
         </div>
       </div>
