@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
@@ -12,11 +12,12 @@ import EditModelInputs from './EditModalInputs';
 import './EditAtasModal.css';
 
 export default function EditMinutesModal({
-  id, minutes, setUse, archive1Id, archive2Id,
+  id, minutes, setUse, archive1Id, archive2Id, page,
 }) {
   console.log(minutes);
   const [dados, setDados] = useState(minutes);
   const history = useHistory();
+  const formData = new FormData();
 
   const titles = [
     { label: 'Tipo', field: 'select' },
@@ -25,21 +26,34 @@ export default function EditMinutesModal({
   ];
 
   async function handleSubmit() {
+    Object.entries(dados).forEach((dado) => {
+      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
+      }
+    });
+
     try {
-      await managerService.updateMinute(
-        id,
-        { number: minutesNumber, type: minutesType, description: minutesDescription },
-      );
+      await managerService.updateMinute(id, formData);
       toast.success('Dados editados!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
       setUse(true);
     } catch (error) {
-      console.error(error);
       history.push('/NotFound');
+      toast.error('Não foi possível fazer uma edição', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
+
+  useEffect(() => {
+    setDados(minutes);
+  }, [page]);
 
   const [open, setOpen] = useState(false);
 
