@@ -14,6 +14,7 @@ function ValidarSocio() {
   const [data, setAllData] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
@@ -24,6 +25,7 @@ function ValidarSocio() {
   }
 
   async function getAllAssociates() {
+    setLoading(true);
     const auxData = [];
     const auxAssociate = [];
     const associateId = [];
@@ -39,10 +41,12 @@ function ValidarSocio() {
       setAllAssociates(auxAssociate);
       setAllData(auxData);
       setUse(false);
+      setLoading(false);
     } catch (error) {
       history.push('/NotFound');
       // eslint-disable-next-line no-console
       console.warn(error);
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -65,7 +69,15 @@ function ValidarSocio() {
           </h1>
         </div>
         <div className="line-table-validateAssociate" />
-        <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
+        <TableComponent
+          setUse={setUse}
+          dados={data}
+          associateId={id}
+          rows={associates}
+          titles={titles}
+          validate
+          loading={loading}
+        />
       </div>
     </div>
   );

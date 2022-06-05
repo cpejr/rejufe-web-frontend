@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import { AppBar, Toolbar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -21,7 +21,10 @@ import simbolo from '../../images/simbolo.png';
 import { useAuth } from '../../providers/auth';
 
 function Header(props) {
+  const { user } = useAuth();
   const [className, setClassName] = useState('header-iconbutton-content');
+  const [typeUser, setTypeUser] = useState('header-iconbutton');
+  const [toolbar, setHeaderToolbar] = useState('header-toolbar');
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -32,6 +35,13 @@ function Header(props) {
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
+
+  useEffect(() => {
+    if (user?.type === 'usuario') {
+      setTypeUser('header-iconbutton-user');
+      setHeaderToolbar('header-toolbar-user');
+    }
+  }, []);
 
   function handleClick(pathName) {
     history.push(pathName);
@@ -213,7 +223,7 @@ function Header(props) {
   return (
     <>
       <AppBar position="static" className="header-appbar">
-        <Toolbar className="header-toolbar">
+        <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
             onClick={() => handleClick('/login')}
@@ -221,7 +231,7 @@ function Header(props) {
           >
             Sair
           </button>
-          {pages?.map((listItem) => (
+          {user?.type === 'administrador' && pages?.map((listItem) => (
             <div className="header-dropdown">
               <button className="header-dropbtn" type="button">{listItem.text}</button>
               <div className="header-dropdown-content">
@@ -245,7 +255,7 @@ function Header(props) {
             <img src={simbolo} alt="logo" />
           </div>
           <div
-            className="header-iconbutton"
+            className={typeUser}
             onClick={handleClassName}
           >
             <IconButton
@@ -276,7 +286,7 @@ function Header(props) {
               ) : (
                 null
               )}
-              {open && pages?.map((item) => (
+              {user?.type === 'administrador' && open && pages?.map((item) => (
                 <SubMenu item={item} />
               ))}
               {open === true ? (
