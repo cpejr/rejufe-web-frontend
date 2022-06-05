@@ -34,18 +34,6 @@ function SingleFileUpload({
   // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState();
 
-  async function getFile() {
-    try {
-      const response = await managerService.getFileById(file);
-      setActualFile(response);
-    } catch (error) {
-      console.log(error);
-      toast.error('Não foi possível obter arquivo', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
-    }
-  }
   async function getImage() {
     try {
       const response = await managerService.getImageById(file);
@@ -76,9 +64,6 @@ function SingleFileUpload({
       if (id === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-      if ((id === 'archive_1' || id === 'archive_2') && file !== undefined) {
-        getFile();
-      }
     }, [file]);
   }
   const onDrop = useCallback((accFiles, rejFiles) => {
@@ -98,6 +83,7 @@ function SingleFileUpload({
     }
     setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
   }, [dados]);
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: [`${fileType}`],
@@ -149,7 +135,7 @@ function SingleFileUpload({
                   <div />
                 </>
               )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados(undefined, id)}>
+            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados('', id)}>
               Remover Arquivo
             </Button>
           </div>
