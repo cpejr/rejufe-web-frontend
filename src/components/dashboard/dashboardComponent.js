@@ -408,7 +408,7 @@ function TableComponent({
                         <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} minutes={row} />
+                        <EditMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} minutes={row} archive1Id={archive1Id} archive2Id={archive2Id} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (

@@ -8,9 +8,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
+import EditModelInputs from './EditModalInputs';
 import './EditAtasModal.css';
 
-export default function EditMinutesModal({ id, minutes, setUse }) {
+export default function EditMinutesModal({
+  id, minutes, setUse, archive1Id, archive2Id,
+}) {
+  console.log(minutes);
   const [minutesNumber, setMinutesNumber] = useState(minutes.number);
   const [minutesType, setMinutesType] = useState(minutes.type);
   const [minutesDescription, setMinutesDescription] = useState(minutes.description);
@@ -27,6 +31,12 @@ export default function EditMinutesModal({ id, minutes, setUse }) {
   async function handleDescriptionChange(event) {
     setMinutesDescription(event.target.value);
   }
+
+  const title = [
+    'Tipo:',
+    'Número',
+    'Descrição',
+  ];
 
   async function handleSubmit() {
     try {
@@ -84,6 +94,7 @@ export default function EditMinutesModal({ id, minutes, setUse }) {
         </div>
         <input className="EditMinutesModal-Input" placeholder="" require value={minutesDescription} onChange={handleDescriptionChange} />
       </div>
+      <EditModelInputs title={title} archive1Id={archive1Id} archive2Id={archive2Id} />
       <button
         className="EditMinutesModal-ButtonConfirm"
         onClick={(e) => {
