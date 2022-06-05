@@ -16,22 +16,7 @@ export default function EditMinutesModal({
 }) {
   console.log(minutes);
   const [dados, setDados] = useState(minutes);
-  const [minutesNumber, setMinutesNumber] = useState(minutes.number);
-  const [minutesType, setMinutesType] = useState(minutes.type);
-  const [minutesDescription, setMinutesDescription] = useState(minutes.description);
   const history = useHistory();
-
-  async function handleNumberChange(event) {
-    setMinutesNumber(event.target.value);
-  }
-
-  async function handleTypeChange(event) {
-    setMinutesType(event.target.value);
-  }
-
-  async function handleDescriptionChange(event) {
-    setMinutesDescription(event.target.value);
-  }
 
   const titles = [
     { label: 'Tipo', field: 'select' },
@@ -70,30 +55,6 @@ export default function EditMinutesModal({
     <Box className="EditMinutesModal-ContainerModal">
       <div role="button" tabIndex={0} className="EditMinutesModal-cancel" onClick={handleClose}>
         <CancelIcon />
-      </div>
-      <div className="EditMinutesModal-Title">
-        <p>Editar dados</p>
-      </div>
-      <div className="EditMinutesModal-field">
-        <div className="EditMinutesModal-text">
-          Status:
-        </div>
-        <select className="EditMinutesModal-Select" placeholder="" require value={minutesType} onChange={handleTypeChange}>
-          <option value="ATAS">ATAS</option>
-          <option value="EDITAL">EDITAL</option>
-        </select>
-      </div>
-      <div className="EditMinutesModal-field">
-        <div className="EditMinutesModal-text">
-          Número:
-        </div>
-        <input className="EditMinutesModal-Input" placeholder="" require value={minutesNumber} onChange={handleNumberChange} />
-      </div>
-      <div className="EditMinutesModal-field">
-        <div className="EditMinutesModal-text">
-          Descrição:
-        </div>
-        <input className="EditMinutesModal-Input" placeholder="" require value={minutesDescription} onChange={handleDescriptionChange} />
       </div>
       <EditModelInputs
         titles={titles}
