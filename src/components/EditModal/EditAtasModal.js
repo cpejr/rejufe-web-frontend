@@ -3,18 +3,59 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from '@material-ui/core/Modal';
-import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
+import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import EditModelInputs from './EditModalInputs';
 import './EditAtasModal.css';
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'stretch',
+  },
+  content: {
+    position: 'absolute',
+    width: '40%',
+    backgroundColor: 'white',
+    maxHeight: '95%',
+    borderRadius: '8px',
+    boxShadow: theme.palette.color4,
+    padding: '1% 1%',
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media (max-width:900px)']: {
+      width: '60%',
+    },
+    ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
+      width: '80%',
+    },
+    ['@media (max-width:400px)']: { // eslint-disable-line no-useless-computed-key
+      width: '100%',
+    },
+  },
+
+}));
 
 export default function EditMinutesModal({
   id, minutes, setUse, archive1Id, archive2Id, page,
 }) {
   console.log(minutes);
+  const classes = useStyles();
+  const [modalStyle] = useState(getModalStyle);
   const [dados, setDados] = useState(minutes);
   const history = useHistory();
   const formData = new FormData();
@@ -66,29 +107,34 @@ export default function EditMinutesModal({
   };
 
   const body = (
-    <Box className="EditMinutesModal-ContainerModal">
-      <div role="button" tabIndex={0} className="EditMinutesModal-cancel" onClick={handleClose}>
-        <CancelIcon />
+    <div style={modalStyle} className={classes.content}>
+      <div className="EditMinutesModal-ContainerModal">
+        <div role="button" tabIndex={0} className="EditMinutesModal-cancel" onClick={handleClose}>
+          <CancelIcon />
+        </div>
+        <div className="EditModal-minutes-title">
+          <p>Editar dados</p>
+        </div>
+        <EditModelInputs
+          titles={titles}
+          archive1Id={archive1Id}
+          archive2Id={archive2Id}
+          dados={dados}
+          setDados={setDados}
+        />
+        <button
+          className="EditMinutesModal-ButtonConfirm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit();
+            handleClose();
+          }}
+          type="button"
+        >
+          Confirmar
+        </button>
       </div>
-      <EditModelInputs
-        titles={titles}
-        archive1Id={archive1Id}
-        archive2Id={archive2Id}
-        dados={dados}
-        setDados={setDados}
-      />
-      <button
-        className="EditMinutesModal-ButtonConfirm"
-        onClick={(e) => {
-          e.preventDefault();
-          handleSubmit();
-          handleClose();
-        }}
-        type="button"
-      >
-        Confirmar
-      </button>
-    </Box>
+    </div>
   );
   return (
     <div>
