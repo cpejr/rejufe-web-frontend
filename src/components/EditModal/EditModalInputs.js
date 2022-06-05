@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 import './EditModalInputs.css';
 
 function EditModelInputs({
-  id, dados, setDados, archive1Id, archive2Id, titles,
+  id, dados, setDados, archive1Id, archive2Id, titles, select,
 }) {
+  const [inputDados, setInputDados] = useState(Object.entries(dados));
+
+  console.log(inputDados);
   function handleChange(value, field) {
+    console.log(field);
     setDados({ ...dados, [field]: value });
   }
 
-  const inputDados = Object.values(dados);
+  useEffect(() => {
+    setInputDados(Object.entries(dados));
+  }, [dados]);
 
   return (
     <div className="EditModal-inputs">
@@ -20,7 +26,7 @@ function EditModelInputs({
               <div className="EditModal-model-text">
                 {title?.label}
               </div>
-              <input className="EditModal-model-input" placeholder="" require value={inputDados[index]} onChange={(e) => handleChange(e.target.value, `${inputDados[index]}`)} />
+              <input className="EditModal-model-input" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, `${inputDados[index][0]}`)} />
             </div>
           )}
           {title?.field === 'select' && (
@@ -28,10 +34,10 @@ function EditModelInputs({
               <div className="EditModal-model-text">
                 {title?.label}
               </div>
-              <select className="EditModal-model-select" placeholder="" require value={inputDados[index]} onChange={handleChange}>
-                <option value="REQUERIMENTOS ADMINISTRATIVOS">REQUERIMENTOS ADMINISTRATIVOS</option>
-                <option value="PETIÇÕES INICIAIS">PETIÇÕES INICIAIS</option>
-                <option value="JURISPRUDÊNCIA">JURISPRUDÊNCIA</option>
+              <select className="EditModal-model-select" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, `${inputDados[index][0]}`)}>
+                {select?.map((selected) => (
+                  <option value={selected}>{selected}</option>
+                ))}
               </select>
             </div>
           )}

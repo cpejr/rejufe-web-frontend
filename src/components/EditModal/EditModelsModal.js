@@ -64,6 +64,12 @@ export default function EditModel({
     { label: 'Tipo:', field: 'select' },
   ];
 
+  const select = [
+    'REQUERIMENTOS ADMINISTRATIVOS',
+    'PETIÇÕES INICIAIS',
+    'JURISPRUDÊNCIA',
+  ];
+
   async function handleSubmit() {
     Object.entries(dados).forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
@@ -119,6 +125,7 @@ export default function EditModel({
           archive1Id={archive1Id}
           archive2Id={archive2Id}
           titles={titles}
+          select={select}
         />
         <button
           className="EditModal-model-buttonConfirm"
