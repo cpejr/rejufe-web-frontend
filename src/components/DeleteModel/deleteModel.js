@@ -4,13 +4,18 @@ import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
 
-function DeleteModel({ setOpen, id }) {
+function DeleteModel({ setOpen, id, setUse }) {
   const handleClose = () => {
     setOpen(false);
   };
   async function deleteModelById() {
     try {
       await managerService.deleteModel(id);
+      toast.success('Modelo deletado com sucesso', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+      setUse(true);
     } catch (error) {
       toast.error('Não foi possível deletar modelos', {
         position: toast.POSITION.TOP_RIGHT,

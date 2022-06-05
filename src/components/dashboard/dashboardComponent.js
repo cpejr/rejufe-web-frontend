@@ -468,7 +468,7 @@ function TableComponent({
                   && (
                     <TableCell {...cellFontProps} align="center">
                       <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} />
+                        <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} setUse={setUse} />
                         <EditModel
                           id={modelsSequentialId[index + (page * 10)]}
                           model={row}

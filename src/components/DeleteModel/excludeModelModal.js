@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 toast.configure();
 
-export default function ModalAdminExclude({ id }) {
+export default function ModalAdminExclude({ id, setUse }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -95,7 +95,7 @@ export default function ModalAdminExclude({ id }) {
           <h1>Voce deseja deletar esse modelo?</h1>
         </div>
         <div className="user-module-exclude-buttons">
-          <DeleteModel id={id} setOpen={setOpen} />
+          <DeleteModel id={id} setOpen={setOpen} setUse={setUse} />
           <button
             className="cancel-user-module-exclude"
             type="button"
