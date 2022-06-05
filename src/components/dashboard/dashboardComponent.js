@@ -32,7 +32,7 @@ import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
-import EditModel from '../EditModal/EditModels/EditModelsModal';
+import EditModel from '../EditModal/EditModelsModal';
 import * as managerService from '../../services/manager/managerService';
 import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 

@@ -6,9 +6,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
-import * as managerService from '../../../services/manager/managerService';
+import * as managerService from '../../services/manager/managerService';
 import './EditModelsModal.css';
-import EditModelInputs from './EditModelInputs';
+import EditModelInputs from './EditModalInputs';
 
 toast.configure();
 

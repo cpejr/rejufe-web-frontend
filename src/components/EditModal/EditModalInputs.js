@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
+import './EditModalInputs.css';
 
 function EditModelInputs({
   id, dados, setDados, archive1Id, archive2Id, titles,
