@@ -75,19 +75,6 @@
     margin-bottom: 5%;
   }
   
-  .EditModal-model-input{
-    margin-bottom: 1%;
-    margin-top: 1%;
-    width: 65%;
-    height: 30px;
-    background-color: #f0f0f5;
-    box-sizing: border-box;
-    border-radius: 6px;
-    border: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  
   .EditModal-model-select{
     margin-bottom: 1%;
     margin-top: 1%;
