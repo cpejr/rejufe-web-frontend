@@ -209,3 +209,5 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);

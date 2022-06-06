@@ -55,6 +55,7 @@ function ValidarSocio() {
 
   const titles = [
     '',
+    '',
     'Nome',
     'Cpf',
     'Status',
@@ -76,6 +77,7 @@ function ValidarSocio() {
           rows={associates}
           titles={titles}
           validate
+          searchAssociate
           loading={loading}
         />
       </div>
