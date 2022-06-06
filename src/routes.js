@@ -29,17 +29,13 @@ import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-<<<<<<< HEAD
-import Imprimir from './pages/Imprimir';
 import AlteracoesExclusoesMinutes from './pages/AlteracoesExclusoesAtas';
-=======
 import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 import ImprimirAssociados from './pages/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
 import ImprimirAtas from './pages/ImprimirAtas';
->>>>>>> DEV
 
 export function UserHeader() {
   return (
@@ -66,12 +62,9 @@ export function UserHeader() {
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
         <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
-<<<<<<< HEAD
         <PrivateRoute path="/alteracoes-e-exclusoes-atas" component={AlteracoesExclusoesMinutes} type="administrador" />
-=======
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />
->>>>>>> DEV
         <Redirect to="/NotFound" />
       </Switch>
     </Header>

@@ -131,22 +131,6 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-<<<<<<< HEAD
-  const linksMinutes = [
-    {
-      link: () => handleClick('/consultas-atas'),
-      pathName: '/consultas-atas',
-      text: 'Consultas',
-    },
-    {
-      link: () => handleClick('/alteracoes-e-exclusoes-atas'),
-      pathName: '/alteracoes-e-exclusoes-atas',
-      text: 'Alterações e exclusões',
-    },
-    {
-      link: () => handleClick('/cadastro-atas'),
-      pathName: '/cadastro-atas',
-=======
   const linksContas = [
     {
       link: () => handleClick('/consultas'),
@@ -178,7 +162,6 @@ function Header(props) {
     {
       link: () => handleClick('/cadastrar-atas'),
       pathName: '/cadastrar-atas',
->>>>>>> DEV
       text: 'Cadastrar',
     },
   ];

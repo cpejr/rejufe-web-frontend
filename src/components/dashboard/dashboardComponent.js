@@ -35,7 +35,6 @@ import AcceptModal from '../AcceptModal/AcceptModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 import * as managerService from '../../services/manager/managerService';
-import * as managerService from '../../services/manager/managerService';
 import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
@@ -132,6 +131,8 @@ function TableComponent({
   printButton,
   route,
   loading,
+  editMinute,
+  minuteId,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
