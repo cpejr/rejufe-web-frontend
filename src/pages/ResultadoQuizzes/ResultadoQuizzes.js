@@ -23,7 +23,7 @@ function ResultadoQuizzes() {
 
   async function getAllAQuizzes() {
     try {
-      const response = await managerService.getQuizzes();
+      const response = await managerService.getQuizzes(dateQuizz);
       const allAssociates = await managerService.getAssociates();
       setAssociates(allAssociates);
       setQuizzes(response);

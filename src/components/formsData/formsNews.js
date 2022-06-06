@@ -32,18 +32,18 @@ const formsNews = [
       },
       {
         type: 'text',
-        id: 'description',
-        label: 'Descrição',
-        field: null,
-        select: false,
-        required: true,
-      },
-      {
-        type: 'text',
         id: 'send_site',
         label: 'Enviar para o site',
         field: sendToSite,
         select: true,
+        required: true,
+      },
+      {
+        type: 'text',
+        id: 'description',
+        label: 'Descrição',
+        field: null,
+        select: false,
         required: true,
       },
       {

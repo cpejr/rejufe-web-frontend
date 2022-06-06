@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import formsNews from '../../components/formsData/formsNews';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialNewsState, initialNewsErrorState } from '../../components/initialStates/initialStates';
-import checkNewsData from '../../components/checkInfosData/checkNewsData';
+import checkNewsData from '../../components/checkData/checkNewsData/checkNewsData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarNoticias.css';
 
@@ -89,6 +89,7 @@ function CadastrarNoticias() {
                 mask={item.mask}
                 initialErrorState={initialErrorState}
                 dados={dados}
+                news
               />
             ))}
           </div>

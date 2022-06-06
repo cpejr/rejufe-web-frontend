@@ -40,7 +40,7 @@
 .user-module-exclude-buttons {
   display: flex;
   justify-content: flex-end;
-}
+} 
 
 .user-module-exclude-buttons button {
   min-width: 27%;

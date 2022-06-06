@@ -1,16 +1,17 @@
 import { React, useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import './FichaAssociados.css';
-import { useLocation } from 'react-router-dom';
 import fichaAssociate from '../../components/ConsultaAssociados/FichaAssociate';
 import getAssociateById from '../../components/getAssociateById/getAssociateById';
 
 function FichaAssociados() {
+  const history = useHistory();
   const { search } = useLocation();
   const associateId = new URLSearchParams(search).get('associateId');
   const [associate, setAssociate] = useState([]);
 
   useEffect(() => {
-    getAssociateById(associateId, setAssociate);
+    getAssociateById(associateId, setAssociate, history);
   }, []);
 
   return (

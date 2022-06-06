@@ -1,5 +1,15 @@
 /* eslint-disable no-nested-ternary */
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
+
+const routingFunction = (param) => {
+  const history = useHistory();
+
+  history.push({
+    pathname: '/NotFound',
+    state: param,
+  });
+};
 
 function createData(name, cellPhoneNumber, status, allocation, acting, email) {
   return {
@@ -15,13 +25,14 @@ function compare(a, b) {
 }
 
 async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
+  setLoading(true);
   const auxAssociate = [];
   const associateId = [];
   try {
     const allAssociates = await managerService.getAssociates();
     allAssociates.sort(compare);
 
-    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').forEach((object) => {
+    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').filter((associate) => associate.status === 'A').forEach((object) => {
       associateId.push(object._id);
       auxAssociate.push(createData(
         object.name,
@@ -39,6 +50,8 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(error);
+    setLoading(false);
+    routingFunction();
   }
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import { AppBar, Toolbar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -21,7 +21,10 @@ import simbolo from '../../images/simbolo.png';
 import { useAuth } from '../../providers/auth';
 
 function Header(props) {
+  const { user } = useAuth();
   const [className, setClassName] = useState('header-iconbutton-content');
+  const [typeUser, setTypeUser] = useState('header-iconbutton');
+  const [toolbar, setHeaderToolbar] = useState('header-toolbar');
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -32,6 +35,13 @@ function Header(props) {
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
+
+  useEffect(() => {
+    if (user?.type === 'usuario') {
+      setTypeUser('header-iconbutton-user');
+      setHeaderToolbar('header-toolbar-user');
+    }
+  }, []);
 
   function handleClick(pathName) {
     history.push(pathName);
@@ -138,16 +148,11 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links4 = [
+  const linksMinutes = [
     {
-      link: () => handleClick('/editais'),
-      pathName: '/editais',
-      text: 'Consulta Editais',
-    },
-    {
-      link: () => handleClick('/atas'),
-      pathName: '/atas',
-      text: 'Consulta Atas',
+      link: () => handleClick('/consulta-atas'),
+      pathName: '/consulta-atas-e-editais',
+      text: 'Consultas',
     },
     {
       link: () => handleClick('/alteracoeseexclusoes'),
@@ -155,8 +160,8 @@ function Header(props) {
       text: 'Alterações e exclusões',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-atas'),
+      pathName: '/cadastrar-atas',
       text: 'Cadastrar',
     },
   ];
@@ -205,7 +210,7 @@ function Header(props) {
     },
     {
       text: 'Atas/Editais',
-      links: links4,
+      links: linksMinutes,
       icon: <FilePresentOutlinedIcon />,
     },
     {
@@ -218,7 +223,7 @@ function Header(props) {
   return (
     <>
       <AppBar position="static" className="header-appbar">
-        <Toolbar className="header-toolbar">
+        <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
             onClick={() => handleClick('/login')}
@@ -226,7 +231,7 @@ function Header(props) {
           >
             Sair
           </button>
-          {pages?.map((listItem) => (
+          {user?.type === 'administrador' && pages?.map((listItem) => (
             <div className="header-dropdown">
               <button className="header-dropbtn" type="button">{listItem.text}</button>
               <div className="header-dropdown-content">
@@ -250,7 +255,7 @@ function Header(props) {
             <img src={simbolo} alt="logo" />
           </div>
           <div
-            className="header-iconbutton"
+            className={typeUser}
             onClick={handleClassName}
           >
             <IconButton
@@ -281,7 +286,7 @@ function Header(props) {
               ) : (
                 null
               )}
-              {open && pages?.map((item) => (
+              {user?.type === 'administrador' && open && pages?.map((item) => (
                 <SubMenu item={item} />
               ))}
               {open === true ? (

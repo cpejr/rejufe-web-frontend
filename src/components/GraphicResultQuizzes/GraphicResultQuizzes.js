@@ -5,7 +5,7 @@ import './GraphicResultQuizzes.css';
 
 export const options = {
   title: 'Quizz',
-  chartArea: { width: '50%' },
+  chartArea: { width: '50%', height: '100%' },
   vAxis: {
     title: 'Opções',
   },
@@ -61,6 +61,7 @@ function GraphicQuizzes({
           height="50%"
           data={data}
           options={options}
+          legendToggle
         />
       )}
       {userType === 'administrador' && toVote.length > 0 && (

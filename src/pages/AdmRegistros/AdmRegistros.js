@@ -11,6 +11,7 @@ function AdmRegistros() {
   const [associates, setAllAssociates] = useState([]);
   const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   function createData(name, cpf, status) {
     return {
@@ -19,6 +20,7 @@ function AdmRegistros() {
   }
 
   async function getAllAssociates() {
+    setLoading(true);
     const auxAssociate = [];
     const associateCode = [];
     const associateId = [];
@@ -33,9 +35,11 @@ function AdmRegistros() {
       setId(associateId);
       setAllAssociates(auxAssociate);
       setSequentialId(associateCode);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -64,6 +68,7 @@ function AdmRegistros() {
         rows={associates}
         titles={titles}
         order
+        loading={loading}
       />
     </div>
   );
