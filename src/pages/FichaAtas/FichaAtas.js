@@ -1,21 +1,21 @@
-import { React, useEffect, useState } from 'react';
+import React, {
+  useRef, useState, useEffect,
+} from 'react';
 import './FichaAtas.css';
+import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
+import BackspaceIcon from '@mui/icons-material/Backspace';
+import { useReactToPrint } from 'react-to-print';
 import { useLocation } from 'react-router-dom';
 import fichaMinutes from '../../components/ConsultaAtas/FichaAtas';
 import getMinutesById from '../../components/getAtasById/getAtasById';
 
-function FichaMinutes() {
-  const { search } = useLocation();
-  const minutesId = new URLSearchParams(search).get('atasId');
-  const [minutes, setMinutes] = useState([]);
+// eslint-disable-next-line react/prefer-stateless-function
+class ComponentToPrint extends React.Component {
+  render() {
+    const { minutes } = this.props;
 
-  useEffect(() => {
-    getMinutesById(minutesId, setMinutes);
-  }, []);
-
-  return (
-    <body className="forms-minutes-body">
-      <div className="forms-minutes-Container">
+    return (
+      <div>
         <table className="forms-minutes-table-container">
           <div className="forms-minutes-grid-container">
             <table width="100%">
@@ -66,6 +66,54 @@ function FichaMinutes() {
             </table>
           </div>
         </table>
+      </div>
+    );
+  }
+}
+
+function FichaMinutes() {
+  const { search } = useLocation();
+  const minutesId = new URLSearchParams(search).get('atasId');
+  const [minutes, setMinutes] = useState([]);
+
+  useEffect(() => {
+    getMinutesById(minutesId, setMinutes);
+  }, []);
+
+  const handleWindowClose = () => {
+    window.close('/imprimir');
+  };
+
+  const tableMinutes = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    content: () => tableMinutes?.current,
+  });
+
+  return (
+    <body className="forms-minutes-body">
+      <div className="forms-minutes-Container">
+        <div className="header-print-minutes-icon">
+          <button
+            type="button"
+            className="print-minutes-button"
+            onClick={handlePrint}
+          >
+            <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
+            Imprimir
+          </button>
+          <button
+            type="button"
+            className="return-print-minutes-button"
+            onClick={handleWindowClose}
+          >
+            <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
+            Fechar
+          </button>
+        </div>
+        <div className="print-minutes-table">
+          <ComponentToPrint minutes={minutes} ref={tableMinutes} />
+        </div>
       </div>
     </body>
 
