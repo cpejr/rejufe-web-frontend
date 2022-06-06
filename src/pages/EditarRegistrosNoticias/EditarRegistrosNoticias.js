@@ -14,6 +14,7 @@ function EditarRegistrosNoticias(news) {
   const [loading, setLoading] = useState(false);
   const [initialErrorState, setError] = useState(initialNewsErrorState);
   const [dados, setDados] = useState({});
+  const formData = new FormData();
   const history = useHistory();
 
   function handleChange(value, field) {
@@ -37,21 +38,17 @@ function EditarRegistrosNoticias(news) {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-
+    Object.entries(dados).forEach((dado) => {
+      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        formData.append(dado[0], dado[1]);
+      } else {
+        formData.append(dado[0], dado[1]);
+      }
+    });
     try {
-      const body = {
-        section: dados.section,
-        type: dados.type,
-        title: dados.title,
-        description: dados.description,
-        archive_1: dados.archive_1,
-        archive_2: dados.archive_2,
-        photos: dados.photos,
-        status: dados.status,
-        send_site: dados.send_site,
-      };
-      await managerService.updateRecord(body, id);
-      toast('Usuário editado com sucesso', {
+      await managerService.updateRecord(id, formData);
+      toast('Notícia editada com sucesso', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });

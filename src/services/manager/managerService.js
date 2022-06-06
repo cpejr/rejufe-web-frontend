@@ -251,9 +251,7 @@ export const getNews = async (field, filter) => {
   return allNews;
 };
 
-export const updateRecord = async (id, record) => {
-  console.log('🚀 ~ file: managerService.js ~ line 255 ~ updateRecord ~ id', id);
-  console.log('🚀 ~ file: managerService.js ~ line 255 ~ updateRecord ~ record', record);
+export const updateRecord = async (record, id) => {
   const response = await requesterService.updateRecord(record, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
