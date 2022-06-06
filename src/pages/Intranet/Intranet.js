@@ -32,7 +32,7 @@ function Intranet() {
   async function getBirthdayUsers() {
     try {
       const response = await managerService.getTodayBirthday();
-      setBirthdayUsers(response);
+      setBirthdayUsers(response?.data);
     } catch (error) {
       toast.error('Não foi possível obter aniversariantes!!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -87,7 +87,7 @@ function Intranet() {
       <div>
         <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
-      {birthdaysUsers && (
+      {(birthdaysUsers?.length !== 0 && birthdaysUsers !== undefined) && (
         <BirthdayNotificationModal birthdaysUsers={birthdaysUsers} />
       )}
     </div>

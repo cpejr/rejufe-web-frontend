@@ -12,6 +12,8 @@ export default function BirthdayNotificationModal({ birthdaysUsers }) {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
+  console.log(birthdaysUsers);
+
   async function sendEmail() {
     try {
       await managerService.sendBirthdayEmail();
@@ -48,7 +50,7 @@ export default function BirthdayNotificationModal({ birthdaysUsers }) {
             </div>
             <div className="users-birthday">
               {(birthdaysUsers !== undefined && birthdaysUsers !== null)
-                && birthdaysUsers.data.map((users) => {
+                && birthdaysUsers?.map((users) => {
                   const { name, email } = users;
                   const phoneNumber = users.cell_phone_number;
                   return (
