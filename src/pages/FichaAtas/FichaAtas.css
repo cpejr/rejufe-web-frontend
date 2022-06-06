@@ -1,0 +1,129 @@
+td {
+    border: 1px solid #DCDCDC;
+}
+
+.forms-minutes-body {
+    min-height: calc(100vh);
+}
+
+.forms-minutes-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.forms-minutes-grid-container {
+    background-color: #fff;
+    background-image: none;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px 0 20px 0;
+    font-size: 13px;
+}
+
+.forms-minutes-td-container {
+    padding: 0px;
+    vertical-align: top;
+    width: 100%;
+}
+
+.forms-minutes-table-container {
+    width: 70%;
+    position: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: #f9f9f9;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    border: 1px solid #DCDCDC;
+}
+
+.forms-minutes-t-container {
+    width: 100%;
+    padding: 0px;
+    border-spacing: 0px;
+    border-width: 0px;
+}
+
+.forms-minutes-td-title {
+    background-color: #e7e7e7;
+    background-image: none;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    border-color: #d2d2d2;
+    border-width: 1px;
+    border-style: solid;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 4px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.forms-minutes-td-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    background-image: none;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    padding: 8px 10px;
+    text-decoration: none;
+    text-align: left;
+    height: 100%;
+}
+
+.forms-minutes-subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: var(--button);
+    color: white;
+    height: 35px;
+    width: 100px;
+    padding: 8px 10px;
+    vertical-align: top;
+    margin-right: 4px;
+}
+
+.forms-minutes-value {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    vertical-align: top;
+    height: 35px;
+    padding: 8px 10px;
+    filter: alpha(opacity=100);
+    border-color: #d0d0d0;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    width: 100%;
+}
+
+@media(max-width: 1000px) {
+    .forms-minutes-table-container {
+        width: max-content;
+        margin-left: 10%;
+    }
+}
+
+@media(max-width: 900px) {
+    .forms-minutes-table-container {
+        margin-left: 5%;
+    }
+}
+
+@media(max-width: 790px) {
+    .forms-minutes-table-container {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
