@@ -88,6 +88,7 @@ function AdmRegistrosModelos() {
         archive1Id={archive1Id}
         archive2Id={archive2Id}
         modelsSequentialId={id}
+        use={use}
       />
     </div>
   );

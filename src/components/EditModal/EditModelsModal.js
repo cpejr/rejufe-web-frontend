@@ -119,13 +119,13 @@ export default function EditModel({
           <p>Editar dados</p>
         </div>
         <EditModelInputs
-          id={id}
           dados={dados}
           setDados={setDados}
           archive1Id={archive1Id}
           archive2Id={archive2Id}
           titles={titles}
           select={select}
+          setUse={setUse}
         />
         <button
           className="EditModal-model-buttonConfirm"
