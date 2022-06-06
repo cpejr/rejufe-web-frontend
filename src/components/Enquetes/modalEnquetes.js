@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import './modalEnquetes.css';
 import { createTheme, ThemeProvider } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FormInputs from '../formsInputs/registerQuizz';
 
 function getModalStyle() {
@@ -131,7 +131,10 @@ export default function ModalEnquete({ setNewQuizz }) {
         type="button"
         onClick={handleOpen}
       >
-        <AddIcon />
+        <p>
+          Criar
+        </p>
+        <AddCircleOutlineIcon />
       </button>
       <Modal
         open={open}

@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -11,6 +12,7 @@ import backgroundImage from '../../images/martelin.png';
 import { useAuth } from '../../providers/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
+import StyledInput from '../../components/StyledInput/StyledInput';
 
 moment.locale('pt-br', [ptLocale]);
 
@@ -27,6 +29,10 @@ function Login() {
   const [contentWarningModal, setContentWarningModal] = useState('');
   const history = useHistory();
   const { setUser } = useAuth();
+
+  const handleChange = (value, field) => {
+    setUsuario({ ...usuario, [field]: value });
+  };
 
   const handleClickClose = () => {
     setShowWarningModal(false);
@@ -127,20 +133,16 @@ function Login() {
     setLoading(false);
   };
 
-  const handleKeypress = (e) => {
-    if (e.key === 'Enter') {
-      handleClick(e);
-    }
-  };
-
   return (
     <div
       className="container-login"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
-        width: '100vw',
+        width: '100%',
         height: '100vh',
+        overflow: 'hidden',
+
       }}
     >
       <div className="campo-login">
@@ -148,18 +150,22 @@ function Login() {
           <div className="text-login">
             <img src="images/logoSemFundo.png" alt="Logo" />
             <h1>Usuário </h1>
-            <input
-              type="user"
+            <StyledInput
+              type="text"
               id="user"
-              value={usuario.user}
-              onChange={(e) => setUsuario({ ...usuario, user: e.target.value })}
+              dados={usuario}
+              setDados={handleChange}
             />
             <h1>Senha </h1>
-            <input
-              id="PasswordInput"
+            <StyledInput
               type="password"
-              onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
-              onKeyPress={handleKeypress}
+              id="password"
+              label=""
+              width="100%"
+              height="6vh"
+              dados={usuario}
+              setDados={handleChange}
+              handleClick={handleClick}
             />
 
             <div className="Remember-Box">
