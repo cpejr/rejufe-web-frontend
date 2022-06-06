@@ -27,7 +27,7 @@ function ResultadoQuizzes() {
       const allAssociates = await managerService.getAssociates();
       setAssociates(allAssociates);
       setQuizzes(response);
-      setLoading(false);
+      // setLoading(false);
     } catch (error) {
       history.push('/NotFound');
       toast.error('Credenciais inválidas!!', {
