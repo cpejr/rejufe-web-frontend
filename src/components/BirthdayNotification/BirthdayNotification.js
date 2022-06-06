@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './BirthdayNotification.css';
 import '../../global.css';
 import Modal from '@material-ui/core/Modal';
-// import axios from 'axios';
 import { toast } from 'react-toastify';
 import LottieControl from './BirthdayAnimation';
 import * as managerService from '../../services/manager/managerService';
