@@ -66,6 +66,11 @@ export default function EditMinutesModal({
     { label: 'Descrição:', field: 'input' },
   ];
 
+  const select = [
+    'ATAS',
+    'EDITAIS',
+  ];
+
   async function handleSubmit() {
     Object.entries(dados).forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
@@ -121,6 +126,7 @@ export default function EditMinutesModal({
           archive2Id={archive2Id}
           dados={dados}
           setDados={setDados}
+          select={select}
         />
         <button
           className="EditMinutesModal-ButtonConfirm"
