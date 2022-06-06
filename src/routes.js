@@ -34,6 +34,8 @@ import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 import ImprimirAssociados from './pages/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
+import FichaUsuariosExternos from './pages/FichaUsuariosExternos';
+import ImprimirAtas from './pages/ImprimirAtas';
 
 export function UserHeader() {
   return (
@@ -53,6 +55,7 @@ export function UserHeader() {
         <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
+        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="administrador" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
@@ -78,6 +81,7 @@ function Routes() {
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir-associados" component={ImprimirAssociados} />
         <Route path="/imprimir-atas-editais" component={ImprimirAtasEditais} />
+        <Route path="/imprimir-atas" component={ImprimirAtas} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

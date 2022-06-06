@@ -11,6 +11,7 @@ function ExcludedAssociates() {
   const [associates, setAllAssociates] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   function createData(status, name, cpf) {
     return {
@@ -22,6 +23,7 @@ function ExcludedAssociates() {
   }
 
   async function getAllAssociates() {
+    setLoading(true);
     const auxAssociate = [];
     const AssociatesId = [];
     try {
@@ -42,9 +44,11 @@ function ExcludedAssociates() {
       setId(AssociatesId);
       setAllAssociates(auxAssociate);
       setUse(false);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -67,7 +71,14 @@ function ExcludedAssociates() {
           </h1>
         </div>
         <div className="line-table-ExcludedAssociate" />
-        <TableComponent setUse={setUse} associateId={id} rows={associates} titles={titles} edit />
+        <TableComponent
+          setUse={setUse}
+          associateId={id}
+          rows={associates}
+          titles={titles}
+          edit
+          loading={loading}
+        />
       </div>
     </div>
   );
