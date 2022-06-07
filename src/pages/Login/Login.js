@@ -44,7 +44,6 @@ function Login() {
       let res;
       let attempts;
       const email = await managerService.getUserEmailByUsername(usuario.user);
-      console.log(email);
       const field = {
         email,
         lock_time: moment(),
