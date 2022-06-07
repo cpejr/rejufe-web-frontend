@@ -29,7 +29,11 @@ function FichaNoticia() {
   const [news, setNews] = useState([]);
   const [image, setImage] = useState(news?.photos);
 
+  // eslint-disable-next-line react/no-unstable-nested-components
+  function Example() { return image ? <img src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
+
   async function getImage(id) {
+    console.log('🚀 ~ file: FichaNoticia.js ~ line 36 ~ getImage ~ id', id);
     try {
       const response = await managerService.getImageById(id);
       setImage(response);
@@ -43,8 +47,9 @@ function FichaNoticia() {
 
   useEffect(() => {
     getNewsById(newsId, setNews);
-    getImage(news?.photos);
   }, []);
+
+  getImage(news?.photos);
 
   const handleWindowClose = () => {
     window.close('/imprimir');
@@ -107,6 +112,7 @@ function FichaNoticia() {
                                               {item.label}
                                               {' '}
                                             </span>
+                                            {image && Example()}
                                             <br />
                                           </>
                                         ) : (
