@@ -131,6 +131,8 @@ function TableComponent({
   route,
   loading,
   associateId,
+  editActions,
+  actionId,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);

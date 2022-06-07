@@ -1,31 +1,76 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
-// import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import Modal from '@material-ui/core/Modal';
-import Box from '@material-ui/core/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { toast } from 'react-toastify';
+import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import './EditActionModal.css';
-import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
+import EditActionInputs from './EditActionInputs';
 
-export default function EditAccountModal({
-  id,
-  action,
-  setUse,
-  archive1,
-  archive2,
+toast.configure();
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'stretch',
+  },
+  content: {
+    position: 'absolute',
+    width: '40%',
+    backgroundColor: 'white',
+    maxHeight: '95%',
+    borderRadius: '8px',
+    boxShadow: theme.palette.color4,
+    padding: '1% 1%',
+    // eslint-disable-next-line no-useless-computed-key
+    ['@media (max-width:900px)']: {
+      width: '60%',
+    },
+    ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
+      width: '80%',
+    },
+    ['@media (max-width:400px)']: { // eslint-disable-line no-useless-computed-key
+      width: '100%',
+    },
+  },
+
+}));
+
+export default function EditActionModal({
+  id, action, archive1Id, archive2Id, setUse, page,
 }) {
-  console.log('🚀 ~ file: EditAccountModal.js ~ line 20 ~ account', action);
+  const classes = useStyles();
+  const [modalStyle] = useState(getModalStyle);
   const [dados, setDados] = useState(action);
-  function handleChange(value, field) {
-    setDados({ ...dados, [field]: value });
-  }
+  const formData = new FormData();
+  const titles = [
+    { label: 'Número:', field: 'input' },
+    { label: 'Descrição:', field: 'input' },
+    { label: 'Tipo:', field: 'select' },
+  ];
+
+  const select = [
+    'REQUERIMENTOS ADMINISTRATIVOS',
+    'PETIÇÕES INICIAIS',
+    'JURISPRUDÊNCIA',
+  ];
 
   async function handleSubmit() {
-    const formData = new FormData();
     Object.entries(dados).forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
@@ -34,6 +79,7 @@ export default function EditAccountModal({
         formData.append(dado[0], dado[1]);
       }
     });
+
     try {
       await managerService.updateAction(id, formData);
       toast.success('Dados editados!', {
@@ -42,7 +88,10 @@ export default function EditAccountModal({
       });
       setUse(true);
     } catch (error) {
-      console.error(error);
+      toast.error('Não foi possível editar o modelo', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
     }
   }
 
@@ -55,71 +104,46 @@ export default function EditAccountModal({
   const handleClose = () => {
     setOpen(false);
   };
-  console.log('🚀 ~ file: EditActionModal.js ~ line 25 ~ handleChange ~ dados', dados);
+
+  useEffect(() => {
+    setDados(action);
+  }, [page]);
+
   const body = (
-    <Box className="EditModal-ContainerModal">
-      <div role="button" tabIndex={0} className="EditModal-cancel" onClick={handleClose}>
-        <CancelIcon />
-      </div>
-      <div className="EditModal-Title">
-        <p>Editar dados</p>
-      </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
-          Tipo:
+    <div style={modalStyle} className={classes.content}>
+      <div className="EditModal-model-container">
+        <div role="button" tabIndex={0} className="EditModal-model-cancel" onClick={handleClose}>
+          <CancelIcon />
         </div>
-        <select className="EditModal-Input" placeholder="" require value={dados?.type} onChange={(e) => handleChange(e.target.value, 'type')}>
-          <option value="ADMINISTRATIVAS">ADMINISTATIVAS</option>
-          <option value="JUDICIAIS">JUDICIAIS</option>
-        </select>
-      </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
-          Número:
+        <div className="EditModal-model-title">
+          <p>Editar dados</p>
         </div>
-        <input className="EditModal-Input" placeholder="" value={dados?.numberAction} onChange={(e) => handleChange(e.target.value, 'numberAction')} />
+        <EditActionInputs
+          id={id}
+          dados={dados}
+          setDados={setDados}
+          archive1Id={archive1Id}
+          archive2Id={archive2Id}
+          titles={titles}
+          select={select}
+        />
+        <button
+          className="EditModal-model-buttonConfirm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit();
+            handleClose();
+          }}
+          type="button"
+        >
+          Confirmar
+        </button>
       </div>
-      <div className="EditModal-field">
-        <div className="EditModal-text">
-          Descrição:
-        </div>
-        <input className="EditModal-Input" placeholder="" require value={dados?.description} onChange={(e) => handleChange(e.target.value, 'description')} />
-        <div className="EditModal-archive-container">
-          <div className="EditModal-archive-text">
-            <div className="EditModal-text">
-              Arquivo 1:
-            </div>
-            { }
-            <div className="EditModal-archive">
-              <SingleFileUpload id="archive_1" fileType=".pdf" dados={dados} archiveId={archive1} file={dados.archive_1} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
-            </div>
-          </div>
-          <div className="EditModal-archive-text">
-            <div className="EditModal-text">
-              Arquivo 2:
-            </div>
-            <div className="EditModal-archive">
-              <SingleFileUpload id="archive_2" fileType=".pdf" dados={dados} archiveId={archive2} file={dados.archive_2} setDados={(value, entrada) => handleChange(value, entrada)} label="Arquivo" update />
-            </div>
-          </div>
-        </div>
-      </div>
-      <button
-        className="EditModal-ButtonConfirm"
-        onClick={(e) => {
-          e.preventDefault();
-          handleSubmit();
-          handleClose();
-        }}
-        type="button"
-      >
-        Confirmar
-      </button>
-    </Box>
+    </div>
   );
   return (
     <div>
-      <button type="button" className="EditModal-EditGroup" onClick={handleOpen}>
+      <button type="button" className="EditModal-model-editGroup" onClick={handleOpen}>
         <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal

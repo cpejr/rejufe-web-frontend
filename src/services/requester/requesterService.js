@@ -134,14 +134,6 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
-export const getActions = (times, field, filter) => httpClient.get('/acoes', {
-  params: {
-    times,
-    field,
-    filter,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
 export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
 
 export const createMinutes = (body) => httpClient.post('/atas', body);
@@ -157,21 +149,11 @@ export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
 
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
 
-export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
-  params: {
-    archiveId,
-  },
-});
-
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
 
 export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
 
 export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
-
-export const download = (id) => httpClient.get(`/arquivos/${id}`, {
-  responseType: 'blob',
-});
 
 export const createActions = (body) => httpClient.post('/acoes', body);
 
