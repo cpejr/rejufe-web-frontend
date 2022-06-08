@@ -45,13 +45,31 @@ function EditModelInputs({
         <div className="EditModal-model-text">
           Arquivo1:
         </div>
-        <SingleFileUpload field="archive_1" fileType=".pdf" file={dados.archive_1} dados={dados} archiveId={archive1Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
+        <SingleFileUpload
+          field="archive_1"
+          fileType=".pdf"
+          file={dados.archive_1}
+          dados={dados}
+          archiveId={archive1Id}
+          setDados={(value, field) => handleChange(value, field)}
+          label="Arquivo"
+          update
+        />
       </div>
       <div className="EditModal-model-field">
         <div className="EditModal-model-text">
           Arquivo2:
         </div>
-        <SingleFileUpload field="archive_2" fileType=".pdf" file={dados.archive_2} dados={dados} archiveId={archive2Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
+        <SingleFileUpload
+          field="archive_2"
+          fileType=".pdf"
+          file={dados.archive_2}
+          dados={dados}
+          archiveId={archive2Id}
+          setDados={(value, field) => handleChange(value, field)}
+          label="Arquivo"
+          update
+        />
       </div>
     </div>
   );

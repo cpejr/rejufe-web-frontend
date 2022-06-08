@@ -87,6 +87,7 @@ export default function EditModel({
         autoClose: 5000,
       });
       setUse(true);
+      setDados(model);
     } catch (error) {
       toast.error('Não foi possível editar o modelo', {
         position: toast.POSITION.TOP_RIGHT,

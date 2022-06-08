@@ -128,7 +128,9 @@ function SingleFileUpload({
                     style={{
                       backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
                     }}
-                    onClick={() => setDados('', field)}
+                    onClick={() => {
+                      setDados('', field);
+                    }}
                   >
                     Remover Arquivo
                   </Button>
