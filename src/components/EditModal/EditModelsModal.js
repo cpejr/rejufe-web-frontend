@@ -86,8 +86,8 @@ export default function EditModel({
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
-      setUse(true);
       setDados(model);
+      setUse(true);
     } catch (error) {
       toast.error('Não foi possível editar o modelo', {
         position: toast.POSITION.TOP_RIGHT,
@@ -108,7 +108,7 @@ export default function EditModel({
 
   useEffect(() => {
     setDados(model);
-  }, [page]);
+  }, [page, model]);
 
   const body = (
     <div style={modalStyle} className={classes.content}>
