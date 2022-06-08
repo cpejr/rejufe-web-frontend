@@ -61,7 +61,7 @@ export function UserHeader() {
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
-        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
+        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="usuario" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />

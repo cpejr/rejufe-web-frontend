@@ -255,7 +255,7 @@ function TableComponent({
   const tableProps = {
     sx: matchesFont400px
       ? {
-        minWidth: 400,
+        minWidth: 450,
       }
       : { minWidth: 650 },
     size: matchesFont85
