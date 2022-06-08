@@ -39,10 +39,17 @@ function EditarRegistrosNoticias(news) {
   async function handleSubmit(event) {
     event.preventDefault();
     Object.entries(dados).forEach((dado) => {
-      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
+      if (dado[0] === 'archive_1') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
-      } else {
+        console.log('🚀 ~ file: EditarRegistrosNoticias.js ~ line 45 ~ Object.entries ~ dado[1]', dado[1]);
+      }
+      if (dado[0] === 'archive_2') {
+        dado[1] = dado[1] ? dado[1]?.file : '';
+        console.log('🚀 ~ file: EditarRegistrosNoticias.js ~ line 49 ~ Object.entries ~ dado[1]', dado[1]);
+        formData.append(dado[0], dado[1]);
+      }
+      if (dado[0] !== 'archive_1' && dado[0] !== 'archive_2') {
         formData.append(dado[0], dado[1]);
       }
     });

@@ -17,6 +17,7 @@ function UpdateNews({
   mask,
   dados,
 }) {
+  console.log('🚀 ~ file: updateNews.js ~ line 20 ~ fileType', fileType);
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
   };

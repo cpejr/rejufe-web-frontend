@@ -5,11 +5,11 @@ import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@mui/material/Button';
-// import axios from 'axios';
 import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
+
 const useStyles = makeStyles((theme) => ({
   dropzone: {
     border: `2px dashed ${theme.palette.primary.main}`,
@@ -18,55 +18,52 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     background: theme.palette.background.default,
-    height: theme.spacing(10),
+    height: '50px',
+    width: '100%',
     outline: 'none',
     marginBottom: '1%',
-    marginRight: '4%',
-    marginLeft: '4%',
   },
 }));
 function SingleFileUpload({
-  id, fileType, dados, file, setDados, label, update,
+  fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
-  console.log('🚀 ~ file: SingleFileUpload.js ~ line 31 ~ dados', dados);
+  console.log('🚀 ~ file: SingleFileUpload.js ~ line 30 ~ dados', dados);
   const classes = useStyles();
-  // eslint-disable-next-line no-unused-vars
-  const [actualFile, setActualFile] = useState();
-  // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState();
 
   async function getImage() {
     try {
-      const response = await managerService.getImageById(file);
+      const response = await managerService.getImageById(archiveId);
       setImage(response);
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível obter imagem', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
   }
+
   function getDownloads() {
     try {
-      managerService.download(file).then((response) => {
-        FileSaver.saveAs(response, id);
+      managerService.download(archiveId).then((response) => {
+        FileSaver.saveAs(response, field);
       });
     } catch (error) {
-      console.log(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
     }
   }
+
   if (update === true) {
     useEffect(() => {
-      if (id === 'photos' && file !== '' && file !== undefined) {
+      if (field === 'photos' && file !== '' && file !== undefined) {
         getImage();
       }
-    }, [file]);
+    }, [file, archiveId]);
   }
+
   const onDrop = useCallback((accFiles, rejFiles) => {
     if (rejFiles.length > 0) {
       toast.warn('Arquivo Inválido', {
@@ -82,7 +79,7 @@ function SingleFileUpload({
       });
       return;
     }
-    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, id);
+    setDados({ file: accFiles[0], url: URL.createObjectURL(accFiles[0]) }, field);
   }, [dados]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -90,9 +87,10 @@ function SingleFileUpload({
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
+
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
-      <Grid item>
+      <Grid item style={{ width: '65%' }}>
         <div>
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
@@ -108,41 +106,74 @@ function SingleFileUpload({
               </p>
             )}
           </div>
-        </div>
-      </Grid>
-      {file && (
-        <Grid item>
-          <div key={file.url}>
-            {label === 'Imagem'
-              ? (
-                <div>
-                  <img src={file.url} style={{ width: '200px' }} alt="preview" />
-                </div>
-              )
-              : (
+          {update === true && archiveId !== undefined && dados.pdf === undefined && (
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+            }}
+            >
+              {file === undefined && archiveId && (
                 <>
-                  {update === true && label === 'Arquivo' ? (
-                    <Button variant="primary" onClick={() => getDownloads()}>
-                      Arquivo atual
-                      <PictureAsPdfIcon />
-                    </Button>
-                  ) : (
-                    <div className="register-news-align-test">
-                      {file?.file?.path}
-                      {' '}
-                      <PictureAsPdfIcon />
-                    </div>
-                  )}
-                  <div />
+                  <Button
+                    style={{
+                      alignItems: 'center', justifyContent: 'center', marginTop: '2%', width: '100%',
+                    }}
+                    variant="primary"
+                    onClick={() => getDownloads()}
+                  >
+                    Baixar arquivo atual
+                    {' '}
+                    <PictureAsPdfIcon style={{ marginLeft: '1%' }} />
+                  </Button>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                    }}
+                    onClick={() => setDados('', field)}
+                  >
+                    Remover Arquivo
+                  </Button>
                 </>
               )}
-            <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%' }} onClick={() => setDados('', id)}>
-              Remover Arquivo
-            </Button>
-          </div>
-        </Grid>
-      )}
+              {file === '' && (
+                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+              )}
+              <div />
+            </div>
+          )}
+          {file && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div
+                style={{
+                  display: 'flex', alignItems: 'center', marginTop: '3%', marginBottom: '1%',
+                }}
+              >
+                {file?.file?.path}
+                {' kkkkkkkkk'}
+                <PictureAsPdfIcon />
+              </div>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados('', field)}>
+                Remover Arquivo
+              </Button>
+            </div>
+          )}
+          {dados.pdf && (
+            <div div className="file-upload-download-file">
+              <div className="register-news-align-test">
+                {file?.file?.path}
+                {' '}
+                <PictureAsPdfIcon />
+              </div>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
+                Remover Arquivo
+              </Button>
+            </div>
+          )}
+
+        </div>
+      </Grid>
     </Grid>
   );
 }
+
 export default SingleFileUpload;
