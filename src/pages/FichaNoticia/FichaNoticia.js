@@ -27,14 +27,12 @@ function FichaNoticia() {
   const { search } = useLocation();
   const newsId = new URLSearchParams(search).get('newsId');
   const [news, setNews] = useState([]);
-  console.log('🚀 ~ file: FichaNoticia.js ~ line 30 ~ FichaNoticia ~ news', news);
   const [image, setImage] = useState(news?.photos);
 
   // eslint-disable-next-line react/no-unstable-nested-components
   function Example() { return image ? <img src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
 
   async function getImage(id) {
-    console.log('🚀 ~ file: FichaNoticia.js ~ line 36 ~ getImage ~ id', id);
     try {
       const response = await managerService.getImageById(id);
       setImage(response);
