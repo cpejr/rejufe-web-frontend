@@ -7,9 +7,7 @@ function EditModelInputs({
 }) {
   const [inputDados, setInputDados] = useState(Object.entries(dados));
 
-  console.log(inputDados);
   function handleChange(value, field) {
-    console.log(field);
     setDados({ ...dados, [field]: value });
   }
 

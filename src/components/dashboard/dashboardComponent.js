@@ -130,6 +130,7 @@ function TableComponent({
   print,
   printButton,
   route,
+  use,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -317,14 +318,18 @@ function TableComponent({
     }
   }
 
+  console.log(fileNames2);
+
   useEffect(() => {
     if (archive1Id) {
+      setFileNames1([]);
       setFileNameArchive(fileNames1, archive1Id, setFileNames1);
     }
     if (archive2Id) {
-      setFileNameArchive(fileNames2, archive2Id, setFileNames2);
+      const aux = [];
+      setFileNameArchive(aux, archive2Id, setFileNames2);
     }
-  }, [archive1Id, archive2Id]);
+  }, [archive1Id, archive2Id, use]);
 
   return (
     <TableContainer

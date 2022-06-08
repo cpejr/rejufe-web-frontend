@@ -4,10 +4,10 @@ import * as managerService from '../../services/manager/managerService';
 toast.configure();
 
 export default function setFileNameById(fileNames1, archive1Id, setFileNames1) {
-  console.log('hello');
   const value = Object.values(archive1Id);
   try {
     const aux1 = fileNames1;
+    console.log(fileNames1.length === 0);
     if (fileNames1.length === 0 && archive1Id) {
       value?.forEach((_id, index) => {
         if (_id) {
