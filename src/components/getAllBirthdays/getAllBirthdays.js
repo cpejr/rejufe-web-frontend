@@ -19,9 +19,10 @@ function compare(a, b) {
   return x === y ? 0 : x > y ? 1 : -1;
 }
 
-async function getAllBirthdays(setId, setAllAssociates, history) {
+async function getAllBirthdays(setId, setAllAssociates, history, setLoading) {
   const auxAssociate = [];
   const associateId = [];
+  setLoading(true);
   try {
     const allAssociates = await managerService.getAssociates();
     allAssociates.sort(compare);
@@ -37,6 +38,7 @@ async function getAllBirthdays(setId, setAllAssociates, history) {
 
     setId(associateId);
     setAllAssociates(auxAssociate);
+    setLoading(false);
   } catch (error) {
     history.push('/NotFound');
     toast.error('Erro ao listar os Aniversariantes!', {

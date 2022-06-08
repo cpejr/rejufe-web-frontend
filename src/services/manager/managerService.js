@@ -129,13 +129,13 @@ export const updateAssociate = async (associateId, body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const getQuizzes = async (field, filter) => {
+export const getQuizzes = async (date, field, filter) => {
   let times = 0;
   let response;
 
   let allQuizzes = [];
   do {
-    response = await requesterService.getQuizzes(times, field, filter);
+    response = await requesterService.getQuizzes(date, times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allQuizzes = allQuizzes.concat(response.data);
     times += 1;
@@ -280,9 +280,22 @@ export const createModels = async (body) => {
   return response.data;
 };
 
+export const getModels = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allModels = [];
+  do {
+    response = await requesterService.getModels(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allModels = allModels.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allModels;
+};
+
 export const getFileNameById = async (id) => {
   let response;
-  if (id.length !== 0) {
+  if (id !== undefined && id.length !== 0) {
     response = await requesterService.getFileNameById(id);
     return response.data;
   }
@@ -294,17 +307,18 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
 export const getAccounts = async (field, filter) => {
   let times = 0;
   let response;
-  let allActions = [];
+  let allAccounts = [];
   do {
     response = await requesterService.getAccounts(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
+    allAccounts = allAccounts.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
-  return allActions;
+  } while (response.data.length > 0);
+  return allAccounts;
 };
 
 export const getInformations = async (field, filter) => {
@@ -329,7 +343,7 @@ export const getActions = async (field, filter) => {
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allActions = allActions.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
+  } while (response.data.length > 0);
   return allActions;
 };
 
@@ -341,6 +355,31 @@ export const download = async (id) => {
 
 export const getImageById = async (id) => {
   const response = await requesterService.getImageById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getExternalUserById = async (id) => {
+  const response = await requesterService.getExternalUserById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getCommunique = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allCommunique = [];
+  do {
+    response = await requesterService.getCommunique(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCommunique = allCommunique.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allCommunique;
+};
+
+export const contactUs = async (body) => {
+  const response = await requesterService.contactUs(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

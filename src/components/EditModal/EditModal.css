@@ -2,7 +2,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 100%;
   font-weight: 500;
   border: 0;
@@ -45,7 +45,7 @@
   align-items:center;
   justify-content:center;
   width:100%;
-  font-family:Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   font-size:24px;
   margin-bottom: 5%;
@@ -57,14 +57,14 @@
   justify-content:center;
   width:100%;
   flex-direction: column;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
 
 .EditModal-ButtonConfirm{
   display:flex;
   height: 10%;
   width: 30%;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 500;
   border: solid black;
