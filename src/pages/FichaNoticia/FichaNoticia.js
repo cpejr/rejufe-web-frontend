@@ -47,9 +47,8 @@ function FichaNoticia() {
 
   useEffect(() => {
     getNewsById(newsId, setNews);
+    getImage(news?.photos);
   }, []);
-
-  getImage(news?.photos);
 
   const handleWindowClose = () => {
     window.close('/imprimir');
