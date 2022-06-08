@@ -27,6 +27,7 @@ function FichaNoticia() {
   const { search } = useLocation();
   const newsId = new URLSearchParams(search).get('newsId');
   const [news, setNews] = useState([]);
+  console.log('🚀 ~ file: FichaNoticia.js ~ line 30 ~ FichaNoticia ~ news', news);
   const [image, setImage] = useState(news?.photos);
 
   // eslint-disable-next-line react/no-unstable-nested-components
@@ -47,8 +48,13 @@ function FichaNoticia() {
 
   useEffect(() => {
     getNewsById(newsId, setNews);
-    getImage(news?.photos);
   }, []);
+
+  useEffect(() => {
+    if (news?.photos) {
+      getImage(news?.photos);
+    }
+  }, [news]);
 
   const handleWindowClose = () => {
     window.close('/imprimir');
