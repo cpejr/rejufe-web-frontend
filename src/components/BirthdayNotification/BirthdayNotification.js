@@ -12,8 +12,6 @@ export default function BirthdayNotificationModal({ birthdaysUsers }) {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
-  console.log(birthdaysUsers);
-
   async function sendEmail() {
     try {
       await managerService.sendBirthdayEmail();
