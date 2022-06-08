@@ -30,7 +30,7 @@
 .textFooterCPE {
     color: white;
     font-size: 10pt;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-weight: 100;
     align-items:flex-end;
 }

@@ -16,10 +16,11 @@ function Aniversariantes() {
   const [Birthdays, setAllBirthdays] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
-    getAllBirthdays(setId, setAllBirthdays, history);
+    getAllBirthdays(setId, setAllBirthdays, history, setLoading);
   }, [use]);
 
   return (
@@ -35,6 +36,7 @@ function Aniversariantes() {
         id={id}
         rows={Birthdays}
         titles={titles}
+        loading={loading}
         order
         search
       />

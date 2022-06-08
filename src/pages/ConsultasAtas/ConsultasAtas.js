@@ -57,6 +57,7 @@ function ConsultaMinutes(data) {
               printButton
               search
               renderButton
+              loading={loading}
               route="/imprimir-atas-editais"
             />
           </div>

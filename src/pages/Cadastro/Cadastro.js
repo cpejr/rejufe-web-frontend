@@ -164,7 +164,7 @@ function Cadastro() {
         autoClose: 5000,
       });
     }
-    if (dados.atuacao?.length === 0 || !lettersSpacesRegex.test(dados.atuacao)) {
+    if (dados.atuacao?.length === 0) {
       aux.atuacao = true;
       checkError = 1;
       toast.error('Atuação inválida!!', {
@@ -305,10 +305,19 @@ function Cadastro() {
       });
       history.push('/consulta-associados');
     } catch (error) {
-      toast.error('Preencha todos os campos corretamente!!', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-      });
+      // eslint-disable-next-line no-console
+      console.log(error);
+      if (error.toString() === 'Error: Email already in use') {
+        toast.error('Já existe um associado com o email inserido', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+        });
+      } else {
+        toast.error('Preencha todos os campos corretamente!!', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+        });
+      }
       setLoading(false);
     }
     setLoading(false);

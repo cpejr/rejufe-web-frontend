@@ -4,19 +4,25 @@ import Divider from '@mui/material/Divider';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
+import ListaComunicados from '../ListaComunicados/ListaComunicados';
 import ActionQuery from '../../components/ActionQuery/ActionQuery';
+import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
 import ConsultaAssociados from '../ConsultaAssociados/ConsultaAssociados';
 import MinuteQuery from '../../components/MinutesQuery/MinutesQuery';
-import InformativeQuery from '../../components/InformativeQuery/InformativeQuery';
+import AdministrativeRequirements from '../../components/AdministrativeRequirements/AdministrativeRequirements';
 import Aniversariantes from '../Aniversariantes/Aniversariantes';
 import ActionJuridical from '../../components/ActionJuridicalQuery/ActionJuridical';
 import AccountQuery from '../../components/AccountQuery/AccountQuery';
+import InitialPetitions from '../../components/InitialPetitions/InitialPetitions';
+import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import Simbolo from '../../images/simbolo.png';
+import NewsQuery from '../../components/NewsQuery/NewsQuery';
+import ContactUs from '../contactUs/contactUs';
 import './Intranet.css';
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
-  const menuSide = () => {
+  const menuDashboard = () => {
     switch (selectedButton) {
       case 'Enquetes': return <ResultadoQuizzes />;
       case 'Ações Adm': return <ActionQuery />;
@@ -25,7 +31,13 @@ function Intranet() {
       case 'Ações Jurídicas': return <ActionJuridical />;
       case 'Aniversariantes': return <Aniversariantes />;
       case 'Prestação de Contas': return <AccountQuery />;
+      case 'Petições Iniciais': return <InitialPetitions />;
       case 'Atas': return <MinuteQuery />;
+      case 'Comunicados': return <ListaComunicados />;
+      case 'Jurisprudência': return <Jurisprudence />;
+      case 'Home': return <NewsQuery />;
+      case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
+      case 'Fale Conosco': return <ContactUs />;
 
       default: return <div />;
     }
@@ -46,11 +58,11 @@ function Intranet() {
           <MenuLateral setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
         </div>
         <div className="intranet-dashboad-all">
-          {menuSide()}
+          {menuDashboard()}
         </div>
       </div>
       <div>
-        <BottomMenu />
+        <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
     </div>
   );
