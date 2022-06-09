@@ -312,17 +312,18 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
 export const getAccounts = async (field, filter) => {
   let times = 0;
   let response;
-  let allActions = [];
+  let allAccounts = [];
   do {
     response = await requesterService.getAccounts(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
+    allAccounts = allAccounts.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
-  return allActions;
+  } while (response.data.length > 0);
+  return allAccounts;
 };
 
 export const getInformations = async (field, filter) => {
@@ -348,7 +349,7 @@ export const getCommunique = async (field, filter) => {
     allCommunique = allCommunique.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allCommunique;
+  return allActions;
 };
 
 export const contactUs = async (body) => {
@@ -357,7 +358,13 @@ export const contactUs = async (body) => {
   return response.data;
 };
 
-export const getActions = async (field, filter) => {
+export const getExternalUserById = async (id) => {
+  const response = await requesterService.getExternalUserById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
   let allActions = [];

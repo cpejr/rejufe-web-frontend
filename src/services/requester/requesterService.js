@@ -214,3 +214,5 @@ export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileN
     archiveId,
   },
 });
+
+export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);

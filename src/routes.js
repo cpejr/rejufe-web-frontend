@@ -35,6 +35,7 @@ import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 import ImprimirAssociados from './pages/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
+import FichaUsuariosExternos from './pages/FichaUsuariosExternos';
 import ImprimirAtas from './pages/ImprimirAtas';
 
 export function UserHeader() {
@@ -55,12 +56,13 @@ export function UserHeader() {
         <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
+        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="administrador" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
-        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
+        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="usuario" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
         <PrivateRoute path="/administracao-registros-acoes" component={AdmRegistrosAcoes} type="administrador" />
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
