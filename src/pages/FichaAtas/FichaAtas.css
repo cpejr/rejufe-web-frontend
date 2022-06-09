@@ -2,6 +2,41 @@ td {
     border: 1px solid #DCDCDC;
 }
 
+.header-print-minutes-icon {
+    display: flex;
+    align-items: center;
+    background-color: var(--header);
+    height: 50px;
+    justify-content: center;
+  }
+
+.print-minutes-button {
+   margin-left: 30px;
+}
+
+.return-print-minutes-button {
+    margin-left: 60px;
+}
+
+.header-print-minutes-icon button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: thin solid transparent;
+    color: var(--fontColor1);
+    font-size: 17px;
+    cursor: pointer;
+    padding: 0 5px;
+    height: 100%;
+  }
+  
+  .header-print-minutes-icon button:hover {
+    background-color: var(--hover);
+    border: thin solid var(--hover);
+    border-radius: 5px;
+  }
+
 .forms-minutes-body {
     min-height: calc(100vh);
 }
@@ -17,7 +52,7 @@ td {
     opacity: 1;
     filter: alpha(opacity=100);
     color: #000000;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 20px 0 20px 0;
     font-size: 13px;
 }
@@ -55,7 +90,7 @@ td {
     border-width: 1px;
     border-style: solid;
     color: #333;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
     font-weight: bold;
     padding: 5px 4px;
@@ -71,9 +106,9 @@ td {
     opacity: 1;
     filter: alpha(opacity=100);
     color: #000;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
-    padding: 8px 10px;
+    padding: 8px 0;
     text-decoration: none;
     text-align: left;
     height: 100%;
@@ -110,20 +145,22 @@ td {
 
 @media(max-width: 1000px) {
     .forms-minutes-table-container {
-        width: max-content;
+        width: 80%;
         margin-left: 10%;
     }
 }
 
-@media(max-width: 900px) {
-    .forms-minutes-table-container {
-        margin-left: 5%;
-    }
-}
-
-@media(max-width: 790px) {
+@media(max-width: 430px) {
     .forms-minutes-table-container {
         margin-left: 0%;
-        margin-right: 0%;
+    }
+    .print-minutes-table{
+        overflow-x: scroll;
+       }
+}
+
+@media(max-width: 550px) {
+    .forms-minutes-table-container {
+        margin-left: 5%;
     }
 }

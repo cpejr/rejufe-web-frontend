@@ -301,6 +301,18 @@ function Header(props) {
                     </span>
                     Intranet
                   </button>
+                  {user?.type === 'usuario' && (
+                    <button
+                      className="responsive-header-dropdown-button"
+                      onClick={() => handleClick('/alterar-senha')}
+                      type="button"
+                    >
+                      <span>
+                        <Brightness5OutlinedIcon />
+                      </span>
+                      Alterar senha
+                    </button>
+                  )}
                 </div>
               ) : (
                 null

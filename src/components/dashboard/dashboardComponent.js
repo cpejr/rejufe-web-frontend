@@ -20,7 +20,7 @@ import IconButton from '@mui/material/IconButton';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import SearchIcon from '@mui/icons-material/Search';
 import TableFooter from '@mui/material/TableFooter';
-import { useMediaQuery } from '@mui/material/';
+import { useMediaQuery, CircularProgress } from '@mui/material/';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -130,6 +130,8 @@ function TableComponent({
   print,
   printButton,
   route,
+  searchAssociate,
+  loading,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -255,7 +257,7 @@ function TableComponent({
   const tableProps = {
     sx: matchesFont400px
       ? {
-        minWidth: 400,
+        minWidth: 450,
       }
       : { minWidth: 650 },
     size: matchesFont85
@@ -276,7 +278,6 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
-
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -294,9 +295,15 @@ function TableComponent({
     win.focus();
   }
 
+  function redirectExternalAssociate(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   function redirectAssociate(e, redirectId) {
     e.preventDefault();
-    const win = window.open(`/ficha-associados?associateId=${redirectId}`, '_blank');
+    const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
     win.focus();
   }
 
@@ -360,10 +367,19 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {!loading && rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
+                {searchAssociate && (
+                  <TableCell {...cellFontProps} align="center">
+                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirectExternalAssociate(e, associateId[index + (page * 10)])}>
+                      <SearchIcon />
+                      {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
+                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                    </IconButton>
+                  </TableCell>
+                )}
                 {
                   order && search ? (
                     <>
@@ -389,7 +405,7 @@ function TableComponent({
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, associateId[index + (page * 10)])}>
                         <SearchIcon />
                         {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
@@ -517,6 +533,14 @@ function TableComponent({
           )}
         </TableBody>
       </Table>
+      {loading && (
+        <TableRow style={{
+          height: 53 * rowsPerPage, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}
+        >
+          <CircularProgress />
+        </TableRow>
+      )}
       <TableFooter {...footerProps}>
         {print ? (
           <TablePagination

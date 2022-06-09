@@ -1,27 +1,27 @@
 import { React, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import './FichaAssociados.css';
+import './FichaUsuariosExternos.css';
 import fichaAssociate from '../../components/ConsultaAssociados/FichaAssociate';
-import getAssociateById from '../../components/getAssociateById/getAssociateById';
+import getExternalUserById from '../../components/getAssociateById/getExternalUserById';
 
-function FichaAssociados() {
+function FichaAssociadosExternos() {
   const history = useHistory();
   const { search } = useLocation();
   const associateId = new URLSearchParams(search).get('associateId');
   const [associate, setAssociate] = useState([]);
 
   useEffect(() => {
-    getAssociateById(associateId, setAssociate, history);
+    getExternalUserById(associateId, setAssociate, history);
   }, []);
 
   return (
     <body>
-      <table className="formsAssociateTableContainer">
-        <div className="formsAssociateGridContainer">
+      <table className="formsExternalAssociateTableContainer">
+        <div className="formsExternalAssociateGridContainer">
           <table width="100%">
             <tr>
-              <td className="formsAssociateTdContainer">
-                <table className="formsAssociateTContainer">
+              <td className="formsExternalAssociateTdContainer">
+                <table className="formsExternalAssociateTContainer">
                   <table width="100%">
                     <tr>
                       <td>
@@ -33,10 +33,10 @@ function FichaAssociados() {
                     </tr>
                   </table>
                   {fichaAssociate?.map((ficha) => (
-                    <table className="formsAssociateTContainer">
+                    <table className="formsExternalAssociateTContainer">
                       <table width="100%">
                         <tr>
-                          <td className="formsAssociateTdTitle">
+                          <td className="formsExternalAssociateTdTitle">
                             {ficha.title}
                           </td>
                         </tr>
@@ -45,8 +45,8 @@ function FichaAssociados() {
                         <table width="100%">
                           <tr>
                             {line?.items.map((item) => (
-                              <td className="formsAssociateTdBox">
-                                <span className="formsAssociateSubtitle">
+                              <td className="formsExternalAssociateTdBox">
+                                <span className="formsExternalAssociateSubtitle">
                                   {' '}
                                   {item.label}
                                   {' '}
@@ -66,7 +66,7 @@ function FichaAssociados() {
                   ))}
                   <table width="100%">
                     <tr>
-                      <td className="formsAssociateTdTitle" height="25px" />
+                      <td className="formsExternalAssociateTdTitle" height="25px" />
                     </tr>
                   </table>
                 </table>
@@ -81,4 +81,4 @@ function FichaAssociados() {
   );
 }
 
-export default FichaAssociados;
+export default FichaAssociadosExternos;

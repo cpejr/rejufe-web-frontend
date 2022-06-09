@@ -12,11 +12,20 @@ function createId(_id) {
   return _id;
 }
 
-async function getAllListaComunicados(setAllCommunique, history, setId, setUse, setArchive1Id, setArchive2Id) {
+async function getAllListaComunicados(
+  setAllCommunique,
+  history,
+  setId,
+  setUse,
+  setArchive1Id,
+  setArchive2Id,
+  setLoading,
+) {
   const auxCommunique = [];
   const communiqueId = [];
   const archive1Code = [];
   const archive2Code = [];
+  setLoading(true);
 
   try {
     const allCommunique = await managerService.getCommunique();
@@ -41,6 +50,7 @@ async function getAllListaComunicados(setAllCommunique, history, setId, setUse, 
     setArchive1Id(archive1Code);
     setArchive2Id(archive2Code);
     setUse(false);
+    setLoading(false);
   } catch (error) {
     history.push('/NotFound');
     toast.error('Erro ao listar os comunicados!', {
