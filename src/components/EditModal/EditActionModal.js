@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import './EditActionModal.css';
-import EditActionInputs from './EditActionInputs';
+import EditModelInputs from './EditActionInputs';
 
 toast.configure();
 
@@ -59,15 +59,14 @@ export default function EditActionModal({
   const [dados, setDados] = useState(action);
   const formData = new FormData();
   const titles = [
+    { label: 'Tipo:', field: 'select' },
     { label: 'Número:', field: 'input' },
     { label: 'Descrição:', field: 'input' },
-    { label: 'Tipo:', field: 'select' },
   ];
 
   const select = [
-    'REQUERIMENTOS ADMINISTRATIVOS',
-    'PETIÇÕES INICIAIS',
-    'JURISPRUDÊNCIA',
+    'ADMINISTRATIVAS',
+    'JUDICIAIS',
   ];
 
   async function handleSubmit() {
@@ -86,6 +85,7 @@ export default function EditActionModal({
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setDados(action);
       setUse(true);
     } catch (error) {
       toast.error('Não foi possível editar o modelo', {
@@ -107,7 +107,7 @@ export default function EditActionModal({
 
   useEffect(() => {
     setDados(action);
-  }, [page]);
+  }, [page, action]);
 
   const body = (
     <div style={modalStyle} className={classes.content}>
@@ -118,14 +118,14 @@ export default function EditActionModal({
         <div className="EditModal-model-title">
           <p>Editar dados</p>
         </div>
-        <EditActionInputs
-          id={id}
+        <EditModelInputs
           dados={dados}
           setDados={setDados}
           archive1Id={archive1Id}
           archive2Id={archive2Id}
           titles={titles}
           select={select}
+          setUse={setUse}
         />
         <button
           className="EditModal-model-buttonConfirm"

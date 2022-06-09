@@ -1,11 +1,7 @@
 /* eslint-disable react/button-has-type */
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import './AdmRegistrosAcoes.css';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/dashboard/dashboardComponent';
@@ -16,7 +12,6 @@ function AdmRegistrosAcoes() {
   const [action, setAllActions] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
-  const [fileId, setFileId] = useState();
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
 
@@ -83,7 +78,15 @@ function AdmRegistrosAcoes() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} actionId={id} rows={action} titles={titles} archive1Id={archive1Id} archive2Id={archive2Id} editActions />
+      <TableComponent
+        setUse={setUse}
+        actionId={id}
+        rows={action}
+        titles={titles}
+        archive1Id={archive1Id}
+        archive2Id={archive2Id}
+        editActions
+      />
     </div>
   );
 }

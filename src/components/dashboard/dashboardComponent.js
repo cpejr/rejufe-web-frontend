@@ -419,8 +419,9 @@ function TableComponent({
                           setUse={setUse}
                           id={actionId[index + (page * 10)]}
                           action={row}
-                          archive1={actualArchive1[index + (page * 10)]}
-                          archive2={actualArchive2[index + (page * 10)]}
+                          archive1Id={actualArchive1[index + (page * 10)]}
+                          archive2Id={actualArchive2[index + (page * 10)]}
+                          page={page}
                         />
                       </IconButton>
                     </TableCell>
