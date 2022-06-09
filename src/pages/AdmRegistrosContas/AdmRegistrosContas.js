@@ -38,9 +38,7 @@ function AdmRegistrosContas() {
           moment(object.date).add(1, 'days').format('DD-MM-YYYY'),
           object.description,
         ));
-        if (object.archive_1 !== '') {
-          archive1Code.push(object.archive_1);
-        }
+        archive1Code.push(object.archive_1);
       });
       allComunic.forEach((object) => {
         accountId.push(createId(
