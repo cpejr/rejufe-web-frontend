@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
 function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
-  console.log(archiveId);
-  console.log('🚀 ~ file: SingleFileUpload.js ~ line 43 ~ file', dados);
   const classes = useStyles();
   const [image, setImage] = useState();
 
