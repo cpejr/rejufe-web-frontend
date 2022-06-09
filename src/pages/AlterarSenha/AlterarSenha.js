@@ -34,12 +34,16 @@ function ChangePassword() {
   return (
     <div className="containerChangePassword">
       <div className="boxChangePassword">
-        <h1>Alterar Senha</h1>
-        <p>
-          Clique no botão abaixo para que um link seja enviado para o seu
-          email com os dados de alteração de senha.
-        </p>
-        <button type="submit" onClick={handleOpen}>Enviar</button>
+        <div className="change-password-text">
+          <h1>Alterar Senha</h1>
+          <p>
+            Clique no botão abaixo para que um link seja enviado para o seu
+            email com os dados de alteração de senha.
+          </p>
+        </div>
+        <div className="change-passowrd-button">
+          <button type="submit" onClick={handleOpen}>Enviar</button>
+        </div>
       </div>
       <Modal open={open} onClose={handleClose} className="modalStyleChangePassword">
         <div className="popUpChangePassword">

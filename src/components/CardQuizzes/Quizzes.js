@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
@@ -5,6 +6,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import moment from 'moment';
 import { FormControl, useMediaQuery } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import DateQuizzes from '../DateQuizzes/DateQuizzes';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
@@ -63,7 +65,7 @@ function Quizzes({
           <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
         </button>
       </div>
-      {open === true ? (
+      {(open === true && quizz.privateResult === false) || (open === true && quizz.privateResult === true && closingDate < dateQuizz) || (open === true && quizz.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -98,6 +100,22 @@ function Quizzes({
             </>
 
           )}
+        </div>
+      ) : (open === true && quizz.privateResult === true && user?.type === 'administrador') ? (
+        <div className="unavaible-result">
+          <div className="line-table-registers" />
+          <div className="unavaible-result-text">
+            <span><AccessTimeIcon /></span>
+            Resultado indisponível, aguardando finalização da enquete
+          </div>
+        </div>
+      ) : (open === true && quizz.privateResult === true && user?.type === 'usuario') ? (
+        <div className="unavaible-result">
+          <div className="line-table-registers" />
+          <div className="unavaible-result-text">
+            <span><AccessTimeIcon /></span>
+            Você já votou nessa enquete, resultado parcial indisponível no momento
+          </div>
         </div>
       ) : (
         null
