@@ -313,6 +313,19 @@ export const createAccountability = async (body) => {
   return response.data;
 };
 
+export const getActions = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getActions(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allActions;
+};
+
 export const getAccounts = async (field, filter) => {
   let times = 0;
   let response;
@@ -349,7 +362,7 @@ export const getCommunique = async (field, filter) => {
     allCommunique = allCommunique.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allActions;
+  return allCommunique;
 };
 
 export const contactUs = async (body) => {
@@ -362,19 +375,6 @@ export const getExternalUserById = async (id) => {
   const response = await requesterService.getExternalUserById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
-};
-
-export const getCommunique = async (field, filter) => {
-  let times = 0;
-  let response;
-  let allActions = [];
-  do {
-    response = await requesterService.getActions(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-  return allActions;
 };
 
 export const deleteAction = async (actionId) => {

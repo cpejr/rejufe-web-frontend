@@ -35,7 +35,7 @@ import AcceptModal from '../AcceptModal/AcceptModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
