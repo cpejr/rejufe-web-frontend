@@ -357,7 +357,7 @@ export const sendBirthdayEmail = async () => {
   if (isFailureStatus(response)) {
     throw new Error('Problem with api response');
   }
-  return response;
+  return response.data;
 };
 
 export const getTodayBirthday = async () => {
@@ -365,7 +365,7 @@ export const getTodayBirthday = async () => {
   if (isFailureStatus(response)) {
     throw new Error('Problem with api response');
   }
-  return response;
+  return response.data;
 };
 
 export const getCommunique = async (field, filter) => {

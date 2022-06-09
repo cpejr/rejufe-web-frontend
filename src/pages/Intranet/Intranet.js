@@ -32,7 +32,7 @@ function Intranet() {
   async function getBirthdayUsers() {
     try {
       const response = await managerService.getTodayBirthday();
-      setBirthdayUsers(response?.data);
+      setBirthdayUsers(response);
     } catch (error) {
       toast.error('Não foi possível obter aniversariantes!!', {
         position: toast.POSITION.TOP_RIGHT,
