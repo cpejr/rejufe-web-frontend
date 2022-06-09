@@ -12,31 +12,34 @@
   margin-bottom: 2%;
   background-color: white;
 }
-.EditModal-model-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40%;
-  border-radius: 6px;
-  background-color: white;
-  border: 0.5px solid black;
-  box-shadow: 24;
-  padding: 4;
+
+.makeStyles-content-4 {
   overflow-y: scroll;
 }
 
-.EditModal-model-field{
-  display:flex;
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background:var(--color2);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color4);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover);
+}
+
+.EditModal-model-container {
+  display: flex;
   flex-direction: column;
-  align-items:center;
-  width: 100%;
-  color: black;
-  margin-bottom: 2%;
+  justify-content: center;
+  align-items: center;
 }
 
 .EditModal-model-title{
@@ -48,16 +51,6 @@
   font-weight: bold;
   font-size:24px;
   margin-bottom: 5%;
-}
-
-.EditModal-model-text{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  flex-direction: column;
-  font-family: Roboto;
-  margin-bottom: 1%;
 }
 
 .EditModal-model-buttonConfirm{
@@ -82,33 +75,6 @@
   margin-bottom: 5%;
 }
 
-.EditModal-model-input{
-  margin-bottom: 1%;
-  margin-top: 1%;
-  width: 65%;
-  height: 30px;
-  background-color: #f0f0f5;
-  box-sizing: border-box;
-  border-radius: 6px;
-  border: 0;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.EditModal-model-select{
-  margin-bottom: 1%;
-  margin-top: 1%;
-  width: 65%;
-  height: 30px;
-  background-color: #f0f0f5;
-  box-sizing: border-box;
-  border-radius: 6px;
-  border: 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  cursor: pointer;
-}
-
 .EditModal-model-cancel{
   display: flex;
   align-self: flex-start;
@@ -123,12 +89,6 @@
 
 .file-upload-remove {
   margin-bottom: 5%;
-}
-
-@media(max-width: 900px){
-  .EditModal-model-containerModal{
-    width: 50%;
-  }
 }
 
 @media(max-width: 695px){
@@ -152,9 +112,6 @@
     font-size:22px;
   }
 
-  .EditModal-model-text{
-    font-size: 14px;
-  }
   .EditModal-model-buttonConfirm{
     font-size: 14px;
   }
@@ -175,16 +132,7 @@
   .EditModal-model-title{
     font-size:22px;
   }
-  .EditModal-model-text{
-    font-size: 14px;
-  }
   .EditModal-model-buttonConfirm{
     font-size: 14px;
-  }
-  .EditModal-model-input{
-    width: 50%;
-  }
-  .EditModal-model-select{
-    width: 50%;
   }
 }

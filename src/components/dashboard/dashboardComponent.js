@@ -38,7 +38,7 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
-import EditAccountModal from '../EditModal/EditAccount/EditAccountModal';
+import EditAccountModal from '../EditModal/EditAccountModal';
 import * as managerService from '../../services/manager/managerService';
 
 function TablePaginationActions(props) {

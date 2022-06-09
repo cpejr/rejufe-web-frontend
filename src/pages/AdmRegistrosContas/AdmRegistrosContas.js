@@ -43,8 +43,8 @@ function AdmRegistrosContas() {
           moment(object.date).add(1, 'days').format('DD-MM-YYYY'),
           object.description,
         ));
-        if (object.pdf !== '') {
-          archive1Code.push(object.pdf);
+        if (object.archive_1 !== '') {
+          archive1Code.push(object.archive_1);
         }
       });
       allComunic.forEach((object) => {

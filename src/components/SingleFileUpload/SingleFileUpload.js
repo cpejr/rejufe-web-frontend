@@ -7,7 +7,6 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import Button from '@mui/material/Button';
 import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
-import './SingleFileUpload.css';
 
 toast.configure();
 
@@ -55,6 +54,7 @@ function SingleFileUpload({
       });
     }
   }
+
   if (update === true) {
     useEffect(() => {
       if (field === 'photos' && file !== '' && file !== undefined) {
@@ -86,6 +86,7 @@ function SingleFileUpload({
     accept: [`${fileType}`],
     maxSize: 300 * 1024, // 300KB
   });
+
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
@@ -104,18 +105,11 @@ function SingleFileUpload({
               </p>
             )}
           </div>
-          {(file === '' || dados.pdf === '') && (
-            <div className="modal-confirm-remove-archive">
-              <h3 style={{
-                fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%', fontSize: '1em',
-              }}
-              >
-                Confirme para remover o arquivo
-              </h3>
-            </div>
-          )}
           {update === true && archiveId !== undefined && dados.pdf === undefined && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+            }}
+            >
               {file === undefined && archiveId && (
                 <>
                   <Button
@@ -134,11 +128,16 @@ function SingleFileUpload({
                     style={{
                       backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
                     }}
-                    onClick={() => setDados('', field)}
+                    onClick={() => {
+                      setDados('', field);
+                    }}
                   >
                     Remover Arquivo
                   </Button>
                 </>
+              )}
+              {file === '' && (
+                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
               )}
               <div />
             </div>
@@ -160,13 +159,9 @@ function SingleFileUpload({
             </div>
           )}
           {dados.pdf && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div
-                style={{
-                  display: 'flex', alignItems: 'center', marginTop: '3%', marginBottom: '1%',
-                }}
-              >
-                {dados?.pdf?.file?.path}
+            <div div className="file-upload-download-file">
+              <div className="register-news-align-test">
+                {file?.file?.path}
                 {' '}
                 <PictureAsPdfIcon />
               </div>
@@ -175,6 +170,7 @@ function SingleFileUpload({
               </Button>
             </div>
           )}
+
         </div>
       </Grid>
     </Grid>

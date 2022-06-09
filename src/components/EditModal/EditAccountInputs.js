@@ -1,9 +1,10 @@
 import React from 'react';
 import moment from 'moment';
-import SingleFileUpload from '../../SingleFileUpload/SingleFileUpload';
+import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
+import './EditModalInputs.css';
 
-function EditAccountInputs({
-  id, dados, setDados, archive1Id, titles,
+function EditModelInputs({
+  dados, setDados, archive1Id, titles, select,
 }) {
   dados.date = moment(dados.date).format('YYYY-MM-DD');
   function handleChange(value, field) {
@@ -13,7 +14,6 @@ function EditAccountInputs({
 
   const inputDados = Object.values(dados);
   console.log('🚀 ~ file: EditAccountInputs.js ~ line 15 ~ inputDados', inputDados);
-
   return (
     <div className="EditModal-inputs">
       {titles.map((title, index) => (
@@ -34,16 +34,37 @@ function EditAccountInputs({
               <input type="date" className="EditModal-model-input" placeholder="" require value={inputDados[index]} onChange={(e) => handleChange(e.target.value, Object.keys(dados)[index])} />
             </div>
           )}
+          {title?.field === 'select' && (
+            <div className="EditModal-model-field">
+              <div className="EditModal-model-text">
+                {title?.label}
+              </div>
+              <select className="EditModal-model-select" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, Object.keys(dados)[index])}>
+                {select?.map((selected) => (
+                  <option value={selected}>{selected}</option>
+                ))}
+              </select>
+            </div>
+          )}
         </>
       ))}
       <div className="EditModal-model-field">
         <div className="EditModal-model-text">
           Anexo:
         </div>
-        <SingleFileUpload modelId={id} field="pdf" fileType=".pdf" file={dados.archive1} dados={dados} archiveId={archive1Id} setDados={(value, field) => handleChange(value, field)} label="Arquivo" update />
+        <SingleFileUpload
+          field="archive_1"
+          fileType=".pdf"
+          file={dados.archive_1}
+          dados={dados}
+          archiveId={archive1Id}
+          setDados={(value, field) => handleChange(value, field)}
+          label="Arquivo"
+          update
+        />
       </div>
     </div>
   );
 }
 
-export default EditAccountInputs;
+export default EditModelInputs;
