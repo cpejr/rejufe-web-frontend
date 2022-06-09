@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function SingleFileUpload({
-  fileType, dados, file, setDados, label, update, archiveId, field,
+  fileType, dados, file, setDados, label, update, archiveId, field, id,
 }) {
   const classes = useStyles();
   const [image, setImage] = useState();

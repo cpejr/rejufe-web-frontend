@@ -181,14 +181,6 @@ export const getActions = (times, field, filter) => httpClient.get('/acoes', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
-export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
-  params: {
-    times,
-    field,
-    filter,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
 export const deleteAccount = (actionId) => httpClient.delete(`/prestacaodecontas/${actionId}`);
 
 export const updateAccount = (actionId, body) => httpClient.put(`/prestacaodecontas/${actionId}`, body);
