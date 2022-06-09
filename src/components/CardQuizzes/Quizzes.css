@@ -46,6 +46,7 @@
   text-align: initial;
   word-break: break-all;
 }
+
 .description-card-quizzes {
   display: flex;
   flex-direction: column;
@@ -53,7 +54,8 @@
   width: 100%;
   border-radius: 8px;
   background-color: var(--background);
-  padding: 10px;;
+  padding: 10px;
+  ;
 }
 
 .description-card-quizzes p {
@@ -126,7 +128,34 @@
   border-color: var(--color2);
 }
 
-@media(max-width: 1316px){
+
+.unavaible-result {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
+
+.unavaible-result-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: Roboto;
+}
+
+.unavaible-result-text span {
+  margin-right: 3px;
+  margin-top: 1px;
+}
+
+@media (max-width: 1075px) {
+  .css-i4bv87-MuiSvgIcon-root {
+    height: 1.4em !important;
+    width: 1.4em !important;
+  }
+}
+
+@media(max-width: 1163px){
   .tagg-status-quizz{
     margin-left: 38% ;
   }
@@ -218,7 +247,6 @@
     margin-left: 45% ;
   }
 }
-
 
 @media (max-width: 786px) {
   .alternatives-vote-quizzes button {

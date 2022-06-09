@@ -61,8 +61,9 @@ export const deleteAssociate = (associateId) => httpClient.delete(`usuario/${ass
 
 export const updateAssociate = (id, body) => httpClient.put(`/usuario/${id}`, body);
 
-export const getQuizzes = (times, field, filter) => httpClient.get('/quizzes', {
+export const getQuizzes = (date, times, field, filter) => httpClient.get('/quizzes', {
   params: {
+    date,
     times,
     field,
     filter,
@@ -208,3 +209,5 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
