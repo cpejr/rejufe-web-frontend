@@ -5,8 +5,16 @@ import LinearColor from '../components/Loading/Loading';
 
 export const AuthContext = React.createContext({});
 
-export function AuthProvider({ children }) {
+const routingFunction = (param) => {
   const history = useHistory();
+
+  history.push({
+    pathname: '/NotFound',
+    state: param,
+  });
+};
+
+export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +35,7 @@ export function AuthProvider({ children }) {
           } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);
-            history.push('/NotFound');
+            routingFunction();
             setLoading(false);
           }
         }
