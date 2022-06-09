@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 import './EditModalInputs.css';
 
-function EditModelInputs({
+function EditActionInputs({
   dados, setDados, archive1Id, archive2Id, titles, select,
 }) {
   const [inputDados, setInputDados] = useState(Object.entries(dados));
@@ -75,4 +75,4 @@ function EditModelInputs({
   );
 }
 
-export default EditModelInputs;
+export default EditActionInputs;

@@ -1,4 +1,4 @@
-.EditModal-model-editGroup{
+.EditModal-action-editGroup{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -35,14 +35,14 @@
   background-color: var(--hover);
 }
 
-.EditModal-model-container {
+.EditModal-action-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.EditModal-model-title{
+.EditModal-action-title{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -53,7 +53,7 @@
   margin-bottom: 5%;
 }
 
-.EditModal-model-buttonConfirm{
+.EditModal-action-buttonConfirm{
   display:flex;
   padding: 1%;
   width: 30%;
@@ -75,7 +75,7 @@
   margin-bottom: 5%;
 }
 
-.EditModal-model-cancel{
+.EditModal-action-cancel{
   display: flex;
   align-self: flex-start;
   margin-left: 3%;
@@ -83,7 +83,7 @@
   cursor: pointer;
 }
 
-.EditModal-model-buttonConfirm:hover{
+.EditModal-action-buttonConfirm:hover{
   background-color: var(--primary);
 }
 
@@ -92,47 +92,47 @@
 }
 
 @media(max-width: 695px){
-  .EditModal-model-containerModal{
+  .EditModal-action-containerModal{
     height: 370px;
     width: 450px;
   }
 }
 
 @media(max-width: 495px){
-  .EditModal-model-containerModal{
+  .EditModal-action-containerModal{
     height: 320px;
     width: 380px;
   }
 
-  .EditModal-model-cancel{
+  .EditModal-action-cancel{
     margin-top: 2%;
   }
 
-  .EditModal-model-title{
+  .EditModal-action-title{
     font-size:22px;
   }
 
-  .EditModal-model-buttonConfirm{
+  .EditModal-action-buttonConfirm{
     font-size: 14px;
   }
-  .EditModal-model-editGroup .css-i4bv87-MuiSvgIcon-root {
+  .EditModal-action-editGroup .css-i4bv87-MuiSvgIcon-root {
     width: 0.75em !important;
     height: 0.75em !important;
   }
 }
 
 @media(max-width: 395px){
-  .EditModal-model-containerModal{
+  .EditModal-action-containerModal{
     height: 300px;
     width: 270px;
   }
-  .EditModal-model-cancel{
+  .EditModal-action-cancel{
     margin-top: 2%;
   }
-  .EditModal-model-title{
+  .EditModal-action-title{
     font-size:22px;
   }
-  .EditModal-model-buttonConfirm{
+  .EditModal-action-buttonConfirm{
     font-size: 14px;
   }
 }

@@ -358,7 +358,6 @@ export const contactUs = async (body) => {
 };
 
 export const getActions = async (field, filter) => {
-  console.log('an');
   let times = 0;
   let response;
   let allActions = [];
@@ -367,7 +366,7 @@ export const getActions = async (field, filter) => {
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allActions = allActions.concat(response.data);
     times += 1;
-  } while (response.data.length === 0);
+  } while (response.data.length > 0);
   return allActions;
 };
 

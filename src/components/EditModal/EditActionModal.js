@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import './EditActionModal.css';
-import EditModelInputs from './EditActionInputs';
+import EditActionInputs from './EditActionInputs';
 
 toast.configure();
 
@@ -88,7 +88,7 @@ export default function EditActionModal({
       setDados(action);
       setUse(true);
     } catch (error) {
-      toast.error('Não foi possível editar o modelo', {
+      toast.error('Não foi possível editar a ação', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -111,14 +111,14 @@ export default function EditActionModal({
 
   const body = (
     <div style={modalStyle} className={classes.content}>
-      <div className="EditModal-model-container">
-        <div role="button" tabIndex={0} className="EditModal-model-cancel" onClick={handleClose}>
+      <div className="EditModal-action-container">
+        <div role="button" tabIndex={0} className="EditModal-action-cancel" onClick={handleClose}>
           <CancelIcon />
         </div>
-        <div className="EditModal-model-title">
+        <div className="EditModal-action-title">
           <p>Editar dados</p>
         </div>
-        <EditModelInputs
+        <EditActionInputs
           dados={dados}
           setDados={setDados}
           archive1Id={archive1Id}
@@ -128,7 +128,7 @@ export default function EditActionModal({
           setUse={setUse}
         />
         <button
-          className="EditModal-model-buttonConfirm"
+          className="EditModal-action-buttonConfirm"
           onClick={(e) => {
             e.preventDefault();
             handleSubmit();
@@ -143,7 +143,7 @@ export default function EditActionModal({
   );
   return (
     <div>
-      <button type="button" className="EditModal-model-editGroup" onClick={handleOpen}>
+      <button type="button" className="EditModal-action-editGroup" onClick={handleOpen}>
         <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
