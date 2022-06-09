@@ -1,27 +1,14 @@
-/* eslint-disable no-unused-vars */
 import {
-  useRef, React, useEffect, useState,
+  React, useEffect, useState,
 } from 'react';
 import './FichaNoticia.css';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-import { useReactToPrint } from 'react-to-print';
 import fichaNews from '../../components/NewsQuery/FichaNoticias';
 import getNewsById from '../../components/getNewsById/getNewsById';
 import * as managerService from '../../services/manager/managerService';
-
-// eslint-disable-next-line react/prefer-stateless-function
-// class ComponentToPrint extends React.Component {
-//   render() {
-//     const { news } = this.props;
-
-//     return (
-
-//     );
-//   }
-// }
 
 function FichaNoticia() {
   const { search } = useLocation();
