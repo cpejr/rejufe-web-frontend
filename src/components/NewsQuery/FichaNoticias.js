@@ -1,4 +1,4 @@
-const fichaMinutes = [
+const recordNews = [
 
   {
     title: 'DETALHES DO REGISTRO',
@@ -72,4 +72,4 @@ const fichaMinutes = [
     ],
   },
 ];
-export default fichaMinutes;
+export default recordNews;

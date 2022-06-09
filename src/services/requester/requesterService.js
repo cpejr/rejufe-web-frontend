@@ -213,4 +213,3 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
 export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
-
