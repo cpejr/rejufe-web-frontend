@@ -6,7 +6,7 @@ toast.configure();
 export default function setFileNameById(fileNames1, archive1Id, setFileNames1) {
   try {
     const aux1 = fileNames1;
-    if (fileNames1.length === 0 && archive1Id) {
+    if (fileNames1?.length === 0 && archive1Id) {
       archive1Id?.forEach((_id, index) => {
         managerService.getFileNameById(_id).then((response) => {
           aux1.splice(index, 0, response);

@@ -8,12 +8,10 @@ function EditModelInputs({
 }) {
   dados.date = moment(dados.date).format('YYYY-MM-DD');
   function handleChange(value, field) {
-    console.log('🚀 ~ file: EditAccountInputs.js ~ line 10 ~ handleChange ~ field', field);
     setDados({ ...dados, [field]: value });
   }
 
   const inputDados = Object.values(dados);
-  console.log('🚀 ~ file: EditAccountInputs.js ~ line 15 ~ inputDados', inputDados);
   return (
     <div className="EditModal-inputs">
       {titles.map((title, index) => (

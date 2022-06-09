@@ -1,12 +1,9 @@
 /* eslint-disable react/button-has-type */
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import './AdmRegistrosContas.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import TableComponent from '../../components/dashboard/dashboardComponent';
@@ -17,8 +14,6 @@ function AdmRegistrosContas() {
   const [comunics, setAllComunics] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
-  const [actualFile, setActualFile] = useState();
-  const [fileId, setFileId] = useState();
   const [archive1Id, setArchive1Id] = useState();
 
   function createData(title, date, description) {
@@ -82,7 +77,14 @@ function AdmRegistrosContas() {
         </h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent setUse={setUse} accountId={id} rows={comunics} titles={titles} archive1Id={archive1Id} editAccount />
+      <TableComponent
+        setUse={setUse}
+        accountId={id}
+        rows={comunics}
+        titles={titles}
+        archive1Id={archive1Id}
+        editAccount
+      />
     </div>
   );
 }

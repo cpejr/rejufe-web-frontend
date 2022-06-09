@@ -64,12 +64,6 @@ export default function EditModel({
     { label: 'Descrição:', field: 'input' },
   ];
 
-  const select = [
-    'REQUERIMENTOS ADMINISTRATIVOS',
-    'PETIÇÕES INICIAIS',
-    'JURISPRUDÊNCIA',
-  ];
-
   async function handleSubmit() {
     Object.entries(dados).forEach((dado) => {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
@@ -89,7 +83,7 @@ export default function EditModel({
       setDados(account);
       setUse(true);
     } catch (error) {
-      toast.error('Não foi possível editar o modelo', {
+      toast.error('Não foi possível editar prestação de contas', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -112,11 +106,11 @@ export default function EditModel({
 
   const body = (
     <div style={modalStyle} className={classes.content}>
-      <div className="EditModal-model-container">
-        <div role="button" tabIndex={0} className="EditModal-model-cancel" onClick={handleClose}>
+      <div className="EditModal-account-container">
+        <div role="button" tabIndex={0} className="EditModal-account-cancel" onClick={handleClose}>
           <CancelIcon />
         </div>
-        <div className="EditModal-model-title">
+        <div className="EditModal-account-title">
           <p>Editar dados</p>
         </div>
         <EditModelInputs
@@ -125,11 +119,10 @@ export default function EditModel({
           archive1Id={archive1Id}
           archive2Id={archive2Id}
           titles={titles}
-          select={select}
           setUse={setUse}
         />
         <button
-          className="EditModal-model-buttonConfirm"
+          className="EditModal-account-buttonConfirm"
           onClick={(e) => {
             e.preventDefault();
             handleSubmit();
@@ -144,7 +137,7 @@ export default function EditModel({
   );
   return (
     <div>
-      <button type="button" className="EditModal-model-editGroup" onClick={handleOpen}>
+      <button type="button" className="EditModal-account-editGroup" onClick={handleOpen}>
         <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
