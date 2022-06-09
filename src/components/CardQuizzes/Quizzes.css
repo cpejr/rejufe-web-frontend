@@ -148,6 +148,15 @@
   margin-top: 1px;
 }
 
+@media(max-width: 1316px){
+  .tagg-status-quizz{
+    margin-left: 38% ;
+  }
+  .title-card-quizzes p {
+    margin-right: 45%;
+  }
+}
+
 @media (max-width: 1075px) {
   .css-i4bv87-MuiSvgIcon-root {
     height: 1.4em !important;
