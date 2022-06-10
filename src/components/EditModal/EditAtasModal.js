@@ -121,12 +121,13 @@ export default function EditMinutesModal({
           <p>Editar dados</p>
         </div>
         <EditModelInputs
-          titles={titles}
-          archive1Id={archive1Id}
-          archive2Id={archive2Id}
           dados={dados}
           setDados={setDados}
+          archive1Id={archive1Id}
+          archive2Id={archive2Id}
+          titles={titles}
           select={select}
+          setUse={setUse}
         />
         <button
           className="EditMinutesModal-ButtonConfirm"
