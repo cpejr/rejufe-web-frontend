@@ -4,7 +4,7 @@ import './Loading.css';
 export default function LinearColor() {
   return (
     <div className="linearColorContainer">
-      <p className="loadingP">Loading</p>
+      <p className="loadingP">Carregando</p>
     </div>
   );
 }

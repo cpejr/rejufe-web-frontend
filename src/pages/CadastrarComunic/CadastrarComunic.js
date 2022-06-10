@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import formsComunic from '../../components/formsData/formsComunic';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialComunicState, initialComunicErrorState } from '../../components/initialStates/initialStates';
-import checkComunicData from '../../components/checkComunicData/checkComunicData';
+import checkComunicData from '../../components/checkData/checkComunicData/checkComunicData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarComunic.css';
 
