@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 export default function EditMinutesModal({
   id, minutes, setUse, archive1Id, archive2Id, page,
 }) {
-  console.log(minutes);
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [dados, setDados] = useState(minutes);
