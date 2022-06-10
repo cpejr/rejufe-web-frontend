@@ -42,12 +42,8 @@ function AlteracoesExclusoesMinutes() {
           object.number,
           object.description,
         ));
-        if (object.archive_1 !== '') {
-          archive1Code.push(object.archive_1);
-        }
-        if (object.archive_2 !== '') {
-          archive2Code.push(object.archive_2);
-        }
+        archive1Code.push(object.archive_1);
+        archive2Code.push(object.archive_2);
       });
       allMinutes.forEach((object) => {
         minuteId.push(createId(

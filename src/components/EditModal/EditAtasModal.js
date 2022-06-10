@@ -87,6 +87,7 @@ export default function EditMinutesModal({
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setDados(minutes);
       setUse(true);
     } catch (error) {
       history.push('/NotFound');
@@ -99,7 +100,7 @@ export default function EditMinutesModal({
 
   useEffect(() => {
     setDados(minutes);
-  }, [page]);
+  }, [page, minutes]);
 
   const [open, setOpen] = useState(false);
 
