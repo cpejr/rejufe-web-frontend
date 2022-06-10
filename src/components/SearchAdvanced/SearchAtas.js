@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Modal from '@material-ui/core/Modal';
 import './SearchAtas.css';
@@ -17,10 +18,12 @@ function SearchAtas({
   const { register, setValue } = useForm();
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [dados, setDados] = useState(rows);
   console.log('🚀 ~ file: SearchAtas.js ~ line 17 ~ type', type);
   const history = useHistory();
   // eslint-disable-next-line no-unused-vars
-  const [data, setData] = useState([]);
+  const [top, setData] = useState(rows);
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
 
@@ -30,6 +33,7 @@ function SearchAtas({
   const filterType = rows?.filter(((item) => item.type?.includes(type)));
 
   const [open, setOpen] = useState(false);
+  const url = '/login';
 
   const handleOpen = () => {
     setOpen(true);
@@ -39,25 +43,27 @@ function SearchAtas({
   //   setQuery('');
   // };
 
-  const handleClose = () => {
+  /* const handleData = () => {
+    setData(filterDescription);
+    const state = { top };
+    console.log('🚀 ~ file: dashboardComponent.js ~ line 338 ~ tt', top);
     setOpen(false);
-  };
-  const handleData = () => {
-    history.push({
-      pathname: '/consulta-atas-e-editais',
-      state: {
-        filterDescription, filterType, type, query,
-      },
-    });
+    history.push(state, '', url);
+  }; */
+
+  const handleClose = () => {
     setOpen(false);
   };
 
   console.log(query);
 
   console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', filterType);
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', query);
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 322 ~ filterType', filterDescription);
 
   console.log('🚀 ~ file: SearchAtas.js ~ line 88 ~ data', type, query);
+  /*   useEffect(() => {
+    setDados(filterDescription);
+  }, [filterDescription]); */
 
   const buttonFontProps = {
     // eslint-disable-next-line no-nested-ternary
@@ -104,17 +110,25 @@ function SearchAtas({
         </div>
         <div className="buttons">
           <div className="AcceptModal-button1">
-            <button
+            {/*   <button
               type="button"
               className="AcceptModal-ButtonCancel"
               onClick={() => {
                 handleData();
+              }} */}
+            {/*    > */}
+            <div className="AcceptModal-align">
+              <Link to={{
+                pathname: '/consulta-atas-editais',
+                state: {
+                  top,
+                },
               }}
-            >
-              <div className="AcceptModal-align">
+              >
                 <p>Pesquisa Avançada</p>
-              </div>
-            </button>
+              </Link>
+            </div>
+            {/*  </button> */}
           </div>
           <div className="AcceptModal-button2">
             <button

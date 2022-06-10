@@ -15,9 +15,10 @@ const titles = [
   'Arquivo 2',
 ];
 
-function ConsultaMinutes(data) {
+function ConsultaMinutes(data, filterDescription, filterType, top) {
+  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ filterType', filterType, filterDescription);
   const { location } = data;
-  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ location', location);
+  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ location', top);
   const dados = location?.state;
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
@@ -47,13 +48,15 @@ function ConsultaMinutes(data) {
               id={id}
               rows={minutes}
               titles={titles}
-              filterDescription={dados?.filterDescription}
-              filterType={dados?.filterType}
+              /*  filterDescription={dados?.filterDescription}
+              filterType={dados?.filterType} */
               type={dados?.type}
               query={dados?.query}
               setType={dados?.setType}
               setQuery={dados?.setQuery}
               searchMinutes
+              filterDescription={filterDescription}
+              filterType={filterType}
               printButton
               search
               renderButton

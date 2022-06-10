@@ -27,7 +27,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 45%;
-  width: 40%;
+  width: 70vh;
   border-radius: 6px;
   background-color: white;
   border: 0.5px solid black;
@@ -49,7 +49,7 @@
   width:100%;
   font-family:Roboto;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 25px;
   color: black;
   margin-bottom: 7%;
 }
@@ -69,7 +69,6 @@ label {
 }
 
 .AcceptModal-button2{
-  margin-right: 13px;
   margin-left: 13px;
 }
 
@@ -128,7 +127,7 @@ label {
 .EditModal-Input {
   margin-bottom: 5%;
   margin-top: 1%;
-  height: 100%;
+  height: 30px;
   width: 120px;
   background-color: #f0f0f5;
   box-sizing: border-box;
@@ -152,6 +151,13 @@ margin-right: 5px;
 margin-left: 5px;
 }
 
+.AcceptModal-Bu label{
+  font-size: 20px;
+}
+
+.AcceptModal-Bu p{
+  font-size: 20px;
+}
 @media(max-width: 685px){
   .AcceptModal-ContainerModal{
     height: 50%;

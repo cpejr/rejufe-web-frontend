@@ -137,7 +137,7 @@ function TableComponent({
   type,
   query,
 }) {
-  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', filterType, filterDescription);
+  console.log('🚀 ~ file: dashboardComponent.js ~ line 135 ~ detail', filterType);
   const [page, setPage] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(rows);
