@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
@@ -27,21 +27,20 @@ const useStyles = makeStyles((theme) => ({
 function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
-  console.log(archiveId);
   const classes = useStyles();
-  // const [image, setImage] = useState();
+  const [image, setImage] = useState();
 
-  // async function getImage() {
-  //   try {
-  //     const response = await managerService.getImageById(archiveId);
-  //     setImage(response);
-  //   } catch (error) {
-  //     toast.error('Não foi possível obter imagem', {
-  //       position: toast.POSITION.BOTTOM_RIGHT,
-  //       autoClose: 5000,
-  //     });
-  //   }
-  // }
+  async function getImage() {
+    try {
+      const response = await managerService.getImageById(archiveId);
+      setImage(response);
+    } catch (error) {
+      toast.error('Não foi possível obter imagem', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
 
   function getDownloads() {
     try {
@@ -59,7 +58,7 @@ function SingleFileUpload({
   if (update === true) {
     useEffect(() => {
       if (field === 'photos' && file !== '' && file !== undefined) {
-        // getImage();
+        getImage();
       }
     }, [file, archiveId]);
   }
@@ -95,8 +94,7 @@ function SingleFileUpload({
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
             {update === true && label === 'Imagem' && file !== '' ? (
-              // <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
-              <h1>Obter imagem</h1>
+              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
             ) : (
               <p>
                 Arraste e solte a/o
@@ -108,8 +106,11 @@ function SingleFileUpload({
             )}
           </div>
           {update === true && archiveId !== undefined && dados.pdf === undefined && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {file === undefined && archiveId && (
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+            }}
+            >
+              {(file === undefined || file === archiveId) && archiveId && (
                 <>
                   <Button
                     style={{
@@ -127,19 +128,34 @@ function SingleFileUpload({
                     style={{
                       backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
                     }}
-                    onClick={() => setDados('', field)}
+                    onClick={() => {
+                      setDados('', field);
+                    }}
                   >
                     Remover Arquivo
                   </Button>
                 </>
               )}
               {file === '' && (
-                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+                <>
+                  <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                    }}
+                    onClick={() => {
+                      setDados(archiveId, field);
+                    }}
+                  >
+                    cancelar
+                  </Button>
+                </>
               )}
               <div />
             </div>
           )}
-          {file && (
+          {typeof file === 'object' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div
                 style={{
