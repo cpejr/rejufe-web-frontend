@@ -16,6 +16,7 @@ function AlteracoesExclusoesMinutes() {
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
+  const [numbers, setNumbers] = useState();
   const history = useHistory();
 
   function createData(type, number, description) {
@@ -33,6 +34,7 @@ function AlteracoesExclusoesMinutes() {
     const minuteId = [];
     const archive1Code = [];
     const archive2Code = [];
+    const auxNumbers = [];
     try {
       const allMinutes = await managerService.getMinute();
       allMinutes.forEach((object) => {
@@ -41,6 +43,7 @@ function AlteracoesExclusoesMinutes() {
           object.number,
           object.description,
         ));
+        auxNumbers.push(object.number);
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
       });
@@ -50,6 +53,7 @@ function AlteracoesExclusoesMinutes() {
         ));
       });
       auxMinute.sort();
+      setNumbers(auxNumbers);
       setId(minuteId);
       setAllMinutes(auxMinute);
       setArchive1Id(archive1Code);
@@ -89,6 +93,7 @@ function AlteracoesExclusoesMinutes() {
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
+        numbers={numbers}
         editMinute
       />
     </div>

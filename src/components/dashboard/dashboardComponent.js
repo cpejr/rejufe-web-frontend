@@ -136,6 +136,7 @@ function TableComponent({
   loading,
   editMinute,
   minuteId,
+  numbers,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -438,6 +439,7 @@ function TableComponent({
                           minutes={row}
                           archive1Id={archive1Id && archive1Id[index + (page * 10)]}
                           archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          numbers={numbers}
                           page={page}
                         />
                       </IconButton>

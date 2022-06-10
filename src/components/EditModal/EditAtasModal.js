@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditMinutesModal({
-  id, minutes, setUse, archive1Id, archive2Id, page,
+  id, minutes, setUse, archive1Id, archive2Id, page, numbers,
 }) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
@@ -71,29 +71,36 @@ export default function EditMinutesModal({
   ];
 
   async function handleSubmit() {
-    Object.entries(dados).forEach((dado) => {
-      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
-        dado[1] = dado[1] ? dado[1]?.file : '';
-        formData.append(dado[0], dado[1]);
-      } else {
-        formData.append(dado[0], dado[1]);
-      }
-    });
+    if (numbers.find((number) => number === dados.number)) {
+      toast.error('O número da ata/edital já está sendo utilizado', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    } else {
+      Object.entries(dados).forEach((dado) => {
+        if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
+          dado[1] = dado[1] ? dado[1]?.file : '';
+          formData.append(dado[0], dado[1]);
+        } else {
+          formData.append(dado[0], dado[1]);
+        }
+      });
 
-    try {
-      await managerService.updateMinute(id, formData);
-      toast.success('Dados editados!', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
-      });
-      setDados(minutes);
-      setUse(true);
-    } catch (error) {
-      history.push('/NotFound');
-      toast.error('Não foi possível fazer uma edição', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
-      });
+      try {
+        await managerService.updateMinute(id, formData);
+        toast.success('Dados editados!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+        setDados(minutes);
+        setUse(true);
+      } catch (error) {
+        history.push('/NotFound');
+        toast.error('Não foi possível fazer uma edição', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+      }
     }
   }
 
