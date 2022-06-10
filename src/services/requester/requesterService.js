@@ -167,7 +167,6 @@ export const getModels = (times, field, filter) => httpClient.get('/modelos', {
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 
 export const getInformations = (times, field, filter) => httpClient.get('/informacoes', {
@@ -178,6 +177,7 @@ export const getInformations = (times, field, filter) => httpClient.get('/inform
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
 export const getActions = (times, field, filter) => httpClient.get('/acoes', {
   params: {
     times,
@@ -187,9 +187,15 @@ export const getActions = (times, field, filter) => httpClient.get('/acoes', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
+
+export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);
+
 export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });
+
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
