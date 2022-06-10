@@ -45,13 +45,6 @@ function FichaNoticia() {
     window.close('/imprimir');
   };
 
-  // const tableNews = useRef(null);
-  // console.log('🚀 ~ file: FichaAtas.js ~ line 88 ~ FichaMinutes ~ tableMinutes', tableNews);
-
-  // const handlePrint = useReactToPrint({
-  //   content: () => tableNews?.current,
-  // });
-
   return (
     <body className="forms-minutes-body">
       <div className="forms-minutes-Container">
@@ -94,32 +87,37 @@ function FichaNoticia() {
                                 <table width="100%">
                                   <tr>
                                     {line?.items.map((item) => (
-                                      <div className="forms-minutes-td-box">
+                                      <div>
                                         {item.label === 'Imagem' ? (
-                                          <>
-                                            <span className="forms-minutes-subtitle">
-                                              {' '}
-                                              {item.label}
-                                              {' '}
-                                            </span>
-                                            {image && Example()}
-                                            <br />
-                                          </>
+                                          <div>
+                                            <div>
+                                              <span className="forms-news-subtitle-img">
+                                                {' '}
+                                                {item.label}
+                                                {' '}
+                                              </span>
+                                            </div>
+                                            <div className="forms-news-td-box-img">
+                                              <div className="forms-news-img">
+                                                {image && Example()}
+                                              </div>
+                                              <br />
+                                            </div>
+                                          </div>
                                         ) : (
-                                          <>
-                                            <span className="forms-minutes-subtitle">
+                                          <div className="forms-news-td-box">
+                                            <span className="forms-news-subtitle">
                                               {' '}
                                               {item.label}
                                               {' '}
                                             </span>
                                             <br />
-                                            <span className="forms-minutes-value">
+                                            <span className="forms-news-value">
                                               {' '}
                                               {news[item.id]}
                                               {' '}
                                             </span>
-
-                                          </>
+                                          </div>
                                         )}
                                       </div>
                                     ))}
