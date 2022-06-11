@@ -3,6 +3,9 @@ import { toast } from 'react-toastify';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
+import {
+  InputLabel, FormControl, Select, MenuItem,
+} from '@mui/material';
 import ModalEnquete from '../../components/Enquetes/modalEnquetes';
 import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
@@ -11,6 +14,7 @@ import './ResultadoQuizzes.css';
 
 function ResultadoQuizzes() {
   const { user } = useAuth();
+  const [filter, setFilter] = useState('');
   const [quizzes, setQuizzes] = useState([]);
   const [newQuizz, setNewQuizz] = useState(false);
   const [associates, setAssociates] = useState([]);
@@ -51,6 +55,12 @@ function ResultadoQuizzes() {
     }
   }
 
+  const handleChange = (value) => {
+    if (value !== 'Sem filtros') {
+      setFilter(value);
+    }
+  };
+
   useEffect(() => {
     if (user?.type === 'administrador') {
       getAllAQuizzes();
@@ -64,6 +74,21 @@ function ResultadoQuizzes() {
       <div className="division-cards-quizzes">
         <div className="title-cards-quizzes-page">
           <h1>Resultado das Enquetes</h1>
+          <FormControl className="form-user-module-page">
+            <InputLabel id="select-filter">Selecione um filtro</InputLabel>
+            <Select
+              className="select-filter-user-module"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filter}
+              label="Selecione um filtro"
+              onChange={(e) => handleChange(e.target.value)}
+            >
+              <MenuItem value="Em andamento">Em andamento</MenuItem>
+              <MenuItem value="Finalizada">Finalizada</MenuItem>
+              <MenuItem value="Não iniciada">Não iniciada</MenuItem>
+            </Select>
+          </FormControl>
           {user.type === 'administrador' && (
             <ModalEnquete setNewQuizz={setNewQuizz} />
           )}
@@ -82,6 +107,7 @@ function ResultadoQuizzes() {
                   associates={associates}
                   dateQuizz={dateQuizz}
                   user={user}
+                  filter={filter}
                   setVoted={setVoted}
                 />
               ))
@@ -92,6 +118,7 @@ function ResultadoQuizzes() {
                   associates={associates}
                   dateQuizz={dateQuizz}
                   user={user}
+                  filter={filter}
                   setVoted={setVoted}
                 />
               ))

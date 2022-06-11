@@ -1,15 +1,14 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import Modal from '@material-ui/core/Modal';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -29,12 +28,14 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
+import FileSaver from 'file-saver';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import * as managerService from '../../services/manager/managerService';
 import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import './SearchAtas.css';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -133,10 +134,10 @@ function TableComponent({
   loading,
 }) {
   const [page, setPage] = useState(0);
-  // eslint-disable-next-line no-unused-vars
-  const [data, setData] = useState(rows);
-  // eslint-disable-next-line no-unused-vars
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState(rows);
+  const [query, setQuery] = useState('');
+  const [type, setType] = useState('');
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -260,7 +261,7 @@ function TableComponent({
   const tableProps = {
     sx: matchesFont400px
       ? {
-        minWidth: 400,
+        minWidth: 450,
       }
       : { minWidth: 650 },
     size: matchesFont85
@@ -292,6 +293,8 @@ function TableComponent({
     setPage(0);
   };
 
+  const filterDescription = rows?.filter(((item) => item.description?.toLowerCase().includes(query)));
+  const filterType = rows?.filter(((item) => item.type?.includes(type)));
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
@@ -326,6 +329,93 @@ function TableComponent({
       });
     }
   }
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleData = () => {
+    if (query !== '' && type === '') {
+      console.log('vida');
+      setData(filterDescription);
+      setQuery('');
+    }
+    if (type !== '' && query === '') {
+      setData(filterType);
+      setType('');
+    }
+    if (type !== '' && query !== '') {
+      filterType?.forEach((obj) => {
+        const filter = filterDescription?.filter(((item) => item.type.includes(obj.type)));
+        setData(filter);
+      });
+      setType('');
+      setQuery('');
+    }
+    handleClose();
+  };
+
+  const body = (
+    <Box className="AcceptModal-ContainerModal">
+      <div className="AcceptModal-text">
+        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+      </div>
+      <div className="AcceptModal-Buttons">
+        <div className="AcceptModal-Bu">
+
+          <label>Descrição:</label>
+
+          <input type="text" setFilterValue onChange={(e) => setQuery(e.target.value.toLowerCase())} />
+        </div>
+        <div className="AcceptModal-Bu">
+
+          <p> Tipo:</p>
+
+          <select className="EditModal-Input" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
+            <option value=" "> </option>
+            <option value="ATAS">ATAS</option>
+            <option value="EDITAIS">EDITAIS</option>
+          </select>
+        </div>
+        <div className="buttons">
+          <div className="AcceptModal-button1">
+            <button
+              type="button"
+              className="AcceptModal-ButtonCancel"
+              onClick={() => {
+                handleData();
+              }}
+            >
+              <div className="AcceptModal-align">
+                <p>Pesquisa Avançada</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button2">
+            <button
+              className="AcceptModal-ButtonConfirm"
+              type="button"
+            >
+              <div className="AcceptModal-align">
+                <p>Limpar</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button3">
+            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+              <div className="AcceptModal-align">
+                <p>Voltar</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Box>
+  );
 
   useEffect(() => {
     if (archive1Id) {
@@ -370,7 +460,7 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading && rows
+          {!loading && data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
@@ -483,9 +573,9 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
-                {Object.values(row)?.map((value) => (
+                {Object.values(row)?.map((dado) => (
                   <TableCell {...cellFontProps}>
-                    {value}
+                    {dado}
                   </TableCell>
                 ))}
                 {archive1Id
@@ -533,8 +623,8 @@ function TableComponent({
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
-            count={data?.length}
-            rowsPerPage={data?.length}
+            count={rows?.length}
+            rowsPerPage={rows?.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}
             SelectProps={{
@@ -549,9 +639,9 @@ function TableComponent({
         ) : (
           <>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: data.length }]}
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
               component="div"
-              count={data.length} //
+              count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}
@@ -567,12 +657,27 @@ function TableComponent({
             />
             <div className="button-table-component-pagination-consult">
               {renderButton && (
-                <Button
-                  {...buttonFontProps}
-                >
-                  Pesquisa Avançada
-                  {/* TODO Implementar o botão de pesquisa avançada */}
-                </Button>
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    {body}
+                  </Modal>
+                </div>
               )}
               {printButton && (
                 <Button

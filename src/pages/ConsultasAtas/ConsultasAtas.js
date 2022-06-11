@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ConsultaAtas.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from '@mui/material';
-import TableComponent from '../../components/dashboard/dashboardComponent';
+import TableComponent from '../../components/SearchAdvanced/TableSearchAdvanced';
 import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
 const titles = [
@@ -15,10 +15,8 @@ const titles = [
   'Arquivo 2',
 ];
 
-function ConsultaMinutes(data, filterDescription, filterType, top) {
-  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ filterType', filterType, filterDescription);
+function ConsultaMinutes(data) {
   const { location } = data;
-  console.log('🚀 ~ file: ConsultasAtas.js ~ line 19 ~ ConsultaMinutes ~ location', top);
   const dados = location?.state;
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
@@ -48,15 +46,11 @@ function ConsultaMinutes(data, filterDescription, filterType, top) {
               id={id}
               rows={minutes}
               titles={titles}
-              /*  filterDescription={dados?.filterDescription}
-              filterType={dados?.filterType} */
               type={dados?.type}
               query={dados?.query}
               setType={dados?.setType}
               setQuery={dados?.setQuery}
               searchMinutes
-              filterDescription={filterDescription}
-              filterType={filterType}
               printButton
               search
               renderButton
