@@ -3,12 +3,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -22,16 +20,19 @@ import IconButton from '@mui/material/IconButton';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import SearchIcon from '@mui/icons-material/Search';
 import TableFooter from '@mui/material/TableFooter';
-import { useMediaQuery } from '@mui/material/';
+import { useMediaQuery, CircularProgress } from '@mui/material/';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
+import FileSaver from 'file-saver';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import ExcludeModelModal from '../DeleteModel/excludeModelModal';
+import EditModel from '../EditModal/EditModelsModal';
 import * as managerService from '../../services/manager/managerService';
 import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
@@ -125,9 +126,12 @@ function TableComponent({
   dados,
   newsSequentialId,
   renderButton,
+  modelsSequentialId,
   print,
   printButton,
   route,
+  searchAssociate,
+  loading,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -253,7 +257,7 @@ function TableComponent({
   const tableProps = {
     sx: matchesFont400px
       ? {
-        minWidth: 400,
+        minWidth: 450,
       }
       : { minWidth: 650 },
     size: matchesFont85
@@ -274,7 +278,6 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
-
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -289,6 +292,18 @@ function TableComponent({
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
+  function redirectExternalAssociate(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
+  function redirectAssociate(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
     win.focus();
   }
 
@@ -352,12 +367,32 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {!loading && rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
+                {searchAssociate && (
+                  <TableCell {...cellFontProps} align="center">
+                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirectExternalAssociate(e, associateId[index + (page * 10)])}>
+                      <SearchIcon />
+                      {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
+                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                    </IconButton>
+                  </TableCell>
+                )}
                 {
-                  order ? (
+                  order && search ? (
+                    <>
+                      <TableCell {...cellFontProps} align="center">
+                        {index + 1 + (page * 10)}
+                      </TableCell>
+                      <TableCell {...cellFontProps} align="center">
+                        <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, id[index + (page * 10)])}>
+                          <SearchIcon />
+                        </IconButton>
+                      </TableCell>
+                    </>
+                  ) : order ? (
                     <TableCell {...cellFontProps} align="center">
                       {index + 1 + (page * 10)}
                     </TableCell>
@@ -370,7 +405,7 @@ function TableComponent({
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, associateId[index + (page * 10)])}>
                         <SearchIcon />
                         {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
                       Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
@@ -445,6 +480,22 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
+                {modelsSequentialId
+                  && (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} setUse={setUse} />
+                        <EditModel
+                          id={modelsSequentialId[index + (page * 10)]}
+                          model={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          setUse={setUse}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
+                  )}
                 {Object.values(row)?.map((data) => (
                   <TableCell {...cellFontProps}>
                     {data}
@@ -482,6 +533,14 @@ function TableComponent({
           )}
         </TableBody>
       </Table>
+      {loading && (
+        <TableRow style={{
+          height: 53 * rowsPerPage, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}
+        >
+          <CircularProgress />
+        </TableRow>
+      )}
       <TableFooter {...footerProps}>
         {print ? (
           <TablePagination
