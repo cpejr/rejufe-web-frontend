@@ -12,11 +12,20 @@ function createId(_id) {
   return _id;
 }
 
-async function getAllEdicts(setId, setAllEdicts, history, setUse, setArchive1Id, setArchive2Id) {
+async function getAllEdicts(
+  setId,
+  setAllEdicts,
+  history,
+  setUse,
+  setArchive1Id,
+  setArchive2Id,
+  setLoading,
+) {
   const auxEdicts = [];
   const edictsId = [];
   const archive1Code = [];
   const archive2Code = [];
+  setLoading(true);
 
   try {
     const allEdicts = await managerService.getEdicts();
@@ -29,8 +38,6 @@ async function getAllEdicts(setId, setAllEdicts, history, setUse, setArchive1Id,
       ));
       archive1Code.push(object.archive_1);
       archive2Code.push(object.archive_2);
-    });
-    allEdicts.forEach((object) => {
       edictsId.push(createId(
         object._id,
       ));
@@ -41,6 +48,7 @@ async function getAllEdicts(setId, setAllEdicts, history, setUse, setArchive1Id,
     setArchive1Id(archive1Code);
     setArchive2Id(archive2Code);
     setUse(false);
+    setLoading(false);
   } catch (error) {
     history.push('/NotFound');
     toast.error('Erro ao listar os Editais!', {

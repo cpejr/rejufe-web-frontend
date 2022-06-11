@@ -23,9 +23,10 @@ function ListaEditais({ intranet }) {
   const [archive2Id, setArchive2Id] = useState();
   const [showForms, setShowForms] = useState(false);
   const [atasId, setAtasId] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getAllEditais(setId, setAllEdicts, history, setUse, setArchive1Id, setArchive2Id);
+    getAllEditais(setId, setAllEdicts, history, setUse, setArchive1Id, setArchive2Id, setLoading);
   }, [user, showForms]);
 
   if (intranet) {
@@ -49,6 +50,7 @@ function ListaEditais({ intranet }) {
             setAtasId={setAtasId}
             archive1Id={archive1Id}
             archive2Id={archive2Id}
+            loading={loading}
           />
         </div>
       ) : (
@@ -75,6 +77,7 @@ function ListaEditais({ intranet }) {
         searchMinutes
         archive1Id={archive1Id}
         archive2Id={archive2Id}
+        loading={loading}
       />
     </div>
   );
