@@ -4,9 +4,9 @@ import React, {
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
-import { CircularProgress } from '@mui/material';
 import TableComponent from '../../components/dashboard/dashboardComponent';
 import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
+import './ImprimirAtasEditais.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
@@ -17,7 +17,7 @@ class ComponentToPrint extends React.Component {
     const { ref } = this.props;
 
     return (
-      <div>
+      <div className="print-minutes-table-forms">
         <TableComponent id={id} rows={rows} titles={titles} ref={ref} print />
       </div>
     );
@@ -25,7 +25,6 @@ class ComponentToPrint extends React.Component {
 }
 
 const titles = [
-  '',
   'Número',
   'Tipo',
   'Descrição',
@@ -37,6 +36,7 @@ function Imprimir() {
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [printAtas, setPrintAtas] = useState(false);
 
   const handleWindowClose = () => {
     window.close();
@@ -44,9 +44,12 @@ function Imprimir() {
 
   const tableAssociates = useRef(null);
 
-  const handlePrint = useReactToPrint({
-    content: () => tableAssociates?.current,
-  });
+  const handlePrint = () => {
+    setPrintAtas(true);
+    useReactToPrint({
+      content: () => tableAssociates?.current,
+    });
+  };
 
   useEffect(() => {
     getAllMinutesForConsult(setId, setAllMinutes, setLoading);
@@ -72,13 +75,13 @@ function Imprimir() {
           Fechar
         </button>
       </div>
-      {loading ? (
-        <div className="loader-consult-associates-table">
-          <CircularProgress />
+      {printAtas ? (
+        <div className="print-minutes-table-forms">
+          <ComponentToPrint id={id} rows={minutes} titles={titles} ref={tableAssociates} loading={loading} />
         </div>
       ) : (
-        <div className="print-associates-table">
-          <ComponentToPrint id={id} rows={minutes} titles={titles} ref={tableAssociates} />
+        <div className="print-minutes-table">
+          <ComponentToPrint id={id} rows={minutes} titles={titles} ref={tableAssociates} loading={loading} />
         </div>
       )}
     </div>
