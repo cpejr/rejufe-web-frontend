@@ -323,7 +323,7 @@ function TableComponent({
       });
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log(error);
+      console.error(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
