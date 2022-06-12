@@ -56,8 +56,12 @@ export default function EditMinutesModal({
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [dados, setDados] = useState(minutes);
+  const notNumbers = numbers.filter((number) => number !== minutes?.number);
   const history = useHistory();
   const formData = new FormData();
+
+  console.log(minutes);
+  console.log(notNumbers);
 
   const titles = [
     { label: 'Tipo', field: 'select' },
@@ -71,7 +75,7 @@ export default function EditMinutesModal({
   ];
 
   async function handleSubmit() {
-    if (numbers.find((number) => number === dados.number)) {
+    if (notNumbers.find((number) => number === dados.number)) {
       toast.error('O número da ata/edital já está sendo utilizado', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

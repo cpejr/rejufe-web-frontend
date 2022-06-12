@@ -429,10 +429,8 @@ function TableComponent({
                     </TableCell>
                   ) : editMinute ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton aria-label="delete">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
-                      </IconButton>
-                      <IconButton color="primary" aria-label="Edit">
                         <EditMinutesModal
                           setUse={setUse}
                           id={minuteId[index + (page * 10)]}
@@ -442,7 +440,7 @@ function TableComponent({
                           numbers={numbers}
                           page={page}
                         />
-                      </IconButton>
+                      </div>
                     </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
