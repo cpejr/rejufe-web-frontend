@@ -198,8 +198,6 @@ export const download = (id) => httpClient.get(`/arquivos/${id}`, {
   responseType: 'blob',
 });
 
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
-
 export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
     times,

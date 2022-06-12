@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 function SingleFileUpload({
   fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
-  console.log('🚀 ~ file: SingleFileUpload.js ~ line 30 ~ dados', dados);
   const classes = useStyles();
   const [image, setImage] = useState();
 
@@ -92,11 +91,12 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
+          {update === true && label === 'Imagem' && (
+            <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
+          )}
           <div {...getRootProps({ className: classes.dropzone })}>
             <input {...getInputProps()} />
-            {update === true && label === 'Imagem' && file !== '' ? (
-              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
-            ) : (
+            {update === true && label === 'Arquivo' && file !== '' && (
               <p>
                 Arraste e solte a/o
                 {' '}

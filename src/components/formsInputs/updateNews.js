@@ -17,7 +17,6 @@ function UpdateNews({
   mask,
   dados,
 }) {
-  console.log('🚀 ~ file: updateNews.js ~ line 20 ~ fileType', fileType);
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
   };
@@ -91,7 +90,16 @@ function UpdateNews({
         <div />
       )}
       {type === 'file' && (
-        <SingleFileUpload id={id} field="archive_1" fileType={fileType} dados={dados} file={dados[`${id}`]} setDados={setDados} label={label} update />
+        <SingleFileUpload
+          field={field}
+          fileType={fileType}
+          file={dados[`${field}`]}
+          dados={dados}
+          archiveId={id}
+          setDados={setDados}
+          label={label}
+          update
+        />
       )}
     </div>
   );

@@ -42,11 +42,9 @@ function EditarRegistrosNoticias(news) {
       if (dado[0] === 'archive_1') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
-        console.log('🚀 ~ file: EditarRegistrosNoticias.js ~ line 45 ~ Object.entries ~ dado[1]', dado[1]);
       }
       if (dado[0] === 'archive_2') {
         dado[1] = dado[1] ? dado[1]?.file : '';
-        console.log('🚀 ~ file: EditarRegistrosNoticias.js ~ line 49 ~ Object.entries ~ dado[1]', dado[1]);
         formData.append(dado[0], dado[1]);
       }
       if (dado[0] !== 'archive_1' && dado[0] !== 'archive_2') {
@@ -73,6 +71,8 @@ function EditarRegistrosNoticias(news) {
   useEffect(() => {
     getRecord();
   }, [news]);
+
+  console.log(formsNews);
 
   return (
     <div>
