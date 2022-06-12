@@ -432,7 +432,14 @@ function TableComponent({
                         <RemoveComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} />
                       </IconButton>
                       <IconButton color="primary" aria-label="Edit">
-                        <EditComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} comunic={row} />
+                        <EditComunicModal
+                          setUse={setUse}
+                          id={comunicId[index + (page * 10)]}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          comunic={row}
+                          page={page}
+                        />
                       </IconButton>
                     </TableCell>
                   ) : searchMinutes ? (

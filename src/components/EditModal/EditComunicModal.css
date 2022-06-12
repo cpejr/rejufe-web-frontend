@@ -1,3 +1,25 @@
+.makeStyles-content-4 {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background:var(--color2);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color4);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover);
+}
+
 .edit-comunic-modal-edit-group {
   display: flex;
   align-items: center;
@@ -16,19 +38,8 @@
 .edit-comunic-modal-container-modal {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 450px;
-  width: 550px;
-  border-radius: 6px;
-  background-color: white;
-  border: 0.5px solid black;
-  box-shadow: 24;
-  padding: 4;
+  align-items: center;
 }
 
 .edit-comunic-modal-field {
