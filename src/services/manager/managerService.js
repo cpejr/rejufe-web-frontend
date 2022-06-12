@@ -364,6 +364,21 @@ export const download = async (id) => {
   return response.data;
 };
 
+export const sendBirthdayEmail = async () => {
+  const response = await requesterService.sendBirthdayEmail();
+  if (isFailureStatus(response)) {
+    throw new Error('Problem with api response');
+  }
+  return response.data;
+};
+
+export const getTodayBirthday = async () => {
+  const response = await requesterService.getTodayBirthday();
+  if (isFailureStatus(response)) {
+    throw new Error('Problem with api response');
+  }
+  return response.data;
+};
 export const getImageById = async (id) => {
   const response = await requesterService.getImageById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
