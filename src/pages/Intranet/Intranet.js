@@ -1,6 +1,7 @@
 /* eslint-disable indent */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
+import { toast } from 'react-toastify';
 import MenuLateral from '../MenuLateral';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
@@ -17,11 +18,29 @@ import InitialPetitions from '../../components/InitialPetitions/InitialPetitions
 import Jurisprudence from '../../components/Jurisprudence/Jurisprudence';
 import Simbolo from '../../images/simbolo.png';
 import NewsQuery from '../../components/NewsQuery/NewsQuery';
+import * as managerService from '../../services/manager/managerService';
 import ContactUs from '../contactUs/contactUs';
 import './Intranet.css';
+import BirthdayNotificationModal from '../../components/BirthdayNotification/BirthdayNotification';
+
+toast.configure();
 
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('');
+  const [birthdaysUsers, setBirthdayUsers] = useState();
+
+  async function getBirthdayUsers() {
+    try {
+      const response = await managerService.getTodayBirthday();
+      setBirthdayUsers(response);
+    } catch (error) {
+      toast.error('Não foi possível obter aniversariantes!!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+  }
+
   const menuDashboard = () => {
     switch (selectedButton) {
       case 'Enquetes': return <ResultadoQuizzes />;
@@ -42,6 +61,10 @@ function Intranet() {
       default: return <div />;
     }
   };
+
+  useEffect(() => {
+    getBirthdayUsers();
+  }, []);
 
   return (
     <div className="intranet-total-page-container">
@@ -64,6 +87,9 @@ function Intranet() {
       <div>
         <BottomMenu setSelectedButton={setSelectedButton} selectedButton={selectedButton} />
       </div>
+      {(birthdaysUsers?.length !== 0 && birthdaysUsers !== undefined) && (
+        <BirthdayNotificationModal birthdaysUsers={birthdaysUsers} />
+      )}
     </div>
   );
 }

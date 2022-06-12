@@ -111,7 +111,7 @@ function SingleFileUpload({
               display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
             }}
             >
-              {file === undefined && archiveId && (
+              {(file === undefined || file === archiveId) && archiveId && (
                 <>
                   <Button
                     style={{
@@ -129,19 +129,34 @@ function SingleFileUpload({
                     style={{
                       backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
                     }}
-                    onClick={() => setDados('', field)}
+                    onClick={() => {
+                      setDados('', field);
+                    }}
                   >
                     Remover Arquivo
                   </Button>
                 </>
               )}
               {file === '' && (
-                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+                <>
+                  <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                    }}
+                    onClick={() => {
+                      setDados(archiveId, field);
+                    }}
+                  >
+                    cancelar
+                  </Button>
+                </>
               )}
               <div />
             </div>
           )}
-          {file && (
+          {typeof file === 'object' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div
                 style={{
@@ -149,10 +164,10 @@ function SingleFileUpload({
                 }}
               >
                 {file?.file?.path}
-                {' kkkkkkkkk'}
+                {' '}
                 <PictureAsPdfIcon />
               </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados('', field)}>
+              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
                 Remover Arquivo
               </Button>
             </div>

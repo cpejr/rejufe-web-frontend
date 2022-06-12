@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 
@@ -9,7 +10,12 @@ function CreateQuizz({
 }) {
   const voted = [];
   let descriptions = [];
+  const [privateResult, setPrivateResult] = useState(false);
   const alternatives = Object.values(options).slice(0, inputs.length);
+
+  const handlePrivateResult = () => {
+    setPrivateResult(!privateResult);
+  };
 
   alternatives?.forEach((alternative) => {
     descriptions = descriptions.concat({ description: alternative, votes: 0 });
@@ -106,6 +112,7 @@ function CreateQuizz({
         openingDate: dados.openingDate,
         closingDate: dados.closingDate,
         options: descriptions,
+        privateResult,
       };
       await managerService.createQuizz(body);
       setNewQuizz(true);
@@ -124,6 +131,15 @@ function CreateQuizz({
 
   return (
     <div className="last-button-modal-quizz">
+      <div className="private-result">
+        <label htmlFor="privateResult">Privar resultado até a finalização da enquete:</label>
+        <input
+          type="checkbox"
+          id="privateResult"
+          name="privateResult"
+          onClick={() => handlePrivateResult()}
+        />
+      </div>
       <button
         className="confirm-button-modal-quizz"
         type="submit"
