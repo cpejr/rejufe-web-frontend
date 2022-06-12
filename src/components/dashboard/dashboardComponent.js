@@ -3,12 +3,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -28,10 +26,13 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
+import FileSaver from 'file-saver';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import ExcludeModelModal from '../DeleteModel/excludeModelModal';
+import EditModel from '../EditModal/EditModelsModal';
 import * as managerService from '../../services/manager/managerService';
 import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 
@@ -125,6 +126,7 @@ function TableComponent({
   dados,
   newsSequentialId,
   renderButton,
+  modelsSequentialId,
   print,
   printButton,
   route,
@@ -476,6 +478,22 @@ function TableComponent({
                       >
                         {newsSequentialId[index + (page * 10)]}
                       </Link>
+                    </TableCell>
+                  )}
+                {modelsSequentialId
+                  && (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} setUse={setUse} />
+                        <EditModel
+                          id={modelsSequentialId[index + (page * 10)]}
+                          model={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          setUse={setUse}
+                          page={page}
+                        />
+                      </div>
                     </TableCell>
                   )}
                 {Object.values(row)?.map((data) => (
