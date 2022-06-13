@@ -371,7 +371,7 @@ function ConsultaAssociados({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>

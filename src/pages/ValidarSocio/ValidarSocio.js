@@ -5,7 +5,7 @@ import './ValidarSocio.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/dashboard/dashboardComponent';
+import TableComponent from '../../components/SearchAdvancedAssociate/TableSearchAssociate';
 
 toast.configure();
 
@@ -65,7 +65,16 @@ function ValidarSocio() {
           </h1>
         </div>
         <div className="line-table-validateAssociate" />
-        <TableComponent setUse={setUse} dados={data} associateId={id} rows={associates} titles={titles} validate />
+        <TableComponent
+          searchAdvanced
+          setUse={setUse}
+          dados={data}
+          associateId={id}
+          rows={associates}
+          titles={titles}
+          validate
+          allAssociates
+        />
       </div>
     </div>
   );

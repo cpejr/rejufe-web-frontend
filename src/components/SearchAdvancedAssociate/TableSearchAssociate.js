@@ -132,12 +132,16 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  searchAdvanced,
+  allAssociates,
 }) {
+  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 138 ~ allAssociates', allAssociates);
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(rows);
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
+  const [acting, setActing] = useState('');
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -295,6 +299,8 @@ function TableComponent({
 
   const filterName = rows?.filter(((item) => item.name?.toLowerCase().includes(query)));
   const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
+  const filterActing = rows?.filter(((item) => item.acting?.toLowerCase().includes(acting)));
+
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
@@ -339,22 +345,54 @@ function TableComponent({
   };
 
   const handleData = () => {
-    if (query !== '' && type === '') {
+    if (query !== '' && type === '' && acting === '') {
       console.log('vida');
       setData(filterName);
       setQuery('');
     }
-    if (type !== '' && query === '') {
+    if (type !== '' && query === '' && acting === '') {
       setData(filterType);
       setType('');
     }
-    if (type !== '' && query !== '') {
+    if (type === '' && query === '' && acting !== '') {
+      setData(filterActing);
+      setActing('');
+    }
+    if (type !== '' && query !== '' && acting === '') {
       filterType?.forEach((obj) => {
         const filter = filterName.filter(((item) => item.type.includes(obj.type)));
         setData(filter);
       });
       setType('');
       setQuery('');
+    }
+    if (type !== '' && query === '' && acting !== '') {
+      filterType?.forEach((obj) => {
+        const filter = filterActing.filter(((item) => item.type.includes(obj.type)));
+        setData(filter);
+      });
+      setType('');
+      setActing('');
+    }
+    if (type === '' && query !== '' && acting !== '') {
+      filterName?.forEach((obj) => {
+        const filter = filterActing.filter(((item) => item.acting.includes(obj.name)));
+        setData(filter);
+      });
+      setQuery('');
+      setActing('');
+    }
+    if (type !== '' && query !== '' && acting !== '') {
+      filterName?.forEach((obj) => {
+        filterType?.forEach((dado) => {
+          const filter = filterActing.filter(((item) => item.acting.includes(obj.name)));
+          const addOtherFilter = filter.filter(((item) => item.acting.includes(dado.type)));
+          setData(addOtherFilter);
+        });
+      });
+      setQuery('');
+      setActing('');
+      setType('');
     }
     handleClose();
   };
@@ -382,6 +420,74 @@ function TableComponent({
             <option value="PARAÍBA">PB</option>
             <option value="RIO GRANDE DO NORTE">RN</option>
             <option value="CEARÁ">CE</option>
+          </select>
+        </div>
+        <div className="buttons">
+          <div className="AcceptModal-button1">
+            <button
+              type="button"
+              className="AcceptModal-ButtonCancel"
+              onClick={() => {
+                handleData();
+              }}
+            >
+              <div className="AcceptModal-align">
+                <p>Pesquisa Avançada</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button2">
+            <button
+              className="AcceptModal-ButtonConfirm"
+              type="button"
+            >
+              <div className="AcceptModal-align">
+                <p>Limpar</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button3">
+            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+              <div className="AcceptModal-align">
+                <p>Voltar</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Box>
+  );
+
+  const modalAssociate = (
+    <Box className="AcceptModal-ContainerModal">
+      <div className="AcceptModal-text">
+        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+      </div>
+      <div className="AcceptModal-Buttons">
+        <div className="AcceptModal-Bu">
+
+          <label>Nome:</label>
+
+          <input type="text" setFilterValue onChange={(e) => setQuery(e.target.value.toLowerCase())} />
+        </div>
+
+        <div className="AcceptModal-Bu">
+
+          <label>Atuação:</label>
+
+          <input type="text" setFilterValue onChange={(e) => setActing(e.target.value.toLowerCase())} />
+        </div>
+        <div className="AcceptModal-Bu">
+
+          <p> Lotação:</p>
+          <select className="EditModal-Input" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
+            <option value=" "> </option>
+            <option value="ALAGOAS">Alagoas</option>
+            <option value="CEARÁ">Ceará</option>
+            <option value="PARAÍBA">Paraíba</option>
+            <option value="PERNAMBUCO">Pernambuco</option>
+            <option value="RIO GRANDE DO NORTE">Rio Grande do Norte</option>
+            <option value="SERGIPE">Sergipe</option>
           </select>
         </div>
         <div className="buttons">
@@ -679,6 +785,29 @@ function TableComponent({
                     aria-describedby="simple-modal-description"
                   >
                     {body}
+                  </Modal>
+                </div>
+              )}
+              {searchAdvanced && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    {modalAssociate}
                   </Modal>
                 </div>
               )}
