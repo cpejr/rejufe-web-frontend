@@ -149,7 +149,7 @@ export default function EditComunicModal({
   return (
     <div>
       <button type="button" className="edit-comunic-modal-edit-group" onClick={handleOpen}>
-        <EditIcon style={{ size: '10', color: '#2F5C88', cursor: 'pointer' }} />
+        <EditIcon style={{ color: '#2F5C88', cursor: 'pointer' }} />
       </button>
       <Modal
         open={open}
