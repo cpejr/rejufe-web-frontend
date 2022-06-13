@@ -29,6 +29,8 @@ function SingleFileUpload({
 }) {
   const classes = useStyles();
   const [image, setImage] = useState();
+  const [updateImage, setUpdateImage] = useState(false);
+  function example() { return image ? <img src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
 
   async function getImage() {
     try {
@@ -57,7 +59,7 @@ function SingleFileUpload({
 
   if (update === true) {
     useEffect(() => {
-      if (field === 'photos' && file !== '' && file !== undefined) {
+      if (field === 'image' && archiveId) {
         getImage();
       }
     }, [file, archiveId]);
@@ -91,23 +93,48 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          {update === true && label === 'Imagem' && (
+          {update === true && label === 'Imagem' && !updateImage && (
             <>
-              <h1>Imagem</h1>
-              <img src={`data:image;base64,{${image}}`} style={{ width: '1000px' }} alt="" />
+              {image && example()}
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                }}
+                onClick={() => {
+                  setUpdateImage(true);
+                }}
+              >
+                Alterar imagem
+              </Button>
             </>
           )}
-          {update === true && label === 'Arquivo' && file !== '' && (
-            <div {...getRootProps({ className: classes.dropzone })}>
-              <input {...getInputProps()} />
-              <p>
-                Arraste e solte a/o
-                {' '}
-                {`${label}`}
-                {' '}
-                aqui
-              </p>
-            </div>
+          {((update === true && label === 'Arquivo' && file !== '') || updateImage) && (
+            <>
+              <div {...getRootProps({ className: classes.dropzone })}>
+                <input {...getInputProps()} />
+                <p>
+                  Arraste e solte a/o
+                  {' '}
+                  {`${label}`}
+                  {' '}
+                  aqui
+                </p>
+              </div>
+              {updateImage && (
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                  }}
+                  onClick={() => {
+                    setUpdateImage(false);
+                  }}
+                >
+                  cancelar
+                </Button>
+              )}
+            </>
           )}
           {update === true && archiveId !== undefined && dados.pdf === undefined && label === 'Arquivo' && (
             <div style={{
@@ -168,7 +195,9 @@ function SingleFileUpload({
               >
                 {file?.file?.path}
                 {' '}
-                <PictureAsPdfIcon />
+                {label === 'Arquivo' && (
+                  <PictureAsPdfIcon />
+                )}
               </div>
               <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
                 Remover Arquivo

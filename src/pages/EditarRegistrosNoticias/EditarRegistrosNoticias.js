@@ -26,26 +26,18 @@ function EditarRegistrosNoticias(news) {
   const { location } = news;
   const { id } = location.state;
 
-  function createData(date, description, type, section, title, sendSite) {
-    return {
-      date, description, type, section, title, sendSite,
-    };
-  }
-
   async function getRecord() {
-    const auxDados = [];
     try {
       const response = await managerService.getNewsById(id);
-      auxDados.push(createData(
-        response.date,
-        response.description,
-        response.type,
-        response.section,
-        response.title,
-        response.send_site,
-      ));
+      setDados({
+        date: response.date,
+        description: response.description,
+        type: response.type,
+        section: response.section,
+        title: response.title,
+        send_site: response.send_site,
+      });
       setArchiveIds({ archive_1: response.archive_1, archive_2: response.archive_2, image: response.photos });
-      setDados(auxDados);
     } catch (error) {
       toast.error('Não foi possível obter notícia', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -65,9 +57,16 @@ function EditarRegistrosNoticias(news) {
         formData.append(dado[0], dado[1]);
       }
       if (dado[0] !== 'archive_1' && dado[0] !== 'archive_2') {
+        console.log(dado[0]);
+        console.log(dado[1]);
         formData.append(dado[0], dado[1]);
       }
     });
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
     try {
       await managerService.updateRecord(id, formData);
       toast('Notícia editada com sucesso', {
@@ -84,6 +83,8 @@ function EditarRegistrosNoticias(news) {
     }
     setLoading(false);
   }
+
+  console.log(dados);
 
   useEffect(() => {
     getRecord();
