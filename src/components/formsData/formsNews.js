@@ -72,7 +72,7 @@ const formsNews = [
         fileType: 'image/*',
         id: null,
         label: 'Imagem',
-        field: 'image',
+        field: 'photos',
         select: false,
         required: true,
       },

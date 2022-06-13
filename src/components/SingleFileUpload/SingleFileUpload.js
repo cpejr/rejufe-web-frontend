@@ -34,7 +34,9 @@ function SingleFileUpload({
 
   async function getImage() {
     try {
+      console.log(archiveId);
       const response = await managerService.getImageById(archiveId);
+      console.log(response);
       setImage(response);
     } catch (error) {
       toast.error('Não foi possível obter imagem', {
@@ -59,7 +61,7 @@ function SingleFileUpload({
 
   if (update === true) {
     useEffect(() => {
-      if (field === 'image' && archiveId) {
+      if (field === 'photos' && archiveId) {
         getImage();
       }
     }, [file, archiveId]);

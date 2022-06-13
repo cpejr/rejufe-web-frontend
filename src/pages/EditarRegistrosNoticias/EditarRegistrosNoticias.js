@@ -37,7 +37,7 @@ function EditarRegistrosNoticias(news) {
         title: response.title,
         send_site: response.send_site,
       });
-      setArchiveIds({ archive_1: response.archive_1, archive_2: response.archive_2, image: response.photos });
+      setArchiveIds({ archive_1: response.archive_1, archive_2: response.archive_2, photos: response.photos });
     } catch (error) {
       toast.error('Não foi possível obter notícia', {
         position: toast.POSITION.BOTTOM_RIGHT,
