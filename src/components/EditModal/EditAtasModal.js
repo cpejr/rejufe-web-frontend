@@ -60,9 +60,6 @@ export default function EditMinutesModal({
   const history = useHistory();
   const formData = new FormData();
 
-  console.log(minutes);
-  console.log(notNumbers);
-
   const titles = [
     { label: 'Tipo', field: 'select' },
     { label: 'Número:', field: 'input' },
