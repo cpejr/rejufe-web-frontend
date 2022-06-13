@@ -295,7 +295,6 @@ function TableComponent({
       : {
         marginLeft: 'auto',
         marginRight: 'auto',
-        overflowX: 'unset',
       },
   };
 
