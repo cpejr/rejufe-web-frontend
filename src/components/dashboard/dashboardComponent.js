@@ -132,6 +132,7 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  printAtas,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -278,6 +279,21 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
+
+  const tableContainerProps = {
+    sx: printAtas
+      ? {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      }
+      : {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      },
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -336,7 +352,7 @@ function TableComponent({
   return (
     <TableContainer
       component={Paper}
-      sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+      {...tableContainerProps}
     >
       <Table
         {...tableProps}
@@ -545,7 +561,7 @@ function TableComponent({
         {print ? (
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
-            style={{ overflow: 'hidden' }}
+            style={{ overflow: printAtas ? 'unset' : 'hidden' }}
             component="div"
             count={rows?.length}
             rowsPerPage={rows?.length}
@@ -565,7 +581,7 @@ function TableComponent({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
               component="div"
-              style={{ overflow: 'hidden' }}
+              style={{ overflow: printAtas ? 'unset' : 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"

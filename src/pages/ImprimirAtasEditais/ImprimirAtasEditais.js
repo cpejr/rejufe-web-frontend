@@ -15,10 +15,11 @@ class ComponentToPrint extends React.Component {
     const { rows } = this.props;
     const { titles } = this.props;
     const { ref } = this.props;
+    const { printAtas } = this.props;
 
     return (
-      <div className="print-minutes-table-forms">
-        <TableComponent id={id} rows={rows} titles={titles} ref={ref} print />
+      <div>
+        <TableComponent id={id} rows={rows} titles={titles} printAtas={printAtas?.print} ref={ref} print />
       </div>
     );
   }
@@ -36,7 +37,7 @@ function Imprimir() {
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [printAtas, setPrintAtas] = useState(false);
+  const [printAtas, setPrintAtas] = useState({ print: false, resolve: undefined });
 
   const handleWindowClose = () => {
     window.close();
@@ -44,12 +45,21 @@ function Imprimir() {
 
   const tableAssociates = useRef(null);
 
-  const handlePrint = () => {
-    setPrintAtas(true);
-    useReactToPrint({
-      content: () => tableAssociates?.current,
-    });
-  };
+  useEffect(() => {
+    const { resolve, ...otherState } = printAtas;
+    if (resolve) {
+      resolve();
+      setPrintAtas({ ...otherState, resolve: undefined });
+    }
+  }, [printAtas]);
+
+  const handlePrint = useReactToPrint({
+    onBeforeGetContent: () => new Promise((resolve) => {
+      setPrintAtas({ print: true, resolve });
+    }),
+    content: () => tableAssociates?.current,
+    onAfterPrint: () => setPrintAtas({ print: false, resolve: undefined }),
+  });
 
   useEffect(() => {
     getAllMinutesForConsult(setId, setAllMinutes, setLoading);
@@ -75,9 +85,16 @@ function Imprimir() {
           Fechar
         </button>
       </div>
-      {printAtas ? (
+      {printAtas?.print ? (
         <div className="print-minutes-table-forms">
-          <ComponentToPrint id={id} rows={minutes} titles={titles} ref={tableAssociates} loading={loading} />
+          <ComponentToPrint
+            id={id}
+            rows={minutes}
+            titles={titles}
+            printAtas={printAtas}
+            ref={tableAssociates}
+            loading={loading}
+          />
         </div>
       ) : (
         <div className="print-minutes-table">

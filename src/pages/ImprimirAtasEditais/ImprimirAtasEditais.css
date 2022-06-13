@@ -3,5 +3,7 @@
   }
   
   .print-minutes-table-forms {
-    width: max-content;
+    table-layout:fixed;
+    width:100%;
+    overflow-x: unset;
   }
