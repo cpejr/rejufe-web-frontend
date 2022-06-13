@@ -92,11 +92,14 @@ function SingleFileUpload({
       <Grid item style={{ width: '65%' }}>
         <div>
           {update === true && label === 'Imagem' && (
-            <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
+            <>
+              <h1>Imagem</h1>
+              <img src={`data:image;base64,{${image}}`} style={{ width: '1000px' }} alt="" />
+            </>
           )}
-          <div {...getRootProps({ className: classes.dropzone })}>
-            <input {...getInputProps()} />
-            {update === true && label === 'Arquivo' && file !== '' && (
+          {update === true && label === 'Arquivo' && file !== '' && (
+            <div {...getRootProps({ className: classes.dropzone })}>
+              <input {...getInputProps()} />
               <p>
                 Arraste e solte a/o
                 {' '}
@@ -104,9 +107,9 @@ function SingleFileUpload({
                 {' '}
                 aqui
               </p>
-            )}
-          </div>
-          {update === true && archiveId !== undefined && dados.pdf === undefined && (
+            </div>
+          )}
+          {update === true && archiveId !== undefined && dados.pdf === undefined && label === 'Arquivo' && (
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
             }}

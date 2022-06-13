@@ -16,6 +16,7 @@ function UpdateNews({
   initialErrorState,
   mask,
   dados,
+  archiveIds,
 }) {
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
@@ -95,7 +96,7 @@ function UpdateNews({
           fileType={fileType}
           file={dados[`${field}`]}
           dados={dados}
-          archiveId={id}
+          archiveId={archiveIds[`${field}`]}
           setDados={setDados}
           label={label}
           update

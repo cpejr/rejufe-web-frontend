@@ -16,6 +16,7 @@ function EditarRegistrosNoticias(news) {
   const [dados, setDados] = useState({});
   const formData = new FormData();
   const history = useHistory();
+  const [archiveIds, setArchiveIds] = useState({});
 
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
@@ -25,10 +26,26 @@ function EditarRegistrosNoticias(news) {
   const { location } = news;
   const { id } = location.state;
 
+  function createData(date, description, type, section, title, sendSite) {
+    return {
+      date, description, type, section, title, sendSite,
+    };
+  }
+
   async function getRecord() {
+    const auxDados = [];
     try {
       const response = await managerService.getNewsById(id);
-      setDados(response);
+      auxDados.push(createData(
+        response.date,
+        response.description,
+        response.type,
+        response.section,
+        response.title,
+        response.send_site,
+      ));
+      setArchiveIds({ archive_1: response.archive_1, archive_2: response.archive_2, image: response.photos });
+      setDados(auxDados);
     } catch (error) {
       toast.error('Não foi possível obter notícia', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -72,8 +89,6 @@ function EditarRegistrosNoticias(news) {
     getRecord();
   }, [news]);
 
-  console.log(formsNews);
-
   return (
     <div>
       <div className="register-news-container">
@@ -94,6 +109,7 @@ function EditarRegistrosNoticias(news) {
                   mask={item.mask}
                   initialErrorState={initialErrorState}
                   dados={dados}
+                  archiveIds={archiveIds}
                 />
               ))}
             </div>
