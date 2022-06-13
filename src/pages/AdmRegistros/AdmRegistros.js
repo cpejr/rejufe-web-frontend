@@ -3,7 +3,7 @@ import './AdmRegistros.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/dashboard/dashboardComponent';
+import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
 
 toast.configure();
 
@@ -64,6 +64,7 @@ function AdmRegistros() {
         rows={associates}
         titles={titles}
         order
+        print={false}
       />
     </div>
   );

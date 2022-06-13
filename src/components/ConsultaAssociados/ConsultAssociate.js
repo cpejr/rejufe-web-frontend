@@ -102,16 +102,16 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile, print,
+  titles, rows, id, order, edit, search, searchFile, print, sequentialId,
 }) {
-  console.log('🚀 ~ file: ConsultAssociate.js ~ line 106 ~ id', id);
+  console.log('🚀 ~ file: ConsultAssociate.js ~ line 107 ~ rows', rows);
+  const [data, setData] = useState(rows);
+  const [query, setQuery] = useState('');
+  const [type, setType] = useState('');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(-1);
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const filteredAssociate = JSON.parse(JSON.stringify(rows));
   const renderAssociate = [];
-  console.log('🚀 ~ file: ConsultAssociate.js ~ line 112 ~ associate', filteredAssociate);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -263,24 +263,95 @@ function ConsultaAssociados({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  let count = 0;
-  filteredAssociate?.forEach((object) => {
-    object.name = replaceSpecialChars(object.name);
-    object.id = id[count];
-    count += 1;
-  });
   // eslint-disable-next-line max-len
-  const filter = filteredAssociate?.filter(((item) => item.name.toLowerCase().includes(replaceSpecialChars(query))));
-  // console.log(rows.filter((id) => id.replaceSpecialChars(name) === )
-  const c = [];
-  let add = 0;
-  filter?.forEach((obj) => {
-    c[add] = rows.filter(((item) => item.email === obj.email));
-    add += 1;
-  });
+  const filterName = rows?.filter(((item) => replaceSpecialChars(item?.name).toLowerCase().includes(replaceSpecialChars(query))));
+  const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
 
-  console.log(filter);
-  console.log('🚀 ~ file: ConsultAssociate.js ~ line 279 ~ filter?.forEach ~ c ', c);
+  const handleData = () => {
+    console.log('top');
+    if (query !== '' && type === '') {
+      console.log('vida');
+      setData(filterName);
+      setQuery('');
+    }
+    if (type !== '' && query === '') {
+      setData(filterType);
+      setType('');
+    }
+    if (type !== '' && query !== '') {
+      filterType?.forEach((obj) => {
+        const filter = filterName.filter(((item) => item.allocation.includes(obj.type)));
+        setData(filter);
+      });
+      setType('');
+      setQuery('');
+    }
+    handleClose();
+  };
+
+  console.log(data);
+
+  const body = (
+    <Box className="AcceptModal-ContainerModal">
+      <div className="AcceptModal-text">
+        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+      </div>
+      <div className="AcceptModal-Buttons">
+        <div className="AcceptModal-Bu">
+
+          <label>Nome:</label>
+
+          <input type="text" setFilterValue onChange={(e) => setQuery(e.target.value.toLowerCase())} />
+        </div>
+        <div className="AcceptModal-Bu">
+
+          <p> Seção Judiciária:</p>
+
+          <select className="EditModal-Input" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
+            <option value=" "> </option>
+            <option value="SERGIPE">SE</option>
+            <option value="ALAGOAS">AL</option>
+            <option value="PERNAMBUCO">PE</option>
+            <option value="PARAÍBA">PB</option>
+            <option value="RIO GRANDE DO NORTE">RN</option>
+            <option value="CEARÁ">CE</option>
+          </select>
+        </div>
+        <div className="buttons">
+          <div className="AcceptModal-button1">
+            <button
+              type="button"
+              className="AcceptModal-ButtonCancel"
+              onClick={() => {
+                handleData();
+              }}
+            >
+              <div className="AcceptModal-align">
+                <p>Pesquisa Avançada</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button2">
+            <button
+              className="AcceptModal-ButtonConfirm"
+              type="button"
+            >
+              <div className="AcceptModal-align">
+                <p>Limpar</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button3">
+            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+              <div className="AcceptModal-align">
+                <p>Voltar</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Box>
+  );
   return (
     <TableContainer
       component={Paper}
@@ -334,9 +405,9 @@ function ConsultaAssociados({
                 ) : (
                   <TableCell> </TableCell>
                 )}
-                {Object.values(row)?.map((data) => (
+                {Object.values(row)?.map((dado) => (
                   <TableCell {...cellFontProps}>
-                    {data}
+                    {dado}
                   </TableCell>
                 ))}
               </TableRow>
@@ -389,52 +460,7 @@ function ConsultaAssociados({
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
               >
-                <Box className="AcceptModal-ContainerModal">
-                  <div className="AcceptModal-text">
-                    <div className="AcceptModal-Question">Pesquisa Avançada</div>
-                  </div>
-                  <div className="AcceptModal-Buttons">
-                    <div className="AcceptModal-Bu">
-                      <label>Nome:</label>
-                      <input type="text" onChange={(e) => setQuery(e.target.value.toLowerCase())} />
-                    </div>
-                    <div className="AcceptModal-Bu">
-                      <label>Seção Judiciária:</label>
-                      <input type="text" onChange={(e) => setQuery(e.target.value.toLowerCase())} />
-                    </div>
-                    <div className="buttons">
-                      <div className="AcceptModal-button1">
-                        <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-                          <div className="AcceptModal-align">
-                            <p>Pesquisa Avançada</p>
-                          </div>
-                        </button>
-                      </div>
-                      <div className="AcceptModal-button2">
-                        <button
-                          className="AcceptModal-ButtonConfirm"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            // handleSubmit();
-                            handleClose();
-                          }}
-                          type="button"
-                        >
-                          <div className="AcceptModal-align">
-                            <p>Limpar</p>
-                          </div>
-                        </button>
-                      </div>
-                      <div className="AcceptModal-button1">
-                        <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-                          <div className="AcceptModal-align">
-                            <p>Voltar</p>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </Box>
+                {body}
               </Modal>
             </div>
             <div>
