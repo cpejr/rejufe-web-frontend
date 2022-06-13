@@ -15,8 +15,8 @@
 }
 
 .intranet-dashboad-all {
-  padding: 75px 30px;
-  width: 100%;
+  padding: 75px 25px;
+  width: 90%;
 }
 
 .intranet-side-menu {
@@ -75,6 +75,7 @@
 @media (max-width: 970px) {
   .intranet-dashboad-all {
     padding: 75px 0 0 20px;
+    width: 75%;
   }
   .intranet-main-container {
     padding: 0 50px;

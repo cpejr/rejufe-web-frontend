@@ -13,9 +13,10 @@ td {
   .header-print-minutes-icon-forms {
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 60%;
     justify-content: center;
     margin-top: 5%;
+    text-align: center;
   }
 
 
@@ -85,14 +86,14 @@ td {
 }
 
 .forms-minutes-table-container {
-    width: 70%;
+    width: 100%;
     position: center;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 7%;
     background-color: #f9f9f9;
     margin-top: 2%;
     margin-bottom: 5%;
     border: 1px solid #DCDCDC;
+
 }
 
 .forms-minutes-t-container {
@@ -164,24 +165,23 @@ td {
     width: 100%;
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 700px) {
     .forms-minutes-table-container {
-        width: 80%;
-        margin-left: 10%;
+        width: 90%;
     }
 }
 
 @media(max-width: 430px) {
-    .forms-minutes-table-container {
-        margin-left: 0%;
-    }
     .print-minutes-table{
         overflow-x: scroll;
        }
-}
+       .header-print-minutes-icon-forms button {
+        display: flex;
+        padding: 0;
 
-@media(max-width: 550px) {
-    .forms-minutes-table-container {
-        margin-left: 5%;
+      }
+      .return-print-minutes-button {
+        margin-left: 30px;
     }
+
 }
