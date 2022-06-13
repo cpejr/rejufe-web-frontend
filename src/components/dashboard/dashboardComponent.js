@@ -428,10 +428,8 @@ function TableComponent({
                     </TableCell>
                   ) : editComunic ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton aria-label="delete">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <RemoveComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} />
-                      </IconButton>
-                      <IconButton color="primary" aria-label="Edit">
                         <EditComunicModal
                           setUse={setUse}
                           id={comunicId[index + (page * 10)]}
@@ -440,7 +438,7 @@ function TableComponent({
                           comunic={row}
                           page={page}
                         />
-                      </IconButton>
+                      </div>
                     </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
