@@ -31,6 +31,8 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import EditMinutesModal from '../EditModal/EditAtasModal';
+import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import * as managerService from '../../services/manager/managerService';
@@ -132,6 +134,9 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  editMinute,
+  minuteId,
+  numbers,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -317,6 +322,8 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -419,6 +426,21 @@ function TableComponent({
                       <IconButton color="primary" aria-label="Edit">
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
+                    </TableCell>
+                  ) : editMinute ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
+                        <EditMinutesModal
+                          setUse={setUse}
+                          id={minuteId[index + (page * 10)]}
+                          minutes={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          numbers={numbers}
+                          page={page}
+                        />
+                      </div>
                     </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">

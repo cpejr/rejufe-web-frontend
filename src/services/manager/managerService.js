@@ -274,6 +274,31 @@ export const createActions = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getMinute = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allComunic = [];
+  do {
+    response = await requesterService.getMinute(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allComunic = allComunic.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allComunic;
+};
+
+export const deleteMinute = async (minuteId) => {
+  const response = await requesterService.deleteMinute(minuteId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateMinute = async (minuteId, body) => {
+  const response = await requesterService.updateMinute(minuteId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createModels = async (body) => {
   const response = await requesterService.createModels(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
