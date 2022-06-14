@@ -37,6 +37,8 @@ import * as managerService from '../../services/manager/managerService';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import EditMinutesModal from '../EditModal/EditAtasModal';
+import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -126,6 +128,9 @@ function TableComponent({
   search,
   searchFile,
   searchMinutes,
+  searchMinutesIntranet,
+  setShowForms,
+  setAtasId,
   validate,
   dados,
   newsSequentialId,
@@ -136,6 +141,9 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  editMinute,
+  minuteId,
+  numbers,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -293,6 +301,12 @@ function TableComponent({
     setPage(0);
   };
 
+  function setIntranetForms(e, redirectId) {
+    e.preventDefault();
+    setShowForms(true);
+    setAtasId(redirectId);
+  }
+
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
@@ -440,9 +454,30 @@ function TableComponent({
                         />
                       </div>
                     </TableCell>
+                  ) : editMinute ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
+                        <EditMinutesModal
+                          setUse={setUse}
+                          id={minuteId[index + (page * 10)]}
+                          minutes={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          numbers={numbers}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : searchMinutesIntranet ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => setIntranetForms(e, id[index + (page * 10)])}>
                         <SearchIcon />
                       </IconButton>
                     </TableCell>

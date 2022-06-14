@@ -155,8 +155,8 @@ function Header(props) {
       text: 'Consultas',
     },
     {
-      link: () => handleClick('/alteracoeseexclusoes'),
-      pathName: '/alteracoes-e-exclusoes',
+      link: () => handleClick('/alteracoes-e-exclusoes-atas'),
+      pathName: '/alteracoes-e-exclusoes-atas',
       text: 'Alterações e exclusões',
     },
     {
