@@ -130,19 +130,7 @@
   background-color: var(--primary);
 }
 
-@media(max-width: 695px) {
-  .edit-comunic-modal-container-modal {
-    height: 370px;
-    width: 450px;
-  }
-}
-
 @media(max-width: 495px) {
-  .edit-comunic-modal-container-modal {
-    height: 320px;
-    width: 380px;
-  }
-
   .edit-comunic-modal-cancel {
     margin-top: 2%;
   }
@@ -166,11 +154,6 @@
 }
 
 @media(max-width: 395px) {
-  .edit-comunic-modal-container-modal {
-    height: 300px;
-    width: 270px;
-  }
-
   .edit-comunic-modal-cancel {
     margin-top: 2%;
   }
