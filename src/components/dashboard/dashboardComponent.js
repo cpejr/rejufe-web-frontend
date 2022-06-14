@@ -36,7 +36,7 @@ import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -124,6 +124,9 @@ function TableComponent({
   search,
   searchFile,
   searchMinutes,
+  searchMinutesIntranet,
+  setShowForms,
+  setAtasId,
   validate,
   dados,
   newsSequentialId,
@@ -294,6 +297,12 @@ function TableComponent({
     setPage(0);
   };
 
+  function setIntranetForms(e, redirectId) {
+    e.preventDefault();
+    setShowForms(true);
+    setAtasId(redirectId);
+  }
+
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
@@ -445,6 +454,12 @@ function TableComponent({
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : searchMinutesIntranet ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => setIntranetForms(e, id[index + (page * 10)])}>
                         <SearchIcon />
                       </IconButton>
                     </TableCell>

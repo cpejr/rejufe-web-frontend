@@ -332,6 +332,18 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const getEdicts = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allEdicts = [];
+  do {
+    response = await requesterService.getEdicts(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allEdicts = allEdicts.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allEdicts;
+};
 
 export const deleteModel = async (modelId) => {
   const response = await requesterService.deleteModel(modelId);

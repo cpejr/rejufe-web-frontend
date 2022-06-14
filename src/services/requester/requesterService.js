@@ -171,6 +171,15 @@ export const getModels = (times, field, filter) => httpClient.get('/modelos', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const getEdicts = (times, field, filter) => httpClient.get('/atas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
 export const getInformations = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
     times,
