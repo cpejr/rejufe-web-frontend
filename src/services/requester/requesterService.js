@@ -135,6 +135,15 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
 
 });
 
+export const getComunic = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+
 export const createMinutes = (body) => httpClient.post('/atas', body);
 
 export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
@@ -146,6 +155,13 @@ export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const deleteComunic = (comunicId) => httpClient.delete(`/informacoes/${comunicId}`);
+
+export const updateComunic = (comunicId, body) => httpClient.put(`/informacoes/${comunicId}`, body);
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
 
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
@@ -204,10 +220,6 @@ export const updateMinute = (minuteId, body) => httpClient.put(`/atas/${minuteId
 export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
 
 export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);
-
-export const download = (id) => httpClient.get(`/arquivos/${id}`, {
-  responseType: 'blob',
-});
 
 export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
   params: {

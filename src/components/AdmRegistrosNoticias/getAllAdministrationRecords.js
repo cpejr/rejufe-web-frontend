@@ -40,6 +40,8 @@ async function getAllAdministrationRecords(
     setNewsSequentialId(newsCode);
     setLoading(false);
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn(error);
     history.push('/NotFound');
     setLoading(false);
   }
