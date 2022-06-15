@@ -46,8 +46,6 @@ function MinuteQuery() {
         ));
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
-      });
-      allMinutes.forEach((object) => {
         minuteId.push(createId(
           object._id,
         ));

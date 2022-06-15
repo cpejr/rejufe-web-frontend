@@ -121,8 +121,8 @@ function Header(props) {
       text: 'Consultas',
     },
     {
-      link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      link: () => handleClick('/administracao-registros-comunic'),
+      pathName: '/administracao-registros-comunic',
       text: 'Administração de Registros',
     },
     {

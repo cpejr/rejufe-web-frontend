@@ -31,12 +31,14 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
-import EditMinutesModal from '../EditModal/EditAtasModal';
-import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
+import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
+import EditComunicModal from '../EditModal/EditComunicModal';
+import * as managerService from '../../services/manager/managerService';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
-import * as managerService from '../../services/manager/managerService';
 import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import EditMinutesModal from '../EditModal/EditAtasModal';
+import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -120,10 +122,15 @@ function TableComponent({
   archive1Id,
   archive2Id,
   associateId,
+  comunicId,
   edit,
+  editComunic,
   search,
   searchFile,
   searchMinutes,
+  searchMinutesIntranet,
+  setShowForms,
+  setAtasId,
   validate,
   dados,
   newsSequentialId,
@@ -309,6 +316,12 @@ function TableComponent({
     setPage(0);
   };
 
+  function setIntranetForms(e, redirectId) {
+    e.preventDefault();
+    setShowForms(true);
+    setAtasId(redirectId);
+  }
+
   function redirect(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-atas?atasId=${redirectId}`, '_blank');
@@ -442,6 +455,20 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : editComunic ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} />
+                        <EditComunicModal
+                          setUse={setUse}
+                          id={comunicId[index + (page * 10)]}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          comunic={row}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
                   ) : editMinute ? (
                     <TableCell {...cellFontProps} align="center">
                       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -460,6 +487,12 @@ function TableComponent({
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : searchMinutesIntranet ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => setIntranetForms(e, id[index + (page * 10)])}>
                         <SearchIcon />
                       </IconButton>
                     </TableCell>
