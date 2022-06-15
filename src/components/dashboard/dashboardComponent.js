@@ -36,7 +36,7 @@ import EditComunicModal from '../EditModal/EditComunicModal';
 import * as managerService from '../../services/manager/managerService';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
@@ -141,6 +141,7 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  printAtas,
   editMinute,
   minuteId,
   numbers,
@@ -290,6 +291,20 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
+
+  const tableContainerProps = {
+    sx: printAtas
+      ? {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      }
+      : {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -356,7 +371,7 @@ function TableComponent({
   return (
     <TableContainer
       component={Paper}
-      sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+      {...tableContainerProps}
     >
       <Table
         {...tableProps}
@@ -600,6 +615,7 @@ function TableComponent({
         {print ? (
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            style={{ overflow: printAtas ? 'unset' : 'hidden' }}
             component="div"
             count={rows?.length}
             rowsPerPage={rows?.length}
@@ -619,6 +635,7 @@ function TableComponent({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
               component="div"
+              style={{ overflow: printAtas ? 'unset' : 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
