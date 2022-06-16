@@ -1,6 +1,6 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 import moment from 'moment';
@@ -13,6 +13,7 @@ import { useAuth } from '../../providers/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
 import StyledInput from '../../components/StyledInput/StyledInput';
+import Loading from '../../components/Loading/Loading';
 
 moment.locale('pt-br', [ptLocale]);
 
@@ -24,11 +25,30 @@ const initialState = {
 toast.configure();
 function Login() {
   const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
   const [usuario, setUsuario] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
   const history = useHistory();
   const { setUser } = useAuth();
+
+  async function rememberMe() {
+    try {
+      const userStorage = JSON.parse(localStorage.getItem('user'));
+      console.log(userStorage);
+      if (userStorage?.rememberMe) {
+        await managerService.getById(userStorage?.id);
+        history.push('/intranet');
+      }
+      setPageLoading(false);
+    } catch (error) {
+      setPageLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    rememberMe();
+  }, []);
 
   const handleChange = (value, field) => {
     setUsuario({ ...usuario, [field]: value });
@@ -142,70 +162,75 @@ function Login() {
   };
 
   return (
-    <div
-      className="container-login"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
+    <div>
+      {pageLoading ? (
+        <Loading />
+      ) : (
+        <div
+          className="container-login"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            width: '100%',
+            height: '100vh',
+            overflow: 'hidden',
+          }}
+        >
+          <div className="campo-login">
+            <div className="Box-login">
+              <div className="text-login">
+                <img src="images/logoSemFundo.png" alt="Logo" />
+                <h1>Usuário </h1>
+                <StyledInput
+                  type="text"
+                  id="user"
+                  dados={usuario}
+                  setDados={handleChange}
+                />
+                <h1>Senha </h1>
+                <StyledInput
+                  type="password"
+                  id="password"
+                  label=""
+                  width="100%"
+                  height="6vh"
+                  dados={usuario}
+                  setDados={handleChange}
+                  handleClick={handleClick}
+                />
 
-      }}
-    >
-      <div className="campo-login">
-        <div className="Box-login">
-          <div className="text-login">
-            <img src="images/logoSemFundo.png" alt="Logo" />
-            <h1>Usuário </h1>
-            <StyledInput
-              type="text"
-              id="user"
-              dados={usuario}
-              setDados={handleChange}
-            />
-            <h1>Senha </h1>
-            <StyledInput
-              type="password"
-              id="password"
-              label=""
-              width="100%"
-              height="6vh"
-              dados={usuario}
-              setDados={handleChange}
-              handleClick={handleClick}
-            />
-
-            <div className="Remember-Box">
-              <input
-                type="checkbox"
-                onChange={(e) => setUsuario({ ...usuario, rememberMe: e.target.checked })}
-                id="rememberMe"
-                name="rememberMe"
-                value={usuario.rememberMe}
+                <div className="Remember-Box">
+                  <input
+                    type="checkbox"
+                    onChange={(e) => setUsuario({ ...usuario, rememberMe: e.target.checked })}
+                    id="rememberMe"
+                    name="rememberMe"
+                    value={usuario.rememberMe}
+                  />
+                  <label htmlFor="rememberMe">Lembrar de mim</label>
+                </div>
+                <button id="LoginButton" className="container-login-button" type="button" onClick={handleClick}>
+                  {loading ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    <p>Acessar</p>
+                  )}
+                </button>
+                <div className="Link-ForgottenPassword">
+                  <Link to="redefinirSenha">Esqueci Minha Senha</Link>
+                </div>
+              </div>
+            </div>
+            {showWarningModal && (
+              <ModalFailedLogin
+                content={contentWarningModal}
+                close={handleClickClose}
+                className="WarningModalLoginScreen"
               />
-              <label htmlFor="rememberMe">Lembrar de mim</label>
-            </div>
-            <button id="LoginButton" className="container-login-button" type="button" onClick={handleClick}>
-              {loading ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : (
-                <p>Acessar</p>
-              )}
-            </button>
-            <div className="Link-ForgottenPassword">
-              <Link to="redefinirSenha">Esqueci Minha Senha</Link>
-            </div>
+            )}
           </div>
         </div>
-        {showWarningModal && (
-          <ModalFailedLogin
-            content={contentWarningModal}
-            close={handleClickClose}
-            className="WarningModalLoginScreen"
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 }
