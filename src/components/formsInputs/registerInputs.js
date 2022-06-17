@@ -106,7 +106,7 @@ function RegisterInputs({
         <div />
       )}
       {type === 'file' && (
-        <SingleFileUpload id={id} fileType={fileType} dados={dados} file={dados[`${id}`]} setDados={setDados} label={label} />
+        <SingleFileUpload field={id} fileType={fileType} dados={dados} file={dados[`${id}`]} setDados={setDados} label={label} />
       )}
     </div>
   );

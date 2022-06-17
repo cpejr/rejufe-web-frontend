@@ -7,7 +7,7 @@ export default function setFileNameById(fileNames1, archive1Id, setFileNames1) {
   const value = Object.values(archive1Id);
   try {
     const aux1 = fileNames1;
-    if (fileNames1.length === 0 && archive1Id) {
+    if ((fileNames1.length === 0 && archive1Id) || (fileNames1.filter((filename) => filename !== '').length !== archive1Id.filter((archiveId) => archiveId !== '').length)) {
       value?.forEach((_id, index) => {
         if (_id) {
           managerService.getFileNameById(_id).then((response) => {

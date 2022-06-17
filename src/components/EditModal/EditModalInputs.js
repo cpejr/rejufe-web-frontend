@@ -24,7 +24,7 @@ function EditModelInputs({
               <div className="EditModal-model-text">
                 {title?.label}
               </div>
-              <input className="EditModal-model-input" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, Object.keys(dados)[index])} />
+              <input className="EditModal-model-input" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, `${inputDados[index][0]}`)} />
             </div>
           )}
           {title?.field === 'select' && (
@@ -32,7 +32,7 @@ function EditModelInputs({
               <div className="EditModal-model-text">
                 {title?.label}
               </div>
-              <select className="EditModal-model-select" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, Object.keys(dados)[index])}>
+              <select className="EditModal-model-select" placeholder="" require value={inputDados[index][1]} onChange={(e) => handleChange(e.target.value, `${inputDados[index][0]}`)}>
                 {select?.map((selected) => (
                   <option value={selected}>{selected}</option>
                 ))}

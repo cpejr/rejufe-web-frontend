@@ -1,6 +1,8 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import './AdmRegistrosComunic.css';
+import './AlteracoesExclusoesAtas.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,12 +10,13 @@ import TableComponent from '../../components/dashboard/dashboardComponent';
 
 toast.configure();
 
-function AdmRegistrosComunic() {
-  const [comunics, setAllComunics] = useState([]);
+function AlteracoesExclusoesMinutes() {
+  const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
   const [archive2Id, setArchive2Id] = useState();
+  const [numbers, setNumbers] = useState();
   const history = useHistory();
 
   function createData(type, number, description) {
@@ -27,29 +30,32 @@ function AdmRegistrosComunic() {
   }
 
   async function getAllComunic() {
-    const auxComunic = [];
-    const comunicId = [];
+    const auxMinute = [];
+    const minuteId = [];
     const archive1Code = [];
     const archive2Code = [];
+    const auxNumbers = [];
     try {
-      const allComunic = await managerService.getComunic();
-      allComunic.forEach((object) => {
-        auxComunic.push(createData(
+      const allMinutes = await managerService.getMinute();
+      allMinutes.forEach((object) => {
+        auxMinute.push(createData(
           object.type,
           object.number,
           object.description,
         ));
+        auxNumbers.push(object.number);
         archive1Code.push(object.archive_1);
         archive2Code.push(object.archive_2);
       });
-      allComunic.forEach((object) => {
-        comunicId.push(createId(
+      allMinutes.forEach((object) => {
+        minuteId.push(createId(
           object._id,
         ));
       });
-      auxComunic.sort();
-      setId(comunicId);
-      setAllComunics(auxComunic);
+      auxMinute.sort();
+      setNumbers(auxNumbers);
+      setId(minuteId);
+      setAllMinutes(auxMinute);
       setArchive1Id(archive1Code);
       setArchive2Id(archive2Code);
       setUse(false);
@@ -73,24 +79,25 @@ function AdmRegistrosComunic() {
   ];
 
   return (
-    <div className="container-administration-register-comunic">
-      <div className="title-adm-registers-comunic">
+    <div className="container-exclude-and-change-minutes">
+      <div className="title-exclude-and-change-minutes">
         <h1>
-          {'Manutenção em Comunicados e Informativos '}
+          {'Manutenção em Atas e Editais '}
         </h1>
       </div>
-      <div className="line-table-registers-comunic" />
+      <div className="line-table-exclude-and-change-minutes" />
       <TableComponent
         setUse={setUse}
-        comunicId={id}
-        rows={comunics}
+        minuteId={id}
+        rows={minutes}
         titles={titles}
         archive1Id={archive1Id}
         archive2Id={archive2Id}
-        editComunic
+        numbers={numbers}
+        editMinute
       />
     </div>
   );
 }
 
-export default AdmRegistrosComunic;
+export default AlteracoesExclusoesMinutes;

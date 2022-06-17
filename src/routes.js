@@ -29,6 +29,7 @@ import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import AlteracoesExclusoesMinutes from './pages/AlteracoesExclusoesAtas';
 import AdmRegistrosAcoes from './pages/AdmRegistrosAcoes';
 import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
@@ -64,6 +65,7 @@ export function UserHeader() {
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
         <PrivateRoute path="/alterar-senha" component={ChangePassword} type="usuario" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
+        <PrivateRoute path="/alteracoes-e-exclusoes-atas" component={AlteracoesExclusoesMinutes} type="administrador" />
         <PrivateRoute path="/administracao-registros-acoes" component={AdmRegistrosAcoes} type="administrador" />
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />

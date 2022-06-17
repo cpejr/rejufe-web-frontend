@@ -1,67 +1,67 @@
 .EditModal-model-field {
-  display:flex;
-  flex-direction: column;
-  align-items:center;
-  width: 100%;
-  color: black;
-  margin-bottom: 2%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    width: 100%;
+    color: black;
+    margin-bottom: 2%;
 }
 
 .EditModal-model-text {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  flex-direction: column;
-  font-family: Roboto;
-  margin-bottom: 1%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    flex-direction: column;
+    font-family: Roboto;
+    margin-bottom: 1%;
 }
 
 .EditModal-model-input {
-  margin-bottom: 1%;
-  margin-top: 1%;
-  width: 65%;
-  height: 30px;
-  background-color: #f0f0f5;
-  box-sizing: border-box;
-  border-radius: 6px;
-  border: 0;
-  padding-left: 10px;
-  padding-right: 10px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    width: 65%;
+    height: 30px;
+    background-color: #f0f0f5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .EditModal-model-select {
-  margin-bottom: 1%;
-  margin-top: 1%;
-  width: 65%;
-  height: 30px;
-  background-color: #f0f0f5;
-  box-sizing: border-box;
-  border-radius: 6px;
-  border: 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  cursor: pointer;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    width: 65%;
+    height: 30px;
+    background-color: #f0f0f5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
 }
-
+  
 @media(max-width: 495px){
-.EditModal-model-title{
-  font-size:22px;
+  .EditModal-model-title{
+    font-size:22px;
+  }
+  
+  .EditModal-model-text{
+    font-size: 14px;
+  }
 }
-
-.EditModal-model-text{
-  font-size: 14px;
-}
-}
-
+  
 @media(max-width: 395px){
-.EditModal-model-text{
-  font-size: 14px;
-}
-.EditModal-model-input{
-  width: 50%;
-}
-.EditModal-model-select{
-  width: 50%;
-}
+  .EditModal-model-text{
+    font-size: 14px;
+  }
+  .EditModal-model-input{
+    width: 50%;
+  }
+  .EditModal-model-select{
+    width: 50%;
+  }
 }
