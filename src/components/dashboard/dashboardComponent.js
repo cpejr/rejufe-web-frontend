@@ -7,12 +7,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -32,14 +30,21 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
+import FileSaver from 'file-saver';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
+import EditComunicModal from '../EditModal/EditComunicModal';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import EditAccountModal from '../EditModal/EditAccountModal';
 import * as managerService from '../../services/manager/managerService';
+import ExcludeModelModal from '../DeleteModel/excludeModelModal';
+import EditModel from '../EditModal/EditModelsModal';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import EditMinutesModal from '../EditModal/EditAtasModal';
+import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -123,14 +128,20 @@ function TableComponent({
   archive1Id,
   archive2Id,
   associateId,
+  comunicId,
   edit,
+  editComunic,
   search,
   searchFile,
   searchMinutes,
+  searchMinutesIntranet,
+  setShowForms,
+  setAtasId,
   validate,
   dados,
   newsSequentialId,
   renderButton,
+  modelsSequentialId,
   print,
   printButton,
   editAccount,
@@ -138,6 +149,10 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  printAtas,
+  editMinute,
+  minuteId,
+  numbers,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -285,6 +300,20 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
+
+  const tableContainerProps = {
+    sx: printAtas
+      ? {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      }
+      : {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -295,6 +324,12 @@ function TableComponent({
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  function setIntranetForms(e, redirectId) {
+    e.preventDefault();
+    setShowForms(true);
+    setAtasId(redirectId);
+  }
 
   function redirect(e, redirectId) {
     e.preventDefault();
@@ -324,6 +359,8 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -343,7 +380,7 @@ function TableComponent({
   return (
     <TableContainer
       component={Paper}
-      sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+      {...tableContainerProps}
     >
       <Table
         {...tableProps}
@@ -427,9 +464,44 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : editComunic ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} />
+                        <EditComunicModal
+                          setUse={setUse}
+                          id={comunicId[index + (page * 10)]}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          comunic={row}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
+                  ) : editMinute ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
+                        <EditMinutesModal
+                          setUse={setUse}
+                          id={minuteId[index + (page * 10)]}
+                          minutes={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          numbers={numbers}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : searchMinutesIntranet ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => setIntranetForms(e, id[index + (page * 10)])}>
                         <SearchIcon />
                       </IconButton>
                     </TableCell>
@@ -496,6 +568,22 @@ function TableComponent({
                       </Link>
                     </TableCell>
                   )}
+                {modelsSequentialId
+                  && (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <ExcludeModelModal id={modelsSequentialId[index + (page * 10)]} setUse={setUse} />
+                        <EditModel
+                          id={modelsSequentialId[index + (page * 10)]}
+                          model={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          setUse={setUse}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
+                  )}
                 {Object.values(row)?.map((data) => (
                   <TableCell {...cellFontProps}>
                     {data}
@@ -545,6 +633,7 @@ function TableComponent({
         {print ? (
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            style={{ overflow: printAtas ? 'unset' : 'hidden' }}
             component="div"
             count={rows?.length}
             rowsPerPage={rows?.length}
@@ -564,6 +653,7 @@ function TableComponent({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
               component="div"
+              style={{ overflow: printAtas ? 'unset' : 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"

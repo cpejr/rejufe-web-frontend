@@ -71,9 +71,9 @@ class ComponentToPrint extends React.Component {
   }
 }
 
-function FichaMinutes() {
+function FichaMinutes({ atasId, setShowForms }) {
   const { search } = useLocation();
-  const minutesId = new URLSearchParams(search).get('atasId');
+  const minutesId = atasId || new URLSearchParams(search).get('atasId');
   const [minutes, setMinutes] = useState([]);
 
   useEffect(() => {
@@ -81,6 +81,10 @@ function FichaMinutes() {
   }, []);
 
   const handleWindowClose = () => {
+    if (atasId) {
+      setShowForms(false);
+      return;
+    }
     window.close('/imprimir');
   };
 
@@ -93,24 +97,45 @@ function FichaMinutes() {
   return (
     <body className="forms-minutes-body">
       <div className="forms-minutes-Container">
-        <div className="header-print-minutes-icon">
-          <button
-            type="button"
-            className="print-minutes-button"
-            onClick={handlePrint}
-          >
-            <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
-            Imprimir
-          </button>
-          <button
-            type="button"
-            className="return-print-minutes-button"
-            onClick={handleWindowClose}
-          >
-            <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
-            Fechar
-          </button>
-        </div>
+        {atasId ? (
+          <div className="header-print-minutes-icon-forms">
+            <button
+              type="button"
+              className="print-minutes-button"
+              onClick={handlePrint}
+            >
+              <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
+              Imprimir
+            </button>
+            <button
+              type="button"
+              className="return-print-minutes-button"
+              onClick={handleWindowClose}
+            >
+              <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
+              Fechar
+            </button>
+          </div>
+        ) : (
+          <div className="header-print-minutes-icon">
+            <button
+              type="button"
+              className="print-minutes-button"
+              onClick={handlePrint}
+            >
+              <PrintRoundedIcon sx={{ fontSize: 20, marginRight: 1 }} />
+              Imprimir
+            </button>
+            <button
+              type="button"
+              className="return-print-minutes-button"
+              onClick={handleWindowClose}
+            >
+              <BackspaceIcon sx={{ fontSize: 20, marginRight: 1 }} />
+              Fechar
+            </button>
+          </div>
+        )}
         <div className="print-minutes-table">
           <ComponentToPrint minutes={minutes} ref={tableMinutes} />
         </div>
