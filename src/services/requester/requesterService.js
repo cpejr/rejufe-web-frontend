@@ -226,14 +226,6 @@ export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
 
 export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);
 
-export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
-  params: {
-    archiveId,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
-
 export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
     times,
