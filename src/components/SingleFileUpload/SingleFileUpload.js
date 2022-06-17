@@ -22,13 +22,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     outline: 'none',
     marginBottom: '1%',
-    marginRight: '4%',
-    marginLeft: '4%',
-    fontFamily: 'Roboto',
   },
 }));
 function SingleFileUpload({
-  fileType, dados, file, setDados, label, update, archiveId, field, id,
+  fileType, dados, file, setDados, label, update, archiveId, field,
 }) {
   const classes = useStyles();
   const [image, setImage] = useState();
@@ -113,7 +110,7 @@ function SingleFileUpload({
               display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
             }}
             >
-              {file === undefined && archiveId && (
+              {(file === undefined || file === archiveId) && archiveId && (
                 <>
                   <Button
                     style={{
@@ -140,12 +137,25 @@ function SingleFileUpload({
                 </>
               )}
               {file === '' && (
-                <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+                <>
+                  <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                    }}
+                    onClick={() => {
+                      setDados(archiveId, field);
+                    }}
+                  >
+                    cancelar
+                  </Button>
+                </>
               )}
               <div />
             </div>
           )}
-          {file && (
+          {typeof file === 'object' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div
                 style={{
@@ -176,34 +186,6 @@ function SingleFileUpload({
 
         </div>
       </Grid>
-      {file && (
-        <Grid item>
-          <div key={file.url}>
-            {file?.file?.type?.substring(0, 5) === 'image'
-              ? (
-                <div>
-                  <img src={file.url} style={{ width: '200px' }} alt="preview" />
-                </div>
-              )
-              : (
-                <div className="register-news-align-test">
-                  {file.file.path}
-                  {' '}
-                  <PictureAsPdfIcon />
-                </div>
-              )}
-            <Button
-              variant="contained"
-              style={{
-                backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%', fontSize: 'Roboto',
-              }}
-              onClick={() => setDados(undefined, id)}
-            >
-              Remover Arquivo
-            </Button>
-          </div>
-        </Grid>
-      )}
     </Grid>
   );
 }

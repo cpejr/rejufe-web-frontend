@@ -36,7 +36,7 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import EditAccountModal from '../EditModal/EditAccountModal';
 import * as managerService from '../../services/manager/managerService';
