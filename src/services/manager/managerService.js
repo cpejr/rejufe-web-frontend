@@ -439,11 +439,6 @@ export const getTodayBirthday = async () => {
   }
   return response.data;
 };
-export const getImageById = async (id) => {
-  const response = await requesterService.getImageById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
 
 export const getExternalUserById = async (id) => {
   const response = await requesterService.getExternalUserById(id);

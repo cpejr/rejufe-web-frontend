@@ -218,22 +218,12 @@ export const deleteAccount = (actionId) => httpClient.delete(`/prestacaodecontas
 
 export const updateAccount = (actionId, body) => httpClient.put(`/prestacaodecontas/${actionId}`, body);
 
-export const download = (id) => httpClient.get(`/arquivos/${id}`, {
-  responseType: 'blob',
 export const deleteMinute = (minuteId) => httpClient.delete(`/atas/${minuteId}`);
 
 export const updateMinute = (minuteId, body) => httpClient.put(`/atas/${minuteId}`, body);
 export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
 
 export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);
-
-export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
-  params: {
-    archiveId,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
