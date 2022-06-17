@@ -29,11 +29,14 @@ import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import AlteracoesExclusoesMinutes from './pages/AlteracoesExclusoesAtas';
 import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
 import ImprimirAssociados from './pages/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
+import FichaUsuariosExternos from './pages/FichaUsuariosExternos';
+import ImprimirAtas from './pages/ImprimirAtas';
 
 export function UserHeader() {
   return (
@@ -53,13 +56,15 @@ export function UserHeader() {
         <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="administrador" />
+        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="administrador" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="administrador" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
         <PrivateRoute path="/validar-socio" component={ValidarSocio} type="administrador" />
         <PrivateRoute path="/editais" component={Editais} type="administrador" />
         <PrivateRoute path="/alteracoes-e-exclusoes" component={AlteracoesExclusoes} type="administrador" />
-        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="administrador" />
+        <PrivateRoute path="/alterar-senha" component={ChangePassword} type="usuario" />
         <PrivateRoute path="/editar-associados" component={EditarAssociados} type="administrador" />
+        <PrivateRoute path="/alteracoes-e-exclusoes-atas" component={AlteracoesExclusoesMinutes} type="administrador" />
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />
         <Redirect to="/NotFound" />
@@ -78,6 +83,7 @@ function Routes() {
         <Route path="/NotFound" component={NotFound} />
         <Route path="/imprimir-associados" component={ImprimirAssociados} />
         <Route path="/imprimir-atas-editais" component={ImprimirAtasEditais} />
+        <Route path="/imprimir-atas" component={ImprimirAtas} />
         <Route path="/" component={UserHeader} />
       </Switch>
       <Footer />

@@ -1,0 +1,202 @@
+.remove-comunic-modal-remove-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-size: 100%;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  background-color: white;
+}
+
+.remove-comunic-modal-container-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 180px;
+  width: 450px;
+  border-radius: 6px;
+  background-color: white;
+  border: 0.5px solid black;
+}
+
+.remove-comunic-modal-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.remove-comunic-modal-question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: Roboto;
+  font-weight: normal;
+  font-size: 20px;
+  color: black;
+  margin-bottom: 7%;
+}
+
+.remove-comunic-modal-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+}
+
+.remove-comunic-modal-button1 {
+  margin-left: 13px;
+}
+
+.remove-comunic-modal-button2 {
+  margin-right: 13px;
+}
+
+.remove-comunic-modal-button-cancel {
+  display: flex;
+  height: 55px;
+  width: 200px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  border: solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3%;
+  background-color: var(--button);
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.remove-comunic-modal-button-confirm {
+  display: flex;
+  height: 55px;
+  width: 200px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  border: solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3%;
+  background-color: var(--button);
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.remove-comunic-modal-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-comunic-modal-align p {
+  color: white;
+}
+
+.remove-comunic-modal-button-cancel:hover {
+  background-color: var(--primary);
+}
+
+.remove-comunic-modal-button-confirm:hover {
+  background-color: var(--primary);
+}
+
+@media(max-width: 685px) {
+  .remove-comunic-modal-container-modal {
+    height: 130px;
+    width: 350px;
+  }
+
+  .remove-comunic-modal-button-confirm {
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+  }
+
+  .remove-comunic-modal-button-cancel {
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+  }
+
+  .remove-comunic-modal-button1 {
+    margin-left: 40px;
+  }
+
+  .remove-comunic-modal-button2 {
+    margin-right: 40px;
+  }
+
+  .remove-comunic-modal-question {
+    font-size: 16px;
+  }
+
+}
+
+@media(max-width: 495px) {
+  .remove-comunic-modal-remove-group .css-i4bv87-MuiSvgIcon-root {
+    width: 0.75em !important;
+    height: 0.75em !important;
+  }
+}
+
+@media(max-width: 370px) {
+  .remove-comunic-modal-container-modal {
+    height: 130px;
+    width: 270px;
+  }
+
+  .remove-comunic-modal-button-confirm {
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .remove-comunic-modal-button-cancel {
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .remove-comunic-modal-question {
+    font-size: 12.5px;
+  }
+
+  .remove-comunic-modal-button1 {
+    margin-left: 0;
+  }
+
+  .remove-comunic-modal-button2 {
+    margin-right: 0;
+  }
+
+  .remove-comunic-modal-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+  }
+
+}
