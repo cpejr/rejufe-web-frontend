@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import './EditAccountModal.css';
-import EditModelInputs from './EditAccountInputs';
+import EditModelInputs from './EditModalInputs';
 
 toast.configure();
 
