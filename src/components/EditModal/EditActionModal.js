@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
 import * as managerService from '../../services/manager/managerService';
 import './EditActionModal.css';
-import EditActionInputs from './EditActionInputs';
+import EditModelInputs from './EditModalInputs';
 
 toast.configure();
 
@@ -118,7 +118,7 @@ export default function EditActionModal({
         <div className="EditModal-action-title">
           <p>Editar dados</p>
         </div>
-        <EditActionInputs
+        <EditModelInputs
           dados={dados}
           setDados={setDados}
           archive1Id={archive1Id}
