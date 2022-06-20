@@ -105,7 +105,7 @@ function Header(props) {
     },
     {
       link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros-contas',
+      pathName: '/administracao-registros-acoes',
       text: 'Administração de Registros',
     },
     {

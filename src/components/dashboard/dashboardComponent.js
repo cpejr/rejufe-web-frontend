@@ -38,7 +38,8 @@ import AcceptModal from '../AcceptModal/AcceptModal';
 import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
 import EditComunicModal from '../EditModal/EditComunicModal';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
-import EditAccountModal from '../EditModal/EditAccountModal';
+import RemoveActionModal from '../RemoveModal/RemoveActionModal';
+import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
@@ -153,12 +154,16 @@ function TableComponent({
   editMinute,
   minuteId,
   numbers,
+  editActions,
+  actionId,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
+  const actualArchive2 = { ...archive2Id };
+
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -492,6 +497,22 @@ function TableComponent({
                           page={page}
                         />
                       </div>
+                    </TableCell>
+                  ) : editActions ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveActionModal setUse={setUse} id={actionId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditActionModal
+                          setUse={setUse}
+                          id={actionId[index + (page * 10)]}
+                          action={row}
+                          archive1Id={actualArchive1[index + (page * 10)]}
+                          archive2Id={actualArchive2[index + (page * 10)]}
+                          page={page}
+                        />
+                      </IconButton>
                     </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">

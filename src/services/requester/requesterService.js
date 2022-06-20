@@ -134,6 +134,7 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
 
 export const getComunic = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
@@ -165,6 +166,10 @@ export const download = (id) => httpClient.get(`/arquivos/${id}`, {
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
 
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
+
+export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
+
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const createActions = (body) => httpClient.post('/acoes', body);
 
@@ -253,6 +258,12 @@ export const getTodayBirthday = (times, field, filter) => httpClient.get('usuari
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById/', {
+  params: {
+    archiveId,
+  },
 });
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
