@@ -22,10 +22,10 @@ function Quizzes({
 
   const nowDate = moment(dateQuizz).format('YYYY-MM-DD');
   const nowHour = moment(dateQuizz).format('hh:mm');
-  const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
-  const openingHour = moment(quizz.openingDate).format('hh:mm');
-  const closingHour = moment(quizz.closingDate).format('hh:mm');
+  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
+  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
+  const openingHour = moment(quizz?.openingDate).format('hh:mm');
+  const closingHour = moment(quizz?.closingDate).format('hh:mm');
   const [loading, setLoading] = useState();
 
   const matches = useMediaQuery('(max-width:411px)');
