@@ -129,13 +129,13 @@ export const updateAssociate = async (associateId, body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const getQuizzes = async (field, filter) => {
+export const getQuizzes = async (date, field, filter) => {
   let times = 0;
   let response;
 
   let allQuizzes = [];
   do {
-    response = await requesterService.getQuizzes(times, field, filter);
+    response = await requesterService.getQuizzes(date, times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
     allQuizzes = allQuizzes.concat(response.data);
     times += 1;

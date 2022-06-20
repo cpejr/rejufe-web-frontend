@@ -21,16 +21,19 @@ function ResultadoQuizzes() {
   const dateQuizz = moment(date).format('YYYY-MM-DD, hh:mm');
   const [loading, setLoading] = useState(true);
 
+  console.log(dateQuizz);
+
   async function getAllAQuizzes() {
     try {
-      const response = await managerService.getQuizzes();
+      const response = await managerService.getQuizzes(dateQuizz);
+      console.log(response);
       const allAssociates = await managerService.getAssociates();
       setAssociates(allAssociates);
       setQuizzes(response);
       setLoading(false);
     } catch (error) {
       history.push('/NotFound');
-      toast.error('Credenciais inválidas!!', {
+      toast.error('Não foi possível obter quizzes!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });

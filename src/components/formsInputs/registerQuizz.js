@@ -38,14 +38,9 @@ function FormInputs({ setNewQuizz, handleClose }) {
 
   const sections = judicialSection?.filter((section) => section.value !== '');
 
-  function handleDay(value, field) {
-    setDados({ ...dados, [field]: value });
-    console.log('🚀 ~ file: registerQuizz.js ~ line 43 ~ handleDay ~ dados', dados);
-  }
-
   function handleDate(value, field) {
-    console.log(dados.field);
-    const date = day.concat(',', value);
+    const date = (`${dados[`${field}`]}, ${value}`);
+    setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: date });
     console.log('🚀 ~ file: registerQuizz.js ~ line 47 ~ handleDate ~ date', date);
   }
@@ -53,7 +48,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
-    console.log('🚀 ~ file: registerQuizz.js ~ line 54 ~ handleChange ~ dados', dados);
+    console.log(dados);
   }
 
   const getUsers = async () => {
@@ -93,7 +88,8 @@ function FormInputs({ setNewQuizz, handleClose }) {
     if (voterSection?.includes(allAssociates) && voterSection.length > 1) {
       setVoterSection([allAssociates]);
     }
-  }, [voterSection]);
+    console.log('🚀 ~ file: registerQuizz.js ~ line 54 ~ handleChange ~ dados', dados);
+  }, [voterSection], dados);
 
   return (
     <div>
@@ -126,7 +122,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
             error={initialErrorState.openingDate}
             type="Date"
             value={openingDay}
-            onChange={(e) => handleDay(e.target.value, 'openingDate')}
+            onChange={(e) => handleChange(e.target.value, 'openingDate')}
           />
         </FormControl>
         <FormControl>
@@ -156,7 +152,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
             error={initialErrorState.closingDate}
             type="time"
             value={closingTime}
-            onChange={(e) => handleChange(e.target.value, 'closingDate')}
+            onChange={(e) => handleDate(e.target.value, 'closingDate')}
           />
         </FormControl>
         <FormControl>
