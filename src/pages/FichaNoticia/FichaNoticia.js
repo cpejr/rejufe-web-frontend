@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import {
   React, useEffect, useState,
 } from 'react';
@@ -6,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import ReactHtmlParser from 'react-html-parser';
 import fichaNews from '../../components/NewsQuery/FichaNoticias';
 import getNewsById from '../../components/getNewsById/getNewsById';
 import * as managerService from '../../services/manager/managerService';
@@ -103,6 +105,19 @@ function FichaNoticia() {
                                               </div>
                                               <br />
                                             </div>
+                                          </div>
+                                        ) : item.label === 'Descrição' ? (
+                                          <div>
+                                            <span className="forms-news-subtitle-img">
+                                              {' '}
+                                              {item.label}
+                                              {' '}
+                                            </span>
+                                            <span className="forms-news-value-description">
+                                              {' '}
+                                              { ReactHtmlParser(news?.description)}
+                                              {' '}
+                                            </span>
                                           </div>
                                         ) : (
                                           <div className="forms-news-td-box">
