@@ -15,8 +15,8 @@
 }
 
 .intranet-dashboad-all {
-  padding: 75px 30px;
-  width: 100%;
+  padding: 75px 25px;
+  width: 90%;
 }
 
 .intranet-side-menu {
@@ -75,9 +75,10 @@
 @media (max-width: 970px) {
   .intranet-dashboad-all {
     padding: 75px 0 0 20px;
+    width: 75%;
   }
   .intranet-main-container {
-    padding: 0 50px;
+    padding: 0 12% 0 10%;
   }
   .intranet-welcome {
     margin: 75px 70px 0 50px;
@@ -109,6 +110,7 @@
   .intranet-main-container {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 0;
   }
 
@@ -118,7 +120,7 @@
 
   .intranet-dashboad-all {
     padding: 2%;
-    width: 100%;
+    width: 90%;
   }
   .intranet-welcome {
     flex-direction: column;
