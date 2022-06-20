@@ -37,6 +37,7 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
 import EditComunicModal from '../EditModal/EditComunicModal';
+import EditAccountModal from '../EditModal/EditAccountModal';
 import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';

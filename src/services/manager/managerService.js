@@ -437,7 +437,6 @@ export const contactUs = async (body) => {
   return response.data;
 };
 
-
 export const getImageById = async (id) => {
   const response = await requesterService.getImageById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -490,10 +489,4 @@ export const deleteAccount = async (actionId) => {
 export const updateAccount = async (actionId, body) => {
   const response = await requesterService.updateAccount(actionId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
-};
-
-export const getImageById = async (id) => {
-  const response = await requesterService.getImageById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
 };

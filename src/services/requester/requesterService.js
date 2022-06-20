@@ -169,8 +169,6 @@ export const createAccountability = (body) => httpClient.post('/prestacaodeconta
 
 export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
 
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
-
 export const createActions = (body) => httpClient.post('/acoes', body);
 
 export const getMinute = (times, field, filter) => httpClient.get('/atas', {
@@ -269,11 +267,3 @@ export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileN
 });
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
-
-export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
-  params: {
-    archiveId,
-  },
-});
-
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
