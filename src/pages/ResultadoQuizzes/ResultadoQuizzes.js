@@ -26,6 +26,7 @@ function ResultadoQuizzes() {
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes(dateQuizz);
+      console.log(response);
       const allAssociates = await managerService.getAssociates();
       setAssociates(allAssociates);
       setQuizzes(response);
@@ -42,6 +43,7 @@ function ResultadoQuizzes() {
   async function getToVoteQuizzes() {
     try {
       const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
+      console.log(response);
       setToVote(response);
       setLoading(false);
     } catch (error) {

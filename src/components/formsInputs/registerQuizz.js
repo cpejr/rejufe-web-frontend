@@ -18,11 +18,11 @@ function FormInputs({ setNewQuizz, handleClose }) {
   const [voterSection, setVoterSection] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
+  const [day, setDay] = useState('');
   let openingTime;
   let openingDay;
   let closingTime;
   let closingDay;
-  let day;
 
   const handleSectionChange = (event) => {
     const {
@@ -39,13 +39,16 @@ function FormInputs({ setNewQuizz, handleClose }) {
   const sections = judicialSection?.filter((section) => section.value !== '');
 
   function handleDate(value, field) {
-    const date = (`${dados[`${field}`]}, ${value}`);
+    const date = (`${day}, ${value}`);
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: date });
     console.log('🚀 ~ file: registerQuizz.js ~ line 47 ~ handleDate ~ date', date);
   }
 
   function handleChange(value, field) {
+    if (field === 'openingDate' || field === 'closingDate') {
+      setDay(value);
+    }
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
     console.log(dados);

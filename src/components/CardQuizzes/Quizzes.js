@@ -19,9 +19,17 @@ function Quizzes({
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  const nowDate = moment(dateQuizz).format('YYYY-MM-DD');
+  const nowHour = moment(dateQuizz).format('hh:mm');
   const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
   const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
+  const openingHour = moment(quizz.openingDate).format('hh:mm');
+  const closingHour = moment(quizz.closingDate).format('hh:mm');
   const [loading, setLoading] = useState();
+
+  console.log(closingDate, closingHour);
+  console.log(dateQuizz);
 
   const matches = useMediaQuery('(max-width:411px)');
 
@@ -44,14 +52,14 @@ function Quizzes({
             {' '}
             {quizz.title}
           </p>
-          {openingDate > dateQuizz ? (
+          {openingDate >= nowDate && openingHour > nowHour ? (
             <div className="tagg-status-quizz">
               <DateQuizzes status="init" />
             </div>
           ) : (
             <>
               <div />
-              {closingDate < dateQuizz ? (
+              {closingDate <= nowDate && closingHour <= nowHour ? (
                 <div className="tagg-status-quizz">
                   <DateQuizzes status="finished" />
                 </div>
@@ -65,7 +73,7 @@ function Quizzes({
           <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
         </button>
       </div>
-      {(open === true && quizz.privateResult === false) || (open === true && quizz.privateResult === true && closingDate < dateQuizz) || (open === true && quizz.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
+      {(open === true && quizz.privateResult === false) || (open === true && quizz.privateResult === true && (closingDate <= nowDate && closingHour <= nowHour)) || (open === true && quizz.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -74,7 +82,7 @@ function Quizzes({
             </div>
           ) : (
             <>
-              {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
+              {(closingDate <= nowDate && closingHour <= nowHour) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
                 <GraphicQuizzes
                   toVote={quizz?.toVote}
                   associates={associates}
