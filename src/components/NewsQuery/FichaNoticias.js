@@ -34,16 +34,6 @@ const recordNews = [
       {
         items: [
           {
-            id: 'description',
-            label: 'Descrição',
-
-          },
-        ],
-      },
-
-      {
-        items: [
-          {
             id: 'archive_1',
             label: 'Arquivo 1',
           },
@@ -55,6 +45,16 @@ const recordNews = [
           {
             id: 'archive_2',
             label: 'Arquivo 2',
+
+          },
+        ],
+      },
+
+      {
+        items: [
+          {
+            id: 'description',
+            label: 'Descrição',
 
           },
         ],
