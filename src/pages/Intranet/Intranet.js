@@ -29,8 +29,6 @@ function Intranet() {
   const [selectedButton, setSelectedButton] = useState('Home');
   const [birthdaysUsers, setBirthdayUsers] = useState();
 
-  console.log(selectedButton);
-
   async function getBirthdayUsers() {
     try {
       const response = await managerService.getTodayBirthday();

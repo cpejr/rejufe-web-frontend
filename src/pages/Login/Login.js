@@ -44,15 +44,12 @@ function Login() {
       let res;
       let attempts;
       const email = await managerService.getUserEmailByUsername(usuario.user);
-      console.log(email);
       const field = {
         email,
         lock_time: moment(),
       };
       res = await managerService.getAttempts(email);
-      console.log(res);
-      if (res === null) {
-        console.log('Hello');
+      if (Object.values(res).length === 0) {
         res = await managerService.createAttempt(field);
         setShowWarningModal(false);
         attempts = 0;
