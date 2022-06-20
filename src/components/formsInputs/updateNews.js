@@ -34,7 +34,7 @@ function UpdateNews({
           InputLabelProps={{ shrink: true }}
           type={type}
           variant="standard"
-          sx={{ m: 1, width: '30ch' }}
+          sx={{ m: 1, width: '65%' }}
           helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
         />
       )}
@@ -48,7 +48,7 @@ function UpdateNews({
           type={type}
           select={select}
           variant="standard"
-          sx={{ m: 1, width: '30ch' }}
+          sx={{ m: 1, width: '65%' }}
           helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
         />
       )}
@@ -64,7 +64,7 @@ function UpdateNews({
           label={label}
           variant="standard"
           helperText={`Selecione uma opção de ${label}`}
-          sx={{ m: 1, width: '30ch' }}
+          sx={{ m: 1, width: '65%' }}
         >
           {field.map((option) => (
             <MenuItem key={option.value} value={option.value} style={{ height: '36px' }}>
@@ -83,7 +83,7 @@ function UpdateNews({
           type={type}
           variant="standard"
           multiline
-          sx={{ m: 1, width: '30ch' }}
+          sx={{ m: 1, width: '65%' }}
           helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
         />
       )}

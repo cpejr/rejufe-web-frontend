@@ -30,13 +30,11 @@ function SingleFileUpload({
   const classes = useStyles();
   const [image, setImage] = useState();
   const [updateImage, setUpdateImage] = useState(false);
-  function example() { return image ? <img src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
+  function example() { return image ? <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
 
   async function getImage() {
     try {
-      console.log(archiveId);
       const response = await managerService.getImageById(archiveId);
-      console.log(response);
       setImage(response);
     } catch (error) {
       toast.error('Não foi possível obter imagem', {
@@ -95,23 +93,39 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          {update === true && label === 'Imagem' && !updateImage && (
+          {update === true && label === 'Imagem' && !updateImage && file !== '' && (
             <>
               {image && example()}
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
-                }}
-                onClick={() => {
-                  setUpdateImage(true);
-                }}
+              <div style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+              }}
               >
-                Alterar imagem
-              </Button>
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                  }}
+                  onClick={() => {
+                    setUpdateImage(true);
+                  }}
+                >
+                  Alterar imagem
+                </Button>
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#1C3854', marginBottom: '5%', marginTop: '2%',
+                  }}
+                  onClick={() => {
+                    setDados('', field);
+                  }}
+                >
+                  Remover Imagem
+                </Button>
+              </div>
             </>
           )}
-          {((update === true && label === 'Arquivo' && file !== '') || updateImage) && (
+          {(file !== '' || updateImage) && (
             <>
               <div {...getRootProps({ className: classes.dropzone })}>
                 <input {...getInputProps()} />
@@ -169,24 +183,24 @@ function SingleFileUpload({
                   </Button>
                 </>
               )}
-              {file === '' && (
-                <>
-                  <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
-                    }}
-                    onClick={() => {
-                      setDados(archiveId, field);
-                    }}
-                  >
-                    cancelar
-                  </Button>
-                </>
-              )}
               <div />
             </div>
+          )}
+          {file === '' && (
+            <>
+              <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo/imagem</h3>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                }}
+                onClick={() => {
+                  setDados(archiveId, field);
+                }}
+              >
+                cancelar
+              </Button>
+            </>
           )}
           {typeof file === 'object' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

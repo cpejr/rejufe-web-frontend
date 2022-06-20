@@ -48,25 +48,14 @@ function EditarRegistrosNoticias(news) {
   async function handleSubmit(event) {
     event.preventDefault();
     Object.entries(dados).forEach((dado) => {
-      if (dado[0] === 'archive_1') {
+      if (dado[0] === 'archive_1' || dado[0] === 'archive_2' || dado[0] === 'photos') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
-      }
-      if (dado[0] === 'archive_2') {
-        dado[1] = dado[1] ? dado[1]?.file : '';
-        formData.append(dado[0], dado[1]);
-      }
-      if (dado[0] !== 'archive_1' && dado[0] !== 'archive_2') {
-        console.log(dado[0]);
-        console.log(dado[1]);
+      } else {
         formData.append(dado[0], dado[1]);
       }
     });
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
     try {
       await managerService.updateRecord(id, formData);
       toast('Notícia editada com sucesso', {
@@ -83,8 +72,6 @@ function EditarRegistrosNoticias(news) {
     }
     setLoading(false);
   }
-
-  console.log(dados);
 
   useEffect(() => {
     getRecord();
