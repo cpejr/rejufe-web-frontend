@@ -42,7 +42,6 @@ function FormInputs({ setNewQuizz, handleClose }) {
     const date = (`${day}, ${value}`);
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: date });
-    console.log('🚀 ~ file: registerQuizz.js ~ line 47 ~ handleDate ~ date', date);
   }
 
   function handleChange(value, field) {
@@ -51,7 +50,6 @@ function FormInputs({ setNewQuizz, handleClose }) {
     }
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
-    console.log(dados);
   }
 
   const getUsers = async () => {
@@ -91,7 +89,6 @@ function FormInputs({ setNewQuizz, handleClose }) {
     if (voterSection?.includes(allAssociates) && voterSection.length > 1) {
       setVoterSection([allAssociates]);
     }
-    console.log('🚀 ~ file: registerQuizz.js ~ line 54 ~ handleChange ~ dados', dados);
   }, [voterSection], dados);
 
   return (

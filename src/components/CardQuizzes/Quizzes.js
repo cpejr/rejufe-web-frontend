@@ -28,9 +28,6 @@ function Quizzes({
   const closingHour = moment(quizz.closingDate).format('hh:mm');
   const [loading, setLoading] = useState();
 
-  console.log(closingDate, closingHour);
-  console.log(dateQuizz);
-
   const matches = useMediaQuery('(max-width:411px)');
 
   const cellFontProps = {

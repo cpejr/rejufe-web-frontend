@@ -114,7 +114,6 @@ function CreateQuizz({
         options: descriptions,
         privateResult,
       };
-      console.log(body.openingDate);
       await managerService.createQuizz(body);
       setNewQuizz(true);
       toast.success('Enquete criada com sucesso!!', {
