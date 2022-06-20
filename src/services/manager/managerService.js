@@ -379,6 +379,19 @@ export const updateModel = async (id, model) => {
   return response.data;
 };
 
+export const getActions = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getActions(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allActions;
+};
+
 export const getAccounts = async (field, filter) => {
   let times = 0;
   let response;
@@ -405,21 +418,21 @@ export const getInformations = async (field, filter) => {
   return allInformatives;
 };
 
-export const getActions = async (field, filter) => {
+export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
-  let allActions = [];
+  let allCommunique = [];
   do {
-    response = await requesterService.getActions(times, field, filter);
+    response = await requesterService.getCommunique(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
+    allCommunique = allCommunique.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allActions;
+  return allCommunique;
 };
 
-export const download = async (id) => {
-  const response = await requesterService.download(id);
+export const contactUs = async (body) => {
+  const response = await requesterService.contactUs(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -451,21 +464,18 @@ export const getExternalUserById = async (id) => {
   return response.data;
 };
 
-export const getCommunique = async (field, filter) => {
-  let times = 0;
-  let response;
-  let allCommunique = [];
-  do {
-    response = await requesterService.getCommunique(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allCommunique = allCommunique.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-  return allCommunique;
+export const deleteAction = async (actionId) => {
+  const response = await requesterService.deleteAction(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const contactUs = async (body) => {
-  const response = await requesterService.contactUs(body);
+export const updateAction = async (actionId, body) => {
+  const response = await requesterService.updateAction(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
