@@ -20,9 +20,10 @@ function AdmRegistrosNoticias() {
   const [id, setId] = useState([]);
   const [newsSequentialId, setNewsSequentialId] = useState([]);
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, history);
+    getAllAdministrationRecords(setId, setAllAdministrationRecords, setNewsSequentialId, history, setLoading);
   }, []);
 
   return (
@@ -36,7 +37,14 @@ function AdmRegistrosNoticias() {
         <div className="line-table-adm-register-notice" />
       </div>
       <div className="containerAdministrationRecords">
-        <TableComponent id={id} newsSequentialId={newsSequentialId} rows={news} titles={titles} search />
+        <TableComponent
+          id={id}
+          newsSequentialId={newsSequentialId}
+          rows={news}
+          titles={titles}
+          search
+          loading={loading}
+        />
       </div>
     </div>
   );

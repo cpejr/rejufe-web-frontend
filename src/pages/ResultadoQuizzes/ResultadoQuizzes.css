@@ -6,6 +6,7 @@
 }
 .division-cards-quizzes {
   width: 100%;
+  height: 100%;
 }
 
 .division-cards-quizzes h1 {
@@ -54,6 +55,11 @@
     font-size: 23px;
   }
 }
+@media (max-width: 310px) {
+  .title-cards-quizzes-page h1 {
+    font-size: 20px;
+  }
+}
 
 @media (max-width: 650px) {
   .intranet-main-container {
@@ -65,5 +71,6 @@
   .container-cards-quizzes {
     display: flex;
     justify-content: center;
+    padding: 0 15px 0;
   }
 }

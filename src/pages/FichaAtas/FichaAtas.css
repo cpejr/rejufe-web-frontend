@@ -2,6 +2,63 @@ td {
     border: 1px solid #DCDCDC;
 }
 
+.header-print-minutes-icon {
+    display: flex;
+    align-items: center;
+    background-color: var(--header);
+    height: 50px;
+    justify-content: center;
+  }
+
+  .header-print-minutes-icon-forms {
+    display: flex;
+    align-items: center;
+    height: 60%;
+    justify-content: center;
+    margin-top: 5%;
+    text-align: center;
+  }
+
+
+.print-minutes-button {
+   margin-left: 30px;
+}
+
+.return-print-minutes-button {
+    margin-left: 60px;
+}
+
+.header-print-minutes-icon button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: thin solid transparent;
+    color: var(--fontColor1);
+    font-size: 17px;
+    cursor: pointer;
+    padding: 0 5px;
+    height: 100%;
+  }
+
+  .header-print-minutes-icon-forms button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: thin solid transparent;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 0 5px;
+    height: 100%;
+  }
+  
+  .header-print-minutes-icon button:hover {
+    background-color: var(--hover);
+    border: thin solid var(--hover);
+    border-radius: 5px;
+  }
+
 .forms-minutes-body {
     min-height: calc(100vh);
 }
@@ -17,7 +74,7 @@ td {
     opacity: 1;
     filter: alpha(opacity=100);
     color: #000000;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 20px 0 20px 0;
     font-size: 13px;
 }
@@ -29,14 +86,14 @@ td {
 }
 
 .forms-minutes-table-container {
-    width: 70%;
+    width: 100%;
     position: center;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 7%;
     background-color: #f9f9f9;
     margin-top: 2%;
     margin-bottom: 5%;
     border: 1px solid #DCDCDC;
+
 }
 
 .forms-minutes-t-container {
@@ -55,7 +112,7 @@ td {
     border-width: 1px;
     border-style: solid;
     color: #333;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
     font-weight: bold;
     padding: 5px 4px;
@@ -71,9 +128,9 @@ td {
     opacity: 1;
     filter: alpha(opacity=100);
     color: #000;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
-    padding: 8px 10px;
+    padding: 8px 0;
     text-decoration: none;
     text-align: left;
     height: 100%;
@@ -108,22 +165,23 @@ td {
     width: 100%;
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 700px) {
     .forms-minutes-table-container {
-        width: max-content;
-        margin-left: 10%;
+        width: 90%;
     }
 }
 
-@media(max-width: 900px) {
-    .forms-minutes-table-container {
-        margin-left: 5%;
-    }
-}
+@media(max-width: 430px) {
+    .print-minutes-table{
+        overflow-x: scroll;
+       }
+       .header-print-minutes-icon-forms button {
+        display: flex;
+        padding: 0;
 
-@media(max-width: 790px) {
-    .forms-minutes-table-container {
-        margin-left: 0%;
-        margin-right: 0%;
+      }
+      .return-print-minutes-button {
+        margin-left: 30px;
     }
+
 }
