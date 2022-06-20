@@ -31,10 +31,14 @@ import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
+import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
+import EditComunicModal from '../EditModal/EditComunicModal';
+import * as managerService from '../../services/manager/managerService';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
-import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import EditMinutesModal from '../EditModal/EditAtasModal';
+import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -118,10 +122,15 @@ function TableComponent({
   archive1Id,
   archive2Id,
   associateId,
+  comunicId,
   edit,
+  editComunic,
   search,
   searchFile,
   searchMinutes,
+  searchMinutesIntranet,
+  setShowForms,
+  setAtasId,
   validate,
   dados,
   newsSequentialId,
@@ -132,6 +141,10 @@ function TableComponent({
   route,
   searchAssociate,
   loading,
+  printAtas,
+  editMinute,
+  minuteId,
+  numbers,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
@@ -278,6 +291,20 @@ function TableComponent({
         ? 'medium'
         : 'big',
   };
+
+  const tableContainerProps = {
+    sx: printAtas
+      ? {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      }
+      : {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+  };
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -288,6 +315,12 @@ function TableComponent({
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  function setIntranetForms(e, redirectId) {
+    e.preventDefault();
+    setShowForms(true);
+    setAtasId(redirectId);
+  }
 
   function redirect(e, redirectId) {
     e.preventDefault();
@@ -317,6 +350,8 @@ function TableComponent({
         FileSaver.saveAs(response, id);
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       toast.error('Não foi possível baixar o arquivo', {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
@@ -336,7 +371,7 @@ function TableComponent({
   return (
     <TableContainer
       component={Paper}
-      sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+      {...tableContainerProps}
     >
       <Table
         {...tableProps}
@@ -420,9 +455,44 @@ function TableComponent({
                         <EditModal setUse={setUse} id={associateId[index + (page * 10)]} associate={row} />
                       </IconButton>
                     </TableCell>
+                  ) : editComunic ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveComunicModal setUse={setUse} id={comunicId[index + (page * 10)]} />
+                        <EditComunicModal
+                          setUse={setUse}
+                          id={comunicId[index + (page * 10)]}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          comunic={row}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
+                  ) : editMinute ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <RemoveMinutesModal setUse={setUse} id={minuteId[index + (page * 10)]} />
+                        <EditMinutesModal
+                          setUse={setUse}
+                          id={minuteId[index + (page * 10)]}
+                          minutes={row}
+                          archive1Id={archive1Id && archive1Id[index + (page * 10)]}
+                          archive2Id={archive2Id && archive2Id[index + (page * 10)]}
+                          numbers={numbers}
+                          page={page}
+                        />
+                      </div>
+                    </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : searchMinutesIntranet ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => setIntranetForms(e, id[index + (page * 10)])}>
                         <SearchIcon />
                       </IconButton>
                     </TableCell>
@@ -545,6 +615,7 @@ function TableComponent({
         {print ? (
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            style={{ overflow: printAtas ? 'unset' : 'hidden' }}
             component="div"
             count={rows?.length}
             rowsPerPage={rows?.length}
@@ -564,6 +635,7 @@ function TableComponent({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
               component="div"
+              style={{ overflow: printAtas ? 'unset' : 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"

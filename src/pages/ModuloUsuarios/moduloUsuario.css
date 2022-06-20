@@ -60,7 +60,7 @@
 
 @media (max-width: 760px) {
   .select-search-user-module {
-    width: 40%;
+    width: 70%;
   }
 }
 
@@ -112,5 +112,11 @@
 @media (max-width: 320px) {
   .user-module-search-field {
     padding: 10px;
+  }
+}
+
+@media (max-width: 290px) {
+  .select-search-user-module {
+    width: 80%;
   }
 }

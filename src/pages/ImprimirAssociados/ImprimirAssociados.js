@@ -45,7 +45,6 @@ function Imprimir() {
   });
 
   const titles = [
-    '',
     'Nome',
     'Celular',
     'Status',

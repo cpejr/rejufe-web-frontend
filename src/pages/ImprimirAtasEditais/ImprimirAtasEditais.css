@@ -1,0 +1,9 @@
+.print-minutes-table {
+    margin: 5%;
+  }
+  
+  .print-minutes-table-forms {
+    table-layout:fixed;
+    width:100%;
+    overflow-x: unset;
+  }
