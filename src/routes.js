@@ -38,6 +38,7 @@ import ImprimirAssociados from './pages/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
 import FichaUsuariosExternos from './pages/FichaUsuariosExternos';
 import ImprimirAtas from './pages/ImprimirAtas';
+import AdmRegistrosContas from './pages/AdmRegistrosContas';
 
 export function UserHeader() {
   return (
@@ -69,6 +70,7 @@ export function UserHeader() {
         <PrivateRoute path="/administracao-registros-acoes" component={AdmRegistrosAcoes} type="administrador" />
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />
+        <PrivateRoute path="/administracao-registros-contas" component={AdmRegistrosContas} type="administrador" />
         <Redirect to="/NotFound" />
       </Switch>
     </Header>

@@ -452,11 +452,6 @@ export const getTodayBirthday = async () => {
   }
   return response.data;
 };
-export const getImageById = async (id) => {
-  const response = await requesterService.getImageById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
 
 export const getExternalUserById = async (id) => {
   const response = await requesterService.getExternalUserById(id);
@@ -476,6 +471,22 @@ export const updateAction = async (actionId, body) => {
 
 export const download = async (id) => {
   const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const deleteAccount = async (actionId) => {
+  const response = await requesterService.deleteAccount(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAccount = async (actionId, body) => {
+  const response = await requesterService.updateAccount(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getImageById = async (id) => {
+  const response = await requesterService.getImageById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
