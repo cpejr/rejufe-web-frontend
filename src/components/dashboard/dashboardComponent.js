@@ -41,9 +41,9 @@ import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
@@ -342,6 +342,12 @@ function TableComponent({
     win.focus();
   }
 
+  function redirectNews(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-noticia?newsId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   function redirectExternalAssociate(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
@@ -454,10 +460,8 @@ function TableComponent({
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, associateId[index + (page * 10)])}>
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectNews(e, id[index + (page * 10)])}>
                         <SearchIcon />
-                        {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                       </IconButton>
                     </TableCell>
                   ) : edit ? (
