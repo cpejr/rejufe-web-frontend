@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
+import { Link } from 'react-router-dom';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -102,7 +103,7 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile, print, loading,
+  titles, rows, id, order, edit, search, searchFile, print, loading, sequentialId,
 }) {
   const [data, setData] = useState(rows);
   const [query, setQuery] = useState('');
@@ -286,8 +287,6 @@ function ConsultaAssociados({
     handleClose();
   };
 
-  console.log(data);
-
   const body = (
     <Box className="AcceptModal-ContainerModal">
       <div className="AcceptModal-text">
@@ -406,6 +405,22 @@ function ConsultaAssociados({
                 ) : (
                   null
                 )}
+                {sequentialId
+                  && (
+                    <TableCell {...cellFontProps}>
+                      <Link
+                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
+                        to={{
+                          pathname: '/editar-associados',
+                          state: {
+                            id: id[index + (page * 10)],
+                          },
+                        }}
+                      >
+                        {sequentialId[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
                 {Object.values(row)?.map((dado) => (
                   <TableCell {...cellFontProps}>
                     {dado}

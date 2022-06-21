@@ -134,7 +134,6 @@ function TableComponent({
   loading,
   searchAdvanced,
 }) {
-  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 137 ~  sequentialId', sequentialId);
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(rows);
