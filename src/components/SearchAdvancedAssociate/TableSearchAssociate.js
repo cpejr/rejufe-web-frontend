@@ -134,7 +134,7 @@ function TableComponent({
   loading,
   searchAdvanced,
 }) {
-  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 138 ~ allAssociates', dados);
+  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 137 ~  sequentialId', sequentialId);
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(rows);
@@ -305,20 +305,16 @@ function TableComponent({
   }
 
   const filterName = rows?.filter(((item) => item.name?.toLowerCase().includes(query)));
-  // const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
-
   const filterAllocation = dados?.filter(((item) => item.allocation?.includes(allocation)));
   const filterActing = dados?.filter(((item) => item.acting?.toLowerCase().includes(acting)));
   const auxAssociate = [];
   const auxAllocation = [];
   filterActing.forEach((object) => {
     auxAssociate.push(createData(object.name, object.cpf, object.status));
-    console.log('🚀 ~ file: TableSearchAssociate.js ~ line 307 ~ filterActing.forEach ~ auxAssociate', auxAssociate);
   });
   filterAllocation.forEach((object) => {
     auxAllocation.push(createData(object.name, object.cpf, object.status));
   });
-  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 305 ~ filterActing', filterActing);
 
   function redirect(e, redirectId) {
     e.preventDefault();
@@ -386,28 +382,32 @@ function TableComponent({
     }
     if (allocation !== '' && query === '' && acting !== '') {
       filterAllocation?.forEach((obj) => {
-        const filter = auxAssociate.filter(((item) => item.allocation.includes(obj.allocation)));
-        setData(filter);
+        const filter = filterActing.filter(((item) => item.allocation.includes(obj.allocation)));
+        const auxFilter = [];
+        filter.forEach((object) => {
+          auxFilter.push(createData(object.name, object.cpf, object.status));
+        });
+        setData(auxFilter);
       });
       setAllocation('');
       setActing('');
     }
     if (allocation === '' && query !== '' && acting !== '') {
       filterName?.forEach((obj) => {
-        const filter = auxAssociate.filter(((item) => item.acting.includes(obj.name)));
+        const filter = auxAssociate.filter(((item) => item.name.toLowerCase().includes(obj.name.toLowerCase())));
         setData(filter);
       });
       setQuery('');
       setActing('');
     }
     if (allocation !== '' && query !== '' && acting !== '') {
-      console.log('aarroba', filterActing);
       filterActing?.forEach((obj) => {
-        console.log('aarroba2');
-        const filter = filterActing.filter(((item) => item.allocation.includes(obj.allocation)));
-        console.log('🚀 ~ file: TableSearchAssociate.js ~ line 408 ~ filterAllocation?.forEach ~ filter', filter);
-        const addOtherFilter = filterName.filter(((item) => item.name.includes(filter.name)));
-        setData(addOtherFilter);
+        const filter = filterAllocation.filter(((item) => item.acting.includes(obj.acting)));
+        filter?.forEach((object) => {
+        // eslint-disable-next-line max-len
+          const addOtherFilter = filterName.filter(((item) => item.name.toLowerCase().includes(object.name.toLowerCase())));
+          setData(addOtherFilter);
+        });
       });
       setQuery('');
       setActing('');

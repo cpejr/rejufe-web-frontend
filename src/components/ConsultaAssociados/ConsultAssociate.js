@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
@@ -104,7 +104,6 @@ TablePaginationActions.propTypes = {
 function ConsultaAssociados({
   titles, rows, id, order, edit, search, searchFile, print, loading,
 }) {
-  console.log('🚀 ~ file: ConsultAssociate.js ~ line 107 ~ rows', rows);
   const [data, setData] = useState(rows);
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
@@ -268,9 +267,7 @@ function ConsultaAssociados({
   const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
 
   const handleData = () => {
-    console.log('top');
     if (query !== '' && type === '') {
-      console.log('vida');
       setData(filterName);
       setQuery('');
     }
@@ -352,6 +349,10 @@ function ConsultaAssociados({
       </div>
     </Box>
   );
+
+  useEffect(() => {
+    setData(rows);
+  }, [rows]);
   return (
     <TableContainer
       component={Paper}
