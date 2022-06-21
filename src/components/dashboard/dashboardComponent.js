@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import FileSaver from 'file-saver';
 import { useTheme } from '@mui/material/styles';
+import Modal from '@material-ui/core/Modal';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -135,6 +136,10 @@ function TableComponent({
   const [page, setPage] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(rows);
+  // eslint-disable-next-line no-unused-vars
+  const [dateInitial, setDateInitial] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [dateFinish, setDateFinish] = useState('');
   // eslint-disable-next-line no-unused-vars
   const [open, setOpen] = useState(false);
   const [fileNames1, setFileNames1] = useState([]);
@@ -303,6 +308,13 @@ function TableComponent({
     const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
     win.focus();
   }
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function redirectAssociate(e, redirectId) {
     e.preventDefault();
@@ -326,6 +338,55 @@ function TableComponent({
       });
     }
   }
+  const body = (
+    <Box className="AcceptModal-ContainerModal">
+      <div className="AcceptModal-text">
+        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+      </div>
+      <div className="AcceptModal-Buttons">
+        <div className="AcceptModal-Bu">
+
+          <label>Data:</label>
+
+          <input type="date" onChange={(e) => setDateInitial(e.target.value.toLowerCase())} />
+          <input type="date" onChange={(e) => setDateFinish(e.target.value.toLowerCase())} />
+        </div>
+        <div className="buttons">
+          <div className="AcceptModal-button1">
+            <button
+              type="button"
+              className="AcceptModal-ButtonCancel"
+              onClick={() => {
+                // eslint-disable-next-line no-undef
+                handleData();
+              }}
+            >
+              <div className="AcceptModal-align">
+                <p>Pesquisa Avançada</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button2">
+            <button
+              className="AcceptModal-ButtonConfirm"
+              type="button"
+            >
+              <div className="AcceptModal-align">
+                <p>Limpar</p>
+              </div>
+            </button>
+          </div>
+          <div className="AcceptModal-button3">
+            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
+              <div className="AcceptModal-align">
+                <p>Voltar</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Box>
+  );
 
   useEffect(() => {
     if (archive1Id) {
@@ -567,12 +628,23 @@ function TableComponent({
             />
             <div className="button-table-component-pagination-consult">
               {renderButton && (
-                <Button
-                  {...buttonFontProps}
-                >
-                  Pesquisa Avançada
-                  {/* TODO Implementar o botão de pesquisa avançada */}
-                </Button>
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    {body}
+                  </Modal>
+                </div>
               )}
               {printButton && (
                 <Button
