@@ -133,13 +133,14 @@ function TableComponent({
   searchAssociate,
   loading,
   searchAdvanced,
-  allAssociates,
 }) {
-  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 138 ~ allAssociates', allAssociates);
+  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 138 ~ allAssociates', dados);
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(rows);
+  const [allocation, setAllocation] = useState('');
   const [query, setQuery] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [type, setType] = useState('');
   const [acting, setActing] = useState('');
   const [fileNames1, setFileNames1] = useState([]);
@@ -297,9 +298,27 @@ function TableComponent({
     setPage(0);
   };
 
+  function createData(name, cpf, status) {
+    return {
+      name, cpf, status,
+    };
+  }
+
   const filterName = rows?.filter(((item) => item.name?.toLowerCase().includes(query)));
-  const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
-  const filterActing = rows?.filter(((item) => item.acting?.toLowerCase().includes(acting)));
+  // const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
+
+  const filterAllocation = dados?.filter(((item) => item.allocation?.includes(allocation)));
+  const filterActing = dados?.filter(((item) => item.acting?.toLowerCase().includes(acting)));
+  const auxAssociate = [];
+  const auxAllocation = [];
+  filterActing.forEach((object) => {
+    auxAssociate.push(createData(object.name, object.cpf, object.status));
+    console.log('🚀 ~ file: TableSearchAssociate.js ~ line 307 ~ filterActing.forEach ~ auxAssociate', auxAssociate);
+  });
+  filterAllocation.forEach((object) => {
+    auxAllocation.push(createData(object.name, object.cpf, object.status));
+  });
+  console.log('🚀 ~ file: TableSearchAssociate.js ~ line 305 ~ filterActing', filterActing);
 
   function redirect(e, redirectId) {
     e.preventDefault();
@@ -345,50 +364,50 @@ function TableComponent({
   };
 
   const handleData = () => {
-    if (query !== '' && type === '' && acting === '') {
-      console.log('vida');
+    if (query !== '' && allocation === '' && acting === '') {
       setData(filterName);
       setQuery('');
     }
-    if (type !== '' && query === '' && acting === '') {
-      setData(filterType);
-      setType('');
+    if (allocation !== '' && query === '' && acting === '') {
+      setData(auxAllocation);
+      setAllocation('');
     }
-    if (type === '' && query === '' && acting !== '') {
-      setData(filterActing);
+    if (allocation === '' && query === '' && acting !== '') {
+      setData(auxAssociate);
       setActing('');
     }
-    if (type !== '' && query !== '' && acting === '') {
-      filterType?.forEach((obj) => {
-        const filter = filterName.filter(((item) => item.type.includes(obj.type)));
+    if (allocation !== '' && query !== '' && acting === '') {
+      filterAllocation?.forEach((obj) => {
+        const filter = filterName.filter(((item) => item.allocation.includes(obj.allocation)));
         setData(filter);
       });
-      setType('');
+      setAllocation('');
       setQuery('');
     }
-    if (type !== '' && query === '' && acting !== '') {
-      filterType?.forEach((obj) => {
-        const filter = filterActing.filter(((item) => item.type.includes(obj.type)));
+    if (allocation !== '' && query === '' && acting !== '') {
+      filterAllocation?.forEach((obj) => {
+        const filter = auxAssociate.filter(((item) => item.allocation.includes(obj.allocation)));
         setData(filter);
       });
-      setType('');
+      setAllocation('');
       setActing('');
     }
-    if (type === '' && query !== '' && acting !== '') {
+    if (allocation === '' && query !== '' && acting !== '') {
       filterName?.forEach((obj) => {
-        const filter = filterActing.filter(((item) => item.acting.includes(obj.name)));
+        const filter = auxAssociate.filter(((item) => item.acting.includes(obj.name)));
         setData(filter);
       });
       setQuery('');
       setActing('');
     }
-    if (type !== '' && query !== '' && acting !== '') {
-      filterName?.forEach((obj) => {
-        filterType?.forEach((dado) => {
-          const filter = filterActing.filter(((item) => item.acting.includes(obj.name)));
-          const addOtherFilter = filter.filter(((item) => item.acting.includes(dado.type)));
-          setData(addOtherFilter);
-        });
+    if (allocation !== '' && query !== '' && acting !== '') {
+      console.log('aarroba', filterActing);
+      filterActing?.forEach((obj) => {
+        console.log('aarroba2');
+        const filter = filterActing.filter(((item) => item.allocation.includes(obj.allocation)));
+        console.log('🚀 ~ file: TableSearchAssociate.js ~ line 408 ~ filterAllocation?.forEach ~ filter', filter);
+        const addOtherFilter = filterName.filter(((item) => item.name.includes(filter.name)));
+        setData(addOtherFilter);
       });
       setQuery('');
       setActing('');
@@ -480,7 +499,7 @@ function TableComponent({
         <div className="AcceptModal-Bu">
 
           <p> Lotação:</p>
-          <select className="EditModal-Input" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
+          <select className="EditModal-Input" setFilterType placeholder="" onChange={(e) => setAllocation(e.target.value)}>
             <option value=" "> </option>
             <option value="ALAGOAS">Alagoas</option>
             <option value="CEARÁ">Ceará</option>
@@ -533,7 +552,8 @@ function TableComponent({
     if (archive2Id) {
       setFileNameArchive(fileNames2, archive2Id, setFileNames2);
     }
-  }, [archive1Id, archive2Id]);
+    setData(rows);
+  }, [archive1Id, archive2Id, rows]);
 
   return (
     <TableContainer
