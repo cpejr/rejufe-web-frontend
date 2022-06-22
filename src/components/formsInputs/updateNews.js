@@ -3,6 +3,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
+import TextEditor from '../TextEditor/TextEditor';
 
 function UpdateNews({
   setDados,
@@ -74,18 +75,28 @@ function UpdateNews({
         </TextField>
       )}
       {!mask && !(type === 'date') && !(type === 'file') && !(type === 'empty') && !select && (
-        <TextField
-          required={required}
-          id={id}
-          error={initialErrorState[`${id}`]}
-          value={dados[`${id}`]}
-          onChange={(e) => handleChange(e.target.value, id)}
-          type={type}
-          variant="standard"
-          multiline
-          sx={{ m: 1, width: '65%' }}
-          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
-        />
+        <>
+          {label === 'Descrição' ? (
+            <div className="news-description-field">
+              <h3>Descrição *</h3>
+              <TextEditor id={id} setDados={setDados} dados={dados} />
+            </div>
+          ) : (
+            <TextField
+              required={required}
+              id={id}
+              error={initialErrorState[`${id}`]}
+              value={dados[`${id}`]}
+              onChange={(e) => handleChange(e.target.value, id)}
+              type={type}
+              variant="standard"
+              multiline
+              sx={{ m: 1, width: '65%' }}
+              helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
+            />
+          )}
+          <div />
+        </>
       )}
       {type === 'empty' && (
         <div />

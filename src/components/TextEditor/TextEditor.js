@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 
-export default function textEditor({ id, setDados }) {
-  const [convertedText, setConvertedText] = useState('');
+export default function textEditor({ id, setDados, dados }) {
+  const [convertedText, setConvertedText] = useState(dados.description);
+
   const modules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -49,7 +50,7 @@ export default function textEditor({ id, setDados }) {
     <div>
       <ReactQuill
         theme="snow"
-        value={convertedText}
+        value={convertedText || ''}
         onChange={setConvertedText}
         placeholder="Escreva a descrição aqui!"
         modules={modules}

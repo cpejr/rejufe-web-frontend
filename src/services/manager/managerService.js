@@ -186,12 +186,6 @@ export const getFileById = async (id) => {
   return response.data;
 };
 
-export const getImageById = async (id) => {
-  const response = await requesterService.getImageById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
 export const uploadFile = async (body) => {
   const response = await requesterService.uploadFile(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
