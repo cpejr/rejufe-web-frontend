@@ -94,7 +94,7 @@ export const getExternalAssociates = (times, field, filter) => httpClient.get('/
 
 export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);
 
-export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
+export const getFileById = (id) => httpClient.get(`/arquivos/${id}`);
 
 export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
@@ -134,6 +134,7 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
 
 export const getComunic = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
@@ -165,6 +166,8 @@ export const download = (id) => httpClient.get(`/arquivos/${id}`, {
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
 
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
+
+export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
 
 export const createActions = (body) => httpClient.post('/acoes', body);
 
@@ -214,20 +217,16 @@ export const getActions = (times, field, filter) => httpClient.get('/acoes', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const deleteAccount = (actionId) => httpClient.delete(`/prestacaodecontas/${actionId}`);
+
+export const updateAccount = (actionId, body) => httpClient.put(`/prestacaodecontas/${actionId}`, body);
+
 export const deleteMinute = (minuteId) => httpClient.delete(`/atas/${minuteId}`);
 
 export const updateMinute = (minuteId, body) => httpClient.put(`/atas/${minuteId}`, body);
 export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
 
 export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);
-
-export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
-  params: {
-    archiveId,
-  },
-  paramsSerializer: (params) => qs.stringify(params),
-});
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
@@ -248,6 +247,8 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
+
 export const sendBirthdayEmail = () => httpClient.post('/birthday');
 
 export const getTodayBirthday = (times, field, filter) => httpClient.get('usuario/getUsersByTodaysBirthday', {
@@ -257,6 +258,12 @@ export const getTodayBirthday = (times, field, filter) => httpClient.get('usuari
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
+});
+
+export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById/', {
+  params: {
+    archiveId,
+  },
 });
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);

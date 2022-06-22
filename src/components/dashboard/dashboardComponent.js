@@ -1,4 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/button-has-type */
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
@@ -33,10 +37,14 @@ import RejectModal from '../RejectModal/RejectModal';
 import AcceptModal from '../AcceptModal/AcceptModal';
 import RemoveComunicModal from '../RemoveModal/RemoveComunicModal';
 import EditComunicModal from '../EditModal/EditComunicModal';
+import EditAccountModal from '../EditModal/EditAccountModal';
+import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
+import RemoveActionModal from '../RemoveModal/RemoveActionModal';
+import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
@@ -138,6 +146,8 @@ function TableComponent({
   modelsSequentialId,
   print,
   printButton,
+  editAccount,
+  accountId,
   route,
   searchAssociate,
   loading,
@@ -145,11 +155,16 @@ function TableComponent({
   editMinute,
   minuteId,
   numbers,
+  editActions,
+  actionId,
 }) {
   const [page, setPage] = useState(0);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const actualArchive1 = { ...archive1Id };
+  const actualArchive2 = { ...archive2Id };
+
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -328,6 +343,12 @@ function TableComponent({
     win.focus();
   }
 
+  function redirectNews(e, redirectId) {
+    e.preventDefault();
+    const win = window.open(`/ficha-noticia?newsId=${redirectId}`, '_blank');
+    win.focus();
+  }
+
   function redirectExternalAssociate(e, redirectId) {
     e.preventDefault();
     const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
@@ -440,10 +461,8 @@ function TableComponent({
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectAssociate(e, associateId[index + (page * 10)])}>
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirectNews(e, id[index + (page * 10)])}>
                         <SearchIcon />
-                        {/* TODO Substituir o modal de pesquisa no lugar do searchIcon, passando row._id e tipo da pesquisa.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
                       </IconButton>
                     </TableCell>
                   ) : edit ? (
@@ -484,6 +503,22 @@ function TableComponent({
                         />
                       </div>
                     </TableCell>
+                  ) : editActions ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveActionModal setUse={setUse} id={actionId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditActionModal
+                          setUse={setUse}
+                          id={actionId[index + (page * 10)]}
+                          action={row}
+                          archive1Id={actualArchive1[index + (page * 10)]}
+                          archive2Id={actualArchive2[index + (page * 10)]}
+                          page={page}
+                        />
+                      </IconButton>
+                    </TableCell>
                   ) : searchMinutes ? (
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
@@ -494,6 +529,15 @@ function TableComponent({
                     <TableCell {...cellFontProps} align="center">
                       <IconButton color="primary" aria-label="Search" onClick={(e) => setIntranetForms(e, id[index + (page * 10)])}>
                         <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : editAccount ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <RemoveAccountModal setUse={setUse} id={accountId[index + (page * 10)]} />
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditAccountModal setUse={setUse} id={accountId[index + (page * 10)]} account={row} archive1Id={actualArchive1[index + (page * 10)]} />
                       </IconButton>
                     </TableCell>
                   ) : validate ? (
