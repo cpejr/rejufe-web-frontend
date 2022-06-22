@@ -164,7 +164,7 @@ function CadastroExterno() {
         autoClose: 5000,
       });
     }
-    if (dados.atuacao?.length === 0 || !lettersSpacesRegex.test(dados.atuacao)) {
+    if (dados.atuacao?.length === 0) {
       aux.atuacao = true;
       checkError = 1;
       toast.error('Atuação inválida!!', {

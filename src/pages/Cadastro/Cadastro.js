@@ -306,7 +306,7 @@ function Cadastro() {
       history.push('/consulta-associados');
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log(error);
+      console.log(error.toString());
       if (error.toString() === 'Error: Email already in use') {
         toast.error('Já existe um associado com o email inserido', {
           position: toast.POSITION.BOTTOM_RIGHT,
