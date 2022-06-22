@@ -265,6 +265,7 @@ function ConsultaAssociados({
 
   // eslint-disable-next-line max-len
   const filterName = rows?.filter(((item) => replaceSpecialChars(item?.name).toLowerCase().includes(replaceSpecialChars(query))));
+  console.log('🚀 ~ file: ConsultAssociate.js ~ line 268 ~ filterName', filterName);
   const filterType = rows?.filter(((item) => item.allocation?.includes(type)));
 
   const handleData = () => {
@@ -348,7 +349,7 @@ function ConsultaAssociados({
       </div>
     </Box>
   );
-
+  console.log(data);
   useEffect(() => {
     setData(rows);
   }, [rows]);
@@ -371,7 +372,7 @@ function ConsultaAssociados({
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading && rows
+          {!loading && data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
