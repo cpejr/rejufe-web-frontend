@@ -139,8 +139,6 @@ function TableComponent({
   const [data, setData] = useState(rows);
   const [allocation, setAllocation] = useState('');
   const [query, setQuery] = useState('');
-  // eslint-disable-next-line no-unused-vars
-  const [type, setType] = useState('');
   const [acting, setActing] = useState('');
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
@@ -410,12 +408,11 @@ function TableComponent({
       });
       setQuery('');
       setActing('');
-      setType('');
     }
     handleClose();
   };
 
-  const body = (
+  /* const body = (
     <Box className="AcceptModal-ContainerModal">
       <div className="AcceptModal-text">
         <div className="AcceptModal-Question">Pesquisa Avançada</div>
@@ -474,7 +471,7 @@ function TableComponent({
         </div>
       </div>
     </Box>
-  );
+  ); */
 
   const modalAssociate = (
     <Box className="AcceptModal-ContainerModal">
@@ -803,7 +800,7 @@ function TableComponent({
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                   >
-                    {body}
+                    {/*  {body} */}
                   </Modal>
                 </div>
               )}
