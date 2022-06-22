@@ -105,12 +105,12 @@ function Header(props) {
     },
     {
       link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      pathName: '/administracao-registros-acoes',
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastrar-acoes'),
-      pathName: '/cadastrar-acoes',
+      link: () => handleClick('/cadastrar-contas'),
+      pathName: '/cadastrar-contas',
       text: 'Cadastrar',
     },
   ];
@@ -121,8 +121,8 @@ function Header(props) {
       text: 'Consultas',
     },
     {
-      link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      link: () => handleClick('/administracao-registros-comunic'),
+      pathName: '/administracao-registros-comunic',
       text: 'Administração de Registros',
     },
     {
@@ -139,7 +139,7 @@ function Header(props) {
     },
     {
       link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      pathName: '/administracao-registros-contas',
       text: 'Administração de Registros',
     },
     {
@@ -155,8 +155,8 @@ function Header(props) {
       text: 'Consultas',
     },
     {
-      link: () => handleClick('/alteracoeseexclusoes'),
-      pathName: '/alteracoes-e-exclusoes',
+      link: () => handleClick('/alteracoes-e-exclusoes-atas'),
+      pathName: '/alteracoes-e-exclusoes-atas',
       text: 'Alterações e exclusões',
     },
     {
@@ -301,6 +301,18 @@ function Header(props) {
                     </span>
                     Intranet
                   </button>
+                  {user?.type === 'usuario' && (
+                    <button
+                      className="responsive-header-dropdown-button"
+                      onClick={() => handleClick('/alterar-senha')}
+                      type="button"
+                    >
+                      <span>
+                        <Brightness5OutlinedIcon />
+                      </span>
+                      Alterar senha
+                    </button>
+                  )}
                 </div>
               ) : (
                 null

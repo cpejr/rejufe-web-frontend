@@ -245,6 +245,29 @@ export const getNews = async (field, filter) => {
   return allNews;
 };
 
+export const getComunic = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allComunic = [];
+  do {
+    response = await requesterService.getComunic(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allComunic = allComunic.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allComunic;
+};
+
+export const deleteComunic = async (comunicId) => {
+  const response = await requesterService.deleteComunic(comunicId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateComunic = async (comunicId, body) => {
+  const response = await requesterService.updateComunic(comunicId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const createMinutes = async (body) => {
   const response = await requesterService.createMinutes(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -274,6 +297,31 @@ export const createActions = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getMinute = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allComunic = [];
+  do {
+    response = await requesterService.getMinute(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allComunic = allComunic.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allComunic;
+};
+
+export const deleteMinute = async (minuteId) => {
+  const response = await requesterService.deleteMinute(minuteId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateMinute = async (minuteId, body) => {
+  const response = await requesterService.updateMinute(minuteId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createModels = async (body) => {
   const response = await requesterService.createModels(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -307,6 +355,42 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const getEdicts = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allEdicts = [];
+  do {
+    response = await requesterService.getEdicts(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allEdicts = allEdicts.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allEdicts;
+};
+
+export const deleteModel = async (modelId) => {
+  const response = await requesterService.deleteModel(modelId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateModel = async (id, model) => {
+  const response = await requesterService.updateModel(id, model);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getActions = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getActions(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allActions;
+};
 
 export const getAccounts = async (field, filter) => {
   let times = 0;
@@ -334,31 +418,6 @@ export const getInformations = async (field, filter) => {
   return allInformatives;
 };
 
-export const getActions = async (field, filter) => {
-  let times = 0;
-  let response;
-  let allActions = [];
-  do {
-    response = await requesterService.getActions(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-  return allActions;
-};
-
-export const download = async (id) => {
-  const response = await requesterService.download(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
-export const getExternalUserById = async (id) => {
-  const response = await requesterService.getExternalUserById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
 export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
@@ -376,4 +435,58 @@ export const contactUs = async (body) => {
   const response = await requesterService.contactUs(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const getImageById = async (id) => {
+  const response = await requesterService.getImageById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const sendBirthdayEmail = async () => {
+  const response = await requesterService.sendBirthdayEmail();
+  if (isFailureStatus(response)) {
+    throw new Error('Problem with api response');
+  }
+  return response.data;
+};
+
+export const getTodayBirthday = async () => {
+  const response = await requesterService.getTodayBirthday();
+  if (isFailureStatus(response)) {
+    throw new Error('Problem with api response');
+  }
+  return response.data;
+};
+
+export const getExternalUserById = async (id) => {
+  const response = await requesterService.getExternalUserById(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const deleteAction = async (actionId) => {
+  const response = await requesterService.deleteAction(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAction = async (actionId, body) => {
+  const response = await requesterService.updateAction(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const deleteAccount = async (actionId) => {
+  const response = await requesterService.deleteAccount(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAccount = async (actionId, body) => {
+  const response = await requesterService.updateAccount(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
