@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Box from '@mui/material/Box';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -16,10 +15,13 @@ function CadastroExterno() {
   const [initialErrorState, setError] = useState(initialAssociateErrorState);
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState(initialAssociateState);
-  const history = useHistory();
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
+  }
+
+  function redirect() {
+    window.location.href = 'https://www.rejufe.org.br';
   }
 
   async function handleSubmit(event) {
@@ -303,7 +305,7 @@ function CadastroExterno() {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/login');
+      redirect();
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
         position: toast.POSITION.BOTTOM_RIGHT,

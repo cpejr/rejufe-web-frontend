@@ -306,9 +306,19 @@ function Cadastro() {
       history.push('/consulta-associados');
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log(error.toString());
-      if (error.toString() === 'Error: Email already in use') {
+      console.log(error);
+      if (error?.toString() === 'Error: Email already in use') {
         toast.error('Já existe um associado com o email inserido', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+        });
+      } else if (error?.toString() === 'Error: CPF already in use') {
+        toast.error('Já existe um associado com o cpf inserido', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+        });
+      } else if (error?.toString() === 'Error: User already in use') {
+        toast.error('Já existe um associado com o usuário inserido', {
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 5000,
         });
