@@ -49,7 +49,7 @@ import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
-import SearchAdvancedAssociate from '../SearchAdvancedAssociate/SearchValidateAssociate';
+import SearchAdvancedAssociate from '../SearchAdvanced/SearchValidateAssociate';
 import SearchAdvancedAccount from '../SearchAdvanced/SearchAdvancedAccount';
 
 function TablePaginationActions(props) {
