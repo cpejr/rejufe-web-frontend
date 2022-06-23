@@ -82,24 +82,23 @@ function SearchAdvanced({
     setQuery('');
     setType('');
   };
-
   const body = (
-    <Box className="AcceptModal-ContainerModal">
-      <div className="AcceptModal-text">
-        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+    <Box className="associate-search-container-modal">
+      <div className="associate-search-text">
+        <div className="associate-search-advanced">Pesquisa Avançada</div>
       </div>
-      <div className="AcceptModal-Buttons">
-        <div className="AcceptModal-Bu">
+      <div className="associate-search-advanced-content">
+        <div className="associate-search-advanced-labels">
 
           <label>Nome:</label>
 
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
-        <div className="AcceptModal-Bu">
+        <div className="associate-search-advanced-labels">
 
           <p> Seção Judiciária:</p>
 
-          <select className="EditModal-Input" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
+          <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
             <option value=" "> </option>
             <option value="SE">SE</option>
             <option value="AL">AL</option>
@@ -109,34 +108,34 @@ function SearchAdvanced({
             <option value="CE">CE</option>
           </select>
         </div>
-        <div className="buttons34">
-          <div className="AcceptModal-button12">
+        <div className="associate-search-advanced-buttons-align">
+          <div className="associate-search-advanced-section-align">
             <button
               type="button"
-              className="AcceptModal-ButtonCancel"
+              className="associate-search-advanced-button-submit"
               onClick={() => {
                 handleData();
               }}
             >
-              <div className="AcceptModal-align">
+              <div className="associate-search-advanced-button-align">
                 <p>Pesquisa Avançada</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button22">
+          <div className="button-search-field">
             <button
-              className="AcceptModal-ButtonConfirm"
+              className="associate-search-advanced-button-clean"
               type="button"
               onClick={handleClean}
             >
-              <div className="AcceptModal-align">
+              <div className="associate-search-advanced-button-align">
                 <p>Limpar</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
+          <div className="associate-search-advanced-button-return">
+            <button type="button" className="associate-search-advanced-button-submit" onClick={handleClose}>
+              <div className="associate-search-advanced-button-align">
                 <p>Voltar</p>
               </div>
             </button>

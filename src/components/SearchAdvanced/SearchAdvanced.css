@@ -13,7 +13,7 @@
     background-color: white;
   }
   
-  .AcceptModal-ContainerModal{
+  .associate-search-container-modal{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,14 +31,14 @@
     padding: 4;
   }
   
-  .AcceptModal-text{
+  .associate-search-text{
     display:flex;
     align-items:center;
     justify-content:center;
     width: 100%;
   }
   
-  .AcceptModal-Question{
+  .associate-search-advanced{
     display:flex;
     align-items:center;
     justify-content:center;
@@ -46,36 +46,29 @@
     width:100%;
     font-family:Roboto;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 25px;
     color: black;
     margin-bottom: 7%;
   }
   
-  .AcceptModal-Buttons{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    width:100%;
-    flex-direction: column;
-  }
   .buttons{
     display:flex;
     flex-direction: row;
     margin-top: 15px;
   }
   
-  .AcceptModal-Bu label{
+  .associate-search-advanced-labels label{
     font-family:Roboto;
     font-weight: normal;
     font-size: 14px;
     margin: 13px;
   }
   
-  .AcceptModal-button22{
+  .button-search-field{
     margin-right: 13px;
   }
   
-  .AcceptModal-ButtonCancel{
+  .associate-search-advanced-button-submit{
     display:flex;
     height: 30px;
     width: 75px;
@@ -94,7 +87,7 @@
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
-  .AcceptModal-ButtonConfirm{
+  .associate-search-advanced-button-clean{
     display:flex;
     height: 30px;
     width: 75px;
@@ -124,11 +117,11 @@
     color: white;
   }
   
-  .AcceptModal-ButtonCancel:hover{
+  .associate-search-advanced-button-submit:hover{
     background-color: var(--primary);
   }
   
-  .AcceptModal-ButtonConfirm:hover{
+  .associate-search-advanced-button-clean:hover{
     background-color: var(--primary);
   }
   
@@ -146,12 +139,12 @@
     margin-bottom: 2%;
     background-color: white;
   }
-  .buttons34{
+  .associate-search-advanced-buttons-align{
     display: flex;
     flex-direction: row;
     margin: 5%;
   }
-  .AcceptModal-ContainerModal{
+  .associate-search-container-modal{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -169,32 +162,21 @@
     padding: 4;
   }
   
-  .AcceptModal-text{
+  .associate-search-text{
     display:flex;
     align-items:center;
     justify-content:center;
     width: 100%;
   }
-  
-  .AcceptModal-Question{
+  .associate-search-advanced-content{
     display:flex;
     align-items:center;
-    justify-content:center;
-    width:100%;
-    font-family:Roboto;
-    font-weight: normal;
-    font-size: 25px;
-    color: black;
-    margin-bottom: 7%;
-  }
-  
-  .AcceptModal-Buttons{
-    display:flex;
     justify-content:space-between;
     width:100%;
     flex-direction: column;
   }
-  label {
+
+  .associate-search-advanced-labels label {
     font-size: 14px;
     margin-top: -2.4px;
     padding-left: 5px;
@@ -202,11 +184,11 @@
     font-family: "Roboto", sans-serif;
   }
   
-  .AcceptModal-button22{
+  .button-search-field{
     margin-left: 13px;
   }
   
-  .AcceptModal-ButtonCancel{
+  .associate-search-advanced-button-submit{
     display:flex;
     height: 6vh;
     width: 15vh;
@@ -225,7 +207,7 @@
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
-  .AcceptModal-ButtonConfirm{
+  .associate-search-advanced-button-clean{
     display:flex;
     height: 6vh;
     width: 15vh;
@@ -246,19 +228,19 @@
   }
   
   
-  .AcceptModal-align p {
+  .associate-search-advanced-button-align p {
     color: white;
   }
   
-  .AcceptModal-ButtonCancel:hover{
+  .associate-search-advanced-button-submit:hover{
     background-color: var(--primary);
   }
   
-  .AcceptModal-ButtonConfirm:hover{
+  .associate-search-advanced-button-clean:hover{
     background-color: var(--primary);
   }
   
-  .EditModal-Input {
+  .associate-search-advanced-select {
     margin-bottom: 5%;
     margin-top: 1%;
     height: 30px;
@@ -271,7 +253,7 @@
     padding-right: 10px;
   }
   
-  .AcceptModal-Bu{
+  .associate-search-advanced-labels{
   margin: 10px;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -281,68 +263,68 @@
   margin-right: 5px;
   }
   
-  .AcceptModal-Bu select{
+  .associate-search-advanced-labels select{
   margin-left: 5px;
   }
   
-  .AcceptModal-Bu label{
+  .associate-search-advanced-labels label{
     font-size: 20px;
   }
   
-  .AcceptModal-Bu p{
+  .associate-search-advanced-labels p{
     font-size: 20px;
   }
   @media(max-width: 685px){
-    .AcceptModal-ContainerModal{
+    .associate-search-container-modal{
       height: 50%;
       width: 60%;
     }
   
-    .AcceptModal-ButtonConfirm{
+    .associate-search-advanced-button-clean{
       width: 15pvh;
       height: 40px;
     }
   
-    .AcceptModal-ButtonCancel{
+    .associate-search-advanced-button-submit{
       width: 15vh;
       height: 40px;
     }
     
-  .AcceptModal-Question{
+  .associate-search-advanced{
     font-size: 16px;
   }
   
   }
   
   @media(max-width: 470px){
-    .AcceptModal-ContainerModal{
+    .associate-search-container-modal{
       height: 50%;
       width: 70%;
     }
   }
   
   @media(max-width: 685px){
-    .AcceptModal-ContainerModal{
+    .associate-search-container-modal{
       height: 130px;
       width: 350px;
     }
   
-    .AcceptModal-ButtonConfirm{
+    .associate-search-advanced-button-clean{
       height: 40px;
       width: 120px;
       font-size: 15px;
     }
   
-    .AcceptModal-ButtonCancel{
+    .associate-search-advanced-button-submit{
       height: 40px;
       width: 120px;
       font-size: 15px;
     }
     
-  .AcceptModal-Question{
+  .associate-search-advanced{
     font-size: 16px;
   }
-  .AcceptModal-Bu{
+  .associate-search-advanced-labels{
     flex-direction: column;
    }
   
@@ -356,40 +338,40 @@
   }
   
   @media(max-width: 430px){
-   .buttons34{
+   .associate-search-advanced-buttons-align{
      flex-direction: column;
    }
-   .AcceptModal-button22{
+   .button-search-field{
     margin-left: 0px;
   }
-  .AcceptModal-button3{
+  .associate-search-advanced-button-return{
     margin-left: 0px;
   }
   }
   
   @media(max-width: 370px){
-    .AcceptModal-ContainerModal{
+    .associate-search-container-modal{
       height: 130px;
       width: 270px;
     }
   
-    .AcceptModal-ButtonConfirm{
+    .associate-search-advanced-button-clean{
       height: 30px;
       width: 100px;
       font-size: 14px;
     }
   
-    .AcceptModal-ButtonCancel{
+    .associate-search-advanced-button-submit{
       height: 30px;
       width: 100px;
       font-size: 14px;
     }
     
-  .AcceptModal-Question{
+  .associate-search-advanced{
     font-size: 14px;
   }
   
-  .AcceptModal-Buttons{
+  .associate-search-advanced-content{
     display:flex;
     align-items:center;
     justify-content:space-between;
