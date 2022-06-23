@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
+import './SearchValidateAssociate.css';
 
 function SearchAdvancedAssociate({
   handleClose, setData, rows, dados,
@@ -110,28 +111,28 @@ function SearchAdvancedAssociate({
   };
 
   const modalAssociate = (
-    <Box className="AcceptModal-ContainerModal">
-      <div className="AcceptModal-text">
-        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+    <Box className="validate-associate-search-container-modal">
+      <div className="validate-associate-search-text">
+        <div className="validate-associate-search-advanced">Pesquisa Avançada</div>
       </div>
-      <div className="AcceptModal-Buttons">
-        <div className="AcceptModal-Bu">
+      <div className="validate-associate-search-advanced-content">
+        <div className="validate-associate-search-advanced-labels">
 
           <label>Nome:</label>
 
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
 
-        <div className="AcceptModal-Bu">
+        <div className="validate-associate-search-advanced-labels">
 
           <label>Atuação:</label>
 
           <input type="text" value={acting} onChange={(e) => setActing(e.target.value.toLowerCase())} />
         </div>
-        <div className="AcceptModal-Bu">
+        <div className="validate-associate-search-advanced-labels">
 
           <p> Lotação:</p>
-          <select className="EditModal-Input" value={allocation} placeholder="" onChange={(e) => setAllocation(e.target.value)}>
+          <select className="validate-associate-search-advanced-select" value={allocation} placeholder="" onChange={(e) => setAllocation(e.target.value)}>
             <option value=" "> </option>
             <option value="ALAGOAS">Alagoas</option>
             <option value="CEARÁ">Ceará</option>
@@ -141,34 +142,34 @@ function SearchAdvancedAssociate({
             <option value="SERGIPE">Sergipe</option>
           </select>
         </div>
-        <div className="buttons">
-          <div className="AcceptModal-button1">
+        <div className="validate-associate-search-advanced-buttons-align">
+          <div className="validate-associate-search-advanced-section-align">
             <button
               type="button"
-              className="AcceptModal-ButtonCancel"
+              className="validate-associate-search-advanced-button-submit"
               onClick={() => {
                 handleData();
               }}
             >
-              <div className="AcceptModal-align">
+              <div className="validate-associate-search-advanced-button-align">
                 <p>Pesquisa Avançada</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button2">
+          <div className="button-search-field">
             <button
-              className="AcceptModal-ButtonConfirm"
+              className="validate-associate-search-advanced-button-clean"
               type="button"
               onClick={handleClean}
             >
-              <div className="AcceptModal-align">
+              <div className="validate-associate-search-advanced-button-align">
                 <p>Limpar</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
+          <div className="validate-associate-search-advanced-button-return">
+            <button type="button" className="validate-associate-search-advanced-button-submit" onClick={handleClose}>
+              <div className="validate-associate-search-advanced-button-align">
                 <p>Voltar</p>
               </div>
             </button>

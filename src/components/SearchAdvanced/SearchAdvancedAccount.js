@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import moment from 'moment';
-import './SearchAdvanced.css';
+import './SearchAdvancedAccount.css';
 
 function SearchAdvancedAccount({
   handleClose, setData, rows,
@@ -59,50 +59,50 @@ function SearchAdvancedAccount({
   };
 
   const body = (
-    <Box className="AcceptModal-ContainerModal">
-      <div className="AcceptModal-text">
-        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+    <Box className="account-search-container-modal">
+      <div className="account-search-text">
+        <div className="account-search-advanced">Pesquisa Avançada</div>
       </div>
-      <div className="AcceptModal-Buttons">
-        <div className="AcceptModal-Bu">
+      <div className="account-search-advanced-content">
+        <div className="account-search-advanced-labels">
 
           <label>Título:</label>
 
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
-        <div className="AcceptModal-Bu">
+        <div className="account-search-advanced-labels">
 
           <p> Data:</p>
           <input type="date" value={date} onChange={(e) => setDate(moment(e.target.value).format('DD-MM-YYYY'))} />
         </div>
-        <div className="buttons">
-          <div className="AcceptModal-button1">
+        <div className="account-search-advanced-buttons-align">
+          <div className="account-search-advanced-section-align">
             <button
               type="button"
-              className="AcceptModal-ButtonCancel"
+              className="account-search-advanced-button-submit"
               onClick={() => {
                 handleData();
               }}
             >
-              <div className="AcceptModal-align">
+              <div className="account-search-advanced-button-align">
                 <p>Pesquisa Avançada</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button2">
+          <div className="button-search-field">
             <button
-              className="AcceptModal-ButtonConfirm"
+              className="account-search-advanced-button-clean"
               type="button"
               onClick={handleClean}
             >
-              <div className="AcceptModal-align">
+              <div className="account-search-advanced-button-align">
                 <p>Limpar</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
+          <div className="account-search-advanced-button-return">
+            <button type="button" className="account-search-advanced-button-submit" onClick={handleClose}>
+              <div className="account-search-advanced-button-align">
                 <p>Voltar</p>
               </div>
             </button>
