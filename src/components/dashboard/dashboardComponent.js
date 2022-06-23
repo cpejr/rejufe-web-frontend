@@ -33,7 +33,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
 import FileSaver from 'file-saver';
-import moment from 'moment';
 import RemoveModal from '../RemoveModal/RemoveModal';
 import EditModal from '../EditModal/EditModal';
 import RejectModal from '../RejectModal/RejectModal';
@@ -50,6 +49,8 @@ import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
+import SearchAdvancedAssociate from '../SearchAdvancedAssociate/SearchValidateAssociate';
+import SearchAdvancedAccount from '../SearchAdvanced/SearchAdvancedAccount';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -160,12 +161,11 @@ function TableComponent({
   numbers,
   editActions,
   actionId,
+  searchAdvanced,
 }) {
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState('');
   const [data, setData] = useState(rows);
-  const [query, setQuery] = useState('');
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -329,25 +329,6 @@ function TableComponent({
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  function replaceSpecialChars(str) {
-    str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
-    str = str.replace(/[àáâãäå]/, 'a');
-    str = str.replace(/[ÙÚÛÜ]/, 'U');
-    str = str.replace(/[úúûü]/, 'u');
-    str = str.replace(/[ÈÉÊË]/, 'E');
-    str = str.replace(/[éèêë]/, 'e');
-    str = str.replace(/[íìîï]/, 'i');
-    str = str.replace(/[ÍÌÎÏ]/, 'I');
-    str = str.replace(/[óòôöõ]/, 'o');
-    str = str.replace(/[ÓÒÔÖÕ]/, 'O');
-    str = str.replace(/[Ç]/, 'C');
-    str = str.replace(/[ç]/, 'c');
-
-    // o resto
-
-    return str.replace(/[^a-z0-9]/gi, '');
-  }
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -363,11 +344,6 @@ function TableComponent({
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleClean = () => {
-    setQuery('');
-    setDate('');
   };
 
   function setIntranetForms(e, redirectId) {
@@ -404,29 +380,6 @@ function TableComponent({
     window.open(route);
   };
 
-  const filterTitle = rows?.filter(((item) => replaceSpecialChars(item?.title).toLowerCase().includes(replaceSpecialChars(query))));
-  const filterDate = rows?.filter(((item) => item.date.includes(moment(date).format('MM-DD-YYYY'))));
-
-  const handleData = () => {
-    if (query !== '' && date === '') {
-      setData(filterTitle);
-      setQuery('');
-    }
-    if (date !== '' && query === '') {
-      setData(filterDate);
-      setDate('');
-    }
-    if (date !== '' && query !== '') {
-      filterTitle?.forEach((obj) => {
-        const filter = filterDate.filter(((item) => item.title.includes(obj.title)));
-        setData(filter);
-      });
-      setDate('');
-      setQuery('');
-    }
-    handleClose();
-  };
-
   function getDownloads(archiveId) {
     try {
       managerService.download(archiveId).then((response) => {
@@ -441,60 +394,6 @@ function TableComponent({
       });
     }
   }
-
-  const body = (
-    <Box className="AcceptModal-ContainerModal">
-      <div className="AcceptModal-text">
-        <div className="AcceptModal-Question">Pesquisa Avançada</div>
-      </div>
-      <div className="AcceptModal-Buttons">
-        <div className="AcceptModal-Bu">
-
-          <label>Título:</label>
-
-          <input type="text" value={query} onChange={(e) => setQuery(e.target.value.toLowerCase())} />
-        </div>
-        <div className="AcceptModal-Bu">
-
-          <p> Data:</p>
-          <input type="date" value={date} onChange={(e) => setDate(moment(e.target.value).format('DD-MM-YYYY'))} />
-        </div>
-        <div className="buttons">
-          <div className="AcceptModal-button1">
-            <button
-              type="button"
-              className="AcceptModal-ButtonCancel"
-              onClick={() => {
-                handleData();
-              }}
-            >
-              <div className="AcceptModal-align">
-                <p>Pesquisa Avançada</p>
-              </div>
-            </button>
-          </div>
-          <div className="AcceptModal-button2">
-            <button
-              className="AcceptModal-ButtonConfirm"
-              type="button"
-              onClick={handleClean}
-            >
-              <div className="AcceptModal-align">
-                <p>Limpar</p>
-              </div>
-            </button>
-          </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
-                <p>Voltar</p>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </Box>
-  );
 
   useEffect(() => {
     if (archive1Id) {
@@ -831,7 +730,30 @@ function TableComponent({
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                   >
-                    {body}
+                    <SearchAdvancedAccount handleClose={handleClose} setData={setData} rows={rows} dados={dados} />
+                  </Modal>
+                </div>
+              )}
+              {searchAdvanced && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchAdvancedAssociate handleClose={handleClose} setData={setData} rows={rows} dados={dados} />
                   </Modal>
                 </div>
               )}

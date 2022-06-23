@@ -5,7 +5,7 @@ import './ValidarSocio.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/SearchAdvancedAssociate/TableSearchAssociate';
+import TableComponent from '../../components/dashboard/dashboardComponent';
 
 toast.configure();
 
@@ -77,7 +77,6 @@ function ValidarSocio() {
           rows={associates}
           titles={titles}
           validate
-          allAssociates
           loading={loading}
         />
       </div>
