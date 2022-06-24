@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
@@ -65,34 +64,34 @@ function SearchBirthday({
           <input type="text" setFilterValue onChange={(e) => setDayFinish(e.target.value.toLowerCase())} />
           <input type="text" setFilterValue onChange={(e) => setMonthFinish(e.target.value.toLowerCase())} />
         </div>
-        <div className="buttons">
-          <div className="AcceptModal-button1">
+        <div className="birthday-search-buttons-field">
+          <div className="birthday-align-buttons">
             <button
               type="button"
-              className="AcceptModal-ButtonCancel"
+              className="birthday-search-button-submit"
               onClick={() => {
                 handleData();
               }}
             >
-              <div className="AcceptModal-align">
+              <div className="button-search-align">
                 <p>Pesquisa Avançada</p>
               </div>
             </button>
           </div>
           <div className="AcceptModal-button2">
             <button
-              className="AcceptModal-ButtonConfirm"
+              className="birthday-search-button-clean"
               type="button"
               onClick={handleClean}
             >
-              <div className="AcceptModal-align">
+              <div className="button-search-align">
                 <p>Limpar</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
+          <div className="birthday-search-button-return">
+            <button type="button" className="birthday-search-button-submit" onClick={handleClose}>
+              <div className="button-search-align">
                 <p>Voltar</p>
               </div>
             </button>

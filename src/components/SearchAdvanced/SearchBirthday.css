@@ -1,4 +1,4 @@
-  .buttons{
+  .birthday-search-buttons-field{
     display: flex;
     flex-direction: row;
     margin: 5%;
@@ -43,6 +43,7 @@
   .birthday-search-advanced-buttons{
     display:flex;
     justify-content:space-between;
+    align-items: center;
     width:100%;
     flex-direction: column;
   }
@@ -53,12 +54,20 @@
     margin-right: 5px;
     font-family: "Roboto", sans-serif;
   }
+
+  .birthday-search-buttons-align input{
+      height: 35px;
+      margin:2px;
+      width: 50px;
+      font-size: 16px;
+      padding: 2px;
+  }
   
   .AcceptModal-button2{
     margin-left: 13px;
   }
   
-  .AcceptModal-ButtonCancel{
+  .birthday-search-button-submit{
     display:flex;
     height: 6vh;
     width: 20vh;
@@ -77,7 +86,7 @@
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
-  .AcceptModal-ButtonConfirm{
+  .birthday-search-button-clean{
     display:flex;
     height: 6vh;
     width: 20vh;
@@ -98,15 +107,15 @@
   }
   
   
-  .AcceptModal-align p {
+  .button-search-align p {
     color: white;
   }
   
-  .AcceptModal-ButtonCancel:hover{
+  .birthday-search-button-submit:hover{
     background-color: var(--primary);
   }
   
-  .AcceptModal-ButtonConfirm:hover{
+  .birthday-search-button-clean:hover{
     background-color: var(--primary);
   }
   
@@ -150,11 +159,11 @@
       width: 60%;
     }
   
-    .AcceptModal-ButtonConfirm{
+    .birthday-search-button-clean{
       width: 75px;
     }
   
-    .AcceptModal-ButtonCancel{
+    .birthday-search-button-submit{
       width: 75px;
     }
     
