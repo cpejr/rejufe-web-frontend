@@ -39,7 +39,7 @@ function Aniversariantes() {
         loading={loading}
         order
         search
-        renderButton
+        searchBirthday
       />
     </div>
   );

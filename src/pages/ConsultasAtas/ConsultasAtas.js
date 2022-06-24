@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ConsultaAtas.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from '@mui/material';
-import TableComponent from '../../components/SearchAdvanced/TableSearchAdvanced';
+import TableComponent from '../../components/SearchAdvanced/SearchAtas';
 import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
 const titles = [

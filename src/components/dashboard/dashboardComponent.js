@@ -51,6 +51,7 @@ import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 import SearchAtas from '../SearchAdvanced/SearchAtas';
 import SearchComunic from '../SearchAdvanced/SearchComunic';
+import SearchBirthday from '../SearchAdvanced/SearchBirthday';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -162,6 +163,7 @@ function TableComponent({
   numbers,
   editActions,
   actionId,
+  searchBirthday,
 }) {
   const [page, setPage] = useState(0);
   const [data, setData] = useState(rows);
@@ -744,6 +746,25 @@ function TableComponent({
                     aria-describedby="simple-modal-description"
                   >
                     <SearchComunic handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchBirthday && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchBirthday handleClose={handleClose} setData={setData} rows={rows} />
                   </Modal>
                 </div>
               )}
