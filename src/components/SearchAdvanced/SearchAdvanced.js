@@ -85,7 +85,7 @@ function SearchAdvanced({
   const body = (
     <Box className="associate-search-container-modal">
       <div className="associate-search-text">
-        <div className="associate-search-advanced">Pesquisa Avançada</div>
+        <div className="associate-search-advanced"><p>Pesquisa Avançada</p></div>
       </div>
       <div className="associate-search-advanced-content">
         <div className="associate-search-advanced-labels">
@@ -96,7 +96,7 @@ function SearchAdvanced({
         </div>
         <div className="associate-search-advanced-labels">
 
-          <p> Seção Judiciária:</p>
+          <label> Seção Judiciária:</label>
 
           <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
             <option value=" "> </option>
@@ -122,7 +122,7 @@ function SearchAdvanced({
               </div>
             </button>
           </div>
-          <div className="button-search-field">
+          <div className="button-search-field-associate">
             <button
               className="associate-search-advanced-button-clean"
               type="button"

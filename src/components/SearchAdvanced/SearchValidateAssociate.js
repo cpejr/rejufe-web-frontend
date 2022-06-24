@@ -113,7 +113,7 @@ function SearchAdvancedAssociate({
   const modalAssociate = (
     <Box className="validate-associate-search-container-modal">
       <div className="validate-associate-search-text">
-        <div className="validate-associate-search-advanced">Pesquisa Avançada</div>
+        <div className="validate-associate-search-advanced"><p>Pesquisa Avançada</p></div>
       </div>
       <div className="validate-associate-search-advanced-content">
         <div className="validate-associate-search-advanced-labels">
@@ -131,7 +131,7 @@ function SearchAdvancedAssociate({
         </div>
         <div className="validate-associate-search-advanced-labels">
 
-          <p> Lotação:</p>
+          <label> Lotação:</label>
           <select className="validate-associate-search-advanced-select" value={allocation} placeholder="" onChange={(e) => setAllocation(e.target.value)}>
             <option value=" "> </option>
             <option value="ALAGOAS">Alagoas</option>
