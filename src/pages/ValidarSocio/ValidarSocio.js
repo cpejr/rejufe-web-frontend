@@ -31,7 +31,6 @@ function ValidarSocio() {
     const associateId = [];
     try {
       const allAssociates = await managerService.getExternalAssociates();
-      console.log('🚀 ~ file: ValidarSocio.js ~ line 34 ~ getAllAssociates ~ allAssociates', allAssociates);
       allAssociates.forEach((object) => {
         associateId.push(object._id);
         auxAssociate.push(createData(object.name, object.cpf, object.status));
