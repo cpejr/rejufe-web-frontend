@@ -1,5 +1,4 @@
 /* eslint-disable react/button-has-type */
-/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './AlteracoesExclusoesAtas.css';
@@ -94,6 +93,7 @@ function AlteracoesExclusoesMinutes() {
         archive1Id={archive1Id}
         archive2Id={archive2Id}
         numbers={numbers}
+        renderButton
         editMinute
       />
     </div>

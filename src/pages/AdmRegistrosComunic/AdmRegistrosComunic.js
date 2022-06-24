@@ -88,6 +88,7 @@ function AdmRegistrosComunic() {
         archive1Id={archive1Id}
         archive2Id={archive2Id}
         editComunic
+        searchComunic
       />
     </div>
   );

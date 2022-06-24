@@ -49,6 +49,8 @@ import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
+import SearchAtas from '../SearchAdvanced/SearchAtas';
+import SearchComunic from '../SearchAdvanced/SearchComunic';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -137,6 +139,7 @@ function TableComponent({
   editComunic,
   search,
   searchFile,
+  searchComunic,
   searchMinutes,
   searchMinutesIntranet,
   setShowForms,
@@ -161,20 +164,13 @@ function TableComponent({
   actionId,
 }) {
   const [page, setPage] = useState(0);
-  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(rows);
-  // eslint-disable-next-line no-unused-vars
-  const [dateInitial, setDateInitial] = useState('');
-  // eslint-disable-next-line no-unused-vars
-  const [dateFinish, setDateFinish] = useState('');
-  // eslint-disable-next-line no-unused-vars
   const [open, setOpen] = useState(false);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
   const actualArchive2 = { ...archive2Id };
-
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -396,55 +392,6 @@ function TableComponent({
       });
     }
   }
-  const body = (
-    <Box className="AcceptModal-ContainerModal">
-      <div className="AcceptModal-text">
-        <div className="AcceptModal-Question">Pesquisa Avançada</div>
-      </div>
-      <div className="AcceptModal-Buttons">
-        <div className="AcceptModal-Bu">
-
-          <label>Data:</label>
-
-          <input type="date" onChange={(e) => setDateInitial(e.target.value.toLowerCase())} />
-          <input type="date" onChange={(e) => setDateFinish(e.target.value.toLowerCase())} />
-        </div>
-        <div className="buttons">
-          <div className="AcceptModal-button1">
-            <button
-              type="button"
-              className="AcceptModal-ButtonCancel"
-              onClick={() => {
-                // eslint-disable-next-line no-undef
-                handleData();
-              }}
-            >
-              <div className="AcceptModal-align">
-                <p>Pesquisa Avançada</p>
-              </div>
-            </button>
-          </div>
-          <div className="AcceptModal-button2">
-            <button
-              className="AcceptModal-ButtonConfirm"
-              type="button"
-            >
-              <div className="AcceptModal-align">
-                <p>Limpar</p>
-              </div>
-            </button>
-          </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
-                <p>Voltar</p>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </Box>
-  );
 
   useEffect(() => {
     if (archive1Id) {
@@ -453,7 +400,8 @@ function TableComponent({
     if (archive2Id) {
       setFileNameArchive(fileNames2, archive2Id, setFileNames2);
     }
-  }, [archive1Id, archive2Id]);
+    setData(rows);
+  }, [archive1Id, archive2Id, rows]);
 
   return (
     <TableContainer
@@ -489,7 +437,7 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading && rows
+          {!loading && data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
@@ -776,7 +724,26 @@ function TableComponent({
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                   >
-                    {body}
+                    <SearchAtas handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchComunic && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchComunic handleClose={handleClose} setData={setData} rows={rows} />
                   </Modal>
                 </div>
               )}
