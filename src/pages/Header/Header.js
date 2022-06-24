@@ -46,6 +46,9 @@ function Header(props) {
   function handleClick(pathName) {
     history.push(pathName);
   }
+  function handleReturn() {
+    window.location.href = '/login';
+  }
   const links1 = [
     {
       link: () => handleClick('/consultas'),
@@ -226,7 +229,7 @@ function Header(props) {
         <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
-            onClick={() => handleClick('/login')}
+            onClick={() => handleReturn()}
             type="button"
           >
             Sair
