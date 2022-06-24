@@ -138,7 +138,6 @@ function ConsultaAssociados({
         alignItems: 'center',
       },
   };
-
   const cellFontProps = {
     style: matchesFont85
       ? {
@@ -267,7 +266,7 @@ function ConsultaAssociados({
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
-                    {rows.findIndex((obj) => obj._id === row._id) + 1}
+                    {data.findIndex((obj) => obj._id === row._id) + 1}
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
@@ -336,6 +335,21 @@ function ConsultaAssociados({
           <CircularProgress />
         </TableRow>
       )}
+      {data.length === 0 && (
+        <div style={{
+          marginTop: '5px',
+          textAlign: 'center',
+          fontFamily: 'Roboto, sans-serif',
+          fontSize: '20px',
+          fontWeight: '500',
+        }}
+        >
+          {' '}
+          <p>
+            Registros não encontrados
+          </p>
+        </div>
+      )}
       <TableFooter {...footerProps}>
         {print === false ? (
           <>
@@ -343,7 +357,7 @@ function ConsultaAssociados({
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
               component="div"
               style={{ overflow: 'hidden' }}
-              count={rows.length}
+              count={data.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}
@@ -399,7 +413,7 @@ function ConsultaAssociados({
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
             style={{ overflow: 'hidden' }}
-            count={rows.length}
+            count={data.length}
             rowsPerPage={rows.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}
