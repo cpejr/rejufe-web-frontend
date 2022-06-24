@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 import TextEditor from '../TextEditor/TextEditor';
+import './updateNews.css';
 
 function UpdateNews({
   setDados,
@@ -77,7 +78,7 @@ function UpdateNews({
       {!mask && !(type === 'date') && !(type === 'file') && !(type === 'empty') && !select && (
         <>
           {label === 'Descrição' ? (
-            <div className="news-description-field">
+            <div className="news-description-field-update" style={{ width: '65%' }}>
               <h3>Descrição *</h3>
               <TextEditor id={id} setDados={setDados} dados={dados} />
             </div>
