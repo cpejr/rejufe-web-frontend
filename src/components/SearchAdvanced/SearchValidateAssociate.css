@@ -149,7 +149,6 @@
 
   .validate-associate-search-advanced-labels label {
     font-size: 14px;
-    margin-top: -2.4px;
     padding-left: 5px;
     margin-right: 5px;
     font-family: "Roboto", sans-serif;
@@ -250,9 +249,12 @@
       height: 50%;
       width: 60%;
     }
+    .validate-associate-search-advanced-buttons-align {
+      flex-direction: column;
+    }
   
     .validate-associate-search-advanced-button-clean{
-      width: 15pvh;
+      width: 15vh;
       height: 40px;
     }
   
@@ -273,58 +275,18 @@
       width: 70%;
     }
   }
-  
-  @media(max-width: 685px){
-    .validate-associate-search-container-modal{
-      height: 130px;
-      width: 350px;
-    }
-  
-    .validate-associate-search-advanced-button-clean{
-      height: 40px;
-      width: 120px;
-      font-size: 15px;
-    }
-  
-    .validate-associate-search-advanced-button-submit{
-      height: 40px;
-      width: 120px;
-      font-size: 15px;
-    }
-    
-  .validate-associate-search-advanced{
-    font-size: 16px;
-  }
-  .validate-associate-search-advanced-labels{
-    flex-direction: column;
-   }
-  
-  }
-  
-  @media(max-width: 495px){
-    .AcceptModal-RemoveGroup .css-i4bv87-MuiSvgIcon-root {
-      width: 0.75em !important;
-      height: 0.75em !important;
-    }
-  }
-  
+
   @media(max-width: 430px){
-   .validate-associate-search-advanced-buttons-align{
-     flex-direction: column;
-   }
-   .button-search-field{
-    margin-left: 0px;
-  }
   .validate-associate-search-advanced-button-return{
     margin-left: 0px;
   }
   }
   
   @media(max-width: 370px){
-    .validate-associate-search-container-modal{
+   /*  .validate-associate-search-container-modal{
       height: 130px;
       width: 270px;
-    }
+    } */
   
     .validate-associate-search-advanced-button-clean{
       height: 30px;

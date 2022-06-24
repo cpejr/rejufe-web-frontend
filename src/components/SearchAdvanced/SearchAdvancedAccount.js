@@ -72,7 +72,7 @@ function SearchAdvancedAccount({
         </div>
         <div className="account-search-advanced-labels">
 
-          <p> Data:</p>
+          <label> Data:</label>
           <input type="date" value={date} onChange={(e) => setDate(moment(e.target.value).format('DD-MM-YYYY'))} />
         </div>
         <div className="account-search-advanced-buttons-align">
@@ -89,7 +89,7 @@ function SearchAdvancedAccount({
               </div>
             </button>
           </div>
-          <div className="button-search-field">
+          <div className="button-search-field-account">
             <button
               className="account-search-advanced-button-clean"
               type="button"

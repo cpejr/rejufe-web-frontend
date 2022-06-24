@@ -49,7 +49,7 @@
     margin: 13px;
   }
   
-  .button-search-field{
+  .button-search-field-account{
     margin-right: 13px;
   }
   
@@ -149,13 +149,12 @@
 
   .account-search-advanced-labels label {
     font-size: 14px;
-    margin-top: -2.4px;
     padding-left: 5px;
     margin-right: 5px;
     font-family: "Roboto", sans-serif;
   }
   
-  .button-search-field{
+  .button-search-field-account{
     margin-left: 13px;
   }
   
@@ -245,27 +244,6 @@
   .account-search-advanced-labels p{
     font-size: 20px;
   }
-  @media(max-width: 685px){
-    .account-search-container-modal{
-      height: 50%;
-      width: 60%;
-    }
-  
-    .account-search-advanced-button-clean{
-      width: 15pvh;
-      height: 40px;
-    }
-  
-    .account-search-advanced-button-submit{
-      width: 15vh;
-      height: 40px;
-    }
-    
-  .account-search-advanced{
-    font-size: 16px;
-  }
-  
-  }
   
   @media(max-width: 470px){
     .account-search-container-modal{
@@ -276,8 +254,8 @@
   
   @media(max-width: 685px){
     .account-search-container-modal{
-      height: 130px;
-      width: 350px;
+      height: 50%;
+      width: 70%;
     }
   
     .account-search-advanced-button-clean{
@@ -298,6 +276,13 @@
   .account-search-advanced-labels{
     flex-direction: column;
    }
+   .button-search-field-account{
+    margin-left: 0px;
+  }
+
+  .account-search-advanced-buttons-align{
+    flex-direction: column;
+  }
   
   }
   
@@ -309,10 +294,13 @@
   }
   
   @media(max-width: 430px){
+    .account-search-advanced-labels label{
+      font-size: 16px;
+    }
    .account-search-advanced-buttons-align{
      flex-direction: column;
    }
-   .button-search-field{
+   .button-search-field-account{
     margin-left: 0px;
   }
   .account-search-advanced-button-return{
@@ -321,19 +309,17 @@
   }
   
   @media(max-width: 370px){
-    .account-search-container-modal{
-      height: 130px;
-      width: 270px;
-    }
   
     .account-search-advanced-button-clean{
-      height: 30px;
+      height: 50px;
+      margin: 4%;
       width: 100px;
       font-size: 14px;
     }
   
     .account-search-advanced-button-submit{
-      height: 30px;
+      height: 50px;
+      margin: 4%;
       width: 100px;
       font-size: 14px;
     }
