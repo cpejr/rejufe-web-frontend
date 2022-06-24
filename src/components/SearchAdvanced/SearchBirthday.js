@@ -10,7 +10,7 @@ moment.locale('pt-br', [ptLocale]);
 function SearchBirthday({
   handleClose, setData, rows,
 }) {
-  console.log('🚀 ~ file: SearchBirthday.js ~ line 11 ~ rows', (moment(rows[1].birth).format('DD')));
+  console.log('🚀 ~ file: SearchBirthday.js ~ line 11 ~ rows', rows[1].birth.substr(3, 4));
   const [dayInitial, setDayInitial] = useState('');
   const [monthInitial, setMonthInitial] = useState('');
   const [dayFinish, setDayFinish] = useState('');
@@ -21,19 +21,17 @@ function SearchBirthday({
   let add = 0;
 
   rows?.forEach((object) => {
-    if ((moment(object?.birth).format('DD') >= dayInitial) && moment(object?.birth).format('DD') <= dayFinish) {
+    if (object?.birth.substr(0, 2) >= dayInitial && object?.birth.substr(0, 2) <= dayFinish) {
       auxFilterDay[count] = object;
     }
     count += 1;
   });
-  /*  console.log('🚀 ~ file: SearchBirthday.js ~ line 22 ~ rows.forEach ~ auxFilter', auxFilterDay); */
   auxFilterDay.forEach((object) => {
-    if ((moment(object?.birth).format('MM') >= monthInitial) && moment(object?.birth).format('MM') <= monthFinish) {
+    if ((object?.birth.substr(3, 4) >= monthInitial) && (object?.birth.substr(3, 4) <= monthFinish)) {
       auxFilterMonth[add] = object;
     }
     add += 1;
   });
-  /*   console.log('🚀 ~ file: SearchBirthday.js ~ line 24 ~ rows.forEach ~ auxFilter', auxFilterMonth); */
   function handleData() {
     setData(auxFilterMonth);
     handleClose();
