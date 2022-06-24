@@ -15,6 +15,23 @@
     box-shadow: 24;
     padding: 4;
   }
+  .account-search-advanced p{
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .account-search-advanced-labels input{
+    margin-top: 1%;
+    height: 30px;
+    width: 120px;
+    background-color: #f0f0f5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
   
   .account-search-text{
     display:flex;
@@ -254,7 +271,7 @@
   
   @media(max-width: 685px){
     .account-search-container-modal{
-      height: 50%;
+      height: 55%;
       width: 70%;
     }
   

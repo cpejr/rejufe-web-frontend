@@ -23,8 +23,6 @@ function SearchAdvanced({
     str = str.replace(/[Ç]/, 'C');
     str = str.replace(/[ç]/, 'c');
 
-    // o resto
-
     return str.replace(/[^a-z0-9]/gi, '');
   }
 

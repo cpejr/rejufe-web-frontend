@@ -24,8 +24,6 @@ function SearchAdvancedAccount({
     str = str.replace(/[Ç]/, 'C');
     str = str.replace(/[ç]/, 'c');
 
-    // o resto
-
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
@@ -61,7 +59,7 @@ function SearchAdvancedAccount({
   const body = (
     <Box className="account-search-container-modal">
       <div className="account-search-text">
-        <div className="account-search-advanced">Pesquisa Avançada</div>
+        <div className="account-search-advanced"><p>Pesquisa Avançada</p></div>
       </div>
       <div className="account-search-advanced-content">
         <div className="account-search-advanced-labels">
