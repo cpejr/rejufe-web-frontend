@@ -722,7 +722,6 @@ function TableComponent({
                     onClick={handleOpen}
                   >
                     Pesquisa Avançada
-                    {/* TODO Implementar o botão de pesquisa avançada */}
                   </Button>
                   <Modal
                     open={open}
@@ -745,7 +744,6 @@ function TableComponent({
                     onClick={handleOpen}
                   >
                     Pesquisa Avançada
-                    {/* TODO Implementar o botão de pesquisa avançada */}
                   </Button>
                   <Modal
                     open={open}
