@@ -10,7 +10,6 @@ moment.locale('pt-br', [ptLocale]);
 function SearchBirthday({
   handleClose, setData, rows,
 }) {
-  console.log('🚀 ~ file: SearchBirthday.js ~ line 11 ~ rows', rows[1].birth.substr(3, 4));
   const [dayInitial, setDayInitial] = useState('');
   const [monthInitial, setMonthInitial] = useState('');
   const [dayFinish, setDayFinish] = useState('');
