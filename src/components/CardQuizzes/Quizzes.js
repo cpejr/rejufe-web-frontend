@@ -7,21 +7,23 @@ import moment from 'moment';
 import { FormControl, useMediaQuery } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ptLocale from 'moment/locale/pt-br';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import DateQuizzes from '../DateQuizzes/DateQuizzes';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
+moment.locale('pt-br', [ptLocale]);
+
 function Quizzes({
   quizz, associates, dateQuizz, user, setVoted, filter,
 }) {
-  console.log('🚀 ~ file: Quizzes.js ~ line 18 ~ filter', filter);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
-  const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
+  const openingDate = moment(quizz.openingDate).format('DD-MM-YYYY');
+  const closingDate = moment(quizz.closingDate).format('DD-MM-YYYY');
   const [loading, setLoading] = useState();
   quizz.status = 'Em andamento';
     if (openingDate > dateQuizz) {

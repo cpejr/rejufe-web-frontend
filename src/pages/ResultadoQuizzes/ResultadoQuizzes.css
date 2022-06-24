@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+.form-user-module-page{
+  margin-bottom: 5%;
+}
+
 .division-cards-quizzes h1 {
   font-family: 'Roboto', sans-serif;
   font: normal 18pt Roboto;
@@ -22,6 +26,7 @@
   width: 100%;
   background-color: var(--secondary);
   border: 2px solid;
+  margin-top: 2%;
   margin-bottom: 2%;
   color: var(--secondary);
 }

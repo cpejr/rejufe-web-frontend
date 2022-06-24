@@ -84,7 +84,7 @@ function ResultadoQuizzes() {
               label="Selecione um filtro"
               onChange={(e) => handleChange(e.target.value)}
             >
-              <MenuItem value="" />
+              <MenuItem value="">Nenhum</MenuItem>
               <MenuItem value="Em andamento">Em andamento</MenuItem>
               <MenuItem value="Finalizada">Finalizada</MenuItem>
               <MenuItem value="Não iniciada">Não iniciada</MenuItem>
