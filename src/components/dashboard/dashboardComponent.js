@@ -671,6 +671,21 @@ function TableComponent({
           <CircularProgress />
         </TableRow>
       )}
+      {data.length === 0 && (
+        <div style={{
+          marginTop: '5px',
+          textAlign: 'center',
+          fontFamily: 'Roboto, sans-serif',
+          fontSize: '20px',
+          fontWeight: '500',
+        }}
+        >
+          {' '}
+          <p>
+            Registros não encontrados
+          </p>
+        </div>
+      )}
       <TableFooter {...footerProps}>
         {print ? (
           <TablePagination

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import './SearchAtas.css';
+import './SearchComunic.css';
 
 function SearchComunic({
   handleClose, setData, rows,
@@ -22,8 +22,6 @@ function SearchComunic({
     str = str.replace(/[ÓÒÔÖÕ]/, 'O');
     str = str.replace(/[Ç]/, 'C');
     str = str.replace(/[ç]/, 'c');
-
-    // o resto
 
     return str.replace(/[^a-z0-9]/gi, '');
   }
@@ -57,55 +55,55 @@ function SearchComunic({
     setType('');
   };
   const body = (
-    <Box className="AcceptModal-ContainerModal">
-      <div className="AcceptModal-text">
-        <div className="AcceptModal-Question">Pesquisa Avançada</div>
+    <Box className="comunic-search-container-modal">
+      <div className="comunic-search-text">
+        <div className="comunic-search-advanced"><p>Pesquisa Avançada</p></div>
       </div>
-      <div className="AcceptModal-Buttons">
-        <div className="AcceptModal-Bu">
+      <div className="comunic-search-advanced-content">
+        <div className="comunic-search-advanced-labels">
 
           <label>Descrição:</label>
 
           <input type="text" setFilterValue onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
-        <div className="AcceptModal-Bu">
+        <div className="comunic-search-advanced-labels">
 
           <p> Tipo:</p>
 
-          <select className="EditModal-Input" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
+          <select className="comunic-search-advanced-select" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
             <option value=" "> </option>
             <option value="INFORMATIVO">INFORMATIVO</option>
             <option value="COMUNICADO">COMUNICADO</option>
           </select>
         </div>
-        <div className="buttons">
-          <div className="AcceptModal-button1">
+        <div className="comunic-search-advanced-buttons-align">
+          <div className="comunic-search-advanced-section-align">
             <button
               type="button"
-              className="AcceptModal-ButtonCancel"
+              className="comunic-search-advanced-button-submit"
               onClick={() => {
                 handleData();
               }}
             >
-              <div className="AcceptModal-align">
+              <div className="comunic-search-advanced-button-align">
                 <p>Pesquisa Avançada</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button2">
+          <div className="button-search-field-comunic">
             <button
-              className="AcceptModal-ButtonConfirm"
+              className="comunic-search-advanced-button-clean"
               type="button"
               onClick={handleClean}
             >
-              <div className="AcceptModal-align">
+              <div className="comunic-search-advanced-button-align">
                 <p>Limpar</p>
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button3">
-            <button type="button" className="AcceptModal-ButtonCancel" onClick={handleClose}>
-              <div className="AcceptModal-align">
+          <div className="comunic-search-advanced-button-return">
+            <button type="button" className="comunic-search-advanced-button-submit" onClick={handleClose}>
+              <div className="comunic-search-advanced-button-align">
                 <p>Voltar</p>
               </div>
             </button>

@@ -26,7 +26,6 @@ function ConsultaMinutes(data) {
     getAllMinutesForConsult(setId, setAllMinutes, setLoading);
   }, []);
 
-  console.log('🚀 555555555555555~ ConsultaMinutes ~ location', minutes);
   return (
     <div className="consult-minutes-page">
       <div className="consult-minutes-field">
