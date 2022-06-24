@@ -45,7 +45,7 @@ function SearchBirthday({
   const body = (
     <Box className="birthday-search-advanced-container">
       <div className="birthday-search-advanced-text">
-        <div className="birthday-search-advanced-title">Insira um intervalo</div>
+        <div className="birthday-search-advanced-title"><p>Insira um intervalo</p></div>
       </div>
       <div className="birthday-search-advanced-buttons">
         <div className="birthday-search-buttons-align">
@@ -75,7 +75,7 @@ function SearchBirthday({
               </div>
             </button>
           </div>
-          <div className="AcceptModal-button2">
+          <div className="birthday-search-button-field">
             <button
               className="birthday-search-button-clean"
               type="button"
