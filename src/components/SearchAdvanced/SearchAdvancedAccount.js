@@ -2,7 +2,10 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import moment from 'moment';
+import ptLocale from 'moment/locale/pt-br';
 import './SearchAdvancedAccount.css';
+
+moment.locale('pt-br', [ptLocale]);
 
 function SearchAdvancedAccount({
   handleClose, setData, rows,
@@ -29,7 +32,7 @@ function SearchAdvancedAccount({
 
   // eslint-disable-next-line max-len
   const filterTitle = rows?.filter(((item) => replaceSpecialChars(item?.title).toLowerCase().includes(replaceSpecialChars(query))));
-  const filterDate = rows?.filter(((item) => item.date.includes(moment(date).format('MM-DD-YYYY'))));
+  const filterDate = rows?.filter(((item) => item.date.includes(moment(date).format('DD-MM-YYYY'))));
 
   const handleData = () => {
     if (query !== '' && date === '') {
@@ -71,7 +74,7 @@ function SearchAdvancedAccount({
         <div className="account-search-advanced-labels">
 
           <label> Data:</label>
-          <input type="date" value={date} onChange={(e) => setDate(moment(e.target.value).format('DD-MM-YYYY'))} />
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className="account-search-advanced-buttons-align">
           <div className="account-search-advanced-section-align">
