@@ -49,6 +49,9 @@ function Header(props) {
   function handleReturn() {
     window.location.href = '/login';
   }
+  function handleSubmitIntranet() {
+    window.location.href = '/intranet';
+  }
   const links1 = [
     {
       link: () => handleClick('/consultas'),
@@ -249,7 +252,7 @@ function Header(props) {
           ))}
           <button
             className="header-dropbtn"
-            onClick={() => handleClick('/intranet')}
+            onClick={() => handleSubmitIntranet()}
             type="button"
           >
             Intranet
