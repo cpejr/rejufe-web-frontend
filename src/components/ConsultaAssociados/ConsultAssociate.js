@@ -20,7 +20,7 @@ import FindInPageIcon from '@mui/icons-material/FindInPage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import TableFooter from '@mui/material/TableFooter';
-import { useMediaQuery } from '@mui/material/';
+import { useMediaQuery, CircularProgress } from '@mui/material/';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -98,10 +98,10 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile, print,
+  titles, rows, id, order, edit, search, searchFile, print, loading,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(-1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -246,7 +246,7 @@ function ConsultaAssociados({
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {!loading && rows
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
@@ -278,7 +278,7 @@ function ConsultaAssociados({
                     <FindInPageIcon aria-label="findFile" />
                   </TableCell>
                 ) : (
-                  <TableCell> </TableCell>
+                  null
                 )}
                 {Object.values(row)?.map((data) => (
                   <TableCell {...cellFontProps}>
@@ -297,12 +297,21 @@ function ConsultaAssociados({
           )}
         </TableBody>
       </Table>
+      {loading && (
+        <TableRow style={{
+          height: 53 * rowsPerPage, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}
+        >
+          <CircularProgress />
+        </TableRow>
+      )}
       <TableFooter {...footerProps}>
         {print === false ? (
           <>
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
               component="div"
+              style={{ overflow: 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
@@ -340,6 +349,7 @@ function ConsultaAssociados({
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
+            style={{ overflow: 'hidden' }}
             count={rows.length}
             rowsPerPage={rows.length}
             labelRowsPerPage="Linhas por pagina"

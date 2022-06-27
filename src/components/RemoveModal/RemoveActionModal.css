@@ -1,0 +1,201 @@
+.RemoveModal-RemoveGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-size: 100%;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  background-color: white;
+}
+
+.RemoveModal-ContainerModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 180px;
+  width: 450px;
+  border-radius: 6px;
+  background-color: white;
+  border: 0.5px solid black;
+  box-shadow: 24;
+  padding: 4;
+}
+
+.RemoveModal-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.RemoveModal-Question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: Roboto;
+  font-weight: normal;
+  font-size: 20px;
+  color: black;
+  margin-bottom: 7%;
+}
+
+.RemoveModal-Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+}
+
+.RemoveModal-button1 {
+  margin-left: 13px;
+}
+
+.RemoveModal-button2 {
+  margin-right: 13px;
+}
+
+.RemoveModal-ButtonCancel {
+  display: flex;
+  height: 55px;
+  width: 200px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  border: solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3%;
+  background-color: var(--button);
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+.RemoveModal-ButtonConfirm {
+  display: flex;
+  height: 55px;
+  width: 200px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  border: solid black;
+  border-width: 1px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3%;
+  background-color: var(--button);
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.RemoveModal-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.RemoveModal-align p {
+  color: white;
+}
+
+.RemoveModal-ButtonCancel:hover {
+  background-color: var(--primary);
+}
+
+.RemoveModal-ButtonConfirm:hover {
+  background-color: var(--primary);
+}
+
+@media (max-width: 685px) {
+  .RemoveModal-ContainerModal {
+    height: 130px;
+    width: 350px;
+  }
+
+  .RemoveModal-ButtonConfirm {
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+  }
+
+  .RemoveModal-ButtonCancel {
+    height: 40px;
+    width: 120px;
+    font-size: 15px;
+  }
+
+  .RemoveModal-button1 {
+    margin-left: 40px;
+  }
+
+  .RemoveModal-button2 {
+    margin-right: 40px;
+  }
+
+  .RemoveModal-Question {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 495px) {
+  .RemoveModal-RemoveGroup .css-i4bv87-MuiSvgIcon-root {
+    width: 0.75em !important;
+    height: 0.75em !important;
+  }
+}
+
+@media (max-width: 370px) {
+  .RemoveModal-ContainerModal {
+    height: 130px;
+    width: 270px;
+  }
+
+  .RemoveModal-ButtonConfirm {
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .RemoveModal-ButtonCancel {
+    height: 30px;
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .RemoveModal-Question {
+    font-size: 14px;
+  }
+
+  .RemoveModal-button1 {
+    margin-left: 0;
+  }
+
+  .RemoveModal-button2 {
+    margin-right: 0;
+  }
+
+  .RemoveModal-Buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+  }
+}
