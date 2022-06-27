@@ -20,6 +20,7 @@ import Simbolo from '../../images/simbolo.png';
 import NewsQuery from '../../components/NewsQuery/NewsQuery';
 import * as managerService from '../../services/manager/managerService';
 import ContactUs from '../contactUs/contactUs';
+import ListaEditais from '../ListaEditais/ListaEditais';
 import './Intranet.css';
 import BirthdayNotificationModal from '../../components/BirthdayNotification/BirthdayNotification';
 
@@ -57,6 +58,7 @@ function Intranet() {
       case 'Home': return <NewsQuery />;
       case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
       case 'Fale Conosco': return <ContactUs />;
+    case 'Editais': return <ListaEditais intranet />;
 
       default: return <div />;
     }

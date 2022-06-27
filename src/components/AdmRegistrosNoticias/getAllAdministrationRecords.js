@@ -6,7 +6,6 @@ function createData(status, title, date, section, type) {
     status, title, date, section, type,
   };
 }
-
 async function getAllAdministrationRecords(
   setId,
   setAllAdministrationRecords,
@@ -40,6 +39,8 @@ async function getAllAdministrationRecords(
     setNewsSequentialId(newsCode);
     setLoading(false);
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn(error);
     history.push('/NotFound');
     setLoading(false);
   }

@@ -37,6 +37,8 @@ export const changeUserTypeById = async (typeChange, id) => {
 export const register = async (body) => {
   const response = await requesterService.register(body);
   if (response?.data?.notification === 'Email already in use') throw new Error('Email already in use');
+  if (response?.data?.notification === 'CPF already in use') throw new Error('CPF already in use');
+  if (response?.data?.notification === 'User already in use') throw new Error('User already in use');
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -245,6 +247,34 @@ export const getNews = async (field, filter) => {
   return allNews;
 };
 
+export const updateRecord = async (record, id) => {
+  const response = await requesterService.updateRecord(record, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getComunic = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allComunic = [];
+  do {
+    response = await requesterService.getComunic(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allComunic = allComunic.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allComunic;
+};
+
+export const deleteComunic = async (comunicId) => {
+  const response = await requesterService.deleteComunic(comunicId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateComunic = async (comunicId, body) => {
+  const response = await requesterService.updateComunic(comunicId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const createMinutes = async (body) => {
   const response = await requesterService.createMinutes(body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -332,6 +362,18 @@ export const createAccountability = async (body) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const getEdicts = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allEdicts = [];
+  do {
+    response = await requesterService.getEdicts(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allEdicts = allEdicts.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allEdicts;
+};
 
 export const deleteModel = async (modelId) => {
   const response = await requesterService.deleteModel(modelId);
@@ -342,6 +384,19 @@ export const updateModel = async (id, model) => {
   const response = await requesterService.updateModel(id, model);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const getActions = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allActions = [];
+  do {
+    response = await requesterService.getActions(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allActions = allActions.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allActions;
 };
 
 export const getAccounts = async (field, filter) => {
@@ -370,21 +425,27 @@ export const getInformations = async (field, filter) => {
   return allInformatives;
 };
 
-export const getActions = async (field, filter) => {
+export const getCommunique = async (field, filter) => {
   let times = 0;
   let response;
-  let allActions = [];
+  let allCommunique = [];
   do {
-    response = await requesterService.getActions(times, field, filter);
+    response = await requesterService.getCommunique(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allActions = allActions.concat(response.data);
+    allCommunique = allCommunique.concat(response.data);
     times += 1;
   } while (response.data.length > 0);
-  return allActions;
+  return allCommunique;
 };
 
-export const download = async (id) => {
-  const response = await requesterService.download(id);
+export const contactUs = async (body) => {
+  const response = await requesterService.contactUs(body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getImageById = async (id) => {
+  const response = await requesterService.getImageById(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -404,11 +465,6 @@ export const getTodayBirthday = async () => {
   }
   return response.data;
 };
-export const getImageById = async (id) => {
-  const response = await requesterService.getImageById(id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
 
 export const getExternalUserById = async (id) => {
   const response = await requesterService.getExternalUserById(id);
@@ -416,21 +472,28 @@ export const getExternalUserById = async (id) => {
   return response.data;
 };
 
-export const getCommunique = async (field, filter) => {
-  let times = 0;
-  let response;
-  let allCommunique = [];
-  do {
-    response = await requesterService.getCommunique(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allCommunique = allCommunique.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-  return allCommunique;
+export const deleteAction = async (actionId) => {
+  const response = await requesterService.deleteAction(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const contactUs = async (body) => {
-  const response = await requesterService.contactUs(body);
+export const updateAction = async (actionId, body) => {
+  const response = await requesterService.updateAction(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const download = async (id) => {
+  const response = await requesterService.download(id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const deleteAccount = async (actionId) => {
+  const response = await requesterService.deleteAccount(actionId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const updateAccount = async (actionId, body) => {
+  const response = await requesterService.updateAccount(actionId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
