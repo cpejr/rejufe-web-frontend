@@ -47,37 +47,31 @@ function Login() {
       let email = '';
       if (usuario.user !== '' && usuario.cpf === undefined) {
         try {
-          console.log('tutu');
           email = await managerService.getUserEmailByUsername(usuario.user);
         } catch (error) {
           toast.error('Credenciais Inválidas!', {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
           });
-          console.error(error);
         }
       }
       if (usuario.cpf !== undefined && usuario.user === '') {
         try {
-          console.log('titi');
           email = await managerService.getUserEmailByCpf(usuario.cpf);
         } catch (error) {
           toast.error('Credenciais Inválidas!', {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
           });
-          console.error(error);
         }
       }
       if (usuario.cpf !== undefined && usuario.user !== '') {
-        console.log('tt');
         toast.error('Insira somente seu CPF ou seu usuário!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
         });
         setLoading(false);
       }
-      console.log(email);
       const field = {
         email,
         lock_time: moment(),
@@ -118,7 +112,6 @@ function Login() {
         } catch (error) {
           setLoading(false);
           if (email !== undefined) {
-            console.log('fio');
             if (attempts <= 1) {
               const time = moment();
               await managerService.updateTime(email, time);
@@ -173,8 +166,6 @@ function Login() {
       setLoading(false);
     }
   };
-
-  console.log(usuario);
 
   return (
     <div
