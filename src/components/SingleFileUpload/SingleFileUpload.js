@@ -86,7 +86,7 @@ function SingleFileUpload({
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: [`${fileType}`],
-    maxSize: 300 * 1024, // 300KB
+    maxSize: 2 * 1024 * 1024, // 2MB
   });
 
   return (
@@ -215,9 +215,18 @@ function SingleFileUpload({
                   <PictureAsPdfIcon />
                 )}
               </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                Remover Arquivo
-              </Button>
+              {label === 'Arquivo' ? (
+                <>
+                  <PictureAsPdfIcon />
+                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                    Remover Arquivo
+                  </Button>
+                </>
+              ) : (
+                <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                  Remover Imagem
+                </Button>
+              )}
             </div>
           )}
           {dados.pdf && (

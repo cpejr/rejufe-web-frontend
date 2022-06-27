@@ -49,7 +49,7 @@ function Login() {
         lock_time: moment(),
       };
       res = await managerService.getAttempts(email);
-      if (res === null) {
+      if (Object.values(res).length === 0) {
         res = await managerService.createAttempt(field);
         setShowWarningModal(false);
         attempts = 0;
