@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 
 export default function textEditor({ id, setDados, dados }) {
-  const [convertedText, setConvertedText] = useState('');
+  const [convertedText, setConvertedText] = useState(dados?.description);
 
   const modules = {
     toolbar: [
@@ -21,6 +21,12 @@ export default function textEditor({ id, setDados, dados }) {
   const handleChange = (value) => {
     setDados(value, id);
   };
+
+  useEffect(() => {
+    if (!convertedText) {
+      setConvertedText(dados?.description);
+    }
+  }, [dados]);
 
   useEffect(() => {
     handleChange(convertedText);
@@ -48,14 +54,16 @@ export default function textEditor({ id, setDados, dados }) {
 
   return (
     <div>
-      <ReactQuill
-        theme="snow"
-        value={dados?.description || ''}
-        onChange={setConvertedText}
-        placeholder="Escreva a descrição aqui!"
-        modules={modules}
-        formats={formats}
-      />
+      {convertedText && (
+        <ReactQuill
+          theme="snow"
+          value={convertedText}
+          onChange={setConvertedText}
+          placeholder="Escreva a descrição aqui!"
+          modules={modules}
+          formats={formats}
+        />
+      )}
     </div>
   );
 }
