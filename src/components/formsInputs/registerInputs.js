@@ -96,7 +96,7 @@ function RegisterInputs({
               variant="standard"
               multiline
               sx={{ m: 1, width: '70%' }}
-              helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
+              helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? label === 'Usuário' ? 'Campo obrigatório (insira entre 8 e 20 caracteres)' : 'Campo obrigatório' : ''}
             />
           )}
           <div />
