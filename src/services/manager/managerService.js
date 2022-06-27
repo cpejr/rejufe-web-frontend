@@ -247,6 +247,11 @@ export const getNews = async (field, filter) => {
   return allNews;
 };
 
+export const updateRecord = async (record, id) => {
+  const response = await requesterService.updateRecord(record, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const getComunic = async (field, filter) => {
   let times = 0;
   let response;
