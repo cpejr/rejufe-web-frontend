@@ -36,7 +36,7 @@ import EditComunicModal from '../EditModal/EditComunicModal';
 import * as managerService from '../../services/manager/managerService';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../setFileNameArchive/setFileNameArchive';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 
