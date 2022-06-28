@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import './SearchAdvanced.css';
 
 function SearchAdvanced({
@@ -81,9 +80,9 @@ function SearchAdvanced({
     setType('');
   };
   const body = (
-    <Box className="associate-search-container-modal">
+    <div className="associate-search-container-modal">
       <div className="associate-search-text">
-        <div className="associate-search-advanced"><p>Pesquisa Avançada</p></div>
+        <div className="associate-search-advanced-title"><p>Pesquisa Avançada</p></div>
       </div>
       <div className="associate-search-advanced-content">
         <div className="associate-search-advanced-labels">
@@ -140,7 +139,7 @@ function SearchAdvanced({
           </div>
         </div>
       </div>
-    </Box>
+    </div>
   );
   return (
     <div>

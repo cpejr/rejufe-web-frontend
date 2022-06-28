@@ -376,6 +376,7 @@ function ConsultaAssociados({
                 {...buttonFontProps}
                 sx={{
                   marginRight: '15px',
+                  marginBottom: '5px',
                   marginLeft: '15px',
                 }}
                 onClick={handleOpen}
@@ -402,6 +403,9 @@ function ConsultaAssociados({
             <div>
               <Button
                 {...buttonFontProps}
+                sx={{
+                  marginBottom: '5px',
+                }}
                 onClick={handleWindowOpen}
               >
                 Imprimir

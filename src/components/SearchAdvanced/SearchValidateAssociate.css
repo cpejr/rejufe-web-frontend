@@ -18,12 +18,6 @@
     margin-bottom: 7%;
   }
   
-  .buttons{
-    display:flex;
-    flex-direction: row;
-    margin-top: 15px;
-  }
-  
   .validate-associate-search-advanced-labels label{
     font-family:Roboto;
     font-weight: normal;
@@ -106,8 +100,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 60%;
-    width: 70vh;
+    height: 30em;
+    width: 62vh;
     border-radius: 6px;
     background-color: white;
     border: 0.5px solid black;
@@ -238,7 +232,7 @@
       flex-direction: column;
     }
     .validate-associate-search-container-modal{
-      height: 70%;
+      height: 35em;
       width: 60%;
     }
     .validate-associate-search-advanced-buttons-align {
@@ -278,10 +272,6 @@
   } 
   
   @media(max-width: 325px){
-    .validate-associate-search-container-modal{
-      height: 65%;
-      width: 70%;
-    }
 
     .validate-associate-search-advanced-button-clean{
       height: 45px;
