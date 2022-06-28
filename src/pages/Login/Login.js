@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './login.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
@@ -27,7 +27,6 @@ function Login() {
   const [usuario, setUsuario] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
-  const history = useHistory();
   const { setUser } = useAuth();
 
   const handleChange = (value, field) => {
@@ -49,7 +48,7 @@ function Login() {
         lock_time: moment(),
       };
       res = await managerService.getAttempts(email);
-      if (res === null) {
+      if (Object.values(res).length === 0) {
         res = await managerService.createAttempt(field);
         setShowWarningModal(false);
         attempts = 0;
@@ -80,7 +79,7 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          history.push('/intranet');
+          window.location.href = '/intranet';
         } catch (error) {
           toast.error('Credenciais inválidas!!', {
             position: toast.POSITION.TOP_RIGHT,

@@ -27,7 +27,7 @@ import BirthdayNotificationModal from '../../components/BirthdayNotification/Bir
 toast.configure();
 
 function Intranet() {
-  const [selectedButton, setSelectedButton] = useState('');
+  const [selectedButton, setSelectedButton] = useState('Home');
   const [birthdaysUsers, setBirthdayUsers] = useState();
 
   async function getBirthdayUsers() {
