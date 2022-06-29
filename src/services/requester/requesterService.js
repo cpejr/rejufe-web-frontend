@@ -94,7 +94,7 @@ export const getExternalAssociates = (times, field, filter) => httpClient.get('/
 
 export const deleteExternalAssociate = (associateId) => httpClient.delete(`usuario/externalAssociate/${associateId}`);
 
-export const getFileById = (id) => httpClient.get(`/arquivo/${id}`);
+export const getFileById = (id) => httpClient.get(`/arquivos/${id}`);
 
 export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
@@ -134,6 +134,18 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
   paramsSerializer: (params) => qs.stringify(params),
 
 });
+export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
+
+export const updateRecord = (id, body) => httpClient.put(`/noticias/${id}`, body);
+
+export const getComunic = (times, field, filter) => httpClient.get('/informacoes', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 
 export const createMinutes = (body) => httpClient.post('/atas', body);
 
@@ -146,9 +158,18 @@ export const getMinutes = (times, field, filter) => httpClient.get('/atas', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const deleteComunic = (comunicId) => httpClient.delete(`/informacoes/${comunicId}`);
+
+export const updateComunic = (comunicId, body) => httpClient.put(`/informacoes/${comunicId}`, body);
+
+export const download = (id) => httpClient.get(`/arquivos/${id}`, {
+  responseType: 'blob',
+});
 export const getMinutesById = (minutesId) => httpClient.get(`/atas/${minutesId}`);
 
 export const createAccountability = (body) => httpClient.post('/prestacaodecontas', body);
+
+export const updateAction = (actionId, body) => httpClient.put(`/acoes/${actionId}`, body);
 
 export const createActions = (body) => httpClient.post('/acoes', body);
 
@@ -198,6 +219,10 @@ export const getActions = (times, field, filter) => httpClient.get('/acoes', {
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const deleteAccount = (actionId) => httpClient.delete(`/prestacaodecontas/${actionId}`);
+
+export const updateAccount = (actionId, body) => httpClient.put(`/prestacaodecontas/${actionId}`, body);
+
 export const deleteMinute = (minuteId) => httpClient.delete(`/atas/${minuteId}`);
 
 export const updateMinute = (minuteId, body) => httpClient.put(`/atas/${minuteId}`, body);
@@ -205,17 +230,12 @@ export const deleteModel = (modelId) => httpClient.delete(`modelos/${modelId}`);
 
 export const updateModel = (id, model) => httpClient.put(`modelos/${id}`, model);
 
-export const download = (id) => httpClient.get(`/arquivos/${id}`, {
-  responseType: 'blob',
-});
-
 export const getFileNameById = (archiveId) => httpClient.get('/arquivos/getFileNameById', {
   params: {
     archiveId,
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
-export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const getCommunique = (times, field, filter) => httpClient.get('/informacoes', {
   params: {
@@ -235,6 +255,8 @@ export const getAccounts = (times, field, filter) => httpClient.get('/prestacaod
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getImageById = (id) => httpClient.get(`/arquivos/image/${id}`);
 
 export const sendBirthdayEmail = () => httpClient.post('/birthday');
 

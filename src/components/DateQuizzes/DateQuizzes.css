@@ -1,5 +1,5 @@
 .container-date-quizz-to-init{
-  width: 200px;
+  width: 150px;
   height: 30px;
   align-items: center;
   display: flex;
@@ -9,7 +9,7 @@
 }
 
 .container-date-quizz-progress{
-  width: 200px;
+  width: 150px;
   height: 30px;
   align-items: center;
   display: flex;
@@ -19,7 +19,7 @@
 }
 
 .container-date-quizz-finish{
-  width: 200px;
+  width: 150px;
   height: 30px;
   align-items: center;
   display: flex;
@@ -31,7 +31,7 @@
  .container-date-quizz-to-init h5{
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 200;
   word-break: break-all;
 }
@@ -39,7 +39,7 @@
 .container-date-quizz-finish h5{
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 200;
   word-break: break-all;
 }
@@ -47,25 +47,25 @@
 .container-date-quizz-progress h5{
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 200;
   word-break: break-all;
 }
-
-@media(max-width: 815px){
+@media(max-width: 989px){
   .container-date-quizz-to-init{
-    width: 150px ;
+    width: 130px ;
   }
   .container-date-quizz-finish{
-    width: 150px ;
+    width: 130px ;
   }
   .container-date-quizz-progress{
-    width: 150px ;
+    width: 130px ;
     height: 30px;
   }
 }
 
-@media(max-width: 765px){
+
+@media(max-width: 800px){
   .container-date-quizz-to-init{
     width: 100px ;
   }
@@ -80,17 +80,22 @@
     font-size: 1em;
   }
 }
-
-@media(max-width: 383px){
+@media(max-width: 800px){
   .container-date-quizz-to-init{
-    width: 9vh ;
+    width: 85px ;
   }
   .container-date-quizz-finish{
-    width: 9vh ;
+    width: 85px ;
   }
   .container-date-quizz-progress{
-    width: 9vh ;
+    width: 85px ;
   }
+  .h5{
+    font-size: 0.8em;
+  }
+}
+
+@media(max-width: 383px){
   .container-date-quizz-to-init h5{
     font-size: 0.8em;
   }
@@ -103,3 +108,15 @@
     padding:5px;
   }
 }
+@media(max-width: 383px){
+  .container-date-quizz-to-init {
+    width: 75px;
+  }
+  .container-date-quizz-finish {
+    width: 75px;
+  }
+  .container-date-quizz-progress {
+    width: 75px;
+  }
+}
+

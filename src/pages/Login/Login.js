@@ -29,7 +29,6 @@ function Login() {
   const [usuario, setUsuario] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
-  const history = useHistory();
   const { setUser } = useAuth();
 
   async function rememberMe() {
@@ -68,7 +67,7 @@ function Login() {
         lock_time: moment(),
       };
       res = await managerService.getAttempts(email);
-      if (res === null) {
+      if (Object.values(res).length === 0) {
         res = await managerService.createAttempt(field);
         setShowWarningModal(false);
         attempts = 0;
@@ -99,7 +98,7 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          history.push('/intranet');
+          window.location.href = '/intranet';
         } catch (error) {
           toast.error('Credenciais inválidas!!', {
             position: toast.POSITION.TOP_RIGHT,

@@ -29,6 +29,8 @@ function SingleFileUpload({
 }) {
   const classes = useStyles();
   const [image, setImage] = useState();
+  const [updateImage, setUpdateImage] = useState(false);
+  function example() { return image ? <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
 
   async function getImage() {
     try {
@@ -57,7 +59,7 @@ function SingleFileUpload({
 
   if (update === true) {
     useEffect(() => {
-      if (field === 'photos' && file !== '' && file !== undefined) {
+      if (field === 'photos' && archiveId) {
         getImage();
       }
     }, [file, archiveId]);
@@ -84,28 +86,73 @@ function SingleFileUpload({
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: [`${fileType}`],
-    maxSize: 300 * 1024, // 300KB
+    maxSize: 2 * 1024 * 1024, // 2MB
   });
 
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          <div {...getRootProps({ className: classes.dropzone })}>
-            <input {...getInputProps()} />
-            {update === true && label === 'Imagem' && file !== '' ? (
-              <img src={`data:image;base64,${image}`} style={{ width: '125px' }} alt="" />
-            ) : (
-              <p>
-                Arraste e solte a/o
-                {' '}
-                {`${label}`}
-                {' '}
-                aqui
-              </p>
-            )}
-          </div>
-          {update === true && archiveId !== undefined && dados.pdf === undefined && (
+          {update === true && label === 'Imagem' && !updateImage && file !== '' && (
+            <>
+              {image && example()}
+              <div style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+              }}
+              >
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                  }}
+                  onClick={() => {
+                    setUpdateImage(true);
+                  }}
+                >
+                  Alterar imagem
+                </Button>
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#1C3854', marginBottom: '5%', marginTop: '2%',
+                  }}
+                  onClick={() => {
+                    setDados('', field);
+                  }}
+                >
+                  Remover Imagem
+                </Button>
+              </div>
+            </>
+          )}
+          {(file !== '' || updateImage) && (
+            <>
+              <div {...getRootProps({ className: classes.dropzone })}>
+                <input {...getInputProps()} />
+                <p>
+                  Arraste e solte a/o
+                  {' '}
+                  {`${label}`}
+                  {' '}
+                  aqui
+                </p>
+              </div>
+              {updateImage && (
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                  }}
+                  onClick={() => {
+                    setUpdateImage(false);
+                  }}
+                >
+                  cancelar
+                </Button>
+              )}
+            </>
+          )}
+          {update === true && archiveId !== undefined && dados.pdf === undefined && label === 'Arquivo' && (
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
             }}
@@ -136,24 +183,24 @@ function SingleFileUpload({
                   </Button>
                 </>
               )}
-              {file === '' && (
-                <>
-                  <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo</h3>
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
-                    }}
-                    onClick={() => {
-                      setDados(archiveId, field);
-                    }}
-                  >
-                    cancelar
-                  </Button>
-                </>
-              )}
               <div />
             </div>
+          )}
+          {file === '' && (
+            <>
+              <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo/imagem</h3>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
+                }}
+                onClick={() => {
+                  setDados(archiveId, field);
+                }}
+              >
+                cancelar
+              </Button>
+            </>
           )}
           {typeof file === 'object' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -164,11 +211,22 @@ function SingleFileUpload({
               >
                 {file?.file?.path}
                 {' '}
-                <PictureAsPdfIcon />
+                {label === 'Arquivo' && (
+                  <PictureAsPdfIcon />
+                )}
               </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                Remover Arquivo
-              </Button>
+              {label === 'Arquivo' ? (
+                <>
+                  <PictureAsPdfIcon />
+                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                    Remover Arquivo
+                  </Button>
+                </>
+              ) : (
+                <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                  Remover Imagem
+                </Button>
+              )}
             </div>
           )}
           {dados.pdf && (
