@@ -100,3 +100,14 @@
 .forms-news-img {
   margin-top: 2%;
 }
+
+.forms-news-table-container {
+  width: 90%;
+  position: center;
+  margin-left: 7%;
+  background-color: #f9f9f9;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  border: 1px solid #DCDCDC;
+
+}
