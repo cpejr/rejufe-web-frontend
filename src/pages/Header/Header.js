@@ -21,7 +21,6 @@ import simbolo from '../../images/simbolo.png';
 import { useAuth } from '../../providers/auth';
 
 function Header(props) {
-  const { user } = useAuth();
   const [className, setClassName] = useState('header-iconbutton-content');
   const [typeUser, setTypeUser] = useState('header-iconbutton');
   const [toolbar, setHeaderToolbar] = useState('header-toolbar');
@@ -30,7 +29,7 @@ function Header(props) {
     setOpen(!open);
   };
   const history = useHistory();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');

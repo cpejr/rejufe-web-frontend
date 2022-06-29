@@ -72,7 +72,6 @@ export const registerExternal = async (body) => {
 
 export const login = async (user) => {
   const response = await requesterService.login(user);
-  console.log(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('_id'));
@@ -86,6 +85,7 @@ export const login = async (user) => {
     rememberMe: user.rememberMe,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
+  sessionStorage.setItem('@token', response.data.accessToken);
   return response;
 };
 

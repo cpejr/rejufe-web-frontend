@@ -35,7 +35,6 @@ function Login() {
   async function rememberMe() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
-      console.log(userStorage);
       if (userStorage?.rememberMe) {
         await managerService.getById(userStorage?.id);
         history.push('/intranet');
