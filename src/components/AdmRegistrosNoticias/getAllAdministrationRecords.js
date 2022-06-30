@@ -20,6 +20,7 @@ async function getAllAdministrationRecords(
 
   try {
     const allNews = await managerService.getNews();
+    console.log(allNews);
     allNews.sort();
 
     allNews.filter((user) => user.type.toLowerCase() !== 'administrador').forEach((object) => {

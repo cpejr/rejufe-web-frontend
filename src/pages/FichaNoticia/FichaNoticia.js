@@ -70,7 +70,7 @@ function FichaNoticia() {
           </div>
           <div className="print-associates-table">
             <div>
-              <table className="forms-minutes-table-container">
+              <table className="forms-records-table-container">
                 <div className="forms-minutes-grid-container">
                   <table width="100%">
                     <tr>
