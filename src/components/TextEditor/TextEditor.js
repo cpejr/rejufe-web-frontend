@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 
-export default function textEditor({ id, setDados, dados }) {
+export default function TextEditor({ id, setDados, dados }) {
   const [convertedText, setConvertedText] = useState(dados?.description);
 
   const modules = {
