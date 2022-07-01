@@ -57,10 +57,10 @@ function MinuteQuery() {
   }, [use]);
 
   return (
-    <div className="intranet-home-all">
+    <div>
       <div className="intranet-home-menu">
         <h1>
-          {'Manutenção em Informativos '}
+          {'Notícias '}
         </h1>
       </div>
       <div className="line-table-intranet-home-adm-menu" />

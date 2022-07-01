@@ -10,6 +10,7 @@ function AccountQuery() {
   const [id, setId] = useState([]);
   const [use, setUse] = useState(true);
   const [archive1Id, setArchive1Id] = useState();
+  const [loading, setLoading] = useState(false);
   const titles = [
     'Data',
     'Título',
@@ -29,6 +30,7 @@ function AccountQuery() {
   }
 
   async function getAllAccounts() {
+    setLoading(true);
     const auxAccount = [];
     const accountId = [];
     const archive1Code = [];
@@ -54,6 +56,7 @@ function AccountQuery() {
       setAllAccount(auxAccount);
       setArchive1Id(archive1Code);
       setUse(false);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
@@ -75,7 +78,14 @@ function AccountQuery() {
         </h1>
       </div>
       <div className="line-table-account-menu-side" />
-      <TableComponent setUse={setUse} accountId={id} rows={account} titles={titles} archive1Id={archive1Id} />
+      <TableComponent
+        setUse={setUse}
+        loading={loading}
+        accountId={id}
+        rows={account}
+        titles={titles}
+        archive1Id={archive1Id}
+      />
     </div>
   );
 }

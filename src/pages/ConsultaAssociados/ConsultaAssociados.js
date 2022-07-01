@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ConsultaAssociados.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { CircularProgress } from '@mui/material';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 
@@ -34,17 +33,9 @@ function ConsultaAssociados() {
         </div>
         <div className="line-table-consult-associates" />
       </div>
-      {
-        loading ? (
-          <div className="loaderConsultAssociate">
-            <CircularProgress />
-          </div>
-        ) : (
-          <div className="containerConsultAssociate">
-            <TableComponent id={id} rows={associates} titles={titles} print={false} search />
-          </div>
-        )
-      }
+      <div className="containerConsultAssociate">
+        <TableComponent id={id} rows={associates} titles={titles} print={false} search loading={loading} />
+      </div>
     </div>
   );
 }

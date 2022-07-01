@@ -1,54 +1,53 @@
 .containerChangePassword {
   height: calc(100vh - 75px);
-  width: 100vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 12pt;
+  justify-content: center;
 }
 
 .boxChangePassword {
   font-family: 'Roboto', sans-serif;
-  width: 60%;
   height: 60%;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
   max-height: 600px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  border: 2px solid;
-  border-color: #0b162b;
-  border-radius: 20px;
-  background-color: #e8e8e8;
+  text-align: start;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #F8F8F8;
   padding: 4%;
   text-align: justify;
-  color: black;
 }
 
 .boxChangePassword button {
-  width: 11vw;
-  height: 4vw;
+  padding: 2% 5%;
   margin-top: 4%;
   min-width: 100px;
   min-height: 50px;
   border-radius: 0.5vw;
   border: 1px solid;
-  border-color: #0b162b;
-  background-color: #0b162b;
+  border-color: var(--secondary);
+  background-color: var(--secondary);
   color: white;
   font-size: 1.2em;
 }
 
-.boxChangePassword h1 {
+.change-password-text h1 {
   font-size: 2em;
   margin-bottom: 4%;
   font-weight: 100;
+  color: var(--fontColor2);
 }
 
-.boxChangePassword p {
+.change-password-text p {
   font-size: 1.2em;
   margin: 0;
   font-weight: 100;
+  color: var(--fontColor2);
 }
 
 .containerChangePassword button:hover {
@@ -111,6 +110,13 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.change-passowrd-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 3%;
 }
 
 @media (min-width: 1500px) {

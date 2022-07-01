@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background:var(--color2);
+  background: var(--color2);
   border-radius: 30px;
 }
 
@@ -22,12 +22,12 @@
   border-radius: 6px;
   border: 2px solid transparent;
   margin-bottom: 10px;
-  height: auto; 
+  height: auto;
   padding: 5px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
-.create-quizz-button p{
+.create-quizz-button p {
   font-size: 1em;
 }
 
@@ -40,7 +40,7 @@
   background-color: var(--hover);
 }
 
-.container-modal-quizz button {  
+.container-modal-quizz button {
   height: 100%;
   display: flex; 
   justify-content: center;
@@ -53,9 +53,10 @@
   height: 100%;
 }
 
-.create-quizz-button p{
+.create-quizz-button p {
   margin-right: 5px;
 }
+
 .plus-button-modal-quizz {
   display: flex;
   align-items: center;
@@ -94,13 +95,13 @@
 }
 
 .close-modal-quizz {
-  height: 30px;  
+  height: 30px;
   background-color: transparent;
   border: none;
 }
-  
+
 .confirm-button-modal-quizz {
-  width: 30%;  
+  width: 30%;
   height: 45px;
   background-color: var(--primary);
   color: var(--fontColor1);
@@ -135,9 +136,26 @@
 
 .last-button-modal-quizz {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.private-result {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.private-result label {
+  font-size: 14px;
+}
+
+.private-result input {
+  margin-left: 4px;
 }
 
 .delete-alternative-modal-quizz {
@@ -162,19 +180,22 @@
 .empty-div-alternatives-modal-quizz {
   width: 10%;
 }
-  
-@media (max-width: 310px) {
+
+@media (max-width: 1380px) {
   .create-quizz-button {
     height: 30px;
   }
-  .create-quizz-button p{
+
+  .create-quizz-button p {
     font-size: 18px;
   }
 }
+
 @media (max-width: 1150px) {
   .container-modal-quizz {
     height: 100%;
   }
+
   .confirm-button-modal-quizz {
     width: 40%;
   }
@@ -196,6 +217,7 @@
   .title-modal-quizz h2 {
     font-size: 25px;
   }
+
   .confirm-button-modal-quizz {
     font-size: 15px;
   }
@@ -205,9 +227,11 @@
   .input-label-forms-create-quizz {
     margin: 10px 0 30px;
   }
+
   .plus-button-modal-quizz {
     margin-top: 3%;
   }
+
   .confirm-button-modal-quizz {
     margin-top: 3%;
   }
