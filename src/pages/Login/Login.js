@@ -38,7 +38,6 @@ function Login() {
   const handleClickClose = () => {
     setShowWarningModal(false);
   };
-  // 154.793.607-01
   const handleClick = async (e) => {
     try {
       setLoading(true);
