@@ -101,7 +101,7 @@ function ConsultaAssociados({
   titles, rows, id, order, edit, search, searchFile, print, loading,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(-1);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -306,7 +306,25 @@ function ConsultaAssociados({
         </TableRow>
       )}
       <TableFooter {...footerProps}>
-        {print === false ? (
+        {print ? (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            component="div"
+            style={{ overflow: 'hidden' }}
+            count={rows.length}
+            rowsPerPage={rows?.length}
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
+        ) : (
           <>
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
@@ -345,24 +363,7 @@ function ConsultaAssociados({
               </Button>
             </div>
           </>
-        ) : (
-          <TablePagination
-            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
-            component="div"
-            style={{ overflow: 'hidden' }}
-            count={rows.length}
-            rowsPerPage={rows.length}
-            labelRowsPerPage="Linhas por pagina"
-            page={page}
-            SelectProps={{
-              inputProps: {
-                'aria-label': 'Linhas por pagina',
-              },
-              native: true,
-            }}
-            onPageChange={handleChangePage}
-            ActionsComponent={TablePaginationActions}
-          />
+
         )}
       </TableFooter>
     </TableContainer>
