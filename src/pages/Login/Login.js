@@ -45,9 +45,9 @@ function Login() {
       let res;
       let attempts;
       let email = '';
-      if (usuario.user !== '' && usuario.cpf === undefined) {
+      if (usuario?.user !== '' && usuario?.cpf === undefined) {
         try {
-          email = await managerService.getUserEmailByUsername(usuario.user);
+          email = await managerService.getUserEmailByUsername(usuario?.user);
         } catch (error) {
           toast.error('Credenciais Inválidas!', {
             position: toast.POSITION.TOP_RIGHT,
@@ -55,9 +55,9 @@ function Login() {
           });
         }
       }
-      if (usuario.cpf !== undefined && usuario.user === '') {
+      if (usuario?.cpf !== undefined && usuario?.user === '') {
         try {
-          email = await managerService.getUserEmailByCpf(usuario.cpf);
+          email = await managerService.getUserEmailByCpf(usuario?.cpf);
         } catch (error) {
           toast.error('Credenciais Inválidas!', {
             position: toast.POSITION.TOP_RIGHT,
@@ -65,7 +65,7 @@ function Login() {
           });
         }
       }
-      if (usuario.cpf !== undefined && usuario.user !== '') {
+      if (usuario?.cpf !== undefined && usuario?.user !== '') {
         toast.error('Insira somente seu CPF ou seu usuário!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
@@ -82,10 +82,10 @@ function Login() {
         setShowWarningModal(false);
         attempts = 0;
       } else {
-        attempts = res.quantity;
+        attempts = res?.quantity;
       }
-      if (attempts > 2 && moment() < moment(res.lock_time)) {
-        const restante = moment(res.lock_time).fromNow();
+      if (attempts > 2 && moment() < moment(res?.lock_time)) {
+        const restante = moment(res?.lock_time).fromNow();
         setContentWarningModal(restante);
         setShowWarningModal(true);
       } else {
@@ -94,17 +94,17 @@ function Login() {
           e.preventDefault();
           const body = {
             email,
-            password: usuario.password,
-            rememberMe: usuario.rememberMe,
+            password: usuario?.password,
+            rememberMe: usuario?.rememberMe,
           };
           await managerService.login(body);
           const response = await managerService.login(body);
-          const id = response.data.user._id;
+          const id = response?.data?.user?._id;
           setUser({
-            name: response.data.user.name,
-            email: response.data.user.email,
-            type: response.data.user.type,
-            acessToken: response.data.accessToken,
+            name: response?.data?.user?.name,
+            email: response?.data?.user?.email,
+            type: response?.data?.user?.type,
+            acessToken: response?.data?.accessToken,
             id,
           });
           await managerService.resetAttempts(email);
@@ -215,7 +215,7 @@ function Login() {
                 onChange={(e) => setUsuario({ ...usuario, rememberMe: e.target.checked })}
                 id="rememberMe"
                 name="rememberMe"
-                value={usuario.rememberMe}
+                value={usuario?.rememberMe}
               />
               <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>
