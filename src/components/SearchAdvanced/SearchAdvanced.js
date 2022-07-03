@@ -7,6 +7,7 @@ function SearchAdvanced({
 }) {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
+  const [filter] = useState([]);
 
   function replaceSpecialChars(str) {
     str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
@@ -31,6 +32,12 @@ function SearchAdvanced({
     };
   }
 
+  function returnData(name, cpf, status) {
+    return {
+      name, cpf, status,
+    };
+  }
+
   // eslint-disable-next-line max-len
   const filterName = rows?.filter(((item) => replaceSpecialChars(item?.name).toLowerCase().includes(replaceSpecialChars(query))));
   const filterType = [];
@@ -50,14 +57,16 @@ function SearchAdvanced({
   }
   if (dados) {
     let auxFilterType = [];
-    auxFilterType = dados?.filter(((item) => item.allocation?.includes(type)));
+    auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
     auxFilterType.forEach((object) => {
-      filterType.push(createData(object.name, object.cpf, object.status));
+      filterType.push(returnData(object.name, object.cpf, object.status));
     });
   }
+
   const handleData = () => {
     if (query !== '' && type === '') {
       setData(filterName);
+      console.log('🚀 ~ file: SearchAdvanc));', filter);
       setQuery('');
     }
     if (type !== '' && query === '') {
@@ -65,10 +74,16 @@ function SearchAdvanced({
       setType('');
     }
     if (type !== '' && query !== '') {
+      let count = 0;
       filterType?.forEach((obj) => {
-        const filter = filterName.filter(((item) => item.allocation.includes(obj.type)));
-        setData(filter);
+        const auxFilter = filterName.filter(((item) => item.name.includes(obj.name)));
+        if (auxFilter[0] !== undefined) {
+          // eslint-disable-next-line prefer-destructuring
+          filter[count] = auxFilter[0];
+        }
+        count += 1;
       });
+      setData(filter);
       setType('');
       setQuery('');
     }

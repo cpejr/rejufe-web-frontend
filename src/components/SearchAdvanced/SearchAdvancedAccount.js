@@ -12,6 +12,7 @@ function SearchAdvancedAccount({
 }) {
   const [date, setDate] = useState('');
   const [query, setQuery] = useState('');
+  const [filter] = useState([]);
 
   function replaceSpecialChars(str) {
     str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
@@ -45,9 +46,15 @@ function SearchAdvancedAccount({
     }
     if (date !== '' && query !== '') {
       filterTitle?.forEach((obj) => {
-        const filter = filterDate.filter(((item) => item.title.includes(obj.title)));
-        setData(filter);
+        let count = 0;
+        const auxFilter = filterDate.filter(((item) => item.title.includes(obj.title)));
+        if (auxFilter[0] !== undefined) {
+          // eslint-disable-next-line prefer-destructuring
+          filter[count] = auxFilter[0];
+        }
+        count += 1;
       });
+      setData(filter);
       setDate('');
       setQuery('');
     }
