@@ -66,7 +66,6 @@ function SearchAdvanced({
   const handleData = () => {
     if (query !== '' && type === '') {
       setData(filterName);
-      console.log('🚀 ~ file: SearchAdvanc));', filter);
       setQuery('');
     }
     if (type !== '' && query === '') {

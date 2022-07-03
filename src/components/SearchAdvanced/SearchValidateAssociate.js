@@ -88,11 +88,17 @@ function SearchAdvancedAssociate({
       setActing('');
     }
     if (allocation !== '' && query !== '' && acting !== '') {
+      let count = 0;
       filterActing?.forEach((obj) => {
         const filter = filterAllocation.filter(((item) => item.acting.includes(obj.acting)));
         filter?.forEach((object) => {
         // eslint-disable-next-line max-len
           const addOtherFilter = filterName.filter(((item) => item.name.toLowerCase().includes(object.name.toLowerCase())));
+          if (addOtherFilter[0] !== undefined) {
+            // eslint-disable-next-line prefer-destructuring
+            filter[count] = addOtherFilter[0];
+          }
+          count += 1;
           setData(addOtherFilter);
         });
       });
