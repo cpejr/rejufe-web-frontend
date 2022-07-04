@@ -37,6 +37,8 @@ export const changeUserTypeById = async (typeChange, id) => {
 export const register = async (body) => {
   const response = await requesterService.register(body);
   if (response?.data?.notification === 'Email already in use') throw new Error('Email already in use');
+  if (response?.data?.notification === 'CPF already in use') throw new Error('CPF already in use');
+  if (response?.data?.notification === 'User already in use') throw new Error('User already in use');
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -243,6 +245,11 @@ export const getNews = async (field, filter) => {
     times += 1;
   } while (response.data.length > 0);
   return allNews;
+};
+
+export const updateRecord = async (record, id) => {
+  const response = await requesterService.updateRecord(record, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
 export const getComunic = async (field, filter) => {

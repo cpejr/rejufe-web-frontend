@@ -6,7 +6,6 @@ function createData(status, title, date, section, type) {
     status, title, date, section, type,
   };
 }
-
 async function getAllAdministrationRecords(
   setId,
   setAllAdministrationRecords,
