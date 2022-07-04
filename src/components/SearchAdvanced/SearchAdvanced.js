@@ -40,7 +40,6 @@ function SearchAdvanced({
 
   // eslint-disable-next-line max-len
   const filterName = rows?.filter(((item) => replaceSpecialChars(item?.name).toLowerCase().includes(replaceSpecialChars(query))));
-  console.log('🚀 ~ file: SearchAdvanced.js ~ line 43 ~ filterName', filterName);
   const filterType = [];
   if (dataFilter) {
     let auxFilterType = [];
@@ -79,8 +78,8 @@ function SearchAdvanced({
       filterType?.forEach((obj) => {
         const auxFilter = filterName.filter(((item) => item.name.includes(obj.name)));
         if (auxFilter[0] !== undefined) {
-          // eslint-disable-next-line prefer-destructuring
-          filter[add] = auxFilter[0];
+          const filterResult = auxFilter[0];
+          filter[add] = filterResult;
           add += 1;
         }
       });
