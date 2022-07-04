@@ -7,7 +7,7 @@ function SearchAdvanced({
 }) {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
-  const [filter] = useState([]);
+  /*  const [filter] = useState([]); */
 
   function replaceSpecialChars(str) {
     str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
@@ -40,6 +40,7 @@ function SearchAdvanced({
 
   // eslint-disable-next-line max-len
   const filterName = rows?.filter(((item) => replaceSpecialChars(item?.name).toLowerCase().includes(replaceSpecialChars(query))));
+  console.log('🚀 ~ file: SearchAdvanced.js ~ line 43 ~ filterName', filterName);
   const filterType = [];
   if (dataFilter) {
     let auxFilterType = [];
@@ -55,8 +56,8 @@ function SearchAdvanced({
       ));
     });
   }
+  let auxFilterType = [];
   if (dados) {
-    let auxFilterType = [];
     auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
     auxFilterType.forEach((object) => {
       filterType.push(returnData(object.name, object.cpf, object.status));
@@ -72,15 +73,16 @@ function SearchAdvanced({
       setData(filterType);
       setType('');
     }
+    const filter = [];
     if (type !== '' && query !== '') {
-      let count = 0;
+      let add = 0;
       filterType?.forEach((obj) => {
         const auxFilter = filterName.filter(((item) => item.name.includes(obj.name)));
         if (auxFilter[0] !== undefined) {
           // eslint-disable-next-line prefer-destructuring
-          filter[count] = auxFilter[0];
+          filter[add] = auxFilter[0];
+          add += 1;
         }
-        count += 1;
       });
       setData(filter);
       setType('');
