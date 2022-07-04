@@ -169,7 +169,7 @@
   }
   @media(max-width: 685px){
     .birthday-search-advanced-container{
-      height: 50%;
+      height: 25em;
       width: 60%;
     }
   
@@ -204,13 +204,10 @@
   
   }
   
-  @media(max-width: 470px){
-    .birthday-search-advanced-container{
-      height: 50%;
-      width: 70%;
-    }
-  }
   @media(max-width: 389px){
+    .birthday-search-buttons-align input {
+      width: 35px;
+    }
   
     .birthday-button-search-submit{
       height: 50px;
@@ -220,16 +217,18 @@
     }
   
     .birthday-search-button-clean{
-      height: 50px;
       font-size: 14px;
+    }
+
+    .birthday-search-advanced-title{
+      font-size: 12px;
     }
   
   }
 
-
-  @media(max-width: 300px){
-  
+  @media(max-width: 286px){
     .birthday-search-buttons-align input {
-      width: 35px;
+      width: 25px;
+      height: 25px;
     }
   }
