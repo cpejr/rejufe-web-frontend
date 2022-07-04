@@ -267,11 +267,11 @@
 
   
   }
-  
-  @media(max-width: 470px){
+
+  @media(max-width: 585px){
     .comunic-search-container-modal{
-      height: 50%;
-      width: 70%;
+    height: 30em;
+        width: 70%;
     }
   }
   
@@ -332,7 +332,6 @@
     }
     
   .comunic-search-advanced p{
-    font-size: 1.2em;
     text-align: center;
   }
   

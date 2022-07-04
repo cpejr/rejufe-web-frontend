@@ -68,7 +68,7 @@ function SearchAtas({
         </div>
         <div className="atas-search-advanced-labels">
 
-          <p> Tipo:</p>
+          <label> Tipo:</label>
 
           <select className="atas-search-advanced-select" setFilterType placeholder="" onChange={(e) => setType(e.target.value)}>
             <option value=" "> </option>

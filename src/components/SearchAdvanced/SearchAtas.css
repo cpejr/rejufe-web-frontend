@@ -278,6 +278,10 @@ margin-left: 5px;
 }
 
 @media(max-width: 585px){
+  .atas-search-container-modal{
+  height: 30em;
+      width: 70%;
+  }
   .atas-search-advanced-buttons-align{
     flex-direction: column;
   }
@@ -307,7 +311,6 @@ margin-left: 5px;
   }
   
 .atas-search-advanced p{
-  font-size: 1.2em;
   text-align: center;
 }
 
