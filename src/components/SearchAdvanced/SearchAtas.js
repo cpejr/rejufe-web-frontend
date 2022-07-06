@@ -41,7 +41,7 @@ function SearchAtas({
     }
     if (type !== '' && query !== '') {
       filterType?.forEach((obj) => {
-        const filter = filterDescription?.filter(((item) => item.type.includes(obj.type)));
+        const filter = filterDescription?.filter(((item) => item.type?.includes(obj.type)));
         setData(filter);
       });
       setType('');
