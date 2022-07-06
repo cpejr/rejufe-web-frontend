@@ -42,10 +42,9 @@ function GraphicQuizzes({
   const names = name?.map((value) => ({
     name: value,
   }));
-  // console.log(data);
+
   let bars = [];
   bars = data;
-  console.log(bars);
 
   const handleHover = () => {
     console.log('mouse over');
