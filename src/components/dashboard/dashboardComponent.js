@@ -5,6 +5,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useTheme } from '@mui/material/styles';
+import Modal from '@material-ui/core/Modal';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -47,6 +49,9 @@ import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
+import SearchAtas from '../SearchAdvanced/SearchAtas';
+import SearchComunic from '../SearchAdvanced/SearchComunic';
+import SearchBirthday from '../SearchAdvanced/SearchBirthday';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -135,6 +140,7 @@ function TableComponent({
   editComunic,
   search,
   searchFile,
+  searchComunic,
   searchMinutes,
   searchMinutesIntranet,
   setShowForms,
@@ -157,14 +163,16 @@ function TableComponent({
   numbers,
   editActions,
   actionId,
+  searchBirthday,
 }) {
   const [page, setPage] = useState(0);
+  const [data, setData] = useState(rows);
+  const [open, setOpen] = useState(false);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
   const actualArchive2 = { ...archive2Id };
-
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -354,6 +362,13 @@ function TableComponent({
     const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
     win.focus();
   }
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function redirectAssociate(e, redirectId) {
     e.preventDefault();
@@ -387,7 +402,8 @@ function TableComponent({
     if (archive2Id) {
       setFileNameArchive(fileNames2, archive2Id, setFileNames2);
     }
-  }, [archive1Id, archive2Id]);
+    setData(rows);
+  }, [archive1Id, archive2Id, rows]);
 
   return (
     <TableContainer
@@ -423,7 +439,7 @@ function TableComponent({
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading && rows
+          {!loading && data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
@@ -610,9 +626,9 @@ function TableComponent({
                       </div>
                     </TableCell>
                   )}
-                {Object.values(row)?.map((data) => (
+                {Object.values(row)?.map((value) => (
                   <TableCell {...cellFontProps}>
-                    {data}
+                    {value}
                   </TableCell>
                 ))}
                 {archive1Id
@@ -655,14 +671,29 @@ function TableComponent({
           <CircularProgress />
         </TableRow>
       )}
+      {data.length === 0 && (
+        <div style={{
+          marginTop: '5px',
+          textAlign: 'center',
+          fontFamily: 'Roboto, sans-serif',
+          fontSize: '20px',
+          fontWeight: '500',
+        }}
+        >
+          {' '}
+          <p>
+            Registros não encontrados
+          </p>
+        </div>
+      )}
       <TableFooter {...footerProps}>
         {print ? (
           <TablePagination
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             style={{ overflow: printAtas ? 'unset' : 'hidden' }}
             component="div"
-            count={rows?.length}
-            rowsPerPage={rows?.length}
+            count={data?.length}
+            rowsPerPage={data?.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}
             SelectProps={{
@@ -677,10 +708,10 @@ function TableComponent({
         ) : (
           <>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: data.length }]}
               component="div"
+              count={data.length} //
               style={{ overflow: printAtas ? 'unset' : 'hidden' }}
-              count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}
@@ -696,12 +727,61 @@ function TableComponent({
             />
             <div className="button-table-component-pagination-consult">
               {renderButton && (
-                <Button
-                  {...buttonFontProps}
-                >
-                  Pesquisa Avançada
-                  {/* TODO Implementar o botão de pesquisa avançada */}
-                </Button>
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchAtas handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchComunic && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchComunic handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchBirthday && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchBirthday handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
               )}
               {printButton && (
                 <Button

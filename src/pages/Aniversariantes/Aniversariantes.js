@@ -39,6 +39,7 @@ function Aniversariantes() {
         loading={loading}
         order
         search
+        searchBirthday
       />
     </div>
   );

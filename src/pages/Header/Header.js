@@ -122,11 +122,6 @@ function Header(props) {
   ];
   const linksComunic = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/administracao-registros-comunic'),
       pathName: '/administracao-registros-comunic',
       text: 'Administração de Registros',
@@ -210,7 +205,7 @@ function Header(props) {
       icon: <MonetizationOnOutlinedIcon />,
     },
     {
-      text: 'Comunic./Informações',
+      text: 'Comunic./Inform.',
       links: linksComunic,
       icon: <AnnouncementOutlinedIcon />,
     },
