@@ -18,7 +18,6 @@ function ResultadoQuizzes() {
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
   const dateQuizz = moment(new Date()).format('YYYY-MM-DD, HH:mm');
-  console.log(dateQuizz);
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
