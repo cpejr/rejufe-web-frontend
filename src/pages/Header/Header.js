@@ -31,7 +31,6 @@ function Header(props) {
   const history = useHistory();
   const { logout, user } = useAuth();
 
-  console.log(logout);
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
@@ -232,7 +231,10 @@ function Header(props) {
         <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
-            onClick={() => handleReturn()}
+            onClick={() => {
+              logout();
+              handleClick('/login');
+            }}
             type="button"
           >
             Sair
@@ -277,7 +279,10 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      handleReturn();
+                    }}
                     type="button"
                   >
                     <span>
