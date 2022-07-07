@@ -1,8 +1,16 @@
 const recordNews = [
-
   {
     title: 'DETALHES DO REGISTRO',
     lines: [
+      {
+        items: [
+          {
+            id: 'date',
+            label: 'Postagem',
+          },
+        ],
+      },
+
       {
         items: [
           {
