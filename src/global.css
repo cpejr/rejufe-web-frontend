@@ -24,3 +24,7 @@ div#root {
     --fontColor1: white;
     --fontColor2: black;
 }
+
+.quill > .ql-toolbar:first-child {
+    display: none !important;
+}

@@ -132,7 +132,7 @@ function ModuloUsuarios() {
                 id="demo-simple-select"
                 value={search}
                 label="Selecione uma seção"
-                onChange={(e) => handleSearch(e.target.value.toLowerCase())}
+                onChange={(e) => handleSearch(e.target.value)}
               >
 
                 {judicialSection?.map((section) => (

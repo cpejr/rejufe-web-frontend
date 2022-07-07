@@ -1,7 +1,8 @@
+/* eslint-disable indent */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './login.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
@@ -27,7 +28,6 @@ function Login() {
   const [usuario, setUsuario] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
-  const history = useHistory();
   const { setUser } = useAuth();
 
   const handleChange = (value, field) => {
@@ -37,27 +37,53 @@ function Login() {
   const handleClickClose = () => {
     setShowWarningModal(false);
   };
-
   const handleClick = async (e) => {
     try {
       setLoading(true);
       let res;
       let attempts;
-      const email = await managerService.getUserEmailByUsername(usuario.user);
+      let email = '';
+      if (usuario?.user !== '' && usuario?.cpf === undefined) {
+        try {
+          email = await managerService.getUserEmailByUsername(usuario?.user);
+        } catch (error) {
+          toast.error('Credenciais Inválidas!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+          });
+        }
+      }
+      if (usuario?.cpf !== undefined && usuario?.user === '') {
+        try {
+          email = await managerService.getUserEmailByCpf(usuario?.cpf);
+        } catch (error) {
+          toast.error('Credenciais Inválidas!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+          });
+        }
+      }
+      if (usuario?.cpf !== undefined && usuario?.user !== '') {
+        toast.error('Insira somente seu CPF ou seu usuário!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+        setLoading(false);
+      }
       const field = {
         email,
         lock_time: moment(),
       };
       res = await managerService.getAttempts(email);
-      if (res === null) {
+      if (Object.values(res).length === 0) {
         res = await managerService.createAttempt(field);
         setShowWarningModal(false);
         attempts = 0;
       } else {
-        attempts = res.quantity;
+        attempts = res?.quantity;
       }
-      if (attempts > 2 && moment() < moment(res.lock_time)) {
-        const restante = moment(res.lock_time).fromNow();
+      if (attempts > 2 && moment() < moment(res?.lock_time)) {
+        const restante = moment(res?.lock_time).fromNow();
         setContentWarningModal(restante);
         setShowWarningModal(true);
       } else {
@@ -66,72 +92,70 @@ function Login() {
           e.preventDefault();
           const body = {
             email,
-            password: usuario.password,
-            rememberMe: usuario.rememberMe,
+            password: usuario?.password,
+            rememberMe: usuario?.rememberMe,
           };
           await managerService.login(body);
           const response = await managerService.login(body);
-          const id = response.data.user._id;
+          const id = response?.data?.user?._id;
           setUser({
-            name: response.data.user.name,
-            email: response.data.user.email,
-            type: response.data.user.type,
-            acessToken: response.data.accessToken,
+            name: response?.data?.user?.name,
+            email: response?.data?.user?.email,
+            type: response?.data?.user?.type,
+            acessToken: response?.data?.accessToken,
             id,
           });
           await managerService.resetAttempts(email);
-          history.push('/intranet');
+          window.location.href = '/intranet';
         } catch (error) {
-          toast.error('Credenciais inválidas!!', {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-          });
           setLoading(false);
-          if (attempts <= 1) {
-            const time = moment();
-            await managerService.updateTime(email, time);
-          } else {
-            switch (attempts) {
-            case 2: {
-              const time = moment().add(3, 'minutes');
-              setContentWarningModal('após 3 minutos');
+          if (email !== undefined) {
+            if (attempts <= 1) {
+              const time = moment();
               await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            case 3: {
-              const time = moment().add(5, 'minutes');
-              setContentWarningModal('após 5 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            case 4: {
-              const time = moment().add(15, 'minutes');
-              setContentWarningModal('após 15 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            case 5: {
-              const time = moment().add(15, 'minutes');
-              setContentWarningModal('após 15 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
-            default: {
-              const time = moment().add(15, 'minutes');
-              setContentWarningModal('após 15 minutos');
-              await managerService.updateTime(email, time);
-              setShowWarningModal(true);
-              break;
-            }
+            } else {
+              switch (attempts) {
+                case 2: {
+                  const time = moment().add(3, 'minutes');
+                  setContentWarningModal('após 3 minutos');
+                  await managerService.updateTime(email, time);
+                  setShowWarningModal(true);
+                  break;
+                }
+                case 3: {
+                  const time = moment().add(5, 'minutes');
+                  setContentWarningModal('após 5 minutos');
+                  await managerService.updateTime(email, time);
+                  setShowWarningModal(true);
+                  break;
+                }
+                case 4: {
+                  const time = moment().add(15, 'minutes');
+                  setContentWarningModal('após 15 minutos');
+                  await managerService.updateTime(email, time);
+                  setShowWarningModal(true);
+                  break;
+                }
+                case 5: {
+                  const time = moment().add(15, 'minutes');
+                  setContentWarningModal('após 15 minutos');
+                  await managerService.updateTime(email, time);
+                  setShowWarningModal(true);
+                  break;
+                }
+                default: {
+                  const time = moment().add(15, 'minutes');
+                  setContentWarningModal('após 15 minutos');
+                  await managerService.updateTime(email, time);
+                  setShowWarningModal(true);
+                  break;
+                }
+              }
             }
           }
         }
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       toast.error('Usuário inválido!!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -164,6 +188,13 @@ function Login() {
               dados={usuario}
               setDados={handleChange}
             />
+            <h1>CPF </h1>
+            <StyledInput
+              type="text"
+              id="cpf"
+              dados={usuario}
+              setDados={handleChange}
+            />
             <h1>Senha </h1>
             <StyledInput
               type="password"
@@ -182,7 +213,7 @@ function Login() {
                 onChange={(e) => setUsuario({ ...usuario, rememberMe: e.target.checked })}
                 id="rememberMe"
                 name="rememberMe"
-                value={usuario.rememberMe}
+                value={usuario?.rememberMe}
               />
               <label htmlFor="rememberMe">Lembrar de mim</label>
             </div>

@@ -4,9 +4,9 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import SingleFileUpload from '../SingleFileUpload/SingleFileUpload';
 import TextEditor from '../TextEditor/TextEditor';
-import './registerInputs.css';
+import './updateNews.css';
 
-function RegisterInputs({
+function UpdateNews({
   setDados,
   type,
   fileType,
@@ -18,7 +18,7 @@ function RegisterInputs({
   initialErrorState,
   mask,
   dados,
-  news,
+  archiveIds,
 }) {
   const handleChange = (value, entrada) => {
     setDados(value, entrada);
@@ -33,12 +33,11 @@ function RegisterInputs({
           error={initialErrorState[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(e.target.value, id)}
-          label={label}
           InputLabelProps={{ shrink: true }}
           type={type}
           variant="standard"
-          sx={{ m: 1, width: '70%' }}
-          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
+          sx={{ m: 1, width: '65%' }}
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
         />
       )}
       {mask && (
@@ -48,12 +47,11 @@ function RegisterInputs({
           error={initialErrorState[`${id}`]}
           value={dados[`${id}`]}
           onChange={(e) => handleChange(mask(e.target.value), id)}
-          label={label}
           type={type}
           select={select}
           variant="standard"
-          sx={{ m: 1, width: '70%' }}
-          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? 'Campo obrigatório' : ''}
+          sx={{ m: 1, width: '65%' }}
+          helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
         />
       )}
       {select && (
@@ -61,14 +59,14 @@ function RegisterInputs({
           required={required}
           id={id}
           error={initialErrorState[`${id}`]}
-          value={dados[`${id}`]}
+          value={dados[`${id}`] !== undefined ? dados[`${id}`] : ' '}
           onChange={(e) => handleChange(e.target.value, id)}
-          label={label}
           type={type}
           select={select}
+          label={label}
           variant="standard"
           helperText={`Selecione uma opção de ${label}`}
-          sx={{ m: 1, width: '70%' }}
+          sx={{ m: 1, width: '65%' }}
         >
           {field.map((option) => (
             <MenuItem key={option.value} value={option.value} style={{ height: '36px' }}>
@@ -79,10 +77,10 @@ function RegisterInputs({
       )}
       {!mask && !(type === 'date') && !(type === 'file') && !(type === 'empty') && !select && (
         <>
-          {news && label === 'Descrição' ? (
-            <div className="news-description-field">
+          {label === 'Descrição' ? (
+            <div className="news-description-field-update" style={{ width: '65%' }}>
               <h3>Descrição *</h3>
-              <TextEditor id={id} setDados={setDados} dados={dados} register />
+              <TextEditor id={id} setDados={setDados} dados={dados} />
             </div>
           ) : (
             <TextField
@@ -91,12 +89,11 @@ function RegisterInputs({
               error={initialErrorState[`${id}`]}
               value={dados[`${id}`]}
               onChange={(e) => handleChange(e.target.value, id)}
-              label={label}
               type={type}
               variant="standard"
               multiline
-              sx={{ m: 1, width: '70%' }}
-              helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? label === 'Usuário' ? 'Campo obrigatório (insira entre 8 e 20 caracteres)' : 'Campo obrigatório' : ''}
+              sx={{ m: 1, width: '65%' }}
+              helperText={initialErrorState[`${id}`] ? `Valor de ${label} inválido` : required ? `${label}: obrigatório` : ''}
             />
           )}
           <div />
@@ -111,11 +108,13 @@ function RegisterInputs({
           fileType={fileType}
           file={dados[`${field}`]}
           dados={dados}
+          archiveId={archiveIds[`${field}`]}
           setDados={setDados}
           label={label}
+          update
         />
       )}
     </div>
   );
 }
-export default RegisterInputs;
+export default UpdateNews;
