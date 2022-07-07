@@ -98,10 +98,10 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile, print, loading,
+  titles, rows, id, order, edit, search, searchFile, print, loading, printAssociados,
 }) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(-1);
+  const [rowsPerPage, setRowsPerPage] = useState(print ? -1 : 10);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -130,7 +130,6 @@ function ConsultaAssociados({
         display: 'flex',
         justifyContent: 'center',
         margin: '1%',
-        alignItems: 'center',
       },
   };
 
@@ -192,7 +191,7 @@ function ConsultaAssociados({
           color: 'white',
         }
         : {
-          fontSize: '77%',
+          fontSize: '100%',
           backgroundColor: '#2574A9',
           color: 'white',
         },
@@ -201,7 +200,7 @@ function ConsultaAssociados({
   const tableProps = {
     sx: matchesFont400px
       ? {
-        minWidth: 400,
+        minWidth: 450,
       }
       : { minWidth: 650 },
     size: matchesFont85
@@ -209,6 +208,19 @@ function ConsultaAssociados({
       : matchesFont90
         ? 'medium'
         : 'big',
+  };
+
+  const tableContainerProps = {
+    sx: printAssociados
+      ? {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      }
+      : {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
   };
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -230,7 +242,7 @@ function ConsultaAssociados({
   return (
     <TableContainer
       component={Paper}
-      sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+      {...tableContainerProps}
     >
       <Table
         {...tableProps}
@@ -308,9 +320,9 @@ function ConsultaAssociados({
       <TableFooter {...footerProps}>
         {print ? (
           <TablePagination
-            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
+            rowsPerPageOptions={[{ label: 'Todos', value: -1 }]}
             component="div"
-            style={{ overflow: 'hidden' }}
+            style={{ overflow: printAssociados ? 'unset' : 'hidden' }}
             count={rows.length}
             rowsPerPage={rows?.length}
             labelRowsPerPage="Linhas por pagina"
@@ -327,9 +339,9 @@ function ConsultaAssociados({
         ) : (
           <>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[10, 25, 100, { label: 'Todos', value: -1 }]}
               component="div"
-              style={{ overflow: 'hidden' }}
+              style={{ overflow: printAssociados ? 'unset' : 'hidden' }}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
