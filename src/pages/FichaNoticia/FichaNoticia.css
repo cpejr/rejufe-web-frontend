@@ -12,6 +12,14 @@
   margin-right: 4px;
 }
 
+.ql-font-monospace {
+  font-family: monospace;
+}
+
+.ql-font-serif {
+  font-family: serif;
+}
+
 .forms-news-td-box {
   display: flex;
   flex-direction: row;
