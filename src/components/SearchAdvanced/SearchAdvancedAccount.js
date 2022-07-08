@@ -51,6 +51,9 @@ function SearchAdvancedAccount({
       setDate('');
       setQuery('');
     }
+    if (date === '' && query === '') {
+      setData(rows);
+    }
     handleClose();
   };
 

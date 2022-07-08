@@ -87,6 +87,9 @@ function SearchAdvanced({
       setType('');
       setQuery('');
     }
+    if (query === '' && type === '') {
+      setData(rows);
+    }
     handleClose();
   };
 

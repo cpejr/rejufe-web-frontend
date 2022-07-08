@@ -99,6 +99,9 @@ function SearchAdvancedAssociate({
       setQuery('');
       setActing('');
     }
+    if (query === '' && allocation === '' && acting === '') {
+      setData(rows);
+    }
     handleClose();
   };
 
