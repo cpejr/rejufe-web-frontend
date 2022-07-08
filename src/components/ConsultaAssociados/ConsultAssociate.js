@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import Modal from '@material-ui/core/Modal';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
+import { Link } from 'react-router-dom';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -25,6 +28,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import SearchAdvanced from '../SearchAdvanced/SearchAdvanced';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -98,11 +102,12 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile, print, loading,
+  titles, rows, id, order, edit, search, searchFile, print, loading, sequentialId, dados, dataFilter,
 }) {
+  const [data, setData] = useState(rows);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  const [open, setOpen] = useState(false);
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -133,7 +138,6 @@ function ConsultaAssociados({
         alignItems: 'center',
       },
   };
-
   const cellFontProps = {
     style: matchesFont85
       ? {
@@ -227,6 +231,16 @@ function ConsultaAssociados({
     setPage(0);
   };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  useEffect(() => {
+    setData(rows);
+  }, [rows]);
   return (
     <TableContainer
       component={Paper}
@@ -246,13 +260,13 @@ function ConsultaAssociados({
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading && rows
+          {!loading && data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((row, index) => (
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
-                    {rows.findIndex((obj) => obj._id === row._id) + 1}
+                    {data.findIndex((obj) => obj._id === row._id) + 1}
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
@@ -280,9 +294,25 @@ function ConsultaAssociados({
                 ) : (
                   null
                 )}
-                {Object.values(row)?.map((data) => (
+                {sequentialId
+                  && (
+                    <TableCell {...cellFontProps}>
+                      <Link
+                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
+                        to={{
+                          pathname: '/editar-associados',
+                          state: {
+                            id: id[index + (page * 10)],
+                          },
+                        }}
+                      >
+                        {sequentialId[index + (page * 10)]}
+                      </Link>
+                    </TableCell>
+                  )}
+                {Object.values(row)?.map((dado) => (
                   <TableCell {...cellFontProps}>
-                    {data}
+                    {dado}
                   </TableCell>
                 ))}
               </TableRow>
@@ -305,6 +335,21 @@ function ConsultaAssociados({
           <CircularProgress />
         </TableRow>
       )}
+      {data.length === 0 && (
+        <div style={{
+          marginTop: '5px',
+          textAlign: 'center',
+          fontFamily: 'Roboto, sans-serif',
+          fontSize: '20px',
+          fontWeight: '500',
+        }}
+        >
+          {' '}
+          <p>
+            Registros não encontrados
+          </p>
+        </div>
+      )}
       <TableFooter {...footerProps}>
         {print === false ? (
           <>
@@ -312,7 +357,7 @@ function ConsultaAssociados({
               rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
               component="div"
               style={{ overflow: 'hidden' }}
-              count={rows.length}
+              count={data.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}
@@ -331,14 +376,36 @@ function ConsultaAssociados({
                 {...buttonFontProps}
                 sx={{
                   marginRight: '15px',
+                  marginBottom: '5px',
                   marginLeft: '15px',
                 }}
+                onClick={handleOpen}
               >
                 Pesquisa Avançada
                 {/* TODO Implementar o botão de pesquisa avançada */}
               </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                <SearchAdvanced
+                  handleClose={handleClose}
+                  data={data}
+                  setData={setData}
+                  rows={rows}
+                  dados={dados}
+                  dataFilter={dataFilter}
+                />
+              </Modal>
+            </div>
+            <div>
               <Button
                 {...buttonFontProps}
+                sx={{
+                  marginBottom: '5px',
+                }}
                 onClick={handleWindowOpen}
               >
                 Imprimir
@@ -350,7 +417,7 @@ function ConsultaAssociados({
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             component="div"
             style={{ overflow: 'hidden' }}
-            count={rows.length}
+            count={data.length}
             rowsPerPage={rows.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}

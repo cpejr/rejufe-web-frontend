@@ -139,11 +139,6 @@ function Header(props) {
   ];
   const linksContas = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/admregistros'),
       pathName: '/administracao-registros-contas',
       text: 'Administração de Registros',
