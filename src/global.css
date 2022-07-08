@@ -25,3 +25,7 @@ div#root {
     --fontColor2: black;
     --backgroundInput: #F0F0F5;
 }
+
+.quill > .ql-toolbar:first-child {
+    display: none !important;
+}
