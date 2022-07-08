@@ -1,9 +1,8 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import './ConsultaAtas.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { CircularProgress } from '@mui/material';
-import TableComponent from '../../components/SearchAdvanced/SearchAtas';
+import TableComponent from '../../components/dashboard/dashboardComponent';
 import getAllMinutesForConsult from '../../components/getAllAtasForConsult/getAllAtasForConsult';
 
 const titles = [
@@ -15,9 +14,7 @@ const titles = [
   'Arquivo 2',
 ];
 
-function ConsultaMinutes(data) {
-  const { location } = data;
-  const dados = location?.state;
+function ConsultaMinutes() {
   const [minutes, setAllMinutes] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,13 +42,8 @@ function ConsultaMinutes(data) {
               id={id}
               rows={minutes}
               titles={titles}
-              type={dados?.type}
-              query={dados?.query}
-              setType={dados?.setType}
-              setQuery={dados?.setQuery}
               searchMinutes
               printButton
-              search
               renderButton
               loading={loading}
               route="/imprimir-atas-editais"

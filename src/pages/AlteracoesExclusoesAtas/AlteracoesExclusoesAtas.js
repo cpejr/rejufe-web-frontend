@@ -93,7 +93,6 @@ function AlteracoesExclusoesMinutes() {
         archive1Id={archive1Id}
         archive2Id={archive2Id}
         numbers={numbers}
-        renderButton
         editMinute
       />
     </div>
