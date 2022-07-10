@@ -18,15 +18,16 @@ function SearchBirthday({
   let count = 0;
   const auxFilterMonth = [];
   let add = 0;
+  moment(dayInitial, 'DD');
 
   rows?.forEach((object) => {
-    if (object?.birth.substr(0, 2) >= dayInitial && object?.birth.substr(0, 2) <= dayFinish) {
+    if (moment(object?.birth, 'DD') >= moment(dayInitial, 'DD') && moment(object?.birth, 'DD') <= moment(dayFinish, 'DD')) {
       auxFilterDay[count] = object;
     }
     count += 1;
   });
   auxFilterDay.forEach((object) => {
-    if ((object?.birth.substr(3, 4) >= monthInitial) && (object?.birth.substr(3, 4) <= monthFinish)) {
+    if ((moment(object?.birth.substr(3, 4), 'MM') >= moment(monthInitial, 'MM')) && (moment(object?.birth.substr(3, 4), 'MM') <= moment(monthFinish, 'MM'))) {
       auxFilterMonth[add] = object;
     }
     add += 1;
