@@ -79,3 +79,19 @@
     padding: 0 15px 0;
   }
 }
+@media(max-width: 509px){
+  .title-cards-quizzes-page {
+    flex-direction: column;
+  }
+  .title-cards-quizzes-page h1{
+    text-align: center;
+  }
+  .title-cards-quizzes-page {
+    margin: 0;
+    margin-bottom: 5px;
+
+  }
+  .form-user-module-page{
+    width: 70%;
+  }
+}

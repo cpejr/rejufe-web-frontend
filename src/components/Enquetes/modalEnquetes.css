@@ -174,6 +174,7 @@
 @media (max-width: 1380px) {
   .create-quizz-button {
     height: 30px;
+    margin: 5px;
   }
 
   .create-quizz-button p {
@@ -188,13 +189,6 @@
 
   .confirm-button-modal-quizz {
     width: 40%;
-  }
-}
-
-@media (max-width: 1012px) {
-  .create-quizz-button {
-    height: 25px;
-    width: 25px;
   }
 }
 
