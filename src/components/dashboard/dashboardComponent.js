@@ -754,6 +754,11 @@ function TableComponent({
                 <div>
                   <Button
                     {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginBottom: '5px',
+                      marginLeft: '15px',
+                    }}
                     onClick={handleOpen}
                   >
                     Pesquisa Avançada
@@ -773,10 +778,14 @@ function TableComponent({
                 <div>
                   <Button
                     {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginBottom: '5px',
+                      marginLeft: '15px',
+                    }}
                     onClick={handleOpen}
                   >
                     Pesquisa Avançada
-                    {/* TODO Implementar o botão de pesquisa avançada */}
                   </Button>
                   <Modal
                     open={open}

@@ -23,6 +23,7 @@
   .birthday-search-buttons-align input{
     margin-top: 1%;
     height: 30px;
+    margin-right: 3px;
     width: 120px;
     background-color: #f0f0f5;
     box-sizing: border-box;
@@ -70,7 +71,6 @@
       margin:2px;
       width: 50px;
       font-size: 16px;
-      padding: 2px;
   }
   
   .birthday-search-button-field{

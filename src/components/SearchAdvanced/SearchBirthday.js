@@ -22,6 +22,8 @@ function SearchBirthday({
 
   rows?.forEach((object) => {
     if (moment(object?.birth, 'DD') >= moment(dayInitial, 'DD') && moment(object?.birth, 'DD') <= moment(dayFinish, 'DD')) {
+      console.log('🚀 ~ file: SearchBirthday.js ~ line 25 ~ rows?.forEach ~ object', object);
+      console.log('🚀 ~ file: SearchBirthday.js ~ line 25 ~ rows?.forEach ~ moment(object?.birth, \'DD\') >= moment(dayInitial, \'DD\')', moment(object?.birth, 'DD') >= moment(dayInitial, 'DD'));
       auxFilterDay[count] = object;
     }
     count += 1;
@@ -34,6 +36,10 @@ function SearchBirthday({
   });
   function handleData() {
     setData(auxFilterMonth);
+    if (dayInitial === '' && monthInitial === '' && dayFinish === '' && monthFinish === '') {
+      setData(rows);
+    }
+
     handleClose();
   }
 
