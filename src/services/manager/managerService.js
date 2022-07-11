@@ -90,8 +90,10 @@ export const login = async (user) => {
     type: response.data.user.type,
     acessToken: response.data.accessToken,
     id,
+    rememberMe: user.rememberMe,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
+  sessionStorage.setItem('@token', response.data.accessToken);
   return response;
 };
 
