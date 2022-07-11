@@ -17,8 +17,7 @@ function ResultadoQuizzes() {
   const history = useHistory();
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
-  const [date] = useState(new Date());
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
+  const dateQuizz = moment(new Date()).format('YYYY-MM-DD, HH:mm');
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
@@ -30,7 +29,7 @@ function ResultadoQuizzes() {
       setLoading(false);
     } catch (error) {
       history.push('/NotFound');
-      toast.error('Credenciais inválidas!!', {
+      toast.error('Não foi possível obter quizzes!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });

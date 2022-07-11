@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -17,6 +18,11 @@ function FormInputs({ setNewQuizz, handleClose }) {
   const [voterSection, setVoterSection] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
+  const [day, setDay] = useState('');
+  let openingTime;
+  let openingDay;
+  let closingTime;
+  let closingDay;
 
   const handleSectionChange = (event) => {
     const {
@@ -32,7 +38,16 @@ function FormInputs({ setNewQuizz, handleClose }) {
 
   const sections = judicialSection?.filter((section) => section.value !== '');
 
+  function handleDate(value, field) {
+    const date = (`${day}, ${value}`);
+    setError({ ...initialErrorState, [field]: false });
+    setDados({ ...dados, [field]: date });
+  }
+
   function handleChange(value, field) {
+    if (field === 'openingDate' || field === 'closingDate') {
+      setDay(value);
+    }
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
   }
@@ -74,7 +89,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
     if (voterSection?.includes(allAssociates) && voterSection.length > 1) {
       setVoterSection([allAssociates]);
     }
-  }, [voterSection]);
+  }, [voterSection], dados);
 
   return (
     <div>
@@ -106,8 +121,18 @@ function FormInputs({ setNewQuizz, handleClose }) {
             required
             error={initialErrorState.openingDate}
             type="Date"
-            value={dados.openingDate}
+            value={openingDay}
             onChange={(e) => handleChange(e.target.value, 'openingDate')}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-label-forms-create-quizz">Horário de início </InputLabel>
+          <Input
+            required
+            error={initialErrorState.openingDate}
+            type="time"
+            value={openingTime}
+            onChange={(e) => handleDate(e.target.value, 'openingDate')}
           />
         </FormControl>
         <FormControl>
@@ -116,8 +141,18 @@ function FormInputs({ setNewQuizz, handleClose }) {
             required
             error={initialErrorState.closingDate}
             type="Date"
-            value={dados.closingDate}
+            value={closingDay}
             onChange={(e) => handleChange(e.target.value, 'closingDate')}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel shrink sx={{ fontSize: 22 }} className="input-forms-create-quizz">Horário de fim </InputLabel>
+          <Input
+            required
+            error={initialErrorState.closingDate}
+            type="time"
+            value={closingTime}
+            onChange={(e) => handleDate(e.target.value, 'closingDate')}
           />
         </FormControl>
         <FormControl>
