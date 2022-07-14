@@ -28,9 +28,9 @@ const formsContas = [
       {
         type: 'file',
         fileType: '.pdf',
-        id: 'pdf',
-        label: 'Anexo',
-        field: null,
+        id: null,
+        label: 'Arquivo',
+        field: 'pdf',
         select: false,
         required: true,
       },
