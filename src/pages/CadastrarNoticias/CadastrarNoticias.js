@@ -37,6 +37,8 @@ function CadastrarNoticias() {
       if (dado[0] === 'archive_1' || dado[0] === 'archive_2' || dado[0] === 'photos') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
+      } else if (dado[0] === 'description' && dado[1] === '<p><br></p>') {
+        formData.append(dado[0], '');
       } else {
         if (checkNewsData(dado[0], dado[1])) {
           checkError = 1;
