@@ -64,7 +64,7 @@ function AdmRegistrosContas() {
     'Título',
     'Data',
     'Descrição',
-    'Arquivo ',
+    'Anexo ',
   ];
 
   return (
