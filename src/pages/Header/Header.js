@@ -31,7 +31,6 @@ function Header(props) {
   const history = useHistory();
   const { logout, user } = useAuth();
 
-  console.log(logout);
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
