@@ -30,7 +30,7 @@ const formsContas = [
         fileType: '.pdf',
         id: null,
         label: 'Arquivo',
-        field: 'pdf',
+        field: 'archive_1',
         select: false,
         required: true,
       },

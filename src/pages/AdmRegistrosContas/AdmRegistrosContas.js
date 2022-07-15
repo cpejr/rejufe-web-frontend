@@ -32,6 +32,7 @@ function AdmRegistrosContas() {
     const archive1Code = [];
     try {
       const allComunic = await managerService.getAccounts();
+      console.log(allComunic);
       allComunic.forEach((object) => {
         auxAccount.push(createData(
           object.title,
@@ -64,7 +65,7 @@ function AdmRegistrosContas() {
     'Título',
     'Data',
     'Descrição',
-    'Anexo ',
+    'Arquivo ',
   ];
 
   return (
