@@ -64,7 +64,7 @@ function AdmRegistrosContas() {
     'Título',
     'Data',
     'Descrição',
-    'Anexo ',
+    'Arquivo ',
   ];
 
   return (
@@ -82,6 +82,7 @@ function AdmRegistrosContas() {
         titles={titles}
         archive1Id={archive1Id}
         editAccount
+        renderButton
       />
     </div>
   );

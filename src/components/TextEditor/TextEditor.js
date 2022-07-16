@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 
-export default function TextEditor({ id, setDados, dados }) {
-  const [convertedText, setConvertedText] = useState(dados?.description);
+export default function TextEditor({
+  id, setDados, dados, register,
+}) {
+  const [convertedText, setConvertedText] = useState(register ? 'Escreva a descrição aqui' : dados.description);
 
   const modules = {
     toolbar: [

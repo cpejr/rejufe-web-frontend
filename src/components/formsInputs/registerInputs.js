@@ -82,7 +82,7 @@ function RegisterInputs({
           {news && label === 'Descrição' ? (
             <div className="news-description-field">
               <h3>Descrição *</h3>
-              <TextEditor id={id} setDados={setDados} dados={dados} />
+              <TextEditor id={id} setDados={setDados} dados={dados} register />
             </div>
           ) : (
             <TextField
