@@ -15,7 +15,7 @@ import CadastroExterno from './pages/CadastroExterno';
 import CadastrarAcoes from './pages/CadastrarAcoes/CadastrarAcoes';
 import AdmRegistros from './pages/AdmRegistros';
 import AdmRegistrosNoticias from './pages/AdmRegistrosNoticias';
-import AdmRegistrosComunic from './pages/AdmRegistrosComunicados';
+import AdmRegistrosComunic from './pages/AdmRegistrosComunic';
 import AssociadosExcluidos from './pages/AssociadosExcluidos';
 import ValidarSocio from './pages/ValidarSocio';
 import Editais from './pages/Editais';
