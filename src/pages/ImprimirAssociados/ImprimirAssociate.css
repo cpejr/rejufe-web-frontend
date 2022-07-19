@@ -1,6 +1,3 @@
-.container-print-associates-page {
-  min-height: calc(100vh - 50px);
-}
 
 .header-print-associates-icon {
   display: flex;
@@ -40,10 +37,8 @@
   margin: 5%;
 }
 
-.loader-consult-associates-table {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: calc(100vh - 50px);
+.print-consult-associates-forms {
+  table-layout:fixed;
+  width:100%;
+  overflow-x: unset;
 }
