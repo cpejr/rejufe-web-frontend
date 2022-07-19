@@ -28,7 +28,7 @@ function CadastrarModelos() {
     setLoading(true);
 
     const formData = new FormData();
-    const aux = initialErrorState;
+    const aux = { ...initialErrorState };
     let checkError = 0;
 
     const numberRegex = /^[0-9\b]+$/;
