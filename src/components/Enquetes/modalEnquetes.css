@@ -47,10 +47,10 @@
   cursor: pointer;
 }
 .container-modal-quizz{
-  width: 70%;
   display: flex;
   margin: auto;
   height: 100%;
+  padding: 0 2% 0 3%;
 }
 
 .create-quizz-button p {
@@ -207,15 +207,11 @@
     width: 25px;
   }
 }
-@media (max-width: 640px) {
-  .container-modal-quizz {
-    width: 75%;
-  }
-}
   
 @media (max-width: 440px) {
   .title-modal-quizz h2 {
     font-size: 25px;
+    margin-bottom: 2%;
   }
 
   .confirm-button-modal-quizz {
