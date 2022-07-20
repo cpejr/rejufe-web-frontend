@@ -43,9 +43,6 @@ function GraphicQuizzes({
     name: value,
   }));
 
-  let bars = [];
-  bars = data;
-
   const handleHover = () => {
     console.log('mouse over');
   };
