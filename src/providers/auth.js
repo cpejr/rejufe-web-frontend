@@ -68,6 +68,7 @@ export function AuthProvider({ children }) {
     && (userAlt?.type === 'administrador' || userAlt?.type === 'usuario')) || userAlt?.type === type);
 
   const logout = () => {
+    console.log('hello2');
     localStorage.removeItem('user');
     sessionStorage.removeItem('@token');
     setUser(null);

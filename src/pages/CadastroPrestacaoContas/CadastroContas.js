@@ -34,7 +34,7 @@ function CadastroContas() {
     let checkError = 0;
 
     Object.entries(dados)?.forEach((dado) => {
-      if (dado[0] === 'archive_1') {
+      if (dado[0] === 'pdf') {
         dado[1] = dado[1] ? dado[1]?.file : '';
         formData.append(dado[0], dado[1]);
       }
