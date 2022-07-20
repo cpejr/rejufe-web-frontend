@@ -3,12 +3,13 @@ import './AdmRegistros.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/dashboard/dashboardComponent';
+import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
 
 toast.configure();
 
 function AdmRegistros() {
   const [associates, setAllAssociates] = useState([]);
+  const [dados, setDados] = useState([]);
   const [sequentialId, setSequentialId] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,6 +31,7 @@ function AdmRegistros() {
         associateCode.push(object.sequential_Id);
         associateId.push(object._id);
         auxAssociate.push(createData(object.name, object.cpf, object.status));
+        setDados(allAssociates);
       });
       auxAssociate.sort();
       setId(associateId);
@@ -65,10 +67,12 @@ function AdmRegistros() {
       <TableComponent
         id={id}
         sequentialId={sequentialId}
+        dados={dados}
         rows={associates}
         titles={titles}
         order
         loading={loading}
+        print={false}
       />
     </div>
   );

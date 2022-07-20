@@ -21,7 +21,6 @@ import simbolo from '../../images/simbolo.png';
 import { useAuth } from '../../providers/auth';
 
 function Header(props) {
-  const { user } = useAuth();
   const [className, setClassName] = useState('header-iconbutton-content');
   const [typeUser, setTypeUser] = useState('header-iconbutton');
   const [toolbar, setHeaderToolbar] = useState('header-toolbar');
@@ -30,8 +29,9 @@ function Header(props) {
     setOpen(!open);
   };
   const history = useHistory();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
+  console.log(logout);
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
@@ -47,10 +47,10 @@ function Header(props) {
     history.push(pathName);
   }
   function handleReturn() {
-    window.location.href = '/login';
+    history.push('/login');
   }
   function handleSubmitIntranet() {
-    window.location.href = '/intranet';
+    history.push('/intranet');
   }
   const links1 = [
     {
@@ -105,11 +105,6 @@ function Header(props) {
   ];
   const linksAcoes = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/admregistros'),
       pathName: '/administracao-registros-acoes',
       text: 'Administração de Registros',
@@ -122,11 +117,6 @@ function Header(props) {
   ];
   const linksComunic = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/administracao-registros-comunic'),
       pathName: '/administracao-registros-comunic',
       text: 'Administração de Registros',
@@ -138,11 +128,6 @@ function Header(props) {
     },
   ];
   const linksContas = [
-    {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
     {
       link: () => handleClick('/admregistros'),
       pathName: '/administracao-registros-contas',
@@ -277,10 +262,7 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={() => {
-                      handleClick('/login');
-                      logout();
-                    }}
+                    onClick={logout}
                     type="button"
                   >
                     <span>

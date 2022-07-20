@@ -28,6 +28,12 @@ export const getUserEmailByUsername = async (user) => {
   return response.data;
 };
 
+export const getUserEmailByCpf = async (cpf) => {
+  const response = await requesterService.getUserEmailByCpf(cpf);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const changeUserTypeById = async (typeChange, id) => {
   const response = await requesterService.changeUserTypeById(typeChange, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -84,8 +90,10 @@ export const login = async (user) => {
     type: response.data.user.type,
     acessToken: response.data.accessToken,
     id,
+    rememberMe: user.rememberMe,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
+  sessionStorage.setItem('@token', response.data.accessToken);
   return response;
 };
 

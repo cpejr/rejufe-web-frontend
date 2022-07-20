@@ -58,7 +58,7 @@ function Intranet() {
       case 'Home': return <NewsQuery />;
       case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
       case 'Fale Conosco': return <ContactUs />;
-    case 'Editais': return <ListaEditais intranet />;
+      case 'Editais': return <ListaEditais intranet />;
 
       default: return <div />;
     }
