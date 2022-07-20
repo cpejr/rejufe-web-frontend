@@ -127,7 +127,10 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          window.location.href = '/intranet';
+          // if (response !== {}) {
+          //   console.log('frase');
+          //   window.location.href = '/intranet';
+          // }
         } catch (error) {
           setLoading(false);
           if (email !== undefined) {
@@ -137,35 +140,21 @@ function Login() {
             } else {
               switch (attempts) {
                 case 2: {
-                  const time = moment().add(3, 'minutes');
+                  const time = moment().add(1, 'minutes');
                   setContentWarningModal('após 3 minutos');
                   await managerService.updateTime(email, time);
                   setShowWarningModal(true);
                   break;
                 }
                 case 3: {
-                  const time = moment().add(5, 'minutes');
+                  const time = moment().add(1, 'minutes');
                   setContentWarningModal('após 5 minutos');
                   await managerService.updateTime(email, time);
                   setShowWarningModal(true);
                   break;
                 }
-                case 4: {
-                  const time = moment().add(15, 'minutes');
-                  setContentWarningModal('após 15 minutos');
-                  await managerService.updateTime(email, time);
-                  setShowWarningModal(true);
-                  break;
-                }
-                case 5: {
-                  const time = moment().add(15, 'minutes');
-                  setContentWarningModal('após 15 minutos');
-                  await managerService.updateTime(email, time);
-                  setShowWarningModal(true);
-                  break;
-                }
                 default: {
-                  const time = moment().add(15, 'minutes');
+                  const time = moment().add(2, 'minutes');
                   setContentWarningModal('após 15 minutos');
                   await managerService.updateTime(email, time);
                   setShowWarningModal(true);
@@ -205,20 +194,14 @@ function Login() {
             <div className="Box-login">
               <div className="text-login">
                 <img src="images/logoSemFundo.png" alt="Logo" />
-                <h1>Usuário </h1>
+                <h1>CPF ou Usuário </h1>
                 <StyledInput
                   type="text"
                   id="user"
                   dados={usuario}
                   setDados={handleChange}
                 />
-                <h1>CPF </h1>
-                <StyledInput
-                  type="text"
-                  id="cpf"
-                  dados={usuario}
-                  setDados={handleChange}
-                />
+
                 <h1>Senha </h1>
                 <StyledInput
                   type="password"
