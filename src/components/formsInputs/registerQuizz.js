@@ -88,7 +88,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
             <Input
               required
               error={initialErrorState.title}
-              value={dados.title}
+              value={dados?.title}
               onChange={(e) => handleChange(e.target.value, 'title')}
             />
           </FormControl>
@@ -99,7 +99,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
             <Input
               required
               error={initialErrorState.description}
-              value={dados.description}
+              value={dados?.description}
               onChange={(e) => handleChange(e.target.value, 'description')}
             />
           </FormControl>
@@ -111,7 +111,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
               required
               error={initialErrorState.openingDate}
               type="Date"
-              value={dados.openingDate}
+              value={dados?.openingDate}
               onChange={(e) => handleChange(e.target.value, 'openingDate')}
             />
           </FormControl>
@@ -123,7 +123,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
               required
               error={initialErrorState.closingDate}
               type="Date"
-              value={dados.closingDate}
+              value={dados?.closingDate}
               onChange={(e) => handleChange(e.target.value, 'closingDate')}
             />
           </FormControl>
@@ -150,10 +150,10 @@ function FormInputs({ setNewQuizz, handleClose }) {
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
             {sections?.map((section) => (
               <MenuItem
-                key={section.label}
-                value={section.value}
+                key={section?.label}
+                value={section?.value}
               >
-                {section.label}
+                {section?.label}
               </MenuItem>
             ))}
           </Select>
