@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import moment from 'moment';
 import ptLocale from 'moment/locale/pt-br';
+import * as managerService from '../../services/manager/managerService';
 import './SearchBirthday.css';
 
 moment.locale('pt-br', [ptLocale]);
@@ -10,6 +12,7 @@ moment.locale('pt-br', [ptLocale]);
 function SearchBirthday({
   handleClose, setData, rows,
 }) {
+  const [associates, setAllAssociates] = useState([]);
   const [dayInitial, setDayInitial] = useState('');
   const [monthInitial, setMonthInitial] = useState('');
   const [dayFinish, setDayFinish] = useState('');
@@ -17,25 +20,51 @@ function SearchBirthday({
   const auxFilterDay = [];
   let count = 0;
   const auxFilterMonth = [];
-  let add = 0;
-  moment(dayInitial, 'DD');
+  function createData(birth, name, cellPhoneNumber) {
+    return {
+      birth, name, cellPhoneNumber,
+    };
+  }
+  async function getAllAssociates() {
+    try {
+      const auxAssociate = [];
+      const allAssociates = await managerService.getAssociates();
+      allAssociates.filter((associate) => associate.status === 'A').forEach((object) => {
+        auxAssociate.push(createData(
+          moment(object?.birth).format('DD/MM'),
+          object.name,
+          object.cell_phone_number,
+        ));
+      });
 
-  rows?.forEach((object) => {
-    if (moment(object?.birth, 'DD') >= moment(dayInitial, 'DD') && moment(object?.birth, 'DD') <= moment(dayFinish, 'DD')) {
-      console.log('🚀 ~ file: SearchBirthday.js ~ line 25 ~ rows?.forEach ~ object', object);
-      console.log('🚀 ~ file: SearchBirthday.js ~ line 25 ~ rows?.forEach ~ moment(object?.birth, \'DD\') >= moment(dayInitial, \'DD\')', moment(object?.birth, 'DD') >= moment(dayInitial, 'DD'));
-      auxFilterDay[count] = object;
+      setAllAssociates(auxAssociate);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(error);
+    }
+  }
+  const compareInitial = `${dayInitial}/${monthInitial}`;
+  // eslint-disable-next-line no-unused-vars
+  const compareFinish = `${dayFinish}/${monthFinish}`;
+  console.log('1' < '18');
+  associates?.forEach((object) => {
+  /*   if(object?.birth.substr(0) === 0){
+      if(object?.birth.substr(1) <= 0)
+    }
+    if(object?.birth.substr(0) !== 0){
+
+    } */
+    if ((object?.birth.substr(3, 4) === monthInitial) && (moment(object?.birth.substr(3, 4), 'MM') === monthFinish)) {
+      if (moment(object?.birth, 'DD') >= moment(dayInitial, 'DD') && moment(object?.birth, 'DD') <= moment(dayFinish, 'DD')) {
+        auxFilterDay[count] = object;
+      }
     }
     count += 1;
   });
-  auxFilterDay.forEach((object) => {
-    if ((moment(object?.birth.substr(3, 4), 'MM') >= moment(monthInitial, 'MM')) && (moment(object?.birth.substr(3, 4), 'MM') <= moment(monthFinish, 'MM'))) {
-      auxFilterMonth[add] = object;
-    }
-    add += 1;
-  });
   function handleData() {
-    setData(auxFilterMonth);
+    setData(auxFilterDay);
+    console.log('🚀 ~ file: SearchBirthday.js ~ line 66 ~ handleData ~ auxFilterDay', auxFilterDay);
+    console.log('🚀 ~ file: SearchBirthday.js ~ line 52 ~ handleData ~ auxFilterMonth', auxFilterMonth);
     if (dayInitial === '' && monthInitial === '' && dayFinish === '' && monthFinish === '') {
       setData(rows);
     }
@@ -49,6 +78,11 @@ function SearchBirthday({
     setDayFinish('');
     setMonthFinish('');
   };
+
+  useEffect(() => {
+    getAllAssociates();
+  }, []);
+
   const body = (
     <Box className="birthday-search-advanced-container">
       <div className="birthday-search-advanced-text">
