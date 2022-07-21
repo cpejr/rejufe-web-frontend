@@ -117,13 +117,13 @@ function Header(props) {
   ];
   const linksComunic = [
     {
-      link: () => handleClick('/administracao-registros-comunic'),
-      pathName: '/administracao-registros-comunic',
+      link: () => handleClick('/administracao-registros-comunicados'),
+      pathName: '/administracao-registros-comunicados',
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastrar-comunic'),
-      pathName: '/cadastrar-comunic',
+      link: () => handleClick('/cadastrar-comunicados'),
+      pathName: '/cadastrar-comunicados',
       text: 'Cadastrar',
     },
   ];
