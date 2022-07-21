@@ -102,9 +102,19 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-
-  titles, rows, id, order, edit, search, searchFile, print, loading, sequentialId, dados, dataFilter, printAssociados,
-
+  titles,
+  rows,
+  id,
+  order,
+  edit,
+  search,
+  searchFile,
+  print,
+  loading,
+  sequentialId,
+  dados,
+  dataFilter,
+  printAssociados,
 }) {
   const [data, setData] = useState(rows);
   const [page, setPage] = useState(0);
@@ -389,10 +399,8 @@ function ConsultaAssociados({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'Todos', value: -1 }]}
               component="div"
-
               style={{ overflow: printAssociados ? 'unset' : 'hidden' }}
               count={data.length}
-
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}

@@ -9,7 +9,7 @@
   border-radius: 30px;
 }
 
-.makeStyles-content-2 {
+.makeStyles-content-7 {
   overflow-y: scroll;
 }
 
@@ -42,9 +42,16 @@
 
 .container-modal-quizz button {
   height: 100%;
-  display: flex;
+  display: flex; 
   justify-content: center;
   cursor: pointer;
+}
+.container-modal-quizz{
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  height: 100%;
+  padding: 0 2% 0 3%;
 }
 
 .create-quizz-button p {
@@ -70,6 +77,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.label-modal-quizz{
+  margin: 5px;
+  width: 100%;
 }
 
 .form-modal-quizz h1 {
@@ -119,7 +130,7 @@
   text-align: center;
   color: var(--color2);
   font-family: "Roboto", sans-serif;
-  font-size: 30px;
+  font-size: 1.8em;
   font-weight: 300;
   margin: 0;
 }
@@ -197,10 +208,11 @@
     width: 25px;
   }
 }
-
+  
 @media (max-width: 440px) {
   .title-modal-quizz h2 {
     font-size: 25px;
+    margin-bottom: 2%;
   }
 
   .confirm-button-modal-quizz {
