@@ -4,6 +4,11 @@ toast.configure();
 
 export default function checkModelsData(key, value) {
   if (typeof value !== 'string') return false;
+  if (key === 'numberModels') {
+    const numberRegex = /^[0-9\b]*$/;
+    if (!numberRegex.test(value)) return true;
+    return false;
+  }
   if (value.length !== 0) return false;
   if (key === 'type') {
     toast.error('Tipo inválido!!', {
