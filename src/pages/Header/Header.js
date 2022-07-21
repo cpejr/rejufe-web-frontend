@@ -47,10 +47,10 @@ function Header(props) {
     history.push(pathName);
   }
   function handleReturn() {
-    window.location.href = '/login';
+    history.push('/login');
   }
   function handleSubmitIntranet() {
-    window.location.href = '/intranet';
+    history.push('/intranet');
   }
   const links1 = [
     {
