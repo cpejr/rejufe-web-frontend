@@ -43,17 +43,12 @@ function GraphicQuizzes({
     name: value,
   }));
 
-  const handleHover = () => {
-    console.log('mouse over');
-  };
-
   const options = {
     title: 'Quizz',
     chartArea: { width: '50%', height: '100%' },
     vAxis: {
       title: 'Opções',
     },
-    onMouseOver: { handleHover },
   };
 
   return (

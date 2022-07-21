@@ -47,6 +47,7 @@
   cursor: pointer;
 }
 .container-modal-quizz{
+  justify-content: center;
   display: flex;
   margin: auto;
   height: 100%;
