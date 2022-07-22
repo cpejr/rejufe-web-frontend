@@ -389,10 +389,8 @@ function ConsultaAssociados({
             <TablePagination
               rowsPerPageOptions={[10, 25, 100, { label: 'Todos', value: -1 }]}
               component="div"
-
               style={{ overflow: printAssociados ? 'unset' : 'hidden' }}
               count={data.length}
-
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}

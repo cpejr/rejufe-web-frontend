@@ -167,12 +167,12 @@ export const initialAccountabilityState = {
   date: '',
   title: '',
   description: '',
-  pdf: undefined,
+  archive_1: undefined,
 };
 
 export const initialAccountabilityErrorState = {
   date: false,
   title: false,
   description: false,
-  pdf: false,
+  archive_1: false,
 };
