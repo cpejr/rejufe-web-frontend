@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useJwt } from 'react-jwt';
 import * as managerService from '../services/manager/managerService';
 import LinearColor from '../components/Loading/Loading';
 
@@ -17,6 +18,8 @@ const routingFunction = (param) => {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const { isExpired } = useJwt(sessionStorage.getItem('@token'));
+  const history = useHistory();
 
   async function login() {
     try {
@@ -55,18 +58,22 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState();
 
   const isAuthenticated = () => {
-    const getAccessToken = JSON.parse(localStorage.getItem('user'));
-    return getAccessToken?.accessToken !== null;
+    if (isExpired) {
+      localStorage.removeItem('user');
+      sessionStorage.removeItem('@token');
+    }
+    return !isExpired;
   };
-
   const typeAuthorized = (type, userAlt) => ((type === 'usuario'
     && (userAlt?.type === 'administrador' || userAlt?.type === 'usuario')) || userAlt?.type === type);
 
   const logout = () => {
     localStorage.removeItem('user');
+    sessionStorage.removeItem('@token');
     setUser(null);
     setToken(null);
     setLoading(false);
+    history.push('login');
   };
 
   // eslint-disable-next-line react/no-unstable-nested-components
