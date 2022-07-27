@@ -73,9 +73,9 @@
 }
 
 .edit-comunic-modal-ButtonConfirm {
-  display:flex;
-  padding: 1%;
-  width: 30%;
+  display: flex;
+  padding: 6px 16px;
+  width: max(135px, 30%);
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;

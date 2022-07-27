@@ -31,7 +31,6 @@ function Header(props) {
   const history = useHistory();
   const { logout, user } = useAuth();
 
-  console.log(logout);
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
@@ -223,11 +222,11 @@ function Header(props) {
             Sair
           </button>
           {user?.type === 'administrador' && pages?.map((listItem) => (
-            <div className="header-dropdown">
+            <div className="header-dropdown" key={listItem.text}>
               <button className="header-dropbtn" type="button">{listItem.text}</button>
               <div className="header-dropdown-content">
                 {listItem.links.map((listItem2) => (
-                  <a href={listItem2.pathName}>
+                  <a href={listItem2.pathName} key={listItem2.text}>
                     {listItem2.text}
                     <br />
                   </a>
