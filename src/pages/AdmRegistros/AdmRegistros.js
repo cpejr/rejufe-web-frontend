@@ -22,9 +22,9 @@ function AdmRegistros() {
     try {
       const allAssociates = await managerService.getAssociates();
       allAssociates.forEach(({
-        sequential_Id, _id, name, cpf, status,
+        sequential_Id: seqId, _id, name, cpf, status, // Eslint exigiu
       }) => {
-        associateCode.push(sequential_Id);
+        associateCode.push(seqId);
         associateId.push(_id);
         auxAssociate.push({ name, cpf, status });
       });

@@ -102,9 +102,19 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-
-  titles, rows, id, order, edit, search, searchFile, print, loading, sequentialId, dados, dataFilter, printAssociados,
-
+  titles,
+  rows,
+  id,
+  order,
+  edit,
+  search,
+  searchFile,
+  print,
+  loading,
+  sequentialId,
+  dados,
+  dataFilter,
+  printAssociados,
 }) {
   const [data, setData] = useState(rows);
   const [page, setPage] = useState(0);
