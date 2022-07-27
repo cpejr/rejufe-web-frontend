@@ -31,7 +31,7 @@ export default function TextEditor({
   }, [dados]);
 
   useEffect(() => {
-    const rightText = convertedText.replace('<p>', '').replace('</p>', '').replace('<br>', '');
+    const rightText = convertedText?.replace('<p>', '')?.replace('</p>', '')?.replace('<br>', '');
     handleChange(rightText);
   }, [convertedText]);
 
