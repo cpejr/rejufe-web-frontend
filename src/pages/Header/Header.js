@@ -46,10 +46,10 @@ function Header(props) {
     history.push(pathName);
   }
   function handleReturn() {
-    window.location.href = '/login';
+    history.push('/login');
   }
   function handleSubmitIntranet() {
-    window.location.href = '/intranet';
+    history.push('/intranet');
   }
   const links1 = [
     {
@@ -104,11 +104,6 @@ function Header(props) {
   ];
   const linksAcoes = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/admregistros'),
       pathName: '/administracao-registros-acoes',
       text: 'Administração de Registros',
@@ -120,11 +115,6 @@ function Header(props) {
     },
   ];
   const linksComunic = [
-    {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
     {
       link: () => handleClick('/administracao-registros-comunic'),
       pathName: '/administracao-registros-comunic',

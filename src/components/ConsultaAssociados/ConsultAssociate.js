@@ -102,12 +102,25 @@ TablePaginationActions.propTypes = {
 };
 
 function ConsultaAssociados({
-  titles, rows, id, order, edit, search, searchFile, print, loading, sequentialId, dados, dataFilter,
+  titles,
+  rows,
+  id,
+  order,
+  edit,
+  search,
+  searchFile,
+  print,
+  loading,
+  sequentialId,
+  dados,
+  dataFilter,
+  printAssociados,
 }) {
   const [data, setData] = useState(rows);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(print ? -1 : 10);
   const [open, setOpen] = useState(false);
+
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
@@ -135,7 +148,6 @@ function ConsultaAssociados({
         display: 'flex',
         justifyContent: 'center',
         margin: '1%',
-        alignItems: 'center',
       },
   };
   const cellFontProps = {
@@ -196,7 +208,7 @@ function ConsultaAssociados({
           color: 'white',
         }
         : {
-          fontSize: '77%',
+          fontSize: '100%',
           backgroundColor: '#2574A9',
           color: 'white',
         },
@@ -205,7 +217,7 @@ function ConsultaAssociados({
   const tableProps = {
     sx: matchesFont400px
       ? {
-        minWidth: 400,
+        minWidth: 450,
       }
       : { minWidth: 650 },
     size: matchesFont85
@@ -213,6 +225,19 @@ function ConsultaAssociados({
       : matchesFont90
         ? 'medium'
         : 'big',
+  };
+
+  const tableContainerProps = {
+    sx: printAssociados
+      ? {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflowX: 'unset',
+      }
+      : {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
   };
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -244,7 +269,7 @@ function ConsultaAssociados({
   return (
     <TableContainer
       component={Paper}
-      sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+      {...tableContainerProps}
     >
       <Table
         {...tableProps}
@@ -351,12 +376,30 @@ function ConsultaAssociados({
         </div>
       )}
       <TableFooter {...footerProps}>
-        {print === false ? (
+        {print ? (
+          <TablePagination
+            rowsPerPageOptions={[{ label: 'Todos', value: -1 }]}
+            component="div"
+            style={{ overflow: printAssociados ? 'unset' : 'hidden' }}
+            count={rows.length}
+            rowsPerPage={rows?.length}
+            labelRowsPerPage="Linhas por pagina"
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'Linhas por pagina',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            ActionsComponent={TablePaginationActions}
+          />
+        ) : (
           <>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
+              rowsPerPageOptions={[10, 25, 100, { label: 'Todos', value: -1 }]}
               component="div"
-              style={{ overflow: 'hidden' }}
+              style={{ overflow: printAssociados ? 'unset' : 'hidden' }}
               count={data.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
@@ -412,24 +455,6 @@ function ConsultaAssociados({
               </Button>
             </div>
           </>
-        ) : (
-          <TablePagination
-            rowsPerPageOptions={[{ label: 'All', value: -1 }]}
-            component="div"
-            style={{ overflow: 'hidden' }}
-            count={data.length}
-            rowsPerPage={rows.length}
-            labelRowsPerPage="Linhas por pagina"
-            page={page}
-            SelectProps={{
-              inputProps: {
-                'aria-label': 'Linhas por pagina',
-              },
-              native: true,
-            }}
-            onPageChange={handleChangePage}
-            ActionsComponent={TablePaginationActions}
-          />
         )}
       </TableFooter>
     </TableContainer>

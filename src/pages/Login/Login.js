@@ -125,7 +125,7 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          window.location.href = '/intranet';
+          history.push('/intranet');
         } catch (error) {
           setLoading(false);
           if (email !== undefined) {
