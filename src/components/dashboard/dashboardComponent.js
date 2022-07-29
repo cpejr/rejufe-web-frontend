@@ -44,7 +44,7 @@ import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
-import SetFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import SetFileNameById from '../SetFileNameArchive/setFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
@@ -397,10 +397,10 @@ function TableComponent({
 
   useEffect(() => {
     if (archive1Id) {
-      SetFileNameArchive(fileNames1, archive1Id, setFileNames1);
+      SetFileNameById(fileNames1, archive1Id, setFileNames1);
     }
     if (archive2Id) {
-      SetFileNameArchive(fileNames2, archive2Id, setFileNames2);
+      SetFileNameById(fileNames2, archive2Id, setFileNames2);
     }
     setData(rows);
   }, [archive1Id, archive2Id, rows]);

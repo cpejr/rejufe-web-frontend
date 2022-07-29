@@ -28,11 +28,12 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [usuario, setUsuario] = useState(initialState);
+  const [cpf, setCpf] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
   const { setUser } = useAuth();
   const history = useHistory();
-
+  const [isBlocked, setIsBlocked] = useState(false);
   async function rememberMe() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -51,8 +52,15 @@ function Login() {
     rememberMe();
   }, []);
 
+  // const handleChange = (value, field) => {
+  //   setUsuario({ ...usuario, [field]: value });
+  // };
   const handleChange = (value, field) => {
-    setUsuario({ ...usuario, [field]: value });
+    if (/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/.test(value)) {
+    setCpf({ ...cpf, [field]: value });
+   } else {
+      setUsuario({ ...usuario, [field]: value });
+             }
   };
 
   const handleClickClose = () => {
@@ -74,16 +82,16 @@ function Login() {
           });
         }
       }
-      if (usuario?.cpf !== undefined && usuario?.user === '') {
-        try {
-          email = await managerService.getUserEmailByCpf(usuario?.cpf);
-        } catch (error) {
-          toast.error('Credenciais Inválidas!', {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-          });
-        }
-      }
+      // if (usuario?.cpf !== undefined && usuario?.user === '') {
+      //   try {
+      //     email = await managerService.getUserEmailByCpf(usuario?.cpf);
+      //   } catch (error) {
+      //     toast.error('Credenciais Inválidas!', {
+      //       position: toast.POSITION.TOP_RIGHT,
+      //       autoClose: 5000,
+      //     });
+      //   }
+      // }
       if (usuario?.cpf !== undefined && usuario?.user !== '') {
         toast.error('Insira somente seu CPF ou seu usuário!', {
           position: toast.POSITION.TOP_RIGHT,
@@ -103,7 +111,7 @@ function Login() {
       } else {
         attempts = res?.quantity;
       }
-      if (attempts > 2 && moment() < moment(res?.lock_time)) {
+      if (moment() < moment(res?.lock_time)) {
         const restante = moment(res?.lock_time).fromNow();
         setContentWarningModal(restante);
         setShowWarningModal(true);
@@ -127,11 +135,11 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          // if (response !== {}) {
-          //   console.log('frase');
-          //   window.location.href = '/intranet';
-          // }
+          if (response !== {}) {
+              window.location.href = '/intranet';
+          }
         } catch (error) {
+          setShowWarningModal(true);
           setLoading(false);
           if (email !== undefined) {
             if (attempts <= 1) {
@@ -143,6 +151,7 @@ function Login() {
                   const time = moment().add(1, 'minutes');
                   setContentWarningModal('após 3 minutos');
                   await managerService.updateTime(email, time);
+                  setIsBlocked(true);
                   setShowWarningModal(true);
                   break;
                 }
@@ -151,6 +160,7 @@ function Login() {
                   setContentWarningModal('após 5 minutos');
                   await managerService.updateTime(email, time);
                   setShowWarningModal(true);
+                  setIsBlocked(true);
                   break;
                 }
                 default: {
@@ -158,6 +168,7 @@ function Login() {
                   setContentWarningModal('após 15 minutos');
                   await managerService.updateTime(email, time);
                   setShowWarningModal(true);
+                  setIsBlocked(true);
                   break;
                 }
               }
@@ -172,6 +183,7 @@ function Login() {
         autoClose: 5000,
       });
       setLoading(false);
+      setIsBlocked(false);
     }
   };
 
@@ -240,6 +252,7 @@ function Login() {
                 content={contentWarningModal}
                 close={handleClickClose}
                 className="WarningModalLoginScreen"
+                isBlocked={isBlocked}
               />
             )}
           </div>

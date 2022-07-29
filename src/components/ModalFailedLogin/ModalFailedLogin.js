@@ -2,9 +2,8 @@
 import React from 'react';
 import './ModalFailedLogin.css';
 
-function ModalFailedLogin({ close, content }) {
-  const phrase = `Devido a sucessivas tentativas de login falhas essa conta foi bloqueada temporariamente, tente novamente ${content}`;
-
+function ModalFailedLogin({ close, content, isBlocked }) {
+  const phrase = isBlocked ? `Devido a sucessivas tentativas de login falhas essa conta foi bloqueada temporariamente, tente novamente ${content}` : 'Prezado(a) usuário, a sua conta será bloqueada temporariamente caso erre suas credenciais de login por 3 vezes seguidas';
   return (
     <div className="ModalFailedLogin">
       <div className="ModalFailedLoginContainer">
