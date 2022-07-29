@@ -37,9 +37,7 @@ function Login() {
   async function rememberMe() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
-      console.log(userStorage);
       if (userStorage?.rememberMe) {
-        console.log('hello');
         history.push('/intranet');
       }
       setPageLoading(false);

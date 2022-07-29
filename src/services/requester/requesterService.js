@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import qs from 'querystring';
+import qs from 'qs';
 import httpClient from '../../hooks/httpClient';
 
 export const login = (user) => httpClient.post('/login', user);
@@ -88,6 +88,8 @@ export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.g
 });
 
 export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/vote/${id}`, quizz);
+
+export const updateVotes = (quizzId, body) => httpClient.put(`/quizzes/votes/${quizzId}`, body);
 
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
