@@ -48,12 +48,6 @@ function SearchBirthday({
   const compareFinish = `${dayFinish}/${monthFinish}`;
   console.log('1' < '18');
   associates?.forEach((object) => {
-  /*   if(object?.birth.substr(0) === 0){
-      if(object?.birth.substr(1) <= 0)
-    }
-    if(object?.birth.substr(0) !== 0){
-
-    } */
     if ((object?.birth.substr(3, 4) === monthInitial) && (moment(object?.birth.substr(3, 4), 'MM') === monthFinish)) {
       if (moment(object?.birth, 'DD') >= moment(dayInitial, 'DD') && moment(object?.birth, 'DD') <= moment(dayFinish, 'DD')) {
         auxFilterDay[count] = object;
