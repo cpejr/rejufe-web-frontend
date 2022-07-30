@@ -1,5 +1,5 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
@@ -20,7 +20,12 @@ function SearchBirthday({
   const [monthFinish, setMonthFinish] = useState('');
   const auxFilterDay = [];
   let count = 0;
-  const auxFilterMonth = [];
+  function compare(a, b) {
+    const x = a.name.toUpperCase();
+    const y = b.name.toUpperCase();
+
+    return x === y ? 0 : x > y ? 1 : -1;
+  }
   function createData(birth, name, cellPhoneNumber) {
     return {
       birth, name, cellPhoneNumber,
@@ -30,6 +35,8 @@ function SearchBirthday({
     try {
       const auxAssociate = [];
       const allAssociates = await managerService.getAssociates();
+      allAssociates.sort(compare);
+
       allAssociates.filter((associate) => associate.status === 'A').forEach((object) => {
         auxAssociate.push(createData(
           moment(object?.birth).format('DD/MM'),
