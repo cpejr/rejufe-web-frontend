@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
@@ -55,34 +56,30 @@ function SearchBirthday({
   associates?.forEach((object) => {
     if (parseInt(object?.birth.substr(3, 4), 10) > convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) < convertMonthFinish) {
       auxFilterDay[count] = object;
+      count += 1;
     }
     if (parseInt(object?.birth.substr(3, 4), 10) > convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) === convertMonthFinish) {
-      // eslint-disable-next-line max-len
       if (parseInt(object?.birth.substr(0), 10) <= convertDayFinish) {
         auxFilterDay[count] = object;
+        count += 1;
       }
     }
     if (parseInt(object?.birth.substr(3, 4), 10) === convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) < convertMonthFinish) {
-      // eslint-disable-next-line max-len
       if (parseInt(object?.birth.substr(0), 10) >= convertDayInitial) {
         auxFilterDay[count] = object;
+        count += 1;
       }
     }
-    const test = object?.birth.substr(3, 4);
-    console.log('🚀 ~ file: SearchBirthday.js ~ line 57 ~ associates?.forEach ~ test', test);
-    console.log('🚀 ~ file: SearchBirthday.js ~ l555 ~ associates?.forEach ~ object?.birth.substr(0, 1)', parseInt(test, 10));
     if (parseInt(object?.birth.substr(3, 4), 10) === convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) === convertMonthFinish) {
-    // eslint-disable-next-line max-len
       if (parseInt(object?.birth.substr(0), 10) >= convertDayInitial && parseInt(object?.birth.substr(0), 10) <= convertDayFinish) {
         auxFilterDay[count] = object;
+        count += 1;
       }
     }
-    count += 1;
   });
   function handleData() {
     setData(auxFilterDay);
     console.log('🚀 ~ file: SearchBirthday.js ~ line 66 ~ handleData ~ auxFilterDay', auxFilterDay);
-    console.log('🚀 ~ file: SearchBirthday.js ~ line 52 ~ handleData ~ auxFilterMonth', auxFilterMonth);
     if (dayInitial === '' && monthInitial === '' && dayFinish === '' && monthFinish === '') {
       setData(rows);
     }
