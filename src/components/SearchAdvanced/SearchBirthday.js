@@ -43,13 +43,37 @@ function SearchBirthday({
       console.warn(error);
     }
   }
-  const compareInitial = `${dayInitial}/${monthInitial}`;
+  const compareDayInitial = `${dayInitial}`;
+  const compareDayFinish = `${dayFinish}`;
+  const compareMonthInitial = `${monthInitial}`;
+  const compareMonthFinish = `${monthFinish}`;
+  const convertDayInitial = parseInt(compareDayInitial, 10);
+  const convertDayFinish = parseInt(compareDayFinish, 10);
+  const convertMonthInitial = parseInt(compareMonthInitial, 10);
+  const convertMonthFinish = parseInt(compareMonthFinish, 10);
   // eslint-disable-next-line no-unused-vars
-  const compareFinish = `${dayFinish}/${monthFinish}`;
-  console.log('1' < '18');
   associates?.forEach((object) => {
-    if ((object?.birth.substr(3, 4) === monthInitial) && (moment(object?.birth.substr(3, 4), 'MM') === monthFinish)) {
-      if (moment(object?.birth, 'DD') >= moment(dayInitial, 'DD') && moment(object?.birth, 'DD') <= moment(dayFinish, 'DD')) {
+    if (parseInt(object?.birth.substr(3, 4), 10) > convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) < convertMonthFinish) {
+      auxFilterDay[count] = object;
+    }
+    if (parseInt(object?.birth.substr(3, 4), 10) > convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) === convertMonthFinish) {
+      // eslint-disable-next-line max-len
+      if (parseInt(object?.birth.substr(0), 10) <= convertDayFinish) {
+        auxFilterDay[count] = object;
+      }
+    }
+    if (parseInt(object?.birth.substr(3, 4), 10) === convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) < convertMonthFinish) {
+      // eslint-disable-next-line max-len
+      if (parseInt(object?.birth.substr(0), 10) >= convertDayInitial) {
+        auxFilterDay[count] = object;
+      }
+    }
+    const test = object?.birth.substr(3, 4);
+    console.log('🚀 ~ file: SearchBirthday.js ~ line 57 ~ associates?.forEach ~ test', test);
+    console.log('🚀 ~ file: SearchBirthday.js ~ l555 ~ associates?.forEach ~ object?.birth.substr(0, 1)', parseInt(test, 10));
+    if (parseInt(object?.birth.substr(3, 4), 10) === convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) === convertMonthFinish) {
+    // eslint-disable-next-line max-len
+      if (parseInt(object?.birth.substr(0), 10) >= convertDayInitial && parseInt(object?.birth.substr(0), 10) <= convertDayFinish) {
         auxFilterDay[count] = object;
       }
     }
