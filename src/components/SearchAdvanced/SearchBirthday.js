@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 import ptLocale from 'moment/locale/pt-br';
 import * as managerService from '../../services/manager/managerService';
 import './SearchBirthday.css';
@@ -59,7 +60,6 @@ function SearchBirthday({
   const convertDayFinish = parseInt(compareDayFinish, 10);
   const convertMonthInitial = parseInt(compareMonthInitial, 10);
   const convertMonthFinish = parseInt(compareMonthFinish, 10);
-  // eslint-disable-next-line no-unused-vars
   associates?.forEach((object) => {
     if (parseInt(object?.birth.substr(3, 4), 10) > convertMonthInitial && parseInt(object?.birth.substr(3, 4), 10) < convertMonthFinish) {
       auxFilterDay[count] = object;
@@ -90,7 +90,20 @@ function SearchBirthday({
     if (dayInitial === '' && monthInitial === '' && dayFinish === '' && monthFinish === '') {
       setData(rows);
     }
-
+    if (convertMonthInitial > convertMonthFinish) {
+      toast.error('Intervalo inválido!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+    if (convertMonthInitial === convertMonthFinish) {
+      if (convertDayInitial > convertDayFinish) {
+        toast.error('Intervalo inválido!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+        });
+      }
+    }
     handleClose();
   }
 
@@ -112,17 +125,108 @@ function SearchBirthday({
       </div>
       <div className="birthday-search-advanced-buttons">
         <div className="birthday-search-buttons-align">
-
           <label>Início:</label>
-
-          <input type="text" setFilterValue onChange={(e) => setDayInitial(e.target.value.toLowerCase())} />
-          <input type="text" setFilterValue onChange={(e) => setMonthInitial(e.target.value.toLowerCase())} />
+          <select data-size="2" className="birthday-search-advanced-select" setFilterType placeholder="" onChange={(e) => setDayInitial(e.target.value.toLowerCase())}>
+            <option value=" "> </option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+          <select className="birthday-search-advanced-select" setFilterType placeholder="" onChange={(e) => setMonthInitial(e.target.value.toLowerCase())}>
+            <option value=" "> </option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
         </div>
         <div className="birthday-search-buttons-align">
           <label>Término:</label>
-
-          <input type="text" setFilterValue onChange={(e) => setDayFinish(e.target.value.toLowerCase())} />
-          <input type="text" setFilterValue onChange={(e) => setMonthFinish(e.target.value.toLowerCase())} />
+          <select className="birthday-search-advanced-select" setFilterType placeholder="" onChange={(e) => setDayFinish(e.target.value.toLowerCase())}>
+            <option value=" "> </option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+          <select className="birthday-search-advanced-select" setFilterType placeholder="" onChange={(e) => setMonthFinish(e.target.value.toLowerCase())}>
+            <option value=" "> </option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
         </div>
         <div className="birthday-search-buttons-field">
           <div className="birthday-align-buttons">

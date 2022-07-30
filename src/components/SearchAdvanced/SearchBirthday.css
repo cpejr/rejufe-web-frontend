@@ -32,6 +32,18 @@
     padding-right: 10px;
   
   }
+  .birthday-search-advanced-select {
+    margin-bottom: 5%;
+    margin-top: 1%;
+    height: 30px;
+    background-color: #f0f0f5;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  select { width: 5em;  overflow-y:auto; }
   .birthday-search-advanced-text{
     display:flex;
     align-items:center;
