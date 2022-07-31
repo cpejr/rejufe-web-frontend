@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useTheme } from '@mui/material/styles';
-import Modal from '@material-ui/core/Modal';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -46,7 +45,7 @@ import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
@@ -343,14 +342,6 @@ function TableComponent({
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   function setIntranetForms(e, redirectId) {
@@ -741,6 +732,30 @@ function TableComponent({
             />
             <div className="button-table-component-pagination-consult">
               {renderButton && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginBottom: '5px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchAdvancedAccount handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchMinutes && (
                 <div>
                   <Button
                     {...buttonFontProps}

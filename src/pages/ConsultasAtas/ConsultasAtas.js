@@ -44,7 +44,6 @@ function ConsultaMinutes() {
               titles={titles}
               searchMinutes
               printButton
-              renderButton
               loading={loading}
               route="/imprimir-atas-editais"
             />
