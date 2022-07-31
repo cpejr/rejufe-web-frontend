@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -8,6 +9,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
+import Modal from '@material-ui/core/Modal';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
@@ -44,11 +46,13 @@ import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
-import setFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
+import setFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
+import SearchAdvancedAssociate from '../SearchAdvanced/SearchValidateAssociate';
+import SearchAdvancedAccount from '../SearchAdvanced/SearchAdvancedAccount';
 import SearchAtas from '../SearchAdvanced/SearchAtas';
 import SearchComunic from '../SearchAdvanced/SearchComunic';
 import SearchBirthday from '../SearchAdvanced/SearchBirthday';
@@ -163,6 +167,7 @@ function TableComponent({
   numbers,
   editActions,
   actionId,
+  searchAdvanced,
   searchBirthday,
 }) {
   const [page, setPage] = useState(0);
@@ -338,6 +343,14 @@ function TableComponent({
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   function setIntranetForms(e, redirectId) {
@@ -796,6 +809,28 @@ function TableComponent({
                     aria-describedby="simple-modal-description"
                   >
                     <SearchBirthday handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchAdvanced && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchAdvancedAssociate handleClose={handleClose} setData={setData} rows={rows} dados={dados} />
                   </Modal>
                 </div>
               )}

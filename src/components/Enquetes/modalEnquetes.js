@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     ['@media (max-width:900px)']: {
       width: '60%',
     },
-    ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
-      width: '100%',
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      width: '75%',
     },
   },
 
@@ -94,30 +94,30 @@ export default function ModalEnquete({ setNewQuizz }) {
   const body = (
     <ThemeProvider theme={theme}>
       <div style={modalStyle} className={classes.content}>
-        <div className="container-modal-quizz">
-          <div className="exit-modal-quizz">
-            <button
-              className="close-modal-quizz"
-              type="button"
-              onClick={() => {
-                handleClose();
-              }}
-            >
-              <CloseIcon
-                size={30}
-                sx={[
-                  {
-                    color: '#264A6F',
-                    '&:hover': {
-                      color: 'white',
-                      backgroundColor: '#264A6F',
-                      borderRadius: '5px',
-                    },
+        <div className="exit-modal-quizz">
+          <button
+            className="close-modal-quizz"
+            type="button"
+            onClick={() => {
+              handleClose();
+            }}
+          >
+            <CloseIcon
+              size={30}
+              sx={[
+                {
+                  color: '#264A6F',
+                  '&:hover': {
+                    color: 'white',
+                    backgroundColor: '#264A6F',
+                    borderRadius: '5px',
                   },
-                ]}
-              />
-            </button>
-          </div>
+                },
+              ]}
+            />
+          </button>
+        </div>
+        <div className="container-modal-quizz">
           <FormInputs setNewQuizz={setNewQuizz} handleClose={handleClose} />
         </div>
       </div>

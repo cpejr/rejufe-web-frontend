@@ -19,7 +19,7 @@
   background-color: transparent;
   text-align: center;
   padding: 15px;
-  display: flex;
+  display: flex; 
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -61,7 +61,8 @@
 .description-card-quizzes p {
   margin-top: 10px;
   font-family: 'Roboto', sans-serif;
-  font-size: 17px;
+  font-size: 1em;
+  line-height: 1.5em;
   align-items: center;
   display: flex;
   flex-direction: row;

@@ -55,12 +55,10 @@ function ValidarSocio() {
 
   const titles = [
     '',
-    '',
     'Nome',
     'Cpf',
     'Status',
   ];
-
   return (
     <div className="ValidateAssociate-container">
       <div className="ValidateAssociate-field">
@@ -71,13 +69,13 @@ function ValidarSocio() {
         </div>
         <div className="line-table-validateAssociate" />
         <TableComponent
+          searchAdvanced
           setUse={setUse}
           dados={data}
           associateId={id}
           rows={associates}
           titles={titles}
           validate
-          searchAssociate
           loading={loading}
         />
       </div>
