@@ -173,7 +173,7 @@ function TableComponent({
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
   const actualArchive2 = { ...archive2Id };
-  const matches = useMediaQuery('(max-width:930px)');
+  const matches = useMediaQuery('(max-width:1170px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
@@ -279,6 +279,7 @@ function TableComponent({
       }
       : matchesFont90
         ? {
+          widht: '200px',
           fontSize: '90%',
           backgroundColor: '#2574A9',
           color: 'white',
@@ -779,6 +780,7 @@ function TableComponent({
                   <Button
                     {...buttonFontProps}
                     sx={{
+                      marginTop: '10px',
                       marginRight: '15px',
                       marginBottom: '5px',
                       marginLeft: '15px',

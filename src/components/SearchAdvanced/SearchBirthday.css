@@ -43,7 +43,11 @@
     padding-left: 10px;
     padding-right: 10px;
   }
-  select { width: 5em;  overflow-y:auto; }
+  select { 
+    height:100px;
+    overflow:scroll;
+}
+
   .birthday-search-advanced-text{
     display:flex;
     align-items:center;
@@ -173,6 +177,7 @@
     font-size: 1.2em;
   }
   .birthday-search-advanced-title p{
+    margin-top: 15px;
     font-size: 1.2em;
   }
   
@@ -217,6 +222,11 @@
   }
   
   @media(max-width: 389px){
+    .birthday-search-advanced-container{
+      height: 25em;
+      width: 15em;
+    }
+  
     .birthday-search-buttons-align input {
       width: 35px;
     }
@@ -231,11 +241,6 @@
     .birthday-search-button-clean{
       font-size: 14px;
     }
-
-    .birthday-search-advanced-title{
-      font-size: 12px;
-    }
-  
   }
 
   @media(max-width: 286px){
