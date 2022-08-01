@@ -89,7 +89,6 @@ function SearchBirthday({
     }
   });
   function handleData() {
-    setData(auxFilterDay);
     if (dayInitial === '' && monthInitial === '' && dayFinish === '' && monthFinish === '') {
       setData(rows);
     }
@@ -98,6 +97,7 @@ function SearchBirthday({
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
+      setData(rows);
     }
     if (convertMonthInitial === convertMonthFinish) {
       if (convertDayInitial > convertDayFinish) {
@@ -105,9 +105,18 @@ function SearchBirthday({
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 5000,
         });
+        setData(rows);
       }
     }
-    handleClose();
+    if (dayInitial === '' || monthInitial === '' || dayFinish === '' || monthFinish === '') {
+      toast.error('Preencha todos os campos!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    } else {
+      setData(auxFilterDay);
+      handleClose();
+    }
   }
 
   useEffect(() => {
