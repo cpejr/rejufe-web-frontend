@@ -110,13 +110,6 @@ function SearchBirthday({
     handleClose();
   }
 
-  const handleClean = () => {
-    setDayInitial('');
-    setMonthInitial('');
-    setDayFinish('');
-    setMonthFinish('');
-  };
-
   useEffect(() => {
     getAllAssociates();
   }, []);
@@ -128,9 +121,10 @@ function SearchBirthday({
       </div>
       <div className="birthday-search-advanced-buttons">
         <div className="birthday-search-buttons-align">
-          <label>Início:</label>
+          <p>Início:</p>
           <TextField
             select
+            label="Dia"
             variant="standard"
             sx={{ m: 1, width: '55px' }}
             onChange={(e) => setDayInitial(e.target.value.toLowerCase())}
@@ -143,6 +137,7 @@ function SearchBirthday({
           </TextField>
           <TextField
             select
+            label="Mês"
             variant="standard"
             sx={{ m: 1, width: '55px' }}
             onChange={(e) => setMonthInitial(e.target.value.toLowerCase())}
@@ -155,9 +150,10 @@ function SearchBirthday({
           </TextField>
         </div>
         <div className="birthday-search-buttons-align">
-          <label>Término:</label>
+          <p>Término:</p>
           <TextField
             select
+            label="Dia"
             variant="standard"
             sx={{ m: 1, width: '55px' }}
             onChange={(e) => setDayFinish(e.target.value.toLowerCase())}
@@ -170,6 +166,7 @@ function SearchBirthday({
           </TextField>
           <TextField
             select
+            label="Mês"
             variant="standard"
             sx={{ m: 1, width: '55px' }}
             onChange={(e) => setMonthFinish(e.target.value.toLowerCase())}
@@ -192,17 +189,6 @@ function SearchBirthday({
             >
               <div className="button-search-align">
                 <p>Pesquisa Avançada</p>
-              </div>
-            </button>
-          </div>
-          <div className="birthday-search-button-field">
-            <button
-              className="birthday-search-button-clean"
-              type="button"
-              onClick={handleClean}
-            >
-              <div className="button-search-align">
-                <p>Limpar</p>
               </div>
             </button>
           </div>
