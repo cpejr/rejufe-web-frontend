@@ -25,7 +25,6 @@ function SearchAtas({
 
     return str.replace(/[^a-z0-9]/gi, '');
   }
-
   // eslint-disable-next-line max-len
   const filterDescription = rows?.filter(((item) => replaceSpecialChars(item?.description).toLowerCase().includes(replaceSpecialChars(query))));
   const filterType = rows?.filter(((item) => item.type?.includes(type)));
@@ -46,6 +45,9 @@ function SearchAtas({
       });
       setType('');
       setQuery('');
+    }
+    if (query === '' && type === '') {
+      setData(rows);
     }
     handleClose();
   };
