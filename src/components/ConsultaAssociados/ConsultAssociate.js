@@ -266,6 +266,7 @@ function ConsultaAssociados({
   useEffect(() => {
     setData(rows);
   }, [rows]);
+  console.log(rows);
   return (
     <TableContainer
       component={Paper}
