@@ -1,8 +1,13 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
+import CookieConsent from 'react-cookie-consent';
 import Divider from '@mui/material/Divider';
 import { toast } from 'react-toastify';
 import MenuLateral from '../MenuLateral';
+import TermsConditionsModal from '../../components/TermsConditionsModal/TermsConditionsModal';
 import BottomMenu from '../../components/BottomMenu/BottomMenu';
 import ResultadoQuizzes from '../ResultadoQuizzes/ResultadoQuizzes';
 import ListaComunicados from '../ListaComunicados/ListaComunicados';
@@ -29,6 +34,15 @@ toast.configure();
 function Intranet() {
   const [selectedButton, setSelectedButton] = useState('Home');
   const [birthdaysUsers, setBirthdayUsers] = useState();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   async function getBirthdayUsers() {
     try {
@@ -92,6 +106,19 @@ function Intranet() {
       {(birthdaysUsers?.length !== 0 && birthdaysUsers !== undefined) && (
         <BirthdayNotificationModal birthdaysUsers={birthdaysUsers} />
       )}
+      <CookieConsent
+        debug={false}
+        location="bottom"
+        style={{
+          background: '#081120', fontFamily: 'Roboto', textAlign: 'left', opacity: '0.85',
+        }}
+        buttonStyle={{ color: '#000', background: '#fff', fontSize: '15px' }}
+        buttonText="Eu entendo"
+        expires={365}
+      >
+        Esse site usa cookies. Para mais informações acesse nossos <span onClick={handleOpen} className="TermsModal">Termos de Uso e Política de Privacidade</span>.
+      </CookieConsent>
+      <TermsConditionsModal open={open} onClose={handleClose} />
     </div>
   );
 }

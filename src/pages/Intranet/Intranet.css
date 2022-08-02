@@ -53,6 +53,20 @@
   align-items: center;
 }
 
+/* .TermsModal {
+  font-size: 15px;
+} */
+
+.TermsModal {
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.TermsModal span:hover{
+  opacity: 0.8;
+}
+
 @media (max-width: 1200px) {
   .intranet-dashboad-all {
     padding: 75px 20px;
