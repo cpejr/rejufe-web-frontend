@@ -23,7 +23,7 @@ export default function checkNewsData(key, value) {
       autoClose: 5000,
     });
   }
-  if (key === 'description') {
+  if (key === 'description' || value === '') {
     toast.error('Descrição inválida!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
