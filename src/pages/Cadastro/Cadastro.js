@@ -385,7 +385,7 @@ function Cadastro() {
       <div className="Terms-checkbox-container">
         <input type="checkbox" id="Terms" name="Terms" ref={acceptedTermsConditions} />
         <label htmlFor="Terms">
-          Concordo que li e aceito os <span onClick={handleOpen}>Termos de Uso e Política de Privacidade</span> do sistema
+          Concordo que li e aceito os <button type="button" onClick={handleOpen}>Termos de Uso e Política de Privacidade</button> do sistema
         </label>
       </div>
       <TermsConditionsModal open={open} onClose={handleClose} />

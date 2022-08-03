@@ -55,12 +55,14 @@
   font-size: 15px;
 }
 
-.Terms-checkbox-container label span{
+.Terms-checkbox-container label button{
   font-weight: bold;
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
-.Terms-checkbox-container label span:hover{
+.Terms-checkbox-container label button:hover{
   opacity: 0.8;
   text-decoration: underline;
 }
