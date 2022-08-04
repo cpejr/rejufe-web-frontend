@@ -75,7 +75,7 @@ export function UserHeader() {
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-contas" component={AdmRegistrosContas} type="administrador" />
-        <Redirect to="/login" />
+        <Redirect to="/NotFound" />
       </Switch>
     </Header>
   );
