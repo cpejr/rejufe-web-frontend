@@ -70,10 +70,10 @@ export function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem('user');
     sessionStorage.removeItem('@token');
+    history.push('/login');
     setUser(null);
     setToken(null);
     setLoading(false);
-    history.push('login');
   };
 
   // eslint-disable-next-line react/no-unstable-nested-components

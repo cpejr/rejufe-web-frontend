@@ -60,7 +60,7 @@ export function UserHeader() {
         <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="usuario" />
-        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="administrador" />
+        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="usuario" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="usuario" />
         <PrivateRoute path="/ficha-noticia" component={FichaNoticia} type="usuario" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
@@ -75,7 +75,7 @@ export function UserHeader() {
         <PrivateRoute path="/cadastrar-modelos" component={CadastrarModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-modelos" component={AdmRegistrosModelos} type="administrador" />
         <PrivateRoute path="/administracao-registros-contas" component={AdmRegistrosContas} type="administrador" />
-        <Redirect to="/NotFound" />
+        <Redirect to="/login" />
       </Switch>
     </Header>
   );
