@@ -216,7 +216,7 @@ function Header(props) {
         <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
-            onClick={() => handleReturn()}
+            onClick={() => handleReturn(logout)}
             type="button"
           >
             Sair
@@ -261,7 +261,7 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={logout}
+                    onClick={() => handleReturn(logout)}
                     type="button"
                   >
                     <span>
