@@ -28,7 +28,6 @@ function AdmRegistros() {
         associateId.push(_id);
         auxAssociate.push({ name, cpf, status });
       });
-      console.log(allAssociates);
       setDados(allAssociates);
       auxAssociate.sort();
       setId(associateId);
