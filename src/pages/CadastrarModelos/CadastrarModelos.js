@@ -13,9 +13,9 @@ import formsModels from '../../components/formsData/formsModels';
 toast.configure();
 
 function CadastrarModelos() {
-  const [initialErrorState, setError] = useState(initialModelsErrorState);
+  const [initialErrorState, setError] = useState({ ...initialModelsErrorState });
   const [loading, setLoading] = useState(false);
-  const [dados, setDados] = useState(initialModelsState);
+  const [dados, setDados] = useState({ ...initialModelsState });
   const history = useHistory();
 
   function handleChange(value, field) {
@@ -31,23 +31,16 @@ function CadastrarModelos() {
     const aux = { ...initialErrorState };
     let checkError = 0;
 
-    const numberRegex = /^[0-9\b]+$/;
-
-    if (!numberRegex.test(dados.numberModels)) {
-      aux.numberModels = true;
-      checkError = 1;
-    }
-
-    Object.entries(dados)?.forEach((dado) => {
-      if (dado[0] === 'archive_1' || dado[0] === 'archive_2') {
-        dado[1] = dado[1] ? dado[1]?.file : '';
-        formData.append(dado[0], dado[1]);
+    Object.entries(dados)?.forEach(([key, value]) => {
+      if (key === 'archive_1' || key === 'archive_2') {
+        value = value ? value?.file : '';
+        formData.append(key, value);
       } else {
-        if (checkModelsData(dado[0], dado[1])) {
+        if (checkModelsData(key, value)) {
           checkError = 1;
-          aux[dado[0]] = true;
+          aux[key] = true;
         }
-        formData.append(dado[0], dado[1]);
+        formData.append(key, value);
       }
     });
     try {
