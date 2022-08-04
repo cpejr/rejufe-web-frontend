@@ -211,6 +211,9 @@ function SingleFileUpload({
               >
                 {file?.file?.path}
                 {' '}
+                {label === 'Arquivo' && (
+                  <PictureAsPdfIcon />
+                )}
               </div>
               {label === 'Arquivo' ? (
                 <>
