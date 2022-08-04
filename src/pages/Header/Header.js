@@ -109,8 +109,8 @@ function Header(props) {
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastrar-contas'),
-      pathName: '/cadastrar-contas',
+      link: () => handleClick('/cadastrar-acoes'),
+      pathName: '/cadastrar-acoes',
       text: 'Cadastrar',
     },
   ];

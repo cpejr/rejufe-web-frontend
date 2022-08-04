@@ -14,12 +14,6 @@ function AdmRegistros() {
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  function createData(name, cpf, status) {
-    return {
-      name, cpf, status,
-    };
-  }
-
   async function getAllAssociates() {
     setLoading(true);
     const auxAssociate = [];
@@ -27,12 +21,15 @@ function AdmRegistros() {
     const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
-      allAssociates.forEach((object) => {
-        associateCode.push(object.sequential_Id);
-        associateId.push(object._id);
-        auxAssociate.push(createData(object.name, object.cpf, object.status));
-        setDados(allAssociates);
+      allAssociates.forEach(({
+        sequential_Id: seqId, _id, name, cpf, status, // Eslint exigiu
+      }) => {
+        associateCode.push(seqId);
+        associateId.push(_id);
+        auxAssociate.push({ name, cpf, status });
       });
+      console.log(allAssociates);
+      setDados(allAssociates);
       auxAssociate.sort();
       setId(associateId);
       setAllAssociates(auxAssociate);
