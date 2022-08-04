@@ -46,8 +46,6 @@ function AdmRegistrosAcoes() {
           object._id,
         ));
       });
-      console.log(archive1Code);
-      console.log(archive2Code);
       auxAction.sort();
       setId(actionId);
       setAllActions(auxAction);
