@@ -48,12 +48,12 @@ export function UserHeader() {
       <Switch>
         <PrivateRoute path="/cadastro" component={Cadastro} type="administrador" />
         <PrivateRoute path="/cadastrar-noticias" component={CadastrarNoticias} type="administrador" />
-        <PrivateRoute path="/cadastrar-comunic" component={CadastrarComunic} type="administrador" />
+        <PrivateRoute path="/cadastrar-comunicados" component={CadastrarComunic} type="administrador" />
         <PrivateRoute path="/cadastrar-atas" component={CadastrarMinutes} type="administrador" />
         <PrivateRoute path="/cadastrar-acoes" component={CadastrarAcoes} type="administrador" />
         <PrivateRoute path="/cadastrar-contas" component={CadastroContas} type="administrador" />
         <PrivateRoute path="/administracao-registros-noticias" component={AdmRegistrosNoticias} type="administrador" />
-        <PrivateRoute path="/administracao-registros-comunic" component={AdmRegistrosComunic} type="administrador" />
+        <PrivateRoute path="/administracao-registros-comunicados" component={AdmRegistrosComunic} type="administrador" />
         <PrivateRoute path="/intranet" component={Intranet} type="usuario" />
         <PrivateRoute path="/administracao-registros" component={AdmRegistros} type="administrador" />
         <PrivateRoute path="/consulta-associados" component={ConsultaAssociados} type="administrador" />
