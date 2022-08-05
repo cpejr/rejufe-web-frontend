@@ -47,6 +47,9 @@ function SearchComunic({
       setType('');
       setQuery('');
     }
+    if (query === '' && type === '') {
+      setData(rows);
+    }
     handleClose();
   };
 
