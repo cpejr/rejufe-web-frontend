@@ -75,7 +75,6 @@ export const initialAssociateErrorState = {
 };
 
 export const initialNewsState = {
-  section: '',
   type: '',
   title: '',
   description: '',
@@ -83,11 +82,9 @@ export const initialNewsState = {
   archive_2: undefined,
   photos: undefined,
   status: 'A',
-  send_site: false,
 };
 
 export const initialNewsErrorState = {
-  section: false,
   type: false,
   title: false,
   description: false,
@@ -96,7 +93,6 @@ export const initialNewsErrorState = {
   photos: false,
   date: false,
   status: false,
-  send_site: false,
 };
 
 export const initialComunicState = {

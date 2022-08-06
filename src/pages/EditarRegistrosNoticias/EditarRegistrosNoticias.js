@@ -33,7 +33,6 @@ function EditarRegistrosNoticias(news) {
         date: response.date,
         description: response.description,
         type: response.type,
-        section: response.section,
         title: response.title,
         send_site: response.send_site,
       });

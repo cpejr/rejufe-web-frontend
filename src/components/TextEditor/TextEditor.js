@@ -58,7 +58,6 @@ export default function TextEditor({
     <div>
       {convertedText && (
         <ReactQuill
-          id="descriptionBoxCpe"
           theme="snow"
           value={convertedText}
           onChange={setConvertedText}

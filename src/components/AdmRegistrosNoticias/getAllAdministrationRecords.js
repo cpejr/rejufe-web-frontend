@@ -1,9 +1,9 @@
 import moment from 'moment';
 import * as managerService from '../../services/manager/managerService';
 
-function createData(status, title, date, section, type) {
+function createData(status, title, date, type) {
   return {
-    status, title, date, section, type,
+    status, title, date, type,
   };
 }
 async function getAllAdministrationRecords(

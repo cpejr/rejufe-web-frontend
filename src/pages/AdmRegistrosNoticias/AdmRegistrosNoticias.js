@@ -11,7 +11,6 @@ const titles = [
   'Status',
   'Título',
   'Postado',
-  'Seção',
   'Tipo',
 ];
 
