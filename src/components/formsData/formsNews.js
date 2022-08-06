@@ -1,9 +1,19 @@
+import sendToSite from '../consts/sendToSite';
 import newsTypes from '../consts/newsTypes';
+import newsSections from '../consts/newsSections';
 
 const formsNews = [
   {
     title: 'Cadastro de Notícia',
     items: [
+      {
+        type: 'text',
+        id: 'section',
+        label: 'Seção',
+        field: newsSections,
+        select: true,
+        required: true,
+      },
       {
         type: 'text',
         id: 'type',
@@ -18,6 +28,14 @@ const formsNews = [
         label: 'Titulo',
         field: null,
         select: false,
+        required: true,
+      },
+      {
+        type: 'text',
+        id: 'send_site',
+        label: 'Enviar para o site',
+        field: sendToSite,
+        select: true,
         required: true,
       },
       {

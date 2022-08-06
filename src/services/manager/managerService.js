@@ -505,3 +505,11 @@ export const updateAccount = async (actionId, body) => {
   const response = await requesterService.updateAccount(actionId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const updateVotes = async (quizzId, index) => {
+  const body = {
+    index,
+  };
+  const response = await requesterService.updateVotes(quizzId, body);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

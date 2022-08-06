@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import './FichaUsuariosExternos.css';
 import fichaAssociate from '../../components/ConsultaAssociados/FichaAssociate';
-import getExternalUserById from '../../components/getAssociateById/getExternalUserById';
+import getAssociateById from '../../components/getAssociateById/getAssociateById';
 
 function FichaAssociadosExternos() {
   const history = useHistory();
@@ -11,7 +11,7 @@ function FichaAssociadosExternos() {
   const [associate, setAssociate] = useState([]);
 
   useEffect(() => {
-    getExternalUserById(associateId, setAssociate, history);
+    getAssociateById(associateId, setAssociate, history);
   }, []);
 
   return (

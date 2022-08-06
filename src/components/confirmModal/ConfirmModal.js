@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import CloseIcon from '@mui/icons-material/Close';
@@ -39,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     ['@media (max-width:850px)']: { // eslint-disable-line no-useless-computed-key
       width: '55%',
     },
-    ['@media (max-width:650px)']: { // eslint-disable-line no-useless-computed-key
-      width: '100%',
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      width: '75%',
     },
   },
 }));
@@ -60,9 +61,9 @@ export default function ConfirmModal({
   const handleClose = () => {
     setOpen(false);
   };
-  const votedOptions = quizz?.options;
-  const handleVote = (option, index) => {
-    votedOptions[index] = { description: option.description, votes: option.votes + 1, _id: option._id };
+
+  const handleVote = async (id, index) => {
+    await managerService.updateVotes(id, index);
   };
 
   const vote = async () => {
@@ -72,7 +73,6 @@ export default function ConfirmModal({
       await managerService.updateQuizz(quizz._id, {
         alreadyVoted: newAlreadyVoted,
         toVote: newToVote,
-        options: votedOptions,
       });
       setVoted(votes);
       votes += 1;
@@ -150,7 +150,7 @@ export default function ConfirmModal({
         <button
           type="button"
           onClick={() => {
-            handleVote(option, index);
+            handleVote(quizz._id, index);
             handleOpen();
           }}
           className="vote-button-confirm-modal"
