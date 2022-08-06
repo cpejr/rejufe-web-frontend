@@ -5,7 +5,7 @@ import ReactQuill from 'react-quill';
 export default function TextEditor({
   id, setDados, dados, register,
 }) {
-  const [convertedText, setConvertedText] = useState(register ? '' : dados.description);
+  const [convertedText, setConvertedText] = useState(register ? 'Escreva a descrição aqui' : dados.description);
 
   const modules = {
     toolbar: [
@@ -31,8 +31,7 @@ export default function TextEditor({
   }, [dados]);
 
   useEffect(() => {
-    const rightText = convertedText?.replace('<p>', '')?.replace('</p>', '')?.replace('<br>', '');
-    handleChange(rightText);
+    handleChange(convertedText);
   }, [convertedText]);
 
   const formats = [
@@ -57,14 +56,17 @@ export default function TextEditor({
 
   return (
     <div>
-      <ReactQuill
-        id="descriptionBoxCpe"
-        theme="snow"
-        onChange={(e) => setConvertedText(e)}
-        placeholder="Escreva a descrição aqui!"
-        modules={modules}
-        formats={formats}
-      />
+      {convertedText && (
+        <ReactQuill
+          id="descriptionBoxCpe"
+          theme="snow"
+          value={convertedText}
+          onChange={setConvertedText}
+          placeholder="Escreva a descrição aqui!"
+          modules={modules}
+          formats={formats}
+        />
+      )}
     </div>
   );
 }
