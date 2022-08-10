@@ -90,7 +90,7 @@ function ResultadoQuizzes() {
               <MenuItem value="Não iniciada">Não iniciada</MenuItem>
             </Select>
           </FormControl>
-          {user.type === 'administrador' && (
+          {user?.type === 'administrador' && (
             <ModalEnquete setNewQuizz={setNewQuizz} />
           )}
         </div>
