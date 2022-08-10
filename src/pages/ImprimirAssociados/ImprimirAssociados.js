@@ -43,6 +43,7 @@ const titles = [
 
 function Imprimir() {
   const [associates, setAllAssociates] = useState([]);
+  const [dataFilter, setDataFilter] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
   const [printAssociados, setPrintAssociados] = useState({ print: false, resolve: undefined });
@@ -70,7 +71,7 @@ function Imprimir() {
   });
 
   useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
+    getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDataFilter);
   }, []);
 
   return (

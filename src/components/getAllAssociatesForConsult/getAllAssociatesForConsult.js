@@ -31,8 +31,8 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, s
   try {
     const allAssociates = await managerService.getAssociates();
     allAssociates.sort(compare);
-
-    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').filter((associate) => associate.status === 'A').forEach((object) => {
+    const activeAssociates = allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').filter((associate) => associate.status === 'A');
+    activeAssociates.forEach((object) => {
       associateId.push(object._id);
       auxAssociate.push(createData(
         object.name,
@@ -42,7 +42,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, s
         object.acting,
         object.email,
       ));
-      setDataFilter(allAssociates);
+      setDataFilter(activeAssociates);
     });
 
     setId(associateId);
