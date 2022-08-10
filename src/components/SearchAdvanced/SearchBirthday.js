@@ -42,11 +42,11 @@ function SearchBirthday({
       const allAssociates = await managerService.getAssociates();
       allAssociates.sort(compare);
 
-      allAssociates.filter((associate) => associate.status === 'A').forEach((object) => {
+      allAssociates?.filter((associate) => associate?.status === 'A').forEach((object) => {
         auxAssociate.push(createData(
           moment(object?.birth).format('DD/MM'),
-          object.name,
-          object.cell_phone_number,
+          object?.name,
+          object?.cell_phone_number,
         ));
       });
 
