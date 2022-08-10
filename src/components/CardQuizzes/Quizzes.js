@@ -25,12 +25,12 @@ function Quizzes({
   const openingDate = moment(quizz.openingDate).format('DD-MM-YYYY');
   const closingDate = moment(quizz.closingDate).format('DD-MM-YYYY');
   const [loading, setLoading] = useState();
-  quizz.status = 'Em andamento';
+  quizz?.status = 'Em andamento';
     if (openingDate > dateQuizz) {
-    quizz.status = 'Não iniciada';
+    quizz?.status = 'Não iniciada';
     }
     if (openingDate < dateQuizz) {
-      quizz.status = 'Finalizada';
+      quizz?.status = 'Finalizada';
       }
 
   const matches = useMediaQuery('(max-width:411px)');
@@ -44,16 +44,16 @@ function Quizzes({
 
   useEffect(() => {
     setLoading(false);
-  }, [quizz.alreadyVoted]);
+  }, [quizz?.alreadyVoted]);
 
   return (
     <div className="body-quizzes-card">
-      {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz.status === 'Não iniciada' && (
+      {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
             {' '}
-            {quizz.title}
+            {quizz?.title}
           </p>
           <div className="tagg-status-quizz">
             <DateQuizzes status="init" />
@@ -62,12 +62,12 @@ function Quizzes({
         </button>
       </div>
         )}
-      {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz.status === 'Finalizada' && (
+      {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
             {' '}
-            {quizz.title}
+            {quizz?.title}
           </p>
           <div className="tagg-status-quizz">
             <DateQuizzes status="finished" />
@@ -76,12 +76,12 @@ function Quizzes({
         </button>
       </div>
               )}
-      {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz.status === 'Em andamento' && (
+      {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
             {' '}
-            {quizz.title}
+            {quizz?.title}
           </p>
           <div className="tagg-status-quizz">
             <DateQuizzes status="progress" />
@@ -90,7 +90,7 @@ function Quizzes({
         </button>
       </div>
               )}
-      {(open === true && quizz.privateResult === false) || (open === true && quizz.privateResult === true && closingDate < dateQuizz) || (open === true && quizz.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
+      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < dateQuizz) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -126,7 +126,7 @@ function Quizzes({
 
           )}
         </div>
-      ) : (open === true && quizz.privateResult === true && user?.type === 'administrador') ? (
+      ) : (open === true && quizz?.privateResult === true && user?.type === 'administrador') ? (
         <div className="unavaible-result">
           <div className="line-table-registers" />
           <div className="unavaible-result-text">
@@ -134,7 +134,7 @@ function Quizzes({
             Resultado indisponível, aguardando finalização da enquete
           </div>
         </div>
-      ) : (open === true && quizz.privateResult === true && user?.type === 'usuario') ? (
+      ) : (open === true && quizz?.privateResult === true && user?.type === 'usuario') ? (
         <div className="unavaible-result">
           <div className="line-table-registers" />
           <div className="unavaible-result-text">
