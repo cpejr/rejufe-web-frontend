@@ -194,7 +194,7 @@ function Header(props) {
       icon: <MonetizationOnOutlinedIcon />,
     },
     {
-      text: 'Comunic./Inform.',
+      text: 'Comunic./Informações',
       links: linksComunic,
       icon: <AnnouncementOutlinedIcon />,
     },
