@@ -71,7 +71,7 @@ function Imprimir() {
   });
 
   useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
+    getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDataFilter);
   }, []);
 
   return (
