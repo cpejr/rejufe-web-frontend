@@ -25,12 +25,12 @@ function Quizzes({
   const openingDate = moment(quizz.openingDate).format('DD-MM-YYYY');
   const closingDate = moment(quizz.closingDate).format('DD-MM-YYYY');
   const [loading, setLoading] = useState();
-  quizz?.status = 'Em andamento';
+  quizz.status = 'Em andamento';
     if (openingDate > dateQuizz) {
-    quizz?.status = 'Não iniciada';
+    quizz.status = 'Não iniciada';
     }
     if (openingDate < dateQuizz) {
-      quizz?.status = 'Finalizada';
+      quizz.status = 'Finalizada';
       }
 
   const matches = useMediaQuery('(max-width:411px)');
