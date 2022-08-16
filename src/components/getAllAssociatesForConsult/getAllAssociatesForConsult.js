@@ -46,6 +46,7 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, s
     });
 
     setId(associateId);
+    console.log(associateId);
     setAllAssociates(auxAssociate);
     setLoading(false);
   } catch (error) {

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import { useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -120,6 +120,7 @@ function ConsultaAssociados({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(print ? -1 : 10);
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -127,7 +128,10 @@ function ConsultaAssociados({
   const matchesFont400px = useMediaQuery('(max-width:400px)');
 
   const handleWindowOpen = () => {
-    window.open('/imprimir-associados');
+    history.push({
+      pathname: '/imprimir-associados',
+      state: data,
+    });
   };
 
   const footerProps = {
