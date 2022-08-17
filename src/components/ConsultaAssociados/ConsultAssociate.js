@@ -289,63 +289,65 @@ function ConsultaAssociados({
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading && data
-            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            ?.map((row, index) => (
-              <TableRow>
-                {order ? (
-                  <TableCell {...cellFontProps} align="center">
-                    {data.findIndex((obj) => obj._id === row._id) + 1}
-                  </TableCell>
-                ) : search ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
-                      <SearchIcon />
-                    </IconButton>
-                  </TableCell>
-                ) : edit ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <IconButton aria-label="delete">
-                      <DeleteIcon />
-                      {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
-                    </IconButton>
-                    <IconButton color="primary" aria-label="Edit">
-                      <EditIcon />
-                      {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
-                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
-                    </IconButton>
-                  </TableCell>
-                ) : searchFile ? (
-                  <TableCell {...cellFontProps} align="center">
-                    <FindInPageIcon aria-label="findFile" />
-                  </TableCell>
-                ) : (
-                  null
-                )}
-                {sequentialId
-                  && (
-                    <TableCell {...cellFontProps}>
-                      <Link
-                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
-                        to={{
-                          pathname: '/editar-associados',
-                          state: {
-                            id: id[index + (page * 10)],
-                          },
-                        }}
-                      >
-                        {sequentialId[index + (page * 10)]}
-                      </Link>
+          {!loading
+            && (rowsPerPage > 0
+              ? data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : data)
+              ?.map((row, index) => (
+                <TableRow>
+                  {order ? (
+                    <TableCell {...cellFontProps} align="center">
+                      {data.findIndex((obj) => obj._id === row._id) + 1}
                     </TableCell>
+                  ) : search ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                        <SearchIcon />
+                      </IconButton>
+                    </TableCell>
+                  ) : edit ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <IconButton aria-label="delete">
+                        <DeleteIcon />
+                        {/* TODO Substituir o modal de deletar no lugar do DeleteIcon, passando row._id e tipo do delete.
+                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                      </IconButton>
+                      <IconButton color="primary" aria-label="Edit">
+                        <EditIcon />
+                        {/* TODO Substituir o modal de pesquisa no lugar do editIcon, passando row._id e tipo da edição.
+                      Há um modal implementado de forma parecida na pagina de produtos do lojista no pet system */}
+                      </IconButton>
+                    </TableCell>
+                  ) : searchFile ? (
+                    <TableCell {...cellFontProps} align="center">
+                      <FindInPageIcon aria-label="findFile" />
+                    </TableCell>
+                  ) : (
+                    null
                   )}
-                {Object.values(row)?.map((dado) => (
-                  <TableCell {...cellFontProps}>
-                    {dado}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
+                  {sequentialId
+                    && (
+                      <TableCell {...cellFontProps}>
+                        <Link
+                          style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
+                          to={{
+                            pathname: '/editar-associados',
+                            state: {
+                              id: id[index + (page * 10)],
+                            },
+                          }}
+                        >
+                          {sequentialId[index + (page * 10)]}
+                        </Link>
+                      </TableCell>
+                    )}
+                  {Object.values(row)?.map((dado) => (
+                    <TableCell {...cellFontProps}>
+                      {dado}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell
