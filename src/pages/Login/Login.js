@@ -50,9 +50,6 @@ function Login() {
     rememberMe();
   }, []);
 
-  // const handleChange = (value, field) => {
-  //   setUsuario({ ...usuario, [field]: value });
-  // };
   const handleChange = (value, field) => {
     if (/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/.test(value)) {
     setCpf({ ...cpf, [field]: value });
@@ -80,16 +77,6 @@ function Login() {
           });
         }
       }
-      // if (usuario?.cpf !== undefined && usuario?.user === '') {
-      //   try {
-      //     email = await managerService.getUserEmailByCpf(usuario?.cpf);
-      //   } catch (error) {
-      //     toast.error('Credenciais Inválidas!', {
-      //       position: toast.POSITION.TOP_RIGHT,
-      //       autoClose: 5000,
-      //     });
-      //   }
-      // }
       if (usuario?.cpf !== undefined && usuario?.user !== '') {
         toast.error('Insira somente seu CPF ou seu usuário!', {
           position: toast.POSITION.TOP_RIGHT,
@@ -146,7 +133,7 @@ function Login() {
             } else {
               switch (attempts) {
                 case 2: {
-                  const time = moment().add(1, 'minutes');
+                  const time = moment().add(, 'minutes');
                   setContentWarningModal('após 3 minutos');
                   await managerService.updateTime(email, time);
                   setIsBlocked(true);
