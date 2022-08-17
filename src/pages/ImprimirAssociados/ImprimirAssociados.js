@@ -42,8 +42,6 @@ function Imprimir(data) {
   const { location } = data;
   const [printAssociados, setPrintAssociados] = useState({ print: false, resolve: undefined });
 
-  console.log(location.state);
-
   const handleWindowClose = () => {
     window.close();
   };
