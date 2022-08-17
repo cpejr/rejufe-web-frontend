@@ -38,8 +38,8 @@ const titles = [
   'Email',
 ];
 
-function Imprimir(data) {
-  const { location } = data;
+function Imprimir() {
+  const associados = JSON.parse(sessionStorage.associadosToPrint);
   const [printAssociados, setPrintAssociados] = useState({ print: false, resolve: undefined });
 
   const handleWindowClose = () => {
@@ -87,7 +87,7 @@ function Imprimir(data) {
       {printAssociados?.print ? (
         <div className="print-consult-associates-forms">
           <ComponentToPrint
-            rows={location.state}
+            rows={associados}
             titles={titles}
             printAssociados={printAssociados}
             ref={tableAssociates}
@@ -95,7 +95,7 @@ function Imprimir(data) {
         </div>
       ) : (
         <div className="print-associates-table">
-          <ComponentToPrint rows={location.state} titles={titles} ref={tableAssociates} />
+          <ComponentToPrint rows={associados} titles={titles} ref={tableAssociates} />
         </div>
       )}
     </div>
