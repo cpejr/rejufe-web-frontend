@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
@@ -28,7 +27,6 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [usuario, setUsuario] = useState(initialState);
-  const [cpf, setCpf] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
   const { setUser } = useAuth();
@@ -52,10 +50,10 @@ function Login() {
 
   const handleChange = (value, field) => {
     if (/([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/.test(value)) {
-    setCpf({ ...cpf, [field]: value });
-   } else {
+      setUsuario({ ...usuario, cpf: value });
+    } else {
       setUsuario({ ...usuario, [field]: value });
-             }
+    }
   };
 
   const handleClickClose = () => {
@@ -67,6 +65,7 @@ function Login() {
       let res;
       let attempts;
       let email = '';
+      console.log(usuario);
       if (usuario?.user !== '' && usuario?.cpf === undefined) {
         try {
           email = await managerService.getUserEmailByUsername(usuario?.user);
@@ -96,8 +95,11 @@ function Login() {
       } else {
         attempts = res?.quantity;
       }
+      console.log(attempts);
+      console.log(moment() < moment(res?.lock_time));
       if (moment() < moment(res?.lock_time)) {
         const restante = moment(res?.lock_time).fromNow();
+        setIsBlocked(true);
         setContentWarningModal(restante);
         setShowWarningModal(true);
       } else {
@@ -121,7 +123,7 @@ function Login() {
           });
           await managerService.resetAttempts(email);
           if (response !== {}) {
-              window.location.href = '/intranet';
+            window.location.href = '/intranet';
           }
         } catch (error) {
           setShowWarningModal(true);
@@ -132,30 +134,30 @@ function Login() {
               await managerService.updateTime(email, time);
             } else {
               switch (attempts) {
-                case 2: {
-                  const time = moment().add(3, 'minutes');
-                  setContentWarningModal('após 3 minutos');
-                  await managerService.updateTime(email, time);
-                  setIsBlocked(true);
-                  setShowWarningModal(true);
-                  break;
-                }
-                case 3: {
-                  const time = moment().add(5, 'minutes');
-                  setContentWarningModal('após 5 minutos');
-                  await managerService.updateTime(email, time);
-                  setShowWarningModal(true);
-                  setIsBlocked(true);
-                  break;
-                }
-                default: {
-                  const time = moment().add(15, 'minutes');
-                  setContentWarningModal('após 15 minutos');
-                  await managerService.updateTime(email, time);
-                  setShowWarningModal(true);
-                  setIsBlocked(true);
-                  break;
-                }
+              case 2: {
+                const time = moment().add(3, 'minutes');
+                setContentWarningModal('após 3 minutos');
+                await managerService.updateTime(email, time);
+                setIsBlocked(true);
+                setShowWarningModal(true);
+                break;
+              }
+              case 3: {
+                const time = moment().add(5, 'minutes');
+                setContentWarningModal('após 5 minutos');
+                await managerService.updateTime(email, time);
+                setIsBlocked(true);
+                setShowWarningModal(true);
+                break;
+              }
+              default: {
+                const time = moment().add(15, 'minutes');
+                setContentWarningModal('após 15 minutos');
+                await managerService.updateTime(email, time);
+                setIsBlocked(true);
+                setShowWarningModal(true);
+                break;
+              }
               }
             }
           }
