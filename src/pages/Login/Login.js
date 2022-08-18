@@ -76,12 +76,15 @@ function Login() {
           });
         }
       }
-      if (usuario?.cpf !== undefined && usuario?.user !== '') {
-        toast.error('Insira somente seu CPF ou seu usuário!', {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
-        });
-        setLoading(false);
+      if (usuario?.cpf !== undefined && usuario?.user === '') {
+        try {
+          email = await managerService.getUserEmailByCpf(usuario?.cpf);
+        } catch (error) {
+          toast.error('Credenciais Inválidas!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+          });
+        }
       }
       const field = {
         email,
