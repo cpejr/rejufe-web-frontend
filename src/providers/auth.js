@@ -73,7 +73,7 @@ export function AuthProvider({ children }) {
     setUser(null);
     setToken(null);
     setLoading(false);
-    history.push('login');
+    history.push('/login');
   };
 
   // eslint-disable-next-line react/no-unstable-nested-components
