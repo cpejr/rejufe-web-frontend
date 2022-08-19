@@ -18,7 +18,6 @@ moment.locale('pt-br', [ptLocale]);
 function Quizzes({
   quizz, associates, dateQuizz, user, setVoted, filter,
 }) {
-  console.log(quizz);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
