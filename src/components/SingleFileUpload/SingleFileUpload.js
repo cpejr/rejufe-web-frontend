@@ -30,7 +30,6 @@ function SingleFileUpload({
   const classes = useStyles();
   const [image, setImage] = useState();
   const [updateImage, setUpdateImage] = useState(false);
-  function example() { return image ? <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" /> : null; }
 
   async function getImage() {
     try {
@@ -93,9 +92,9 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          {update === true && label === 'Imagem' && !updateImage && file !== '' && (
+          {update === true && label === 'Imagem' && !updateImage && file !== '' && image && (
             <>
-              {image && example()}
+              <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" />
               <div style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
               }}
