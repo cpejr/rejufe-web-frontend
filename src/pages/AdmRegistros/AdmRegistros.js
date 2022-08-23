@@ -53,12 +53,12 @@ function AdmRegistros() {
   const titles = ['', 'Código', 'Nome', 'Cpf', 'Status'];
 
   return (
-    <div className='container-administration-register'>
-      <div className='title-adm-registers'>
+    <div className="container-administration-register">
+      <div className="title-adm-registers">
         <h1>{'Manutenção em associados '}</h1>
       </div>
-      <div className='line-table-registers' />
-      <TableComponent
+      <div className="line-table-registers" />
+      <ConsultAssociate
         id={id}
         sequentialId={sequentialId}
         dados={dados}
