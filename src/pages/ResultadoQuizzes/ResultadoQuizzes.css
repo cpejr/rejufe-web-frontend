@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+.form-user-module-page{
+  margin-bottom: 5%;
+}
+
 .division-cards-quizzes h1 {
   font-family: 'Roboto', sans-serif;
   font: normal 18pt Roboto;
@@ -22,6 +26,7 @@
   width: 100%;
   background-color: var(--secondary);
   border: 2px solid;
+  margin-top: 2%;
   margin-bottom: 2%;
   color: var(--secondary);
 }
@@ -72,5 +77,22 @@
     display: flex;
     justify-content: center;
     padding: 0 15px 0;
+  }
+}
+@media(max-width: 509px){
+  .title-cards-quizzes-page {
+    flex-direction: column;
+  }
+  .title-cards-quizzes-page h1{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .title-cards-quizzes-page {
+    margin: 0;
+    margin-bottom: 5px;
+
+  }
+  .form-user-module-page{
+    width: 70%;
   }
 }

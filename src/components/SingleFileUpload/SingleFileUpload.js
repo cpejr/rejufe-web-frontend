@@ -211,6 +211,9 @@ function SingleFileUpload({
               >
                 {file?.file?.path}
                 {' '}
+                {label === 'Arquivo' && (
+                  <PictureAsPdfIcon />
+                )}
               </div>
               {label === 'Arquivo' ? (
                 <>
@@ -224,18 +227,6 @@ function SingleFileUpload({
                   Remover Imagem
                 </Button>
               )}
-            </div>
-          )}
-          {dados.pdf && (
-            <div div className="file-upload-download-file">
-              <div className="register-news-align-test">
-                {file?.file?.path}
-                {' '}
-                <PictureAsPdfIcon />
-              </div>
-              <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, 'pdf')}>
-                Remover Arquivo
-              </Button>
             </div>
           )}
 

@@ -75,7 +75,7 @@ export const initialAssociateErrorState = {
 };
 
 export const initialNewsState = {
-  section: 'INTRANET',
+  section: '',
   type: '',
   title: '',
   description: '',
@@ -83,6 +83,7 @@ export const initialNewsState = {
   archive_2: undefined,
   photos: undefined,
   status: 'A',
+  send_site: false,
 };
 
 export const initialNewsErrorState = {
@@ -166,12 +167,12 @@ export const initialAccountabilityState = {
   date: '',
   title: '',
   description: '',
-  pdf: undefined,
+  archive_1: undefined,
 };
 
 export const initialAccountabilityErrorState = {
   date: false,
   title: false,
   description: false,
-  pdf: false,
+  archive_1: false,
 };
