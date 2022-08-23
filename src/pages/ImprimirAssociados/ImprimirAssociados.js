@@ -4,7 +4,7 @@ import React, {
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
-import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
+import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 import './ImprimirAssociate.css';
 
@@ -19,10 +19,11 @@ class ComponentToPrint extends React.Component {
 
     return (
       <div>
-        <TableComponent
+        <ConsultAssociate
           id={id}
           rows={rows}
           titles={titles}
+          adminRegister={false}
           printAssociados={printAssociados?.print}
           ref={ref}
           print

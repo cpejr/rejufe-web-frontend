@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './SearchAdvanced.css';
 
 function SearchAdvanced({
-  handleClose, setData, dados, setIds, setSequentialIds,
+  handleClose, setData, dados, adminRegister, setIds, setSequentialIds,
 }) {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
@@ -49,18 +49,34 @@ function SearchAdvanced({
 
       acc.ids.push(associate._id);
       acc.senquentialIds.push(associate.sequential_Id);
-      acc.associates.push({
-        name: associate.name,
-        cpf: associate.cpf,
-        status: associate.status,
-      });
+
+      if (adminRegister) {
+        acc.associates.push({
+          name: associate.name,
+          cpf: associate.cpf,
+          status: associate.status,
+        });
+      } else {
+        acc.associates.push({
+          name: associate.name,
+          cell_phone_number: associate.cell_phone_number,
+          status: associate.status,
+          allocation: associate.allocation,
+          acting: associate.acting,
+          email: associate.email,
+        });
+      }
 
       return acc;
     }, initialValueFilteredData);
 
     setData(filteredData.associates);
-    setIds(filteredData.ids);
-    setSequentialIds(filteredData.senquentialIds);
+
+    if (adminRegister) {
+      setIds(filteredData.ids);
+      setSequentialIds(filteredData.senquentialIds);
+    }
+
     setQuery('');
     setType('');
 

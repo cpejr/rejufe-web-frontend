@@ -32,7 +32,7 @@ function AdmRegistros() {
           associateCode.push(seqId);
           associateId.push(_id);
           auxAssociate.push({ name, cpf, status });
-        }
+        },
       );
       setDados(allAssociates);
       auxAssociate.sort();
@@ -60,6 +60,7 @@ function AdmRegistros() {
       <div className="line-table-registers" />
       <ConsultAssociate
         id={id}
+        adminRegister
         sequentialId={sequentialId}
         dados={dados}
         rows={associates}

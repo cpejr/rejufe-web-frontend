@@ -104,6 +104,7 @@ TablePaginationActions.propTypes = {
 function ConsultaAssociados({
   titles,
   rows,
+  adminRegister,
   id,
   order,
   edit,
@@ -437,6 +438,7 @@ function ConsultaAssociados({
                 aria-describedby="simple-modal-description"
               >
                 <SearchAdvanced
+                  adminRegister={adminRegister}
                   handleClose={handleClose}
                   data={data}
                   setData={setData}
