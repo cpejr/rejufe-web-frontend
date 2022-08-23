@@ -185,6 +185,7 @@
 @media (max-width: 1380px) {
   .create-quizz-button {
     height: 30px;
+    margin: 5px;
   }
 
   .create-quizz-button p {

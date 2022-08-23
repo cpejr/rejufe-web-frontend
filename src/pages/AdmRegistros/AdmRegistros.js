@@ -14,12 +14,6 @@ function AdmRegistros() {
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  function createData(name, cpf, status) {
-    return {
-      name, cpf, status,
-    };
-  }
-
   async function getAllAssociates() {
     setLoading(true);
     const auxAssociate = [];
@@ -27,11 +21,19 @@ function AdmRegistros() {
     const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
-      allAssociates.forEach((object) => {
-        associateCode.push(object.sequential_Id);
-        associateId.push(object._id);
-        auxAssociate.push(createData(object.name, object.cpf, object.status));
-      });
+      allAssociates.forEach(
+        ({
+          sequential_Id: seqId,
+          _id,
+          name,
+          cpf,
+          status, // Eslint exigiu
+        }) => {
+          associateCode.push(seqId);
+          associateId.push(_id);
+          auxAssociate.push({ name, cpf, status });
+        }
+      );
       setDados(allAssociates);
       auxAssociate.sort();
       setId(associateId);
@@ -48,23 +50,15 @@ function AdmRegistros() {
     getAllAssociates();
   }, []);
 
-  const titles = [
-    '',
-    'Código',
-    'Nome',
-    'Cpf',
-    'Status',
-  ];
+  const titles = ['', 'Código', 'Nome', 'Cpf', 'Status'];
 
   return (
-    <div className="container-administration-register">
-      <div className="title-adm-registers">
-        <h1>
-          {'Manutenção em associados '}
-        </h1>
+    <div className='container-administration-register'>
+      <div className='title-adm-registers'>
+        <h1>{'Manutenção em associados '}</h1>
       </div>
-      <div className="line-table-registers" />
-      <ConsultAssociate
+      <div className='line-table-registers' />
+      <TableComponent
         id={id}
         sequentialId={sequentialId}
         dados={dados}

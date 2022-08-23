@@ -7,21 +7,31 @@ import moment from 'moment';
 import { FormControl, useMediaQuery } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ptLocale from 'moment/locale/pt-br';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import DateQuizzes from '../DateQuizzes/DateQuizzes';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
+moment.locale('pt-br', [ptLocale]);
+
 function Quizzes({
-  quizz, associates, dateQuizz, user, setVoted,
+  quizz, associates, dateQuizz, user, setVoted, filter,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
-  const openingDate = moment(quizz.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz.closingDate).format('YYYY-MM-DD');
+  const openingDate = moment(quizz.openingDate).format('DD-MM-YYYY');
+  const closingDate = moment(quizz.closingDate).format('DD-MM-YYYY');
   const [loading, setLoading] = useState();
+  quizz.status = 'Em andamento';
+    if (openingDate > dateQuizz) {
+    quizz.status = 'Não iniciada';
+    }
+    if (openingDate < dateQuizz) {
+      quizz.status = 'Finalizada';
+      }
 
   const matches = useMediaQuery('(max-width:411px)');
 
@@ -34,38 +44,53 @@ function Quizzes({
 
   useEffect(() => {
     setLoading(false);
-  }, [quizz.alreadyVoted]);
+  }, [quizz?.alreadyVoted]);
 
   return (
     <div className="body-quizzes-card">
+      {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
           <p>
             {' '}
-            {quizz.title}
+            {quizz?.title}
           </p>
-          {openingDate > dateQuizz ? (
-            <div className="tagg-status-quizz">
-              <DateQuizzes status="init" />
-            </div>
-          ) : (
-            <>
-              <div />
-              {closingDate < dateQuizz ? (
-                <div className="tagg-status-quizz">
-                  <DateQuizzes status="finished" />
-                </div>
-              ) : (
-                <div className="tagg-status-quizz">
-                  <DateQuizzes status="progress" />
-                </div>
-              )}
-            </>
-          )}
+          <div className="tagg-status-quizz">
+            <DateQuizzes status="init" />
+          </div>
           <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
         </button>
       </div>
-      {(open === true && quizz.privateResult === false) || (open === true && quizz.privateResult === true && closingDate < dateQuizz) || (open === true && quizz.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
+        )}
+      {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
+      <div className="card-quizzes">
+        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+          <p>
+            {' '}
+            {quizz?.title}
+          </p>
+          <div className="tagg-status-quizz">
+            <DateQuizzes status="finished" />
+          </div>
+          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+        </button>
+      </div>
+              )}
+      {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
+      <div className="card-quizzes">
+        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+          <p>
+            {' '}
+            {quizz?.title}
+          </p>
+          <div className="tagg-status-quizz">
+            <DateQuizzes status="progress" />
+          </div>
+          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+        </button>
+      </div>
+              )}
+      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < dateQuizz) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -101,7 +126,7 @@ function Quizzes({
 
           )}
         </div>
-      ) : (open === true && quizz.privateResult === true && user?.type === 'administrador') ? (
+      ) : (open === true && quizz?.privateResult === true && user?.type === 'administrador') ? (
         <div className="unavaible-result">
           <div className="line-table-registers" />
           <div className="unavaible-result-text">
@@ -109,7 +134,7 @@ function Quizzes({
             Resultado indisponível, aguardando finalização da enquete
           </div>
         </div>
-      ) : (open === true && quizz.privateResult === true && user?.type === 'usuario') ? (
+      ) : (open === true && quizz?.privateResult === true && user?.type === 'usuario') ? (
         <div className="unavaible-result">
           <div className="line-table-registers" />
           <div className="unavaible-result-text">
