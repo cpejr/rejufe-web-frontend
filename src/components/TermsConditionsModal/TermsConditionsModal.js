@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -66,11 +65,11 @@ export default function TermsConditionsModal({ open, onClose }) {
               <div className="TermsModal-title">
                 <p>Termos de Serviço</p>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima illo vel repellendus porro recusandae error sequi numquam assumenda id, excepturi aliquid iste repudiandae mollitia architecto, perspiciatis voluptate earum. Porro, asperiores.</p>
-              <p>Obcaecati nam excepturi ad dolorem alias sed sunt ipsam ut quas, impedit eaque tenetur necessitatibus, architecto eveniet voluptate quam hic nesciunt. Quo exercitationem non deserunt amet, deleniti harum vitae quod!</p>
-              <p>Dolores sint ex, dolore excepturi, commodi nostrum, sunt iusto nemo maiores voluptates quidem. Quaerat dolor explicabo sapiente excepturi optio rem nulla ad quos, eum sint, assumenda tenetur neque, non consectetur.</p>
-              <p>Iusto, repellat tempore fugiat architecto ratione eaque assumenda rerum at et hic fugit molestiae eius nam tenetur asperiores natus! Ullam minima eaque, ipsum ut laudantium esse alias dolore facilis distinctio!</p>
-              <p>Doloremque accusantium nobis ratione. Minus, omnis maxime iure eligendi praesentium excepturi laboriosam earum molestias nihil pariatur. Aut repellendus quibusdam, accusantium eligendi dolore unde praesentium ducimus a. Libero aliquam eos modi?</p>
+              <p>Lorem ipsum dolor sit ame.</p>
+              <p>Obcaecati nam excepturi ad dolorem alias sed sunt ipsam ut quas, impedit eaque ten</p>
+              <p>Dolores sint ex, dolore excepturi, commodi nostrum, sunt iusto nemo maiores volup</p>
+              <p>Iusto, repellat tempore fugiat architecto ratione eaque assumenda rerum at et hic !</p>
+              <p>Doloremque accusantium nobis ratione. Minus, omnis maxime iure eligendi praesentium?</p>
             </div>
           </div>
         </div>

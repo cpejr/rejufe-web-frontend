@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import CookieConsent from 'react-cookie-consent';
@@ -116,7 +113,10 @@ function Intranet() {
         buttonText="Eu entendo"
         expires={365}
       >
-        Esse site usa cookies. Para mais informações acesse nossos <button type="button" onClick={handleOpen} className="TermsModal">Termos de Uso e Política de Privacidade</button>.
+        Esse site usa cookies. Para mais informações acesse nossos
+        {' '}
+        <button type="button" onClick={handleOpen} className="TermsModal">Termos de Uso e Política de Privacidade</button>
+        .
       </CookieConsent>
       <TermsConditionsModal open={open} onClose={handleClose} />
     </div>
