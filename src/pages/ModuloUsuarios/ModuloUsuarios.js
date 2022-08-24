@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
-import judicialSection from '../../components/consts/judicialSection';
+import lotacao from '../../components/consts/lotacao';
 
 toast.configure();
 
@@ -135,8 +135,8 @@ function ModuloUsuarios() {
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
-                {judicialSection?.map((section) => (
-                  <MenuItem value={section.value}>{section.label}</MenuItem>
+                {lotacao?.map((lotaca) => (
+                  <MenuItem value={lotaca.value}>{lotaca.label}</MenuItem>
                 ))}
               </Select>
             </FormControl>

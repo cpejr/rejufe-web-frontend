@@ -1,5 +1,9 @@
 const lotacao = [
   {
+    value: 'TRF',
+    label: 'TRF 5',
+  },
+  {
     value: 'CEARÁ',
     label: 'Ceará',
   },

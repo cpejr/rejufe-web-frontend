@@ -3,7 +3,6 @@ import brazilianStates from '../consts/brazilianStates';
 import genres from '../consts/genres';
 import lotacao from '../consts/lotacao';
 import office from '../consts/office';
-import judicialSection from '../consts/judicialSection';
 
 import {
   cpfMask, cellphoneMask, phoneMask, cepMask,
@@ -265,13 +264,6 @@ const formsData = [
         select: false,
         required: true,
         mask: cellphoneMask,
-      },
-      {
-        type: 'text',
-        id: 'judicial_section',
-        label: 'Seção Judiciária',
-        field: judicialSection,
-        select: true,
       },
       {
         type: 'text',
