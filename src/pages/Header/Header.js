@@ -47,6 +47,7 @@ function Header(props) {
   }
   function handleReturn() {
     history.push('/login');
+    logout();
   }
   function handleSubmitIntranet() {
     history.push('/intranet');
