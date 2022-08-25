@@ -27,9 +27,9 @@ function SearchAdvanced({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  function createData(name, cpf, status, _allocation, acting, email) {
+  function createData(name, cpf, status, allocation_, acting, email) {
     return {
-      name, cpf, status, _allocation, acting, email,
+      name, cpf, status, allocation_, acting, email,
     };
   }
 
@@ -116,8 +116,8 @@ function SearchAdvanced({
 
           <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
             <option> </option>
-            {allocation?.map((_allocation) => (
-              <option value={_allocation.value}>{_allocation.label}</option>
+            {allocation?.map((allocation_) => (
+              <option value={allocation_.value}>{allocation_.label}</option>
             ))}
           </select>
         </div>

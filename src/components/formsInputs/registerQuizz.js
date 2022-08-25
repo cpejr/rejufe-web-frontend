@@ -146,12 +146,12 @@ function FormInputs({ setNewQuizz, handleClose }) {
             )}
           >
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
-            {allocation?.map((_allocation) => (
+            {allocation?.map((allocation_) => (
               <MenuItem
-                key={_allocation?.label}
-                value={_allocation?.value}
+                key={allocation_?.label}
+                value={allocation_?.value}
               >
-                {_allocation?.label}
+                {allocation_?.label}
               </MenuItem>
             ))}
           </Select>

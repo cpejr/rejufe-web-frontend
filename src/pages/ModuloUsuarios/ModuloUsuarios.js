@@ -135,8 +135,8 @@ function ModuloUsuarios() {
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
-                {allocation?.map((_allocation) => (
-                  <MenuItem value={_allocation.value}>{_allocation.label}</MenuItem>
+                {allocation?.map((allocation_) => (
+                  <MenuItem value={allocation_.value}>{allocation_.label}</MenuItem>
                 ))}
               </Select>
             </FormControl>
