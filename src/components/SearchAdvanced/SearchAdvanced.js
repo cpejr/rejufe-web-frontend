@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import './SearchAdvanced.css';
+import lotacao from '../consts/lotacao';
 
 function SearchAdvanced({
   handleClose, setData, rows, dados, dataFilter,
@@ -43,7 +44,7 @@ function SearchAdvanced({
   const filterType = [];
   if (dataFilter) {
     let auxFilterType = [];
-    auxFilterType = dataFilter?.filter(((item) => item.judicial_section?.includes(type)));
+    auxFilterType = dataFilter?.filter(((item) => item.allocation?.includes(type)));
     auxFilterType.forEach((object) => {
       filterType.push(createData(
         object.name,
@@ -57,7 +58,7 @@ function SearchAdvanced({
   }
   let auxFilterType = [];
   if (dados) {
-    auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
+    auxFilterType = dados?.filter(((item) => item.allocation?.includes(type)));
     auxFilterType.forEach((object) => {
       filterType.push(returnData(object.name, object.cpf, object.status));
     });
@@ -111,16 +112,13 @@ function SearchAdvanced({
         </div>
         <div className="associate-search-advanced-labels">
 
-          <label> Seção Judiciária:</label>
+          <label> Lotação:</label>
 
           <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
-            <option value=" "> </option>
-            <option value="SE">SE</option>
-            <option value="AL">AL</option>
-            <option value="PE">PE</option>
-            <option value="PB">PB</option>
-            <option value="RN">RN</option>
-            <option value="CE">CE</option>
+            <option> </option>
+            {lotacao?.map((allocation) => (
+              <option value={allocation.value}>{allocation.label}</option>
+            ))}
           </select>
         </div>
         <div className="associate-search-advanced-buttons-align">

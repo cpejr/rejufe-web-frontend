@@ -54,8 +54,7 @@ function ModuloUsuarios() {
     }
     if (filter === 'Alocação') {
       setSearch(value);
-      setRows(admins?.filter((admin) => admin?.allocation === value));
-      console.log(admins);
+      setRows(admins?.filter(((item) => item.allocation?.includes(value))));
     }
   };
 
