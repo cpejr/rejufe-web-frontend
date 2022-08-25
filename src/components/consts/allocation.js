@@ -1,4 +1,4 @@
-const lotacao = [
+const allocation = [
   {
     value: 'TRF',
     label: 'TRF',
@@ -29,4 +29,4 @@ const lotacao = [
   },
 ];
 
-export default lotacao;
+export default allocation;

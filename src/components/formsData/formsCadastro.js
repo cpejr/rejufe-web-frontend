@@ -1,7 +1,7 @@
 import civilStates from '../consts/civilStates';
 import brazilianStates from '../consts/brazilianStates';
 import genres from '../consts/genres';
-import lotacao from '../consts/lotacao';
+import allocation from '../consts/allocation';
 import office from '../consts/office';
 
 import {
@@ -172,7 +172,7 @@ const formsData = [
         type: 'text',
         id: 'lotacao',
         label: 'Lotação',
-        field: lotacao,
+        field: allocation,
         select: true,
         required: true,
       },

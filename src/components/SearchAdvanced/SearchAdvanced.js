@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import './SearchAdvanced.css';
-import lotacao from '../consts/lotacao';
+import allocation from '../consts/allocation';
 
 function SearchAdvanced({
   handleClose, setData, rows, dados, dataFilter,
@@ -27,9 +27,9 @@ function SearchAdvanced({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  function createData(name, cpf, status, allocation, acting, email) {
+  function createData(name, cpf, status, _allocation, acting, email) {
     return {
-      name, cpf, status, allocation, acting, email,
+      name, cpf, status, _allocation, acting, email,
     };
   }
 
@@ -116,8 +116,8 @@ function SearchAdvanced({
 
           <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
             <option> </option>
-            {lotacao?.map((allocation) => (
-              <option value={allocation.value}>{allocation.label}</option>
+            {allocation?.map((_allocation) => (
+              <option value={_allocation.value}>{_allocation.label}</option>
             ))}
           </select>
         </div>

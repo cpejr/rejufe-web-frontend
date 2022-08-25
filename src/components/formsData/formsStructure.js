@@ -1,6 +1,6 @@
 import civilStates from '../consts/civilStates';
 import genres from '../consts/genres';
-import lotacao from '../consts/lotacao';
+import allocation from '../consts/allocation';
 import status from '../consts/status';
 import brazilianStates from '../consts/brazilianStates';
 import office from '../consts/office';
@@ -157,7 +157,7 @@ const formsEdit = [
         type: 'text',
         id: 'allocation',
         label: 'Lotação',
-        field: lotacao,
+        field: allocation,
         select: true,
         defaultValue: true,
       },

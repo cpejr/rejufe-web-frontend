@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
-import lotacao from '../../components/consts/lotacao';
+import allocation from '../../components/consts/allocation';
 
 toast.configure();
 
@@ -135,8 +135,8 @@ function ModuloUsuarios() {
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
-                {lotacao?.map((allocation) => (
-                  <MenuItem value={allocation.value}>{allocation.label}</MenuItem>
+                {allocation?.map((_allocation) => (
+                  <MenuItem value={_allocation.value}>{_allocation.label}</MenuItem>
                 ))}
               </Select>
             </FormControl>

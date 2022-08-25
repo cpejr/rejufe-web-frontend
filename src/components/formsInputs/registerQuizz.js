@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import Alternatives from '../Enquetes/alternatives';
 import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from '../initialStates/initialQuizzStates';
-import lotacao from '../consts/lotacao';
+import allocation from '../consts/allocation';
 
 function FormInputs({ setNewQuizz, handleClose }) {
   const users = [];
@@ -29,8 +29,6 @@ function FormInputs({ setNewQuizz, handleClose }) {
   };
 
   const allAssociates = 'Todos os associados';
-
-  const lotacoes = lotacao?.filter((section) => section.value !== '');
 
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
@@ -148,12 +146,12 @@ function FormInputs({ setNewQuizz, handleClose }) {
             )}
           >
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
-            {lotacoes?.map((section) => (
+            {allocation?.map((_allocation) => (
               <MenuItem
-                key={section?.label}
-                value={section?.value}
+                key={_allocation?.label}
+                value={_allocation?.value}
               >
-                {section?.label}
+                {_allocation?.label}
               </MenuItem>
             ))}
           </Select>
