@@ -149,7 +149,7 @@ function ModuloUsuarios() {
               endAdornment={<InputAdornment position="end"><SearchIcon /></InputAdornment>}
               placeholder="Busca rápida"
               value={search}
-              onChange={(e) => handleSearch(e.target.value.toLowerCase())}
+              onChange={(e) => handleSearch(e.target.value)}
             />
           )}
         </div>
