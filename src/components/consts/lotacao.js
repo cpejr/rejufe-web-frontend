@@ -1,30 +1,30 @@
 const lotacao = [
   {
     value: 'TRF',
-    label: 'TRF 5',
+    label: 'TRF',
   },
   {
-    value: 'CEARÁ',
+    value: 'CE',
     label: 'Ceará',
   },
   {
-    value: 'RIO GRANDE DO NORTE',
+    value: 'RN',
     label: 'Rio Grande do Norte',
   },
   {
-    value: 'PARAÍBA',
+    value: 'PB',
     label: 'Paraíba',
   },
   {
-    value: 'PERNAMBUCO',
+    value: 'PE',
     label: 'Pernambuco',
   },
   {
-    value: 'ALAGOAS',
+    value: 'AL',
     label: 'Alagoas',
   },
   {
-    value: 'SERGIPE',
+    value: 'SE',
     label: 'Sergipe',
   },
 ];
