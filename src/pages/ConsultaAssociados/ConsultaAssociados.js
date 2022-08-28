@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ConsultaAssociados.css';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
+import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 
 const titles = [
@@ -16,12 +16,12 @@ const titles = [
 
 function ConsultaAssociados() {
   const [associates, setAllAssociates] = useState([]);
-  const [dataFilter, setDataFilter] = useState([]);
+  const [dados, setDados] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDataFilter);
+    getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDados);
   }, []);
 
   return (
@@ -35,14 +35,15 @@ function ConsultaAssociados() {
         <div className="line-table-consult-associates" />
       </div>
       <div className="containerConsultAssociate">
-        <TableComponent
+        <ConsultAssociate
           id={id}
-          rows={associates}
           titles={titles}
+          rows={associates}
+          dados={dados}
+          adminRegister={false}
           print={false}
           search
           loading={loading}
-          dataFilter={dataFilter}
         />
       </div>
     </div>

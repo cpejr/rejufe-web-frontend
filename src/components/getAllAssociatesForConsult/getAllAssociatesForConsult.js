@@ -24,7 +24,7 @@ function compare(a, b) {
   return x === y ? 0 : x > y ? 1 : -1;
 }
 
-async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDataFilter) {
+async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDados) {
   setLoading(true);
   const auxAssociate = [];
   const associateId = [];
@@ -42,9 +42,9 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, s
         object.acting,
         object.email,
       ));
-      setDataFilter(allAssociates);
     });
 
+    setDados(allAssociates);
     setId(associateId);
     setAllAssociates(auxAssociate);
     setLoading(false);

@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import './SearchAdvanced.css';
 
 function SearchAdvanced({
-  handleClose, setData, rows, dados, dataFilter,
+  handleClose, setData, dados, adminRegister, setIds, setSequentialIds,
 }) {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
-  /*  const [filter] = useState([]); */
 
   function replaceSpecialChars(str) {
     str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
@@ -26,70 +25,61 @@ function SearchAdvanced({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  function createData(name, cpf, status, allocation, acting, email) {
-    return {
-      name, cpf, status, allocation, acting, email,
-    };
-  }
-
-  function returnData(name, cpf, status) {
-    return {
-      name, cpf, status,
-    };
-  }
-
-  // eslint-disable-next-line max-len
-  const filterName = rows?.filter(((item) => replaceSpecialChars(item?.name).toLowerCase().includes(replaceSpecialChars(query))));
-  const filterType = [];
-  if (dataFilter) {
-    let auxFilterType = [];
-    auxFilterType = dataFilter?.filter(((item) => item.judicial_section?.includes(type)));
-    auxFilterType.forEach((object) => {
-      filterType.push(createData(
-        object.name,
-        object.cell_phone_number,
-        object.status,
-        object.allocation,
-        object.acting,
-        object.email,
-      ));
-    });
-  }
-  let auxFilterType = [];
-  if (dados) {
-    auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
-    auxFilterType.forEach((object) => {
-      filterType.push(returnData(object.name, object.cpf, object.status));
-    });
-  }
-
   const handleData = () => {
-    if (query !== '' && type === '') {
-      setData(filterName);
-      setQuery('');
+    const initialValueFilteredData = {
+      ids: [],
+      senquentialIds: [],
+      associates: [],
+    };
+
+    const filteredData = dados?.reduce((acc, associate) => {
+      if (
+        type
+        && !(associate.judicial_section?.includes(type))
+      ) {
+        return acc;
+      }
+
+      if (
+        query
+        && !(replaceSpecialChars(associate?.name).toLowerCase().includes(replaceSpecialChars(query)))
+      ) {
+        return acc;
+      }
+
+      acc.ids.push(associate._id);
+      acc.senquentialIds.push(associate.sequential_Id);
+
+      if (adminRegister) {
+        acc.associates.push({
+          name: associate.name,
+          cpf: associate.cpf,
+          status: associate.status,
+        });
+      } else {
+        acc.associates.push({
+          name: associate.name,
+          cell_phone_number: associate.cell_phone_number,
+          status: associate.status,
+          allocation: associate.allocation,
+          acting: associate.acting,
+          email: associate.email,
+        });
+      }
+
+      return acc;
+    }, initialValueFilteredData);
+
+    setData(filteredData.associates);
+
+    if (adminRegister) {
+      setIds(filteredData.ids);
+      setSequentialIds(filteredData.senquentialIds);
     }
-    if (type !== '' && query === '') {
-      setData(filterType);
-      setType('');
-    }
-    const filter = [];
-    if (type !== '' && query !== '') {
-      let add = 0;
-      filterType?.forEach((obj) => {
-        const auxFilter = filterName.filter(((item) => item.name.includes(obj.name)));
-        if (auxFilter[0] !== undefined) {
-          const filterResult = auxFilter[0];
-          filter[add] = filterResult;
-          add += 1;
-        }
-      });
-      setData(filter);
-      setType('');
-      setQuery('');
-    }
-    if (query === '' && type === '') {
-      setData(rows);
-    }
+
+    setQuery('');
+    setType('');
+
     handleClose();
   };
 

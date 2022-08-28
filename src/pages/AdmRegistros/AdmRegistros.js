@@ -3,7 +3,7 @@ import './AdmRegistros.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
+import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssociate';
 
 toast.configure();
 
@@ -21,13 +21,19 @@ function AdmRegistros() {
     const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
-      allAssociates.forEach(({
-        sequential_Id: seqId, _id, name, cpf, status, // Eslint exigiu
-      }) => {
-        associateCode.push(seqId);
-        associateId.push(_id);
-        auxAssociate.push({ name, cpf, status });
-      });
+      allAssociates.forEach(
+        ({
+          sequential_Id: seqId,
+          _id,
+          name,
+          cpf,
+          status, // Eslint exigiu
+        }) => {
+          associateCode.push(seqId);
+          associateId.push(_id);
+          auxAssociate.push({ name, cpf, status });
+        },
+      );
       setDados(allAssociates);
       auxAssociate.sort();
       setId(associateId);
@@ -44,24 +50,17 @@ function AdmRegistros() {
     getAllAssociates();
   }, []);
 
-  const titles = [
-    '',
-    'Código',
-    'Nome',
-    'Cpf',
-    'Status',
-  ];
+  const titles = ['', 'Código', 'Nome', 'Cpf', 'Status'];
 
   return (
     <div className="container-administration-register">
       <div className="title-adm-registers">
-        <h1>
-          {'Manutenção em associados '}
-        </h1>
+        <h1>{'Manutenção em associados '}</h1>
       </div>
       <div className="line-table-registers" />
-      <TableComponent
+      <ConsultAssociate
         id={id}
+        adminRegister
         sequentialId={sequentialId}
         dados={dados}
         rows={associates}

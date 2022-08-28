@@ -104,6 +104,7 @@ TablePaginationActions.propTypes = {
 function ConsultaAssociados({
   titles,
   rows,
+  adminRegister,
   id,
   order,
   edit,
@@ -113,10 +114,11 @@ function ConsultaAssociados({
   loading,
   sequentialId,
   dados,
-  dataFilter,
   printAssociados,
 }) {
   const [data, setData] = useState(rows);
+  const [ids, setIds] = useState(id);
+  const [sequentialIds, setSequentialIds] = useState(sequentialId);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(print ? -1 : 10);
   const [open, setOpen] = useState(false);
@@ -265,7 +267,9 @@ function ConsultaAssociados({
   };
   useEffect(() => {
     setData(rows);
-  }, [rows]);
+    setIds(id);
+    setSequentialIds(sequentialId);
+  }, [rows, id, sequentialId]);
   return (
     <TableContainer
       component={Paper}
@@ -295,7 +299,7 @@ function ConsultaAssociados({
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
-                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                    <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, ids[index + (page * 10)])}>
                       <SearchIcon />
                     </IconButton>
                   </TableCell>
@@ -319,7 +323,7 @@ function ConsultaAssociados({
                 ) : (
                   null
                 )}
-                {sequentialId
+                {sequentialIds
                   && (
                     <TableCell {...cellFontProps}>
                       <Link
@@ -327,11 +331,11 @@ function ConsultaAssociados({
                         to={{
                           pathname: '/editar-associados',
                           state: {
-                            id: id[index + (page * 10)],
+                            id: ids[index + (page * 10)],
                           },
                         }}
                       >
-                        {sequentialId[index + (page * 10)]}
+                        {sequentialIds[index + (page * 10)]}
                       </Link>
                     </TableCell>
                   )}
@@ -434,12 +438,13 @@ function ConsultaAssociados({
                 aria-describedby="simple-modal-description"
               >
                 <SearchAdvanced
+                  adminRegister={adminRegister}
                   handleClose={handleClose}
                   data={data}
                   setData={setData}
-                  rows={rows}
                   dados={dados}
-                  dataFilter={dataFilter}
+                  setIds={setIds}
+                  setSequentialIds={setSequentialIds}
                 />
               </Modal>
             </div>
