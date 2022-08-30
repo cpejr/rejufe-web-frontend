@@ -92,7 +92,7 @@ export default function ModalAdminExclude({ id, setUse }) {
           <h1>Confirmação</h1>
         </div>
         <div className="content-user-module-exclude">
-          <h1>Voce deseja deletar esse modelo?</h1>
+          <h1>Você deseja deletar esse modelo?</h1>
         </div>
         <div className="user-module-exclude-buttons">
           <DeleteModel id={id} setOpen={setOpen} setUse={setUse} />
