@@ -29,18 +29,11 @@ class ComponentToPrint extends React.Component {
   }
 }
 
-const titles = [
-  'Nome',
-  'Celular',
-  'Status',
-  'Lotação',
-  'Atuação',
-  'Email',
-];
-
 function Imprimir() {
+  const titles = JSON.parse(sessionStorage.titlesToPrint);
   const associados = JSON.parse(sessionStorage.associadosToPrint);
   const [printAssociados, setPrintAssociados] = useState({ print: false, resolve: undefined });
+  titles.shift();
 
   const handleWindowClose = () => {
     window.close();

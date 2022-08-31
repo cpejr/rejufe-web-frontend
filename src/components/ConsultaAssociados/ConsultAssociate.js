@@ -127,7 +127,23 @@ function ConsultaAssociados({
   const matchesFont400px = useMediaQuery('(max-width:400px)');
 
   const handleWindowOpen = () => {
-    sessionStorage.setItem('associadosToPrint', JSON.stringify(data));
+    let toPrint = [];
+    if (sequentialId != null) {
+      let i = 0;
+      data.forEach((associado) => {
+        const { name, cpf, status } = associado;
+        const codigo = sequentialId[i];
+        toPrint.push({
+          codigo, name, cpf, status,
+        });
+        i += 1;
+      });
+    } else {
+      toPrint = data;
+    }
+    sessionStorage.setItem('associadosToPrint', JSON.stringify(toPrint));
+    sessionStorage.setItem('titlesToPrint', JSON.stringify(titles));
+
     window.open('/imprimir-associados');
   };
 
