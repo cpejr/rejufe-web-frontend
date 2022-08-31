@@ -1,7 +1,7 @@
 const allocation = [
   {
-    value: 'TRF',
-    label: 'TRF',
+    value: 'TRF 5',
+    label: 'TRF 5',
   },
   {
     value: 'CE',

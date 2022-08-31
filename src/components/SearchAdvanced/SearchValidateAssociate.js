@@ -134,7 +134,7 @@ function SearchAdvancedAssociate({
 
           <label> Lotação:</label>
           <select className="validate-associate-search-advanced-select" value={allocation} placeholder="" onChange={(e) => setAllocation(e.target.value)}>
-            <option value="TRF">TRF</option>
+            <option value="TRF 5">TRF 5</option>
             <option value="AL">Alagoas</option>
             <option value="CE">Ceará</option>
             <option value="PB">Paraíba</option>
