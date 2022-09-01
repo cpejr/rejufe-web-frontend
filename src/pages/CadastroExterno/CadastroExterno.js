@@ -35,8 +35,6 @@ function CadastroExterno() {
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
     const lettersSpacesRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Apenas letras e espaços, sem caracteres especiais
-    const lettersSpaces5Regex = /^[5A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Exceção para o caso TRF 5
-
     let checkError = 0;
 
     if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) {
@@ -159,7 +157,7 @@ function CadastroExterno() {
         autoClose: 5000,
       });
     }
-    if (dados.lotacao?.length === 0 || !lettersSpaces5Regex.test(dados.lotacao)) {
+    if (dados.lotacao?.length === 0) {
       aux.lotacao = true;
       checkError = 1;
       toast.error('Lotação inválido!!', {
