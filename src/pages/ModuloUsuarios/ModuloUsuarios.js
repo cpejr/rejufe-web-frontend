@@ -52,7 +52,7 @@ function ModuloUsuarios() {
         .toLowerCase()).includes(replaceSpecialChars(value))));
       setSearch(value);
     }
-    if (filter === 'Alocação') {
+    if (filter === 'Lotação') {
       setSearch(value);
       setRows(admins?.filter(((item) => item.allocation?.includes(value))));
     }
@@ -90,7 +90,7 @@ function ModuloUsuarios() {
     '',
     'Status',
     'Usuário',
-    'Alocação',
+    'Lotação',
     'Perfil',
     'Login',
     'Atuação',
@@ -118,20 +118,20 @@ function ModuloUsuarios() {
             >
               <MenuItem value="Sem filtros">Sem filtros</MenuItem>
               <MenuItem value="Usuários">Usuários</MenuItem>
-              <MenuItem value="Alocação">Alocação</MenuItem>
+              <MenuItem value="Lotação">Lotação</MenuItem>
             </Select>
           </FormControl>
         </div>
         <div className="search-container-user-module">
-          {filter === 'Alocação' ? (
+          {filter === 'Lotação' ? (
             <FormControl className="form-user-module-page">
-              <InputLabel id="demo-simple-select-label">Selecione uma Alocação</InputLabel>
+              <InputLabel id="demo-simple-select-label">Selecione uma Lotação</InputLabel>
               <Select
                 className="select-search-user-module"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={search}
-                label="Selecione uma Alocação"
+                label="Selecione uma Lotação"
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
