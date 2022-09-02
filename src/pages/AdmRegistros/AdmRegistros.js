@@ -10,29 +10,24 @@ toast.configure();
 function AdmRegistros() {
   const [associates, setAllAssociates] = useState([]);
   const [dados, setDados] = useState([]);
-  const [sequentialId, setSequentialId] = useState([]);
-  const [id, setId] = useState([]);
   const [loading, setLoading] = useState(false);
+  const sequentialId = true;
 
   async function getAllAssociates() {
     setLoading(true);
     const auxAssociate = [];
-    const associateCode = [];
-    const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
       allAssociates.forEach(({
         sequential_Id: seqId, _id, name, cpf, status, // Eslint exigiu
       }) => {
-        associateCode.push(seqId);
-        associateId.push(_id);
-        auxAssociate.push({ name, cpf, status });
+        auxAssociate.push({
+          seqId, _id, name, cpf, status,
+        });
       });
       setDados(allAssociates);
       auxAssociate.sort();
-      setId(associateId);
       setAllAssociates(auxAssociate);
-      setSequentialId(associateCode);
       setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -61,7 +56,6 @@ function AdmRegistros() {
       </div>
       <div className="line-table-registers" />
       <TableComponent
-        id={id}
         sequentialId={sequentialId}
         dados={dados}
         rows={associates}

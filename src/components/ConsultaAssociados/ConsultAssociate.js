@@ -104,7 +104,6 @@ TablePaginationActions.propTypes = {
 function ConsultaAssociados({
   titles,
   rows,
-  id,
   order,
   edit,
   search,
@@ -126,22 +125,13 @@ function ConsultaAssociados({
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
 
-  const handleWindowOpen = () => {
-    let toPrint = [];
-    if (sequentialId != null) {
-      let i = 0;
-      data.forEach((associado) => {
-        const { name, cpf, status } = associado;
-        const codigo = sequentialId[i];
-        toPrint.push({
-          codigo, name, cpf, status,
-        });
-        i += 1;
+  const imprimirAssociados = () => {
+    if (sequentialId) {
+      data.forEach((associate) => {
+        delete associate._id;
       });
-    } else {
-      toPrint = data;
     }
-    sessionStorage.setItem('associadosToPrint', JSON.stringify(toPrint));
+    sessionStorage.setItem('associadosToPrint', JSON.stringify(data));
     sessionStorage.setItem('titlesToPrint', JSON.stringify(titles));
 
     window.open('/imprimir-associados');
@@ -306,7 +296,7 @@ function ConsultaAssociados({
             && (rowsPerPage > 0
               ? data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : data)
-              ?.map((row, index) => (
+              ?.map((row) => (
                 <TableRow>
                   {order ? (
                     <TableCell {...cellFontProps} align="center">
@@ -314,7 +304,7 @@ function ConsultaAssociados({
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
-                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, id[index + (page * 10)])}>
+                      <IconButton color="primary" aria-label="Search" onClick={(e) => redirect(e, [row._id])}>
                         <SearchIcon />
                       </IconButton>
                     </TableCell>
@@ -335,30 +325,36 @@ function ConsultaAssociados({
                     <TableCell {...cellFontProps} align="center">
                       <FindInPageIcon aria-label="findFile" />
                     </TableCell>
-                  ) : (
-                    null
-                  )}
-                  {sequentialId
-                    && (
-                      <TableCell {...cellFontProps}>
-                        <Link
-                          style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
-                          to={{
-                            pathname: '/editar-associados',
-                            state: {
-                              id: id[index + (page * 10)],
-                            },
-                          }}
-                        >
-                          {sequentialId[index + (page * 10)]}
-                        </Link>
-                      </TableCell>
-                    )}
-                  {Object.values(row)?.map((dado) => (
+                  ) : (null)}
+
+                  {sequentialId ? (
                     <TableCell {...cellFontProps}>
-                      {dado}
+                      <Link
+                        style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
+                        to={{
+                          pathname: '/editar-associados',
+                          state: {
+                            id: row._id,
+                          },
+                        }}
+                      >
+                        {row.seqId}
+                      </Link>
                     </TableCell>
-                  ))}
+                  ) : (null)}
+
+                  {sequentialId ? (
+                    Object.values(row)?.slice(2).map((dado) => (
+                      <TableCell {...cellFontProps}>
+                        {dado}
+                      </TableCell>
+                    ))) : (
+                    Object.values(row)?.slice(1).map((dado) => (
+                      <TableCell {...cellFontProps}>
+                        {dado}
+                      </TableCell>
+                    )))}
+
                 </TableRow>
               ))}
           {emptyRows > 0 && (
@@ -468,7 +464,7 @@ function ConsultaAssociados({
                 sx={{
                   marginBottom: '5px',
                 }}
-                onClick={handleWindowOpen}
+                onClick={imprimirAssociados}
               >
                 Imprimir
               </Button>
