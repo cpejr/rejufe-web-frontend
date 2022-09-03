@@ -26,6 +26,7 @@ import ConsultasMinutes from './pages/ConsultasAtas';
 import FichaAssociados from './pages/FichaAssociados';
 import FichaMinutes from './pages/FichaAtas';
 import FichaNoticia from './pages/FichaNoticia/FichaNoticia';
+import FichaEnquete from './pages/FichaEnquete/FichaEnquete';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
@@ -89,6 +90,7 @@ function Routes() {
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
+        <Route path="/ficha-enquete" component={FichaEnquete} />
         <Route path="/imprimir-associados" component={ImprimirAssociados} />
         <Route path="/imprimir-atas-editais" component={ImprimirAtasEditais} />
         <Route path="/imprimir-atas" component={ImprimirAtas} />

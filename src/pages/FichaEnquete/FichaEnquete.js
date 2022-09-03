@@ -1,135 +1,156 @@
 import React, { useEffect, useState } from 'react';
+import { Chart } from 'react-google-charts';
 import { toast } from 'react-toastify';
-import moment from 'moment';
-import { useHistory } from 'react-router-dom';
-import { CircularProgress } from '@material-ui/core';
-import {
-  InputLabel, FormControl, Select, MenuItem,
-} from '@mui/material';
-import ModalEnquete from '../../components/Enquetes/modalEnquetes';
-import { useAuth } from '../../providers/auth';
 import * as managerService from '../../services/manager/managerService';
-import Quizzes from '../../components/CardQuizzes/Quizzes';
+import TableComponent from '../../components/dashboard/dashboardComponent';
 import './FichaEnquete.css';
 
-function ResultadoQuizzes() {
-  const { user } = useAuth();
-  const [filter, setFilter] = useState('');
-  const [quizzes, setQuizzes] = useState([]);
-  const [newQuizz, setNewQuizz] = useState(false);
-  const [associates, setAssociates] = useState([]);
-  const history = useHistory();
-  const [voted, setVoted] = useState();
-  const [toVote, setToVote] = useState([]);
-  const [date] = useState(new Date());
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
-  const [loading, setLoading] = useState(true);
+toast.configure();
 
-  async function getAllAQuizzes() {
+function GraphicQuizzes({
+  toVote,
+  quizzId,
+  quizz,
+  alreadyVoted,
+  associates,
+  userType,
+}) {
+  const [loadEmailSender, setLoadEmailSender] = useState(false);
+  const [toVoteMembers, setToVoteMembers] = useState([]);
+  const [graphData, setGraphData] = useState([]);
+
+  useEffect(() => {
+    const graphInfo = [['Opções', 'Votos', { role: 'annotation' }]];
+
+    const Data = quizz.reduce((acc, option) => {
+      const alreadyVotedQuantity = alreadyVoted?.length;
+      const percentValue = alreadyVotedQuantity && 100 * (option.votes / alreadyVotedQuantity);
+      const percent = `${percentValue.toFixed(2).replace('.', ',')}%`;
+
+      acc.push([option.description, option.votes, percent]);
+      return acc;
+    }, graphInfo);
+
+    setGraphData(Data);
+  }, [quizz]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await managerService.getToVoteMembers(quizzId);
+        const members = res && res.map((member) => ({ name: member.name }));
+        setToVoteMembers(members);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // const data = [
+  //   ['Opções', 'Votos', { role: 'annotation' }],
+  // ];
+  const titles = ['', ''];
+  // const user = [];
+  // const name = [];
+  // const votes = [];
+  // let index = 1;
+
+  // quizz?.forEach((option,) => {
+  //   const percentual = (option.votes / alreadyVoted.length);
+  //   let changePercentual = (percentual * 100);
+  //   changePercentual += '%';
+  //   data[index] = [option.description, option.votes, changePercentual];
+  //   votes[index] = option.votes;
+  //   index += 1;
+  // });
+  // let count = 0;
+
+  // toVote?.forEach((_id) => {
+  //   user[count] = associates?.filter((item) => item._id === _id);
+  //   user[count]?.forEach((obj) => {
+  //     name[count] = obj.name;
+  //   });
+  //   count += 1;
+  // });
+
+  // const names = name?.map((value) => ({
+  //   name: value,
+  // }));
+
+  const options = {
+    title: 'Quizz',
+    chartArea: { width: '50%', height: '100%' },
+    vAxis: {
+      title: 'Opções',
+    },
+  };
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
     try {
-      const response = await managerService.getQuizzes(dateQuizz);
-      const allAssociates = await managerService.getAssociates();
-      setAssociates(allAssociates);
-      setQuizzes(response);
-      setLoading(false);
-    } catch (error) {
-      history.push('/NotFound');
-      toast.error('Credenciais inválidas!!', {
-        position: toast.POSITION.TOP_RIGHT,
+      setLoadEmailSender(true);
+      await managerService.sendEmailToVoteMembers(quizzId);
+      toast.success('E-mails enviados com sucesso', {
+        position: toast.POSITION.TOP_CENTER,
         autoClose: 5000,
       });
-    }
-  }
-
-  async function getToVoteQuizzes() {
-    try {
-      const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
-      setToVote(response);
-      setLoading(false);
-    } catch (error) {
-      history.push('/NotFound');
-      toast.error('Credenciais inválidas!!', {
-        position: toast.POSITION.TOP_RIGHT,
+      setLoadEmailSender(false);
+    } catch (err) {
+      console.error(err);
+      toast.error('Houve um problema no envio dos e-mails. Tente mais tarde', {
+        position: toast.POSITION.TOP_CENTER,
         autoClose: 5000,
       });
-    }
-  }
-
-  const handleChange = (value) => {
-    if (value !== 'Sem filtros') {
-      setFilter(value);
+      setLoadEmailSender(false);
     }
   };
 
-  useEffect(() => {
-    if (user?.type === 'administrador') {
-      getAllAQuizzes();
-    } else {
-      getToVoteQuizzes();
-    }
-  }, [voted, newQuizz]);
-
   return (
-    <div className="container-cards-quizzes">
-      <div className="division-cards-quizzes">
-        <div className="title-cards-quizzes-page">
-          <h1>Resultado das Enquetes</h1>
-          <FormControl className="form-user-module-page">
-            <InputLabel id="select-filter">Selecione um filtro</InputLabel>
-            <Select
-              className="select-filter-user-module"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filter}
-              label="Selecione um filtro"
-              onChange={(e) => handleChange(e.target.value)}
-            >
-              <MenuItem value="">Nenhum</MenuItem>
-              <MenuItem value="Em andamento">Em andamento</MenuItem>
-              <MenuItem value="Finalizada">Finalizada</MenuItem>
-              <MenuItem value="Não iniciada">Não iniciada</MenuItem>
-            </Select>
-          </FormControl>
-          {user?.type === 'administrador' && (
-            <ModalEnquete setNewQuizz={setNewQuizz} />
-          )}
-        </div>
-        <div className="line-table-cards-quizzes" />
-        {loading ? (
-          <div className="loader-cards-quizzes">
-            <CircularProgress size={35} color="inherit" />
+    <div className="content-card-quizzes">
+      {quizz[0]?.votes ? (
+        <Chart
+          chartType="BarChart"
+          width="100%"
+          height="50%"
+          data={graphData}
+          options={options}
+          legendToggle
+        />
+      ) : ''}
+      {userType === 'administrador' && toVote?.length > 0 && (
+        <div>
+          <div className="title-quizzes-already-voted">
+            <h2>{'Faltam Votar '}</h2>
           </div>
-        ) : (
-          <>
-            {user?.type === 'administrador' ? (
-              quizzes?.map((quizz) => (
-                <Quizzes
-                  quizz={quizz}
-                  associates={associates}
-                  dateQuizz={dateQuizz}
-                  user={user}
-                  filter={filter}
-                  setVoted={setVoted}
-                />
-              ))
-            ) : (
-              toVote?.map((quizz) => (
-                <Quizzes
-                  quizz={quizz}
-                  associates={associates}
-                  dateQuizz={dateQuizz}
-                  user={user}
-                  filter={filter}
-                  setVoted={setVoted}
-                />
-              ))
-            )}
-            <div />
-          </>
-        )}
-      </div>
+          <div className="line-quizzes-already-voted" />
+          <div className="content-table-quizzes">
+            <TableComponent
+              rows={toVoteMembers}
+              titles={titles}
+              order
+              renderButton={false}
+            />
+          </div>
+          <div className="send-email-to-vote-members">
+            <button
+              type="button"
+              onClick={sendEmail}
+              disabled={loadEmailSender}
+            >
+              Enviar e-mails
+            </button>
+          </div>
+        </div>
+      )}
+      {toVote?.length === 0 && (
+        <div className="quizzes-already-voted">
+          <p>Todas as pessoas já votaram!</p>
+        </div>
+      )}
     </div>
   );
 }
 
-export default ResultadoQuizzes;
+export default GraphicQuizzes;

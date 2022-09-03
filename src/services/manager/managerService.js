@@ -513,3 +513,10 @@ export const updateVotes = async (quizzId, index) => {
   const response = await requesterService.updateVotes(quizzId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const getQuizzesById = async (id) => {
+  const times = 1;
+  const response = await requesterService.getQuizzesById(id, times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
