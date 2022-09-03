@@ -61,6 +61,7 @@ export function UserHeader() {
         <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="usuario" />
+        <PrivateRoute path="/ficha-enquete" component={FichaEnquete} type="usuario" />
         <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="usuario" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="usuario" />
         <PrivateRoute path="/ficha-noticia" component={FichaNoticia} type="usuario" />
@@ -90,7 +91,6 @@ function Routes() {
         <Route path="/cadastro-externo" component={CadastroExterno} />
         <Route path="/redefinirSenha" component={EsqueciSenha} />
         <Route path="/NotFound" component={NotFound} />
-        <Route path="/ficha-enquete" component={FichaEnquete} />
         <Route path="/imprimir-associados" component={ImprimirAssociados} />
         <Route path="/imprimir-atas-editais" component={ImprimirAtasEditais} />
         <Route path="/imprimir-atas" component={ImprimirAtas} />

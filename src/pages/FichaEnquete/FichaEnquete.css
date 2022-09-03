@@ -1,0 +1,4 @@
+.content-card-quizzes {
+    display: flex;
+    flex-direction: column;
+  }

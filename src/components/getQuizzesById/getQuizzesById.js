@@ -13,8 +13,12 @@ const routingFunction = (param) => {
 async function getQuizzesById(quizzesId, setQuizzes) {
   try {
     managerService.getQuizzesById(quizzesId).then((Quizzes) => {
-        setQuizzes(quizzes);
-      });
+      const quizzes = {
+        title: Quizzes.title,
+        description: Quizzes.description,
+        options: Quizzes.options,
+      };
+      setQuizzes(quizzes);
     });
   } catch (error) {
     routingFunction();
