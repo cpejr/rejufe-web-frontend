@@ -25,20 +25,24 @@ function FichaEnquete() {
   // }, []);
 
   return (
-    <div className="container-card-quizzes">
-      <div className="title-card-quizzes">Título</div>
-      <div className="description-card-quizzes">Descrição</div>
-      <div className="content-card-quizzes">
-        {votes[1] !== undefined && (
-          <Chart
-            chartType="BarChart"
-            width="100%"
-            height="50%"
-            data={data}
-            options={options}
-            legendToggle
-          />
-        )}
+    <div className="report-quizzes">
+      <div className="container-report-quizzes">
+        <div className="title-report-quizzes">DETALHES DA ENQUETE</div>
+        <div className="titlequiz-report-quizzes">Título</div>
+        <div className="descriptionquiz-report-quizzes">Descrição</div>
+        <div className="chart-report-quizzes">Gráfico</div>
+        <div className="content-report-quizzes">
+          {votes[1] !== undefined && (
+            <Chart
+              chartType="BarChart"
+              width="100%"
+              height="50%"
+              data={data}
+              options={options}
+              legendToggle
+            />
+          )}
+        </div>
       </div>
     </div>
   );
