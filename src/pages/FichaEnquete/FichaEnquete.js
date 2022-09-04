@@ -28,8 +28,12 @@ function FichaEnquete() {
     <div className="report-quizzes">
       <div className="container-report-quizzes">
         <div className="title-report-quizzes">DETALHES DA ENQUETE</div>
-        <div className="titlequiz-report-quizzes">Título</div>
+        <div className="alltitlequiz-report-quizzes">
+          <div className="titlequiz-report-quizzes">Título</div>
+          <div className="titleboxquiz-report-quizzes">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+        </div>
         <div className="descriptionquiz-report-quizzes">Descrição</div>
+        <div className="descriptionboxquiz-report-quizzes">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled i Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled i Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys</div>
         <div className="chart-report-quizzes">Gráfico</div>
         <div className="content-report-quizzes">
           {votes[1] !== undefined && (
