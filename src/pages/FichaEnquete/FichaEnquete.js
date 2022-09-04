@@ -1,16 +1,11 @@
-import React, {
-// useEffect,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
-// import getQuizzesById from '../../components/getQuizzesById/getQuizzesById';
+import getQuizzesById from '../../components/getQuizzesById/getQuizzesById';
 import './FichaEnquete.css';
 
 function FichaEnquete() {
-  const data = [
-    ['Opções', 'Votos', { role: 'annotation' }],
-  ];
-
-  const votes = [];
+  const [quizz, setQuizz] = useState({});
+  const [graphData, setGraphData] = useState([]);
 
   const options = {
     title: 'Quizz',
@@ -20,9 +15,23 @@ function FichaEnquete() {
     },
   };
 
-  // useEffect(() => {
-  //   getQuizzesById(quizzesId, setQuizzes);
-  // }, []);
+  useEffect(() => {
+    getQuizzesById('624a1bb9a77cb7744fceaa1d', setQuizz);
+  }, []);
+
+  useEffect(() => {
+    const alreadyVotedQuantity = quizz?.alreadyVoted?.length;
+    const graphInfo = [['Opções', 'Votos', { role: 'annotation' }]];
+    const Data = quizz?.options?.reduce((acc, option) => {
+      const percentValue = alreadyVotedQuantity > 0 ? 100 * (option.votes / alreadyVotedQuantity) : 0;
+      const percent = `${percentValue.toFixed(2).replace('.', ',')}%`;
+
+      acc.push([option.description, option.votes, percent]);
+      return acc;
+    }, graphInfo);
+
+    setGraphData(Data);
+  }, [quizz]);
 
   return (
     <div className="report-quizzes">
@@ -30,22 +39,22 @@ function FichaEnquete() {
         <div className="title-report-quizzes">DETALHES DA ENQUETE</div>
         <div className="alltitlequiz-report-quizzes">
           <div className="titlequiz-report-quizzes">Título</div>
-          <div className="titleboxquiz-report-quizzes">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+          <div className="titleboxquiz-report-quizzes">{quizz?.title}</div>
         </div>
         <div className="descriptionquiz-report-quizzes">Descrição</div>
-        <div className="descriptionboxquiz-report-quizzes">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled i Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled i Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys</div>
+        <div className="descriptionboxquiz-report-quizzes">{quizz?.description}</div>
         <div className="chart-report-quizzes">Gráfico</div>
         <div className="content-report-quizzes">
-          {votes[1] !== undefined && (
+          {quizz?.options?.length ? (
             <Chart
               chartType="BarChart"
               width="100%"
               height="50%"
-              data={data}
+              data={graphData}
               options={options}
               legendToggle
             />
-          )}
+          ) : ''}
         </div>
       </div>
     </div>

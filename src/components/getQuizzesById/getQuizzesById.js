@@ -17,6 +17,7 @@ async function getQuizzesById(quizzesId, setQuizzes) {
         title: Quizzes.title,
         description: Quizzes.description,
         options: Quizzes.options,
+        alreadyVoted: Quizzes.alreadyVoted,
       };
       setQuizzes(quizzes);
     });
