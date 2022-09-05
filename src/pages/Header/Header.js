@@ -217,7 +217,8 @@ function Header(props) {
         <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
-            onClick={() => handleReturn(logout)}
+            // onClick={() => handleReturn(logout)}
+            onClick={() => handleReturn()}
             type="button"
           >
             Sair
