@@ -47,7 +47,6 @@ function Header(props) {
   }
   function handleReturn() {
     history.push('/login');
-    logout();
   }
   function handleSubmitIntranet() {
     history.push('/intranet');
@@ -262,7 +261,7 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={() => handleReturn()}
+                    onClick={() => handleReturn(logout)}
                     type="button"
                   >
                     <span>
