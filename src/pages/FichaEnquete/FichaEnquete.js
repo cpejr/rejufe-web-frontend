@@ -16,17 +16,24 @@ function FichaEnquete() {
   };
 
   useEffect(() => {
-    getQuizzesById('624a1bb9a77cb7744fceaa1d', setQuizz);
+    getQuizzesById('622541cebb7f38e0e291e1ff', setQuizz);
   }, []);
 
   useEffect(() => {
     const alreadyVotedQuantity = quizz?.alreadyVoted?.length;
     const graphInfo = [['Opções', 'Votos', { role: 'annotation' }]];
-    const Data = quizz?.options?.reduce((acc, option) => {
-      const percentValue = alreadyVotedQuantity > 0 ? 100 * (option.votes / alreadyVotedQuantity) : 0;
-      const percent = `${percentValue.toFixed(2).replace('.', ',')}%`;
 
-      acc.push([option.description, option.votes, percent]);
+    const Data = quizz?.options?.reduce((acc, option) => {
+      if (alreadyVotedQuantity) {
+        const percentValue = 100 * (option.votes / alreadyVotedQuantity);
+        // eslint-disable-next-line prefer-template
+        const percent = (percentValue.toFixed(2) + '%').replace('.', ',');
+
+        acc.push([option.description, option.votes, percent]);
+      } else {
+        acc.push([option.description, option.votes, '0.00%']);
+      }
+
       return acc;
     }, graphInfo);
 
