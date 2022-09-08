@@ -21,13 +21,13 @@ export default function AcceptModal({ id, setUse, dados }) {
       handleStatus();
       await managerService.register(dados);
       await managerService.deleteExternalAssociate(id);
-      toast.success('Sócio aceito!', {
+      toast.success('Associado aceito!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
       setUse(true);
     } catch (error) {
-      toast.error('Erro ao tentar aceitar sócio!', {
+      toast.error('Erro ao tentar aceitar associado!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -57,7 +57,7 @@ export default function AcceptModal({ id, setUse, dados }) {
       >
         <Box className="AcceptModal-ContainerModal">
           <div className="AcceptModal-text">
-            <div className="AcceptModal-Question">Tem certeza que deseja aceitar sócio?</div>
+            <div className="AcceptModal-Question">Tem certeza que deseja aceitar associado?</div>
           </div>
           <div className="AcceptModal-Buttons">
             <div className="AcceptModal-button1">

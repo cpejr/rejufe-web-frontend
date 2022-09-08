@@ -291,7 +291,7 @@ function ConsultaAssociados({
               <TableRow>
                 {order ? (
                   <TableCell {...cellFontProps} align="center">
-                    {data.findIndex((obj) => obj._id === row._id) + 1}
+                    {data.findIndex((obj) => obj.cpf === row.cpf) + 1}
                   </TableCell>
                 ) : search ? (
                   <TableCell {...cellFontProps} align="center">
