@@ -7,13 +7,10 @@ import moment from 'moment';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { toast } from 'react-toastify';
-import ptLocale from 'moment/locale/pt-br';
 import * as managerService from '../../services/manager/managerService';
 import './SearchBirthday.css';
 import Day from '../consts/dayForData';
 import Month from '../consts/monthData';
-
-moment.locale('pt-br', [ptLocale]);
 
 function SearchBirthday({
   handleClose, setData, rows,
@@ -44,12 +41,11 @@ function SearchBirthday({
 
       allAssociates?.filter((associate) => associate?.status === 'A').forEach((object) => {
         auxAssociate.push(createData(
-          moment(object?.birth).format('DD/MM'),
+          moment.utc(object?.birth).format('DD/MM'),
           object?.name,
           object?.cell_phone_number,
         ));
       });
-
       setAllAssociates(auxAssociate);
     } catch (error) {
       // eslint-disable-next-line no-console

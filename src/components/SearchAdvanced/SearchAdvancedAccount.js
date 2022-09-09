@@ -2,10 +2,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import moment from 'moment';
-import ptLocale from 'moment/locale/pt-br';
 import './SearchAdvancedAccount.css';
-
-moment.locale('pt-br', [ptLocale]);
 
 function SearchAdvancedAccount({
   handleClose, setData, rows,
