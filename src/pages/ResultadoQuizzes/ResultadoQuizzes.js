@@ -40,7 +40,6 @@ function ResultadoQuizzes() {
       });
     }
   }
-
   async function getToVoteQuizzes() {
     try {
       const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);

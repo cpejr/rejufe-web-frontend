@@ -101,6 +101,7 @@ function Quizzes({
             <>
               {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
                 <GraphicQuizzes
+                  quizzId={quizz?._id}
                   toVote={quizz?.toVote}
                   associates={associates}
                   quizz={quizz?.options}

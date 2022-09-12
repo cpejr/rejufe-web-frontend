@@ -77,6 +77,10 @@ export const getQuizzes = (date, times, field, filter) => httpClient.get('/quizz
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const getToVoteMembers = (quizzId) => httpClient.post(`/quizzes/toVoteMembers/${quizzId}`);
+
+export const sendEmailToVoteMembers = (quizzId) => httpClient.post(`/quizzes/sendEmailToVote/${quizzId}`);
+
 export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
   params: {
     date,
