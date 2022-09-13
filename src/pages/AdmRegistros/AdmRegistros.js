@@ -22,7 +22,7 @@ function AdmRegistros() {
         sequential_Id: seqId, _id, name, cpf, status, // Eslint exigiu
       }) => {
         auxAssociate.push({
-          seqId, _id, name, cpf, status,
+          _id, seqId, name, cpf, status,
         });
       });
       setDados(allAssociates);

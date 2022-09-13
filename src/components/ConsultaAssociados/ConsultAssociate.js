@@ -126,14 +126,8 @@ function ConsultaAssociados({
   const matchesFont400px = useMediaQuery('(max-width:400px)');
 
   const imprimirAssociados = () => {
-    if (sequentialId) {
-      data.forEach((associate) => {
-        delete associate._id;
-      });
-    }
     sessionStorage.setItem('associadosToPrint', JSON.stringify(data));
     sessionStorage.setItem('titlesToPrint', JSON.stringify(titles));
-
     window.open('/imprimir-associados');
   };
 
