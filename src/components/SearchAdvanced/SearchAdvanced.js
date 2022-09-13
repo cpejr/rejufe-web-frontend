@@ -32,9 +32,9 @@ function SearchAdvanced({
     };
   }
 
-  function returnData(seqId, _id, name, cpf, status) {
+  function returnData(_id, seqId, name, cpf, status) {
     return {
-      seqId, _id, name, cpf, status,
+      _id, seqId, name, cpf, status,
     };
   }
 
@@ -60,7 +60,7 @@ function SearchAdvanced({
   if (dados) {
     auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
     auxFilterType.forEach((object) => {
-      filterType.push(returnData(object?.sequential_Id, object?._id, object.name, object.cpf, object.status));
+      filterType.push(returnData(object?._id, object?.sequential_Id, object.name, object.cpf, object.status));
     });
   }
 
