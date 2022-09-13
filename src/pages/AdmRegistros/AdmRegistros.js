@@ -19,7 +19,7 @@ function AdmRegistros() {
     try {
       const allAssociates = await managerService.getAssociates();
       allAssociates.forEach(({
-        sequential_Id: seqId, _id, name, cpf, status, // Eslint exigiu
+        sequential_Id: seqId, _id, name, cpf, status,
       }) => {
         auxAssociate.push({
           seqId, _id, name, cpf, status,
