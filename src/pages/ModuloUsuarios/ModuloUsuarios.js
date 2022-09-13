@@ -89,7 +89,7 @@ function ModuloUsuarios() {
     '',
     '',
     'Status',
-    'Usuário',
+    'Associado',
     'Seção',
     'Perfil',
     'Login',
