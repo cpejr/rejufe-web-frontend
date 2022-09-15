@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import { Grid, makeStyles } from '@material-ui/core';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import ImageIcon from '@mui/icons-material/Image';
 import Button from '@mui/material/Button';
 import FileSaver from 'file-saver';
 import * as managerService from '../../services/manager/managerService';
@@ -29,7 +30,8 @@ function SingleFileUpload({
 }) {
   const classes = useStyles();
   const [image, setImage] = useState();
-  const [updateImage, setUpdateImage] = useState(false);
+  // const [updateImage, setUpdateImage] = useState(false);
+  const [isImage] = useState(label === 'Imagem');
 
   async function getImage() {
     try {
@@ -65,6 +67,8 @@ function SingleFileUpload({
   }
 
   const onDrop = useCallback((accFiles, rejFiles) => {
+    console.log('Arquivo atual: ', accFiles);
+    console.log('Dados atuais: ', dados);
     if (rejFiles.length > 0) {
       toast.warn('Arquivo Inválido', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -92,14 +96,14 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          {update === true && label === 'Imagem' && !updateImage && file !== '' && image && (
+          {update === true && label === 'Imagem' && file !== '' && image && (
             <>
               <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" />
               <div style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
               }}
               >
-                <Button
+                {/* <Button
                   variant="contained"
                   style={{
                     backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
@@ -120,38 +124,24 @@ function SingleFileUpload({
                   }}
                 >
                   Remover Imagem
-                </Button>
+                </Button> */}
               </div>
             </>
           )}
-          {(file !== '' || updateImage) && (
-            <>
-              <div {...getRootProps({ className: classes.dropzone })}>
-                <input {...getInputProps()} />
-                <p>
-                  Arraste e solte a/o
-                  {' '}
-                  {`${label}`}
-                  {' '}
-                  aqui
-                </p>
-              </div>
-              {updateImage && (
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
-                  }}
-                  onClick={() => {
-                    setUpdateImage(false);
-                  }}
-                >
-                  cancelar
-                </Button>
-              )}
-            </>
+          {(file === '' || (file === undefined && !archiveId)) && (
+            <div {...getRootProps({ className: classes.dropzone })}>
+              <input {...getInputProps()} />
+              <p>
+                Arraste e solte
+                {isImage ? ' a imagem ' : ' o arquivo '}
+                aqui
+              </p>
+            </div>
           )}
-          {update === true && archiveId !== undefined && dados.pdf === undefined && label === 'Arquivo' && (
+          {update === true
+          && archiveId !== undefined
+          && dados.pdf === undefined
+          && (
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
             }}
@@ -165,9 +155,11 @@ function SingleFileUpload({
                     variant="primary"
                     onClick={() => getDownloads()}
                   >
-                    Baixar arquivo atual
-                    {' '}
-                    <PictureAsPdfIcon style={{ marginLeft: '1%' }} />
+                    Baixar
+                    {`${isImage ? ' a imagem' : ' o arquivo'} atual`}
+                    {isImage
+                      ? <ImageIcon style={{ marginLeft: '1%' }} />
+                      : <PictureAsPdfIcon style={{ marginLeft: '1%' }} />}
                   </Button>
                   <Button
                     variant="contained"
@@ -178,7 +170,9 @@ function SingleFileUpload({
                       setDados('', field);
                     }}
                   >
-                    Remover Arquivo
+                    Remover
+                    {' '}
+                    {label}
                   </Button>
                 </>
               )}
@@ -187,7 +181,10 @@ function SingleFileUpload({
           )}
           {file === '' && (
             <>
-              <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>Confirme para remover o arquivo/imagem</h3>
+              <h3 style={{ fontFamily: 'Roboto', fontWeight: '100', marginTop: '2%' }}>
+                Clique em confirmar/editar para remover
+                {isImage ? ' a imagem' : ' o arquivo'}
+              </h3>
               <Button
                 variant="contained"
                 style={{
