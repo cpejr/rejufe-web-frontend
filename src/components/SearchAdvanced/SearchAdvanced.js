@@ -71,12 +71,10 @@ function SearchAdvanced({
     }, initialValueFilteredData);
 
     setData(filteredData.associates);
+    if (adminRegister) setSequentialIds(filteredData.senquentialIds);
+    setIds(filteredData.ids);
 
-    if (adminRegister) {
-      setIds(filteredData.ids);
-      setSequentialIds(filteredData.senquentialIds);
-    }
-
+    console.log(filteredData);
     setQuery('');
     setType('');
 
