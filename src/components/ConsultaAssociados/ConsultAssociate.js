@@ -103,6 +103,7 @@ TablePaginationActions.propTypes = {
 
 function ConsultaAssociados({
   titles,
+  formatDataFunc,
   rows,
   adminRegister,
   id,
@@ -113,7 +114,6 @@ function ConsultaAssociados({
   print,
   loading,
   sequentialId,
-  dados,
   printAssociados,
 }) {
   const [data, setData] = useState(rows);
@@ -438,13 +438,12 @@ function ConsultaAssociados({
                 aria-describedby="simple-modal-description"
               >
                 <SearchAdvanced
+                  formatDataFunc={formatDataFunc}
                   adminRegister={adminRegister}
                   handleClose={handleClose}
-                  data={data}
                   setData={setData}
-                  dados={dados}
                   setIds={setIds}
-                  setSequentialIds={setSequentialIds}
+                  setSequentialIds={sequentialId && setSequentialIds}
                 />
               </Modal>
             </div>

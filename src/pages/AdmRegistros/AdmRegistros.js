@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
 import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssociate';
+import { formatAssociatesInfoAdminRegister } from '../../utils/formatAssociatesInfo';
 
 toast.configure();
 
@@ -60,7 +61,7 @@ function AdmRegistros() {
       <div className="line-table-registers" />
       <ConsultAssociate
         id={id}
-        adminRegister
+        formatDataFunc={formatAssociatesInfoAdminRegister}
         sequentialId={sequentialId}
         dados={dados}
         rows={associates}

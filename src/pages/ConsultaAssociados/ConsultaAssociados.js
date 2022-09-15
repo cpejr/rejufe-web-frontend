@@ -3,6 +3,8 @@ import './ConsultaAssociados.css';
 import 'react-toastify/dist/ReactToastify.css';
 import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
+import { formatAssociatesInfoUserRegister } from '../../utils/formatAssociatesInfo';
+
 
 const titles = [
   'Ficha',
@@ -37,6 +39,7 @@ function ConsultaAssociados() {
       <div className="containerConsultAssociate">
         <ConsultAssociate
           id={id}
+          formatDataFunc={formatAssociatesInfoUserRegister}
           titles={titles}
           rows={associates}
           dados={dados}

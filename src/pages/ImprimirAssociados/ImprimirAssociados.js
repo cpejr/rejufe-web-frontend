@@ -7,6 +7,7 @@ import { useReactToPrint } from 'react-to-print';
 import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssociate';
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 import './ImprimirAssociate.css';
+import { formatAssociatesInfoUserRegister } from '../../utils/formatAssociatesInfo';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
@@ -21,6 +22,7 @@ class ComponentToPrint extends React.Component {
       <div>
         <ConsultAssociate
           id={id}
+          formatDataFunc={formatAssociatesInfoUserRegister}
           rows={rows}
           titles={titles}
           adminRegister={false}
