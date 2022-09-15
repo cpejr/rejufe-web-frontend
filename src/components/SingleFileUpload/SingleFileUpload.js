@@ -30,8 +30,6 @@ function SingleFileUpload({
 }) {
   const classes = useStyles();
   const [image, setImage] = useState();
-  // const [updateImage, setUpdateImage] = useState(false);
-  const [isImage] = useState(label === 'Imagem');
 
   async function getImage() {
     try {
@@ -67,8 +65,6 @@ function SingleFileUpload({
   }
 
   const onDrop = useCallback((accFiles, rejFiles) => {
-    console.log('Arquivo atual: ', accFiles);
-    console.log('Dados atuais: ', dados);
     if (rejFiles.length > 0) {
       toast.warn('Arquivo Inválido', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -92,40 +88,19 @@ function SingleFileUpload({
     maxSize: 2 * 1024 * 1024, // 2MB
   });
 
+  const isImage = label === 'Imagem';
+
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          {update === true && label === 'Imagem' && file !== '' && image && (
+          {update === true && label === 'Imagem' && file !== '' && (typeof file !== 'object') && image && (
             <>
               <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" />
               <div style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
               }}
-              >
-                {/* <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%',
-                  }}
-                  onClick={() => {
-                    setUpdateImage(true);
-                  }}
-                >
-                  Alterar imagem
-                </Button>
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: '#1C3854', marginBottom: '5%', marginTop: '2%',
-                  }}
-                  onClick={() => {
-                    setDados('', field);
-                  }}
-                >
-                  Remover Imagem
-                </Button> */}
-              </div>
+              />
             </>
           )}
           {(file === '' || (file === undefined && !archiveId)) && (
@@ -170,7 +145,7 @@ function SingleFileUpload({
                       setDados('', field);
                     }}
                   >
-                    Remover
+                    Remover/Alterar
                     {' '}
                     {label}
                   </Button>
@@ -215,12 +190,12 @@ function SingleFileUpload({
                 <>
                   <PictureAsPdfIcon />
                   <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                    Remover Arquivo
+                    Remover Arquivo Alterado
                   </Button>
                 </>
               ) : (
                 <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                  Remover Imagem
+                  Remover Imagem Alterada
                 </Button>
               )}
             </div>
