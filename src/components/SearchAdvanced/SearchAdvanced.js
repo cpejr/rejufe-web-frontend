@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import * as managerService from '../../services/manager/managerService'
+import * as managerService from '../../services/manager/managerService';
 import './SearchAdvanced.css';
 
 function SearchAdvanced({
-  formatDataFunc, handleClose, setData, setIds, setSequentialIds,
+  handleClose, setFilteredAssociates,
 }) {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
@@ -15,11 +15,10 @@ function SearchAdvanced({
   };
 
   const handleData = async () => {
-    const associates = await managerService.getAssociates(type, query);
+    const consultFlag = true; // Flag para pegar apenas os associados de status A e do tipo usuário
+    const associates = await managerService.getAssociates(type, query, consultFlag);
 
-    setData(formatDataFunc(associates));
-    setIds(associates.map(({ _id }) => _id));
-    if (setSequentialIds) setSequentialIds(associates.map(({ sequential_Id }) => sequential_Id));
+    setFilteredAssociates(associates);
 
     handleClean();
     handleClose();
@@ -32,15 +31,11 @@ function SearchAdvanced({
       </div>
       <div className="associate-search-advanced-content">
         <div className="associate-search-advanced-labels">
-
           <label>Nome:</label>
-
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value.toLowerCase())} />
         </div>
         <div className="associate-search-advanced-labels">
-
           <label> Seção Judiciária:</label>
-
           <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
             <option value=" "> </option>
             <option value="SE">SE</option>

@@ -46,11 +46,12 @@ export const changeUserTypeById = (typeChange, id) => httpClient.put(`/usuario/$
 
 export const contactUs = (body) => httpClient.post('/faleConosco', body);
 
-export const getAssociates = (times, field, filter) => httpClient.get('/usuario', {
+export const getAssociates = (times, field, filter, consultFlag) => httpClient.get('/usuario', {
   params: {
     times,
     field,
     filter,
+    consultFlag,
   },
   paramsSerializer: (params) => qs.stringify(params),
 });

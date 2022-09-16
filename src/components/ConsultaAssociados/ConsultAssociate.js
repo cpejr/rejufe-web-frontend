@@ -116,12 +116,22 @@ function ConsultaAssociados({
   sequentialId,
   printAssociados,
 }) {
+  const [filteredAssociates, setFilteredAssociates] = useState(null)
   const [data, setData] = useState(rows);
   const [ids, setIds] = useState(id);
   const [sequentialIds, setSequentialIds] = useState(sequentialId);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(print ? -1 : 10);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!filteredAssociates) return
+  
+    setData(formatDataFunc(filteredAssociates));
+    setIds(filteredAssociates.map(({ _id }) => _id));
+    if (sequentialIds) setSequentialIds(filteredAssociates.map(({ sequential_Id }) => sequential_Id))
+
+  }, [filteredAssociates])
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
@@ -438,12 +448,8 @@ function ConsultaAssociados({
                 aria-describedby="simple-modal-description"
               >
                 <SearchAdvanced
-                  formatDataFunc={formatDataFunc}
-                  adminRegister={adminRegister}
                   handleClose={handleClose}
-                  setData={setData}
-                  setIds={setIds}
-                  setSequentialIds={sequentialId && setSequentialIds}
+                  setFilteredAssociates={setFilteredAssociates}
                 />
               </Modal>
             </div>
