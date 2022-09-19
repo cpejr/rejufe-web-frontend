@@ -95,13 +95,7 @@ function SingleFileUpload({
       <Grid item style={{ width: '65%' }}>
         <div>
           {update === true && label === 'Imagem' && file !== '' && (typeof file !== 'object') && image && (
-            <>
-              <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" />
-              <div style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-              }}
-              />
-            </>
+            <img style={{ width: '95%' }} src={`data:image/jpeg;base64,${image}`} alt="" />
           )}
           {(file === '' || (file === undefined && !archiveId)) && (
             <div {...getRootProps({ className: classes.dropzone })}>
@@ -190,12 +184,12 @@ function SingleFileUpload({
                 <>
                   <PictureAsPdfIcon />
                   <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                    Remover Arquivo Alterado
+                    Remover Novo Arquivo
                   </Button>
                 </>
               ) : (
                 <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                  Remover Imagem Alterada
+                  Remover Nova Imagem
                 </Button>
               )}
             </div>
