@@ -22,7 +22,7 @@ function ResultadoQuizzes() {
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
   const [date] = useState(new Date());
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
+  const dateQuizz = moment.utc(date).format('YYYY-MM-DD');
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {

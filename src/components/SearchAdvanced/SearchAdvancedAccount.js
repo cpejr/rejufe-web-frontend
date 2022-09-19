@@ -29,7 +29,7 @@ function SearchAdvancedAccount({
 
   // eslint-disable-next-line max-len
   const filterTitle = rows?.filter(((item) => replaceSpecialChars(item?.title).toLowerCase().includes(replaceSpecialChars(query))));
-  const filterDate = rows?.filter(((item) => item.date.includes(moment(date).format('DD-MM-YYYY'))));
+  const filterDate = rows?.filter(((item) => item.date.includes(moment.utc(date).format('DD-MM-YYYY'))));
 
   const handleData = () => {
     if (query !== '' && date === '') {
