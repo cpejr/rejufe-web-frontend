@@ -5,13 +5,11 @@ import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
-import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 import './ImprimirAssociate.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
   render() {
-    const { id } = this.props;
     const { rows } = this.props;
     const { titles } = this.props;
     const { ref } = this.props;
@@ -20,7 +18,6 @@ class ComponentToPrint extends React.Component {
     return (
       <div>
         <TableComponent
-          id={id}
           rows={rows}
           titles={titles}
           printAssociados={printAssociados?.print}
@@ -32,20 +29,11 @@ class ComponentToPrint extends React.Component {
   }
 }
 
-const titles = [
-  'Nome',
-  'Celular',
-  'Status',
-  'Lotação',
-  'Atuação',
-  'Email',
-];
-
 function Imprimir() {
-  const [associates, setAllAssociates] = useState([]);
-  const [id, setId] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const titles = JSON.parse(sessionStorage.titlesToPrint);
+  const associados = JSON.parse(sessionStorage.associadosToPrint);
   const [printAssociados, setPrintAssociados] = useState({ print: false, resolve: undefined });
+  titles.shift();
 
   const handleWindowClose = () => {
     window.close();
@@ -68,10 +56,6 @@ function Imprimir() {
     content: () => tableAssociates?.current,
     onAfterPrint: () => setPrintAssociados({ print: false, resolve: undefined }),
   });
-
-  useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading);
-  }, []);
 
   return (
     <div className="container-print-associates-page">
@@ -96,17 +80,15 @@ function Imprimir() {
       {printAssociados?.print ? (
         <div className="print-consult-associates-forms">
           <ComponentToPrint
-            id={id}
-            rows={associates}
+            rows={associados}
             titles={titles}
             printAssociados={printAssociados}
             ref={tableAssociates}
-            loading={loading}
           />
         </div>
       ) : (
         <div className="print-associates-table">
-          <ComponentToPrint id={id} rows={associates} titles={titles} ref={tableAssociates} loading={loading} />
+          <ComponentToPrint rows={associados} titles={titles} ref={tableAssociates} />
         </div>
       )}
     </div>

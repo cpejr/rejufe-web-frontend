@@ -11,9 +11,9 @@ const routingFunction = (param) => {
   });
 };
 
-function createData(name, cellPhoneNumber, status, allocation, acting, email) {
+function createData(_id, name, cellPhoneNumber, status, allocation, acting, email) {
   return {
-    name, cellPhoneNumber, status, allocation, acting, email,
+    _id, name, cellPhoneNumber, status, allocation, acting, email,
   };
 }
 
@@ -24,17 +24,16 @@ function compare(a, b) {
   return x === y ? 0 : x > y ? 1 : -1;
 }
 
-async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDataFilter) {
+async function getAllAssociatesForConsult(setAllAssociates, setLoading, setDataFilter) {
   setLoading(true);
   const auxAssociate = [];
-  const associateId = [];
   try {
     const allAssociates = await managerService.getAssociates();
     allAssociates.sort(compare);
-
-    allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').filter((associate) => associate.status === 'A').forEach((object) => {
-      associateId.push(object._id);
+    const activeAssociates = allAssociates.filter((user) => user.type.toLowerCase() !== 'administrador').filter((associate) => associate.status === 'A');
+    activeAssociates.forEach((object) => {
       auxAssociate.push(createData(
+        object._id,
         object.name,
         object.cell_phone_number,
         object.status,
@@ -42,10 +41,8 @@ async function getAllAssociatesForConsult(setId, setAllAssociates, setLoading, s
         object.acting,
         object.email,
       ));
-      setDataFilter(allAssociates);
+      setDataFilter(activeAssociates);
     });
-
-    setId(associateId);
     setAllAssociates(auxAssociate);
     setLoading(false);
   } catch (error) {
