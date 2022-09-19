@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import Divider from '@mui/material/Divider';
@@ -55,23 +55,23 @@ function Intranet() {
 
   const menuDashboard = () => {
     switch (selectedButton) {
-      case 'Enquetes': return <ResultadoQuizzes />;
-      case 'Ações Adm': return <ActionQuery />;
-      case 'Associados': return <ConsultaAssociados />;
-      case 'Informativos': return <InformativeQuery />;
-      case 'Ações Jurídicas': return <ActionJuridical />;
-      case 'Aniversariantes': return <Aniversariantes />;
-      case 'Prestação de Contas': return <AccountQuery />;
-      case 'Petições Iniciais': return <InitialPetitions />;
-      case 'Atas': return <MinuteQuery />;
-      case 'Comunicados': return <ListaComunicados />;
-      case 'Jurisprudência': return <Jurisprudence />;
-      case 'Home': return <NewsQuery />;
-      case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
-      case 'Fale Conosco': return <ContactUs />;
-      case 'Editais': return <ListaEditais intranet />;
+    case 'Enquetes': return <ResultadoQuizzes />;
+    case 'Ações Adm': return <ActionQuery />;
+    case 'Associados': return <ConsultaAssociados />;
+    case 'Informativos': return <InformativeQuery />;
+    case 'Ações Jurídicas': return <ActionJuridical />;
+    case 'Aniversariantes': return <Aniversariantes />;
+    case 'Prestação de Contas': return <AccountQuery />;
+    case 'Petições Iniciais': return <InitialPetitions />;
+    case 'Atas': return <MinuteQuery />;
+    case 'Comunicados': return <ListaComunicados />;
+    case 'Jurisprudência': return <Jurisprudence />;
+    case 'Home': return <NewsQuery />;
+    case 'Requerimentos Administrativos': return <AdministrativeRequirements />;
+    case 'Fale Conosco': return <ContactUs />;
+    case 'Editais': return <ListaEditais intranet />;
 
-      default: return <div />;
+    default: return <div />;
     }
   };
 

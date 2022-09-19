@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -385,7 +380,11 @@ function Cadastro() {
       <div className="Terms-checkbox-container">
         <input type="checkbox" id="Terms" name="Terms" ref={acceptedTermsConditions} />
         <label htmlFor="Terms">
-          Concordo que li e aceito os <button type="button" onClick={handleOpen}>Termos de Uso e Política de Privacidade</button> do sistema
+          Concordo que li e aceito os
+          {' '}
+          <button type="button" onClick={handleOpen}>Termos de Uso e Política de Privacidade</button>
+          {' '}
+          do sistema
         </label>
       </div>
       <TermsConditionsModal open={open} onClose={handleClose} />

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -58,7 +57,7 @@ export default function TermsConditionsModal({ open, onClose }) {
       >
         <div style={modalStyle} className={classes.content}>
           <div className="TermsModal-container">
-            <div role="button" tabIndex={0} className="TermsModal-cancel" onClick={onClose}>
+            <div role="button" tabIndex={0} className="TermsModal-cancel" onClick={onClose} onKeyDown>
               <CancelIcon />
             </div>
             <div className="TermsModal-text-box">
