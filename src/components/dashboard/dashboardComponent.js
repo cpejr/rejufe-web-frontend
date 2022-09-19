@@ -45,7 +45,7 @@ import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
-import SetFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
+import SetFileNameArchive from '../SetFileNameArchive/setFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';

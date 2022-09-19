@@ -1,3 +1,8 @@
+.container-print-associates-page {
+  min-height: calc(100vh - 146px);
+  display: flex;
+  flex-direction: column;
+}
 
 .header-print-associates-icon {
   display: flex;
@@ -38,7 +43,7 @@
 }
 
 .print-consult-associates-forms {
-  table-layout:fixed;
-  width:100%;
+  table-layout: fixed;
+  width: 100%;
   overflow-x: unset;
 }

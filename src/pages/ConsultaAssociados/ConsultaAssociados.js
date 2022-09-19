@@ -17,11 +17,10 @@ const titles = [
 function ConsultaAssociados() {
   const [associates, setAllAssociates] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
-  const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllAssociatesForConsult(setId, setAllAssociates, setLoading, setDataFilter);
+    getAllAssociatesForConsult(setAllAssociates, setLoading, setDataFilter);
   }, []);
 
   return (
@@ -36,7 +35,6 @@ function ConsultaAssociados() {
       </div>
       <div className="containerConsultAssociate">
         <TableComponent
-          id={id}
           rows={associates}
           titles={titles}
           print={false}
