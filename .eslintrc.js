@@ -18,13 +18,16 @@ module.exports = {
     'react',
   ],
   rules: {
+    'import/no-unresolved': [
+      2,
+      { caseSensitive: false },
+    ],
     indent: ['error', 2],
     quotes: ['error', 'single'],
     'react/jsx-filename-extension': [
       'warn',
       { extensions: ['.js', '.jsx'] },
     ],
-    'import/no-unresolved': 2,
     'no-param-reassign': 'off',
     'linebreak-style': 0,
     'react/prop-types': 'off',
