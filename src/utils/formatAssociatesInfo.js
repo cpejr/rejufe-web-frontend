@@ -3,7 +3,19 @@ export function formatAssociatesInfoAdminRegister(associates) {
 }
 
 export function formatAssociatesInfoUserRegister(associates) {
-  return associates.map(({ name,  cell_phone_number, status, allocation, acting, email }) => 
-    ({ name,  cell_phone_number, status, allocation, acting, email })
-  )
+  return associates.map(({
+    name,
+    cell_phone_number: cellPhoneNumber,
+    status,
+    allocation,
+    acting,
+    email,
+  }) => ({
+    name,
+    cell_phone_number: cellPhoneNumber,
+    status,
+    allocation,
+    acting,
+    email,
+  }));
 }

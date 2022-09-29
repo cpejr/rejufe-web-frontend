@@ -105,7 +105,6 @@ function ConsultaAssociados({
   titles,
   formatDataFunc,
   rows,
-  adminRegister,
   id,
   order,
   edit,
@@ -116,7 +115,7 @@ function ConsultaAssociados({
   sequentialId,
   printAssociados,
 }) {
-  const [filteredAssociates, setFilteredAssociates] = useState(null)
+  const [filteredAssociates, setFilteredAssociates] = useState(null);
   const [data, setData] = useState(rows);
   const [ids, setIds] = useState(id);
   const [sequentialIds, setSequentialIds] = useState(sequentialId);
@@ -125,13 +124,14 @@ function ConsultaAssociados({
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (!filteredAssociates) return
-  
+    if (!filteredAssociates) return;
+
     setData(formatDataFunc(filteredAssociates));
     setIds(filteredAssociates.map(({ _id }) => _id));
-    if (sequentialIds) setSequentialIds(filteredAssociates.map(({ sequential_Id }) => sequential_Id))
-
-  }, [filteredAssociates])
+    if (sequentialIds) {
+      setSequentialIds(filteredAssociates.map(({ sequential_Id: sequentialIdItem }) => sequentialIdItem)); // Eslint exigiu
+    }
+  }, [filteredAssociates]);
 
   const matches = useMediaQuery('(max-width:930px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');

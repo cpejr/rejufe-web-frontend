@@ -5,7 +5,6 @@ import ConsultAssociate from '../../components/ConsultaAssociados/ConsultAssocia
 import getAllAssociatesForConsult from '../../components/getAllAssociatesForConsult/getAllAssociatesForConsult';
 import { formatAssociatesInfoUserRegister } from '../../utils/formatAssociatesInfo';
 
-
 const titles = [
   'Ficha',
   'Nome',
