@@ -27,9 +27,9 @@ function SearchAdvanced({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  function createData(_id, name, cpf, status, allocation, acting, email) {
+  function createData(_id, name, cpf, status, _allocation, acting, email) {
     return {
-      _id, name, cpf, status, allocation, acting, email,
+      _id, name, cpf, status, _allocation, acting, email,
     };
   }
 
@@ -44,7 +44,7 @@ function SearchAdvanced({
   const filterType = [];
   if (dataFilter) {
     let auxFilterType = [];
-    auxFilterType = dataFilter?.filter(((item) => item.allocation?.includes(type)));
+    auxFilterType = dataFilter?.filter(((item) => item?.allocation === type));
     auxFilterType.forEach((object) => {
       filterType.push(createData(
         object._id,

@@ -91,7 +91,7 @@ function SearchAdvancedAssociate({
       filterActing?.forEach((obj) => {
         const filter = filterAllocation.filter(((item) => item.acting.includes(obj.acting)));
         filter?.forEach((object) => {
-        // eslint-disable-next-line max-len
+          // eslint-disable-next-line max-len
           const addOtherFilter = filterName.filter(((item) => item.name.toLowerCase().includes(object.name.toLowerCase())));
           setData(addOtherFilter);
         });
@@ -134,6 +134,7 @@ function SearchAdvancedAssociate({
 
           <label> Lotação:</label>
           <select className="validate-associate-search-advanced-select" value={allocation} placeholder="" onChange={(e) => setAllocation(e.target.value)}>
+            <option value=""> </option>
             <option value="TRF 5">TRF 5</option>
             <option value="AL">Alagoas</option>
             <option value="CE">Ceará</option>
