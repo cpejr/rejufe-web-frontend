@@ -73,6 +73,9 @@ function ResultadoQuizzes() {
       <div className="division-cards-quizzes">
         <div className="title-cards-quizzes-page">
           <h1>Resultado das Enquetes</h1>
+        </div>
+        <div className="line-table-cards-quizzes" />
+        <div className="filter-create-cards-quizzes">
           <FormControl className="form-user-module-page">
             <InputLabel id="select-filter">Selecione um filtro</InputLabel>
             <Select
@@ -93,7 +96,6 @@ function ResultadoQuizzes() {
             <ModalEnquete setNewQuizz={setNewQuizz} />
           )}
         </div>
-        <div className="line-table-cards-quizzes" />
         {loading ? (
           <div className="loader-cards-quizzes">
             <CircularProgress size={35} color="inherit" />

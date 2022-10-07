@@ -61,24 +61,37 @@ function Quizzes({
             {' '}
             {quizz?.title}
           </p>
-          {openingDate > dateQuizz ? (
-            <div className="tagg-status-quizz">
-              <DateQuizzes status="init" />
-            </div>
-          ) : (
-            <>
-              <div />
-              {closingDate < dateQuizz ? (
-                <div className="tagg-status-quizz">
-                  <DateQuizzes status="finished" />
-                </div>
-              ) : (
-                <div className="tagg-status-quizz">
-                  <DateQuizzes status="progress" />
-                </div>
+          <div className="tagg-status-quizz">
+            <DateQuizzes status="init" />
+          </div>
+          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+        </button>
+      </div>
+        )}
+      {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
+      <div className="card-quizzes">
+        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+          <p>
+            {' '}
+            {quizz?.title}
+          </p>
+          <div className="tagg-status-quizz">
+            <DateQuizzes status="finished" />
+          </div>
+          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+        </button>
+      </div>
               )}
-            </>
-          )}
+      {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
+      <div className="card-quizzes">
+        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+          <p>
+            {' '}
+            {quizz?.title}
+          </p>
+          <div className="tagg-status-quizz">
+            <DateQuizzes status="progress" />
+          </div>
           <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
         </button>
       </div>
