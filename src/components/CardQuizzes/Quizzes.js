@@ -22,16 +22,22 @@ function Quizzes({
   const handleOpen = () => {
     setOpen(!open);
   };
-  const openingDate = moment(quizz.openingDate).format('DD-MM-YYYY');
-  const closingDate = moment(quizz.closingDate).format('DD-MM-YYYY');
+
+  const nowDate = moment(dateQuizz).format('YYYY-MM-DD');
+  const nowHour = moment(dateQuizz).format('HH:mm');
+  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
+  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
+  const openingHour = moment(quizz?.openingDate).format('HH:mm');
+  const closingHour = moment(quizz?.closingDate).format('HH:mm');
   const [loading, setLoading] = useState();
-  quizz.status = 'Em andamento';
-    if (openingDate > dateQuizz) {
+
+  if (openingDate > nowDate || (openingDate === nowDate && openingHour >= nowHour)) {
     quizz.status = 'Não iniciada';
-    }
-    if (openingDate < dateQuizz) {
-      quizz.status = 'Finalizada';
-      }
+  } else if (closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) {
+    quizz.status = 'Finalizada';
+  } else {
+    quizz.status = 'Em andamento';
+  }
 
   const matches = useMediaQuery('(max-width:411px)');
 
@@ -99,7 +105,7 @@ function Quizzes({
             </div>
           ) : (
             <>
-              {(closingDate < dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
+              {(closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
                 <GraphicQuizzes
                   toVote={quizz?.toVote}
                   associates={associates}

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Box from '@mui/material/Box';
 import LoadingButton from '@mui/lab/LoadingButton';
+import TermsConditionsModal from '../../components/TermsConditionsModal/TermsConditionsModal';
 import formsData from '../../components/formsData/formsCadastro';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialAssociateState, initialAssociateErrorState } from '../../components/initialStates/initialStates';
@@ -13,14 +14,26 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 function Cadastro() {
+  const acceptedTermsConditions = useRef(null);
+
+  const [open, setOpen] = useState(false);
   const [initialErrorState, setError] = useState(initialAssociateErrorState);
   const [loading, setLoading] = useState(false);
   const [dados, setDados] = useState(initialAssociateState);
   const history = useHistory();
+
   function handleChange(value, field) {
     setError({ ...initialErrorState, [field]: false });
     setDados({ ...dados, [field]: value });
   }
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -36,6 +49,13 @@ function Cadastro() {
 
     let checkError = 0;
 
+    if (!acceptedTermsConditions.current.checked) {
+      checkError = 1;
+      toast.error('Você precisa aceitar os Termos de Uso e Política de Privacidade', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+      });
+    }
     if (dados.nome?.length === 0 || !lettersSpacesRegex.test(dados.nome)) {
       aux.nome = true;
       checkError = 1;
@@ -357,7 +377,18 @@ function Cadastro() {
           </p>
         </Box>
       ))}
-      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
+      <div className="Terms-checkbox-container">
+        <input type="checkbox" id="Terms" name="Terms" ref={acceptedTermsConditions} />
+        <label htmlFor="Terms">
+          Concordo que li e aceito os
+          {' '}
+          <button type="button" onClick={handleOpen}>Termos de Uso e Política de Privacidade</button>
+          {' '}
+          do sistema
+        </label>
+      </div>
+      <TermsConditionsModal open={open} onClose={handleClose} />
+      <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%', marginTop: '15px' }} onClick={(e) => handleSubmit(e)}>Cadastrar</LoadingButton>
     </div>
   );
 }
