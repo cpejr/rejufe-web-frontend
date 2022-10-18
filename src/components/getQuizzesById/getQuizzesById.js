@@ -19,6 +19,13 @@ async function getQuizzesById(quizzesId, setQuizzes) {
         options: Quizzes.options,
         alreadyVoted: Quizzes.alreadyVoted,
         toVote: Quizzes.toVote,
+        associates: Quizzes.associates,
+        dateQuizz: Quizzes.dateQuizz,
+        filter: Quizzes.filter,
+        status: Quizzes.status,
+        closingDate: Quizzes.closingDate,
+        openingDate: Quizzes.openingDate,
+        quizz: Quizzes.quizz,
       };
       setQuizzes(quizzes);
     });
