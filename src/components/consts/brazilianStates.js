@@ -80,12 +80,16 @@ const brazilianStates = [
     label: 'RN',
   },
   {
-    value: 'RS',
-    label: 'RS',
-  },
-  {
     value: 'RO',
     label: 'RO',
+  },
+  {
+    value: 'RR',
+    label: 'RR',
+  },
+  {
+    value: 'RS',
+    label: 'RS',
   },
   {
     value: 'SC',
