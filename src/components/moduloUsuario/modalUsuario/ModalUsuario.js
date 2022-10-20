@@ -88,12 +88,12 @@ export default function ModalAdmin({ users, setTypeChanged }) {
         type: 'administrador',
       }, value._id);
       setTypeChanged(true);
-      toast('Tipo do usuário atualizado com sucesso!', {
+      toast('Tipo do associado atualizado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      toast.error('Não foi possível alterar o tipo do usuário!', {
+      toast.error('Não foi possível alterar o tipo do associado', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -128,7 +128,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
         </div>
         <div className="Column-user-module">
           <div className="Title-user-module">
-            <h1>Selecione o usuário que deseja tornar administrador</h1>
+            <h1>Selecione o associado que deseja tornar administrador</h1>
           </div>
           <ThemeProvider theme={theme}>
             <Autocomplete
@@ -160,7 +160,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
         </div>
         <div className="Column-user-module">
           <div className="Title-user-module">
-            <h1>Dados do usuário</h1>
+            <h1>Dados do associado</h1>
           </div>
           {value ? (
             <div>
@@ -207,7 +207,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
             </div>
           ) : (
             <div className="Data-row-user-module">
-              <h1>Nenhum usuário selecionado</h1>
+              <h1>Nenhum associado selecionado</h1>
             </div>
           )}
         </div>

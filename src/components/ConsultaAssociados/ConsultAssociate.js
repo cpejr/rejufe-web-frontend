@@ -294,7 +294,7 @@ function ConsultaAssociados({
                 <TableRow>
                   {order ? (
                     <TableCell {...cellFontProps} align="center">
-                      {data.findIndex((obj) => obj._id === row._id) + 1}
+                      {row.index}
                     </TableCell>
                   ) : search ? (
                     <TableCell {...cellFontProps} align="center">
@@ -338,7 +338,7 @@ function ConsultaAssociados({
                   ) : (null)}
 
                   {sequentialId ? (
-                    Object.values(row)?.slice(2).map((dado) => (
+                    Object.values(row)?.slice(3).map((dado) => (
                       <TableCell {...cellFontProps}>
                         {dado}
                       </TableCell>
