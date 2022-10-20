@@ -21,8 +21,7 @@ function ResultadoQuizzes() {
   const history = useHistory();
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
-  const [date] = useState(new Date());
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
+  const dateQuizz = moment(new Date()).format('YYYY-MM-DD, HH:mm');
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
@@ -34,7 +33,7 @@ function ResultadoQuizzes() {
       setLoading(false);
     } catch (error) {
       history.push('/NotFound');
-      toast.error('Credenciais inválidas!!', {
+      toast.error('Não foi possível obter quizzes!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -73,6 +72,9 @@ function ResultadoQuizzes() {
       <div className="division-cards-quizzes">
         <div className="title-cards-quizzes-page">
           <h1>Resultado das Enquetes</h1>
+        </div>
+        <div className="line-table-cards-quizzes" />
+        <div className="filter-create-cards-quizzes">
           <FormControl className="form-user-module-page">
             <InputLabel id="select-filter">Selecione um filtro</InputLabel>
             <Select
@@ -93,7 +95,6 @@ function ResultadoQuizzes() {
             <ModalEnquete setNewQuizz={setNewQuizz} />
           )}
         </div>
-        <div className="line-table-cards-quizzes" />
         {loading ? (
           <div className="loader-cards-quizzes">
             <CircularProgress size={35} color="inherit" />

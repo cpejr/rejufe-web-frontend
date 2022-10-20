@@ -1,0 +1,79 @@
+.TermsModal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.TermsModal-text-box{
+  padding: 0px 20px;
+}
+
+.TermsModal-text-box p{
+  margin-bottom: 15px;
+  font-family: Roboto;
+}
+
+.TermsModal-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  font-family:Roboto;
+  font-weight: bold;
+  font-size:24px;
+  margin-bottom: 5%;
+}
+  
+.TermsModal-cancel{
+  display: flex;
+  align-self: flex-start;
+  margin-left: 3%;
+  margin-top: 3%;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background:var(--color2);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color4);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover);
+}
+
+.makeStyles-content-2 {
+  overflow-y: auto;
+}
+
+@media(max-width: 495px){
+
+  .TermsModal-cancel{
+    margin-top: 2%;
+  }
+
+  .TermsModal-title{
+    font-size: 22px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .Terms-checkbox-container label{
+    font-size: 15px;
+  }
+
+  .css-i4bv87-MuiSvgIcon-root {
+    width: 0.75em !important;
+    height: 0.75em !important;
+  }
+}

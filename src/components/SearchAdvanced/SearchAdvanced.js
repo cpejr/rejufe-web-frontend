@@ -26,15 +26,15 @@ function SearchAdvanced({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  function createData(name, cpf, status, allocation, acting, email) {
+  function createData(_id, name, cpf, status, allocation, acting, email) {
     return {
-      name, cpf, status, allocation, acting, email,
+      _id, name, cpf, status, allocation, acting, email,
     };
   }
 
-  function returnData(name, cpf, status) {
+  function returnData(_id, index, seqId, name, cpf, status) {
     return {
-      name, cpf, status,
+      _id, index, seqId, name, cpf, status,
     };
   }
 
@@ -46,6 +46,7 @@ function SearchAdvanced({
     auxFilterType = dataFilter?.filter(((item) => item.judicial_section?.includes(type)));
     auxFilterType.forEach((object) => {
       filterType.push(createData(
+        object._id,
         object.name,
         object.cell_phone_number,
         object.status,
@@ -59,7 +60,9 @@ function SearchAdvanced({
   if (dados) {
     auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
     auxFilterType.forEach((object) => {
-      filterType.push(returnData(object.name, object.cpf, object.status));
+      filterType.push(
+        returnData(object?._id, object?.index, object?.sequential_Id, object.name, object.cpf, object.status),
+      );
     });
   }
 
