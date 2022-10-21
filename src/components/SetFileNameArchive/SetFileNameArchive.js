@@ -3,7 +3,7 @@ import * as managerService from '../../services/manager/managerService';
 
 toast.configure();
 
-export default function SetFileNameById(fileNames1, archive1Id, setFileNames1) {
+export default function SetFileNameArchive(fileNames1, archive1Id, setFileNames1) {
   const value = Object.values(archive1Id);
   try {
     const aux1 = fileNames1;

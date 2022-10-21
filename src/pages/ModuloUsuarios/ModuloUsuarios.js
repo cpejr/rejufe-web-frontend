@@ -47,7 +47,7 @@ function ModuloUsuarios() {
   }
 
   const handleSearch = (value) => {
-    if (filter === 'Usuários') {
+    if (filter === 'Associados') {
       setRows(admins?.filter((admin) => replaceSpecialChars(admin?.name
         .toLowerCase()).includes(replaceSpecialChars(value))));
       setSearch(value);
@@ -74,7 +74,7 @@ function ModuloUsuarios() {
       setRows(response?.filter(filterAdmins));
     } catch (error) {
       history.push('/NotFound');
-      toast.error('Não foi possível obter usuários!!', {
+      toast.error('Não foi possível obter associados!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -89,7 +89,7 @@ function ModuloUsuarios() {
     '',
     '',
     'Status',
-    'Usuário',
+    'Associado',
     'Seção',
     'Perfil',
     'Login',
@@ -117,7 +117,7 @@ function ModuloUsuarios() {
               onChange={(e) => handleChange(e.target.value)}
             >
               <MenuItem value="Sem filtros">Sem filtros</MenuItem>
-              <MenuItem value="Usuários">Usuários</MenuItem>
+              <MenuItem value="Associados">Associados</MenuItem>
               <MenuItem value="Seção">Seção</MenuItem>
             </Select>
           </FormControl>

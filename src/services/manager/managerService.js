@@ -226,8 +226,9 @@ export const getNewsById = async (id) => {
   return response.data;
 };
 
-export const createAttempt = async (email) => {
-  const response = await requesterService.createAttempt(email);
+export const createAttempt = async (attempt) => {
+  console.log(attempt);
+  const response = await requesterService.createAttempt(attempt);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

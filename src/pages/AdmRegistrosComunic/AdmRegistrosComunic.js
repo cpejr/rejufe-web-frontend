@@ -29,29 +29,33 @@ function AdmRegistrosComunic() {
   async function getAllComunic() {
     const auxComunic = [];
     const comunicId = [];
-    const archive1Code = [];
-    const archive2Code = [];
+    const archive1Codes = [];
+    const archive2Codes = [];
     try {
       const allComunic = await managerService.getComunic();
+
       allComunic.forEach((object) => {
         auxComunic.push(createData(
           object.type,
           object.number,
           object.description,
         ));
-        archive1Code.push(object.archive_1);
-        archive2Code.push(object.archive_2);
+        const archive1Code = object.archive_1;
+        const archive2Code = object.archive_2;
+        archive1Codes.push(!archive1Code || archive1Code === 'undefined' ? '' : archive1Code);
+        archive2Codes.push(!archive2Code || archive2Code === 'undefined' ? '' : archive2Code);
       });
       allComunic.forEach((object) => {
         comunicId.push(createId(
           object._id,
         ));
       });
+
       auxComunic.sort();
       setId(comunicId);
       setAllComunics(auxComunic);
-      setArchive1Id(archive1Code);
-      setArchive2Id(archive2Code);
+      setArchive1Id(archive1Codes);
+      setArchive2Id(archive2Codes);
       setUse(false);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -88,6 +92,7 @@ function AdmRegistrosComunic() {
         archive1Id={archive1Id}
         archive2Id={archive2Id}
         editComunic
+        searchComunic
       />
     </div>
   );

@@ -59,40 +59,44 @@ function Login() {
   const handleClickClose = () => {
     setShowWarningModal(false);
   };
+
   const handleClick = async (e) => {
     try {
       setLoading(true);
-      let res;
       let attempts;
       let email = '';
-      console.log(usuario);
-      if (usuario?.user !== '' && usuario?.cpf === undefined) {
+      if (usuario?.user !== '' && !usuario?.cpf) {
         try {
           email = await managerService.getUserEmailByUsername(usuario?.user);
         } catch (error) {
-          toast.error('Credenciais Inválidas!', {
+          toast.error('Usuário Inválido!', {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
           });
         }
       }
-      if (usuario?.cpf !== undefined && usuario?.user === '') {
+
+      if (usuario?.cpf && usuario?.user === '') {
         try {
           email = await managerService.getUserEmailByCpf(usuario?.cpf);
         } catch (error) {
-          toast.error('Credenciais Inválidas!', {
+          toast.error('CPF Inválido!', {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
           });
         }
       }
-      const field = {
+      ///
+      const attempt = {
         email,
         lock_time: moment(),
       };
-      res = await managerService.getAttempts(email);
+      console.log(attempt.lock_time);
+      const res = await managerService.getAttempts(email);
+      console.log(res);
+      console.log(moment(res?.lock_time));
       if (Object.values(res).length === 0) {
-        res = await managerService.createAttempt(field);
+        await managerService.createAttempt(attempt);
         setShowWarningModal(false);
         attempts = 0;
       } else {
@@ -101,9 +105,9 @@ function Login() {
       console.log(attempts);
       console.log(moment() < moment(res?.lock_time));
       if (moment() < moment(res?.lock_time)) {
-        const restante = moment(res?.lock_time).fromNow();
+        const tempoRestante = moment(res?.lock_time).fromNow();
         setIsBlocked(true);
-        setContentWarningModal(restante);
+        setContentWarningModal(tempoRestante);
         setShowWarningModal(true);
       } else {
         setShowWarningModal(false);
@@ -138,24 +142,24 @@ function Login() {
             } else {
               switch (attempts) {
               case 2: {
-                const time = moment().add(3, 'minutes');
-                setContentWarningModal('após 3 minutos');
+                const time = moment().add(1, 'minutes');
+                setContentWarningModal('após 1 minutos');
                 await managerService.updateTime(email, time);
                 setIsBlocked(true);
                 setShowWarningModal(true);
                 break;
               }
               case 3: {
-                const time = moment().add(5, 'minutes');
-                setContentWarningModal('após 5 minutos');
+                const time = moment().add(2, 'minutes');
+                setContentWarningModal('após 2 minutos');
                 await managerService.updateTime(email, time);
                 setIsBlocked(true);
                 setShowWarningModal(true);
                 break;
               }
               default: {
-                const time = moment().add(15, 'minutes');
-                setContentWarningModal('após 15 minutos');
+                const time = moment().add(3, 'minutes');
+                setContentWarningModal('após 3 minutos');
                 await managerService.updateTime(email, time);
                 setIsBlocked(true);
                 setShowWarningModal(true);

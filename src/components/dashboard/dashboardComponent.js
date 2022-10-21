@@ -6,6 +6,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@material-ui/core/Modal';
@@ -44,13 +45,16 @@ import RemoveAccountModal from '../RemoveModal/RemoveAccountModal';
 import RemoveActionModal from '../RemoveModal/RemoveActionModal';
 import EditActionModal from '../EditModal/EditActionModal';
 import * as managerService from '../../services/manager/managerService';
-import SetFileNameById from '../SetFileNameArchive/setFileNameArchive';
+import SetFileNameArchive from '../SetFileNameArchive/SetFileNameArchive';
 import ExcludeModelModal from '../DeleteModel/excludeModelModal';
 import EditModel from '../EditModal/EditModelsModal';
 import EditMinutesModal from '../EditModal/EditAtasModal';
 import RemoveMinutesModal from '../RemoveModal/RemoveAtasModal';
 import SearchAdvancedAssociate from '../SearchAdvanced/SearchValidateAssociate';
 import SearchAdvancedAccount from '../SearchAdvanced/SearchAdvancedAccount';
+import SearchAtas from '../SearchAdvanced/SearchAtas';
+import SearchComunic from '../SearchAdvanced/SearchComunic';
+import SearchBirthday from '../SearchAdvanced/SearchBirthday';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -139,6 +143,7 @@ function TableComponent({
   editComunic,
   search,
   searchFile,
+  searchComunic,
   searchMinutes,
   searchMinutesIntranet,
   setShowForms,
@@ -162,17 +167,17 @@ function TableComponent({
   editActions,
   actionId,
   searchAdvanced,
+  searchBirthday,
 }) {
   const [page, setPage] = useState(0);
-  const [open, setOpen] = useState(false);
   const [data, setData] = useState(rows);
+  const [open, setOpen] = useState(false);
   const [fileNames1, setFileNames1] = useState([]);
   const [fileNames2, setFileNames2] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const actualArchive1 = { ...archive1Id };
   const actualArchive2 = { ...archive2Id };
-
-  const matches = useMediaQuery('(max-width:930px)');
+  const matches = useMediaQuery('(max-width:1170px)');
   const matchesFont90 = useMediaQuery('(max-width:930px)');
   const matchesFont85 = useMediaQuery('(max-width:680px)');
   const matchesFont400px = useMediaQuery('(max-width:400px)');
@@ -278,6 +283,7 @@ function TableComponent({
       }
       : matchesFont90
         ? {
+          widht: '200px',
           fontSize: '90%',
           backgroundColor: '#2574A9',
           color: 'white',
@@ -327,7 +333,7 @@ function TableComponent({
       },
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -336,14 +342,6 @@ function TableComponent({
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   function setIntranetForms(e, redirectId) {
@@ -369,6 +367,13 @@ function TableComponent({
     const win = window.open(`/ficha-usuarios-externos?associateId=${redirectId}`, '_blank');
     win.focus();
   }
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function redirectAssociate(e, redirectId) {
     e.preventDefault();
@@ -397,10 +402,17 @@ function TableComponent({
 
   useEffect(() => {
     if (archive1Id) {
+<<<<<<< HEAD
       SetFileNameById(fileNames1, archive1Id, setFileNames1);
     }
     if (archive2Id) {
       SetFileNameById(fileNames2, archive2Id, setFileNames2);
+=======
+      SetFileNameArchive(fileNames1, archive1Id, setFileNames1);
+    }
+    if (archive2Id) {
+      SetFileNameArchive(fileNames2, archive2Id, setFileNames2);
+>>>>>>> DEV
     }
     setData(rows);
   }, [archive1Id, archive2Id, rows]);
@@ -626,9 +638,9 @@ function TableComponent({
                       </div>
                     </TableCell>
                   )}
-                {Object.values(row)?.map((obj) => (
+                {Object.values(row)?.map((value) => (
                   <TableCell {...cellFontProps}>
-                    {obj}
+                    {value}
                   </TableCell>
                 ))}
                 {archive1Id
@@ -692,8 +704,8 @@ function TableComponent({
             rowsPerPageOptions={[{ label: 'All', value: -1 }]}
             style={{ overflow: printAtas ? 'unset' : 'hidden' }}
             component="div"
-            count={rows?.length}
-            rowsPerPage={rows?.length}
+            count={data?.length}
+            rowsPerPage={data?.length}
             labelRowsPerPage="Linhas por pagina"
             page={page}
             SelectProps={{
@@ -708,10 +720,10 @@ function TableComponent({
         ) : (
           <>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: rows.length }]}
+              rowsPerPageOptions={[10, 25, 100, { label: 'All', value: data.length }]}
               component="div"
+              count={data.length} //
               style={{ overflow: printAtas ? 'unset' : 'hidden' }}
-              count={rows.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage="Linhas por pagina"
               page={page}
@@ -732,6 +744,80 @@ function TableComponent({
                     {...buttonFontProps}
                     sx={{
                       marginRight: '15px',
+                      marginBottom: '5px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchAdvancedAccount handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchMinutes && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginBottom: '5px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchAtas handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchComunic && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginRight: '15px',
+                      marginBottom: '5px',
+                      marginLeft: '15px',
+                    }}
+                    onClick={handleOpen}
+                  >
+                    Pesquisa Avançada
+                    {/* TODO Implementar o botão de pesquisa avançada */}
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <SearchComunic handleClose={handleClose} setData={setData} rows={rows} />
+                  </Modal>
+                </div>
+              )}
+              {searchBirthday && (
+                <div>
+                  <Button
+                    {...buttonFontProps}
+                    sx={{
+                      marginTop: '10px',
+                      marginRight: '15px',
+                      marginBottom: '5px',
                       marginLeft: '15px',
                     }}
                     onClick={handleOpen}
@@ -744,7 +830,7 @@ function TableComponent({
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                   >
-                    <SearchAdvancedAccount handleClose={handleClose} setData={setData} rows={rows} dados={dados} />
+                    <SearchBirthday handleClose={handleClose} setData={setData} rows={rows} />
                   </Modal>
                 </div>
               )}
@@ -773,6 +859,10 @@ function TableComponent({
               {printButton && (
                 <Button
                   {...buttonFontProps}
+                  sx={{
+                    marginRight: '15px',
+                    marginBottom: '5px',
+                  }}
                   onClick={handleWindowOpen}
                 >
                   Imprimir

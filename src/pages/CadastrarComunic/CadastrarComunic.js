@@ -58,7 +58,7 @@ function CadastrarComunic() {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros-comunic');
+      history.push('/administracao-registros-comunicados');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {
