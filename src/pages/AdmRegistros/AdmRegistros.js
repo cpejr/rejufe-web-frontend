@@ -18,13 +18,17 @@ function AdmRegistros() {
     const auxAssociate = [];
     try {
       const allAssociates = await managerService.getAssociates();
+      allAssociates.forEach((associate) => {
+        associate.index = allAssociates.findIndex((obj) => obj._id === associate._id) + 1;
+      });
       allAssociates.forEach(({
-        sequential_Id: seqId, _id, name, cpf, status,
+        sequential_Id: seqId, index, _id, name, cpf, status,
       }) => {
         auxAssociate.push({
-          _id, seqId, name, cpf, status,
+          _id, index, seqId, name, cpf, status,
         });
       });
+
       setDados(allAssociates);
       auxAssociate.sort();
       setAllAssociates(auxAssociate);
