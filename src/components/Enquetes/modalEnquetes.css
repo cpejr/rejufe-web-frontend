@@ -9,7 +9,7 @@
   border-radius: 30px;
 }
 
-.makeStyles-content-7 {
+.makeStyles-content-9 {
   overflow-y: scroll;
 }
 
@@ -206,7 +206,6 @@
 @media (max-width: 1012px) {
   .create-quizz-button {
     height: 25px;
-    width: 25px;
   }
 }
   

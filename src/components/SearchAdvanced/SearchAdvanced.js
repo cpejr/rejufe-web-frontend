@@ -33,9 +33,9 @@ function SearchAdvanced({
     };
   }
 
-  function returnData(_id, seqId, name, cpf, status) {
+  function returnData(_id, index, seqId, name, cpf, status) {
     return {
-      _id, seqId, name, cpf, status,
+      _id, index, seqId, name, cpf, status,
     };
   }
 
@@ -61,7 +61,9 @@ function SearchAdvanced({
   if (dados) {
     auxFilterType = dados?.filter(((item) => item.allocation?.includes(type)));
     auxFilterType.forEach((object) => {
-      filterType.push(returnData(object?._id, object?.sequential_Id, object.name, object.cpf, object.status));
+      filterType.push(
+        returnData(object?._id, object?.index, object?.sequential_Id, object.name, object.cpf, object.status),
+      );
     });
   }
 
