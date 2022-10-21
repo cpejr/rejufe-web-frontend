@@ -5,7 +5,7 @@ import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { useReactToPrint } from 'react-to-print';
 import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
-import './ImprimirAssociate.css';
+import './ImprimirAssociados.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {

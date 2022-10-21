@@ -17,7 +17,6 @@ function ResultadoQuizzes() {
   const [filter, setFilter] = useState('');
   const [quizzes, setQuizzes] = useState([]);
   const [newQuizz, setNewQuizz] = useState(false);
-  const [associates, setAssociates] = useState([]);
   const history = useHistory();
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
@@ -27,8 +26,6 @@ function ResultadoQuizzes() {
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes(dateQuizz);
-      const allAssociates = await managerService.getAssociates();
-      setAssociates(allAssociates);
       setQuizzes(response);
       setLoading(false);
     } catch (error) {
@@ -105,7 +102,6 @@ function ResultadoQuizzes() {
               quizzes?.map((quizz) => (
                 <Quizzes
                   quizz={quizz}
-                  associates={associates}
                   dateQuizz={dateQuizz}
                   user={user}
                   filter={filter}
@@ -116,7 +112,6 @@ function ResultadoQuizzes() {
               toVote?.map((quizz) => (
                 <Quizzes
                   quizz={quizz}
-                  associates={associates}
                   dateQuizz={dateQuizz}
                   user={user}
                   filter={filter}

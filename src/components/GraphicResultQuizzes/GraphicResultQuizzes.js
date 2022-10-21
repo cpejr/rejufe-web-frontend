@@ -1,5 +1,7 @@
+import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import TableComponent from '../dashboard/dashboardComponent';
@@ -8,22 +10,24 @@ import './GraphicResultQuizzes.css';
 toast.configure();
 
 function GraphicQuizzes({
+  _id,
   toVote,
-  quizzId,
-  quizz,
+  options,
   alreadyVoted,
-  // associates,
+  title,
   userType,
 }) {
+  const [loadingTable, setLoadingTable] = useState(true);
   const [loadEmailSender, setLoadEmailSender] = useState(false);
   const [toVoteMembers, setToVoteMembers] = useState([]);
-  const [graphData, setGraphData] = useState([]);
+  const [graphData, setGraphData] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     const graphInfo = [['Opções', 'Votos', { role: 'annotation' }]];
     const alreadyVotedQuantity = alreadyVoted?.length;
 
-    const Data = quizz.reduce((acc, option) => {
+    const Data = options?.reduce((acc, option) => {
       const percentValue = alreadyVotedQuantity && 100 * (option.votes / alreadyVotedQuantity);
       const percent = `${percentValue.toFixed(2)}%`.replace('.', ',');
 
@@ -32,93 +36,76 @@ function GraphicQuizzes({
     }, graphInfo);
 
     setGraphData(Data);
-  }, [quizz]);
+  }, [options]);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoadingTable(true);
       try {
-        const res = await managerService.getToVoteMembers(quizzId);
-        const members = res && res.map((member) => ({ name: member.name }));
+        const res = await managerService.getToVoteMembers(_id);
+        const members = res && res.map(({ name }) => ({ name }));
         setToVoteMembers(members);
       } catch (err) {
-        console.error(err);
+        toast.error(`Erro ao listar os que associados que ainda não votaram na enquete ${title}`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+          onOpen: () => history.push('/NotFound'),
+        });
+      } finally {
+        setLoadingTable(false);
       }
     };
 
     fetchData();
   }, []);
 
-  // const data = [
-  //   ['Opções', 'Votos', { role: 'annotation' }],
-  // ];
   const titles = ['', ''];
-  // const user = [];
-  // const name = [];
-  // const votes = [];
-  // let index = 1;
-
-  // quizz?.forEach((option,) => {
-  //   const percentual = (option.votes / alreadyVoted.length);
-  //   let changePercentual = (percentual * 100);
-  //   changePercentual += '%';
-  //   data[index] = [option.description, option.votes, changePercentual];
-  //   votes[index] = option.votes;
-  //   index += 1;
-  // });
-  // let count = 0;
-
-  // toVote?.forEach((_id) => {
-  //   user[count] = associates?.filter((item) => item._id === _id);
-  //   user[count]?.forEach((obj) => {
-  //     name[count] = obj.name;
-  //   });
-  //   count += 1;
-  // });
-
-  // const names = name?.map((value) => ({
-  //   name: value,
-  // }));
-
-  const options = {
+  const graphOptions = {
     title: 'Quizz',
     chartArea: { width: '50%', height: '100%' },
     vAxis: {
       title: 'Opções',
     },
   };
+
   const sendEmail = async (e) => {
     e.preventDefault();
 
+    setLoadEmailSender(true);
     try {
-      setLoadEmailSender(true);
-      await managerService.sendEmailToVoteMembers(quizzId);
+      await managerService.sendEmailToVoteMembers(_id);
       toast.success('E-mails enviados com sucesso', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 5000,
       });
-      setLoadEmailSender(false);
     } catch (err) {
-      console.error(err);
       toast.error('Houve um problema no envio dos e-mails. Tente mais tarde', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 5000,
       });
+    } finally {
       setLoadEmailSender(false);
     }
   };
 
+  const loadingComponent = (
+    <div className="loader-cards-quizzes">
+      <CircularProgress size={35} color="inherit" />
+    </div>
+  );
+
+  if (loadingTable) return loadingComponent;
+
   return (
     <div className="content-card-quizzes">
-      {quizz?.length ? (
-        <Chart
-          chartType="BarChart"
-          width="100%"
-          height="50%"
-          data={graphData}
-          options={options}
-          legendToggle
-        />
-      ) : ''}
+      <Chart
+        chartType="BarChart"
+        width="100%"
+        height="50%"
+        data={graphData}
+        options={graphOptions}
+        legendToggle
+      />
       {userType === 'administrador' && toVote?.length > 0 && (
         <div>
           <div className="title-quizzes-already-voted">

@@ -16,7 +16,7 @@ import './Quizzes.css';
 moment.locale('pt-br', [ptLocale]);
 
 function Quizzes({
-  quizz, associates, dateQuizz, user, setVoted, filter,
+  quizz, dateQuizz, user, setVoted, filter,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -107,11 +107,7 @@ function Quizzes({
             <>
               {(closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
                 <GraphicQuizzes
-                  quizzId={quizz?._id}
-                  toVote={quizz?.toVote}
-                  associates={associates}
-                  quizz={quizz?.options}
-                  alreadyVoted={quizz?.alreadyVoted}
+                  {...quizz}
                   userType={user?.type}
                 />
               ) : (

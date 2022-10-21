@@ -36,7 +36,7 @@ import AdmRegistrosAcoes from './pages/AdmRegistrosAcoes';
 import CadastroContas from './pages/CadastroPrestacaoContas/CadastroContas';
 import CadastrarModelos from './pages/CadastrarModelos';
 import AdmRegistrosModelos from './pages/AdmRegistrosModelos';
-import ImprimirAssociados from './pages/ImprimirAssociados';
+import ImprimirAssociados from './pages/ImprimirAssociados/ImprimirAssociados';
 import ImprimirAtasEditais from './pages/ImprimirAtasEditais';
 import FichaUsuariosExternos from './pages/FichaUsuariosExternos';
 import ImprimirAtas from './pages/ImprimirAtas';
