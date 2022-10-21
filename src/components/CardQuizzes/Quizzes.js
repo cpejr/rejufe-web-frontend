@@ -13,19 +13,19 @@ import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
 function Quizzes({
-  quizz, associates, dateQuizz, user, setVoted, filter,
+  quizz, associates, user, setVoted, filter,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const nowDate = moment(dateQuizz).format('YYYY-MM-DD');
-  const nowHour = moment(dateQuizz).format('HH:mm');
-  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
-  const openingHour = moment(quizz?.openingDate).format('HH:mm');
-  const closingHour = moment(quizz?.closingDate).format('HH:mm');
+  const nowDate = moment().format('YYYY-MM-DD');
+  const nowHour = moment().format('HH:mm');
+  const openingDate = moment.utc(quizz?.openingDate).format('YYYY-MM-DD');
+  const closingDate = moment.utc(quizz?.closingDate).format('YYYY-MM-DD');
+  const openingHour = moment.utc(quizz?.openingDate).format('HH:mm');
+  const closingHour = moment.utc(quizz?.closingDate).format('HH:mm');
   const [loading, setLoading] = useState();
 
   if (openingDate > nowDate || (openingDate === nowDate && openingHour >= nowHour)) {
@@ -52,48 +52,48 @@ function Quizzes({
   return (
     <div className="body-quizzes-card">
       {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="init" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-        )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="init" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="finished" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-              )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="finished" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="progress" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-              )}
-      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < dateQuizz) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="progress" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
+      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < nowDate) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
