@@ -54,9 +54,9 @@
 }
 
 .EditMinutesModal-ButtonConfirm {
-  display:flex;
-  padding: 1%;
-  width: 30%;
+  display: flex;
+  padding: 6px 16px;
+  width: max(135px, 30%);
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
@@ -87,19 +87,7 @@
   background-color: var(--primary);
 }
 
-@media(max-width: 695px) {
-  .EditMinutesModal-ContainerModal {
-    height: 370px;
-    width: 450px;
-  }
-}
-
 @media(max-width: 495px) {
-  .EditMinutesModal-ContainerModal {
-    height: 320px;
-    width: 380px;
-  }
-
   .EditMinutesModal-cancel {
     margin-top: 2%;
   }
@@ -119,10 +107,6 @@
 }
 
 @media(max-width: 395px) {
-  .EditMinutesModal-ContainerModal {
-    height: 300px;
-    width: 270px;
-  }
 
   .EditMinutesModal-cancel {
     margin-top: 2%;
