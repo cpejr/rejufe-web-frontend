@@ -6,7 +6,6 @@ import './login.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
-import ptLocale from 'moment/locale/pt-br';
 import * as managerService from '../../services/manager/managerService';
 import backgroundImage from '../../images/martelin.png';
 import { useAuth } from '../../providers/auth';
@@ -14,8 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import ModalFailedLogin from '../../components/ModalFailedLogin/ModalFailedLogin';
 import StyledInput from '../../components/StyledInput/StyledInput';
 import Loading from '../../components/Loading/Loading';
-
-moment.locale('pt-br', [ptLocale]);
 
 const initialState = {
   user: '',
@@ -32,6 +29,8 @@ function Login() {
   const { setUser } = useAuth();
   const history = useHistory();
   const [isBlocked, setIsBlocked] = useState(false);
+  const date = new Date();
+  console.log(date);
   async function rememberMe() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -89,12 +88,11 @@ function Login() {
       ///
       const attempt = {
         email,
-        lock_time: moment(),
+        lock_time: date,
       };
       console.log(attempt.lock_time);
       const res = await managerService.getAttempts(email);
       console.log(res);
-      console.log(moment(res?.lock_time));
       if (Object.values(res).length === 0) {
         await managerService.createAttempt(attempt);
         setShowWarningModal(false);
@@ -103,8 +101,8 @@ function Login() {
         attempts = res?.quantity;
       }
       console.log(attempts);
-      console.log(moment() < moment(res?.lock_time));
-      if (moment() < moment(res?.lock_time)) {
+      console.log(date < res?.lock_time);
+      if (date < res?.lock_time) {
         const tempoRestante = moment(res?.lock_time).fromNow();
         setIsBlocked(true);
         setContentWarningModal(tempoRestante);

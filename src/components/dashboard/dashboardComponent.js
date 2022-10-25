@@ -402,17 +402,10 @@ function TableComponent({
 
   useEffect(() => {
     if (archive1Id) {
-<<<<<<< HEAD
-      SetFileNameById(fileNames1, archive1Id, setFileNames1);
-    }
-    if (archive2Id) {
-      SetFileNameById(fileNames2, archive2Id, setFileNames2);
-=======
       SetFileNameArchive(fileNames1, archive1Id, setFileNames1);
     }
     if (archive2Id) {
       SetFileNameArchive(fileNames2, archive2Id, setFileNames2);
->>>>>>> DEV
     }
     setData(rows);
   }, [archive1Id, archive2Id, rows]);
