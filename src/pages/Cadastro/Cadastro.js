@@ -46,7 +46,6 @@ function Cadastro() {
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     const userRegex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/; // username is 8-20 characters long
     const lettersSpacesRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/; // Apenas letras e espaços, sem caracteres especiais
-
     let checkError = 0;
 
     if (!acceptedTermsConditions.current.checked) {
@@ -176,7 +175,7 @@ function Cadastro() {
         autoClose: 5000,
       });
     }
-    if (dados.lotacao?.length === 0 || !lettersSpacesRegex.test(dados.lotacao)) {
+    if (dados.lotacao?.length === 0) {
       aux.lotacao = true;
       checkError = 1;
       toast.error('Lotação inválido!!', {
@@ -313,7 +312,6 @@ function Cadastro() {
         telephone: dados.telefone === '' ? undefined : dados.telefone,
         fax: dados.fax === '' ? undefined : dados.fax,
         cell_phone_number: dados.celular,
-        judicial_section: dados.judicial_section,
         email_REJUFE: dados.emailListaRejufe === '' ? undefined : dados.emailListaRejufe,
         email_ASCOM: dados.emailListaAscom === '' ? undefined : dados.emailListaAscom,
         admission_date: dados.admissao,

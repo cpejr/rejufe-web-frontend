@@ -201,7 +201,7 @@ export default function ModalAdmin({ users, setTypeChanged }) {
                   Seção:
                 </h1>
                 <h1>
-                  {value?.judicial_section}
+                  {value?.allocation}
                 </h1>
               </div>
             </div>

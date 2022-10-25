@@ -55,15 +55,15 @@ export const createQuizz = async (body) => {
   return response.data;
 };
 
-export const getUsersBySection = async (sections) => {
+export const getUsersByAllocation = async (allocations) => {
   let times = 0;
   let users = [];
   let response;
   // eslint-disable-next-line no-restricted-syntax
-  for (const section of sections) {
+  for (const allocation of allocations) {
     times = 0;
     do {
-      response = await requesterService.getUsersBySection(times, section);
+      response = await requesterService.getUsersByAllocation(times, allocation);
       if (isFailureStatus(response)) throw new Error('Problem with api response');
       users = users.concat(response.data);
       times += 1;
