@@ -29,7 +29,6 @@ function FormInputs({ setNewQuizz, handleClose }) {
       target: { value },
     } = event;
     setVoterAllocation(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
