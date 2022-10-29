@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 import getQuizzesById from '../../components/getQuizzesById/getQuizzesById';
 import './FichaEnquete.css';
-import Quizzes from '../../components/CardQuizzes/Quizzes';
 import ConfirmModal from '../../components/confirmModal/ConfirmModal';
 
 function FichaEnquete() {
   const [quizz, setQuizz] = useState({});
   const [graphData, setGraphData] = useState([]);
+  const [voted, setVoted] = useState();
+  const [loading, setLoading] = useState(true);
 
   const options = {
     title: 'Quizz',
@@ -18,10 +20,8 @@ function FichaEnquete() {
   };
 
   useEffect(() => {
-    getQuizzesById('634cc7a0ee02ea1c7569b02c', setQuizz);
+    getQuizzesById('622541cebb7f38e0e291e1ff', setQuizz);
   }, []);
-
-  console.log(quizz);
 
   useEffect(() => {
     const alreadyVotedQuantity = quizz?.alreadyVoted?.length;
@@ -54,6 +54,16 @@ function FichaEnquete() {
         </div>
         <div className="descriptionquiz-report-quizzes">Descrição</div>
         <div className="descriptionboxquiz-report-quizzes">{quizz?.description}</div>
+        <div className="chart-report-quizzes">Alternativas</div>
+        <div className="content-alternatives-quizzes">
+          <ConfirmModal
+            quizz={quizz}
+            userId="634cc7a0ee02ea1c7569b02c"
+            setVoted={setVoted}
+            alreadyVoted={quizz?.alreadyVoted}
+            setLoading={setLoading}
+          />
+        </div>
         <div className="chart-report-quizzes">Gráfico</div>
         <div className="content-report-quizzes">
           {quizz?.options?.length ? (
@@ -67,15 +77,6 @@ function FichaEnquete() {
             />
           ) : ''}
         </div>
-        {/* <div>
-          <ConfirmModal
-            quizz={quizz}
-            userId={user?.id}
-            setVoted={setVoted}
-            alreadyVoted={quizz?.alreadyVoted}
-            setLoading={setLoading}
-          />
-        </div> */}
       </div>
     </div>
   );
