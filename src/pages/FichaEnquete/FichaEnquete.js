@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 import getQuizzesById from '../../components/getQuizzesById/getQuizzesById';
 import './FichaEnquete.css';
+import Quizzes from '../../components/CardQuizzes/Quizzes';
+import ConfirmModal from '../../components/confirmModal/ConfirmModal';
 
 function FichaEnquete() {
   const [quizz, setQuizz] = useState({});
@@ -16,8 +18,10 @@ function FichaEnquete() {
   };
 
   useEffect(() => {
-    getQuizzesById('622541cebb7f38e0e291e1ff', setQuizz);
+    getQuizzesById('634cc7a0ee02ea1c7569b02c', setQuizz);
   }, []);
+
+  console.log(quizz);
 
   useEffect(() => {
     const alreadyVotedQuantity = quizz?.alreadyVoted?.length;
@@ -63,6 +67,15 @@ function FichaEnquete() {
             />
           ) : ''}
         </div>
+        {/* <div>
+          <ConfirmModal
+            quizz={quizz}
+            userId={user?.id}
+            setVoted={setVoted}
+            alreadyVoted={quizz?.alreadyVoted}
+            setLoading={setLoading}
+          />
+        </div> */}
       </div>
     </div>
   );
