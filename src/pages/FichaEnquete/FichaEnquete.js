@@ -20,7 +20,7 @@ function FichaEnquete() {
   };
 
   useEffect(() => {
-    getQuizzesById('622541cebb7f38e0e291e1ff', setQuizz);
+    getQuizzesById('635d89a364b72583923f5413', setQuizz);
   }, []);
 
   useEffect(() => {

@@ -68,6 +68,8 @@ function ResultadoQuizzes() {
     }
   }, [voted, newQuizz]);
 
+  console.log(quizzes);
+
   return (
     <div className="container-cards-quizzes">
       <div className="division-cards-quizzes">
