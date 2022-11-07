@@ -11,11 +11,11 @@ import { toast } from 'react-toastify';
 import Alternatives from '../Enquetes/alternatives';
 import * as managerService from '../../services/manager/managerService';
 import { initialQuizzState, initialQuizzErrorState } from '../initialStates/initialQuizzStates';
-import judicialSection from '../consts/judicialSection';
+import allocation from '../consts/allocation';
 
 function FormInputs({ setNewQuizz, handleClose }) {
   const users = [];
-  const [voterSection, setVoterSection] = useState([]);
+  const [voterAllocation, setVoterAllocation] = useState([]);
   const [dados, setDados] = useState(initialQuizzState);
   const [initialErrorState, setError] = useState(initialQuizzErrorState);
   const [day, setDay] = useState('');
@@ -28,15 +28,12 @@ function FormInputs({ setNewQuizz, handleClose }) {
     const {
       target: { value },
     } = event;
-    setVoterSection(
-      // On autofill we get a stringified value.
+    setVoterAllocation(
       typeof value === 'string' ? value.split(',') : value,
     );
   };
 
   const allAssociates = 'Todos os associados';
-
-  const sections = judicialSection?.filter((section) => section.value !== '');
 
   function handleDate(value, field) {
     const date = (`${day}, ${value}`);
@@ -53,7 +50,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
   }
 
   const getUsers = async () => {
-    if (voterSection?.some((elem) => elem === allAssociates)) {
+    if (voterAllocation?.some((elem) => elem === allAssociates)) {
       try {
         const response = await managerService.getAllUsers();
         let count = 0;
@@ -67,9 +64,9 @@ function FormInputs({ setNewQuizz, handleClose }) {
           autoClose: 5000,
         });
       }
-    } else if (voterSection.length !== 0) {
+    } else if (voterAllocation.length !== 0) {
       try {
-        const response = await managerService.getUsersBySection(voterSection);
+        const response = await managerService.getUsersByAllocation(voterAllocation);
         let count = 0;
         response?.forEach((user) => {
           users[count] = user._id;
@@ -86,10 +83,10 @@ function FormInputs({ setNewQuizz, handleClose }) {
 
   useEffect(() => {
     getUsers();
-    if (voterSection?.includes(allAssociates) && voterSection.length > 1) {
-      setVoterSection([allAssociates]);
+    if (voterAllocation?.includes(allAssociates) && voterAllocation.length > 1) {
+      setVoterAllocation([allAssociates]);
     }
-  }, [voterSection], dados);
+  }, [voterAllocation]);
 
   return (
     <div>
@@ -162,9 +159,9 @@ function FormInputs({ setNewQuizz, handleClose }) {
             error={initialErrorState.toVote}
             labelId="select-voter"
             id="multiple-chip"
-            value={voterSection}
+            value={voterAllocation}
             onChange={handleSectionChange}
-            multiple={voterSection.some((elem) => elem !== allAssociates)}
+            multiple={voterAllocation.some((elem) => elem !== allAssociates)}
             input={<Input id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -175,12 +172,12 @@ function FormInputs({ setNewQuizz, handleClose }) {
             )}
           >
             <MenuItem key="Todos os associados" value="Todos os associados">Todos os associados</MenuItem>
-            {sections?.map((section) => (
+            {allocation?.map((allocation_) => (
               <MenuItem
-                key={section?.label}
-                value={section?.value}
+                key={allocation_?.label}
+                value={allocation_?.value}
               >
-                {section?.label}
+                {allocation_?.label}
               </MenuItem>
             ))}
           </Select>
@@ -191,7 +188,7 @@ function FormInputs({ setNewQuizz, handleClose }) {
           users={users}
           setError={setError}
           setNewQuizz={setNewQuizz}
-          voterSection={voterSection}
+          voterAllocation={voterAllocation}
           handleClose={handleClose}
         />
       </div>
