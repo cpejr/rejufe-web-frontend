@@ -28,7 +28,7 @@ async function getAllAdministrationRecords(
       auxNews.push(createData(
         object.status,
         object.title,
-        moment(object.date).format('DD/MM/YYYY'),
+        moment.utc(object.date).format('DD/MM/YYYY'),
         object.section,
         object.type,
       ));

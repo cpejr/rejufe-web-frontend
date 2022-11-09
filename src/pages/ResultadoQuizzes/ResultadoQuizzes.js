@@ -21,12 +21,12 @@ function ResultadoQuizzes() {
   const history = useHistory();
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
-  const dateQuizz = moment(new Date()).format('YYYY-MM-DD, HH:mm');
+  const nowDate = moment().format('YYYY-MM-DD, HH:mm');
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
     try {
-      const response = await managerService.getQuizzes(dateQuizz);
+      const response = await managerService.getQuizzes(nowDate);
       const allAssociates = await managerService.getAssociates();
       setAssociates(allAssociates);
       setQuizzes(response);
@@ -42,7 +42,7 @@ function ResultadoQuizzes() {
 
   async function getToVoteQuizzes() {
     try {
-      const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
+      const response = await managerService.getToVoteQuizzes(user?.id, nowDate);
       setToVote(response);
       setLoading(false);
     } catch (error) {
@@ -107,7 +107,6 @@ function ResultadoQuizzes() {
                 <Quizzes
                   quizz={quizz}
                   associates={associates}
-                  dateQuizz={dateQuizz}
                   user={user}
                   filter={filter}
                   setVoted={setVoted}
@@ -118,7 +117,6 @@ function ResultadoQuizzes() {
                 <Quizzes
                   quizz={quizz}
                   associates={associates}
-                  dateQuizz={dateQuizz}
                   user={user}
                   filter={filter}
                   setVoted={setVoted}

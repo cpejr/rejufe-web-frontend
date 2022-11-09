@@ -33,12 +33,12 @@ function EditarAssociados(id) {
           office: response.office,
           nacionality: response.nacionality,
           cpf: response.cpf,
-          birth: moment(response.birth).format('YYYY-MM-DD'),
+          birth: moment.utc(response.birth).format('YYYY-MM-DD'),
           place_of_birth: response.place_of_birth,
           gender: response.gender,
           civil_state: response.civil_state,
           spouse: response.spouse,
-          birth_spouse: response.birth_spouse ? moment(response.birth_spouse).format('YYYY-MM-DD') : undefined,
+          birth_spouse: response.birth_spouse ? moment.utc(response.birth_spouse).format('YYYY-MM-DD') : undefined,
           sons: response.sons,
           cep: response.cep,
           profissional_address: response.profissional_address,
@@ -61,7 +61,7 @@ function EditarAssociados(id) {
           cell_phone_number: response.cell_phone_number,
           email_REJUFE: response.email_REJUFE,
           email_ASCOM: response.email_ASCOM,
-          admission_date: moment(response.admission_date).format('YYYY-MM-DD'),
+          admission_date: moment.utc(response.admission_date).format('YYYY-MM-DD'),
         },
       ];
       setDados(...associateUpdated);
