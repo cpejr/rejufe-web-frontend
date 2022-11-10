@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 import getQuizzesById from '../../components/getQuizzesById/getQuizzesById';
@@ -8,8 +7,8 @@ import ConfirmModal from '../../components/confirmModal/ConfirmModal';
 function FichaEnquete() {
   const [quizz, setQuizz] = useState({});
   const [graphData, setGraphData] = useState([]);
-  const [voted, setVoted] = useState();
-  const [loading, setLoading] = useState(true);
+  const [setVoted] = useState(); //  voted, //
+  const [setLoading] = useState(true); //  loadin,  //
 
   const options = {
     title: 'Quizz',
