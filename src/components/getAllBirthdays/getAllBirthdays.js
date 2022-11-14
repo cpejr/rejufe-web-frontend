@@ -27,10 +27,10 @@ async function getAllBirthdays(setId, setAllAssociates, history, setLoading) {
     const allAssociates = await managerService.getAssociates();
     allAssociates.sort(compare);
 
-    allAssociates.filter((user) => ((user.type.toLowerCase() !== 'administrador') && (moment().format('M') === moment(user?.birth).format('M')))).forEach((object) => {
+    allAssociates.filter((user) => ((user.type.toLowerCase() !== 'administrador') && (moment().format('M') === moment.utc(user?.birth).format('M')))).forEach((object) => {
       associateId.push(object._id);
       auxAssociate.push(createData(
-        moment(object?.birth).format('DD/MM'),
+        moment.utc(object?.birth).format('DD/MM'),
         object.name,
         object.cell_phone_number,
       ));
