@@ -1,3 +1,7 @@
+import {
+  cpfMask,
+} from '../masks/masks';
+
 const formsEnquete = [
   {
     type: 'text',

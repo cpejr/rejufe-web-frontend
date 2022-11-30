@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CreateQuizz from './createQuizz';
 
 function Alternatives({
-  initialErrorState, dados, users, setError, setNewQuizz, voterSection,
+  initialErrorState, dados, users, setError, setNewQuizz, voterSection, handleClose,
 }) {
   const [inputs, setInputs] = useState([
     {
@@ -121,6 +121,7 @@ function Alternatives({
         inputs={inputs}
         setNewQuizz={setNewQuizz}
         voterSection={voterSection}
+        handleClose={handleClose}
       />
     </div>
   );

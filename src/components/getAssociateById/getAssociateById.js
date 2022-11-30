@@ -1,17 +1,7 @@
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 
-const routingFunction = (param) => {
-  const history = useHistory();
-
-  history.push({
-    pathname: '/NotFound',
-    state: param,
-  });
-};
-
-async function getAssociateById(associateId, setAssociate) {
+async function getAssociateById(associateId, setAssociate, history) {
   try {
     const response = await managerService.getById(associateId);
     const associate = {
@@ -22,12 +12,12 @@ async function getAssociateById(associateId, setAssociate) {
       office: response.office,
       nacionality: response.nacionality,
       cpf: response.cpf,
-      birth: moment(response.birth).format('DD/MM/YYYY'),
+      birth: moment.utc(response.birth).format('DD/MM/YYYY'),
       place_of_birth: response.place_of_birth,
       gender: response.gender,
       civil_state: response.civil_state,
       spouse: response.spouse,
-      birth_spouse: response.birth_spouse ? moment(response.birth_spouse).format('DD/MM/YYYY') : '',
+      birth_spouse: response.birth_spouse ? moment.utc(response.birth_spouse).format('DD/MM/YYYY') : '',
       sons: response.sons,
       cep: response.cep,
       profissional_address: response.profissional_address,
@@ -50,11 +40,14 @@ async function getAssociateById(associateId, setAssociate) {
       cell_phone_number: response.cell_phone_number,
       email_REJUFE: response.email_REJUFE,
       email_ASCOM: response.email_ASCOM,
-      admission_date: moment(response.admission_date).format('DD/MM/YYYY'),
+      admission_date: moment.utc(response.admission_date).format('DD/MM/YYYY'),
     };
     setAssociate(associate);
   } catch (error) {
-    routingFunction();
+    history.push({
+      pathname: '/NotFound',
+      state: null,
+    });
   }
 }
 

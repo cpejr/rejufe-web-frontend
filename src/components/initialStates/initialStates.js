@@ -30,7 +30,6 @@ export const initialAssociateState = {
   telefone: '',
   fax: '',
   celular: '',
-  judicial_section: '',
   email: '',
   emailListaRejufe: '',
   emailListaAscom: '',
@@ -116,12 +115,28 @@ export const initialComunicErrorState = {
   archive_2: false,
 };
 
+export const initialMinutesState = {
+  number: '',
+  type: '',
+  description: '',
+  archive_1: undefined,
+  archive_2: undefined,
+};
+
 export const initialActionsState = {
   numberAction: '',
   type: '',
   description: '',
   archive_1: undefined,
   archive_2: undefined,
+};
+
+export const initialMinutesErrorState = {
+  number: false,
+  type: false,
+  description: false,
+  archive_1: false,
+  archive_2: false,
 };
 
 export const initialActionsErrorState = {
@@ -152,12 +167,12 @@ export const initialAccountabilityState = {
   date: '',
   title: '',
   description: '',
-  pdf: undefined,
+  archive_1: undefined,
 };
 
 export const initialAccountabilityErrorState = {
   date: false,
   title: false,
   description: false,
-  pdf: false,
+  archive_1: false,
 };

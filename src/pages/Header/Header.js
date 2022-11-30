@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import { AppBar, Toolbar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -22,19 +22,35 @@ import { useAuth } from '../../providers/auth';
 
 function Header(props) {
   const [className, setClassName] = useState('header-iconbutton-content');
+  const [typeUser, setTypeUser] = useState('header-iconbutton');
+  const [toolbar, setHeaderToolbar] = useState('header-toolbar');
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
   const history = useHistory();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleClassName = () => {
     setClassName('header-iconbutton-content-onclick');
   };
 
+  useEffect(() => {
+    if (user?.type === 'usuario') {
+      setTypeUser('header-iconbutton-user');
+      setHeaderToolbar('header-toolbar-user');
+    }
+  }, []);
+
   function handleClick(pathName) {
     history.push(pathName);
+  }
+  function handleReturn() {
+    history.push('/login');
+    logout();
+  }
+  function handleSubmitIntranet() {
+    history.push('/intranet');
   }
   const links1 = [
     {
@@ -89,13 +105,8 @@ function Header(props) {
   ];
   const linksAcoes = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      pathName: '/administracao-registros-acoes',
       text: 'Administração de Registros',
     },
     {
@@ -106,30 +117,20 @@ function Header(props) {
   ];
   const linksComunic = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
-      link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      link: () => handleClick('/administracao-registros-comunicados'),
+      pathName: '/administracao-registros-comunicados',
       text: 'Administração de Registros',
     },
     {
-      link: () => handleClick('/cadastrar-comunic'),
-      pathName: '/cadastrar-comunic',
+      link: () => handleClick('/cadastrar-comunicados'),
+      pathName: '/cadastrar-comunicados',
       text: 'Cadastrar',
     },
   ];
   const linksContas = [
     {
-      link: () => handleClick('/consultas'),
-      pathName: '/consultas',
-      text: 'Consultas',
-    },
-    {
       link: () => handleClick('/admregistros'),
-      pathName: '/administracao-registros',
+      pathName: '/administracao-registros-contas',
       text: 'Administração de Registros',
     },
     {
@@ -138,25 +139,20 @@ function Header(props) {
       text: 'Cadastrar',
     },
   ];
-  const links4 = [
+  const linksMinutes = [
     {
-      link: () => handleClick('/editais'),
-      pathName: '/editais',
-      text: 'Consulta Editais',
+      link: () => handleClick('/consulta-atas'),
+      pathName: '/consulta-atas-e-editais',
+      text: 'Consultas',
     },
     {
-      link: () => handleClick('/atas'),
-      pathName: '/atas',
-      text: 'Consulta Atas',
-    },
-    {
-      link: () => handleClick('/alteracoeseexclusoes'),
-      pathName: '/alteracoes-e-exclusoes',
+      link: () => handleClick('/alteracoes-e-exclusoes-atas'),
+      pathName: '/alteracoes-e-exclusoes-atas',
       text: 'Alterações e exclusões',
     },
     {
-      link: () => handleClick('/cadastro'),
-      pathName: '/cadastro',
+      link: () => handleClick('/cadastrar-atas'),
+      pathName: '/cadastrar-atas',
       text: 'Cadastrar',
     },
   ];
@@ -205,7 +201,7 @@ function Header(props) {
     },
     {
       text: 'Atas/Editais',
-      links: links4,
+      links: linksMinutes,
       icon: <FilePresentOutlinedIcon />,
     },
     {
@@ -218,20 +214,20 @@ function Header(props) {
   return (
     <>
       <AppBar position="static" className="header-appbar">
-        <Toolbar className="header-toolbar">
+        <Toolbar className={toolbar}>
           <button
             className="header-dropbtn"
-            onClick={() => handleClick('/login')}
+            onClick={() => handleReturn(logout)}
             type="button"
           >
             Sair
           </button>
-          {pages?.map((listItem) => (
-            <div className="header-dropdown">
+          {user?.type === 'administrador' && pages?.map((listItem) => (
+            <div className="header-dropdown" key={listItem.text}>
               <button className="header-dropbtn" type="button">{listItem.text}</button>
               <div className="header-dropdown-content">
                 {listItem.links.map((listItem2) => (
-                  <a href={listItem2.pathName}>
+                  <a href={listItem2.pathName} key={listItem2.text}>
                     {listItem2.text}
                     <br />
                   </a>
@@ -241,7 +237,7 @@ function Header(props) {
           ))}
           <button
             className="header-dropbtn"
-            onClick={() => handleClick('/intranet')}
+            onClick={() => handleSubmitIntranet()}
             type="button"
           >
             Intranet
@@ -250,7 +246,7 @@ function Header(props) {
             <img src={simbolo} alt="logo" />
           </div>
           <div
-            className="header-iconbutton"
+            className={typeUser}
             onClick={handleClassName}
           >
             <IconButton
@@ -266,10 +262,7 @@ function Header(props) {
                 <div className="responsive-header-dropdown">
                   <button
                     className="responsive-header-dropdown-button"
-                    onClick={() => {
-                      handleClick('/login');
-                      logout();
-                    }}
+                    onClick={() => handleReturn()}
                     type="button"
                   >
                     <span>
@@ -281,7 +274,7 @@ function Header(props) {
               ) : (
                 null
               )}
-              {open && pages?.map((item) => (
+              {user?.type === 'administrador' && open && pages?.map((item) => (
                 <SubMenu item={item} />
               ))}
               {open === true ? (
@@ -296,6 +289,18 @@ function Header(props) {
                     </span>
                     Intranet
                   </button>
+                  {user?.type === 'usuario' && (
+                    <button
+                      className="responsive-header-dropdown-button"
+                      onClick={() => handleClick('/alterar-senha')}
+                      type="button"
+                    >
+                      <span>
+                        <Brightness5OutlinedIcon />
+                      </span>
+                      Alterar senha
+                    </button>
+                  )}
                 </div>
               ) : (
                 null

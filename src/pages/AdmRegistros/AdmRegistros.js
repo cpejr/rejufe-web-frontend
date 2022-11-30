@@ -3,39 +3,40 @@ import './AdmRegistros.css';
 import { toast } from 'react-toastify';
 import * as managerService from '../../services/manager/managerService';
 import 'react-toastify/dist/ReactToastify.css';
-import TableComponent from '../../components/dashboard/dashboardComponent';
+import TableComponent from '../../components/ConsultaAssociados/ConsultAssociate';
 
 toast.configure();
 
 function AdmRegistros() {
   const [associates, setAllAssociates] = useState([]);
-  const [sequentialId, setSequentialId] = useState([]);
-  const [id, setId] = useState([]);
-
-  function createData(name, cpf, status) {
-    return {
-      name, cpf, status,
-    };
-  }
+  const [dados, setDados] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const sequentialId = true;
 
   async function getAllAssociates() {
+    setLoading(true);
     const auxAssociate = [];
-    const associateCode = [];
-    const associateId = [];
     try {
       const allAssociates = await managerService.getAssociates();
-      allAssociates.forEach((object) => {
-        associateCode.push(object.sequential_Id);
-        associateId.push(object._id);
-        auxAssociate.push(createData(object.name, object.cpf, object.status));
+      allAssociates.forEach((associate) => {
+        associate.index = allAssociates.findIndex((obj) => obj._id === associate._id) + 1;
       });
+      allAssociates.forEach(({
+        sequential_Id: seqId, index, _id, name, cpf, status,
+      }) => {
+        auxAssociate.push({
+          _id, index, seqId, name, cpf, status,
+        });
+      });
+
+      setDados(allAssociates);
       auxAssociate.sort();
-      setId(associateId);
       setAllAssociates(auxAssociate);
-      setSequentialId(associateCode);
+      setLoading(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(error);
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -59,11 +60,13 @@ function AdmRegistros() {
       </div>
       <div className="line-table-registers" />
       <TableComponent
-        id={id}
         sequentialId={sequentialId}
+        dados={dados}
         rows={associates}
         titles={titles}
         order
+        loading={loading}
+        print={false}
       />
     </div>
   );

@@ -1,0 +1,138 @@
+.EditModal-model-editGroup{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family: Roboto;
+  font-size: 100%;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  outline:none;    
+  margin-top: 5%;
+  margin-bottom: 2%;
+  background-color: white;
+}
+
+.makeStyles-content-4 {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background:var(--color2);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color4);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover);
+}
+
+.EditModal-model-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.EditModal-model-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  font-family:Roboto;
+  font-weight: bold;
+  font-size:24px;
+  margin-bottom: 5%;
+}
+
+.EditModal-model-buttonConfirm{
+  display: flex;
+  padding: 6px 16px;
+  width: max(135px, 30%);
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  border: solid var(--button);
+  border-width: 1px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3%;
+  background-color: var(--button);
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+.EditModal-model-cancel{
+  display: flex;
+  align-self: flex-start;
+  margin-left: 3%;
+  margin-top: 3%;
+  cursor: pointer;
+}
+
+.EditModal-model-buttonConfirm:hover{
+  background-color: var(--primary);
+}
+
+.file-upload-remove {
+  margin-bottom: 5%;
+}
+
+@media(max-width: 695px){
+  .EditModal-model-containerModal{
+    height: 370px;
+    width: 450px;
+  }
+}
+
+@media(max-width: 495px){
+  .EditModal-model-containerModal{
+    height: 320px;
+    width: 380px;
+  }
+
+  .EditModal-model-cancel{
+    margin-top: 2%;
+  }
+
+  .EditModal-model-title{
+    font-size:22px;
+  }
+
+  .EditModal-model-buttonConfirm{
+    font-size: 14px;
+  }
+  .EditModal-model-editGroup .css-i4bv87-MuiSvgIcon-root {
+    width: 0.75em !important;
+    height: 0.75em !important;
+  }
+}
+
+@media(max-width: 395px){
+  .EditModal-model-containerModal{
+    height: 300px;
+    width: 270px;
+  }
+  .EditModal-model-cancel{
+    margin-top: 2%;
+  }
+  .EditModal-model-title{
+    font-size:22px;
+  }
+  .EditModal-model-buttonConfirm{
+    font-size: 14px;
+  }
+}

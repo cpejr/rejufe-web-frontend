@@ -11,6 +11,7 @@ const cssColorCodes = {
   background: 'rgba(255, 255, 255, 0.6)',
   fontColor1: 'white',
   fontColor2: 'black',
+  backgroundInput: '#F0F0F5',
 };
 
 export default cssColorCodes;

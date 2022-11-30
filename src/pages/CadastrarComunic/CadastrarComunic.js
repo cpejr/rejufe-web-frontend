@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import formsComunic from '../../components/formsData/formsComunic';
 import RegisterInputs from '../../components/formsInputs/registerInputs';
 import { initialComunicState, initialComunicErrorState } from '../../components/initialStates/initialStates';
-import checkComunicData from '../../components/checkInfosData/checkComunicData';
+import checkComunicData from '../../components/checkData/checkComunicData/checkComunicData';
 import * as managerService from '../../services/manager/managerService';
 import './CadastrarComunic.css';
 
@@ -58,7 +58,7 @@ function CadastrarComunic() {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
-      history.push('/administracao-registros-comunic');
+      history.push('/administracao-registros-comunicados');
       setLoading(false);
     } catch (error) {
       toast.error('Preencha todos os campos corretamente!!', {

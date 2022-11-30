@@ -1,0 +1,182 @@
+.makeStyles-content-4 {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background:var(--color2);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color4);
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover);
+}
+
+.edit-comunic-modal-edit-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-size: 100%;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  background-color: white;
+}
+
+.edit-comunic-modal-container-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-comunic-modal-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  width: 120%;
+  color: black;
+}
+
+.edit-comunic-modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 5%;
+}
+
+.edit-comunic-modal-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  font-family: Roboto;
+}
+
+.edit-comunic-modal-ButtonConfirm {
+  display: flex;
+  padding: 6px 16px;
+  width: max(135px, 30%);
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  border: solid var(--button);
+  border-width: 1px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 3%;
+  background-color: var(--button);
+  color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+.edit-comunic-modal-input {
+  margin-bottom: 5%;
+  margin-top: 1%;
+  width: 40%;
+  height: 100%;
+  background-color: #f0f0f5;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.edit-comunic-modal-select {
+  margin-bottom: 5%;
+  margin-top: 1%;
+  width: 40%;
+  height: 100%;
+  background-color: #f0f0f5;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.edit-comunic-modal-cancel {
+  display: flex;
+  align-self: flex-start;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.edit-comunic-modal-ButtonConfirm:hover {
+  background-color: var(--primary);
+}
+
+@media(max-width: 495px) {
+  .edit-comunic-modal-cancel {
+    margin-top: 2%;
+  }
+
+  .edit-comunic-modal-title {
+    font-size: 22px;
+  }
+
+  .edit-comunic-modal-text {
+    font-size: 14px;
+  }
+
+  .edit-comunic-modal-ButtonConfirm {
+    font-size: 14px;
+  }
+
+  .edit-comunic-modal-edit-group .css-i4bv87-MuiSvgIcon-root {
+    width: 0.75em !important;
+    height: 0.75em !important;
+  }
+}
+
+@media(max-width: 395px) {
+  .edit-comunic-modal-cancel {
+    margin-top: 2%;
+  }
+
+  .edit-comunic-modal-title {
+    font-size: 22px;
+  }
+
+  .edit-comunic-modal-text {
+    font-size: 14px;
+  }
+
+  .edit-comunic-modal-ButtonConfirm {
+    font-size: 14px;
+  }
+
+  .edit-comunic-modal-input {
+    width: 50%;
+  }
+
+  .edit-comunic-modal-select {
+    width: 50%;
+  }
+}

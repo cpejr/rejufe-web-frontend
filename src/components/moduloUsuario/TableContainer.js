@@ -252,7 +252,7 @@ function TableComponent({
                   {row.name}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {row.judicial_section}
+                  {row.allocation}
                 </TableCell>
                 <TableCell {...cellFontProps}>
                   A
@@ -286,6 +286,7 @@ function TableComponent({
         <TablePagination
           rowsPerPageOptions={[10, 25, 100, { label: 'All', value: -1 }]}
           component="div"
+          style={{ overflow: 'hidden' }}
           count={rows.length}
           rowsPerPage={rowsPerPage}
           labelRowsPerPage="Linhas por pagina"

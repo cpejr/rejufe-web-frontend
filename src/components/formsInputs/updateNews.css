@@ -1,0 +1,15 @@
+.news-description-field-update {
+    align-items: center;
+    width: 70%;
+    margin-left: 15%;
+    margin: calc(3% - 8px) 0 3% 17.5%;
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .news-description-field-update h3 {
+    font-size: 17px;
+    font-weight: 100;
+    margin-bottom: 1%;
+    color: var(--color2)
+  }
