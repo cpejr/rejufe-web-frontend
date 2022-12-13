@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -11,6 +10,7 @@ import ptLocale from 'moment/locale/pt-br';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import DateQuizzes from '../DateQuizzes/DateQuizzes';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
+import RemoveQuizzModal from '../RemoveModal/RemoveQuizzModal';
 import './Quizzes.css';
 
 moment.locale('pt-br', [ptLocale]);
@@ -26,20 +26,20 @@ function Quizzes({
   const closingDate = moment(quizz.closingDate).format('DD-MM-YYYY');
   const [loading, setLoading] = useState();
   quizz.status = 'Em andamento';
-    if (openingDate > dateQuizz) {
+  if (openingDate > dateQuizz) {
     quizz.status = 'Não iniciada';
-    }
-    if (openingDate < dateQuizz) {
-      quizz.status = 'Finalizada';
-      }
+  }
+  if (openingDate < dateQuizz) {
+    quizz.status = 'Finalizada';
+  }
 
   const matches = useMediaQuery('(max-width:411px)');
 
   const cellFontProps = {
     sx: matches
       && {
-      display: 'none',
-    },
+        display: 'none',
+      },
   };
 
   useEffect(() => {
@@ -49,47 +49,50 @@ function Quizzes({
   return (
     <div className="body-quizzes-card">
       {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="init" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-        )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <RemoveQuizzModal id={quizz._id} />
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="init" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="finished" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-              )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <RemoveQuizzModal id={quizz._id} />
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="finished" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="progress" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-              )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <RemoveQuizzModal id={quizz._id} />
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="progress" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < dateQuizz) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
