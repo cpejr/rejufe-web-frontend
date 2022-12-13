@@ -17,7 +17,6 @@ export default function RemoveQuizzModal({ id }) {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
-      console.log(`Id quiz: ${id}`);
     } catch (error) {
       toast.error('Não foi possível deletar quizz', {
         position: toast.POSITION.TOP_RIGHT,
