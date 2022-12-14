@@ -26,6 +26,7 @@ import ConsultasMinutes from './pages/ConsultasAtas';
 import FichaAssociados from './pages/FichaAssociados';
 import FichaMinutes from './pages/FichaAtas';
 import FichaNoticia from './pages/FichaNoticia/FichaNoticia';
+import FichaEnquete from './pages/FichaEnquete/FichaEnquete';
 import Footer from './components/Footer';
 import ChangePassword from './pages/AlterarSenha';
 import NotFound from './pages/NotFound';
@@ -60,7 +61,8 @@ export function UserHeader() {
         <PrivateRoute path="/consulta-atas-e-editais" component={ConsultasMinutes} type="administrador" />
         <PrivateRoute path="/associados-excluidos" component={AssociadosExcluidos} type="administrador" />
         <PrivateRoute path="/ficha-associados" component={FichaAssociados} type="usuario" />
-        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="administrador" />
+        <PrivateRoute path="/ficha-enquete" component={FichaEnquete} type="usuario" />
+        <PrivateRoute path="/ficha-usuarios-externos" component={FichaUsuariosExternos} type="usuario" />
         <PrivateRoute path="/ficha-atas" component={FichaMinutes} type="usuario" />
         <PrivateRoute path="/ficha-noticia" component={FichaNoticia} type="usuario" />
         <PrivateRoute path="/modulo-usuario" component={ModuloUsuarios} type="administrador" />
