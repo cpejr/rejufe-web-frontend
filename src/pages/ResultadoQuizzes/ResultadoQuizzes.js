@@ -17,6 +17,7 @@ function ResultadoQuizzes() {
   const [filter, setFilter] = useState('');
   const [quizzes, setQuizzes] = useState([]);
   const [newQuizz, setNewQuizz] = useState(false);
+  const [deletedQuizz, setDeletedQuizz] = useState(false);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
   const [voted, setVoted] = useState();
@@ -32,6 +33,8 @@ function ResultadoQuizzes() {
       setAssociates(allAssociates);
       setQuizzes(response);
       setLoading(false);
+      setDeletedQuizz(false);
+      setNewQuizz(false);
     } catch (error) {
       history.push('/NotFound');
       toast.error('Credenciais inválidas!!', {
@@ -67,7 +70,7 @@ function ResultadoQuizzes() {
     } else {
       getToVoteQuizzes();
     }
-  }, [voted, newQuizz]);
+  }, [voted, newQuizz, deletedQuizz]);
 
   return (
     <div className="container-cards-quizzes">
@@ -110,6 +113,7 @@ function ResultadoQuizzes() {
                   user={user}
                   filter={filter}
                   setVoted={setVoted}
+                  setDeletedQuizz={setDeletedQuizz}
                 />
               ))
             ) : (

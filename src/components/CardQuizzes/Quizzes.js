@@ -16,7 +16,7 @@ import './Quizzes.css';
 moment.locale('pt-br', [ptLocale]);
 
 function Quizzes({
-  quizz, associates, dateQuizz, user, setVoted, filter,
+  quizz, associates, dateQuizz, user, setVoted, filter, setDeletedQuizz,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -51,7 +51,9 @@ function Quizzes({
       {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
         <div className="card-quizzes">
           <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-            <RemoveQuizzModal id={quizz._id} />
+            {user?.type === 'administrador' && (
+              <RemoveQuizzModal id={quizz._id} setDeletedQuizz={setDeletedQuizz} />
+            )}
             <p>
               {' '}
               {quizz?.title}
@@ -66,7 +68,9 @@ function Quizzes({
       {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
         <div className="card-quizzes">
           <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-            <RemoveQuizzModal id={quizz._id} />
+            {user?.type === 'administrador' && (
+              <RemoveQuizzModal id={quizz._id} setDeletedQuizz={setDeletedQuizz} />
+            )}
             <p>
               {' '}
               {quizz?.title}
@@ -81,7 +85,9 @@ function Quizzes({
       {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
         <div className="card-quizzes">
           <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-            <RemoveQuizzModal id={quizz._id} />
+            {user?.type === 'administrador' && (
+              <RemoveQuizzModal id={quizz._id} setDeletedQuizz={setDeletedQuizz} />
+            )}
             <p>
               {' '}
               {quizz?.title}

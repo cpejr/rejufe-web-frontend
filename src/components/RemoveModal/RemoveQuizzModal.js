@@ -9,16 +9,17 @@ import { toast } from 'react-toastify';
 import './RemoveQuizzModal.css';
 import * as managerService from '../../services/manager/managerService';
 
-export default function RemoveQuizzModal({ id }) {
+export default function RemoveQuizzModal({ id, setDeletedQuizz }) {
   async function handleSubmit() {
     try {
       await managerService.deleteQuizz(id);
+      setDeletedQuizz(true);
       toast.success('Quizz deletado!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
     } catch (error) {
-      toast.error('Não foi possível deletar quizz', {
+      toast.error('Não foi possível deletar o quizz', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -33,6 +34,7 @@ export default function RemoveQuizzModal({ id }) {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
       <button type="button" className="RemoveQuizzModal-RemoveGroup" onClick={handleOpen}>
