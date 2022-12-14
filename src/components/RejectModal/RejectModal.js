@@ -13,13 +13,13 @@ export default function RejectModal({ id, setUse }) {
   async function handleSubmit() {
     try {
       await managerService.deleteExternalAssociate(id);
-      toast.success('Sócio rejeitado!', {
+      toast.success('Associado rejeitado!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
       setUse(true);
     } catch (error) {
-      toast.error('Erro ao tentar rejeitar sócio!', {
+      toast.error('Erro ao tentar rejeitar associado!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -48,7 +48,7 @@ export default function RejectModal({ id, setUse }) {
       >
         <Box className="RejectModal-ContainerModal">
           <div className="RejectModal-text">
-            <div className="RejectModal-Question">Tem certeza que deseja rejeitar sócio?</div>
+            <div className="RejectModal-Question">Tem certeza que deseja rejeitar associado?</div>
           </div>
           <div className="RejectModal-Buttons">
             <div className="RejectModal-button1">

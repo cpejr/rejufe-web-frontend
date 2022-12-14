@@ -19,7 +19,7 @@ function AccountQuery() {
   ];
 
   function createData(dateActual, title, description) {
-    const date = moment(dateActual).format('DD/MM/YYYY');
+    const date = moment.utc(dateActual).format('DD/MM/YYYY');
     return {
       date, title, description,
     };

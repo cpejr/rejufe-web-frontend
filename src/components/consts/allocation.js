@@ -1,28 +1,32 @@
-const lotacao = [
+const allocation = [
   {
-    value: 'CEARÁ',
+    value: 'TRF 5',
+    label: 'TRF 5',
+  },
+  {
+    value: 'CE',
     label: 'Ceará',
   },
   {
-    value: 'RIO GRANDE DO NORTE',
+    value: 'RN',
     label: 'Rio Grande do Norte',
   },
   {
-    value: 'PARAÍBA',
+    value: 'PB',
     label: 'Paraíba',
   },
   {
-    value: 'PERNAMBUCO',
+    value: 'PE',
     label: 'Pernambuco',
   },
   {
-    value: 'ALAGOAS',
+    value: 'AL',
     label: 'Alagoas',
   },
   {
-    value: 'SERGIPE',
+    value: 'SE',
     label: 'Sergipe',
   },
 ];
 
-export default lotacao;
+export default allocation;

@@ -22,13 +22,12 @@ function ResultadoQuizzes() {
   const history = useHistory();
   const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
-  const [date] = useState(new Date());
-  const dateQuizz = moment(date).format('YYYY-MM-DD');
+  const nowDate = moment().format('YYYY-MM-DD, HH:mm');
   const [loading, setLoading] = useState(true);
 
   async function getAllAQuizzes() {
     try {
-      const response = await managerService.getQuizzes(dateQuizz);
+      const response = await managerService.getQuizzes(nowDate);
       const allAssociates = await managerService.getAssociates();
       setAssociates(allAssociates);
       setQuizzes(response);
@@ -37,7 +36,7 @@ function ResultadoQuizzes() {
       setNewQuizz(false);
     } catch (error) {
       history.push('/NotFound');
-      toast.error('Credenciais inválidas!!', {
+      toast.error('Não foi possível obter quizzes!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -46,7 +45,7 @@ function ResultadoQuizzes() {
 
   async function getToVoteQuizzes() {
     try {
-      const response = await managerService.getToVoteQuizzes(user?.id, dateQuizz);
+      const response = await managerService.getToVoteQuizzes(user?.id, nowDate);
       setToVote(response);
       setLoading(false);
     } catch (error) {
@@ -77,6 +76,9 @@ function ResultadoQuizzes() {
       <div className="division-cards-quizzes">
         <div className="title-cards-quizzes-page">
           <h1>Resultado das Enquetes</h1>
+        </div>
+        <div className="line-table-cards-quizzes" />
+        <div className="filter-create-cards-quizzes">
           <FormControl className="form-user-module-page">
             <InputLabel id="select-filter">Selecione um filtro</InputLabel>
             <Select
@@ -97,7 +99,6 @@ function ResultadoQuizzes() {
             <ModalEnquete setNewQuizz={setNewQuizz} />
           )}
         </div>
-        <div className="line-table-cards-quizzes" />
         {loading ? (
           <div className="loader-cards-quizzes">
             <CircularProgress size={35} color="inherit" />
@@ -109,7 +110,6 @@ function ResultadoQuizzes() {
                 <Quizzes
                   quizz={quizz}
                   associates={associates}
-                  dateQuizz={dateQuizz}
                   user={user}
                   filter={filter}
                   setVoted={setVoted}
@@ -121,7 +121,6 @@ function ResultadoQuizzes() {
                 <Quizzes
                   quizz={quizz}
                   associates={associates}
-                  dateQuizz={dateQuizz}
                   user={user}
                   filter={filter}
                   setVoted={setVoted}

@@ -252,7 +252,7 @@ function TableComponent({
                   {row.name}
                 </TableCell>
                 <TableCell {...cellFontProps}>
-                  {row.judicial_section}
+                  {row.allocation}
                 </TableCell>
                 <TableCell {...cellFontProps}>
                   A

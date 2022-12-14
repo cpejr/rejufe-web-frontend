@@ -36,7 +36,7 @@ export const getAllUsers = (times) => httpClient.get('/usuario/', {
   },
 });
 
-export const getUsersBySection = (times, section) => httpClient.get(`/usuario/section/${section}`, {
+export const getUsersByAllocation = (times, allocation) => httpClient.get(`/usuario/allocation/${allocation}`, {
   params: {
     times,
   },

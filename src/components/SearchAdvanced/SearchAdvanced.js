@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import './SearchAdvanced.css';
+import allocation from '../consts/allocation';
 
 function SearchAdvanced({
   handleClose, setData, rows, dados, dataFilter,
@@ -26,15 +27,15 @@ function SearchAdvanced({
     return str.replace(/[^a-z0-9]/gi, '');
   }
 
-  function createData(name, cpf, status, allocation, acting, email) {
+  function createData(_id, name, cpf, status, _allocation, acting, email) {
     return {
-      name, cpf, status, allocation, acting, email,
+      _id, name, cpf, status, _allocation, acting, email,
     };
   }
 
-  function returnData(name, cpf, status) {
+  function returnData(_id, index, seqId, name, cpf, status) {
     return {
-      name, cpf, status,
+      _id, index, seqId, name, cpf, status,
     };
   }
 
@@ -43,9 +44,10 @@ function SearchAdvanced({
   const filterType = [];
   if (dataFilter) {
     let auxFilterType = [];
-    auxFilterType = dataFilter?.filter(((item) => item.judicial_section?.includes(type)));
+    auxFilterType = dataFilter?.filter(((item) => item?.allocation === type));
     auxFilterType.forEach((object) => {
       filterType.push(createData(
+        object._id,
         object.name,
         object.cell_phone_number,
         object.status,
@@ -57,9 +59,11 @@ function SearchAdvanced({
   }
   let auxFilterType = [];
   if (dados) {
-    auxFilterType = dados?.filter(((item) => item.judicial_section?.includes(type)));
+    auxFilterType = dados?.filter(((item) => item.allocation?.includes(type)));
     auxFilterType.forEach((object) => {
-      filterType.push(returnData(object.name, object.cpf, object.status));
+      filterType.push(
+        returnData(object?._id, object?.index, object?.sequential_Id, object.name, object.cpf, object.status),
+      );
     });
   }
 
@@ -111,16 +115,13 @@ function SearchAdvanced({
         </div>
         <div className="associate-search-advanced-labels">
 
-          <label> Seção Judiciária:</label>
+          <label> Lotação:</label>
 
           <select className="associate-search-advanced-select" value={type} placeholder="" onChange={(e) => setType(e.target.value)}>
-            <option value=" "> </option>
-            <option value="SE">SE</option>
-            <option value="AL">AL</option>
-            <option value="PE">PE</option>
-            <option value="PB">PB</option>
-            <option value="RN">RN</option>
-            <option value="CE">CE</option>
+            <option> </option>
+            {allocation?.map((allocation_) => (
+              <option value={allocation_.value}>{allocation_.label}</option>
+            ))}
           </select>
         </div>
         <div className="associate-search-advanced-buttons-align">
