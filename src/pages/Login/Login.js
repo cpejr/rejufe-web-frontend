@@ -29,8 +29,8 @@ function Login() {
   const { setUser } = useAuth();
   const history = useHistory();
   const [isBlocked, setIsBlocked] = useState(false);
-  const date = new Date();
-  console.log(date);
+  const date = moment(new Date()).format('HH:mm');
+
   async function rememberMe() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -90,9 +90,10 @@ function Login() {
         email,
         lock_time: date,
       };
-      console.log(attempt.lock_time);
+
       const res = await managerService.getAttempts(email);
-      console.log(res);
+      const lockTime = moment(res?.lock_time).format('HH:mm');
+
       if (Object.values(res).length === 0) {
         await managerService.createAttempt(attempt);
         setShowWarningModal(false);
@@ -100,10 +101,12 @@ function Login() {
       } else {
         attempts = res?.quantity;
       }
-      console.log(attempts);
+      console.log(date);
+      console.log(lockTime);
       console.log(date < res?.lock_time);
       if (date < res?.lock_time) {
         const tempoRestante = moment(res?.lock_time).fromNow();
+        console.log(tempoRestante);
         setIsBlocked(true);
         setContentWarningModal(tempoRestante);
         setShowWarningModal(true);
@@ -141,7 +144,7 @@ function Login() {
               switch (attempts) {
               case 2: {
                 const time = moment().add(1, 'minutes');
-                setContentWarningModal('após 1 minutos');
+                setContentWarningModal('após 3 minutos');
                 await managerService.updateTime(email, time);
                 setIsBlocked(true);
                 setShowWarningModal(true);
@@ -149,7 +152,7 @@ function Login() {
               }
               case 3: {
                 const time = moment().add(2, 'minutes');
-                setContentWarningModal('após 2 minutos');
+                setContentWarningModal('após 5 minutos');
                 await managerService.updateTime(email, time);
                 setIsBlocked(true);
                 setShowWarningModal(true);
@@ -157,7 +160,7 @@ function Login() {
               }
               default: {
                 const time = moment().add(3, 'minutes');
-                setContentWarningModal('após 3 minutos');
+                setContentWarningModal('após 15 minutos');
                 await managerService.updateTime(email, time);
                 setIsBlocked(true);
                 setShowWarningModal(true);
@@ -170,6 +173,7 @@ function Login() {
         setLoading(false);
       }
     } catch (error) {
+      console.log(error);
       toast.error('Usuário inválido!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
