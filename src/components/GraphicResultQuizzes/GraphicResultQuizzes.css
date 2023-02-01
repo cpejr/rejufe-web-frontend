@@ -30,7 +30,8 @@
 
 .send-email-to-vote-members {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 2px;
   align-items: center;
 }
 
