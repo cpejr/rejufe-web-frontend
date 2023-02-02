@@ -140,7 +140,6 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
 
@@ -252,7 +251,6 @@ export const getCommunique = (times, field, filter) => httpClient.get('/informac
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 
 export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
