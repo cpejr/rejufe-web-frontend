@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const URL_BASE = process.env.REACT_APP_BASE_URL || 'https://rejufe-web-backend.onrender.com';
+// const URL_BASE = process.env.REACT_APP_BASE_URL || 'https://rejufe-web-backend.onrender.com';
+const URL_BASE = 'http://localhost:3333';
 
 const httpClient = axios.create({
   baseURL: URL_BASE,
