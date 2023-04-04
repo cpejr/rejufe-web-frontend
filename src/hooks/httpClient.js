@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const URL_BASE = process.env.REACT_APP_BASE_URL || 'https://rejufe-web-backend.onrender.com';
-const URL_BASE = 'http://localhost:3333';
+const URL_BASE = process.env.REACT_APP_BASE_URL || 'http://localhost:3333';
 
 const httpClient = axios.create({
   baseURL: URL_BASE,
@@ -26,7 +25,7 @@ httpClient.interceptors.response.use(
       window.location.href = '/';
     }
     return error.response;
-  },
+  }
 );
 
 httpClient.interceptors.request.use((request) => requestHandler(request));
