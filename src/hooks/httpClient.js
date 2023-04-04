@@ -25,7 +25,7 @@ httpClient.interceptors.response.use(
       window.location.href = '/';
     }
     return error.response;
-  }
+  },
 );
 
 httpClient.interceptors.request.use((request) => requestHandler(request));
