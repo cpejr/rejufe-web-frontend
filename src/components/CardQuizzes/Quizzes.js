@@ -22,22 +22,14 @@ function Quizzes({
   const handleOpen = () => {
     setOpen(!open);
   };
+  const openingDate = moment(quizz?.openingDate);
+  const closingDate = moment(quizz?.closingDate);
 
-  const nowDate = moment(dateQuizz).format('YYYY-MM-DD');
-  const nowHour = moment(dateQuizz).format('HH:mm');
-  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
-  const openingHour = moment(quizz?.openingDate).format('HH:mm');
-  const closingHour = moment(quizz?.closingDate).format('HH:mm');
   const [loading, setLoading] = useState();
 
-  if (openingDate > nowDate || (openingDate === nowDate && openingHour >= nowHour)) {
-    quizz.status = 'Não iniciada';
-  } else if (closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) {
-    quizz.status = 'Finalizada';
-  } else {
-    quizz.status = 'Em andamento';
-  }
+  if (openingDate.isAfter(dateQuizz)) quizz.status = 'Não iniciada';
+  else if (closingDate.isBefore(dateQuizz)) quizz.status = 'Finalizada';
+  else quizz.status = 'Em andamento';
 
   const matches = useMediaQuery('(max-width:411px)');
 
@@ -96,7 +88,7 @@ function Quizzes({
         </button>
       </div>
               )}
-      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < dateQuizz) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
+      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate.isBefore(dateQuizz)) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -105,7 +97,7 @@ function Quizzes({
             </div>
           ) : (
             <>
-              {(closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
+              {closingDate.isBefore(dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
                 <GraphicQuizzes
                   {...quizz}
                   userType={user?.type}
