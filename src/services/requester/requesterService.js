@@ -279,4 +279,4 @@ export const getTodayBirthday = (times, field, filter) => httpClient.get('usuari
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
 
-export const deleteQuizz = (quizzId) => httpClient.delete(`quizzes/delete/${quizzId}`);
+export const deleteQuizz = (quizzId) => httpClient.delete(`quizzes/${quizzId}`);
