@@ -13,20 +13,22 @@ import Quizzes from '../../components/CardQuizzes/Quizzes';
 import './ResultadoQuizzes.css';
 
 function ResultadoQuizzes() {
-  const { user } = useAuth();
+  const [voted, setVoted] = useState();
   const [filter, setFilter] = useState('');
   const [quizzes, setQuizzes] = useState([]);
-  const [newQuizz, setNewQuizz] = useState(false);
-  const history = useHistory();
-  const [voted, setVoted] = useState();
   const [toVote, setToVote] = useState([]);
-  const dateQuizz = moment(new Date());
   const [loading, setLoading] = useState(true);
+  const [newQuizz, setNewQuizz] = useState(false);
+  const [deletedQuizz, setDeletedQuizz] = useState(false);
+  const { user } = useAuth();
+  const history = useHistory();
+  const dateQuizz = moment(new Date());
 
   async function getAllAQuizzes() {
     try {
       const response = await managerService.getQuizzes(dateQuizz.format('YYYY-MM-DD, HH:mm'));
       setQuizzes(response);
+      setDeletedQuizz(false);
       setLoading(false);
     } catch (error) {
       history.push('/NotFound');
@@ -62,7 +64,7 @@ function ResultadoQuizzes() {
     } else {
       getToVoteQuizzes();
     }
-  }, [voted, newQuizz]);
+  }, [voted, newQuizz, deletedQuizz]);
 
   return (
     <div className="container-cards-quizzes">
@@ -106,6 +108,7 @@ function ResultadoQuizzes() {
                   user={user}
                   filter={filter}
                   setVoted={setVoted}
+                  setDeletedQuizz={setDeletedQuizz}
                 />
               ))
             ) : (
@@ -116,6 +119,7 @@ function ResultadoQuizzes() {
                   user={user}
                   filter={filter}
                   setVoted={setVoted}
+                  setDeletedQuizz={setDeletedQuizz}
                 />
               ))
             )}

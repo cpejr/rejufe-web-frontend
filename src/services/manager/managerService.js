@@ -184,6 +184,11 @@ export const updateQuizz = async (id, quizz) => {
   return response.data;
 };
 
+export const deleteQuizz = async (quizzId) => {
+  const response = await requesterService.deleteQuizz(quizzId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const getExternalAssociates = async (field, filter) => {
   let times = 0;
   let response;

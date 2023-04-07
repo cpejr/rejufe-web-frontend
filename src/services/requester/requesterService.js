@@ -95,6 +95,8 @@ export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/vote/${id}`, 
 
 export const updateVotes = (quizzId, body) => httpClient.put(`/quizzes/votes/${quizzId}`, body);
 
+export const deleteQuizz = (quizzId) => httpClient.delete(`quizzes/${quizzId}`);
+
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
     times,
