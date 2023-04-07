@@ -1,9 +1,9 @@
 import moment from 'moment';
 import * as managerService from '../../services/manager/managerService';
 
-function createData(status, title, date, section, type) {
+function createData(status, title, date, type) {
   return {
-    status, title, date, section, type,
+    status, title, date, type,
   };
 }
 async function getAllAdministrationRecords(
@@ -28,7 +28,7 @@ async function getAllAdministrationRecords(
       auxNews.push(createData(
         object.status,
         object.title,
-        moment(object.date).format('DD/MM/YYYY'),
+        moment.utc(object.date).format('DD/MM/YYYY'),
         object.section,
         object.type,
       ));

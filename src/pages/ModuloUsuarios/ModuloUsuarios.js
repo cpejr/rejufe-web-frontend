@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
-import judicialSection from '../../components/consts/judicialSection';
+import allocation from '../../components/consts/allocation';
 
 toast.configure();
 
@@ -52,9 +52,9 @@ function ModuloUsuarios() {
         .toLowerCase()).includes(replaceSpecialChars(value))));
       setSearch(value);
     }
-    if (filter === 'Seção') {
+    if (filter === 'Lotação') {
       setSearch(value);
-      setRows(admins?.filter((admin) => admin?.judicial_section === value));
+      setRows(admins?.filter(((item) => item.allocation?.includes(value))));
     }
   };
 
@@ -90,7 +90,7 @@ function ModuloUsuarios() {
     '',
     'Status',
     'Associado',
-    'Seção',
+    'Lotação',
     'Perfil',
     'Login',
     'Atuação',
@@ -118,25 +118,25 @@ function ModuloUsuarios() {
             >
               <MenuItem value="Sem filtros">Sem filtros</MenuItem>
               <MenuItem value="Associados">Associados</MenuItem>
-              <MenuItem value="Seção">Seção</MenuItem>
+              <MenuItem value="Lotação">Lotação</MenuItem>
             </Select>
           </FormControl>
         </div>
         <div className="search-container-user-module">
-          {filter === 'Seção' ? (
+          {filter === 'Lotação' ? (
             <FormControl className="form-user-module-page">
-              <InputLabel id="demo-simple-select-label">Selecione uma seção</InputLabel>
+              <InputLabel id="demo-simple-select-label">Selecione uma Lotação</InputLabel>
               <Select
                 className="select-search-user-module"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={search}
-                label="Selecione uma seção"
+                label="Selecione uma Lotação"
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
-                {judicialSection?.map((section) => (
-                  <MenuItem value={section.value}>{section.label}</MenuItem>
+                {allocation?.map((allocation_) => (
+                  <MenuItem value={allocation_.value}>{allocation_.label}</MenuItem>
                 ))}
               </Select>
             </FormControl>

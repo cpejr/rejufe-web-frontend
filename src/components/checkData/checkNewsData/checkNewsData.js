@@ -3,14 +3,15 @@ import { toast } from 'react-toastify';
 toast.configure();
 
 export default function checkNewsData(key, value) {
-  if (typeof value !== 'string') return false;
-  if (value.length !== 0) return false;
-  if (key === 'section') {
-    toast.error('Seção inválida!!', {
+  if (value === '<p><br></p>' || value === '<p>Escreva a descrição aqui</p>') {
+    toast.error('Descrição inválida!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
     });
+    return true;
   }
+  if (typeof value !== 'string') return false;
+  if (value.length !== 0) return false;
   if (key === 'type') {
     toast.error('Tipo inválido!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -23,7 +24,7 @@ export default function checkNewsData(key, value) {
       autoClose: 5000,
     });
   }
-  if (key === 'description') {
+  if (key === 'description' || value === '<p><br></p>') {
     toast.error('Descrição inválida!!', {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,

@@ -19,7 +19,7 @@ async function getNewsById(newsId, setNews) {
         managerService.getFileNameById(New.archive_2),
       ]).then((response) => {
         const news = {
-          date: moment(New.date).format('DD-MM-YYYY'),
+          date: moment.utc(New.date).format('DD-MM-YYYY'),
           section: New.section,
           type: New.type,
           title: New.title,

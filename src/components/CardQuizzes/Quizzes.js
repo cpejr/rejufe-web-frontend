@@ -7,13 +7,10 @@ import moment from 'moment';
 import { FormControl, useMediaQuery } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import ptLocale from 'moment/locale/pt-br';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import DateQuizzes from '../DateQuizzes/DateQuizzes';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
-
-moment.locale('pt-br', [ptLocale]);
 
 function Quizzes({
   quizz, dateQuizz, user, setVoted, filter,
@@ -47,33 +44,33 @@ function Quizzes({
   return (
     <div className="body-quizzes-card">
       {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="init" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-        )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="init" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="finished" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-              )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="finished" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>

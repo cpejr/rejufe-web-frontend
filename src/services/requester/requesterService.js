@@ -36,7 +36,7 @@ export const getAllUsers = (times) => httpClient.get('/usuario/', {
   },
 });
 
-export const getUsersBySection = (times, section) => httpClient.get(`/usuario/section/${section}`, {
+export const getUsersByAllocation = (times, allocation) => httpClient.get(`/usuario/allocation/${allocation}`, {
   params: {
     times,
   },
@@ -144,7 +144,6 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
 
@@ -256,7 +255,6 @@ export const getCommunique = (times, field, filter) => httpClient.get('/informac
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 
 export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {

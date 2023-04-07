@@ -177,7 +177,7 @@ function SingleFileUpload({
                 {file?.file?.path}
                 {' '}
                 {label === 'Arquivo' && (
-                  <PictureAsPdfIcon />
+                  <PictureAsPdfIcon style={{ marginLeft: '10px' }} />
                 )}
               </div>
               {label === 'Arquivo' ? (
