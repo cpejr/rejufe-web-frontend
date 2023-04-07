@@ -93,9 +93,9 @@ function SingleFileUpload({
     <Grid sx={{ flexGrow: 1 }} container spacing={2} direction="column" justifyContent="center" alignItems="center" style={{ marginBottom: '1%' }}>
       <Grid item style={{ width: '65%' }}>
         <div>
-          {update === true && label === 'Imagem' && !updateImage && file !== '' && (
+          {update === true && label === 'Imagem' && !updateImage && file !== '' && image && (
             <>
-              {image && example()}
+              {example()}
               <div style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
               }}
@@ -212,16 +212,13 @@ function SingleFileUpload({
                 {file?.file?.path}
                 {' '}
                 {label === 'Arquivo' && (
-                  <PictureAsPdfIcon />
+                  <PictureAsPdfIcon style={{ marginLeft: '10px' }} />
                 )}
               </div>
               {label === 'Arquivo' ? (
-                <>
-                  <PictureAsPdfIcon />
-                  <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
-                    Remover Arquivo
-                  </Button>
-                </>
+                <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
+                  Remover Arquivo
+                </Button>
               ) : (
                 <Button variant="contained" style={{ backgroundColor: '#1C3854', marginBottom: '1%', marginTop: '2%' }} onClick={() => setDados(undefined, field)}>
                   Remover Imagem

@@ -75,6 +75,7 @@ export const initialAssociateErrorState = {
 };
 
 export const initialNewsState = {
+  section: 'INTRANET',
   type: '',
   title: '',
   description: '',
