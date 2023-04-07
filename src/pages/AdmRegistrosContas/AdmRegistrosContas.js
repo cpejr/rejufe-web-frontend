@@ -35,7 +35,7 @@ function AdmRegistrosContas() {
       allComunic.forEach((object) => {
         auxAccount.push(createData(
           object.title,
-          moment(object.date).add(1, 'days').format('DD-MM-YYYY'),
+          moment.utc(object.date).format('DD-MM-YYYY'),
           object.description,
         ));
         archive1Code.push(object.archive_1);
@@ -64,7 +64,7 @@ function AdmRegistrosContas() {
     'Título',
     'Data',
     'Descrição',
-    'Anexo ',
+    'Arquivo ',
   ];
 
   return (

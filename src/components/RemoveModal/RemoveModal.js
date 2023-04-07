@@ -44,7 +44,7 @@ export default function RemoveModal({ id, setUse }) {
       >
         <Box className="RemoveModal-ContainerModal">
           <div className="RemoveModal-text">
-            <div className="RemoveModal-Question">Tem certeza que deseja apagar usuário?</div>
+            <div className="RemoveModal-Question">Tem certeza que deseja apagar associado?</div>
           </div>
           <div className="RemoveModal-Buttons">
             <div className="RemoveModal-button1">

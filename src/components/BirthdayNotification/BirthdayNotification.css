@@ -73,6 +73,7 @@
 
 .users-birthday {
   width: 100%;
+  overflow-y: auto;
 }
 
 .users-birthday-ine {
@@ -80,6 +81,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 3%;
+
 }
 
 .users-birthday-ine p {

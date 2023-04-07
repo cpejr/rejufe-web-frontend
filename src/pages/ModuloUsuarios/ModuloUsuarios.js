@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import TableComponent from '../../components/moduloUsuario/TableContainer';
 import * as managerService from '../../services/manager/managerService';
 import ModalUsuario from '../../components/moduloUsuario/modalUsuario/ModalUsuario';
-import judicialSection from '../../components/consts/judicialSection';
+import allocation from '../../components/consts/allocation';
 
 toast.configure();
 
@@ -47,14 +47,14 @@ function ModuloUsuarios() {
   }
 
   const handleSearch = (value) => {
-    if (filter === 'Usuários') {
+    if (filter === 'Associados') {
       setRows(admins?.filter((admin) => replaceSpecialChars(admin?.name
         .toLowerCase()).includes(replaceSpecialChars(value))));
       setSearch(value);
     }
-    if (filter === 'Seção') {
+    if (filter === 'Lotação') {
       setSearch(value);
-      setRows(admins?.filter((admin) => admin?.judicial_section === value));
+      setRows(admins?.filter(((item) => item.allocation?.includes(value))));
     }
   };
 
@@ -74,7 +74,7 @@ function ModuloUsuarios() {
       setRows(response?.filter(filterAdmins));
     } catch (error) {
       history.push('/NotFound');
-      toast.error('Não foi possível obter usuários!!', {
+      toast.error('Não foi possível obter associados!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
       });
@@ -89,8 +89,8 @@ function ModuloUsuarios() {
     '',
     '',
     'Status',
-    'Usuário',
-    'Seção',
+    'Associado',
+    'Lotação',
     'Perfil',
     'Login',
     'Atuação',
@@ -117,26 +117,26 @@ function ModuloUsuarios() {
               onChange={(e) => handleChange(e.target.value)}
             >
               <MenuItem value="Sem filtros">Sem filtros</MenuItem>
-              <MenuItem value="Usuários">Usuários</MenuItem>
-              <MenuItem value="Seção">Seção</MenuItem>
+              <MenuItem value="Associados">Associados</MenuItem>
+              <MenuItem value="Lotação">Lotação</MenuItem>
             </Select>
           </FormControl>
         </div>
         <div className="search-container-user-module">
-          {filter === 'Seção' ? (
+          {filter === 'Lotação' ? (
             <FormControl className="form-user-module-page">
-              <InputLabel id="demo-simple-select-label">Selecione uma seção</InputLabel>
+              <InputLabel id="demo-simple-select-label">Selecione uma Lotação</InputLabel>
               <Select
                 className="select-search-user-module"
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={search}
-                label="Selecione uma seção"
+                label="Selecione uma Lotação"
                 onChange={(e) => handleSearch(e.target.value)}
               >
 
-                {judicialSection?.map((section) => (
-                  <MenuItem value={section.value}>{section.label}</MenuItem>
+                {allocation?.map((allocation_) => (
+                  <MenuItem value={allocation_.value}>{allocation_.label}</MenuItem>
                 ))}
               </Select>
             </FormControl>
