@@ -167,7 +167,6 @@ function Login() {
         setLoading(false);
       }
     } catch (error) {
-      console.log(error);
       toast.error('Usuário inválido!!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,

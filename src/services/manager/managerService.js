@@ -244,7 +244,6 @@ export const getNewsById = async (id) => {
 };
 
 export const createAttempt = async (attempt) => {
-  console.log(attempt);
   const response = await requesterService.createAttempt(attempt);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
