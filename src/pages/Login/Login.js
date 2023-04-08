@@ -38,7 +38,7 @@ function Login() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
       if (userStorage?.rememberMe) {
-        history.push(state?.from?.pathname || '');
+        history.push(state?.from?.pathname || '/intranet');
       }
       setPageLoading(false);
     } catch (error) {
@@ -126,7 +126,7 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          history.push(state?.from?.pathname || '');
+          history.push(state?.from?.pathname || '/intranet');
         } catch (error) {
           setLoading(false);
           if (email !== undefined) {
