@@ -14,15 +14,6 @@ const recordNews = [
       {
         items: [
           {
-            id: 'section',
-            label: 'Seção',
-          },
-        ],
-      },
-
-      {
-        items: [
-          {
             id: 'type',
             label: 'Tipo',
           },

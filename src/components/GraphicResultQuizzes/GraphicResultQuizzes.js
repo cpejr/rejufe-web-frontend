@@ -1,49 +1,67 @@
-import React from 'react';
+import { CircularProgress } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import * as managerService from '../../services/manager/managerService';
 import TableComponent from '../dashboard/dashboardComponent';
 import './GraphicResultQuizzes.css';
 
+toast.configure();
+
 function GraphicQuizzes({
+  _id,
+  status,
   toVote,
-  quizz,
+  options,
   alreadyVoted,
-  associates,
+  title,
   userType,
 }) {
-  const data = [
-    ['Opções', 'Votos', { role: 'annotation' }],
-  ];
-  const titles = [
-    '',
-    'Faltam Votar',
-  ];
-  const user = [];
-  const name = [];
-  const votes = [];
-  let index = 1;
+  const [loadingTable, setLoadingTable] = useState(true);
+  const [loadEmailSender, setLoadEmailSender] = useState(false);
+  const [toVoteMembers, setToVoteMembers] = useState([]);
+  const [graphData, setGraphData] = useState(null);
+  const history = useHistory();
 
-  quizz?.forEach((option) => {
-    const percentual = (option.votes / alreadyVoted.length);
-    let changePercentual = (percentual * 100);
-    changePercentual += '%';
-    data[index] = [option.description, option.votes, changePercentual];
-    votes[index] = option.votes;
-    index += 1;
-  });
-  let count = 0;
+  useEffect(() => {
+    const graphInfo = [['Opções', 'Votos', { role: 'annotation' }]];
+    const alreadyVotedQuantity = alreadyVoted?.length;
 
-  toVote?.forEach((_id) => {
-    user[count] = associates?.filter((item) => item._id === _id);
-    user[count]?.forEach((obj) => {
-      name[count] = obj.name;
-    });
-    count += 1;
-  });
-  const names = name?.map((value) => ({
-    name: value,
-  }));
+    const Data = options?.reduce((acc, option) => {
+      const percentValue = alreadyVotedQuantity && 100 * (option.votes / alreadyVotedQuantity);
+      const percent = `${percentValue.toFixed(2)}%`.replace('.', ',');
 
-  const options = {
+      acc.push([option.description, option.votes, percent]);
+      return acc;
+    }, graphInfo);
+
+    setGraphData(Data);
+  }, [options]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingTable(true);
+      try {
+        const res = await managerService.getToVoteMembers(_id);
+        const members = res && res.map(({ name }) => ({ name }));
+        setToVoteMembers(members);
+      } catch (err) {
+        toast.error(`Erro ao listar os que associados que ainda não votaram na enquete ${title}`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+          onOpen: () => history.push('/NotFound'),
+        });
+      } finally {
+        setLoadingTable(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const titles = ['', ''];
+  const graphOptions = {
     title: 'Quizz',
     chartArea: { width: '50%', height: '100%' },
     vAxis: {
@@ -51,37 +69,70 @@ function GraphicQuizzes({
     },
   };
 
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    setLoadEmailSender(true);
+    try {
+      await managerService.sendEmailToVoteMembers(_id);
+      toast.success('E-mails enviados com sucesso', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    } catch (err) {
+      toast.error('Houve um problema no envio dos e-mails. Tente mais tarde', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+    } finally {
+      setLoadEmailSender(false);
+    }
+  };
+
+  const loadingComponent = (
+    <div className="loader-cards-quizzes">
+      <CircularProgress size={35} color="inherit" />
+    </div>
+  );
+
+  if (loadingTable) return loadingComponent;
+
   return (
     <div className="content-card-quizzes">
-      {votes[1] !== undefined && (
-        <Chart
-          chartType="BarChart"
-          width="100%"
-          height="50%"
-          data={data}
-          options={options}
-          legendToggle
-        />
-      )}
-      {userType === 'administrador' && toVote.length > 0 && (
+      <Chart
+        chartType="BarChart"
+        width="100%"
+        height="50%"
+        data={graphData}
+        options={graphOptions}
+        legendToggle
+      />
+      {userType === 'administrador' && toVote?.length > 0 && status === 'Em andamento' && (
         <div>
           <div className="title-quizzes-already-voted">
-            <h2>
-              {'Faltam Votar '}
-            </h2>
+            <h2>{'Faltam Votar '}</h2>
           </div>
           <div className="line-quizzes-already-voted" />
           <div className="content-table-quizzes">
             <TableComponent
-              rows={names}
+              rows={toVoteMembers}
               titles={titles}
               order
               renderButton={false}
             />
           </div>
+          <div className="send-email-to-vote-members">
+            <button
+              type="button"
+              onClick={sendEmail}
+              disabled={loadEmailSender}
+            >
+              Enviar e-mails
+            </button>
+          </div>
         </div>
       )}
-      {toVote.length === 0 && (
+      {toVote?.length === 0 && (
         <div className="quizzes-already-voted">
           <p>Todas as pessoas já votaram!</p>
         </div>

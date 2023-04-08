@@ -7,37 +7,27 @@ import moment from 'moment';
 import { FormControl, useMediaQuery } from '@mui/material';
 import { CircularProgress } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import ptLocale from 'moment/locale/pt-br';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import DateQuizzes from '../DateQuizzes/DateQuizzes';
+import RemoveQuizzModal from '../RemoveModal/RemoveQuizzModal';
 import GraphicQuizzes from '../GraphicResultQuizzes/GraphicResultQuizzes';
 import './Quizzes.css';
 
-moment.locale('pt-br', [ptLocale]);
-
 function Quizzes({
-  quizz, associates, dateQuizz, user, setVoted, filter,
+  quizz, dateQuizz, user, setVoted, filter, setDeletedQuizz,
 }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
+  const openingDate = moment(quizz?.openingDate);
+  const closingDate = moment(quizz?.closingDate);
 
-  const nowDate = moment(dateQuizz).format('YYYY-MM-DD');
-  const nowHour = moment(dateQuizz).format('HH:mm');
-  const openingDate = moment(quizz?.openingDate).format('YYYY-MM-DD');
-  const closingDate = moment(quizz?.closingDate).format('YYYY-MM-DD');
-  const openingHour = moment(quizz?.openingDate).format('HH:mm');
-  const closingHour = moment(quizz?.closingDate).format('HH:mm');
   const [loading, setLoading] = useState();
 
-  if (openingDate > nowDate || (openingDate === nowDate && openingHour >= nowHour)) {
-    quizz.status = 'Não iniciada';
-  } else if (closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) {
-    quizz.status = 'Finalizada';
-  } else {
-    quizz.status = 'Em andamento';
-  }
+  if (openingDate.isAfter(dateQuizz)) quizz.status = 'Não iniciada';
+  else if (closingDate.isBefore(dateQuizz)) quizz.status = 'Finalizada';
+  else quizz.status = 'Em andamento';
 
   const matches = useMediaQuery('(max-width:411px)');
 
@@ -55,36 +45,45 @@ function Quizzes({
   return (
     <div className="body-quizzes-card">
       {filter !== 'Em andamento' && filter !== 'Finalizada' && quizz?.status === 'Não iniciada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="init" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-        )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            {user?.type === 'administrador' && (
+              <RemoveQuizzModal id={quizz._id} setDeletedQuizz={setDeletedQuizz} />
+            )}
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="init" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Em andamento' && filter !== 'Não iniciada' && quizz?.status === 'Finalizada' && (
-      <div className="card-quizzes">
-        <button type="button" className="title-card-quizzes" onClick={handleOpen}>
-          <p>
-            {' '}
-            {quizz?.title}
-          </p>
-          <div className="tagg-status-quizz">
-            <DateQuizzes status="finished" />
-          </div>
-          <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
-        </button>
-      </div>
-              )}
+        <div className="card-quizzes">
+          <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+            {user?.type === 'administrador' && (
+              <RemoveQuizzModal id={quizz._id} setDeletedQuizz={setDeletedQuizz} />
+            )}
+            <p>
+              {' '}
+              {quizz?.title}
+            </p>
+            <div className="tagg-status-quizz">
+              <DateQuizzes status="finished" />
+            </div>
+            <KeyboardArrowDownIcon style={{ color: '#2F5C88' }} {...cellFontProps} />
+          </button>
+        </div>
+      )}
       {filter !== 'Finalizada' && filter !== 'Não iniciada' && quizz?.status === 'Em andamento' && (
       <div className="card-quizzes">
         <button type="button" className="title-card-quizzes" onClick={handleOpen}>
+          {user?.type === 'administrador' && (
+            <RemoveQuizzModal id={quizz._id} setDeletedQuizz={setDeletedQuizz} />
+          )}
           <p>
             {' '}
             {quizz?.title}
@@ -96,7 +95,7 @@ function Quizzes({
         </button>
       </div>
               )}
-      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate < dateQuizz) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
+      {(open === true && quizz?.privateResult === false) || (open === true && quizz?.privateResult === true && closingDate.isBefore(dateQuizz)) || (open === true && quizz?.privateResult === true && quizz?.toVote?.includes(user?.id) && user?.type === 'usuario') ? (
         <div className="description-card-quizzes">
           <p>{quizz?.description}</p>
           {loading ? (
@@ -105,12 +104,9 @@ function Quizzes({
             </div>
           ) : (
             <>
-              {(closingDate < nowDate || (closingDate === nowDate && closingHour <= nowHour)) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
+              {closingDate.isBefore(dateQuizz) || (quizz?.alreadyVoted?.includes(user?.id) || (user?.type === 'administrador')) ? (
                 <GraphicQuizzes
-                  toVote={quizz?.toVote}
-                  associates={associates}
-                  quizz={quizz?.options}
-                  alreadyVoted={quizz?.alreadyVoted}
+                  {...quizz}
                   userType={user?.type}
                 />
               ) : (
@@ -121,8 +117,6 @@ function Quizzes({
                       quizz={quizz}
                       userId={user?.id}
                       setVoted={setVoted}
-                      alreadyVoted={quizz?.alreadyVoted}
-                      setLoading={setLoading}
                     />
                   </FormControl>
                 </div>

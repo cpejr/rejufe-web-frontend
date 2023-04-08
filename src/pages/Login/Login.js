@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import './login.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
@@ -26,6 +26,7 @@ function Login() {
   const [usuario, setUsuario] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
+  const { state } = useLocation();
   const { setUser } = useAuth();
   const history = useHistory();
   const [isBlocked, setIsBlocked] = useState(false);
@@ -34,7 +35,7 @@ function Login() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
       if (userStorage?.rememberMe) {
-        history.push('/intranet');
+        history.push(state?.from?.pathname || '/intranet');
       }
       setPageLoading(false);
     } catch (error) {
@@ -84,7 +85,7 @@ function Login() {
           });
         }
       }
-      const date = moment(new Date());
+      const date = moment();
       const attempt = {
         email,
         lock_time: date,
@@ -125,9 +126,7 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          if (response !== {}) {
-            window.location.href = '/intranet';
-          }
+          history.push(state?.from?.pathname || '/intranet');
         } catch (error) {
           setShowWarningModal(true);
           setLoading(false);

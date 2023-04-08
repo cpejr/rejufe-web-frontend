@@ -55,15 +55,15 @@ export const createQuizz = async (body) => {
   return response.data;
 };
 
-export const getUsersBySection = async (sections) => {
+export const getUsersByAllocation = async (allocations) => {
   let times = 0;
   let users = [];
   let response;
   // eslint-disable-next-line no-restricted-syntax
-  for (const section of sections) {
+  for (const allocation of allocations) {
     times = 0;
     do {
-      response = await requesterService.getUsersBySection(times, section);
+      response = await requesterService.getUsersByAllocation(times, allocation);
       if (isFailureStatus(response)) throw new Error('Problem with api response');
       users = users.concat(response.data);
       times += 1;
@@ -166,10 +166,27 @@ export const getToVoteQuizzes = async (id, date, field, filter) => {
   return allQuizzes;
 };
 
+export const getToVoteMembers = async (quizzId) => {
+  const response = await requesterService.getToVoteMembers(quizzId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const sendEmailToVoteMembers = async (quizzId) => {
+  const response = await requesterService.sendEmailToVoteMembers(quizzId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const updateQuizz = async (id, quizz) => {
   const response = await requesterService.updateQuizz(id, quizz);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const deleteQuizz = async (quizzId) => {
+  const response = await requesterService.deleteQuizz(quizzId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
 export const getExternalAssociates = async (field, filter) => {
@@ -514,4 +531,11 @@ export const updateVotes = async (quizzId, index) => {
   };
   const response = await requesterService.updateVotes(quizzId, body);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getQuizzesById = async (id) => {
+  const times = 1;
+  const response = await requesterService.getQuizzesById(id, times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
 };

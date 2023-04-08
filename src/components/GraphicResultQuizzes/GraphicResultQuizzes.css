@@ -19,11 +19,60 @@
   text-align: center;
 }
 .title-quizzes-already-voted h2 {
-  margin-top: 20px;
+  margin-top: 50px;
   font-family: 'Roboto', sans-serif;
   font: normal 18pt Roboto;
   margin-bottom: 0.8%;
   color: var(--secondary);
   font-weight: 700;
   font-size: 1.5em;
+}
+
+.send-email-to-vote-members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.send-email-to-vote-members button {
+  width: max(155px, 15%);
+
+  padding: 6px 16px;
+
+  border: solid var(--button);
+  border-width: 1px;
+  border-radius: 5px;
+
+  margin: 3% 0;
+
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+
+  background-color: var(--button);
+
+  color: white;
+  cursor: pointer;
+
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+  transition: ease;
+}
+
+@media(max-width: 400px){
+  .send-email-to-vote-members button {
+    font-size: 14px;
+  }
+}
+
+.send-email-to-vote-members button:disabled {
+  cursor: default;
+  color: var(--button);
+  background-color: white;
+}
+
+.send-email-to-vote-members button:hover {
+  opacity: 0.95;
 }

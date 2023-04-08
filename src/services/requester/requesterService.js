@@ -36,7 +36,7 @@ export const getAllUsers = (times) => httpClient.get('/usuario/', {
   },
 });
 
-export const getUsersBySection = (times, section) => httpClient.get(`/usuario/section/${section}`, {
+export const getUsersByAllocation = (times, allocation) => httpClient.get(`/usuario/allocation/${allocation}`, {
   params: {
     times,
   },
@@ -77,6 +77,10 @@ export const getQuizzes = (date, times, field, filter) => httpClient.get('/quizz
   paramsSerializer: (params) => qs.stringify(params),
 });
 
+export const getToVoteMembers = (quizzId) => httpClient.post(`/quizzes/toVoteMembers/${quizzId}`);
+
+export const sendEmailToVoteMembers = (quizzId) => httpClient.post(`/s/${quizzId}`);
+
 export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
   params: {
     date,
@@ -90,6 +94,8 @@ export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.g
 export const updateQuizz = (id, quizz) => httpClient.put(`/quizzes/vote/${id}`, quizz);
 
 export const updateVotes = (quizzId, body) => httpClient.put(`/quizzes/votes/${quizzId}`, body);
+
+export const deleteQuizz = (quizzId) => httpClient.delete(`quizzes/${quizzId}`);
 
 export const getExternalAssociates = (times, field, filter) => httpClient.get('/usuario/externalAssociate', {
   params: {
@@ -128,7 +134,6 @@ export const getNews = (times, field, filter) => httpClient.get('/noticias', {
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 export const deleteAction = (actionId) => httpClient.delete(`/acoes/${actionId}`);
 
@@ -240,7 +245,6 @@ export const getCommunique = (times, field, filter) => httpClient.get('/informac
     filter,
   },
   paramsSerializer: (params) => qs.stringify(params),
-
 });
 
 export const getAccounts = (times, field, filter) => httpClient.get('/prestacaodecontas', {
@@ -266,3 +270,5 @@ export const getTodayBirthday = (times, field, filter) => httpClient.get('usuari
 });
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
+
+export const getQuizzesById = (id) => httpClient.get(`/quizzes/${id}`);

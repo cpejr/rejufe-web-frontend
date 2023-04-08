@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import { CircularProgress } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import * as managerService from '../../services/manager/managerService';
 import formsNews from '../../components/formsData/formsNews';
@@ -11,7 +12,7 @@ import { initialNewsErrorState } from '../../components/initialStates/initialSta
 toast.configure();
 
 function EditarRegistrosNoticias(news) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [initialErrorState, setError] = useState(initialNewsErrorState);
   const [dados, setDados] = useState({});
   const formData = new FormData();
@@ -33,9 +34,7 @@ function EditarRegistrosNoticias(news) {
         date: response.date,
         description: response.description,
         type: response.type,
-        section: response.section,
         title: response.title,
-        send_site: response.send_site,
       });
       setArchiveIds({ archive_1: response.archive_1, archive_2: response.archive_2, photos: response.photos });
     } catch (error) {
@@ -43,6 +42,8 @@ function EditarRegistrosNoticias(news) {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
+    } finally {
+      setLoading(false);
     }
   }
   async function handleSubmit(event) {
@@ -57,6 +58,7 @@ function EditarRegistrosNoticias(news) {
     });
 
     try {
+      setLoading(true);
       await managerService.updateRecord(id, formData);
       toast('Notícia editada com sucesso', {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -68,9 +70,9 @@ function EditarRegistrosNoticias(news) {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 5000,
       });
+    } finally {
       setLoading(false);
     }
-    setLoading(false);
   }
 
   useEffect(() => {
@@ -81,29 +83,39 @@ function EditarRegistrosNoticias(news) {
     <div>
       <div className="register-news-container">
         <h1 className="register-news-title"><div className="register-news-text-margin">Editar Notícia </div></h1>
-        {formsNews?.map((line) => (
-          <Box>
-            <div className="register-news-text-field">
-              {line?.items?.map((item) => (
-                <UpdateNews
-                  type={item.type}
-                  fileType={item.fileType}
-                  id={item.id}
-                  label={item.label}
-                  field={item.field}
-                  select={item.select}
-                  required={item.required}
-                  setDados={(value, entrada) => handleChange(value, entrada)}
-                  mask={item.mask}
-                  initialErrorState={initialErrorState}
-                  dados={dados}
-                  archiveIds={archiveIds}
-                />
-              ))}
+        {
+          loading ? (
+            <div className="form-vote-quizz-container">
+              <CircularProgress style={{ height: '100%' }} />
             </div>
-          </Box>
-        ))}
-        <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Editar Notícia</LoadingButton>
+          ) : (
+            <>
+              {(formsNews?.map((line) => (
+                <Box>
+                  <div className="register-news-text-field">
+                    {line?.items?.map((item) => (
+                      <UpdateNews
+                        type={item.type}
+                        fileType={item.fileType}
+                        id={item.id}
+                        label={item.label}
+                        field={item.field}
+                        select={item.select}
+                        required={item.required}
+                        setDados={(value, entrada) => handleChange(value, entrada)}
+                        mask={item.mask}
+                        initialErrorState={initialErrorState}
+                        dados={dados}
+                        archiveIds={archiveIds}
+                      />
+                    ))}
+                  </div>
+                </Box>
+              )))}
+              <LoadingButton variant="contained" loading={loading} style={{ backgroundColor: '#1C3854', marginBottom: '5%' }} onClick={(e) => handleSubmit(e)}>Editar Notícia</LoadingButton>
+            </>
+          )
+        }
       </div>
     </div>
   );

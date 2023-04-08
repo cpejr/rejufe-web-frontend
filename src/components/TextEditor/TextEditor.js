@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 
 export default function TextEditor({
-  id, setDados, dados, register,
+  id, setDados, dados,
 }) {
-  const [convertedText, setConvertedText] = useState(register ? 'Escreva a descrição aqui' : dados.description);
-
   const modules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -19,21 +17,6 @@ export default function TextEditor({
       ['clean'],
     ],
   };
-
-  const handleChange = (value) => {
-    setDados(value, id);
-  };
-
-  useEffect(() => {
-    if (!convertedText) {
-      setConvertedText(dados?.description);
-    }
-  }, [dados]);
-
-  useEffect(() => {
-    handleChange(convertedText);
-  }, [convertedText]);
-
   const formats = [
     'bold',
     'italic',
@@ -53,19 +36,18 @@ export default function TextEditor({
     'link',
     'clean',
   ];
+  const handleChange = (html) => setDados(html, id);
 
   return (
     <div>
-      {convertedText && (
-        <ReactQuill
-          theme="snow"
-          value={convertedText}
-          onChange={setConvertedText}
-          placeholder="Escreva a descrição aqui!"
-          modules={modules}
-          formats={formats}
-        />
-      )}
+      <ReactQuill
+        theme="snow"
+        defaultValue={dados.description || ''}
+        onChange={handleChange}
+        placeholder="Escreva a descrição aqui!"
+        modules={modules}
+        formats={formats}
+      />
     </div>
   );
 }
