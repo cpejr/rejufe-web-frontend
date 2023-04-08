@@ -79,7 +79,7 @@ export const getQuizzes = (date, times, field, filter) => httpClient.get('/quizz
 
 export const getToVoteMembers = (quizzId) => httpClient.post(`/quizzes/toVoteMembers/${quizzId}`);
 
-export const sendEmailToVoteMembers = (quizzId) => httpClient.post(`/quizzes/sendEmailToVote/${quizzId}`);
+export const sendEmailToVoteMembers = (quizzId) => httpClient.post(`/s/${quizzId}`);
 
 export const getToVoteQuizzes = (id, date, times, field, filter) => httpClient.get(`/quizzes/toVote/${id}`, {
   params: {
@@ -282,3 +282,5 @@ export const getTodayBirthday = (times, field, filter) => httpClient.get('usuari
 });
 
 export const getExternalUserById = (associateId) => httpClient.get(`usuario/externalAssociate/${associateId}`);
+
+export const getQuizzesById = (id) => httpClient.get(`/quizzes/${id}`);

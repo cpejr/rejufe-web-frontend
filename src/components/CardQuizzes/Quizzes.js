@@ -117,8 +117,6 @@ function Quizzes({
                       quizz={quizz}
                       userId={user?.id}
                       setVoted={setVoted}
-                      alreadyVoted={quizz?.alreadyVoted}
-                      setLoading={setLoading}
                     />
                   </FormControl>
                 </div>

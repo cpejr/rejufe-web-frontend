@@ -11,6 +11,7 @@ toast.configure();
 
 function GraphicQuizzes({
   _id,
+  status,
   toVote,
   options,
   alreadyVoted,
@@ -106,7 +107,7 @@ function GraphicQuizzes({
         options={graphOptions}
         legendToggle
       />
-      {userType === 'administrador' && toVote?.length > 0 && (
+      {userType === 'administrador' && toVote?.length > 0 && status === 'Em andamento' && (
         <div>
           <div className="title-quizzes-already-voted">
             <h2>{'Faltam Votar '}</h2>

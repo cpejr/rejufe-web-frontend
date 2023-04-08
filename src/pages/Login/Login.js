@@ -2,7 +2,7 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import './login.css';
 import moment from 'moment';
 import { toast } from 'react-toastify';
@@ -30,6 +30,7 @@ function Login() {
   const [usuario, setUsuario] = useState(initialState);
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
+  const { state } = useLocation();
   const { setUser } = useAuth();
   const history = useHistory();
 
@@ -37,7 +38,7 @@ function Login() {
     try {
       const userStorage = JSON.parse(localStorage.getItem('user'));
       if (userStorage?.rememberMe) {
-        history.push('/intranet');
+        history.push(state?.from?.pathname || '');
       }
       setPageLoading(false);
     } catch (error) {
@@ -125,7 +126,7 @@ function Login() {
             id,
           });
           await managerService.resetAttempts(email);
-          history.push('/intranet');
+          history.push(state?.from?.pathname || '');
         } catch (error) {
           setLoading(false);
           if (email !== undefined) {

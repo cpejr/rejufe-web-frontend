@@ -13,7 +13,7 @@ import Quizzes from '../../components/CardQuizzes/Quizzes';
 import './ResultadoQuizzes.css';
 
 function ResultadoQuizzes() {
-  const [voted, setVoted] = useState();
+  const [voted, setVoted] = useState(false);
   const [filter, setFilter] = useState('');
   const [quizzes, setQuizzes] = useState([]);
   const [toVote, setToVote] = useState([]);

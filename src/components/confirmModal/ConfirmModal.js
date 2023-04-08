@@ -4,8 +4,10 @@ import Modal from '@material-ui/core/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { makeStyles } from '@material-ui/core/styles';
-import * as managerService from '../../services/manager/managerService';
 import './ConfirmModal.css';
+import { useHistory } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
+import * as managerService from '../../services/manager/managerService';
 
 function getModalStyle() {
   const top = 50;
@@ -49,12 +51,15 @@ const useStyles = makeStyles((theme) => ({
 toast.configure();
 
 export default function ConfirmModal({
-  quizz, userId, setVoted, setLoading,
+  quizz, userId, setVoted,
 }) {
-  let votes = 0;
+  const [selectedOptionId, setSelectedOptionId] = useState('');
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
-  const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -62,20 +67,21 @@ export default function ConfirmModal({
     setOpen(false);
   };
 
-  const handleVote = async (id, index) => {
-    await managerService.updateVotes(id, index);
-  };
-
   const vote = async () => {
     const newAlreadyVoted = quizz?.alreadyVoted.concat(userId);
     const newToVote = quizz?.toVote?.filter((id) => id !== userId);
+    const newOptions = quizz?.options.map((option) => (
+      selectedOptionId === option._id ? { ...option, votes: option.votes + 1 } : option
+    ));
     try {
       await managerService.updateQuizz(quizz._id, {
         alreadyVoted: newAlreadyVoted,
         toVote: newToVote,
+        options: newOptions,
       });
-      setVoted(votes);
-      votes += 1;
+
+      if (setVoted) setVoted((prev) => !prev); // Forçar um useEffect de um componente pai --> Não sei pq fizeram assim
+
       toast('Voto registrado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 5000,
@@ -87,6 +93,26 @@ export default function ConfirmModal({
       });
     }
   };
+
+  const handleVote = async () => {
+    const userAlreadyVoted = quizz?.alreadyVoted?.includes(userId);
+    if (userAlreadyVoted) {
+      toast.error('Você já votou nessa enquete!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    } else {
+      setLoading(true);
+      // await managerService.updateVotes(quizz._id, selectedOption);
+      await vote();
+    }
+
+    handleClose();
+    setLoading(false);
+
+    history.push('/intranet');
+  };
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div className="exit-user-module-exclude">
@@ -119,39 +145,44 @@ export default function ConfirmModal({
         <div className="content-user-module-exclude">
           <h1>Você tem certeza que deseja votar nessa alternativa?</h1>
         </div>
-        <div className="user-module-exclude-buttons">
-          <button
-            className="confirm-user-module-exclude"
-            type="button"
-            onClick={() => {
-              vote();
-              handleClose();
-              setLoading(true);
-            }}
-          >
-            Confirmar
-          </button>
-          <button
-            className="cancel-user-module-exclude"
-            type="button"
-            onClick={() => {
-              handleClose();
-            }}
-          >
-            Cancelar
-          </button>
-        </div>
+        {
+          loading ? (
+            <div className="loader-cards-quizzes">
+              <CircularProgress size={35} color="inherit" />
+            </div>
+          ) : (
+            <div className="user-module-exclude-buttons">
+              <button
+                className="confirm-user-module-exclude"
+                type="button"
+                onClick={handleVote}
+              >
+                Confirmar
+              </button>
+              <button
+                className="cancel-user-module-exclude"
+                type="button"
+                onClick={() => {
+                  handleClose();
+                }}
+              >
+                Cancelar
+              </button>
+            </div>
+          )
+        }
       </div>
     </div>
   );
   return (
     <div className="alternatives-vote-quizzes">
-      {quizz?.options?.map((option, index) => (
+      {quizz?.options?.map((option) => (
         <button
+          key={option._id}
           type="button"
           onClick={() => {
-            handleVote(quizz._id, index);
             handleOpen();
+            setSelectedOptionId(option._id);
           }}
           className="vote-button-confirm-modal"
         >
