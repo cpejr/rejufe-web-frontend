@@ -1,15 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
+import { Redirect, useParams } from 'react-router-dom';
 import getQuizzesById from '../../components/getQuizzesById/getQuizzesById';
 import './FichaEnquete.css';
 import ConfirmModal from '../../components/confirmModal/ConfirmModal';
+import { useAuth } from '../../providers/auth';
 
 function FichaEnquete() {
   const [quizz, setQuizz] = useState({});
   const [graphData, setGraphData] = useState([]);
-  const [voted, setVoted] = useState();
-  const [loading, setLoading] = useState(true); // eslint desabilitado pq voted e loading ainda não estão sendo usados
+  const { userId, quizzId } = useParams();
+  const { user: loggedUser } = useAuth();
 
   const options = {
     title: 'Quizz',
@@ -20,7 +21,7 @@ function FichaEnquete() {
   };
 
   useEffect(() => {
-    getQuizzesById('635d89a364b72583923f5413', setQuizz);
+    getQuizzesById(quizzId, setQuizz);
   }, []);
 
   useEffect(() => {
@@ -44,6 +45,8 @@ function FichaEnquete() {
     setGraphData(Data);
   }, [quizz]);
 
+  if (loggedUser.id !== userId) return <Redirect to="/NotFound" />;
+
   return (
     <div className="report-quizzes">
       <div className="container-report-quizzes">
@@ -58,10 +61,7 @@ function FichaEnquete() {
         <div className="content-alternatives-quizzes">
           <ConfirmModal
             quizz={quizz}
-            userId="634cc7a0ee02ea1c7569b02c"
-            setVoted={setVoted}
-            alreadyVoted={quizz?.alreadyVoted}
-            setLoading={setLoading}
+            userId={userId}
           />
         </div>
         <div className="chart-report-quizzes">Gráfico</div>

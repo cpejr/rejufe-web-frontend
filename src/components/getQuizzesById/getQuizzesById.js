@@ -14,6 +14,7 @@ async function getQuizzesById(quizzesId, setQuizzes) {
   try {
     managerService.getQuizzesById(quizzesId).then((Quizzes) => {
       const quizzes = {
+        _id: Quizzes._id,
         title: Quizzes.title,
         description: Quizzes.description,
         options: Quizzes.options,

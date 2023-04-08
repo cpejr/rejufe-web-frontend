@@ -19,7 +19,7 @@ function ResultadoQuizzes() {
   const [newQuizz, setNewQuizz] = useState(false);
   const [associates, setAssociates] = useState([]);
   const history = useHistory();
-  const [voted, setVoted] = useState();
+  const [voted, setVoted] = useState(false);
   const [toVote, setToVote] = useState([]);
   const nowDate = moment().format('YYYY-MM-DD, HH:mm');
   const [loading, setLoading] = useState(true);
