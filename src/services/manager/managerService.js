@@ -238,8 +238,9 @@ export const resetAttempts = async (email) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const updateTime = async (email, time) => {
-  const response = await requesterService.updateTime(email, time);
+// eslint-disable-next-line camelcase
+export const updateTime = async (email, lock_time) => {
+  const response = await requesterService.updateTime(email, lock_time);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 

@@ -108,26 +108,14 @@ export const uploadFile = (body) => httpClient.post('/arquivos', body);
 
 export const createNews = (body) => httpClient.post('/noticias', body);
 
-export const getAttempts = (email) => httpClient.get('/attempts/getAttemptsByEmail', {
-  params: {
-    email,
-  },
-});
+export const getAttempts = (email) => httpClient.get(`/attempts/getAttemptsByEmail/${encodeURI(email)}`);
 
 export const createAttempt = (field) => httpClient.post('/attempts', field);
 
-export const resetAttempts = (email) => httpClient.put('/attempts/resetByEmail', {
-  params: {
-    email,
-  },
-});
+export const resetAttempts = (email) => httpClient.put(`/attempts/resetByEmail/${encodeURI(email)}`);
 
-export const updateTime = (email, time) => httpClient.put('/attempts/updateTime', {
-  params: {
-    email,
-    time,
-  },
-});
+// eslint-disable-next-line camelcase
+export const updateTime = (email, lock_time) => httpClient.put(`/attempts/updateTime/${encodeURI(email)}`, { lock_time });
 
 export const createComunic = (body) => httpClient.post('/informacoes', body);
 

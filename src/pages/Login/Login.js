@@ -29,7 +29,6 @@ function Login() {
   const { setUser } = useAuth();
   const history = useHistory();
   const [isBlocked, setIsBlocked] = useState(false);
-  const date = moment(new Date()).format('HH:mm');
 
   async function rememberMe() {
     try {
@@ -85,15 +84,13 @@ function Login() {
           });
         }
       }
-      ///
+      const date = moment(new Date());
       const attempt = {
         email,
         lock_time: date,
       };
 
       const res = await managerService.getAttempts(email);
-      const lockTime = moment(res?.lock_time).format('HH:mm');
-
       if (Object.values(res).length === 0) {
         await managerService.createAttempt(attempt);
         setShowWarningModal(false);
@@ -101,12 +98,9 @@ function Login() {
       } else {
         attempts = res?.quantity;
       }
-      console.log(date);
-      console.log(lockTime);
-      console.log(date < res?.lock_time);
+
       if (date < res?.lock_time) {
         const tempoRestante = moment(res?.lock_time).fromNow();
-        console.log(tempoRestante);
         setIsBlocked(true);
         setContentWarningModal(tempoRestante);
         setShowWarningModal(true);
@@ -119,8 +113,9 @@ function Login() {
             password: usuario?.password,
             rememberMe: usuario?.rememberMe,
           };
-          await managerService.login(body);
+
           const response = await managerService.login(body);
+
           const id = response?.data?.user?._id;
           setUser({
             name: response?.data?.user?.name,
